@@ -157,7 +157,7 @@
 <tr><td><b>KAM</b></td><td>sale tuyến sau: khách quan tâm thì gọi Zoom chốt</td></tr>
 <tr><td><b>Ops</b></td><td>người vận hành: chuẩn bị data, tạo list, giao việc</td></tr>
 <tr><td><b>Account</b></td><td>1 công ty khách tiềm năng (kèm các contact)</td></tr>
-<tr><td><b>Queue</b> <span class="fn">(từ của spec)</span></td><td>không có hệ thống riêng — <b>chính là contact list được giao cho SDR</b>, lọc tự do theo lifecycle · tín hiệu · ngày (§1.3)</td></tr>
+<tr><td><b>Queue</b> <span class="fn">(từ của spec)</span></td><td>không có hệ thống riêng — <b>chính là contact list được giao cho SDR</b>; SDR làm việc trên list, gửi mail theo trường hợp (§1.3)</td></tr>
 </table></div>
 </div>
 </div>
@@ -389,7 +389,7 @@ AdminCreateContactV2Result {
 <figure class="mid"><img src="06-contacts-filter-panel.png" alt="Contacts filter"/><figcaption><b>Hình 6 — /contacts với filter panel.</b> Ops filter 15.459 contacts theo Lifecycles · In Conversation · Classification · Owner · Work Experience · Countries · Cities · Campaign · <b>Last Email Sent Date</b> · Custom List… rồi chọn và Add to list.</figcaption></figure>
 <div class="grid2">
 <figure class="crop"><img src="07-add-to-list-drawer.png" alt="Add to list"/><figcaption><b>Hình 7 — Drawer Add to list.</b> Apply cho 20 đã chọn <i>hoặc</i> toàn bộ matching (cap 10.000/lần). Chọn list có sẵn hoặc tạo mới.</figcaption></figure>
-<figure class="crop"><img src="08-list-detail-members.png" alt="List detail"/><figcaption><b>Hình 8 — List detail (16072026v1 · 419 members).</b> Tab Members với đầy đủ bộ filter của /contacts áp trong phạm vi list — nền tảng để SDR lọc tự do §1.3; panel trái group theo Lifecycles/Companies.</figcaption></figure>
+<figure class="crop"><img src="08-list-detail-members.png" alt="List detail"/><figcaption><b>Hình 8 — List detail (16072026v1 · 419 members).</b> Tab Members với đầy đủ bộ filter của /contacts áp trong phạm vi list — đây là surface <b>Ops/Admin</b> (đủ filter); <b>SDR bị khoá còn quick-filter pin sẵn</b> (§1.3); panel trái group theo Lifecycles/Companies.</figcaption></figure>
 </div>
 <div class="tblwrap"><table>
 <thead><tr><th>#</th><th>Step</th><th>Operation</th><th>Kết quả 15/07</th></tr></thead>
@@ -634,8 +634,8 @@ flowchart TD
 </pre>
 <p class="fn">Ba bề mặt độc lập: thanh members lọc trực tiếp trên CONTACT · rail company lọc trên COMPANY rồi trả về người của company khớp · thanh Inbox lọc thread/reply. <b>"Has signal" tồn tại 2 cấp</b> — contact đích thân có signal (members) vs company có signal (rail).</p>
 <div class="aslist">
-<div class="as"><h4>As-is</h4><p>Lọc tự do chạy được ngay; SDR bấm filter tay mỗi lần (3–4 click) để dựng ngăn việc. Chưa có "zero-decision entry" — login xong phải tự điều hướng vào list.</p></div>
-<div class="to"><h4>To-be</h4><p><b>Saved filters</b> (🔵 In Progress) → 3 công thức lọc thành nút 1-click. Sau đó: landing mặc định của role SDR = list view với saved filter Q1 bật sẵn (P1, FE nhỏ).</p></div>
+<div class="as"><h4>As-is</h4><p>SDR chỉ có <b>quick-filter pin sẵn</b> (Lifecycles · Has signal · Has-new-signals), <b>không "+ Add filter"</b>; replies xem ở Inbox, follow-up qua cột Last Contact. Chưa có "zero-decision entry" — login xong phải tự điều hướng vào list.</p></div>
+<div class="to"><h4>To-be</h4><p><b>Saved/pinned filters</b> (🔵 In Progress) → pin thêm quick-filter cho từng trường hợp (signal mới · prospect). Sau đó: landing mặc định của role SDR = list view thay vì <code>/projects</code> (G16, P1, FE nhỏ).</p></div>
 </div>
 <h4>DTO — công thức lọc ở tầng API (chạy thật 16/07 chiều, số khớp tuyệt đối)</h4>
 <div class="dto"><span class="c">// Đếm: dùng contactV2Count(query) — LƯU Ý totalItems của contactsV2 luôn = 0 (bug BE đã biết)</span>
