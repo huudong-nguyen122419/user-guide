@@ -528,7 +528,7 @@ flowchart TD
   A(["SDR login"]) --> B["Mở contact list được giao (§5.2)"]
   B --> C{"View REPLIES<br/>còn contact?"}
   C -->|"Có"| D["Mở reply kèm thread (§5.8)"]
-  D --> E["Classify reply (§5.9)"]
+  D --> E["Đọc reply (auto-chip) →<br/>set lifecycle contact (§5.9)"]
   E --> F{"Nhãn?"}
   F -->|"✅ Interested"| G["(to-be G2) tạo deal →<br/>handoff KAM (§5.10)"]
   F -->|"🥶 tạm dừng / 🆘 loại"| H["Contact rời các view"]
@@ -825,7 +825,7 @@ flowchart TD
   INB --> CHIP1["Chip categorize THẬT<br/>Interested / OOO / Not Interested…"]
   OUT --> CHIP2["Chip 'Open'<br/>(= chưa classify)"]
   CHIP1 --> READ["SDR đọc reply"]
-  READ --> LC["SDR set lifecycle contact — tay<br/>updateLifecycleContactV2"]
+  READ --> LC["SDR set lifecycle contact — tay<br/>updateLifecycleContactV2<br/>(chỉ khi lifecycle hiện tại rỗng HOẶC ∉<br/>PlatformSignUp·InProject·ProjectCompleted — §5.4c)"]
   W["⚠️ CẢ 2 chiều đều có chip ⇒ đừng dùng sự-hiện-diện của chip.<br/>Tell tin cậy = HƯỚNG mũi tên"] -.-> DIR
   classDef default fill:#fff,stroke:#CCC8D5;
 </pre>
@@ -833,8 +833,8 @@ flowchart TD
 
 <figure class="mid"><img src="21-classify-lifecycle-dropdown.png" alt="Classify lifecycle"/><figcaption><b>Hình 20 — As-is: classify ở cấp CONTACT.</b> Dropdown lifecycle ngay trên row: Prospect · In Conversation · Interested · Not Now · Opted Out · Email Updated · Do Not Contact · Left The Company · Not Interested.</figcaption></figure>
 <div class="aslist">
-<div class="as"><h4>As-is</h4><p>SDR đọc reply rồi đổi <b>lifecycle của contact</b> (hình 20, <code>updateLifecycleContactV2</code> PASS — side-effects đúng). Enum <code>EmailLogCategorizeEnum</code> đủ trong schema và <b>BE đã có mutation <code>setCategorizeEmailLog</code></b> (introspect 16/07) — nhưng <b>chưa có UX classify từng reply trong Inbox</b>.</p></div>
-<div class="to"><h4>To-be (🔵 In Progress)</h4><p>Classify <b>per-reply</b>: chọn 1 trong 11 nhãn ngay trên message → hệ thống tự cập nhật lifecycle contact + side-effects. Giữ nguyên enum verbatim (OOO = <code>OutOfOffice</code>) — blocker #8/#14 đã giải từ schema.</p></div>
+<div class="as"><h4>As-is</h4><p>SDR đọc reply rồi đổi <b>lifecycle của contact</b> (hình 20, <code>updateLifecycleContactV2</code> PASS). Chip <code>EmailLogCategorizeEnum</code> per-reply nay <b>do BE tự gán (auto-classify, đã live)</b> — hiển thị <b>read-only</b> trên từng message; <b>SDR KHÔNG classify reply</b>. Setter tay <code>setCategorizeEmailLog</code> vẫn tồn tại nhưng không nằm trong luồng SDR.</p></div>
+<div class="to"><h4>Đã chốt (auto-classify · 19/07)</h4><p>Chip per-reply <b>hệ thống tự gán</b> (BE producer đọc nội dung reply), <b>SDR không chỉnh</b> — click chip chỉ mở/đóng message. Chip KHÔNG tự đổi lifecycle contact: SDR đọc chip như <b>gợi ý</b> rồi tự set <b>lifecycle cấp CONTACT</b>. Còn lại (P1, FE-only): tab lọc <b>“chưa classify”</b> dùng field <code>categorizes</code> có sẵn. Enum verbatim (OOO = <code>OutOfOffice</code>).</p></div>
 </div>
 <h4>DTO — classify (verify UAT 16/07)</h4>
 <div class="dto"><span class="c">// AS-IS — classify cấp CONTACT: mutation updateLifecycleContactV2(id, input) → AdminContactDetail</span>
@@ -845,26 +845,29 @@ AdminSetCategorizeEmailLogInput { categorize?: EmailLogCategorizeEnum, contactId
 <span class="c">//   NoCategories · OutOfOffice · OptedOut · LeftTheCompany · EmailUpdated · NotResponded</span>
 <span class="c">// ContactLifecycleEnum (18 — recount FE HEAD 20/07, KHÔNG có 'Replied'): thêm Open · Click · Bounce · Dropped · PlatformSignUp · InProject · ProjectCompleted · CallScheduled · NoCategories · OutOfOffice · NotResponded…</span>
 <span class="c">// Row dropdown render 14 option (CONTACT_LIFECYCLE_OPTIONS): 9 nhãn tay + NoCategories · CallScheduled · PlatformSignUp · InProject · ProjectCompleted</span></div>
-<h4>UX flow đề xuất — nối BE có sẵn vào Inbox (to-be, FE-only)</h4>
+<h4>Cơ chế classify thực tế — reply auto-classify (BE) · SDR set lifecycle contact (có khoá)</h4>
 <ol class="steps">
-<li><b>Điểm đặt control:</b> trên MỖI message reply của khách (Inbox v2 + tab Conversations của contact) hiện nút <b>Classify ▾</b> — dropdown 11 nhãn <code>EmailLogCategorizeEnum</code>, tô màu theo nhóm (✅ Interested/CallScheduled · 🥶 NotNow/OOO/EmailUpdated/NoCategories/NotResponded · 🆘 OptedOut/DoNotContact/LeftTheCompany/NotInterested).</li>
-<li><b>Chọn nhãn</b> → FE gọi <code>setCategorizeEmailLog(logId, {categorize, contactId})</code> — 1 call duy nhất, không cần màn hình mới.</li>
-<li><b>Side-effect — ⚠️ verified 16/07: mutation hiện CHỈ set <code>categorize</code> trên log, KHÔNG đổi lifecycle contact.</b> Hai lựa chọn: (a) FE gọi kèm <code>updateLifecycleContactV2</code> (2 call — làm được ngay); (b) đề xuất BE thêm side-effect trong <code>setCategorizeEmailLog</code> (P1, gọn hơn cho mọi client).</li>
-<li><b>Hiển thị lại:</b> badge nhãn nằm ngay trên message đã classify; reply chưa classify = việc còn tồn. Lọc được vì <code>EmailLogConditionInput</code> đã có sẵn field <code>categorizes</code> (introspect 16/07) — thêm tab "Chưa classify" trong Inbox chỉ là 1 filter.</li>
-<li><b>Nhãn Interested</b> → điểm nối tương lai với handoff KAM (SDR.0.17): hiện toast "Tạo deal &amp; chuyển KAM?" khi G2 ship.</li>
+<li><b>Reply về</b> → <b>BE producer tự đọc nội dung</b> → gán chip categorize (1/11 nhãn <code>EmailLogCategorizeEnum</code>) cho <i>chính message đó</i>, hiển thị <b>read-only</b> trên message + item thread list. <b>SDR KHÔNG bấm classify reply.</b></li>
+<li><b>SDR đọc reply</b> — chip là <b>gợi ý + lịch sử quét nhanh cả thread</b>; không sửa được (click chỉ mở/đóng message).</li>
+<li><b>SDR set lifecycle ở cấp CONTACT</b> (<code>updateLifecycleContactV2</code>) — quyết định chính thức, TÁCH khỏi chip reply (chip KHÔNG tự đổi lifecycle contact — verified 16/07). <b>Chỉ set được khi lifecycle hiện tại RỖNG hoặc KHÔNG thuộc <code>{PlatformSignUp, InProject, ProjectCompleted}</code></b> — ở 3 stage này chip <b>read-only</b> (“cấm rời”, <a href="#sdr045">§5.4c</a>).</li>
+<li><b>Lọc “chưa classify”</b>: field <code>categorizes</code> của <code>EmailLogConditionInput</code> có sẵn → thêm tab/filter trong Inbox (P1, FE-only).</li>
+<li><b>Lifecycle Interested</b> → điểm nối handoff KAM (SDR.0.17): hiện toast "Tạo deal &amp; chuyển KAM?" khi G2 ship.</li>
 </ol>
 <pre class="mermaid">
 flowchart LR
-  A(["Reply của khách<br/>trong thread"]) --> B["SDR bấm Classify ▾<br/>(11 nhãn, tô màu nhóm)"]
-  B --> C["setCategorizeEmailLog(logId,<br/>{categorize, contactId})"]
-  C --> D["BE: categorize trên log<br/>+ lifecycle contact"]
-  D --> E{"Nhãn?"}
+  A(["Reply của khách<br/>trong thread"]) --> B["BE tự đọc nội dung reply<br/>→ gán chip categorize (auto · read-only)"]
+  B --> R["SDR đọc reply (chip = gợi ý)"]
+  R --> LK{"Lifecycle contact hiện tại ∈<br/>PlatformSignUp·InProject·ProjectCompleted?"}
+  LK -->|"Có → chip khoá (§5.4c)"| X["KHÔNG đổi được bằng tay"]
+  LK -->|"Không / rỗng"| C["SDR set lifecycle CONTACT<br/>updateLifecycleContactV2"]
+  C --> E{"Lifecycle?"}
   E -->|"✅ Interested"| F["(to-be G2) tạo deal → handoff KAM"]
-  E -->|"🥶 NotNow / OOO…"| G["Ẩn khỏi view làm việc,<br/>quay lại theo re-entry rule"]
+  E -->|"🥶 NotNow / OOO…"| G["Ẩn khỏi view làm việc,<br/>re-entry rule"]
   E -->|"🆘 OptedOut / DNC…"| H["Suppression — mọi send path né"]
+  W["⚠️ SDR KHÔNG classify reply — chip do hệ thống gán"] -.-> B
   classDef default fill:#fff,stroke:#CCC8D5;
 </pre>
-<p class="fn">Toàn bộ làm được ở FE (2 call/lần classify) — không chờ BE; nếu BE nhận thêm side-effect (P1) thì còn 1 call. Filter "chưa classify" dùng field <code>categorizes</code> có sẵn.</p>
+<p class="fn">Chip reply = <b>hệ thống gán tự động</b> (BE producer), read-only với SDR/KAM. SDR chỉ đọc rồi <b>set lifecycle cấp contact</b> (1 call <code>updateLifecycleContactV2</code>) — trừ khi contact đang ở 3 stage khoá (<a href="#sdr045">§5.4c</a>). Filter "chưa classify" dùng field <code>categorizes</code> có sẵn.</p>
 
 <h3 id="sdr017" class="anchor fh">5.10 · SDR.0.17 — Interested → deal → handoff KAM <span class="b gap">❌ Chưa có</span> <span class="fn">↔ User guide: chưa có Flow (hand-off chưa tài liệu hoá — deferred)</span></h3>
 <div class="aslist">
@@ -938,7 +941,7 @@ flowchart TD
 <tr><td>G2</td><td>Deal pipeline + handoff KAM chưa có</td><td><span class="b p0">P0</span></td><td>SDR.0.17</td><td>Contract §5.10 to-be — viết được ngay</td></tr>
 <tr><td>G3</td><td>Re-entry rules nhóm 🥶 chưa chốt (blocker #7) — N follow-up đã gỡ: per-SDR (16/07)</td><td><span class="b p2">P2</span></td><td>OPS.0.6</td><td>Lean: SDR rà tay filter 🥶; muốn tự động cần field "ngày đổi lifecycle"</td></tr>
 <tr><td>G4</td><td>Saved filters (công thức lọc → nút 1-click)</td><td><span class="b p1">P1</span></td><td>SDR.0.1</td><td>🔵 In Progress trong sprint — nicety trên model lọc-tự-do đã chạy</td></tr>
-<tr><td>G5</td><td>Classify per-reply UX trong Inbox</td><td><span class="b p1">P1</span></td><td>SDR.0.16</td><td>🔵 In Progress; BE đã sẵn (<code>setCategorizeEmailLog</code>) — chỉ nối UX</td></tr>
+<tr><td>G5 <span class="b ok">v3</span></td><td><s>Classify per-reply UX trong Inbox</s> — <b>ĐÓNG (chốt 19/07)</b>: reply <b>auto-classify</b> (BE tự gán chip), SDR KHÔNG classify reply → không build UX classify tay; SDR chỉ set lifecycle cấp contact (có khoá 3 stage — §5.4c)</td><td><span class="b ok">Đóng</span></td><td>SDR.0.16</td><td>—</td></tr>
 <tr><td>G6</td><td>SDR chưa xem được Email Logs của mình</td><td><span class="b p1">P1</span></td><td>SDR.0.12</td><td>Mở màn log read-only scope theo user</td></tr>
 <tr><td>G7</td><td>Reply sync UAT chập chờn → chưa verify được E2E</td><td><span class="b p1">P1</span></td><td>SDR.0.15</td><td>Ổn định inbound sync rồi test lại</td></tr>
 <tr><td>G8</td><td>List approval gate</td><td><span class="b p1">P1</span></td><td>OPS.0.6</td><td>Trạng thái draft/approved trên custom list</td></tr>
