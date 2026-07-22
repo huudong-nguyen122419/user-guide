@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Fintalent OSW — Guideline (Ops + SDR)</title>
+<style>
+  :root{
+    --pp-50:#F5F0FF;--pp-100:#EAE0FC;--pp-400:#7741F1;--pp-600:#4A0FD1;--pp-700:#3A0CA3;--pp-800:#2F0A85;
+    --n-50:#F8F8F9;--n-100:#F0EFF3;--n-200:#E4E2EA;--n-400:#9D92AA;--n-500:#756A84;--n-600:#51485B;--n-800:#231F28;--n-900:#1F1926;
+    --ok:#12B76A;--okbg:#E9FBF2;--warn:#F79009;--warnbg:#FFF7EC;--err:#D92D20;--errbg:#FEF3F2;
+    --ops:#1849A9;--opsbg:#E7F0FF;
+    --sans:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);color:var(--n-800);background:var(--n-50);line-height:1.65;font-size:15px}
+  .layout{display:grid;grid-template-columns:320px minmax(0,1fr);max-width:1480px;margin:0 auto}
+  aside{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:#fff;border-right:1px solid var(--n-200);padding:20px 14px 40px}
+  aside .brand{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--pp-700);font-size:16px;margin-bottom:2px}
+  aside .brand .dot{width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,var(--pp-600),var(--pp-400))}
+  aside .sub{font-size:11px;color:var(--n-400);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+  nav a{display:block;padding:4px 10px;border-radius:7px;color:var(--n-600);text-decoration:none;font-size:13px;cursor:pointer}
+  nav a:hover{background:var(--n-100);color:var(--pp-700)}
+  nav a.flow{font-weight:700;color:var(--n-800);margin-top:2px}
+  nav a.flow.active{background:var(--pp-50);color:var(--pp-700)}
+  nav a.flow .n{display:inline-block;min-width:24px;color:var(--pp-600);font-weight:800}
+  nav a.flow.ops .n{color:var(--ops)}
+  nav a.flow.ops.active{background:var(--opsbg);color:var(--ops)}
+  nav a.st{padding-left:36px;font-size:12px;color:var(--n-500);display:none}
+  nav a.st.show{display:block}
+  nav a.st.edge{color:var(--n-600);font-weight:600}
+  nav a.st2{padding-left:52px;font-size:11.5px;color:var(--n-400);display:none}
+  nav a.st2.show{display:block}
+  nav a.st:hover,nav a.st2:hover{color:var(--pp-700)}
+  nav .grp{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--n-400);margin:16px 0 3px;padding:0 10px;font-weight:800}
+  nav .grp.ops{color:var(--ops)}
+  main{padding:34px 46px 120px;max-width:1010px}
+  h1{font-size:27px;line-height:1.2;margin:0 0 6px;color:var(--n-900);letter-spacing:-.02em}
+  h2{font-size:21px;margin:6px 0 6px;color:var(--n-900)}
+  h2 .n{color:var(--pp-600)}
+  h2 .n.ops{color:var(--ops)}
+  h2 .who{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.04em;border-radius:6px;padding:2px 8px;margin-right:8px;vertical-align:2px}
+  h2 .who.ops{background:var(--opsbg);color:var(--ops)}
+  h2 .who.sdr{background:var(--okbg);color:#087443}
+  h2 .who.adm{background:var(--pp-100);color:var(--pp-800)}
+  h2 .n.adm{color:var(--pp-700)}
+  nav a.flow.adm .n{color:var(--pp-700)}
+  nav a.flow.adm.active{background:var(--pp-50);color:var(--pp-700)}
+  nav .grp.adm{color:var(--pp-700)}
+  .goal.adm{background:var(--pp-50);border-color:var(--pp-100)}
+  .goal.adm b{color:var(--pp-800)}
+  .steps.adm>li:before{background:var(--pp-700)}
+  h3{font-size:16.5px;margin:26px 0 8px;color:var(--pp-800)}
+  h3.edgehead{margin-top:34px;padding-top:16px;border-top:2px solid var(--n-200);color:var(--n-800)}
+  p{margin:9px 0}
+  code{font-family:var(--mono);font-size:.86em;background:var(--n-100);border:1px solid var(--n-200);border-radius:5px;padding:1px 5px;color:var(--pp-800)}
+  a{color:var(--pp-700)}
+  .lead{font-size:15.5px;color:var(--n-600)}
+  .goal{font-size:15px;color:var(--n-800);background:var(--pp-50);border:1px solid var(--pp-100);border-radius:12px;padding:11px 15px;margin:10px 0 4px}
+  .goal b{color:var(--pp-800)}
+  .goal.ops{background:var(--opsbg);border-color:#cfe0fb}
+  .goal.ops b{color:var(--ops)}
+  .tblwrap{overflow-x:auto;margin:12px 0;border:1px solid var(--n-200);border-radius:12px}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;background:#fff}
+  th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--n-100);vertical-align:top}
+  th{background:var(--n-50);color:var(--n-600);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+  tr:last-child td{border-bottom:none}
+  .call{border-radius:12px;padding:12px 16px;margin:13px 0;border:1px solid;font-size:14px}
+  .call .t{font-weight:700;display:block;margin-bottom:3px}
+  .call.note{background:var(--pp-50);border-color:var(--pp-100)}
+  .call.warn{background:var(--warnbg);border-color:#f6dfb0}
+  .call.warn .t{color:#a35a00}
+  .call.stop{background:var(--errbg);border-color:#fcd2cd}
+  .call.stop .t{color:var(--err)}
+  figure{margin:14px 0;border:1px solid var(--n-200);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  figure img{display:block;width:100%;height:auto}
+  figure.crop{max-width:620px}
+  figcaption{font-size:12px;color:var(--n-500);padding:8px 13px;background:var(--n-50);border-top:1px solid var(--n-100)}
+  figcaption b{color:var(--n-600)}
+  .steps{list-style:none;padding:0;margin:10px 0}
+  .steps>li{position:relative;padding:10px 0 14px 76px;border-bottom:1px dashed var(--n-200);scroll-margin-top:14px}
+  .steps>li:before{content:attr(data-code);position:absolute;left:0;top:12px;min-width:27px;height:23px;padding:0 9px;border-radius:999px;background:var(--pp-600);color:#fff;font-weight:800;font-size:11.5px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+  .steps.ops>li:before{background:var(--ops)}
+  .steps.edge>li:before{background:var(--n-500)}
+  .steps>li:target{background:var(--pp-50);border-radius:10px}
+  .steps>li figure{margin:12px 0 2px;max-width:720px}
+  .steps>li figure.sm{max-width:440px}
+  ol.substeps{list-style:decimal;margin:8px 0 4px;padding-left:24px}
+  ol.substeps>li{padding:5px 0;border:none;font-size:14px}
+  ol.substeps>li::marker{font-weight:800;color:var(--n-500)}
+  .path{border:1px solid var(--n-200);border-radius:14px;padding:4px 18px 10px;margin:16px 0;background:#fff}
+  .path>.h{font-weight:800;color:var(--pp-800);margin:12px 0 2px;font-size:15px}
+  .path>.h .tag{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--pp-600);border-radius:6px;padding:1px 8px;margin-right:7px;vertical-align:1px}
+  .fn{font-size:.85em;color:var(--n-500)}
+  .new{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--ok);border-radius:5px;padding:1px 6px;vertical-align:1px;margin-left:4px}
+  .anchor{scroll-margin-top:14px}
+  .dotc{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:3px}
+  .pagehead{border-bottom:2px solid var(--n-200);padding-bottom:16px;margin-bottom:8px}
+  .page{display:none}
+  .page.active{display:block}
+  .pagernav{display:flex;justify-content:space-between;gap:12px;margin:44px 0 0;padding-top:18px;border-top:1px solid var(--n-200)}
+  .pagernav a{flex:1;text-decoration:none;border:1px solid var(--n-200);border-radius:12px;padding:11px 15px;color:var(--n-600);font-size:13px;background:#fff;cursor:pointer}
+  .pagernav a:hover{border-color:var(--pp-400);color:var(--pp-700);background:var(--pp-50)}
+  .pagernav a.next{text-align:right}
+  .pagernav a .k{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--n-400);margin-bottom:2px}
+  .pagernav a b{color:var(--n-800)}
+  .pagernav .spacer{flex:1}
+  .pagernav-top{margin:2px 0 22px;padding:0 0 16px;border-top:none;border-bottom:1px solid var(--n-200)}
+  @media(max-width:960px){.layout{grid-template-columns:1fr}aside{display:none}main{padding:22px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="brand"><span class="dot"></span>Fintalent OSW</div>
+  <div class="sub">Ops + SDR · by task-flow · build 21 Jul</div>
+  <nav>
+    <div class="grp adm">Admin — setup</div>
+    <a class="flow adm" data-page="page-a1"><span class="n">A1</span> Create an SDR/KAM account</a>
+    <a href="#a1-open" class="st" data-page="page-a1">A1.1 · Open Admins</a>
+    <a href="#a1-create" class="st" data-page="page-a1">A1.2 · Create the account</a>
+    <a href="#a1-edge" class="st edge" data-page="page-a1">A1.x · Edge cases</a>
+    <a href="#ea-1-1" class="st2" data-page="page-a1">A1.x.1 · Generate password</a>
+    <a href="#ea-1-2" class="st2" data-page="page-a1">A1.x.2 · Edit</a>
+    <a href="#ea-1-3" class="st2" data-page="page-a1">A1.x.3 · Login as</a>
+    <a href="#ea-1-4" class="st2" data-page="page-a1">A1.x.4 · View as role</a>
+    <a class="flow adm" data-page="page-a2"><span class="n">A2</span> Create a single contact</a>
+    <a href="#a2-open" class="st" data-page="page-a2">A2.1 · Open the form</a>
+    <a href="#a2-create" class="st" data-page="page-a2">A2.2 · Enter &amp; create</a>
+    <a href="#a2-edge" class="st edge" data-page="page-a2">A2.x · Edge cases</a>
+    <a href="#ea-2-1" class="st2" data-page="page-a2">A2.x.1 · Duplicate found</a>
+    <a href="#ea-2-2" class="st2" data-page="page-a2">A2.x.2 · Link / relink company</a>
+    <a href="#ea-2-3" class="st2" data-page="page-a2">A2.x.3 · Neither field</a>
+    <a href="#ea-2-4" class="st2" data-page="page-a2">A2.x.4 · Supplement info (edit)</a>
+
+    <div class="grp ops">Ops — preparing the work</div>
+    <a class="flow ops" data-page="page-o1"><span class="n">O1</span> Your Ops workspace</a>
+    <a href="#o1-menu" class="st" data-page="page-o1">O1.1 · Your Ops menu</a>
+    <a href="#o1-edge" class="st edge" data-page="page-o1">O1.x · Edge cases</a>
+    <a href="#eo-1-1" class="st2" data-page="page-o1">O1.x.1 · View as role → SDR</a>
+    <a class="flow ops" data-page="page-o2"><span class="n">O2</span> Create a list</a>
+    <a href="#o2-open" class="st" data-page="page-o2">O2.1 · Open Segments</a>
+    <a href="#o2-tab" class="st" data-page="page-o2">O2.2 · Contact tab</a>
+    <a href="#o2-create" class="st" data-page="page-o2">O2.3 · Create the list</a>
+    <a href="#o2-edge" class="st edge" data-page="page-o2">O2.x · Edge cases</a>
+    <a href="#eo-2-1" class="st2" data-page="page-o2">O2.x.1 · "SDR list" exclusivity</a>
+    <a href="#eo-2-2" class="st2" data-page="page-o2">O2.x.2 · Edit the name</a>
+    <a href="#eo-2-3" class="st2" data-page="page-o2">O2.x.3 · Edit the category</a>
+    <a href="#eo-2-4" class="st2" data-page="page-o2">O2.x.4 · Delete a list</a>
+    <a class="flow ops" data-page="page-o3"><span class="n">O3</span> Add contacts to list</a>
+    <a href="#o3-core" class="st" data-page="page-o3">O3.1 · From the Contacts page</a>
+    <a href="#o3-1-1" class="st2" data-page="page-o3">O3.1.1 · Open Contacts</a>
+    <a href="#o3-1-2" class="st2" data-page="page-o3">O3.1.2 · Select contact(s)</a>
+    <a href="#o3-1-3" class="st2" data-page="page-o3">O3.1.3 · Click Add to list</a>
+    <a href="#o3-1-4" class="st2" data-page="page-o3">O3.1.4 · Select the list</a>
+    <a href="#o3-1-5" class="st2" data-page="page-o3">O3.1.5 · Click Add to list</a>
+    <a href="#o3-list" class="st" data-page="page-o3">O3.2 · From the list detail</a>
+    <a href="#o3-2-1" class="st2" data-page="page-o3">O3.2.1 · Open list detail</a>
+    <a href="#o3-2-2" class="st2" data-page="page-o3">O3.2.2 · + Add members</a>
+    <a href="#o3-2-3" class="st2" data-page="page-o3">O3.2.3 · Select contacts</a>
+    <a href="#o3-2-4" class="st2" data-page="page-o3">O3.2.4 · Click Add</a>
+    <a href="#o3-employees" class="st" data-page="page-o3">O3.3 · From Employees tab</a>
+    <a href="#o3-3-1" class="st2" data-page="page-o3">O3.3.1 · Open a company</a>
+    <a href="#o3-3-2" class="st2" data-page="page-o3">O3.3.2 · Employees tab</a>
+    <a href="#o3-3-3" class="st2" data-page="page-o3">O3.3.3 · Select employees</a>
+    <a href="#o3-3-4" class="st2" data-page="page-o3">O3.3.4 · Add to list</a>
+    <a href="#o3-edge" class="st edge" data-page="page-o3">O3.x · Edge cases</a>
+    <a href="#eo-3-1" class="st2" data-page="page-o3">O3.x.1 · Use a filter</a>
+    <a href="#eo-3-2" class="st2" data-page="page-o3">O3.x.2 · Keyword search</a>
+    <a href="#eo-3-3" class="st2" data-page="page-o3">O3.x.3 · Select all matching</a>
+    <a href="#eo-3-4" class="st2" data-page="page-o3">O3.x.4 · View a contact</a>
+    <a href="#eo-3-5" class="st2" data-page="page-o3">O3.x.5 · + Add contacts (Camp/ME)</a>
+    <a href="#eo-3-6" class="st2" data-page="page-o3">O3.x.6 · Duplicates &amp; SDR skip</a>
+    <a href="#eo-3-7" class="st2" data-page="page-o3">O3.x.7 · Verify the count</a>
+    <a class="flow ops" data-page="page-o4"><span class="n">O4</span> Remove members</a>
+    <a href="#o4-1" class="st" data-page="page-o4">O4.1 · Open Segments</a>
+    <a href="#o4-2" class="st" data-page="page-o4">O4.2 · Select the list</a>
+    <a href="#o4-3" class="st" data-page="page-o4">O4.3 · Open Members</a>
+    <a href="#o4-4" class="st" data-page="page-o4">O4.4 · Select contact(s)</a>
+    <a href="#o4-5" class="st" data-page="page-o4">O4.5 · Remove + confirm</a>
+    <a href="#o4-edge" class="st edge" data-page="page-o4">O4.x · Edge cases</a>
+    <a href="#eo-4-1" class="st2" data-page="page-o4">O4.x.1 · Narrow with a filter</a>
+    <a href="#eo-4-2" class="st2" data-page="page-o4">O4.x.2 · Select all matching</a>
+    <a href="#eo-4-3" class="st2" data-page="page-o4">O4.x.3 · The confirm prompt</a>
+    <a class="flow ops" data-page="page-o5"><span class="n">O5</span> Assign a list to an SDR</a>
+    <a href="#o5-1" class="st" data-page="page-o5">O5.1 · Open Segments</a>
+    <a href="#o5-2" class="st" data-page="page-o5">O5.2 · Find the list</a>
+    <a href="#o5-3" class="st" data-page="page-o5">O5.3 · Click Assign icon</a>
+    <a href="#o5-4" class="st" data-page="page-o5">O5.4 · Tick the assignee</a>
+    <a href="#o5-5" class="st" data-page="page-o5">O5.5 · Click Save</a>
+    <a href="#o5-edge" class="st edge" data-page="page-o5">O5.x · Edge cases</a>
+    <a href="#eo-5-1" class="st2" data-page="page-o5">O5.x.1 · Edit / re-assign</a>
+    <a href="#eo-5-2" class="st2" data-page="page-o5">O5.x.2 · Bulk assign</a>
+    <a href="#eo-5-3" class="st2" data-page="page-o5">O5.x.3 · Clear the owner</a>
+
+    <div class="grp">SDR — getting started</div>
+    <a class="flow" data-page="page-login"><span class="n">1</span> Log in &amp; find your workspace</a>
+    <a href="#l-login" class="st" data-page="page-login">1.1 · Log in</a>
+    <a href="#l-workspace" class="st" data-page="page-login">1.2 · Your workspace</a>
+    <a href="#l-edge" class="st edge" data-page="page-login">1.x · Edge cases</a>
+    <a href="#e-1-1" class="st2" data-page="page-login">1.x.1 · Already signed in</a>
+    <a href="#e-1-2" class="st2" data-page="page-login">1.x.2 · Forgot password</a>
+    <a href="#e-1-3" class="st2" data-page="page-login">1.x.3 · Where I can open my account?</a>
+    <a href="#e-1-4" class="st2" data-page="page-login">1.x.4 · Edit name / phone / avatar</a>
+    <a href="#e-1-5" class="st2" data-page="page-login">1.x.5 · Email signature</a>
+    <a href="#e-1-7" class="st2" data-page="page-login">1.x.6 · Log out</a>
+
+    <div class="grp">SDR — the daily loop</div>
+    <a class="flow" data-page="page-find"><span class="n">2</span> Find a target contact</a>
+    <a href="#f-open" class="st" data-page="page-find">2.1 · Open your assigned list</a>
+    <a href="#f-view" class="st" data-page="page-find">2.2 · View the contacts</a>
+    <a href="#f-pick" class="st" data-page="page-find">2.3 · Pick &amp; read a contact</a>
+    <a href="#f-edge" class="st edge" data-page="page-find">2.x · Edge cases</a>
+    <a href="#e-2-1" class="st2" data-page="page-find">2.x.1 · Filter by Lifecycles</a>
+    <a href="#e-2-2" class="st2" data-page="page-find">2.x.2 · Keyword search</a>
+    <a href="#e-2-3" class="st2" data-page="page-find">2.x.3 · Held by teammates</a>
+    <a href="#e-2-4" class="st2" data-page="page-find">2.x.4 · View company detail</a>
+    <a href="#e-2-5" class="st2" data-page="page-find">2.x.5 · Sort the table</a>
+    <a href="#e-2-6" class="st2" data-page="page-find">2.x.6 · Has signal (2 levels)</a>
+    <a class="flow" data-page="page-manage"><span class="n">3</span> Manage contact info</a>
+    <a href="#m-open" class="st" data-page="page-manage">3.1 · Open assigned list</a>
+    <a href="#m-contact" class="st" data-page="page-manage">3.2 · Open contact</a>
+    <a href="#m-edit" class="st" data-page="page-manage">3.3 · Edit the fields</a>
+    <a class="flow" data-page="page-send"><span class="n">4</span> Send a 1:1 email</a>
+    <a href="#s-paths" class="st" data-page="page-send">4.1 · 3 ways into compose</a>
+    <a href="#way-1" class="st2" data-page="page-send">4.1.1 · List row ✉</a>
+    <a href="#way-2" class="st2" data-page="page-send">4.1.2 · Profile Send email</a>
+    <a href="#way-3" class="st2" data-page="page-send">4.1.3 · Conversations → New Email</a>
+    <a href="#way-4" class="st2" data-page="page-send">4.1.4 · From a signal</a>
+    <a href="#s-compose" class="st" data-page="page-send">4.2 · Compose &amp; send</a>
+    <a href="#s-edge" class="st edge" data-page="page-send">4.x · Edge cases</a>
+    <a href="#e-4-1" class="st2" data-page="page-send">4.x.1 · Templates (use &amp; create)</a>
+    <a href="#e-4-2" class="st2" data-page="page-send">4.x.2 · Snippets (use &amp; create)</a>
+    <a href="#e-4-3" class="st2" data-page="page-send">4.x.3 · Documents &amp; files</a>
+    <a class="flow" data-page="page-inbox"><span class="n">5</span> View replies &amp; answer replies</a>
+    <a href="#i-core" class="st" data-page="page-inbox">5.1 · View &amp; answer a reply</a>
+    <a href="#i-edge" class="st edge" data-page="page-inbox">5.x · Edge cases</a>
+    <a href="#e-5-1" class="st2" data-page="page-inbox">5.x.1 · Reply all</a>
+    <a href="#e-5-2" class="st2" data-page="page-inbox">5.x.2 · Forward</a>
+    <a href="#e-5-3" class="st2" data-page="page-inbox">5.x.3 · Filters</a>
+    <a href="#e-5-4" class="st2" data-page="page-inbox">5.x.4 · "In Queue" tag</a>
+    <a class="flow" data-page="page-followup"><span class="n">6</span> Follow up on silent prospects</a>
+    <a href="#fu-1" class="st" data-page="page-followup">6.1 · Open your list</a>
+    <a href="#fu-2" class="st" data-page="page-followup">6.2 · View the contacts</a>
+    <a href="#fu-3" class="st" data-page="page-followup">6.3 · Pick who's overdue</a>
+    <a href="#fu-4" class="st" data-page="page-followup">6.4 · Read the context</a>
+    <a href="#fu-5" class="st" data-page="page-followup">6.5 · Reply or new mail</a>
+    <a class="flow" data-page="page-reach"><span class="n">7</span> Reach out on WhatsApp / LinkedIn</a>
+    <a href="#r-whatsapp" class="st" data-page="page-reach">7.1 · WhatsApp chat</a>
+    <a href="#r-linkedin" class="st" data-page="page-reach">7.2 · LinkedIn profile</a>
+
+    <div class="grp">SDR — bulk outreach</div>
+    <a class="flow" data-page="page-campaign"><span class="n">8</span> Manage campaign</a>
+    <a class="flow" data-page="page-marketing"><span class="n">9</span> Manage ME</a>
+
+    <div class="grp">SDR — reference</div>
+    <a class="flow" data-page="page-filters"><span class="n">10</span> Using filters</a>
+    <a href="#flt-lifecycle" class="st" data-page="page-filters">10.1 · Lifecycles</a>
+    <a href="#flt-company" class="st" data-page="page-filters">10.2 · Has signal</a>
+    <a href="#flt-inbox" class="st" data-page="page-filters">10.3 · Inbox filters</a>
+    <a href="#flt-we" class="st" data-page="page-filters">10.4 · Work Experience</a>
+    <a class="flow" data-page="page-faq"><span class="n">11</span> FAQ &amp; edge-case index</a>
+  </nav>
+</aside>
+<main>
+
+<div class="pagehead">
+<h1>Fintalent OSW — Guideline</h1>
+<p class="lead">Two roles, one workflow. <b><span style="color:var(--ops)">Ops</span> prepares the work</b> — builds a list, fills it with contacts, assigns it to an SDR. <b><span style="color:#087443">SDR</span> works it every day</b> — finds, emails, follows up, classifies. Each flow keeps the <b>core steps</b> to the shortest happy path (each step with its own screenshot); anything optional sits in <b>Edge cases</b>.</p>
+</div>
+
+<!-- ===================== A1 · CREATE ACCOUNT ===================== -->
+<section class="page active" id="page-a1">
+<h2><span class="who adm">ADMIN</span><span class="n adm">A1 ·</span> Create an SDR / KAM account <span class="fn">(ADM.0.1)</span></h2>
+<div class="goal adm"><b>Goal:</b> onboard a new sales hire — create their login with the right role, so they can sign in and see only their own scope.</div>
+
+<h3 id="a1-open" class="anchor">A1.1 · Open Admins</h3>
+<ol class="steps adm">
+<li data-code="A1.1"><b>User Management → Admins</b> → the users table (Actions · Avatar · Name · Email · <b>Roles</b> · Created Date). Every SDR/KAM/Admin lives here.
+  <figure><img src="adminx-01-admins.png" alt="Admins page"/><figcaption><b>A1.1</b> — Admins: role badges per user, <b>+ Create New</b>, and a Login-as icon in Actions.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="a1-create" class="anchor">A1.2 · Create the account</h3>
+<ol class="steps adm">
+<li data-code="A1.2"><b>Click + Create New</b> (top-right of the Admins table) → the <b>Create new Admin</b> form opens.</li>
+<li data-code="A1.3"><b>Fill in the details</b> — <b>First name · Last name · Email</b> (= their login username; use the company email) · <b>Phone</b> (optional) · <b>Roles*</b> (pick <b>SDR</b> or <b>KAM</b> — tick both if they cover both) · <b>Password</b> (auto-generated). <span class="fn">Regenerate / copy the password → edge A1.x.1.</span>
+  <figure><img src="adminx-02-create-admin.png" alt="Create new Admin form"/><figcaption><b>A1.3</b> — Create new Admin form: Name · Email · <b>Roles*</b> · auto-generated Password · Avatar.</figcaption></figure>
+</li>
+<li data-code="A1.4"><b>Click Create</b> → the new user appears in the table. Verify the role badge in the <b>Roles</b> column, then ask them to log in.</li>
+</ol>
+
+<h3 id="a1-edge" class="edgehead anchor">A1.x · Edge cases</h3>
+<ol class="steps edge">
+<li id="ea-1-1" data-code="A1.x.1"><b>Generate / copy the password.</b> In the Create form the <b>Password</b> is auto-generated. Click <b>Generate again</b> to make a new one, <b>copy it</b>, and send it to the hire through a private channel. They can change it after their first login.</li>
+<li id="ea-1-2" data-code="A1.x.2"><b>Edit an existing account.</b> Admins → the user's row <b>⋮</b> → <b>Edit / View Details</b> → the <b>Update Admin Information</b> drawer. <b>General Setting</b> = name · phone · avatar · <b>Roles</b> (fix a wrong role here — no need to recreate). <b>Email Configuration</b> = <b>Signature</b> (auto-appended to every email they send) · <b>Sender Name</b> · default <b>Attach files</b> → <b>Save</b>. The drawer also carries <b>Billing · Payment · Activities Log</b> tabs (an SDR typically only needs <b>General Setting</b> + <b>Email Configuration</b>). <span class="fn">(Best to set the signature here before their first send; the SDR can also edit their own later.)</span>
+  <figure><img src="sdrx-05-general-setting.png" alt="General Setting"/><figcaption><b>A1.x.2a</b> — General Setting: name · phone · avatar · Roles.</figcaption></figure>
+  <figure><img src="sdrx-06-email-config.png" alt="Email Configuration"/><figcaption><b>A1.x.2b</b> — Email Configuration: Signature · Sender Name · Attach files → Save.</figcaption></figure>
+</li>
+<li id="ea-1-3" data-code="A1.x.3"><b>Act truly as them — "Login as".</b> To use the app as that person (their assigned lists, their mailbox) — Admins row <b>⋮</b> → <b>Login as Admin</b>. (This is how every SDR screenshot in this guide was captured.)</li>
+<li id="ea-1-4" data-code="A1.x.4"><b>Preview what they'll see — "View as role".</b> The <b>eye icon</b> by your profile (bottom-left) → pick <b>SDR</b> → a banner "Viewing UI as SDR". It's <b>UI-only</b>: you still see <b>your own</b> data and your real permissions still apply — it just shows which menus/buttons/columns that role gets.
+  <figure><img src="v3s-140-view-as-role-sdr.png" alt="View as role SDR"/><figcaption><b>A1.x.4</b> — View as role → SDR: the preview banner + the trimmed SDR menu.</figcaption></figure>
+</li>
+</ol>
+<div class="pagernav"><span class="spacer"></span><a class="next" data-goto="page-a2"><span class="k">Next →</span><b>A2 · Create a single contact</b></a></div>
+</section>
+
+<!-- ===================== A2 · CREATE CONTACT ===================== -->
+<section class="page" id="page-a2">
+<h2><span class="who adm">ADMIN</span><span class="n adm">A2 ·</span> Create a single contact <span class="fn">(ADM.0.3 · Admin/Ops only — the SDR view has no Create Contact button)</span></h2>
+<div class="goal adm"><b>Goal:</b> add one person to the database. Bulk data is preloaded, so this is for one-offs.</div>
+
+<h3 id="a2-open" class="anchor">A2.1 · Open the Create Contact form</h3>
+<ol class="steps adm">
+<li data-code="A2.1"><b>Sales Management → Contacts</b> → the contacts table. Top-right sits <b>+ Create Contact</b> <span class="fn">(Admin/Ops only — the SDR view has no such button).</span></li>
+<li data-code="A2.2"><b>Click + Create Contact</b> → the <b>Create Contact</b> drawer opens: <b>LinkedIn or email required</b> + an optional Name.
+  <figure><img src="adminx-03-create-contact.png" alt="Create Contact drawer"/><figcaption><b>A2.2</b> — the empty drawer: <b>LinkedIn URL</b> <b>OR</b> <b>Email</b>, plus optional First/Last name.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="a2-create" class="anchor">A2.2 · Enter the details &amp; create</h3>
+<ol class="steps adm">
+<li data-code="A2.3">Enter a <b>LinkedIn URL</b> <i>or</i> an <b>Email</b> (<b>≥1 required</b> — it's the dedupe key; the card shows <b>✓ Ready</b> once valid). With a <b>LinkedIn URL</b> the system <b>auto-pulls</b> the person's <b>name · total years of experience · avatar · location · work experience</b> (when available) — so First/Last name are optional. → <b>Create Contact</b>.
+  <figure><img src="adminx-05-create-contact-linkedin.png" alt="Create Contact with a LinkedIn URL"/><figcaption><b>A2.3</b> — example: a <b>LinkedIn URL</b> entered → <b>✓ Ready</b>. On Create, the system crawls <b>name · years of experience · avatar · location · work experience</b> back into the contact.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="a2-edge" class="edgehead anchor">A2.x · Edge cases</h3>
+<ol class="steps edge">
+<li id="ea-2-1" data-code="A2.x.1"><b>Duplicate found (email / LinkedIn already exists).</b> Entering an identifier that already exists opens the <b>"Duplicate Found"</b> panel with the existing contact — <b>edit them there</b>, or <b>Back</b> to enter different info. Nothing duplicate is ever created.
+  <figure><img src="adminx-04-duplicate.png" alt="Duplicate Found"/><figcaption><b>A2.x.1</b> — Duplicate Found: the existing contact appears; Back / Done.</figcaption></figure>
+</li>
+<li id="ea-2-2" data-code="A2.x.2"><b>Link / relink a work experience to a company.</b> On a contact's Work Experience, an <b>unlinked</b> row (company shown as plain text) has a <b>Link company</b> icon → a company picker (the company must already exist in <b>Companies</b>; 0 results → shorten the keyword) → clicking links <b>immediately</b> (toast "Linked") → a bonus <b>"Apply to N other contacts"</b> fixes the same mislink everywhere. A row that's <b>already linked</b> shows <b>Relink</b> instead — it re-points to a <b>different</b> company (company-scoped: moves every experience matched to the old company).
+  <figure><img src="40-we-link-company-icon.png" alt="Link icon"/><figcaption><b>A2.x.2a</b> — the Link icon on an unlinked experience row.</figcaption></figure>
+  <figure><img src="41-we-link-company-picker.png" alt="Link picker"/><figcaption><b>A2.x.2b</b> — the company picker (company must exist; 0 results → shorten keyword).</figcaption></figure>
+  <figure><img src="43-we-linked-result.png" alt="Linked result"/><figcaption><b>A2.x.2c</b> — result: company as a purple link + type badge; a <b>Relink</b> icon on the linked row.</figcaption></figure>
+</li>
+<li id="ea-2-3" data-code="A2.x.3"><b>Neither LinkedIn nor email.</b> Creation is <b>blocked</b> — the form requires one of the two.</li>
+<li id="ea-2-4" data-code="A2.x.4"><b>Supplement the info (edit after create).</b> A fresh contact — even one auto-filled from LinkedIn — is often missing details the crawl can't reach: <b>Phone</b>, <b>Contact Classification</b>, <b>Owner</b>, extra emails, lifecycle, etc. Open the contact → the detail drawer → <b>click the empty field</b> → type or pick the value → it <b>auto-saves</b> (toast "Saved"). Fill these in <u>before</u> assigning the person into a working list.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-a1"><span class="k">← Prev</span><b>A1 · Create account</b></a><a class="next" data-goto="page-o1"><span class="k">Next → (Ops)</span><b>O1 · Your Ops workspace</b></a></div>
+</section>
+
+<!-- ===================== O1 · OPS WORKSPACE ===================== -->
+<section class="page" id="page-o1">
+<h2><span class="who ops">OPS</span><span class="n ops">O1 ·</span> Your Ops workspace</h2>
+<div class="goal ops"><b>Goal:</b> know the Ops workspace — the tools SDRs don't have (<b>Contacts</b>, <b>Companies</b>, and the full <b>Segments (Lists)</b> controls). <span class="fn">You log in the same way everyone does (see SDR Flow 1); this flow is about what you get once you're in.</span></div>
+
+<h3 id="o1-menu" class="anchor">O1.1 · Your Ops menu</h3>
+<ol class="steps ops">
+<li data-code="O1.1">Under <b>Sales Management</b> an Ops/Admin sees more than an SDR: besides Segments · Inbox · Meetings, you also get <b>Contacts</b> and <b>Companies</b> (the data tables), plus Email Queues · Email Logs · Signals. Head to <b>Segments (Lists)</b> — the page has tabs <b>Talent · Company · Contact</b>, per-row <b>Actions</b> (👤+ add members · assign · 🗑 delete), an <b>Assignee</b> column and a <b>Category</b> column (the SDR label).
+  <figure><img src="opsx-01-segments.png" alt="Ops Segments page"/><figcaption><b>O1.2</b> — Segments (Lists) as Ops: full menu on the left (incl. Contacts/Companies), tabs, Actions · Assignee · Category columns, <b>+ Create New</b>.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="o1-edge" class="edgehead anchor">O1.x · Edge cases</h3>
+<ol class="steps edge">
+<li id="eo-1-1" data-code="O1.x.1"><b>Preview what the SDR sees — "View as role → SDR".</b> From your profile control you can switch the UI into the trimmed SDR view (no Contacts/Companies; just their lists + Inbox). Use it to check exactly what a rep will get before you hand a list over.
+  <figure><img src="v3s-140-view-as-role-sdr.png" alt="View as role SDR"/><figcaption><b>O1.x.1</b> — View as role → SDR: the preview banner + the trimmed SDR menu.</figcaption></figure>
+</li>
+</ol>
+<div class="pagernav"><a data-goto="page-a2"><span class="k">← Prev (Admin)</span><b>A2 · Create a contact</b></a><a class="next" data-goto="page-o2"><span class="k">Next →</span><b>O2 · Create a list</b></a></div>
+</section>
+
+<!-- ===================== O2 · CREATE LIST ===================== -->
+<section class="page" id="page-o2">
+<h2><span class="who ops">OPS</span><span class="n ops">O2 ·</span> Create a list</h2>
+<div class="goal ops"><b>Goal:</b> make an empty list (a "segment") that will hold a work-set for one SDR. <b>SDRs can't create lists</b> — this is Ops-only.</div>
+
+<h3 id="o2-open" class="anchor">O2.1 · Open Segments (Lists)</h3>
+<ol class="steps ops">
+<li data-code="O2.1">Left menu → <b>Sales Management</b> → <b>Segments (Lists)</b>. This is the page that holds every list.</li>
+</ol>
+
+<h3 id="o2-tab" class="anchor">O2.2 · Switch to the Contact tab</h3>
+<ol class="steps ops">
+<li data-code="O2.2">At the top, click the <b>Contact</b> tab. <b>Why this tab:</b> the page holds <b>three kinds of list</b> — <b>Talent</b> (candidates), <b>Company</b> (companies), and <b>Contact</b> (people you email). When you click <b>+ Create New</b> next, the modal's <b>Type</b> field is <b>locked to whichever tab you're on</b> — you can't change it there. An outreach list must be a <b>Contact</b> list, so stand on the <b>Contact</b> tab first; otherwise you'd create a Talent/Company list you can't use for outreach.
+  <figure><img src="opsx-01-segments.png" alt="Segments Contact tab"/><figcaption><b>O2.2</b> — the three tabs (Talent · Company · Contact) + <b>+ Create New</b> (top right). Type is locked to the active tab.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="o2-create" class="anchor">O2.3 · Create the list</h3>
+<ol class="steps ops">
+<li data-code="O2.3"><b>+ Create New</b> (top right) → the <b>Create List</b> drawer: <b>Type</b> (Contact, pre-set) · <b>List name*</b> · optional <b>SDR list</b> checkbox (see edge case) → <b>Create</b>. The empty list now appears on the Segments page, ready to fill (O3).
+  <figure><img src="opsx-02-create-list.png" alt="Create List modal"/><figcaption><b>O2.3</b> — Create List: Type · List name · <b>SDR list</b> checkbox (with the exclusivity rule).</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="o2-edge" class="edgehead anchor">O2.x · Edge cases</h3>
+<ol class="steps edge">
+<li id="eo-2-1" data-code="O2.x.1"><b>"SDR list" — one contact, one SDR list.</b> In the Create List drawer, <b>tick the SDR list checkbox</b> (circled below) to make it an exclusive rep list. The rule: <b>a contact can belong to only one SDR list</b> — if they're already in one, adding them to a second SDR list is <b>skipped</b> (they stay in the first, and a toast tells you — see O3.x.6). This is what guarantees a rep's contacts aren't also being worked by another rep. Non-SDR lists have no such limit.
+  <figure class="crop"><img src="opsx-11-create-list-ticked.png" alt="SDR list checkbox ticked"/><figcaption><b>O2.x.1</b> — the <b>SDR list</b> checkbox <b>ticked</b> (card highlighted) + its exclusivity rule.</figcaption></figure>
+  <div class="call warn"><span class="t">In-app copy mismatch — real behavior is skip-and-keep-first</span>The Create-List checkbox helper currently reads the <b>opposite</b> ("A contact can belong to only one SDR list — adding it here <b>removes it from other SDR lists</b>", i.e. move). The real behavior is <b>skip-and-keep-first</b>: a contact <b>stays</b> in its first SDR list and the second add is <b>skipped</b> (see O3.x.6). That in-app helper copy should be corrected.</div>
+</li>
+<li id="eo-2-2" data-code="O2.x.2"><b>Edit the name.</b> You don't re-create a list to rename it. <b>Step by step:</b> ① open <b>Segments (Lists)</b> → the <b>Contact</b> tab → find the list's row. ② <b>Click the list name</b> → it turns into an inline text field. ③ Type the new name → confirm with <b>✓</b> (or <b>✕</b> to cancel). The row updates in place.
+  <figure><img src="opsx-08-assign.png" alt="Inline rename a list"/><figcaption><b>O2.x.2</b> — click the list name to rename it inline (✓ save · ✕ cancel).</figcaption></figure>
+</li>
+<li id="eo-2-3" data-code="O2.x.3"><b>Edit the category (the SDR label).</b> The category is what makes a list an exclusive <b>SDR list</b> (one contact → one SDR list, see O2.x.1). <b>Step by step:</b> ① open <b>Segments (Lists)</b> → the <b>Contact</b> tab. ② <b>Tick the list's checkbox</b> → an action bar appears. ③ Click <b>Set SDR</b> to give it the SDR category, or <b>Clear category</b> to remove it. (A list that already has the category also shows an <b>✕</b> on its <b>SDR</b> badge in the Category column — a one-click clear.)
+  <figure><img src="opsx-19-set-category.png" alt="Set SDR / Clear category"/><figcaption><b>O2.x.3</b> — select a list → the action bar's <b>Set SDR</b> / <b>Clear category</b> (the Category-column badge <b>✕</b> also clears).</figcaption></figure>
+</li>
+<li id="eo-2-4" data-code="O2.x.4"><b>Delete a list.</b> On the <b>Segments</b> row's <b>Actions</b> column click the red <b>🗑 Delete</b> icon → confirm. This removes the <b>list</b> only — the contacts themselves stay in Contacts and in any other list (same idea as removing members, just for the whole list).</li>
+</ol>
+<div class="pagernav"><a data-goto="page-o1"><span class="k">← Prev</span><b>O1 · Ops workspace</b></a><a class="next" data-goto="page-o3"><span class="k">Next →</span><b>O3 · Add contacts to list</b></a></div>
+</section>
+
+<!-- ===================== O3 · ADD CONTACTS ===================== -->
+<section class="page" id="page-o3">
+<h2><span class="who ops">OPS</span><span class="n ops">O3 ·</span> Add contacts to list</h2>
+<div class="goal ops"><b>Goal:</b> put the right people into the list. There are <b>three ways</b> in — from the <b>Contacts page</b> (O3.1), from <b>inside the list</b> (O3.2), or from a <b>company's Employees tab</b> (O3.3). Filtering, keyword search, bulk-select and viewing a contact are in <b>Edge cases</b>.</div>
+
+<h3 id="o3-core" class="anchor">O3.1 · Add from the Contacts page</h3>
+<ol class="steps ops">
+<li id="o3-1-1" data-code="O3.1.1"><b>Open Contacts</b> (left menu) → the full contact table.
+  <figure><img src="opsx-03-contacts.png" alt="Contacts table"/><figcaption><b>O3.1.1</b> — Contacts: the table + filter bar + search.</figcaption></figure>
+</li>
+<li id="o3-1-2" data-code="O3.1.2"><b>Select the contact(s)</b> — tick the checkbox on each row you want. A blue action bar appears: <b>Add to list · Add to campaign · Add to marketing email · Delete contacts · More</b>.
+  <figure><img src="opsx-04-contacts-selected.png" alt="Contacts selected"/><figcaption><b>O3.1.2</b> — tick rows → the action bar with <b>Add to list</b>.</figcaption></figure>
+</li>
+<li id="o3-1-3" data-code="O3.1.3"><b>Click Add to list</b> (in the action bar) → the <b>Add to list</b> drawer opens with <b>Apply to = Selected (n)</b>.</li>
+<li id="o3-1-4" data-code="O3.1.4"><b>Select the target list</b> — search and tick the list you want in the drawer.
+  <figure><img src="opsx-05-addtolist-drawer.png" alt="Add to list drawer with a list ticked"/><figcaption><b>O3.1.4</b> — Add to list drawer: Apply to = Selected → <b>tick the target list</b> (circled) → Add to N list(s).</figcaption></figure>
+</li>
+<li id="o3-1-5" data-code="O3.1.5"><b>Click Add to list</b> (the drawer's confirm button) → done. Verify on the list's <b>Members</b> tab (the count can lag a moment).</li>
+</ol>
+
+<h3 id="o3-list" class="anchor">O3.2 · Add from inside the list (list detail)</h3>
+<ol class="steps ops">
+<li id="o3-2-1" data-code="O3.2.1"><b>Open the list detail</b> — Segments (Lists) → the <b>Contact</b> tab → click the list → its <b>Members</b> tab.
+  <figure><img src="opsx-06-list-detail-members.png" alt="List detail Add members"/><figcaption><b>O3.2.1</b> — list detail, Members tab → <b>+ Add members</b> (top right).</figcaption></figure>
+</li>
+<li id="o3-2-2" data-code="O3.2.2"><b>Click + Add members</b> → the <b>Add contacts to "&lt;list&gt;"</b> picker opens. Contacts <b>already in this list are auto-excluded</b> (a <b>Custom List</b> filter chip does this), so you only see people you can still add.
+  <figure><img src="opsx-21-add-members.png" alt="Add members picker"/><figcaption><b>O3.2.2</b> — the picker: the <b>Custom List</b> chip auto-excludes current members; tick contacts on the left.</figcaption></figure>
+</li>
+<li id="o3-2-3" data-code="O3.2.3"><b>Select the contact(s)</b> — tick each row, or the <b>header checkbox</b> (whole page), or <b>Select all N matching</b>. A "<b>N selected</b>" action bar appears.
+  <figure><img src="opsx-23-add-members-selected.png" alt="Add members with rows selected"/><figcaption><b>O3.2.3</b> — rows ticked → <b>20 selected · Select all matching</b> + the action bar's <b>Add to list</b>.</figcaption></figure>
+</li>
+<li id="o3-2-4" data-code="O3.2.4"><b>Click Add to list</b> in the action bar → they join the list; the Members count updates.</li>
+</ol>
+
+<h3 id="o3-employees" class="anchor">O3.3 · Add from a company's Employees tab</h3>
+<ol class="steps ops">
+<li id="o3-3-1" data-code="O3.3.1"><b>Open Companies</b> (left menu) → click a company → its detail.
+  <figure><img src="opsx-12-company-detail.png" alt="Company Employees tab"/><figcaption><b>O3.3</b> — a company's <b>Employees</b> tab: tick employees → <b>Add to list</b>.</figcaption></figure>
+</li>
+<li id="o3-3-2" data-code="O3.3.2">Open the <b>Employees</b> tab — the company's whole staff on file (Foresight Group shows <b>485</b>).
+  <figure><img src="opsx-22-employees-tab.png" alt="Company Employees tab"/><figcaption><b>O3.3.2</b> — the company detail's <b>Employees</b> tab: the full staff list with the same filter bar.</figcaption></figure>
+</li>
+<li id="o3-3-3" data-code="O3.3.3"><b>Select the employee(s)</b> — tick each row, or the <b>header checkbox</b> / <b>Select all N matching</b>. A "<b>N selected</b>" action bar appears with <b>Add to list</b>.
+  <figure><img src="opsx-29-employees-selected.png" alt="Employees selected"/><figcaption><b>O3.3.3</b> — employees ticked → <b>20 selected · Select all 485 matching</b> → <b>Add to list</b>.</figcaption></figure>
+</li>
+<li id="o3-3-4" data-code="O3.3.4"><b>Click Add to list</b> → the <b>list picker</b> opens (Apply to = Selected) → <b>tick the target list</b> → <b>Add to N list(s)</b>. Good for grabbing everyone at one firm.
+  <figure><img src="opsx-30-employees-add-list.png" alt="Add to list picker from employees"/><figcaption><b>O3.3.4</b> — from Employees you still <b>pick a list</b> (testing-sdr-list-v3 ticked) → <b>Add to 1 list(s)</b>.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="o3-edge" class="edgehead anchor">O3.x · Edge cases</h3>
+<ol class="steps edge">
+<li id="eo-3-1" data-code="O3.x.1"><b>Use a filter.</b> Click a filter chip (e.g. <b>Lifecycles · Countries · Work Experience · Owner</b>) → the dropdown lists every value, each with a <b>✓ (include)</b> and an <b>✕ (exclude)</b> on the right → click to narrow the table. <b>+ Add filter</b> pins more. Filter first, then select (O3.1.2).
+  <figure><img src="opsx-26-filter.png" alt="Filter dropdown include exclude"/><figcaption><b>O3.x.1</b> — the <b>Lifecycles</b> filter open: each value has <b>✓ include</b> / <b>✕ exclude</b> (circled).</figcaption></figure>
+</li>
+<li id="eo-3-2" data-code="O3.x.2"><b>Use keyword search.</b> Type in the <b>"Search contacts by keyword"</b> box (names · titles · companies) → the table filters live. Combine with filters.
+  <figure><img src="opsx-24-keyword.png" alt="Keyword search"/><figcaption><b>O3.x.2</b> — keyword <b>"Managing Director"</b> → the table narrows to <b>1,897</b> matching.</figcaption></figure>
+</li>
+<li id="eo-3-3" data-code="O3.x.3"><b>Select all N matching (bulk).</b> Instead of ticking one page, tick the <b>header checkbox</b> then click <b>"Select all N matching"</b> → the bar shows <b>All N matching selected</b> → <b>Add to list</b> adds the <b>whole filtered set</b>. <b>⚠ Note:</b> you must have <b>at least one filter or keyword active</b> first — without a filter, Select-all-matching won't let you Add to list (it stops you from dumping the entire database into a list by accident).
+  <figure><img src="opsx-25-select-all-matching.png" alt="Select all matching"/><figcaption><b>O3.x.3</b> — with a keyword filter active: <b>All 1,897 matching selected</b> → <b>Add to list</b>.</figcaption></figure>
+</li>
+<li id="eo-3-4" data-code="O3.x.4"><b>View a contact's detail first.</b> Click a contact's <b>name/title</b> → the <b>profile drawer</b> opens (facts · Work Experience · Signals · Conversations) so you can check who they are before adding.
+  <figure><img src="sdrx-33-contact-detail-clean.png" alt="Contact detail drawer"/><figcaption><b>O3.x.4</b> — the contact detail drawer.</figcaption></figure>
+</li>
+<li id="eo-3-5" data-code="O3.x.5"><b>Add via "+ Add contacts" (Campaign / Marketing Email).</b> Open the <b>Campaign</b> (or <b>Marketing Email</b>) → the <b>People</b> tab → click <b>+ Add contacts</b> (top right) → the contacts picker opens → filter/tick → <b>Add</b>. This loads that campaign's / ME's <b>audience</b> — the reason SDRs can't add people themselves.
+  <figure><img src="opsx-31-campaign-people.png" alt="Campaign People + Add contacts"/><figcaption><b>O3.x.5</b> — a live campaign's <b>People</b> tab (1 person) → <b>+ Add contacts</b> (top-right) opens the contacts picker.</figcaption></figure>
+</li>
+<li id="eo-3-6" data-code="O3.x.6"><b>Duplicates &amp; SDR-list skip — read the toast.</b>
+  <ul>
+    <li><b>Already in this list</b> → the contact is <b>silently skipped</b>; no duplicate row is created and the count doesn't double-count them.</li>
+    <li><b>Already in another SDR list</b> → the contact is <b>skipped, not added</b>. A contact can live in only <b>one SDR list</b> at a time (the exclusivity rule, O2.x.1), so the system <b>protects the existing assignment</b> and shows a <b>toast with the count skipped</b> (e.g. "1 contact(s) skipped — already in another SDR list") — telling you they were skipped because they're already in another SDR list. To move them, first <b>remove them from the old SDR list</b> (O4), then add.</li>
+  </ul>
+  <figure class="crop"><img src="opsx-16-sdr-skip-toast.png" alt="SDR-list skip toast"/><figcaption><b>O3.x.6</b> — the toast: some added, but a contact <b>already in another SDR list is skipped</b> (not moved) — the other rep's assignment is protected.</figcaption></figure>
+</li>
+<li id="eo-3-7" data-code="O3.x.7"><b>Verify the count while adding.</b> The point here is just to <b>look</b> — you don't tick any list. Flow:
+  <ol class="substeps">
+    <li><b>Select the contact(s)</b> — this is what makes the <b>Add to list</b> button appear (no selection → no button).</li>
+    <li>Click <b>Add to list</b> → the <b>Add to list drawer</b> opens.</li>
+    <li><b>Verify — way A: read the Members column.</b> Every list in the drawer shows its <b>current member count</b> (e.g. 17072026v3 = 359). A quick eyeball — no clicks, no ticking.
+      <figure><img src="opsx-33-drawer-members-count.png" alt="Members count column in the drawer"/><figcaption><b>Way A</b> — the drawer's <b>Members</b> column: each list's live count.</figcaption></figure>
+    </li>
+    <li><b>Verify — way B: open the list's detail.</b> <b>Click the list's name</b> → its detail opens right there → the <b>Members</b> tab shows the exact count ("Showing X of N") and the actual people.
+      <figure><img src="opsx-32-list-detail-from-drawer.png" alt="List detail opened from the drawer"/><figcaption><b>Way B</b> — click the list <b>name</b> → detail opens with the live count (here 359).</figcaption></figure>
+    </li>
+  </ol>
+  (The <b>Segments (Lists)</b> page also shows the per-list <b>Members</b> column, if you'd rather check there.)
+</li>
+</ol>
+<div class="pagernav"><a data-goto="page-o2"><span class="k">← Prev</span><b>O2 · Create a list</b></a><a class="next" data-goto="page-o4"><span class="k">Next →</span><b>O4 · Remove members</b></a></div>
+</section>
+
+<!-- ===================== O4 · MANAGE MEMBERS ===================== -->
+<section class="page" id="page-o4">
+<h2><span class="who ops">OPS</span><span class="n ops">O4 ·</span> Remove members</h2>
+<div class="goal ops"><b>Goal:</b> take people out of a list, and see the full history. <span class="fn">(Adding is its own flow — O3.)</span> <b>Start:</b> Segments → open the list.</div>
+
+<h3 id="o4-members" class="anchor">O4.1 · Remove a member</h3>
+<ol class="steps ops">
+<li id="o4-1" data-code="O4.1"><b>Open Segments (Lists)</b> → the <b>Contact</b> tab.
+  <figure><img src="opsx-01-segments.png" alt="Segments list"/><figcaption><b>O4.1</b> — Segments (Lists), Contact tab: every list, with Members / Assignee / Category columns.</figcaption></figure>
+</li>
+<li id="o4-2" data-code="O4.2"><b>Select the list</b> — click its name to open it.</li>
+<li id="o4-3" data-code="O4.3">You land on the list detail → the <b>Members</b> tab (the list's people).
+  <figure><img src="opsx-06-list-detail-members.png" alt="List detail members"/><figcaption><b>O4.3–O4.4</b> — the list's <b>Members</b> tab: tick the member(s) you want to remove.</figcaption></figure>
+</li>
+<li id="o4-4" data-code="O4.4"><b>Select the contact(s)</b> — tick the checkbox on each member's row (or the header checkbox to grab the page).</li>
+<li id="o4-5" data-code="O4.5">In the action bar click <b>Remove from list</b> → confirm. Removing only breaks the <b>membership link</b> — the contact itself is untouched (they stay in Contacts and in any other list). <b>Verify</b> the drop in the <b>Members</b> column (Segments page or the list's Members tab; see O3.x.7).
+  <figure><img src="opsx-20-remove-confirm.png" alt="Remove from list confirm"/><figcaption><b>O4.5</b> — <b>Remove from list</b> in the action bar → the <b>Remove from list</b> confirm dialog.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="o4-edge" class="edgehead anchor">O4.x · Edge cases</h3>
+<ol class="steps edge">
+<li id="eo-4-1" data-code="O4.x.1"><b>Narrow with a filter first.</b> Before removing, use the members <b>filter</b> (Lifecycles · keyword · etc.) to show only the people you want gone — then tick and Remove. Saves hunting through the whole list.</li>
+<li id="eo-4-2" data-code="O4.x.2"><b>Select all matching (bulk remove).</b> Tick the <b>header checkbox</b> to grab the visible page, or use <b>Select all matching</b> to select every contact matching the current filter (not just the page) → <b>Remove from list</b> clears them in one go.</li>
+<li id="eo-4-3" data-code="O4.x.3"><b>Skip the confirm — untick the checkbox.</b> Beside <b>Remove from list</b> in the action bar sits a checkbox that is <b>ticked by default</b> — that's why every Remove pops the <b>Remove from list</b> dialog (so you can't wipe members by accident). <b>Untick it</b> and Remove runs <b>immediately, with no confirm dialog</b>, for the rest of your session; re-tick it to bring the safety prompt back.
+  <figure><img src="opsx-34-remove-untick.png" alt="Remove checkbox unticked"/><figcaption><b>O4.x.3</b> — the checkbox <b>unticked</b> (tooltip: "Confirm before removing: Off") → Remove runs with <b>no confirm dialog</b>.</figcaption></figure>
+</li>
+</ol>
+<div class="pagernav"><a data-goto="page-o3"><span class="k">← Prev</span><b>O3 · Add contacts to list</b></a><a class="next" data-goto="page-o5"><span class="k">Next →</span><b>O5 · Assign to an SDR</b></a></div>
+</section>
+
+<!-- ===================== O5 · ASSIGN TO SDR ===================== -->
+<section class="page" id="page-o5">
+<h2><span class="who ops">OPS</span><span class="n ops">O5 ·</span> Assign a list to an SDR</h2>
+<div class="goal ops"><b>Goal:</b> hand the ready list to a rep so it shows up in their <b>Segments (Lists)</b>. This is the moment Ops → SDR: after this, the SDR side of the guide takes over.</div>
+
+<h3 id="o5-open" class="anchor">Assign a list to an SDR — step by step</h3>
+<ol class="steps ops">
+<li id="o5-1" data-code="O5.1"><b>Open Segments (Lists)</b> → the <b>Contact</b> tab.</li>
+<li id="o5-2" data-code="O5.2"><b>Find the list</b> you want to assign (the one you filled in O3).</li>
+<li id="o5-3" data-code="O5.3">In that row's <b>Actions</b> column click the <b>Assign assignee</b> icon (the gear/assign icon — the middle of the three row-action icons: add-members · assign · delete). The current owner (if any) shows in the <b>Assignee</b> column with a role badge.
+  <figure><img src="opsx-27-assign-icon.png" alt="Assign assignee icon"/><figcaption><b>O5.3</b> — the Actions column: <b>Add members · Assign assignee (middle, circled) · Delete</b>.</figcaption></figure>
+</li>
+<li id="o5-4" data-code="O5.4">The <b>Assign assignee</b> drawer opens — every user with a <b>Roles</b> filter (Admin · Sale Admin · SDR …). Search / filter and <b>tick the assignee</b> — usually the <b>SDR</b> (e.g. Dong SDR).
+  <figure><img src="opsx-17-assign-drawer.png" alt="Assign assignee drawer"/><figcaption><b>O5.4</b> — Assign assignee: user list + Roles filter → tick the person.</figcaption></figure>
+</li>
+<li id="o5-5" data-code="O5.5"><b>Click Save</b> → the <b>Assignee</b> column now shows them; the list appears in their <b>Segments (Lists)</b>, and because it's an SDR list it's exclusively theirs.</li>
+</ol>
+
+<h3 id="o5-edge" class="edgehead anchor">O5.x · Edge cases</h3>
+<ol class="steps edge">
+<li id="eo-5-1" data-code="O5.x.1"><b>Edit / re-assign the owner.</b> Open the <b>Assign assignee</b> icon on the row again → pick a different person → <b>Save</b>. This <b>replaces</b> the current assignee (the list moves from the old owner's Segments into the new one's).
+  <figure><img src="opsx-35-reassign.png" alt="Re-assign drawer with current owner pre-ticked"/><figcaption><b>O5.x.1</b> — re-assigning <b>17072026v3</b>: the current owner (<b>SDR Internal Fintalent</b>) is <b>pre-ticked</b> → tick a different person → <b>Save</b>.</figcaption></figure>
+</li>
+<li id="eo-5-2" data-code="O5.x.2"><b>Bulk-assign several lists at once.</b> <b>Step by step:</b> ① in <b>Segments (Lists)</b> <b>tick the checkbox</b> of each list. ② In the action bar click <b>Assign assignee (N)</b>. ③ Pick the <b>mode</b>: <b>Add new</b> (adds this owner alongside existing ones) or <b>Overwrite (replace owners)</b> (clears existing owners first). ④ Tick the assignee → <b>Save</b>.
+  <figure><img src="opsx-18-bulk-assign.png" alt="Bulk assign modes"/><figcaption><b>O5.x.2</b> — bulk <b>Assign assignee</b> across N lists, with <b>Add new</b> / <b>Overwrite (replace owners)</b> mode.</figcaption></figure>
+</li>
+<li id="eo-5-3" data-code="O5.x.3"><b>Clear the owner.</b> Fastest way: <b>hover the assignee</b> on the row → a <b>✕</b> appears right after their name → click it to remove the owner → the <b>Assignee</b> column shows <b>—</b> again and the list is held by nobody. (You can also open the Assign drawer and clear the selection.)
+  <figure><img src="opsx-28-clear-owner.png" alt="Clear owner X on hover"/><figcaption><b>O5.x.3</b> — <b>hover the assignee</b> → the <b>✕</b> (circled) appears; click it to clear the owner in one click.</figcaption></figure>
+</li>
+</ol>
+<div class="call note"><span class="t">Hand-off done → SDR takes over</span>Once assigned, the rep opens the list in <b>Segments (Lists)</b> and works it day-to-day. That's the SDR side of this guide, starting at <b>Flow 1</b>.</div>
+<div class="pagernav"><a data-goto="page-o4"><span class="k">← Prev</span><b>O4 · Remove members</b></a><a class="next" data-goto="page-login"><span class="k">Next → (SDR)</span><b>Flow 1 · SDR log in</b></a></div>
+</section>
+
+<!-- ===================== FLOW 1 · SDR LOGIN ===================== -->
+<section class="page" id="page-login">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 1 ·</span> Log in &amp; find your workspace</h2>
+<div class="goal"><b>Goal (core):</b> get signed in, see your workspace, and know what each menu item is for. That's the whole job — account settings, signature, password, log out all live in <b>Edge cases</b>.</div>
+
+<h3 id="l-login" class="anchor">1.1 · Log in</h3>
+<ol class="steps">
+<li data-code="1.1">Open <code>admin-uat.fintalent.io</code>. If you're not signed in, the login screen appears — <b>Email · Password · Log In</b>.
+  <figure class="crop"><img src="sdrx-01-login.png" alt="SDR login page"/><figcaption><b>1.1</b> — the login screen: just Email, Password, Log In.</figcaption></figure>
+</li>
+<li data-code="1.2">Type the <b>Email</b> and <b>Password</b> the Admin gave you → click <b>Log In</b>.</li>
+</ol>
+
+<h3 id="l-workspace" class="anchor">1.2 · Your workspace</h3>
+<ol class="steps">
+<li data-code="1.3">Log In drops you on <b>Campaigns</b> — your workspace inside <b>Sales Management</b>. Move around with the left menu (<b>8 items</b>); your account card is bottom-left. No Contacts/Companies pages — your lists and Inbox are the entry points.
+  <figure><img src="sdrx-23-post-login-landing.png" alt="Workspace right after login"/><figcaption><b>1.2</b> — where Log In lands you: the Campaigns page, with the Sales Management menu on the left.</figcaption></figure>
+</li>
+</ol>
+<p>Here's what each menu item is for <span class="fn">(✅ verified live as SDR, 21 Jul)</span>:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Menu</th><th>What you do here</th><th>What you can't</th></tr></thead>
+<tbody>
+<tr><td><b>Segments (Lists)</b></td><td>Open the <b>lists assigned to you</b> and work the members — <b>Flows 2–7</b>.</td><td>Can't create a list, assign, or add/remove members — Ops owns that (O2–O5).</td></tr>
+<tr><td><b>Inbox</b></td><td><b>Read</b> replies and <b>reply in-thread</b> — <b>Flow 5</b>.</td><td>It's a reply queue — nothing to "create".</td></tr>
+<tr><td><b>Meetings</b></td><td><b>View</b> the meetings list (synced from HubSpot).</td><td>Can't book here — read-only.</td></tr>
+<tr><td><b>Message Templates</b></td><td>Full <b>create / edit / delete</b> — use &amp; build in <b>Flow 4.x.1</b>.</td><td>Don't edit the shared EN 01–05 set without Ops.</td></tr>
+<tr><td><b>Snippets</b></td><td>Full <b>create / edit / delete</b> — use &amp; build in <b>Flow 4.x.2</b>.</td><td>—</td></tr>
+<tr><td><b>Documents</b></td><td>Full <b>create / edit / delete</b> — the 🗂 file library — <b>Flow 4.x.3</b>.</td><td>—</td></tr>
+<tr><td><b>Campaigns</b></td><td><b>View / build</b> multi-step campaigns — <b>Flow 8</b>.</td><td>Can't add people — Ops loads the audience.</td></tr>
+<tr><td><b>Marketing Emails</b></td><td><b>View / build</b> a single-blast email — <b>Flow 9</b>.</td><td>Can't add people — Ops loads the audience.</td></tr>
+</tbody></table></div>
+
+<h3 id="l-edge" class="edgehead anchor">1.x · Edge cases</h3>
+<ol class="steps edge">
+<li id="e-1-1" data-code="1.x.1"><b>Already signed in.</b> Opening the address again <b>skips the login screen</b> and drops you straight back into your workspace — no need to log in again. Your session lasts until you log out (1.x.6).</li>
+<li id="e-1-2" data-code="1.x.2"><b>Forgot / need to change your password.</b> There's no self-serve reset — <b>contact the Admin</b> and they'll help you reset it.</li>
+<li id="e-1-3" data-code="1.x.3"><b>Where I can open my account?</b> Your <b>account card</b> is at the <b>bottom-left</b> of the sidebar (avatar · name · email · a refresh icon — that's all; no view-as/eye control on an SDR login). <b>Click your name/avatar</b> to open <b>Update Admin Information</b> (5 tabs: General Setting · Billing · Payment · Activities Log · Email Configuration); log out from the account card's control (1.x.6).
+  <figure class="sm"><img src="sdrx-24b-account-card-sdr.png" alt="Account card (SDR)"/><figcaption><b>1.x.3</b> — <span class="fn">(SDR login)</span> the account card (avatar · name · email · refresh); click your name to open settings.</figcaption></figure>
+</li>
+<li id="e-1-4" data-code="1.x.4"><b>Edit your name / phone / avatar.</b> On <b>General Setting</b>, edit <b>First name · Last name · Phone number · Avatar</b> → <b>Update</b>. <b>Email</b> and <b>Roles</b> are read-only, and there's <b>no password field</b>.
+  <figure><img src="sdrx-05b-general-setting-sdr.png" alt="General Setting tab (SDR)"/><figcaption><b>1.x.4</b> — <span class="fn">(SDR login)</span> General Setting: name · phone · avatar editable; Email &amp; Roles locked.</figcaption></figure>
+</li>
+<li id="e-1-5" data-code="1.x.5"><b>Change your email signature.</b> <b>Why:</b> your signature is the sign-off block (name · title · company · phone · booking link) that gets <b>added automatically to the bottom of every email you send</b> — so you never retype it, every message looks consistent and professional, and the prospect always knows who you are and how to reach or book you. Set it once here: on the <b>Email Configuration</b> tab fill your <b>Signature</b> (rich-text), your <b>Sender Name</b>, and any default <b>Attach files</b> → <b>Save</b>. From then on it rides along on every send (Flow 4).
+  <figure><img src="sdrx-06-email-config.png" alt="Email Configuration tab"/><figcaption><b>1.x.5</b> — Email Configuration: Signature, Sender Name, default attachments.</figcaption></figure>
+</li>
+<li id="e-1-7" data-code="1.x.6"><b>Log out.</b> Use the log-out control on your account card to end the session.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-o5"><span class="k">← Prev (Ops)</span><b>O5 · Assign to an SDR</b></a><a class="next" data-goto="page-find"><span class="k">Next →</span><b>Flow 2 · Find a target contact</b></a></div>
+</section>
+
+<!-- ===================== FLOW 2 · FIND (+READ) ===================== -->
+<section class="page" id="page-find">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 2 ·</span> Find a target contact</h2>
+<div class="goal"><b>Goal (core):</b> open the list Ops gave you → view the contacts → pick one and read it, ready to work. Filtering, searching and seeing other owners are in <b>Edge cases</b>.</div>
+
+<h3 id="f-open" class="anchor">2.1 · Open your assigned list</h3>
+<ol class="steps">
+<li data-code="2.1">In the left menu click <b>Segments (Lists)</b> (the first item under Sales Management) → the page shows only the lists assigned to you, with member counts &amp; created date. <b>Empty page → no assignment yet, ask Ops.</b> Your list is <b>fixed</b> — you can't add/remove members.
+  <figure><img src="sdrx-30-lists-assigned.png" alt="Assigned lists"/><figcaption><b>2.1</b> — the lists assigned to you. Click one to open it.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="f-view" class="anchor">2.2 · View the contacts</h3>
+<ol class="steps">
+<li data-code="2.2">Inside the list you get the members table (the default <b>Simple</b> view): <b>Title · Account</b> (name) <b>· Country · City · Lifecycle Stage · Signals · Last Contact ↓</b> (sortable) <b>· Action</b> icons (✉ · WhatsApp · LinkedIn). "Showing 0 of N" just means it's still loading.
+  <figure><img src="sdrx-32-list-members-simple.png" alt="List members (Simple view)"/><figcaption><b>2.2</b> — the members table: Title · Account · Country · City · Lifecycle · Signals · Last Contact · Actions.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="f-pick" class="anchor">2.3 · Pick &amp; read a contact</h3>
+<ol class="steps">
+<li data-code="2.3">Click the <b>Account</b> (name) or the <b>Title</b> → the <b>profile drawer</b> opens: action bar <b>Send email · WhatsApp · LinkedIn</b>; facts (Phone · Location · LinkedIn · Experience · Lifecycle · Labels); collapsible <b>Work Experience · Education · Certificates</b>; the <b>Conversations</b> rail on the right edge.
+  <figure><img src="sdrx-33-contact-detail-clean.png" alt="Contact profile drawer"/><figcaption><b>2.3</b> — the profile drawer opens over the list: everything you need to decide and personalize.</figcaption></figure>
+</li>
+<li data-code="2.4"><b>Open Work Experience</b> (the number = how many roles) for their real role, firm and dates — your personalization goldmine.
+  <figure><img src="v3s-103-sdr-profile-we.png" alt="Work experience expanded"/><figcaption><b>2.4</b> — Work Experience expanded: roles + companies + dates.</figcaption></figure>
+</li>
+<li data-code="2.5"><b>Check Signals</b> — a fresh reason to reach out. The <b>Signals</b> column has <b>two kinds</b>, and knowing which is which tells you how to open the conversation:
+  <ul>
+    <li><b>⚡ Signal (news)</b> — a recent <b>event at the company</b> (a fund launch, an acquisition, a live auction, e.g. "BauWatch ticks live…", "Wafra launches fund…"). This is the type that can <b>draft an email for you</b> — see <a data-goto="page-send">Flow 4 · Way 4</a>.</li>
+    <li><b>💼 Job (title / role change)</b> — a <b>person-level</b> change such as a new title or role (e.g. "Associate Partner – M&amp;A…"). Good context for a personal note, but it does <b>not</b> pre-draft an email.</li>
+  </ul>
+  "2mo" = how old the signal is; "+N" = more signals — click <b>+N</b> to expand them all. <b>Click a signal itself</b> → its <b>detail</b> opens (headline · source · date); for a <b>⚡ Signal (news)</b> it also carries a <b>ready email</b> you can send — see <a data-goto="page-send">Flow 4 · Way 4</a>. Also glance at the <b>Conversations</b> rail (right edge) — a teammate may already be talking to them. Now you're ready to classify/edit (Flow 3) or email (Flow 4).
+  <figure><img src="sdrx-53-signal-column.png" alt="Signals column — two types"/><figcaption><b>2.5</b> — the two signal types: <b>⚡ Signal</b> = company news (red), <b>💼 Job</b> = title/role change (blue).</figcaption></figure>
+  <figure><img src="sdrx-54-signal-detail.png" alt="Signal detail opened"/><figcaption><b>2.5</b> — <b>click a signal → its detail opens</b>: headline · source · date, plus <b>Use this email content to reply</b> / <b>Copy email — EN / DE</b> (⚡ Signal only).</figcaption></figure>
+  <figure class="crop"><img src="v3s-114-signal-plus.png" alt="Signals expanded"/><figcaption><b>2.5</b> — "+N" clicked: every signal for the contact, each with its age.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="f-edge" class="edgehead anchor">2.x · Edge cases</h3>
+<ol class="steps edge">
+<li id="e-2-1" data-code="2.x.1"><b>Filter by Lifecycles.</b> Click <b>Lifecycles</b> → every value has a <b>✓</b> and an <b>✕</b>:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>✓ include</b> = <b>keep only</b> contacts at that stage (show them, hide the rest).</li>
+  <li><b>✕ exclude</b> = <b>hide</b> contacts at that stage (drop them, keep the rest).</li>
+  <li>Several <b>✓</b> together = <b>OR</b> — a contact matches if it's at <i>any</i> ticked stage.</li>
+  </ul>
+  The <b>Has a lifecycle / No lifecycle</b> radios catch contacts with/without any label; <b>Paste list</b> takes one value per line. E.g. tick <b>✓ Prospect</b> to work only untouched people; add <b>✕ Opted Out</b> · <b>✕ Not Interested</b> to hide the dead ones.
+  <figure><img src="v3s-95-sdr-lifecycles-filter.png" alt="Lifecycles filter"/><figcaption><b>2.x.1</b> — Lifecycles filter: ✓/✕ per value, Has/No radios, Paste list.</figcaption></figure>
+</li>
+<li id="e-2-2" data-code="2.x.2"><b>Keyword search.</b> The box over the table searches names, titles, companies, and remembers <b>Recent searches</b>. Search + Lifecycles combine.
+  <figure><img src="v3s-96-sdr-list-search.png" alt="Keyword search"/><figcaption><b>2.x.2</b> — keyword search with Recent searches memory.</figcaption></figure>
+</li>
+<li id="e-2-3" data-code="2.x.3"><b>"Held by teammates" — check before you email.</b>
+  <p style="margin:6px 0"><b>Why:</b> so two reps don't work the <b>same company</b> at once. If a firm already has someone at <b>Interested or higher</b> (Interested · Call Scheduled · Platform Sign Up · In Project · Project Completed), a teammate probably has a <b>live deal</b> there — emailing a <i>different</i> person makes the firm hear two Fintalent voices and can hurt that deal.</p>
+  <b>How:</b> open your list → expand the company rail (<b>»</b>) → <b>click a company</b> (①). The table then splits in two:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>White rows = yours</b> — contacts in your list; work them normally (never shown twice).</li>
+  <li><b>Gray rows = held by a teammate</b> — not in your list but in a teammate's at a hot stage; a <b>"N held by teammates"</b> pill shows the count (②). <b>Don't email them</b> — hover the <b>⚠</b> to see who holds whom, then align with that teammate first.</li>
+  </ul>
+  <span class="fn">(People at Prospect / In Conversation, or in no list, aren't shown — a cold touch isn't a collision.)</span>
+  <figure><img src="sdrx-52c-rail-collapsed-sdr.png" alt="Expand company rail (SDR view)"/><figcaption><b>2.x.3 · step</b> — <span class="fn">(SDR login)</span> the left <b>company rail</b> is collapsed to logos only by default; click the <b>»</b> toggle at its top to expand it.</figcaption></figure>
+  <figure><img src="sdrx-48-held-teammates.png" alt="Held by teammates"/><figcaption><b>2.x.3 · result</b> — ① pick a company → ② the "N held by teammates" pill + gray rows (Case 2).</figcaption></figure>
+</li>
+<li id="e-2-4" data-code="2.x.4"><b>View a company's detail.</b> In the left rail, <b>click the company name</b> → its <b>detail drawer</b> opens on the right with the firm's profile: a short <b>description</b>, plus <b>Alias names · Industry · Website · Location · LinkedIn · Email domains · Parent</b>, and a <b>Lists · Add to list</b> control. Use it to sanity-check the firm before working its people.
+  <figure><img src="sdrx-50-company-detail.png" alt="Company detail drawer"/><figcaption><b>2.x.4</b> — <b>click the company name</b> in the left rail → the company detail drawer (Industry · Website · Location · LinkedIn · Email domains · Parent).</figcaption></figure>
+</li>
+<li id="e-2-5" data-code="2.x.5"><b>Sort by Country / City / Last Contact.</b> <b>Country</b>, <b>City</b> and <b>Last Contact</b> are sortable columns — <b>click the header</b> to sort (click once = A→Z / oldest→newest, click again = reverse; empty values group first). Sort by <b>Country / City</b> to work one geography at a time; sort by <b>Last Contact</b> to surface who's gone quiet (feeds Flow 6).
+  <figure><img src="sdrx-32-list-members-simple.png" alt="Sortable columns"/><figcaption><b>2.x.5</b> — click <b>Country · City · Last Contact</b> headers to sort.</figcaption></figure>
+</li>
+<li id="e-2-6" data-code="2.x.6"><b>Filter by Has signal (two levels).</b> Besides <b>Lifecycles</b> (2.x.1), the members bar carries a <b>Has signal</b> filter — so the bar over your contacts is <b>Lifecycles · Has signal</b>, and the company rail has its own. It's the same word at two levels:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>Members bar</b> (right, over contacts) → <b>Has signal : Yes</b> keeps <b>people who personally have a signal</b>; the <b>Signals</b> column then has a value on every row (⚡ news / 💼 job). E.g. 359 → 246.</li>
+  <li><b>Company rail</b> (left, over firms) → expand it (<b>»</b>) and its bar shows <b>Lifecycle · Has signal</b> (+ 🔍 search). <b>Has signal : Yes</b> keeps <b>firms that have a signal</b> — the best ones to open with. E.g. 111 → 29.</li>
+  </ul>
+  <span class="fn">Same dropdown tool as Lifecycles: ✓ include / ✕ exclude, Has/No radios, Paste list.</span>
+  <figure><img src="sdrx-57b-company-rail-filter-sdr.png" alt="Company rail filters (SDR view)"/><figcaption><b>2.x.6</b> — <span class="fn">(SDR login)</span> members bar = <b>Lifecycles · Has signal</b>; company rail = <b>Lifecycle · Has signal</b> (+ 🔍 search).</figcaption></figure>
+</li>
+</ol>
+<div class="pagernav"><a data-goto="page-login"><span class="k">← Prev</span><b>Flow 1 · Log in</b></a><a class="next" data-goto="page-manage"><span class="k">Next →</span><b>Flow 3 · Manage contact info</b></a></div>
+</section>
+
+<!-- ===================== FLOW 3 · MANAGE CONTACT ===================== -->
+<section class="page" id="page-manage">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 3 ·</span> Manage contact info</h2>
+<div class="goal"><b>Goal:</b> keep a contact accurate and correctly labelled — its lifecycle and its facts, all edited in one place: the <b>contact detail drawer</b>.</div>
+
+<h3 id="m-open" class="anchor">3.1 · Open assigned list</h3>
+<ol class="steps">
+<li id="mo-1" data-code="3.1.1"><b>Open Segments (Lists)</b> in the left menu → your assigned lists.
+  <figure><img src="sdrx-30-lists-assigned.png" alt="Assigned lists"/><figcaption><b>3.1.1</b> — your assigned lists; click one to open it.</figcaption></figure>
+</li>
+<li id="mo-2" data-code="3.1.2"><b>Open your list</b> → the <b>list detail</b> (your contact list / members table).
+  <figure><img src="sdrx-32-list-members-simple.png" alt="List detail members"/><figcaption><b>3.1.2</b> — the list detail: your contacts.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="m-contact" class="anchor">3.2 · Open contact</h3>
+<ol class="steps">
+<li data-code="3.2.1"><b>Click the contact</b> you want to manage → its <b>detail drawer</b> opens on the right — everything below is editable here.
+  <figure><img src="sdrx-33-contact-detail-clean.png" alt="Contact detail drawer"/><figcaption><b>3.2.1</b> — the contact detail drawer.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="m-edit" class="anchor">3.3 · Edit the fields — all inline <span class="new">NEW</span></h3>
+<p>In the drawer, <b>click a value → edit → confirm ✓</b> (or ✕ to cancel). The editable fields:</p>
+<ol class="steps">
+<li data-code="3.3.1"><b>Lifecycle</b> — click the <b>Lifecycle Stage chip</b> → pick a label. This is the most important field: it tells the whole team the real state (label guide below).
+  <figure class="crop"><img src="sdrx-11-lifecycle-dropdown.png" alt="Lifecycle dropdown"/><figcaption><b>3.3.1</b> — the lifecycle dropdown open on a contact.</figcaption></figure>
+</li>
+<li data-code="3.3.2"><b>Phone</b> — click <b>"Add phone"</b> → a <b>country-code picker</b> (🇩🇪 +49 …) + number field appear inline.
+  <figure><img src="sdrx-09-add-phone.png" alt="Inline phone editor"/><figcaption><b>3.3.2</b> — "Add phone" → inline editor with country-code picker + ✓/✕.</figcaption></figure>
+</li>
+<li data-code="3.3.3"><b>Location</b> — click it → <b>Country</b> + <b>City</b> dropdowns appear inline.
+  <figure><img src="sdrx-10-location-click.png" alt="Inline location editor"/><figcaption><b>3.3.3</b> — Location clicked → Country + City dropdowns inline.</figcaption></figure>
+</li>
+<li data-code="3.3.4"><b>LinkedIn</b> (must be a valid LinkedIn URL) and <b>Labels</b> also edit inline. <b>Experience</b> is <b>read-only</b> (shown in yrs) — derived from Work Experience.</li>
+</ol>
+<p><b>Lifecycle label guide</b> — what to pick after reading a reply:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Label</th><th>When they say…</th><th>Then you…</th></tr></thead>
+<tbody>
+<tr><td><b>Interested</b> ✅</td><td>"I'm interested / call me"</td><td>Hand off to a KAM per team process</td></tr>
+<tr><td><b>Not Now</b> 🥶</td><td>"Ask next quarter" / an out-of-office auto-reply</td><td>Leave; re-warm later</td></tr>
+<tr><td><b>Email Updated</b> 🥶</td><td>"New address"</td><td>Update the email → resend</td></tr>
+<tr><td><b>Not Interested</b> 🆘</td><td>"Not interested"</td><td>Stop emailing</td></tr>
+<tr><td><b>Opted Out</b> 🆘</td><td>"Stop emailing me"</td><td><b>Stop emailing immediately</b> (GDPR)</td></tr>
+<tr><td><b>Do Not Contact</b> 🆘</td><td>No contact, any channel</td><td><b>Stop all contact immediately</b> (GDPR)</td></tr>
+<tr><td><b>Left The Company</b> 🆘</td><td>"They've left"</td><td>Ask Ops for the replacement</td></tr>
+</tbody></table></div>
+<p class="fn">The dropdown holds <b>14 stages</b> — Prospect · In Conversation · Interested · Not Now · Opted Out · Email Updated · Do Not Contact · Left The Company · Not Interested · No Categories · Call Scheduled · Platform Sign Up · In Project · Project Completed. <b>Locked:</b> if a contact is already at <b>Platform Sign Up / In Project / Project Completed</b> the chip is read-only — leave it. The red labels (Opted Out / Do Not Contact) show as a red chip the whole team sees; the system warns but doesn't block sending, so <b>you</b> are the final safeguard.</p>
+<div class="pagernav"><a data-goto="page-find"><span class="k">← Prev</span><b>Flow 2 · Find a target contact</b></a><a class="next" data-goto="page-send"><span class="k">Next →</span><b>Flow 4 · Send a 1:1 email</b></a></div>
+</section>
+
+<!-- ===================== FLOW 4 · SEND 1:1 ===================== -->
+<section class="page" id="page-send">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 4 ·</span> Send a 1:1 email</h2>
+<div class="goal"><b>Goal:</b> send one personal email to one person. There are <b>4 ways</b> to open the compose window — each shown step-by-step below. They all end at the <b>same compose window</b> (4.2).</div>
+
+<h3 id="s-paths" class="anchor">4.1 · Four ways into compose</h3>
+
+<div class="path" id="way-1">
+  <div class="h"><span class="tag">4.1.1</span>Way 1 — From the list row (fastest)</div>
+  <ol class="steps">
+  <li data-code="1a"><b>Segments (Lists)</b> → open your list → find the contact's row.</li>
+  <li data-code="1b">In the <b>Action</b> column (right side) click the <b>✉ icon</b> → compose opens for that contact, without leaving the list.
+    <figure><img src="sdrx-32-list-members-simple.png" alt="Row action icons"/><figcaption><b>Way 1</b> — the ✉ icon in the row's Action column (far right).</figcaption></figure>
+  </li>
+  </ol>
+</div>
+
+<div class="path" id="way-2">
+  <div class="h"><span class="tag">4.1.2</span>Way 2 — From the contact's profile</div>
+  <ol class="steps">
+  <li data-code="2a"><b>Open the contact</b> (click the name/title) → the profile drawer opens.</li>
+  <li data-code="2b">In the action bar at the top click <b>Send email</b> → compose opens.
+    <figure><img src="sdrx-33-contact-detail-clean.png" alt="Profile Send email button"/><figcaption><b>Way 2</b> — the <b>Send email</b> button in the profile action bar (top-left of the drawer).</figcaption></figure>
+  </li>
+  </ol>
+</div>
+
+<div class="path" id="way-3">
+  <div class="h"><span class="tag">4.1.3</span>Way 3 — From the Conversations rail (see history first)</div>
+  <ol class="steps">
+  <li data-code="3a"><b>Open the contact</b> → on the right edge click the vertical <b>CONVERSATIONS</b> tab to expand the rail.</li>
+  <li data-code="3b">In the rail click <b>New Email</b> → compose opens, with the existing thread history right there.
+    <figure><img src="v3s-131-chaticon-opened.png" alt="Conversations rail New Email"/><figcaption><b>Way 3</b> — the Conversations rail: thread list + <b>New Email</b> (and ↩ reply arrows).</figcaption></figure>
+  </li>
+  </ol>
+</div>
+
+<div class="path" id="way-4">
+  <div class="h"><span class="tag">4.1.4</span>Way 4 — From a signal (email already drafted for you)</div>
+  <ol class="steps">
+  <li data-code="4a"><b>Segments (Lists)</b> → open your list → look at the <b>Signals</b> column → click a signal on the contact's row → the <b>signal detail</b> opens. (What the two signal types mean → <a data-goto="page-find">Flow 2 · Signals column</a>.)
+    <figure><img src="sdrx-53-signal-column.png" alt="Signals column"/><figcaption>The <b>Signals</b> column — click a signal to open its detail.</figcaption></figure>
+  </li>
+  <li data-code="4b">In the signal detail, top-right, click <b>Use this email content to reply</b>.
+    <figure><img src="sdrx-54-signal-detail.png" alt="Use this email content to reply"/><figcaption><b>Use this email content to reply</b> (circled) — or <b>Copy email — EN / DE</b> if you only want the text.</figcaption></figure>
+  </li>
+  <li data-code="4c">Compose opens with the <b>body already written</b> from the signal. <b>To</b> is empty — add the contact → check From / Subject → personalise the draft → <b>Send</b> (finish at 4.2 below).
+    <figure><img src="sdrx-55-signal-compose.png" alt="Prefilled compose"/><figcaption>Compose <b>prefilled from the signal</b> — a ready draft you edit, address, and send.</figcaption></figure>
+  </li>
+  </ol>
+</div>
+
+<p class="fn">Replying to someone who already wrote to you is a separate job — see <a data-goto="page-inbox">Flow 5 · Answer replies</a>.</p>
+
+<h3 id="s-compose" class="anchor">4.2 · Compose &amp; send <span class="fn">(same window for all 4 ways)</span></h3>
+<p>The whole job here is to <b>send a good email successfully</b> — 4 steps:</p>
+<ol class="steps">
+<li data-code="4.1"><b>Check From / To / Cc.</b> <b>From</b> is your own mailbox (filled in by default). <b>To</b> is the contact you started from (already pre-filled) — you can also type extra recipients here. To copy someone else, click <b>Cc</b> at the right of the To row → a Cc field appears → type their email and press <b>Enter</b> (it becomes a chip; the <b>✕</b> removes it).
+  <figure class="crop"><img src="sdrx-47-cc.png" alt="From To Cc"/><figcaption><b>4.1</b> — From · To · <b>Cc</b>: click <b>Cc</b> (circled), then type the email to copy someone in.</figcaption></figure>
+</li>
+<li data-code="4.2"><b>Type the Subject yourself</b> in "Add a subject" at the very top. For a <b>new</b> email it starts <u>empty</u> and does <b>not</b> auto-fill, even from a Template (known bug). The Send button blocks an empty subject — so you can't forget.
+  <figure><img src="v3s-21-compose-subject.png" alt="Subject box"/><figcaption><b>4.2</b> — the subject box (red frame) — type it yourself.</figcaption></figure>
+</li>
+<li data-code="4.3"><b>Write your message</b> in the body (personalize with their role &amp; signal from Flow 2). <span class="fn">Want to start from a Template, drop in a Snippet, or attach a file? See Edge cases (4.x).</span></li>
+<li data-code="4.4">Proofread → <b>Send</b>. It auto-logs into Conversations, your <b>signature</b> (Flow 1.x.5) is appended automatically, and there is <b>no recall</b>.</li>
+</ol>
+
+<h3 id="s-edge" class="edgehead anchor">4.x · Edge cases — write faster with Templates · Snippets · Documents</h3>
+<p>Three helpers speed up composing. For each: <b>use it</b> in the compose bar, and <b>build your own</b> from its menu page. <span class="fn">✅ your SDR account can create / edit / delete all three.</span></p>
+
+<h3 id="e-4-1" class="anchor">4.x.1 · Templates — full pre-written emails</h3>
+<ol class="steps">
+<li data-code="use"><b>Use it in compose:</b> click <b>Template</b> in the compose bar → <i>Insert</i> appends to your draft, <i>Replace</i> overwrites it (incl. the EN 01–05 set). <span class="fn">Even from a Template the subject box still needs typing (4.2 bug).</span>
+  <figure><img src="v3s-23-template.png" alt="Template picker"/><figcaption><b>Use</b> — Template: Insert / Replace + search.</figcaption></figure>
+</li>
+<li data-code="make"><b>Build your own:</b> <b>Message Templates</b> (left menu) → <b>+ Create New</b> → fill <b>Name*</b> (how it shows in compose, e.g. <code>EN 06 - Follow-up</code>) · <b>Topic*</b> · <b>Source Type</b> · <b>Subject EN / DE</b> · <b>body EN / DE</b> (two rich-text editors) → <b>Create</b>. Edit/delete via row actions; filter by Topics. <b>Don't</b> edit the shared EN 01–05 set without Ops.
+  <figure><img src="v3s-81-template-create.png" alt="Template create form"/><figcaption><b>Create</b> — Name* · Topic* · Subject EN/DE · rich-text body EN/DE.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="e-4-2" class="anchor">4.x.2 · Snippets — short reusable blocks</h3>
+<ol class="steps">
+<li data-code="use"><b>Use it in compose:</b> click <b>Snippets</b> → search → click = inserted at the cursor (EN | DE toggle).
+  <figure><img src="v3s-22-snippets.png" alt="Snippets picker"/><figcaption><b>Use</b> — Snippets: search + EN/DE, insert at cursor.</figcaption></figure>
+</li>
+<li data-code="make"><b>Build your own:</b> <b>Snippets</b> (left menu) → <b>+ Create New</b> → <b>Private</b> toggle (<b>ON = only you</b>; OFF = shared) · <b>Name*</b> · <b>Type</b> · <b>Content English*</b> / <b>Content German</b> → <b>Create</b>. Edit/delete by hovering the row.
+  <figure><img src="v3s-111-sdr-snippet-form.png" alt="Snippet create form"/><figcaption><b>Create</b> — Private toggle · Name* · Type · Content EN*/DE.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="e-4-3" class="anchor">4.x.3 · Documents &amp; files — attachments</h3>
+<ol class="steps">
+<li data-code="use"><b>Use it in compose:</b> <b>📎</b> uploads a file from your computer; <b>🗂</b> attaches from the shared Document library (Common · Contact · Campaign filter checkboxes, <b>Published</b> files only).
+  <figure><img src="v3s-25-select-document.png" alt="Select document"/><figcaption><b>Use</b> — 🗂 Select Documents: shared files (Published only).</figcaption></figure>
+</li>
+<li data-code="make"><b>Build the library:</b> <b>Documents</b> (left menu) → <b>+ Create New</b> → <b>Name*</b> · <b>Type*</b> (Common / Contact / Campaign — the compose tab it lands under) · <b>Status*</b> (<b>Draft</b> → <b>Published</b>; only Published is attachable) · <b>Is Star</b> · <b>Is Public</b> · <b>File*</b> → <b>Upload File</b> → <b>Create</b>. Retire with <b>Archived</b>, not delete.
+  <figure><img src="v3s-86-document-create.png" alt="Document create form"/><figcaption><b>Create</b> — Name* · Type* · Status* (Draft→Published) · Upload File.</figcaption></figure>
+</li>
+</ol>
+<div class="pagernav"><a data-goto="page-manage"><span class="k">← Prev</span><b>Flow 3 · Manage contact info</b></a><a class="next" data-goto="page-inbox"><span class="k">Next →</span><b>Flow 5 · View &amp; answer replies</b></a></div>
+</section>
+
+<!-- ===================== FLOW 5 · INBOX ===================== -->
+<section class="page" id="page-inbox">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 5 ·</span> View replies &amp; answer replies 🔴</h2>
+<div class="goal"><b>Goal (core):</b> go through everyone who replied — read what they wrote, decide, and answer. <b>Start:</b> Inbox. Do this <b>first</b> each day. Filters and the "In Queue" tag are in Edge cases.</div>
+
+<h3 id="i-core" class="anchor">5.1 · View &amp; answer a reply</h3>
+<ol class="steps">
+<li data-code="5.1"><b>Open the replies</b>: click <b>Inbox</b> in the left menu — one row per contact who wrote back, showing <b>Account | Last Email</b> (subject + preview + date). Auto-replies/OOO land here too.
+  <figure><img src="v3s-72-sdr-inbox.png" alt="Inbox"/><figcaption><b>5.1</b> — Inbox: one row per reply (Account | Last Email).</figcaption></figure>
+</li>
+<li data-code="5.2"><b>Spot which messages are replies — and glance at the auto chip.</b> The clearest signal is the <b>direction arrow</b> next to the sender in the thread:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>↙ inbound arrow + the contact's name</b> = <b>a reply from the prospect</b> (their words) — the message to read and answer.</li>
+  <li><b>↗ outbound arrow + your own name</b> = <b>an email you sent</b> (e.g. "Dong SDR ↗").</li>
+  </ul>
+  Each message also shows an <b>auto chip</b> the system assigns from the content: the prospect's replies get a meaningful one (<b>Out Of Office · Interested · Not Interested · Call Scheduled…</b>), while your own sends / anything not yet classified show <b>Open</b>. Read the chip as a quick hint only — you can't edit it, and it doesn't change the contact's lifecycle by itself. So use the <b>arrow</b> (not the chip) to tell a reply from a send.
+  <figure><img src="sdrx-56c-reply-signals-annot.png" alt="Reply signals in a conversation (SDR view)"/><figcaption><b>5.2</b> — <span class="fn">(SDR login)</span> <b>①</b> a reply = <b>↙ inbound arrow</b> + a real chip ("Out Of Office"); <b>②</b> your send = <b>↗ outbound arrow</b> + your name; <b>③</b> your send's chip just shows <b>Open</b>.</figcaption></figure>
+</li>
+<li data-code="5.3"><b>Read the email.</b> Click the row → the contact opens on <b>Conversations</b>: the thread list is on the left, the selected message on the right, <b>Expand all</b> unfolds the whole exchange. Read what they actually wrote — the chip is only a hint.
+  <figure><img src="sdrx-42b-reply-arrows-annot.png" alt="Conversation thread"/><figcaption><b>5.3</b> — Conversations: thread list (left) + the message (right). The three action arrows sit at the <b>top-right of the open message</b>: <b>① Reply all · ② Reply · ③ Forward</b>.</figcaption></figure>
+</li>
+<li data-code="5.4"><b>Decide: reply or not.</b> If it needs an answer, reply (5.5). If it doesn't (e.g. a plain "not interested" or an auto-reply), skip replying and just <b>classify the contact</b> (Flow 3) so it leaves the queue.</li>
+<li data-code="5.5"><b>Click Reply</b> — the <b>single ↩ arrow</b> at the <b>top-right of the open message</b> (circled below). It answers <b>only the person who wrote</b> — the normal choice for 1:1 outreach. <span class="fn">(The double-arrow <b>Reply all</b> and the <b>Forward</b> arrow sit right next to it — see Edge cases.)</span>
+  <figure><img src="sdrx-44-reply-circled.png" alt="Reply button circled"/><figcaption><b>5.5</b> — the <b>Reply</b> button (single arrow) at the top-right of the message.</figcaption></figure>
+</li>
+<li data-code="5.6"><b>What opens:</b> a <b>compose window</b> with the subject already set to <i>RE: …</i>, the <b>sender pre-filled in To</b>, and the original message quoted below. It stays in the <b>same thread</b>.
+  <figure><img src="sdrx-43-reply-compose.png" alt="Reply compose window"/><figcaption><b>5.6</b> — Reply clicked: <i>RE:</i> subject, the sender in To, the quoted original.</figcaption></figure>
+</li>
+<li data-code="5.7"><b>Write your message → Send.</b></li>
+</ol>
+
+<h3 id="i-edge" class="edgehead anchor">5.x · Edge cases</h3>
+<ol class="steps edge">
+<li id="e-5-1" data-code="5.x.1"><b>Reply all</b> — the <b>double ↩↩ arrow</b> (left of Reply, circled below) answers the sender <b>plus everyone else on the thread's To/Cc</b>. Use it only when several people are genuinely in the conversation (an assistant or colleague was copied). Same compose window as Reply, but To/Cc are pre-filled with everyone.
+  <figure><img src="sdrx-45-replyall-circled.png" alt="Reply all button circled"/><figcaption><b>5.x.1</b> — the <b>Reply all</b> button (double arrow), leftmost of the three.</figcaption></figure>
+</li>
+<li id="e-5-2" data-code="5.x.2"><b>Forward</b> — the <b>➡ arrow</b> (right of Reply, circled below) sends this message on to <b>someone new</b>. Same window, but <b>To starts empty</b> for you to type the new recipient; the original message is carried in the body.
+  <figure><img src="sdrx-46-forward-circled.png" alt="Forward button circled"/><figcaption><b>5.x.2</b> — the <b>Forward</b> button (arrow pointing right), rightmost of the three.</figcaption></figure>
+</li>
+<li id="e-5-3" data-code="5.x.3"><b>Filters.</b> The Inbox bar carries the full set; <b>+ Add filter</b> opens <b>Customize Quick Filters</b> (pin filters, Reset defaults) to build your own quick bar. Use it to slice big queues (only DACH, only CFOs).
+  <div class="tblwrap"><table>
+  <thead><tr><th>Filter</th><th>What it narrows · how to use</th></tr></thead>
+  <tbody>
+  <tr><td><b>Lifecycles</b></td><td>by contact stage — same ✓/✕ tool as 2.x.1</td></tr>
+  <tr><td><b>Contact Classification</b></td><td>contact <b>type</b>: <b>Talent · Client · Other</b> (each ✓/✕; Has/No radios + Paste list)</td></tr>
+  <tr><td><b>Owner</b></td><td>which teammate owns the contact — pick yourself to see only yours</td></tr>
+  <tr><td><b>Work Experience</b></td><td>career facts — the power filter (fields below)</td></tr>
+  <tr><td><b>Countries · Cities</b></td><td>the contact's location — pick a geography (DACH, UK…)</td></tr>
+  <tr><td><b>+ Add filter</b></td><td><b>Customize Quick Filters</b> — pin/unpin which filters show on the bar (Reset defaults)</td></tr>
+  </tbody></table></div>
+  <p class="fn">Every dropdown works the same: each value has a <b>✓ include</b> (keep only these) / <b>✕ exclude</b> (hide these); <b>Has / No …</b> radios catch records with/without any value; <b>Paste list</b> takes one value per line; several ✓ together = <b>OR</b>.</p>
+  <p><b>Work Experience</b> filters by <b>career</b>, not just the contact record. A top <b>Match any (OR)</b> / <b>Match all (AND)</b> toggle decides whether a person must meet one or all of: <b>Company type</b> (Sponsor · Corporate · Portfolio) · <b>Email validity</b> (Valid · Invalid · Validating · None) · <b>Currently / Past</b> · <b>Position</b> (job title) · <b>Company</b> (or Has / No linked company, plus <b>+ Filter by linked company</b>: city · country · bucket · classification) · <b>Company Description</b> · <b>Company country / city</b>. E.g. Work Experience → Company type = Sponsor took a 27-reply queue to <b>25</b> (every remaining row a sponsor firm).</p>
+  <figure><img src="v3s-97-sdr-inbox-we-filter.png" alt="Inbox filters"/><figcaption><b>5.x.3</b> — the Work Experience filter inside Inbox; + Add filter pins more.</figcaption></figure>
+  <figure><img src="sdrx-flt-we-panel.png" alt="Work Experience filter panel"/><figcaption><b>5.x.3 · panel</b> — <span class="fn">(SDR login)</span> the full Work Experience panel: Match any/all · Company type · Email validity · Currently/Past · Position · Company/linked · Description · country/city.</figcaption></figure>
+</li>
+<li id="e-5-4" data-code="5.x.4"><b>The orange "In Queue" tag.</b> A message tagged <b>In Queue</b> is accepted but <b>not sent yet</b> (waiting in the send queue). It clears to a normal sent message once it goes out — it just means "on its way", <b>don't re-send</b>.
+  <figure class="crop"><img src="sdrx-51-inqueue.png" alt="In Queue tag"/><figcaption><b>5.x.4</b> — the orange <b>In Queue</b> tag on a message (circled): accepted, waiting in the send queue, not sent yet.</figcaption></figure>
+</li>
+</ol>
+<div class="pagernav"><a data-goto="page-send"><span class="k">← Prev</span><b>Flow 4 · Send a 1:1 email</b></a><a class="next" data-goto="page-followup"><span class="k">Next →</span><b>Flow 6 · Follow up</b></a></div>
+</section>
+
+<!-- ===================== FLOW 6 · FOLLOW UP ===================== -->
+<section class="page" id="page-followup">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 6 ·</span> Follow up on silent prospects</h2>
+<div class="goal"><b>Goal:</b> nudge the people who went quiet, in the right order. <b>Start:</b> your list, sorted by Last Contact — the 💬 icon colors point at who's overdue.</div>
+<ol class="steps">
+<li id="fu-1" data-code="6.1"><b>Open your assigned list:</b> left menu → <b>Segments (Lists)</b> → open your list.
+  <figure><img src="sdrx-30-lists-assigned.png" alt="Assigned lists"/><figcaption><b>6.1</b> — your assigned lists; click one to open it.</figcaption></figure>
+</li>
+<li id="fu-2" data-code="6.2"><b>View the contacts:</b> the members table. Look at the <b>Last Contact</b> column (far right) — each row has a <b>💬 icon</b> next to its date, the follow-up radar.
+  <figure><img src="sdrx-32-list-members-simple.png" alt="List members with Last Contact column"/><figcaption><b>6.2</b> — the members table; the <b>Last Contact</b> column with its 💬 icons is on the right.</figcaption></figure>
+</li>
+<li id="fu-3" data-code="6.3"><b>Pick who's overdue:</b> click the <b>Last Contact</b> header to sort, and read the 💬 colors — <span style="color:#D92D20"><b>red</b></span> = waited longest, start there; <b>yellow</b> = coming due; <b>gray</b> = fresh. The red dot means "due" and clears once you make contact.
+  <figure><img src="v3s-62-sdr-list-60s.png" alt="Aging icons"/><figcaption><b>6.3</b> — 💬 icons shading gray → yellow → red as Last Contact ages.</figcaption></figure>
+</li>
+<li id="fu-4" data-code="6.4"><b>Read the context.</b> Click the <b>💬 icon</b> on that row → a conversation-first drawer opens with the last thread on screen. Read the exchange to confirm they <b>haven't replied yet</b> (that's what "follow up" means) and to pick your angle.
+  <figure><img src="v3s-131-chaticon-opened.png" alt="Conversation-first drawer"/><figcaption><b>6.4</b> — 💬 clicked: the last thread on screen (New Email · ↩ reply · 1/N pager).</figcaption></figure>
+</li>
+<li id="fu-5" data-code="6.5"><b>Nudge them.</b> Then either <b>↩ reply to the last email</b> in that thread (keeps the context), or click <b>New Email</b> for a fresh angle. Sending <b>resets Last Contact</b> → the row drops down and the 💬 turns gray. Use the <b>1/N pager</b> (top right) to step to the next contact without going back to the list.</li>
+<li data-code="6.6">2–3 unanswered nudges → label <b>Not Now</b> / <b>Not Interested</b> (Flow 3) so they leave your rotation.</li>
+</ol>
+<div class="tblwrap"><table>
+<thead><tr><th>💬 state</th><th>Meaning</th><th>Do</th></tr></thead>
+<tbody>
+<tr><td><span class="dotc" style="background:#9D92AA"></span>Gray, no dot</td><td>Recent (~under 2 weeks)</td><td>Nothing yet</td></tr>
+<tr><td><span class="dotc" style="background:#F79009"></span>Yellow + dot</td><td>~2–4 weeks silence</td><td>Plan the nudge</td></tr>
+<tr><td><span class="dotc" style="background:#D92D20"></span>Red + dot</td><td>~A month+ — overdue</td><td>Click &amp; follow up now</td></tr>
+</tbody></table></div>
+<div class="pagernav"><a data-goto="page-inbox"><span class="k">← Prev</span><b>Flow 5 · View &amp; answer replies</b></a><a class="next" data-goto="page-reach"><span class="k">Next →</span><b>Flow 7 · WhatsApp / LinkedIn</b></a></div>
+</section>
+
+<!-- ===================== FLOW 7 · WHATSAPP / LINKEDIN ===================== -->
+<section class="page" id="page-reach">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 7 ·</span> Reach out on WhatsApp or LinkedIn</h2>
+<div class="goal"><b>Goal:</b> contact someone on another channel straight from Fintalent. Both icons live on the contact's <b>action bar</b> (profile drawer) and in each row's <b>Action</b> column. A <b>coloured</b> icon works; a <b>gray</b> one means that data is missing.</div>
+
+<h3 id="r-whatsapp" class="anchor">7.1 · Open a WhatsApp chat</h3>
+<ol class="steps">
+<li data-code="7.1.1"><b>Open the contact</b> (Flow 2) → the action bar shows <b>Send email · WhatsApp · LinkedIn</b>.
+  <figure><img src="sdrx-33-contact-detail-clean.png" alt="Contact action bar"/><figcaption><b>7.1.1</b> — the action bar: Send email · WhatsApp · LinkedIn.</figcaption></figure>
+</li>
+<li data-code="7.1.2">Click <b>WhatsApp</b>. <b>Green</b> = a usable phone is on file → it opens a WhatsApp chat in a <b>new tab</b> (<code>wa.me/‹number›</code>). <b>Gray</b> = no phone (or the number is too ambiguous to dial) → nothing happens; add a phone first (Flow 3.2).</li>
+</ol>
+
+<h3 id="r-linkedin" class="anchor">7.2 · Open the LinkedIn profile</h3>
+<ol class="steps">
+<li data-code="7.2.1">Click <b>LinkedIn</b> (action bar, or the icon in a row's Action column). <b>Blue</b> = a valid LinkedIn URL is on file → it opens <b>that stored URL</b> as-is in a <b>new tab</b> (the app only checks it's a <code>linkedin.com</code>/<code>lnkd.in</code> link — it doesn't rewrite it). <b>Gray</b> = no/invalid URL → nothing happens; add one inline (Flow 3.2).
+  <figure><img src="sdrx-32-list-members-simple.png" alt="Row action icons"/><figcaption><b>7.2.1</b> — the ✉ · WhatsApp · LinkedIn icons in each row's Action column (coloured = usable).</figcaption></figure>
+</li>
+</ol>
+<div class="pagernav"><a data-goto="page-followup"><span class="k">← Prev</span><b>Flow 6 · Follow up</b></a><a class="next" data-goto="page-campaign"><span class="k">Next →</span><b>Flow 8 · Manage campaign</b></a></div>
+</section>
+
+<!-- ===================== FLOW 8 · MANAGE CAMPAIGN ===================== -->
+<section class="page" id="page-campaign">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 8 ·</span> Manage campaign</h2>
+<div class="call warn"><span class="t">Chưa rõ permission</span>Chưa rõ permission nên chưa đi flow trong đây.</div>
+<div class="pagernav"><a data-goto="page-reach"><span class="k">← Prev</span><b>Flow 7 · WhatsApp / LinkedIn</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 9 · Manage ME</b></a></div>
+</section>
+
+<!-- ===================== FLOW 9 · MANAGE ME ===================== -->
+<section class="page" id="page-marketing">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 9 ·</span> Manage ME</h2>
+<div class="call warn"><span class="t">Chưa rõ permission</span>Chưa rõ permission nên chưa đi flow trong đây.</div>
+<div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 8 · Manage campaign</b></a><a class="next" data-goto="page-filters"><span class="k">Next →</span><b>Flow 10 · Using filters</b></a></div>
+</section>
+
+<!-- ===================== FLOW 10 · USING FILTERS ===================== -->
+<section class="page" id="page-filters">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 10 ·</span> Using filters</h2>
+<div class="goal"><b>Goal:</b> know every filter you meet as an SDR — <b>where</b> it lives and <b>how</b> to use it — so you can cut any list or inbox down to exactly the people you want.</div>
+
+<p>Filters sit on <b>three surfaces</b>, each with a different set:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Surface</th><th>Filters you get</th><th>Where</th></tr></thead>
+<tbody>
+<tr><td><b>Your list — members bar</b> (right)</td><td>Lifecycles · Has signal</td><td>Flow 2</td></tr>
+<tr><td><b>Your list — company rail</b> (left)</td><td>Lifecycle · Has signal</td><td>Flow 2.x.6</td></tr>
+<tr><td><b>Inbox bar</b></td><td>Lifecycles · Contact Classification · Owner · Work Experience · Countries · Cities · + Add filter</td><td>Flow 5</td></tr>
+</tbody></table></div>
+<p class="fn">How a filter dropdown works everywhere: each value has a <b>✓ include</b> (keep only these) and an <b>✕ exclude</b> (hide these); <b>Has / No …</b> radios catch records with/without any value; <b>Paste list</b> takes one value per line. Several ✓ together = <b>OR</b>.</p>
+
+<p class="fn">All screenshots below are real runs on an SDR login — watch the <b>count before → after</b> and note <i>why</i> the rows change.</p>
+
+<h3 id="flt-lifecycle" class="anchor">10.1 · Lifecycles — filter your contacts by stage</h3>
+<p>On your list <i>and</i> in the Inbox. <b>✓ include</b> keeps only that stage; <b>✕ exclude</b> hides it; several ✓ = OR; plus <b>Has / No lifecycle</b> radios and <b>Paste list</b>.</p>
+<div class="call note"><span class="t">In action</span>The list opens at <b>359</b> contacts (all stages). Open <b>Lifecycles</b> → click the green <b>✓</b> on <b>Prospect</b> → the list drops to <b>359 → 107</b>, and <b>every remaining row shows "Prospect"</b> in the Lifecycle Stage column. <b>Why:</b> ✓ include = keep only that stage, so the 252 contacts at other stages are hidden.</div>
+<figure><img src="sdrx-flt-lifecycle-demo.png" alt="Lifecycles filter result"/><figcaption><b>10.1 · result</b> — <span class="fn">(SDR)</span> chip <b>Lifecycles : Prospect</b> → <b>Showing 20 of 107</b>; every Lifecycle Stage cell = Prospect.</figcaption></figure>
+<figure><img src="v3s-95-sdr-lifecycles-filter.png" alt="Lifecycles dropdown"/><figcaption><b>10.1 · control</b> — the ✓ include / ✕ exclude buttons per value, Has/No radios, Paste list.</figcaption></figure>
+
+<h3 id="flt-company" class="anchor">10.2 · Has signal — on your list, at two levels</h3>
+<p><b>Has signal</b> sits in <b>two</b> places on your list and they mean different things:</p>
+<ul>
+<li><b>Members bar</b> (right, over contacts) — keeps <b>people who personally have a signal</b>; the <b>Signals</b> column shows it (⚡ news / 💼 job).</li>
+<li><b>Company rail</b> (left, over firms) — keeps <b>companies that have a signal</b>.</li>
+</ul>
+<div class="call note"><span class="t">In action — members bar (contacts)</span>The list opens at <b>359</b>. Open <b>Has signal</b> on the members bar → tick <b>Yes</b> → <b>359 → 246</b>, and every remaining row has a value in the <b>Signals</b> column. <b>Why:</b> only contacts that personally have at least one signal stay.</div>
+<figure><img src="sdrx-flt-members-hassignal-demo.png" alt="Members Has signal result"/><figcaption><b>10.2a · contacts</b> — <span class="fn">(SDR)</span> chip <b>Has signal : Yes</b> → <b>Showing 20 of 246</b>; the Signals column is filled on every row.</figcaption></figure>
+<div class="call note"><span class="t">In action — company rail (firms)</span>Expand the rail (<b>111</b> companies). Open <b>Has signal</b> on the rail → <b>Yes</b> → <b>111 → 29</b> firms — the best ones to open a conversation with.</div>
+<figure><img src="sdrx-flt-hassignal-demo.png" alt="Company rail Has signal result"/><figcaption><b>10.2b · firms</b> — <span class="fn">(SDR)</span> company rail <b>Has signal : Yes</b> → <b>29</b> firms.</figcaption></figure>
+<figure><img src="sdrx-57b-company-rail-filter-sdr.png" alt="Company rail filters"/><figcaption><b>10.2 · bars</b> — members bar = <b>Lifecycles · Has signal</b>; company rail = <b>Lifecycle · Has signal</b> (+ 🔍 search).</figcaption></figure>
+
+<h3 id="flt-inbox" class="anchor">10.3 · Inbox filters — slice a big reply queue</h3>
+<p>The Inbox bar (Flow 5) carries the full set. Combine them to zero in (e.g. only DACH CFOs who replied):</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Filter</th><th>What it narrows · how to use</th></tr></thead>
+<tbody>
+<tr><td><b>Lifecycles</b></td><td>by contact stage — same ✓/✕ tool as 10.1</td></tr>
+<tr><td><b>Contact Classification</b></td><td>contact <b>type</b>: <b>Talent · Client · Other</b> (each ✓/✕; Has/No radios + Paste list)</td></tr>
+<tr><td><b>Owner</b></td><td>which teammate owns the contact — pick yourself to see only yours</td></tr>
+<tr><td><b>Work Experience</b></td><td>career facts — see 10.4</td></tr>
+<tr><td><b>Countries · Cities</b></td><td>the contact's location — pick a geography (DACH, UK…)</td></tr>
+<tr><td><b>+ Add filter</b></td><td><b>Customize Quick Filters</b> — pin/unpin which filters show on the bar (Reset defaults)</td></tr>
+</tbody></table></div>
+<div class="call note"><span class="t">In action</span>The Inbox holds <b>27</b> replies. Open <b>Work Experience → Company type = Sponsor</b> (green ✓) → <b>27 → 25</b>. <b>Why:</b> only people whose company is flagged <b>Sponsor</b> stay — and indeed every remaining row is a PE sponsor firm (Ardian · General Atlantic · Carlyle).</div>
+<figure><img src="sdrx-flt-inbox-we-demo.png" alt="Inbox Work Experience Sponsor result"/><figcaption><b>10.3 · result</b> — <span class="fn">(SDR)</span> chip <b>Work Experience : Sponsor</b> → <b>Showing 20 of 25</b>; rows are all sponsor firms.</figcaption></figure>
+
+<h3 id="flt-we" class="anchor">10.4 · Work Experience — the power filter (every field)</h3>
+<p>Filters people by their <b>career</b>, not just their contact record. Top toggle <b>Match any (OR)</b> / <b>Match all (AND)</b> decides whether a person must meet <i>one</i> or <i>all</i> of:</p>
+<ul>
+<li><b>Company type</b> — Sponsor · Corporate · Portfolio (each ✓ include / ✕ exclude) — used in the 10.3 demo.</li>
+<li><b>Email validity</b> — Valid · Invalid · Validating · None.</li>
+<li><b>Currently / Past</b> — the role is ongoing or historical.</li>
+<li><b>Position</b> — job title (e.g. "Managing Director").</li>
+<li><b>Company</b> — a specific firm; or <b>Has / No linked company</b>, plus <b>+ Filter by linked company</b> (its city · country · bucket · classification).</li>
+<li><b>Company Description</b> — a keyword in the firm's description.</li>
+<li><b>Company country / city</b>.</li>
+</ul>
+<figure><img src="sdrx-flt-we-panel.png" alt="Work Experience filter panel"/><figcaption><b>10.4 · panel</b> — <span class="fn">(SDR)</span> the full Work Experience panel: Match any/all · Company type · Email validity · Currently/Past · Position · Company/linked · Description · country/city.</figcaption></figure>
+<div class="pagernav"><a data-goto="page-marketing"><span class="k">← Prev</span><b>Flow 9 · Manage ME</b></a><a class="next" data-goto="page-faq"><span class="k">Next →</span><b>Flow 11 · FAQ</b></a></div>
+</section>
+
+<!-- ===================== FLOW 11 · FAQ ===================== -->
+<section class="page" id="page-faq">
+<h2><span class="who sdr">SDR</span><span class="n">Flow 11 ·</span> FAQ &amp; edge-case index</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Symptom / question</th><th>Answer</th></tr></thead>
+<tbody>
+<tr><td>I forgot my password / want to change it</td><td>No self-serve reset — <b>contact the Admin</b> (Flow 1.x.2).</td></tr>
+<tr><td>Where do I change my name / signature?</td><td>Account card (bottom-left) → <b>General Setting</b> or <b>Email Configuration</b> (Flow 1.x.3–1.x.5).</td></tr>
+<tr><td>Where do I land after logging in?</td><td>On <b>Campaigns</b>. Re-opening while signed in skips login (Flow 1.2, 1.x.1).</td></tr>
+<tr><td>My Segments page is empty</td><td>No list assigned yet — ask Ops (O5).</td></tr>
+<tr><td>Can I edit a contact's phone / location / LinkedIn?</td><td>Yes — inline in the profile drawer (Flow 3.2). Experience is read-only (shown in yrs).</td></tr>
+<tr><td>WhatsApp / LinkedIn icon is gray</td><td>No phone / LinkedIn URL on file. Nothing to click.</td></tr>
+<tr><td>Subject box is empty when composing</td><td>Always type it yourself (Flow 4.1).</td></tr>
+<tr><td>I can't edit the chips on messages</td><td>Correct — the system assigns them. You classify at contact level (Flow 3).</td></tr>
+<tr><td>Orange "In Queue" tag on a message</td><td>Accepted, waiting in the send queue — clears once sent. Don't re-send (Flow 5.x.4).</td></tr>
+<tr><td>Gray contacts I don't recognize at the bottom of my list</td><td>You selected a company → the <b>"held by teammates"</b> block. Coordinate first (Flow 2.x.3).</td></tr>
+<tr><td>Campaign / Marketing Email — what can I do?</td><td>Permissions still being confirmed — those flows (8, 9) aren't documented yet.</td></tr>
+<tr><td>I can't find Contacts/Companies pages</td><td>By design — SDR has no Contacts/Companies; those are Ops tools (O3). Your lists and Inbox are the entry points.</td></tr>
+<tr><td>(Ops) How do I get contacts to an SDR?</td><td>Create a list (O2) → add contacts (O3) → assign it to the SDR (O5).</td></tr>
+</tbody></table></div>
+<div class="pagernav"><a data-goto="page-filters"><span class="k">← Prev</span><b>Flow 10 · Using filters</b></a><span class="spacer"></span></div>
+</section>
+
+</main>
+</div>
+<script>
+(function(){
+  var pages    = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  var flowLinks= Array.prototype.slice.call(document.querySelectorAll('nav a.flow'));
+  var subLinks = Array.prototype.slice.call(document.querySelectorAll('nav a.st, nav a.st2'));
+  var DEFAULT='page-a1';
+
+  function activeId(){ var p=pages.filter(function(x){return x.classList.contains('active');})[0]; return p?p.id:null; }
+
+  function showPage(id, scrollToId){
+    if(!document.getElementById(id)) id=DEFAULT;
+    pages.forEach(function(p){ p.classList.toggle('active', p.id===id); });
+    flowLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-page')===id); });
+    subLinks.forEach(function(a){ a.classList.toggle('show', a.getAttribute('data-page')===id); });
+    if(scrollToId){
+      var t=document.getElementById(scrollToId);
+      if(t){ t.scrollIntoView({behavior:'smooth',block:'start'}); return; }
+    }
+    window.scrollTo({top:0});
+  }
+
+  flowLinks.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id=a.getAttribute('data-page');
+      history.replaceState(null,'','#'+id);
+      showPage(id);
+    });
+  });
+
+  subLinks.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var anchor=a.getAttribute('href').slice(1);
+      if(a.getAttribute('data-page')===activeId()){
+        history.replaceState(null,'','#'+anchor);
+        var t=document.getElementById(anchor);
+        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
+
+  // clone each page's bottom Prev/Next up to the top for easy navigation
+  pages.forEach(function(p){
+    var nav=p.querySelector('.pagernav');
+    if(nav){
+      var top=nav.cloneNode(true);
+      top.className='pagernav pagernav-top';
+      p.insertBefore(top, p.firstChild);
+    }
+  });
+
+  document.querySelectorAll('[data-goto]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id=a.getAttribute('data-goto');
+      history.replaceState(null,'','#'+id);
+      showPage(id);
+    });
+  });
+
+  var h=(location.hash||'').slice(1);
+  if(h && document.getElementById(h)){
+    if(h.indexOf('page-')===0){ showPage(h); }
+    else {
+      var el=document.getElementById(h);
+      var pg=el.closest ? el.closest('.page') : null;
+      showPage(pg?pg.id:DEFAULT, pg?h:null);
+    }
+  } else {
+    showPage(DEFAULT);
+  }
+})();
+</script>
+</body>
+</html>

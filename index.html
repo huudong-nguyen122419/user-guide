@@ -3,606 +3,79 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Fintalent OSW — SDR Guide (by task-flow)</title>
+<title>Fintalent OSW — Guides</title>
 <style>
   :root{
     --pp-50:#F5F0FF;--pp-100:#EAE0FC;--pp-400:#7741F1;--pp-600:#4A0FD1;--pp-700:#3A0CA3;--pp-800:#2F0A85;
     --n-50:#F8F8F9;--n-100:#F0EFF3;--n-200:#E4E2EA;--n-400:#9D92AA;--n-500:#756A84;--n-600:#51485B;--n-800:#231F28;--n-900:#1F1926;
-    --ok:#12B76A;--okbg:#E9FBF2;--warn:#F79009;--warnbg:#FFF7EC;--err:#D92D20;--errbg:#FEF3F2;
+    --ok:#12B76A;--info:#1849A9;--warn:#F79009;
     --sans:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
-    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;font-family:var(--sans);color:var(--n-800);background:var(--n-50);line-height:1.65;font-size:15px}
-  .layout{display:grid;grid-template-columns:320px minmax(0,1fr);max-width:1480px;margin:0 auto}
-  aside{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:#fff;border-right:1px solid var(--n-200);padding:20px 14px 40px}
-  aside .brand{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--pp-700);font-size:16px;margin-bottom:2px}
-  aside .brand .dot{width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,var(--pp-600),var(--pp-400))}
-  aside .sub{font-size:11px;color:var(--n-400);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
-  nav a{display:block;padding:4px 10px;border-radius:7px;color:var(--n-600);text-decoration:none;font-size:13px;cursor:pointer}
-  nav a:hover{background:var(--n-100);color:var(--pp-700)}
-  nav a.flow{font-weight:700;color:var(--n-800);margin-top:2px}
-  nav a.flow.active{background:var(--pp-50);color:var(--pp-700)}
-  nav a.flow .n{display:inline-block;min-width:20px;color:var(--pp-600);font-weight:800}
-  nav a.st{padding-left:34px;font-size:12px;color:var(--n-500);display:none}
-  nav a.st.show{display:block}
-  nav a.st.edge{color:var(--n-600);font-weight:600}
-  nav a.st2{padding-left:50px;font-size:11.5px;color:var(--n-400);display:none}
-  nav a.st2.show{display:block}
-  nav a.st:hover,nav a.st2:hover{color:var(--pp-700)}
-  nav .grp{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--n-400);margin:16px 0 3px;padding:0 10px;font-weight:800}
-  main{padding:34px 46px 120px;max-width:1010px}
-  h1{font-size:27px;line-height:1.2;margin:0 0 6px;color:var(--n-900);letter-spacing:-.02em}
-  h2{font-size:21px;margin:6px 0 6px;color:var(--n-900)}
-  h2 .n{color:var(--pp-600)}
-  h3{font-size:16.5px;margin:26px 0 8px;color:var(--pp-800)}
-  h3.edgehead{margin-top:34px;padding-top:16px;border-top:2px solid var(--n-200);color:var(--n-800)}
-  p{margin:9px 0}
-  code{font-family:var(--mono);font-size:.86em;background:var(--n-100);border:1px solid var(--n-200);border-radius:5px;padding:1px 5px;color:var(--pp-800)}
-  a{color:var(--pp-700)}
-  .kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pp-600);background:var(--pp-50);border:1px solid var(--pp-100);padding:4px 11px;border-radius:999px;margin-bottom:12px}
-  .lead{font-size:15.5px;color:var(--n-600)}
-  .goal{font-size:15px;color:var(--n-800);background:var(--pp-50);border:1px solid var(--pp-100);border-radius:12px;padding:11px 15px;margin:10px 0 4px}
-  .goal b{color:var(--pp-800)}
-  .tblwrap{overflow-x:auto;margin:12px 0;border:1px solid var(--n-200);border-radius:12px}
-  table{border-collapse:collapse;width:100%;font-size:13.5px;background:#fff}
-  th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--n-100);vertical-align:top}
-  th{background:var(--n-50);color:var(--n-600);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
-  tr:last-child td{border-bottom:none}
-  .call{border-radius:12px;padding:12px 16px;margin:13px 0;border:1px solid;font-size:14px}
-  .call .t{font-weight:700;display:block;margin-bottom:3px}
-  .call.note{background:var(--pp-50);border-color:var(--pp-100)}
-  .call.warn{background:var(--warnbg);border-color:#f6dfb0}
-  .call.warn .t{color:#a35a00}
-  .call.stop{background:var(--errbg);border-color:#fcd2cd}
-  .call.stop .t{color:var(--err)}
-  figure{margin:14px 0;border:1px solid var(--n-200);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-  figure img{display:block;width:100%;height:auto}
-  figure.crop{max-width:620px}
-  figcaption{font-size:12px;color:var(--n-500);padding:8px 13px;background:var(--n-50);border-top:1px solid var(--n-100)}
-  figcaption b{color:var(--n-600)}
-  /* per-step layout: each step carries its own image */
-  .steps{list-style:none;padding:0;margin:10px 0}
-  .steps>li{position:relative;padding:10px 0 14px 76px;border-bottom:1px dashed var(--n-200);scroll-margin-top:14px}
-  .steps>li:before{content:attr(data-code);position:absolute;left:0;top:12px;min-width:27px;height:23px;padding:0 9px;border-radius:999px;background:var(--pp-600);color:#fff;font-weight:800;font-size:11.5px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
-  .steps.edge>li:before{background:var(--n-500)}
-  .steps>li:target{background:var(--pp-50);border-radius:10px}
-  .steps>li figure{margin:12px 0 2px;max-width:720px}
-  .steps>li figure.sm{max-width:440px}
-  .path{border:1px solid var(--n-200);border-radius:14px;padding:4px 18px 10px;margin:16px 0;background:#fff}
-  .path>.h{font-weight:800;color:var(--pp-800);margin:12px 0 2px;font-size:15px}
-  .path>.h .tag{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--pp-600);border-radius:6px;padding:1px 8px;margin-right:7px;vertical-align:1px}
-  .fn{font-size:.85em;color:var(--n-500)}
-  .new{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--ok);border-radius:5px;padding:1px 6px;vertical-align:1px;margin-left:4px}
-  .anchor{scroll-margin-top:14px}
-  .dotc{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:3px}
-  .pagehead{border-bottom:2px solid var(--n-200);padding-bottom:16px;margin-bottom:8px}
-  .page{display:none}
-  .page.active{display:block}
-  .pagernav{display:flex;justify-content:space-between;gap:12px;margin:44px 0 0;padding-top:18px;border-top:1px solid var(--n-200)}
-  .pagernav a{flex:1;text-decoration:none;border:1px solid var(--n-200);border-radius:12px;padding:11px 15px;color:var(--n-600);font-size:13px;background:#fff;cursor:pointer}
-  .pagernav a:hover{border-color:var(--pp-400);color:var(--pp-700);background:var(--pp-50)}
-  .pagernav a.next{text-align:right}
-  .pagernav a .k{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--n-400);margin-bottom:2px}
-  .pagernav a b{color:var(--n-800)}
-  .pagernav .spacer{flex:1}
-  @media(max-width:960px){.layout{grid-template-columns:1fr}aside{display:none}main{padding:22px}}
+  body{margin:0;min-height:100vh;font-family:var(--sans);color:var(--n-800);
+    background:radial-gradient(1200px 600px at 50% -10%,#efe7ff 0%,var(--n-50) 55%);
+    display:flex;align-items:center;justify-content:center;padding:40px 18px}
+  .wrap{width:100%;max-width:760px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--pp-700);font-size:19px;margin-bottom:4px}
+  .brand .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--pp-600),var(--pp-400))}
+  h1{font-size:30px;line-height:1.15;margin:14px 0 6px;color:var(--n-900);letter-spacing:-.02em}
+  .lead{font-size:15.5px;color:var(--n-600);margin:0 0 26px;max-width:60ch}
+  .cards{display:flex;flex-direction:column;gap:14px}
+  a.card{display:flex;align-items:flex-start;gap:16px;text-decoration:none;color:inherit;
+    background:#fff;border:1px solid var(--n-200);border-radius:16px;padding:18px 20px;
+    box-shadow:0 2px 10px rgba(31,25,38,.05);transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease}
+  a.card:hover{transform:translateY(-2px);border-color:var(--pp-400);box-shadow:0 10px 28px rgba(74,15,209,.13)}
+  .ic{flex:none;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+  .ic.sdr{background:var(--pp-50);border:1px solid var(--pp-100)}
+  .ic.v4{background:#E9F1FF;border:1px solid #cfe0ff}
+  .ic.tech{background:#ECFDF3;border:1px solid #c7f0da}
+  .card .t{font-size:17px;font-weight:800;color:var(--n-900);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .tag{font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px}
+  .tag.sdr{background:var(--pp-50);color:var(--pp-700);border:1px solid var(--pp-100)}
+  .tag.v4{background:#E9F1FF;color:var(--info);border:1px solid #cfe0ff}
+  .tag.tech{background:#ECFDF3;color:#087443;border:1px solid #c7f0da}
+  .card .d{font-size:13.5px;color:var(--n-600);margin:5px 0 0;line-height:1.55}
+  .card .go{margin-left:auto;align-self:center;color:var(--pp-600);font-weight:800;font-size:20px;flex:none}
+  .foot{margin-top:26px;font-size:12px;color:var(--n-400);text-align:center}
+  @media(max-width:560px){h1{font-size:25px}.card .go{display:none}}
 </style>
 </head>
 <body>
-<div class="layout">
-<aside>
+<div class="wrap">
   <div class="brand"><span class="dot"></span>Fintalent OSW</div>
-  <div class="sub">SDR · by task-flow · build 21 Jul</div>
-  <nav>
-    <div class="grp">A · Getting started</div>
-    <a class="flow" data-page="page-login"><span class="n">1</span> Log in &amp; find your workspace</a>
-    <a href="#l-login" class="st" data-page="page-login">1.1 · Log in</a>
-    <a href="#l-workspace" class="st" data-page="page-login">1.2 · Your workspace</a>
-    <a href="#l-edge" class="st edge" data-page="page-login">1.x · Edge cases</a>
-    <a href="#e-1-1" class="st2" data-page="page-login">1.x.1 · Already signed in</a>
-    <a href="#e-1-2" class="st2" data-page="page-login">1.x.2 · Forgot password</a>
-    <a href="#e-1-3" class="st2" data-page="page-login">1.x.3 · Where I can open my account?</a>
-    <a href="#e-1-4" class="st2" data-page="page-login">1.x.4 · Edit name / phone / avatar</a>
-    <a href="#e-1-5" class="st2" data-page="page-login">1.x.5 · Email signature</a>
-    <a href="#e-1-7" class="st2" data-page="page-login">1.x.6 · Log out</a>
+  <h1>Fintalent OSW — Guides</h1>
+  <p class="lead">Three companion docs for the Outreach &amp; Sales Workspace. Pick one to open.</p>
 
-    <div class="grp">B · The daily loop</div>
-    <a class="flow" data-page="page-find"><span class="n">2</span> Find a target contact</a>
-    <a href="#f-open" class="st" data-page="page-find">2.1 · Open your assigned list</a>
-    <a href="#f-view" class="st" data-page="page-find">2.2 · View the contacts</a>
-    <a href="#f-pick" class="st" data-page="page-find">2.3 · Pick &amp; read a contact</a>
-    <a href="#f-edge" class="st edge" data-page="page-find">2.x · Edge cases</a>
-    <a href="#e-2-1" class="st2" data-page="page-find">2.x.1 · Filter by Lifecycles</a>
-    <a href="#e-2-2" class="st2" data-page="page-find">2.x.2 · Keyword search</a>
-    <a href="#e-2-3" class="st2" data-page="page-find">2.x.3 · Held by teammates</a>
-    <a href="#e-2-4" class="st2" data-page="page-find">2.x.4 · View company detail</a>
-    <a class="flow" data-page="page-manage"><span class="n">3</span> Manage contact info</a>
-    <a href="#m-open" class="st" data-page="page-manage">3.1 · Open assigned list</a>
-    <a href="#m-contact" class="st" data-page="page-manage">3.2 · Open contact</a>
-    <a href="#m-edit" class="st" data-page="page-manage">3.3 · Edit the fields</a>
-    <a class="flow" data-page="page-send"><span class="n">4</span> Send a 1:1 email</a>
-    <a href="#s-paths" class="st" data-page="page-send">4.1 · 3 ways into compose</a>
-    <a href="#way-1" class="st2" data-page="page-send">4.1.1 · List row ✉</a>
-    <a href="#way-2" class="st2" data-page="page-send">4.1.2 · Profile Send email</a>
-    <a href="#way-3" class="st2" data-page="page-send">4.1.3 · Conversations → New Email</a>
-    <a href="#s-compose" class="st" data-page="page-send">4.2 · Compose &amp; send</a>
-    <a href="#s-edge" class="st edge" data-page="page-send">4.x · Edge cases</a>
-    <a href="#e-4-1" class="st2" data-page="page-send">4.x.1 · Templates (use &amp; create)</a>
-    <a href="#e-4-2" class="st2" data-page="page-send">4.x.2 · Snippets (use &amp; create)</a>
-    <a href="#e-4-3" class="st2" data-page="page-send">4.x.3 · Documents &amp; files</a>
-    <a class="flow" data-page="page-inbox"><span class="n">5</span> View replies &amp; answer replies</a>
-    <a href="#i-core" class="st" data-page="page-inbox">5.1 · View &amp; answer a reply</a>
-    <a href="#i-edge" class="st edge" data-page="page-inbox">5.x · Edge cases</a>
-    <a href="#e-5-1" class="st2" data-page="page-inbox">5.x.1 · Reply all</a>
-    <a href="#e-5-2" class="st2" data-page="page-inbox">5.x.2 · Forward</a>
-    <a href="#e-5-3" class="st2" data-page="page-inbox">5.x.3 · Filters</a>
-    <a href="#e-5-4" class="st2" data-page="page-inbox">5.x.4 · "In Queue" tag</a>
-    <a class="flow" data-page="page-followup"><span class="n">6</span> Follow up on silent prospects</a>
-    <a href="#fu-1" class="st" data-page="page-followup">6.1 · Open your list</a>
-    <a href="#fu-2" class="st" data-page="page-followup">6.2 · View the contacts</a>
-    <a href="#fu-3" class="st" data-page="page-followup">6.3 · Pick who's overdue</a>
-    <a href="#fu-4" class="st" data-page="page-followup">6.4 · Read the context</a>
-    <a href="#fu-5" class="st" data-page="page-followup">6.5 · Reply or new mail</a>
-    <a class="flow" data-page="page-reach"><span class="n">7</span> Reach out on WhatsApp / LinkedIn</a>
-    <a href="#r-whatsapp" class="st" data-page="page-reach">7.1 · WhatsApp chat</a>
-    <a href="#r-linkedin" class="st" data-page="page-reach">7.2 · LinkedIn profile</a>
+  <div class="cards">
+    <a class="card" href="sdr-flows.html">
+      <span class="ic sdr">🧭</span>
+      <span>
+        <span class="t">SDR Guideline <span class="tag sdr">by task-flow</span></span>
+        <span class="d">Every screen an SDR actually touches, step by step — log in, find a contact, manage &amp; classify, send 1:1, read &amp; answer replies, follow up, WhatsApp/LinkedIn, and a full <b>filter guide</b> (with before→after demos).</span>
+      </span>
+      <span class="go">→</span>
+    </a>
 
-    <div class="grp">C · Bulk outreach</div>
-    <a class="flow" data-page="page-campaign"><span class="n">8</span> Manage campaign</a>
-    <a class="flow" data-page="page-marketing"><span class="n">9</span> Manage ME</a>
+    <a class="card" href="v4.html">
+      <span class="ic v4">📘</span>
+      <span>
+        <span class="t">Full Guideline <span class="tag v4">Admin · Ops · SDR</span></span>
+        <span class="d">The complete playbook: Admin account &amp; contact setup, Ops list-building, add-to-list &amp; SDR assignment, plus all SDR flows kept in sync with the task-flow guide.</span>
+      </span>
+      <span class="go">→</span>
+    </a>
 
-    <div class="grp">D · Reference</div>
-    <a class="flow" data-page="page-faq"><span class="n">10</span> FAQ &amp; edge-case index</a>
-  </nav>
-</aside>
-<main>
+    <a class="card" href="index-v3.html">
+      <span class="ic tech">🛠️</span>
+      <span>
+        <span class="t">Tech Reference <span class="tag tech">index v3</span></span>
+        <span class="d">Engineering view: end-to-end motion, lifecycle state machine, GraphQL operation catalog, per-flow implementation status (done except KAM hand-off), the filter model, and diagrams.</span>
+      </span>
+      <span class="go">→</span>
+    </a>
+  </div>
 
-<div class="pagehead">
-<h1>Fintalent OSW - SDR Guideline</h1>
-<p class="lead">Every page is <b>one job you actually do</b>. Each flow keeps the <b>core steps</b> to the shortest happy path (each step with its own screenshot); anything optional or unusual sits in <b>Edge cases</b> at the end (also detailed). Everything is <b>what an SDR login really sees</b>.</p>
+  <div class="foot">Fintalent OSW · LEAN-LAUNCH · updated Jul 2026</div>
 </div>
-
-<!-- ===================== FLOW 1 · LOGIN ===================== -->
-<section class="page active" id="page-login">
-<h2><span class="n">Flow 1 ·</span> Log in &amp; find your workspace</h2>
-<div class="goal"><b>Goal (core):</b> get signed in, see your workspace, and know what each menu item is for. That's the whole job — account settings, signature, password, log out all live in <b>Edge cases</b>.</div>
-
-<h3 id="l-login" class="anchor">1.1 · Log in</h3>
-<ol class="steps">
-<li data-code="1.1">Open <code>admin-uat.fintalent.io</code>. If you're not signed in, the login screen appears — <b>Email · Password · Log In</b>.
-  <figure class="crop"><img src="sdrx-01-login.png" alt="SDR login page"/><figcaption><b>1.1</b> — the login screen: just Email, Password, Log In.</figcaption></figure>
-</li>
-<li data-code="1.2">Type the <b>Email</b> and <b>Password</b> the Admin gave you → click <b>Log In</b>.</li>
-</ol>
-
-<h3 id="l-workspace" class="anchor">1.2 · Your workspace</h3>
-<ol class="steps">
-<li data-code="1.3">Log In drops you on <b>Campaigns</b> — your workspace inside <b>Sales Management</b>. Move around with the left menu (<b>8 items</b>); your account card is bottom-left. No Contacts/Companies pages — your lists and Inbox are the entry points.
-  <figure><img src="sdrx-23-post-login-landing.png" alt="Workspace right after login"/><figcaption><b>1.2</b> — where Log In lands you: the Campaigns page, with the Sales Management menu on the left.</figcaption></figure>
-</li>
-</ol>
-<p>Here's what each menu item is for <span class="fn">(✅ verified live as SDR, 21 Jul)</span>:</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Menu</th><th>What you do here</th><th>What you can't</th></tr></thead>
-<tbody>
-<tr><td><b>Segments (Lists)</b></td><td>Open the <b>lists assigned to you</b> and work the members — <b>Flows 2–7</b>.</td><td>Can't create a list, assign, or add/remove members — Ops owns that.</td></tr>
-<tr><td><b>Inbox</b></td><td><b>Read</b> replies and <b>reply in-thread</b> — <b>Flow 5</b>.</td><td>It's a reply queue — nothing to "create".</td></tr>
-<tr><td><b>Meetings</b></td><td><b>View</b> the meetings list (synced from HubSpot).</td><td>Can't book here — read-only.</td></tr>
-<tr><td><b>Message Templates</b></td><td>Full <b>create / edit / delete</b> — use &amp; build in <b>Flow 4.x.1</b>.</td><td>Don't edit the shared EN 01–05 set without Ops.</td></tr>
-<tr><td><b>Snippets</b></td><td>Full <b>create / edit / delete</b> — use &amp; build in <b>Flow 4.x.2</b>.</td><td>—</td></tr>
-<tr><td><b>Documents</b></td><td>Full <b>create / edit / delete</b> — the 🗂 file library — <b>Flow 4.x.3</b>.</td><td>—</td></tr>
-<tr><td><b>Campaigns</b></td><td><b>View / build</b> multi-step campaigns — <b>Flow 8</b>.</td><td>Can't add people — Ops loads the audience.</td></tr>
-<tr><td><b>Marketing Emails</b></td><td><b>View / build</b> a single-blast email — <b>Flow 9</b>.</td><td>Can't add people — Ops loads the audience.</td></tr>
-</tbody></table></div>
-
-<h3 id="l-edge" class="edgehead anchor">1.x · Edge cases</h3>
-<ol class="steps edge">
-<li id="e-1-1" data-code="1.x.1"><b>Already signed in.</b> Opening the address again <b>skips the login screen</b> and drops you straight back into your workspace — no need to log in again. Your session lasts until you log out (1.x.7).</li>
-<li id="e-1-2" data-code="1.x.2"><b>Forgot / need to change your password.</b> There's no self-serve reset — <b>contact the Admin</b> and they'll help you reset it.</li>
-<li id="e-1-3" data-code="1.x.3"><b>Where I can open my account?</b> Your <b>account card</b> is at the <b>bottom-left</b> of the sidebar (avatar + name + email) with a <b>⎋ logout</b> icon. <b>Click your name/avatar</b> to open <b>Update Admin Information</b>.
-  <figure class="sm"><img src="sdrx-24-account-card.png" alt="Account card"/><figcaption><b>1.x.3</b> — the account card: click your name to open settings.</figcaption></figure>
-</li>
-<li id="e-1-4" data-code="1.x.4"><b>Edit your name / phone / avatar.</b> On <b>General Setting</b>, edit <b>First name · Last name · Phone number · Avatar</b> → <b>Update</b>. <b>Email</b> and <b>Roles</b> are read-only, and there's <b>no password field</b>.
-  <figure><img src="sdrx-05-general-setting.png" alt="General Setting tab"/><figcaption><b>1.x.4</b> — General Setting: name · phone · avatar editable; Email &amp; Roles locked.</figcaption></figure>
-</li>
-<li id="e-1-5" data-code="1.x.5"><b>Change your email signature.</b> <b>Why:</b> your signature is the sign-off block (name · title · company · phone · booking link) that gets <b>added automatically to the bottom of every email you send</b> — so you never retype it, every message looks consistent and professional, and the prospect always knows who you are and how to reach or book you. Set it once here: on the <b>Email Configuration</b> tab fill your <b>Signature</b> (rich-text), your <b>Sender Name</b>, and any default <b>Attach files</b> → <b>Save</b>. From then on it rides along on every send (Flow 4).
-  <figure><img src="sdrx-06-email-config.png" alt="Email Configuration tab"/><figcaption><b>1.x.5</b> — Email Configuration: Signature, Sender Name, default attachments.</figcaption></figure>
-</li>
-<li id="e-1-7" data-code="1.x.6"><b>Log out.</b> The <b>⎋ logout</b> icon on your account card ends the session.</li>
-</ol>
-<div class="pagernav"><span class="spacer"></span><a class="next" data-goto="page-find"><span class="k">Next →</span><b>Flow 2 · Find a target contact</b></a></div>
-</section>
-
-<!-- ===================== FLOW 2 · FIND (+READ) ===================== -->
-<section class="page" id="page-find">
-<h2><span class="n">Flow 2 ·</span> Find a target contact</h2>
-<div class="goal"><b>Goal (core):</b> open the list Ops gave you → view the contacts → pick one and read it, ready to work. Filtering, searching and seeing other owners are in <b>Edge cases</b>.</div>
-
-<h3 id="f-open" class="anchor">2.1 · Open your assigned list</h3>
-<ol class="steps">
-<li data-code="2.1">In the left menu click <b>Segments (Lists)</b> (the first item under Sales Management) → the page shows only the lists assigned to you, with member counts &amp; created date. <b>Empty page → no assignment yet, ask Ops.</b> Your list is <b>fixed</b> — you can't add/remove members.
-  <figure><img src="sdrx-30-lists-assigned.png" alt="Assigned lists"/><figcaption><b>2.1</b> — the lists assigned to you. Click one to open it.</figcaption></figure>
-</li>
-</ol>
-
-<h3 id="f-view" class="anchor">2.2 · View the contacts</h3>
-<ol class="steps">
-<li data-code="2.2">Inside the list you get the members table (the default <b>Simple</b> view): <b>Title · Account</b> (name) <b>· Country · City · Lifecycle Stage · Signals · Last Contact ↓</b> (sortable) <b>· Action</b> icons (✉ · WhatsApp · LinkedIn). "Showing 0 of N" just means it's still loading.
-  <figure><img src="sdrx-32-list-members-simple.png" alt="List members (Simple view)"/><figcaption><b>2.2</b> — the members table: Title · Account · Country · City · Lifecycle · Signals · Last Contact · Actions.</figcaption></figure>
-</li>
-</ol>
-
-<h3 id="f-pick" class="anchor">2.3 · Pick &amp; read a contact</h3>
-<ol class="steps">
-<li data-code="2.3">Click the <b>Account</b> (name) or the <b>Title</b> → the <b>profile drawer</b> opens: action bar <b>Send email · WhatsApp · LinkedIn</b>; facts (Phone · Location · LinkedIn · Experience · Lifecycle · Labels); collapsible <b>Work Experience · Education · Certificates</b>; the <b>Conversations</b> rail on the right edge.
-  <figure><img src="sdrx-33-contact-detail-clean.png" alt="Contact profile drawer"/><figcaption><b>2.3</b> — the profile drawer opens over the list: everything you need to decide and personalize.</figcaption></figure>
-</li>
-<li data-code="2.4"><b>Open Work Experience</b> (the number = how many roles) for their real role, firm and dates — your personalization goldmine.
-  <figure><img src="v3s-103-sdr-profile-we.png" alt="Work experience expanded"/><figcaption><b>2.4</b> — Work Experience expanded: roles + companies + dates.</figcaption></figure>
-</li>
-<li data-code="2.5"><b>Check Signals</b> — the ⚡ headline is a recent event at their company ("2mo" = age, "+N" = more). Click "+N" to expand all. And glance at the <b>Conversations</b> rail (right edge) — a teammate may already be talking to them. Now you're ready to classify/edit (Flow 3) or email (Flow 4).
-  <figure class="crop"><img src="v3s-114-signal-plus.png" alt="Signals expanded"/><figcaption><b>2.5</b> — "+N" clicked: every signal for the contact, each with its age.</figcaption></figure>
-</li>
-</ol>
-
-<h3 id="f-edge" class="edgehead anchor">2.x · Edge cases</h3>
-<ol class="steps edge">
-<li id="e-2-1" data-code="2.x.1"><b>Filter by Lifecycles.</b> Click <b>Lifecycles</b> → tick values with <b>✓ include</b> / <b>✕ exclude</b> (several ticks = OR); <b>Has / No lifecycle</b> radios; <b>Paste list</b> (one value per line). E.g. <b>Prospect</b> = untouched.
-  <figure><img src="v3s-95-sdr-lifecycles-filter.png" alt="Lifecycles filter"/><figcaption><b>2.x.1</b> — Lifecycles filter: ✓/✕ per value, Has/No radios, Paste list.</figcaption></figure>
-</li>
-<li id="e-2-2" data-code="2.x.2"><b>Keyword search.</b> The box over the table searches names, titles, companies, and remembers <b>Recent searches</b>. Search + Lifecycles combine.
-  <figure><img src="v3s-96-sdr-list-search.png" alt="Keyword search"/><figcaption><b>2.x.2</b> — keyword search with Recent searches memory.</figcaption></figure>
-</li>
-<li id="e-2-3" data-code="2.x.3"><b>"Held by teammates" — coordinate before you email.</b> Step by step:
-  <ol style="margin:6px 0 0;padding-left:20px">
-  <li>Open your <b>list detail</b> (the members table).</li>
-  <li>In the <b>left rail</b>, <b>click a company</b> to select it (① below).</li>
-  <li>If a teammate already holds people at that company at a <b>hot stage</b> (Interested · Call Scheduled · Platform Sign Up · In Project · Project Completed), a <b>"N held by teammates"</b> pill appears (②) and their contacts show as <b>gray view-only rows</b>.</li>
-  </ol>
-  Block <b>empty</b> → the company is clear, send away. Block <b>has people</b> → <b>don't email anyone there yet</b>; check the gray row's Owner/Lists and align first. (Prospect / In Conversation / unlisted people are deliberately not shown — not a collision.)
-  <figure><img src="sdrx-48-held-teammates.png" alt="Held by teammates steps"/><figcaption><b>2.x.3</b> — ① pick a company in the left rail → ② the "held by teammates" pill appears.</figcaption></figure>
-</li>
-<li id="e-2-4" data-code="2.x.4"><b>View a company's detail.</b> In the left rail, <b>click the company name</b> → its <b>detail drawer</b> opens on the right with the firm's profile: a short <b>description</b>, plus <b>Alias names · Industry · Website · Location · LinkedIn · Email domains · Parent</b>, and a <b>Lists · Add to list</b> control. Use it to sanity-check the firm before working its people.
-  <figure><img src="sdrx-50-company-detail.png" alt="Company detail drawer"/><figcaption><b>2.x.4</b> — <b>click the company name</b> in the left rail → the company detail drawer (Industry · Website · Location · LinkedIn · Email domains · Parent).</figcaption></figure>
-</li>
-</ol>
-<div class="pagernav"><a data-goto="page-login"><span class="k">← Prev</span><b>Flow 1 · Log in</b></a><a class="next" data-goto="page-manage"><span class="k">Next →</span><b>Flow 3 · Manage contact info</b></a></div>
-</section>
-
-<!-- ===================== FLOW 3 · CLASSIFY & EDIT ===================== -->
-<section class="page" id="page-manage">
-<h2><span class="n">Flow 3 ·</span> Manage contact info</h2>
-<div class="goal"><b>Goal:</b> keep a contact accurate and correctly labelled — its lifecycle and its facts, all edited in one place: the <b>contact detail drawer</b>.</div>
-
-<h3 id="m-open" class="anchor">3.1 · Open assigned list</h3>
-<ol class="steps">
-<li id="mo-1" data-code="3.1.1"><b>Open Segments (Lists)</b> in the left menu → your assigned lists.
-  <figure><img src="sdrx-30-lists-assigned.png" alt="Assigned lists"/><figcaption><b>3.1.1</b> — your assigned lists; click one to open it.</figcaption></figure>
-</li>
-<li id="mo-2" data-code="3.1.2"><b>Open your list</b> → the <b>list detail</b> (your contact list / members table).
-  <figure><img src="sdrx-32-list-members-simple.png" alt="List detail members"/><figcaption><b>3.1.2</b> — the list detail: your contacts.</figcaption></figure>
-</li>
-</ol>
-
-<h3 id="m-contact" class="anchor">3.2 · Open contact</h3>
-<ol class="steps">
-<li data-code="3.2.1"><b>Click the contact</b> you want to manage → its <b>detail drawer</b> opens on the right — everything below is editable here.
-  <figure><img src="sdrx-33-contact-detail-clean.png" alt="Contact detail drawer"/><figcaption><b>3.2.1</b> — the contact detail drawer.</figcaption></figure>
-</li>
-</ol>
-
-<h3 id="m-edit" class="anchor">3.3 · Edit the fields — all inline <span class="new">NEW</span></h3>
-<p>In the drawer, <b>click a value → edit → confirm ✓</b> (or ✕ to cancel). The editable fields:</p>
-<ol class="steps">
-<li data-code="3.3.1"><b>Lifecycle</b> — click the <b>Lifecycle Stage chip</b> → pick a label. This is the most important field: it tells the whole team the real state (label guide below).
-  <figure class="crop"><img src="sdrx-11-lifecycle-dropdown.png" alt="Lifecycle dropdown"/><figcaption><b>3.3.1</b> — the lifecycle dropdown open on a contact.</figcaption></figure>
-</li>
-<li data-code="3.3.2"><b>Phone</b> — click <b>"Add phone"</b> → a <b>country-code picker</b> (🇩🇪 +49 …) + number field appear inline.
-  <figure><img src="sdrx-09-add-phone.png" alt="Inline phone editor"/><figcaption><b>3.3.2</b> — "Add phone" → inline editor with country-code picker + ✓/✕.</figcaption></figure>
-</li>
-<li data-code="3.3.3"><b>Location</b> — click it → <b>Country</b> + <b>City</b> dropdowns appear inline.
-  <figure><img src="sdrx-10-location-click.png" alt="Inline location editor"/><figcaption><b>3.3.3</b> — Location clicked → Country + City dropdowns inline.</figcaption></figure>
-</li>
-<li data-code="3.3.4"><b>LinkedIn</b> (must be a valid LinkedIn URL) and <b>Labels</b> also edit inline. <b>Experience (yrs)</b> is <b>read-only</b> — derived from Work Experience.</li>
-</ol>
-<p><b>Lifecycle label guide</b> — what to pick after reading a reply:</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Label</th><th>When they say…</th><th>Then you…</th></tr></thead>
-<tbody>
-<tr><td><b>Interested</b> ✅</td><td>"I'm interested / call me"</td><td>Hand off to a KAM per team process</td></tr>
-<tr><td><b>Not Now</b> 🥶</td><td>"Ask next quarter"</td><td>Leave; re-warm later</td></tr>
-<tr><td><b>OOO</b> 🥶</td><td>Out-of-office auto-reply</td><td>Wait, then follow up</td></tr>
-<tr><td><b>Email Updated</b> 🥶</td><td>"New address"</td><td>Update the email → resend</td></tr>
-<tr><td><b>Not Interested</b> 🆘</td><td>"Not interested"</td><td>Stop emailing</td></tr>
-<tr><td><b>Opted Out</b> 🆘</td><td>"Stop emailing me"</td><td><b>Stop emailing immediately</b> (GDPR)</td></tr>
-<tr><td><b>Do Not Contact</b> 🆘</td><td>No contact, any channel</td><td><b>Stop all contact immediately</b> (GDPR)</td></tr>
-<tr><td><b>Left The Company</b> 🆘</td><td>"They've left"</td><td>Ask Ops for the replacement</td></tr>
-</tbody></table></div>
-<p class="fn">The dropdown holds <b>14 stages</b> (also No Categories · Scheduled Call · Platform Sign Up · In Project · Project Completed). <b>Locked:</b> if a contact is already at <b>Platform Sign Up / In Project / Project Completed</b> the chip is read-only — leave it. The red labels (Opted Out / Do Not Contact) show as a red chip the whole team sees; the system warns but doesn't block sending, so <b>you</b> are the final safeguard.</p>
-<div class="pagernav"><a data-goto="page-find"><span class="k">← Prev</span><b>Flow 2 · Find</b></a><a class="next" data-goto="page-send"><span class="k">Next →</span><b>Flow 4 · Send a 1:1 email</b></a></div>
-</section>
-
-<!-- ===================== FLOW 4 · SEND 1:1 ===================== -->
-<section class="page" id="page-send">
-<h2><span class="n">Flow 4 ·</span> Send a 1:1 email</h2>
-<div class="goal"><b>Goal:</b> send one personal email to one person. There are <b>3 ways</b> to open the compose window — each shown step-by-step below. They all end at the <b>same compose window</b> (4.2).</div>
-
-<h3 id="s-paths" class="anchor">4.1 · Three ways into compose</h3>
-
-<div class="path" id="way-1">
-  <div class="h"><span class="tag">4.1.1</span>Way 1 — From the list row (fastest)</div>
-  <ol class="steps">
-  <li data-code="1a"><b>Segments (Lists)</b> → open your list → find the contact's row.</li>
-  <li data-code="1b">In the <b>Action</b> column (right side) click the <b>✉ icon</b> → compose opens for that contact, without leaving the list.
-    <figure><img src="sdrx-32-list-members-simple.png" alt="Row action icons"/><figcaption><b>Way 1</b> — the ✉ icon in the row's Action column (far right).</figcaption></figure>
-  </li>
-  </ol>
-</div>
-
-<div class="path" id="way-2">
-  <div class="h"><span class="tag">4.1.2</span>Way 2 — From the contact's profile</div>
-  <ol class="steps">
-  <li data-code="2a"><b>Open the contact</b> (click the name/title) → the profile drawer opens.</li>
-  <li data-code="2b">In the action bar at the top click <b>Send email</b> → compose opens.
-    <figure><img src="sdrx-33-contact-detail-clean.png" alt="Profile Send email button"/><figcaption><b>Way 2</b> — the <b>Send email</b> button in the profile action bar (top-left of the drawer).</figcaption></figure>
-  </li>
-  </ol>
-</div>
-
-<div class="path" id="way-3">
-  <div class="h"><span class="tag">4.1.3</span>Way 3 — From the Conversations rail (see history first)</div>
-  <ol class="steps">
-  <li data-code="3a"><b>Open the contact</b> → on the right edge click the vertical <b>CONVERSATIONS</b> tab to expand the rail.</li>
-  <li data-code="3b">In the rail click <b>New Email</b> → compose opens, with the existing thread history right there.
-    <figure><img src="v3s-131-chaticon-opened.png" alt="Conversations rail New Email"/><figcaption><b>Way 3</b> — the Conversations rail: thread list + <b>New Email</b> (and ↩ reply arrows).</figcaption></figure>
-  </li>
-  </ol>
-</div>
-
-<p class="fn">Replying to someone who already wrote to you is a separate job — see <a data-goto="page-inbox">Flow 5 · Answer replies</a>.</p>
-
-<h3 id="s-compose" class="anchor">4.2 · Compose &amp; send <span class="fn">(same window for all 3 ways)</span></h3>
-<p>The whole job here is to <b>send a good email successfully</b> — 4 steps:</p>
-<ol class="steps">
-<li data-code="4.1"><b>Check From / To / Cc.</b> <b>From</b> is your own mailbox (filled in by default). <b>To</b> is the contact you started from (already pre-filled) — you can also type extra recipients here. To copy someone else, click <b>Cc</b> at the right of the To row → a Cc field appears → type their email and press <b>Enter</b> (it becomes a chip; the <b>✕</b> removes it).
-  <figure class="crop"><img src="sdrx-47-cc.png" alt="From To Cc"/><figcaption><b>4.1</b> — From · To · <b>Cc</b>: click <b>Cc</b> (circled), then type the email to copy someone in.</figcaption></figure>
-</li>
-<li data-code="4.2"><b>Type the Subject yourself</b> in "Add a subject" at the very top. For a <b>new</b> email it starts <u>empty</u> and does <b>not</b> auto-fill, even from a Template (known bug). The Send button blocks an empty subject — so you can't forget.
-  <figure><img src="v3s-21-compose-subject.png" alt="Subject box"/><figcaption><b>4.2</b> — the subject box (red frame) — type it yourself.</figcaption></figure>
-</li>
-<li data-code="4.3"><b>Write your message</b> in the body (personalize with their role &amp; signal from Flow 2). <span class="fn">Want to start from a Template, drop in a Snippet, or attach a file? See Edge cases (4.x).</span></li>
-<li data-code="4.4">Proofread → <b>Send</b>. It auto-logs into Conversations, your <b>signature</b> (Flow 1.x.5) is appended automatically, and there is <b>no recall</b>.</li>
-</ol>
-
-<h3 id="s-edge" class="edgehead anchor">4.x · Edge cases — write faster with Templates · Snippets · Documents</h3>
-<p>Three helpers speed up composing. For each: <b>use it</b> in the compose bar, and <b>build your own</b> from its menu page. <span class="fn">✅ your SDR account can create / edit / delete all three.</span></p>
-
-<h3 id="e-4-1" class="anchor">4.x.1 · Templates — full pre-written emails</h3>
-<ol class="steps">
-<li data-code="use"><b>Use it in compose:</b> click <b>Template</b> in the compose bar → <i>Insert</i> appends to your draft, <i>Replace</i> overwrites it (incl. the EN 01–05 set). <span class="fn">Even from a Template the subject box still needs typing (4.2 bug).</span>
-  <figure><img src="v3s-23-template.png" alt="Template picker"/><figcaption><b>Use</b> — Template: Insert / Replace + search.</figcaption></figure>
-</li>
-<li data-code="make"><b>Build your own:</b> <b>Message Templates</b> (left menu) → <b>+ Create New</b> → fill <b>Name*</b> (how it shows in compose, e.g. <code>EN 06 - Follow-up</code>) · <b>Topic*</b> · <b>Source Type</b> · <b>Subject EN / DE</b> · <b>body EN / DE</b> (two rich-text editors) → <b>Create</b>. Edit/delete via row actions; filter by Topics. <b>Don't</b> edit the shared EN 01–05 set without Ops.
-  <figure><img src="v3s-81-template-create.png" alt="Template create form"/><figcaption><b>Create</b> — Name* · Topic* · Subject EN/DE · rich-text body EN/DE.</figcaption></figure>
-</li>
-</ol>
-
-<h3 id="e-4-2" class="anchor">4.x.2 · Snippets — short reusable blocks</h3>
-<ol class="steps">
-<li data-code="use"><b>Use it in compose:</b> click <b>Snippets</b> → search → click = inserted at the cursor (EN | DE toggle).
-  <figure><img src="v3s-22-snippets.png" alt="Snippets picker"/><figcaption><b>Use</b> — Snippets: search + EN/DE, insert at cursor.</figcaption></figure>
-</li>
-<li data-code="make"><b>Build your own:</b> <b>Snippets</b> (left menu) → <b>+ Create New</b> → <b>Private</b> toggle (<b>ON = only you</b>; OFF = shared) · <b>Name*</b> · <b>Type</b> · <b>Content English*</b> / <b>Content German</b> → <b>Create</b>. Edit/delete by hovering the row.
-  <figure><img src="v3s-111-sdr-snippet-form.png" alt="Snippet create form"/><figcaption><b>Create</b> — Private toggle · Name* · Type · Content EN*/DE.</figcaption></figure>
-</li>
-</ol>
-
-<h3 id="e-4-3" class="anchor">4.x.3 · Documents &amp; files — attachments</h3>
-<ol class="steps">
-<li data-code="use"><b>Use it in compose:</b> <b>📎</b> uploads a file from your computer; <b>🗂</b> attaches from the shared Document library (Common · Contact tabs, <b>Published</b> files only).
-  <figure><img src="v3s-25-select-document.png" alt="Select document"/><figcaption><b>Use</b> — 🗂 Select Documents: shared files (Published only).</figcaption></figure>
-</li>
-<li data-code="make"><b>Build the library:</b> <b>Documents</b> (left menu) → <b>+ Create New</b> → <b>Name*</b> · <b>Type*</b> (Common / Contact / Campaign — the compose tab it lands under) · <b>Status*</b> (<b>Draft</b> → <b>Published</b>; only Published is attachable) · <b>Is Star</b> · <b>Is Public</b> · <b>File*</b> → <b>Upload File</b> → <b>Create</b>. Retire with <b>Archived</b>, not delete.
-  <figure><img src="v3s-86-document-create.png" alt="Document create form"/><figcaption><b>Create</b> — Name* · Type* · Status* (Draft→Published) · Upload File.</figcaption></figure>
-</li>
-</ol>
-<div class="pagernav"><a data-goto="page-manage"><span class="k">← Prev</span><b>Flow 3 · Classify &amp; edit</b></a><a class="next" data-goto="page-inbox"><span class="k">Next →</span><b>Flow 5 · Answer replies</b></a></div>
-</section>
-
-<!-- ===================== FLOW 5 · INBOX ===================== -->
-<section class="page" id="page-inbox">
-<h2><span class="n">Flow 5 ·</span> View replies &amp; answer replies 🔴</h2>
-<div class="goal"><b>Goal (core):</b> go through everyone who replied — read what they wrote, decide, and answer. <b>Start:</b> Inbox. Do this <b>first</b> each day. Filters and the "In Queue" tag are in Edge cases.</div>
-
-<h3 id="i-core" class="anchor">5.1 · View &amp; answer a reply</h3>
-<ol class="steps">
-<li data-code="5.1"><b>Open the replies</b>: click <b>Inbox</b> in the left menu — one row per contact who wrote back, showing <b>Account | Last Email</b> (subject + preview + date). Auto-replies/OOO land here too.
-  <figure><img src="v3s-72-sdr-inbox.png" alt="Inbox"/><figcaption><b>5.1</b> — Inbox: one row per reply (Account | Last Email).</figcaption></figure>
-</li>
-<li data-code="5.2"><b>Glance at the auto chip.</b> Each reply carries a <b>chip</b> (Interested · Not Interested · Scheduled Call · Open…) the system assigns <b>automatically from the reply's content</b>. Read it as a quick hint — you can't edit it, and it doesn't change the contact's lifecycle by itself.</li>
-<li data-code="5.3"><b>Read the email.</b> Click the row → the contact opens on <b>Conversations</b>: the thread list is on the left, the selected message on the right, <b>Expand all</b> unfolds the whole exchange. Read what they actually wrote — the chip is only a hint.
-  <figure><img src="sdrx-42-thread-reply-buttons.png" alt="Conversation thread"/><figcaption><b>5.3</b> — Conversations: thread list (left) + the message (right). The three action arrows sit at the <b>top-right of the open message</b>.</figcaption></figure>
-</li>
-<li data-code="5.4"><b>Decide: reply or not.</b> If it needs an answer, reply (5.5). If it doesn't (e.g. a plain "not interested" or an auto-reply), skip replying and just <b>classify the contact</b> (Flow 3) so it leaves the queue.</li>
-<li data-code="5.5"><b>Click Reply</b> — the <b>single ↩ arrow</b> at the <b>top-right of the open message</b> (circled below). It answers <b>only the person who wrote</b> — the normal choice for 1:1 outreach. <span class="fn">(The double-arrow <b>Reply all</b> and the <b>Forward</b> arrow sit right next to it — see Edge cases.)</span>
-  <figure><img src="sdrx-44-reply-circled.png" alt="Reply button circled"/><figcaption><b>5.5</b> — the <b>Reply</b> button (single arrow) at the top-right of the message.</figcaption></figure>
-</li>
-<li data-code="5.6"><b>What opens:</b> a <b>compose window</b> with the subject already set to <i>RE: …</i>, the <b>sender pre-filled in To</b>, and the original message quoted below. It stays in the <b>same thread</b>.
-  <figure><img src="sdrx-43-reply-compose.png" alt="Reply compose window"/><figcaption><b>5.6</b> — Reply clicked: <i>RE:</i> subject, the sender in To, the quoted original.</figcaption></figure>
-</li>
-<li data-code="5.7"><b>Write your message → Send.</b></li>
-</ol>
-
-<h3 id="i-edge" class="edgehead anchor">5.x · Edge cases</h3>
-<ol class="steps edge">
-<li id="e-5-1" data-code="5.x.1"><b>Reply all</b> — the <b>double ↩↩ arrow</b> (left of Reply, circled below) answers the sender <b>plus everyone else on the thread's To/Cc</b>. Use it only when several people are genuinely in the conversation (an assistant or colleague was copied). Same compose window as Reply, but To/Cc are pre-filled with everyone.
-  <figure><img src="sdrx-45-replyall-circled.png" alt="Reply all button circled"/><figcaption><b>5.x.1</b> — the <b>Reply all</b> button (double arrow), leftmost of the three.</figcaption></figure>
-</li>
-<li id="e-5-2" data-code="5.x.2"><b>Forward</b> — the <b>➡ arrow</b> (right of Reply, circled below) sends this message on to <b>someone new</b>. Same window, but <b>To starts empty</b> for you to type the new recipient; the original message is carried in the body.
-  <figure><img src="sdrx-46-forward-circled.png" alt="Forward button circled"/><figcaption><b>5.x.2</b> — the <b>Forward</b> button (arrow pointing right), rightmost of the three.</figcaption></figure>
-</li>
-<li id="e-5-3" data-code="5.x.3"><b>Filters.</b> The Inbox has the full set — Lifecycles · Contact Classification · Owner · Work Experience · Countries · Cities · Last Email — plus <b>+ Add filter</b> (your own quick bar). Use it to slice big queues (only DACH, only CFOs).
-  <figure><img src="v3s-97-sdr-inbox-we-filter.png" alt="Inbox filters"/><figcaption><b>5.x.3</b> — the Work Experience filter inside Inbox; + Add filter pins more.</figcaption></figure>
-</li>
-<li id="e-5-4" data-code="5.x.4"><b>The orange "In Queue" tag.</b> A message tagged <b>In Queue</b> is accepted but <b>not sent yet</b> (waiting in the send queue). It clears to a normal sent message once it goes out — it just means "on its way", <b>don't re-send</b>.</li>
-</ol>
-<div class="pagernav"><a data-goto="page-send"><span class="k">← Prev</span><b>Flow 4 · Send</b></a><a class="next" data-goto="page-followup"><span class="k">Next →</span><b>Flow 6 · Follow up</b></a></div>
-</section>
-
-<!-- ===================== FLOW 6 · FOLLOW UP ===================== -->
-<section class="page" id="page-followup">
-<h2><span class="n">Flow 6 ·</span> Follow up on silent prospects</h2>
-<div class="goal"><b>Goal:</b> nudge the people who went quiet, in the right order. <b>Start:</b> your list, sorted by Last Contact — the 💬 icon colors point at who's overdue.</div>
-<ol class="steps">
-<li id="fu-1" data-code="6.1"><b>Open your assigned list:</b> left menu → <b>Segments (Lists)</b> → open your list.
-  <figure><img src="sdrx-30-lists-assigned.png" alt="Assigned lists"/><figcaption><b>6.1</b> — your assigned lists; click one to open it.</figcaption></figure>
-</li>
-<li id="fu-2" data-code="6.2"><b>View the contacts:</b> the members table. Look at the <b>Last Contact</b> column (far right) — each row has a <b>💬 icon</b> next to its date, the follow-up radar.
-  <figure><img src="sdrx-32-list-members-simple.png" alt="List members with Last Contact column"/><figcaption><b>6.2</b> — the members table; the <b>Last Contact</b> column with its 💬 icons is on the right.</figcaption></figure>
-</li>
-<li id="fu-3" data-code="6.3"><b>Pick who's overdue:</b> click the <b>Last Contact</b> header to sort, and read the 💬 colors — <span style="color:#D92D20"><b>red</b></span> = waited longest, start there; <b>yellow</b> = coming due; <b>gray</b> = fresh. The red dot means "due" and clears once you make contact.
-  <figure><img src="v3s-62-sdr-list-60s.png" alt="Aging icons"/><figcaption><b>6.3</b> — 💬 icons shading gray → yellow → red as Last Contact ages.</figcaption></figure>
-</li>
-<li id="fu-4" data-code="6.4"><b>Read the context.</b> Click the <b>💬 icon</b> on that row → a conversation-first drawer opens with the last thread on screen. Read the exchange to confirm they <b>haven't replied yet</b> (that's what "follow up" means) and to pick your angle.
-  <figure><img src="v3s-131-chaticon-opened.png" alt="Conversation-first drawer"/><figcaption><b>6.4</b> — 💬 clicked: the last thread on screen (New Email · ↩ reply · 1/N pager).</figcaption></figure>
-</li>
-<li id="fu-5" data-code="6.5"><b>Nudge them.</b> Then either <b>↩ reply to the last email</b> in that thread (keeps the context), or click <b>New Email</b> for a fresh angle. Sending <b>resets Last Contact</b> → the row drops down and the 💬 turns gray. Use the <b>1/N pager</b> (top right) to step to the next contact without going back to the list.</li>
-<li data-code="6.6">2–3 unanswered nudges → label <b>Not Now</b> / <b>Not Interested</b> (Flow 3) so they leave your rotation.</li>
-</ol>
-<div class="tblwrap"><table>
-<thead><tr><th>💬 state</th><th>Meaning</th><th>Do</th></tr></thead>
-<tbody>
-<tr><td><span class="dotc" style="background:#9D92AA"></span>Gray, no dot</td><td>Recent (~under 2 weeks)</td><td>Nothing yet</td></tr>
-<tr><td><span class="dotc" style="background:#F79009"></span>Yellow + dot</td><td>~2–4 weeks silence</td><td>Plan the nudge</td></tr>
-<tr><td><span class="dotc" style="background:#D92D20"></span>Red + dot</td><td>~A month+ — overdue</td><td>Click &amp; follow up now</td></tr>
-</tbody></table></div>
-<div class="pagernav"><a data-goto="page-inbox"><span class="k">← Prev</span><b>Flow 5 · Replies</b></a><a class="next" data-goto="page-reach"><span class="k">Next →</span><b>Flow 7 · WhatsApp / LinkedIn</b></a></div>
-</section>
-
-<!-- ===================== FLOW 7 · WHATSAPP / LINKEDIN ===================== -->
-<section class="page" id="page-reach">
-<h2><span class="n">Flow 7 ·</span> Reach out on WhatsApp or LinkedIn</h2>
-<div class="goal"><b>Goal:</b> contact someone on another channel straight from Fintalent. Both icons live on the contact's <b>action bar</b> (profile drawer) and in each row's <b>Action</b> column. A <b>coloured</b> icon works; a <b>gray</b> one means that data is missing.</div>
-
-<h3 id="r-whatsapp" class="anchor">7.1 · Open a WhatsApp chat</h3>
-<ol class="steps">
-<li data-code="7.1.1"><b>Open the contact</b> (Flow 2) → the action bar shows <b>Send email · WhatsApp · LinkedIn</b>.
-  <figure><img src="sdrx-33-contact-detail-clean.png" alt="Contact action bar"/><figcaption><b>7.1.1</b> — the action bar: Send email · WhatsApp · LinkedIn.</figcaption></figure>
-</li>
-<li data-code="7.1.2">Click <b>WhatsApp</b>. <b>Green</b> = a usable phone is on file → it opens a WhatsApp chat in a <b>new tab</b> (<code>wa.me/‹number›</code>). <b>Gray</b> = no phone (or the number is too ambiguous to dial) → nothing happens; add a phone first (Flow 3.2).</li>
-</ol>
-
-<h3 id="r-linkedin" class="anchor">7.2 · Open the LinkedIn profile</h3>
-<ol class="steps">
-<li data-code="7.2.1">Click <b>LinkedIn</b> (action bar, or the icon in a row's Action column). <b>Blue</b> = a valid LinkedIn URL is on file → it opens <b>that stored URL</b> as-is in a <b>new tab</b> (the app only checks it's a <code>linkedin.com</code>/<code>lnkd.in</code> link — it doesn't rewrite it). <b>Gray</b> = no/invalid URL → nothing happens; add one inline (Flow 3.2).
-  <figure><img src="sdrx-32-list-members-simple.png" alt="Row action icons"/><figcaption><b>7.2.1</b> — the ✉ · WhatsApp · LinkedIn icons in each row's Action column (coloured = usable).</figcaption></figure>
-</li>
-</ol>
-<div class="pagernav"><a data-goto="page-followup"><span class="k">← Prev</span><b>Flow 6 · Follow up</b></a><a class="next" data-goto="page-campaign"><span class="k">Next →</span><b>Flow 8 · Run a campaign</b></a></div>
-</section>
-
-<!-- ===================== FLOW 8 · MANAGE CAMPAIGN ===================== -->
-<section class="page" id="page-campaign">
-<h2><span class="n">Flow 8 ·</span> Manage campaign</h2>
-<div class="call warn"><span class="t">Chưa rõ permission</span>Chưa rõ permission nên chưa đi flow trong đây.</div>
-<div class="pagernav"><a data-goto="page-reach"><span class="k">← Prev</span><b>Flow 7 · WhatsApp / LinkedIn</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 9 · Manage ME</b></a></div>
-</section>
-
-<!-- ===================== FLOW 9 · MANAGE ME ===================== -->
-<section class="page" id="page-marketing">
-<h2><span class="n">Flow 9 ·</span> Manage ME</h2>
-<div class="call warn"><span class="t">Chưa rõ permission</span>Chưa rõ permission nên chưa đi flow trong đây.</div>
-<div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 8 · Manage campaign</b></a><a class="next" data-goto="page-faq"><span class="k">Next →</span><b>Flow 10 · FAQ</b></a></div>
-</section>
-
-<!-- ===================== FLOW 10 · FAQ ===================== -->
-<section class="page" id="page-faq">
-<h2><span class="n">Flow 10 ·</span> FAQ &amp; edge-case index</h2>
-<div class="tblwrap"><table>
-<thead><tr><th>Symptom / question</th><th>Answer</th></tr></thead>
-<tbody>
-<tr><td>I forgot my password / want to change it</td><td>No self-serve reset — <b>contact the Admin</b> (Flow 1.x.2).</td></tr>
-<tr><td>Where do I change my name / signature?</td><td>Account card (bottom-left) → <b>General Setting</b> or <b>Email Configuration</b> (Flow 1.x.3–1.x.5).</td></tr>
-<tr><td>Where do I land after logging in?</td><td>On <b>Campaigns</b>. Re-opening while signed in skips login (Flow 1.2, 1.x.1).</td></tr>
-<tr><td>My Segments page is empty</td><td>No list assigned yet — ask Ops.</td></tr>
-<tr><td>Can I edit a contact's phone / location / LinkedIn?</td><td>Yes — inline in the profile drawer (Flow 3.2). Experience (yrs) is read-only.</td></tr>
-<tr><td>WhatsApp / LinkedIn icon is gray</td><td>No phone / LinkedIn URL on file. Nothing to click.</td></tr>
-<tr><td>Subject box is empty when composing</td><td>Always type it yourself (Flow 4.1).</td></tr>
-<tr><td>I can't edit the chips on messages</td><td>Correct — the system assigns them. You classify at contact level (Flow 3).</td></tr>
-<tr><td>Orange "In Queue" tag on a message</td><td>Accepted, waiting in the send queue — clears once sent. Don't re-send (Flow 5.x.2).</td></tr>
-<tr><td>Gray contacts I don't recognize at the bottom of my list</td><td>You selected a company → the <b>"held by teammates"</b> block. Coordinate first (Flow 2.x.3).</td></tr>
-<tr><td>Campaign / Marketing Email — what can I do?</td><td>Permissions still being confirmed — those flows (8, 9) aren't documented yet.</td></tr>
-<tr><td>I can't find Contacts/Companies pages</td><td>By design — your lists and Inbox are the entry points.</td></tr>
-</tbody></table></div>
-<div class="pagernav"><a data-goto="page-marketing"><span class="k">← Prev</span><b>Flow 9 · Marketing email</b></a><span class="spacer"></span></div>
-</section>
-
-</main>
-</div>
-<script>
-(function(){
-  var pages    = Array.prototype.slice.call(document.querySelectorAll('.page'));
-  var flowLinks= Array.prototype.slice.call(document.querySelectorAll('nav a.flow'));
-  var subLinks = Array.prototype.slice.call(document.querySelectorAll('nav a.st, nav a.st2'));
-
-  function activeId(){ var p=pages.filter(function(x){return x.classList.contains('active');})[0]; return p?p.id:null; }
-
-  function showPage(id, scrollToId){
-    if(!document.getElementById(id)) id='page-login';
-    pages.forEach(function(p){ p.classList.toggle('active', p.id===id); });
-    flowLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-page')===id); });
-    subLinks.forEach(function(a){ a.classList.toggle('show', a.getAttribute('data-page')===id); });
-    if(scrollToId){
-      var t=document.getElementById(scrollToId);
-      if(t){ t.scrollIntoView({behavior:'smooth',block:'start'}); return; }
-    }
-    window.scrollTo({top:0});
-  }
-
-  flowLinks.forEach(function(a){
-    a.addEventListener('click', function(e){
-      e.preventDefault();
-      var id=a.getAttribute('data-page');
-      history.replaceState(null,'','#'+id);
-      showPage(id);
-    });
-  });
-
-  subLinks.forEach(function(a){
-    a.addEventListener('click', function(e){
-      e.preventDefault();
-      var anchor=a.getAttribute('href').slice(1);
-      if(a.getAttribute('data-page')===activeId()){
-        history.replaceState(null,'','#'+anchor);
-        var t=document.getElementById(anchor);
-        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
-      }
-    });
-  });
-
-  document.querySelectorAll('[data-goto]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      e.preventDefault();
-      var id=a.getAttribute('data-goto');
-      history.replaceState(null,'','#'+id);
-      showPage(id);
-    });
-  });
-
-  var h=(location.hash||'').slice(1);
-  if(h && document.getElementById(h)){
-    if(h.indexOf('page-')===0){ showPage(h); }
-    else {
-      var el=document.getElementById(h);
-      var pg=el.closest ? el.closest('.page') : null;
-      showPage(pg?pg.id:'page-login', pg?h:null);
-    }
-  } else {
-    showPage('page-login');
-  }
-})();
-</script>
 </body>
 </html>

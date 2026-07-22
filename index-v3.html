@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Fintalent — Lean Launch · Full Flow (Setup → Lists → SDR Loop → KAM Calls)</title>
+<script src="mermaid.min.js"></script>
+<style>
+  :root{
+    --pp-50:#F5F0FF;--pp-100:#EAE0FC;--pp-200:#C8B3F9;--pp-400:#7741F1;--pp-600:#4A0FD1;--pp-700:#3A0CA3;--pp-800:#2F0A85;--pp-900:#290872;
+    --n-50:#F8F8F9;--n-100:#F0EFF3;--n-200:#E4E2EA;--n-300:#CCC8D5;--n-400:#9D92AA;--n-500:#756A84;--n-600:#51485B;--n-700:#3D3645;--n-800:#231F28;--n-900:#1F1926;
+    --ok:#12B76A;--okbg:#E9FBF2;--warn:#F79009;--warnbg:#FFF7EC;--err:#D92D20;--errbg:#FEF3F2;--info:#1849A9;--infobg:#E7F0FF;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);color:var(--n-800);background:var(--n-50);line-height:1.62;font-size:15px}
+  .layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:0;max-width:1560px;margin:0 auto}
+  aside{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:#fff;border-right:1px solid var(--n-200);padding:22px 16px}
+  aside .brand{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--pp-700);font-size:17px;margin-bottom:4px}
+  aside .brand .dot{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--pp-600),var(--pp-400))}
+  aside .sub{font-size:11.5px;color:var(--n-400);margin-bottom:16px;text-transform:uppercase;letter-spacing:.06em}
+  nav a{display:block;padding:4px 10px;border-radius:7px;color:var(--n-600);text-decoration:none;font-size:13.3px}
+  nav a:hover{background:var(--n-100);color:var(--pp-700)}
+  nav a.h2{padding-left:22px;font-size:12.6px;color:var(--n-500)}
+  nav .grp{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--n-400);margin:14px 0 4px 10px;font-weight:700}
+  main{padding:44px 54px 120px;max-width:1160px}
+  h1{font-size:31px;line-height:1.2;margin:0 0 6px;color:var(--n-900);letter-spacing:-.02em}
+  h2{font-size:23px;margin:52px 0 14px;padding-top:14px;border-top:2px solid var(--n-200);color:var(--n-900);letter-spacing:-.01em}
+  h3{font-size:18px;margin:34px 0 10px;color:var(--pp-800)}
+  h4{font-size:13px;margin:22px 0 8px;color:var(--n-800);text-transform:uppercase;letter-spacing:.03em}
+  p{margin:10px 0}
+  code{font-family:var(--mono);font-size:.86em;background:var(--n-100);border:1px solid var(--n-200);border-radius:5px;padding:1px 5px;color:var(--pp-800)}
+  a{color:var(--pp-700)}
+  .lead{font-size:16.5px;color:var(--n-600)}
+  .kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pp-600);background:var(--pp-50);border:1px solid var(--pp-100);padding:4px 11px;border-radius:999px;margin-bottom:16px}
+  .tblwrap{overflow-x:auto;margin:14px 0;border:1px solid var(--n-200);border-radius:12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;background:#fff}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--n-100);vertical-align:top}
+  th{background:var(--n-50);color:var(--n-700);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+  tr:last-child td{border-bottom:none}
+  .b{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap;line-height:1.5}
+  .b.ok{background:var(--okbg);color:#087443;border:1px solid #b6ecd0}
+  .b.part{background:var(--warnbg);color:#a35a00;border:1px solid #f6dfb0}
+  .b.gap{background:var(--errbg);color:var(--err);border:1px solid #fcd2cd}
+  .b.wip{background:var(--infobg);color:var(--info);border:1px solid #b6d2fb}
+  .b.p0{background:#FEE4E2;color:#912018;border:1px solid #fbb}
+  .b.p1{background:var(--warnbg);color:#a35a00;border:1px solid #f6dfb0}
+  .b.p2{background:var(--n-100);color:var(--n-600);border:1px solid var(--n-200)}
+  .call{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid;font-size:14px}
+  .call .t{font-weight:700;display:block;margin-bottom:3px}
+  .call.note{background:var(--pp-50);border-color:var(--pp-100);color:var(--pp-900)}
+  .call.gap{background:var(--errbg);border-color:#fcd2cd}
+  .call.gap .t{color:var(--err)}
+  .call.new{background:var(--okbg);border-color:#b6ecd0}
+  .call.new .t{color:#087443}
+  .call.fix{background:#FFF7EC;border-color:#f6dfb0}
+  .call.fix .t{color:#a35a00}
+  figure{margin:20px 0;border:1px solid var(--n-200);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  figure img{display:block;width:100%;height:auto}
+  figure.crop{max-width:560px;margin-left:auto;margin-right:auto}
+  figure.mid{max-width:860px;margin-left:auto;margin-right:auto}
+  figcaption{font-size:12.5px;color:var(--n-500);padding:9px 14px;background:var(--n-50);border-top:1px solid var(--n-100)}
+  figcaption b{color:var(--n-700)}
+  .mermaid{margin:18px 0;text-align:center;background:#fff;border:1px solid var(--n-200);border-radius:14px;padding:16px;overflow-x:auto}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr}.layout{grid-template-columns:1fr}aside{display:none}main{padding:24px}}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:14px 0}
+  .steps li{position:relative;padding:8px 0 8px 40px;border-bottom:1px dashed var(--n-200)}
+  .steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:8px;width:26px;height:26px;border-radius:50%;background:var(--pp-600);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+  hr{border:none;border-top:1px solid var(--n-200);margin:30px 0}
+  .fn{font-family:var(--mono);font-size:.82em;color:var(--n-500)}
+  .anchor{scroll-margin-top:20px}
+  .aslist{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+  .aslist>div{border:1px solid var(--n-200);border-radius:10px;padding:10px 14px;background:#fff}
+  .aslist .as{border-left:4px solid var(--n-400)} .aslist .to{border-left:4px solid var(--ok)}
+  .aslist h4{margin:2px 0 6px}
+  @media(max-width:900px){.aslist{grid-template-columns:1fr}}
+  .fh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .fh .b{vertical-align:middle}
+  .dto{font-family:var(--mono);font-size:12px;background:#fff;border:1px solid var(--n-200);border-radius:10px;padding:12px 14px;overflow-x:auto;white-space:pre;color:var(--n-800);margin:12px 0;line-height:1.55}
+  .dto .k{color:var(--pp-700)} .dto .c{color:var(--n-400)} .dto .req{color:var(--err)}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="brand"><span class="dot"></span>Fintalent OSW</div>
+  <div class="sub">Lean Launch · Full Flow · v3 (19/07 · re-verify 20/07)</div>
+  <nav>
+    <a href="#gt">0 · Cách đọc &amp; Thuật ngữ</a>
+    <a href="#delta3" class="flow">Δ3 · Build 19/07 có gì đổi ✅</a>
+    <div class="grp">Nền tảng</div>
+    <a href="#overview">1 · Tổng quan motion</a>
+    <a href="#lifecycle" class="h2">1.2 Lifecycle = state machine</a>
+    <a href="#queue" class="h2">1.3 “Queue” = contact list</a>
+    <a href="#readiness" class="h2">1.4 Readiness 23 flows</a>
+    <a href="#catalog">2 · Catalog GraphQL ops</a>
+    <div class="grp">§3 · Phase 0 Setup</div>
+    <a href="#adm01">3.1 ADM.0.1 Users + roles</a>
+    <a href="#adm03" class="h2">3.2 ADM.0.3 Import data</a>
+    <a href="#adm07" class="h2">3.3 ADM.0.7 Admin sửa info</a>
+    <div class="grp">§4 · Phase 1 Lists</div>
+    <a href="#sdr120">4.1 SDR.1.20 Create list</a>
+    <a href="#atl-map" class="h2">4.1b Bản đồ Add-to-list ✅</a>
+    <a href="#ops08" class="h2">4.2 OPS.0.8 Assign list</a>
+    <a href="#ops06" class="h2">4.3 OPS.0.6 List rules ⛔</a>
+    <div class="grp">§5 · Phase 2 SDR Loop</div>
+    <a href="#sdr01">5.1 SDR.0.1 List + lọc tự do ✅</a>
+    <a href="#sdr025" class="h2">5.2 SDR.0.25 My lists</a>
+    <a href="#sdr03" class="h2">5.3 SDR.0.3 Workspace</a>
+    <a href="#sdr010" class="h2">5.4 SDR.0.10 Chọn contact</a>
+    <a href="#sdr010b" class="h2">5.4b Team coverage — different owner ✅</a>
+    <a href="#sdr045" class="h2">5.4c Member-row actions + SDR gating ✅</a>
+    <a href="#sdr011" class="h2">5.5 SDR.0.11 Compose</a>
+    <a href="#sdr012" class="h2">5.6 SDR.0.12 Send → log</a>
+    <a href="#sdr013" class="h2">5.7 SDR.0.13 Follow-up</a>
+    <a href="#sdr015" class="h2">5.8 SDR.0.15 Reply thread ✅</a>
+    <a href="#sdr016" class="h2">5.9 SDR.0.16 Classify ✅</a>
+    <a href="#sdr017" class="h2">5.10 SDR.0.17 Handoff ⛔</a>
+    <a href="#sdr018" class="h2">5.11 SDR.0.18 Opt-out</a>
+    <div class="grp">§6 · Phase 3 KAM ⛔</div>
+    <a href="#kam">6 · KAM Calls + AI (to-be)</a>
+    <div class="grp">Tổng hợp</div>
+    <a href="#sys">7 · SYS behaviors</a>
+    <a href="#gapreg">8 · GAP register + blockers</a>
+    <a href="#plan">9 · Kế hoạch đề xuất</a>
+    <a href="#appendix">10 · Phụ lục nguồn</a>
+  </nav>
+</aside>
+<main>
+<span class="kicker">Lean Launch Guide · Full Flow · v3</span>
+<h1>Fintalent OSW — Lean Launch v3: <em>Setup</em> → <em>Segments</em> → <em>SDR Loop</em> → <em>KAM Calls</em></h1>
+<p class="lead"><b>v3 — re-walk toàn bộ trên build UAT 19/07</b> (UI redesign lớn: Segments, bảng Simple/Full, Inbox, SDR list độc quyền), <b>re-verify 20/07 với FE <code>develop</code> @ <code>714f6e4cf2</code></b> (đọc source + đi live). Kế thừa <a href="index.html">v1</a> (nền 23 flows + verify API 15–17/07) và <a href="index-v2.html">v2</a> (delta 17/07 chiều); mọi khác biệt của build mới nằm ở <a href="#delta3">§Δ3</a> và đã cập nhật vào từng flow. Ảnh mới: bộ <code>v3s-*</code> (19/07) + <code>v3s-140</code> (view-as-role, 20/07). Guideline người dùng song hành: <a href="user-guideline-v3.html">user-guideline-v3.html</a>.</p>
+<div class="call new"><span class="t">Re-check 20/07 — ~30 commit sau bản 19/07, đổi gì (chi tiết từng dòng ở §Δ3 và các flow)</span><b>(1)</b> <b>View as role</b> — admin preview UI của role khác (SDR/KAM…), eye ở sider profile, sessionStorage <code>admin-role-preview</code>, KHÔNG đổi data/quyền (§Δ3 #11, ADM.0.7+). <b>(2)</b> Work experience: <b>Unlink retired → Relink</b> (company-scoped bulk-relink + alias match) (§3.2). <b>(3)</b> Compose: <b>dock toggle + suggested recipients</b>; document picker chỉ <b>Common+Contact</b> (§5.5). <b>(4)</b> Inbox <b>bỏ chip "In Conversation"</b> (ME hide mới; SDR luôn ẩn), thêm InQueueTag (§5.8). <b>(5)</b> Row lifecycle dropdown <b>14 option</b> (không phải 9); <code>ContactLifecycleEnum</code>=18 (không phải 20), <code>EmailLogCategorizeEnum</code>=11 (giữ nguyên) (§5.9). <b>(6)</b> Simple/Full mở cho MỌI role trừ SDR/KAM, default Simple (§Δ3 #2). <b>(7)</b> Fix: WhatsApp URL <code>wa.me/‹E164›</code>, LinkedIn mở URL as-is, ⋮/🗓 ẩn với SDR/KAM, rows-per-page là selector riêng, assign chỉ Data Manager/cao nhất. Enum coverage/SDR-list KHÔNG đổi so với 19/07.</div>
+
+<h2 id="gt" class="anchor">0 · Cách đọc &amp; Thuật ngữ</h2>
+<div class="grid2">
+<div>
+<h4>Badge trạng thái</h4>
+<p>
+<span class="b ok">✅ Có</span> đã chạy thử / có UI thật &nbsp;
+<span class="b part">🟡 Một phần</span> nền tảng có, thiếu mảnh &nbsp;
+<span class="b wip">🔵 Đang làm</span> in progress &nbsp;
+<span class="b gap">❌ Chưa có</span> phải build<br/>
+<span class="b p0">P0</span> chặn launch &nbsp; <span class="b p1">P1</span> nên có sớm &nbsp; <span class="b p2">P2</span> backlog
+</p>
+<h4>Khối as-is / to-be</h4>
+<p><b>As-is</b> = đúng hiện trạng UAT hôm nay. <b>To-be</b> = contract đề xuất, <u>chưa tồn tại</u> — không được nhầm là đã chạy.</p>
+</div>
+<div>
+<h4>5 từ khoá</h4>
+<div class="tblwrap"><table>
+<tr><td><b>SDR</b></td><td>sale tuyến đầu: gửi email chào hàng, nhận trả lời</td></tr>
+<tr><td><b>KAM</b></td><td>sale tuyến sau: khách quan tâm thì gọi Zoom chốt</td></tr>
+<tr><td><b>Ops</b></td><td>người vận hành: chuẩn bị data, tạo list, giao việc</td></tr>
+<tr><td><b>Account</b></td><td>1 công ty khách tiềm năng (kèm các contact)</td></tr>
+<tr><td><b>Queue</b> <span class="fn">(từ của spec)</span></td><td>không có hệ thống riêng — <b>chính là contact list được giao cho SDR</b>, lọc tự do theo lifecycle · tín hiệu · ngày (§1.3)</td></tr>
+</table></div>
+</div>
+</div>
+<div class="call note"><span class="t">Tóm cả máy trong 1 câu</span>Ops phát danh sách công ty cho SDR → SDR lọc list tự do (lifecycle · tín hiệu · ngày gửi) để dựng ngăn việc → mở từng contact, tự chọn người, gửi email tay → hệ thống tự ghi log + lifecycle tự nhảy → khách trả lời thì dán nhãn → ai "Interested" thì chuyển KAM gọi Zoom chốt → AI nghe ghi âm và tự ghi kết quả (phase 3, chưa build).</div>
+
+<h2 id="delta3" class="anchor">Δ3 · Build 19/07 — re-walk toàn bộ, có gì đổi <span class="b ok">✅ verify UI + behavior 19/07</span></h2>
+<p>Đi lại toàn bộ chuỗi flow bằng admin (<code>dev@fintalent.io</code>) + Login-as <b>SDR Internal Fintalent</b> + Login-as <b>KAM Fintalent</b>; test hành vi trên list QA tự tạo/tự xoá. Xếp theo mức ảnh hưởng:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Thay đổi (verify 19/07)</th><th>Ảnh hưởng</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>Route + menu đổi</b>: Lists → <b>Segments (Lists)</b> (<code>/segments</code>; <code>/lists</code> 404) · Inboxes → <b>Inbox</b> (<code>/inbox</code>) · mới: <code>/message-templates</code> (template EN 01–05 của inbox_script — route cũ /sales-triggers 404) · <code>/snippets</code> · <code>/documents</code> · <code>/meetings</code> · <code>/deals</code> · Contacts Deleted β. Sidebar 3 nhóm: Sales Management (v2, chính) · (v1) · WIP β.</td><td>Mọi flow; mọi URL trong docs cũ</td></tr>
+<tr><td>2</td><td><b>Contacts redesign</b>: bảng phẳng Title · Account · Country · City · Lifecycle Stage · (Signals) · Last Contact↓ · Action. SDR/KAM chỉ <b>✉/WhatsApp/LinkedIn</b>; admin thêm <b>🗓 Schedule call β</b> (disabled "Coming soon") + <b>⋮ More</b>. <b>[20/07] Density Simple ⇄ Full: MỌI role TRỪ SDR/KAM đều toggle được, default Simple</b> (hotfix <code>dae328ce07</code>; bản cũ khoá admin thường ở Full) — không phải "chỉ Admin". Column Settings ⚙ chỉ ẩn/hiện cột; <b>rows-per-page là selector riêng cạnh pager</b> (10…1000). WhatsApp mở <code>wa.me/‹E164›</code>, LinkedIn mở URL đã lưu as-is (chỉ validate host). Filter encode URL (<code>?contactFiltersV2_bLifeCycles=in:Prospect</code>).</td><td>SDR.0.1/0.3 · B1 · mọi bảng contacts</td></tr>
+<tr><td>3</td><td><b>SDR list độc quyền — BYPASS là hành vi chuẩn</b> (chốt 19/07): Create List có checkbox "SDR list"; contact đã thuộc SDR list A, add vào SDR list B → <b>bypass</b> (không vào B, không rời A) + toast báo skip. Muốn chuyển list: remove khỏi list cũ trước rồi add. ⚠️ 2 lỗi cosmetic chờ dev: (a) form text đang ghi "removes it from other SDR lists" — cần sửa thành skip; (b) Timeline của B vẫn ghi "Members added — 1 added" dù bị skip.</td><td>SDR.1.20 · OPS.0.8 · SYS single-rep lock — <a href="#atl-map">§4.1b</a></td></tr>
+<tr><td>4</td><td><b>Inbox thành menu riêng</b> (cả SDR/KAM): bảng Account | Last Email (subject + preview + date), đủ filter + Add filter. Mở row → Conversations 2-pane (thread list | thread, Expand all). <b>Per-message chip classify</b>: Interested/Not Interested/Call Scheduled/Open trên từng message + trên item thread list — <b>hệ thống tự đánh giá reply để gán</b> (chốt 19/07), SDR không chỉnh chip; SDR chỉ set lifecycle cấp contact.</td><td>SDR.0.15/0.16 — thay "view Replies"</td></tr>
+<tr><td>5</td><td><b>SDR/KAM view</b>: menu chỉ còn Segments (Lists) · Inbox · Meetings · Message Templates · Snippets · Documents · Campaigns · Marketing Emails (không Contacts/Companies). List detail của SDR: cột <b>Signals</b> (click headline → drawer detail; badge "+N" → expand inline toàn bộ signals), icon <b>💬 = aging meter</b> trên Last Contact (xám ≲2 tuần · vàng ~2–4 tuần · đỏ ≳1 tháng; chấm đỏ = đến hạn follow-up) — click mở <b>drawer conversation-first</b> (thread mở sẵn + pager 1/N duyệt lần lượt); action icons ✉ (compose) / WhatsApp (<code>wa.me/‹E164›</code> — xám cả khi số quá mơ hồ, không chỉ khi thiếu) / LinkedIn (mở <b>URL đã lưu as-is</b>, chỉ validate host linkedin.com/lnkd.in) — sáng/xám theo dữ liệu contact; <b>chỉ filter Lifecycles</b> ⇒ công thức 3 view cũ retired. Landing sau login = /projects. <span class="fn">[20/07] SDR/KAM KHÔNG có ⋮ More / 🗓 Schedule call.</span></td><td>SDR.0.1 · SDR.0.25 · C0–C2</td></tr>
+<tr><td>6</td><td><b>List detail</b>: tabs Members · Data Health β · <b>Timeline</b> (audit: List created / Members added / removed + author + timestamp, kèm diff). Panel trái Lifecycles | Companies. "Assign owner" → <b>Assign assignee</b> (<b>[20/07] chỉ Data Manager/authority cao nhất</b> mới thấy action assign); cột Assignee badge role; Actions per-row = <b>Add members (👤+) · Assign (user-switch, gated) · Delete (🗑)</b> — <b>KHÔNG có ⚙ settings</b>, mở detail bằng click row/name; "SDR" là giá trị cột <b>Category</b> (<code>category:SDR</code>), không phải badge riêng.</td><td>SDR.1.20 · OPS.0.6/0.8</td></tr>
+<tr><td>7</td><td><b>Member count lag nặng hơn</b> trên list mới tạo (0 kéo dài &gt;60s dù Members tab đã có người) — verify count phải qua Members tab/Timeline, không tin cột count.</td><td>SDR.1.20 · QA checks</td></tr>
+<tr><td>8</td><td><b>Profile redesign</b>: action bar Send email · WhatsApp · LinkedIn · Schedule call β · More; Owner nhiều người; WE/Education/Certificates collapse; Conversations 2-pane + New Email + search. Compose: bug <b>subject chưa prefill VẪN CÒN</b>; bottom bar 📎 · 🗂 Document library · Snippets · Template · &lt;/&gt;.</td><td>SDR.0.3/0.10/0.11</td></tr>
+<tr><td>9</td><td><b>[20/07] Team coverage gộp vào bảng members</b> ("held by teammates"): chọn company ở rail trái list detail → contact ở company đó đang nằm trong list (còn sống) của <b>người khác</b> + lifecycle nóng (Interested · Call Scheduled · Platform Sign Up · In Project · Project Completed) được append thành <b>dòng xám view-only</b> cuối bảng + pill "N held by teammates". Query riêng <code>contactsV2InDifferentOwner</code> — verify code + API + UI 20/07.</td><td>SDR.0.3/0.10 — chống double-touch cấp COMPANY · <a href="#sdr010b">§5.4b</a></td></tr>
+<tr><td>10</td><td><b>[20/07] Cột Country · City tách riêng + SORT được</b> (thay cột Location; click header A→Z/Z→A, giá trị rỗng dồn đầu khi ascending — verify UI 20/07, commit FE <code>f71fed708f</code>). List detail giờ là <b>trang riêng</b> <code>/segments/‹id›?tab=members</code> — URL share được.</td><td>SDR.0.1/0.25 · mọi bảng contacts</td></tr>
+<tr><td>11</td><td><b>[20/07 re-check] View as role</b>: admin authority cao nhất preview UI của role khác (DataManager · Admin · SaleAdmin · CampaignManager · SDR · KAM). Control = <b>eye ở sider profile</b> (gate <code>isAccessTestFeature‖SuperAdmin</code>) + banner <i>"Only the interface changes — actions still run with your real permissions" + Exit preview</i>. State ở sessionStorage <code>admin-role-preview</code> (sống qua reload, mất khi đóng tab). <b>Chỉ đổi UI, KHÔNG đổi identity/data/quyền</b> (preview SDR vẫn thấy list của CHÍNH admin, không phải scope SDR thật) — bổ trợ, không thay "Login as". Ảnh <code>v3s-140</code>. Store: <code>core/stores/role-preview-store.ts</code>.</td><td>ADM.0.1/0.7 · công cụ chụp màn SDR/KAM</td></tr>
+<tr><td>12</td><td><b>[20/07] Work experience: Unlink retired (15/07) → Relink</b>: dòng WE đã link nay có icon <b>Relink</b> = trỏ WE sang company KHÁC. Relink <b>company-scoped</b> (đổi mọi WE đang link company cũ, match theo text company cũ), rebuild emails, dời alias; vẫn có bước propagate "Apply to N other contacts". Không có "undo" 1-click — relink ngược lại để revert. GQL <code>relinkWorkExperienceCompany</code> + <code>bulkRelinkContactsWorkExperienceCompany</code> + <code>findContactsWithLinkedAliasMatch</code>.</td><td>ADM.0.3 (§3.2)</td></tr>
+<tr><td>13</td><td><b>[20/07] Compose</b> (commit <code>73cde420f2</code> "fix: reply v2"): <b>dock left/right toggle</b> (nhớ preference) + <b>suggested recipients</b> (người trong conversation xếp trên search ở To/Cc). Cc/Bcc vẫn ẩn. Document picker từ compose <b>chỉ Common+Contact</b> (Published), title "Select Documents" — KHÔNG có Campaign. Subject prefill <b>vẫn bug</b> (template không mang subject field).</td><td>SDR.0.11 (§5.5)</td></tr>
+<tr><td>14</td><td><b>[20/07] Inbox v2 bỏ chip "In Conversation"</b>: SDR inbox (<code>/inboxes-v2</code>) vốn đã ẩn; ME inbox nay cũng ẩn (commit <code>001950af9a</code>) — <b>campaign inbox tab VẪN còn ⇒ BUG thiếu nhất quán</b> (chốt với Đông 20/07: campaign inbox nên ẩn như SDR/ME — xem GAP G19). Bộ lifecycle của inbox = 17–18 stage (Stages rail trái) + pinned <b>Last Email</b>. Thêm <b>InQueueTag</b> (pill cam "In Queue") khi email outbound chưa có <code>sentDate</code> (đang trong send queue) — nối trang admin <b>Email Queues</b>.</td><td>SDR.0.15/0.16</td></tr>
+<tr><td>15</td><td><b>[20/07] Menu admin Sales (v2)</b> thêm <b>Email Queues · Email Logs · Signals · Deals · Job Search</b> cạnh nhóm cũ (SDR/KAM vẫn bị trim đúng như doc). Per-message chip = BE <code>ConversationEmailLog.lifecycle</code> (read-only); <code>EmailLogType</code> (draft/replied/sentOut) là <b>hướng</b>, KHÁC enum categorize — đừng lẫn.</td><td>C0 · SDR.0.16</td></tr>
+</tbody></table></div>
+<div class="grid2">
+<figure class="crop"><img src="v3s-31-create-list-modal.png" alt="Create list SDR"/><figcaption><b>[v3] Create List</b> — checkbox SDR list + rule text (thực tế behavior = skip, xem #3).</figcaption></figure>
+<figure class="crop"><img src="v3s-71-inbox-thread.png" alt="Thread chips"/><figcaption><b>[v3] Conversations</b> — chip classify per-message (Interested/Not Interested/Open).</figcaption></figure>
+</div>
+<h4>SDR-list gate — semantics đã kiểm chứng</h4>
+<pre class="mermaid">
+flowchart LR
+  ADD["Add contact C vào SDR list B"] --> Q{"C đã thuộc<br/>SDR list khác (A)?"}
+  Q -->|"Không"| OK["C vào B (membership bình thường)"]
+  Q -->|"Có"| SKIP["BYPASS — C giữ nguyên ở A<br/>toast: skipped (đã thuộc SDR list khác)"]
+  SKIP -.-> W1["⚠️ form text nói 'removes from other SDR lists' — copy sai"]
+  SKIP -.-> W2["⚠️ Timeline của B vẫn ghi 'Members added' — log sai"]
+  classDef default fill:#fff,stroke:#CCC8D5;
+</pre>
+<p class="fn">Không đổi (re-verified 19/07): Create Contact dedupe (Duplicate Found panel) · Add-to-list semantics thường (Selected/All matching cap 10.000/run · dedup im lặng · add nhiều list 1 lần "Add to N list(s)") · add-members drawer auto-exclude · Remove from list + confirm · xoá list còn members được · Assign theo role badge · Update Admin Information 5 tab.</p>
+
+<h2 id="overview" class="anchor">1 · Tổng quan motion</h2>
+<h3>1.1 · Bức tranh end-to-end</h3>
+<pre class="mermaid">
+flowchart TD
+  subgraph P0["Phase 0 · Setup (Admin)"]
+    direction LR
+    A1["ADM.0.1<br/>Users + roles ✅"] --> A3["ADM.0.3<br/>Import data ✅"] --> A7["ADM.0.7<br/>Admin sửa info ✅"]
+  end
+  subgraph P1["Phase 1 · Contact lists (Ops)"]
+    direction LR
+    L1["SDR.1.20<br/>Create list ✅"] --> L2["OPS.0.8<br/>Assign list ✅"] --> L3["OPS.0.6<br/>List rules ❌"]
+  end
+  subgraph P2["Phase 2 · SDR Loop — làm việc trên contact list được giao"]
+    direction LR
+    Q["SDR.0.1<br/>List + lọc ✅"] --> W["SDR.0.3<br/>Workspace ✅"] --> E["SDR.0.11<br/>Compose ✅"] --> S["SDR.0.12<br/>Send→log ✅"] --> F["SDR.0.13<br/>Follow-up ✅"] --> R["SDR.0.15<br/>Reply ✅"] --> C["SDR.0.16<br/>Classify ✅"]
+  end
+  subgraph P3["Phase 3 · KAM ❌"]
+    direction LR
+    H["SDR.0.17<br/>Handoff ❌"] --> K1["KAM.0.1<br/>Book Zoom ❌"] --> K5["KAM.0.5<br/>Call+record ❌"] --> K7["KAM.0.7<br/>AI outcome ❌"]
+  end
+  P0 --> P1
+  P1 --> P2
+  P2 -->|"Interested"| P3
+  click A1 "#adm01"
+  click A3 "#adm03"
+  click A7 "#adm07"
+  click L1 "#sdr120"
+  click L2 "#ops08"
+  click L3 "#ops06"
+  click Q "#sdr01"
+  click W "#sdr03"
+  click E "#sdr011"
+  click S "#sdr012"
+  click F "#sdr013"
+  click R "#sdr015"
+  click C "#sdr016"
+  click H "#sdr017"
+  click K1 "#kam"
+  click K5 "#kam"
+  click K7 "#kam"
+  classDef default fill:#fff,stroke:#CCC8D5;
+</pre>
+<p class="fn" style="text-align:center">✅ đã chạy được · 🟡 một phần (nền tảng có, còn thiếu mảnh nhỏ) · 🔵 đang làm · ❌ chưa có — chi tiết từng flow ở §3–§6</p>
+<h4>Nhìn nhanh — flow chưa trọn vẹn đang thiếu đúng cái gì (click mã flow để xem chi tiết)</h4>
+<div class="tblwrap"><table>
+<thead><tr><th>Flow</th><th></th><th>Còn thiếu gì</th></tr></thead>
+<tbody>
+<tr><td><a href="#ops06"><b>OPS.0.6</b></a> List rules</td><td><span class="b gap">❌</span></td><td><b>List approval</b> (draft/approved) + <b>bộ hằng số</b> N ngày · re-entry 🥶 chưa được sign-off</td></tr>
+<tr><td><a href="#sdr017"><b>SDR.0.17</b></a> Handoff KAM</td><td><span class="b gap">❌</span></td><td><b>Deal pipeline + handoff</b> — build từ đầu (G2, P0); contract đề xuất đã viết sẵn ở §5.10</td></tr>
+<tr><td><a href="#kam"><b>KAM.0.1–1.8</b></a> Call flow</td><td><span class="b gap">❌</span></td><td><b>Zoom stack</b> (book · record · transcript · AI outcome) + 3 quyết định: #10 consent ghi âm · #11 outcome enum · #12 transcript source</td></tr>
+</tbody></table></div>
+<p class="fn">SDR.0.18 hiển thị ✅ nhưng còn 1 gap an toàn: chưa <b>chặn cứng</b> suppression trên mọi send path (mới cảnh báo) — G1/P0, xem §8.</p>
+
+<h3 id="lifecycle" class="anchor">1.2 · Lifecycle = state machine của contact list <span class="b ok">chốt 16/07</span></h3>
+<p>Trục xương sống của toàn bộ SDR loop là <b>contact lifecycle</b>. Không có "queue" nào khác ngoài contact list — trạng thái contact nhảy trên ladder này, và các view của list chỉ là cách nhìn ladder qua filter.</p>
+<pre class="mermaid">
+flowchart LR
+  P["Prospect (Lead)<br/>chưa đụng vào"] -->|"send email đầu tiên<br/>(tự động qua date filter — xem ⚠️ §1.3)"| IC["In Conversation<br/>đã connect · Replied / No reply"]
+  IC -->|"khách reply → SDR classify (1/9 nhãn)"| CL{" "}
+  CL --> OKG["✅ Interested"] --> SC["Schedule call"] --> PS["Platform signup"] --> PJ["Projects…"]
+  CL --> COLD["🥶 Not Now · OOO ·<br/>Email Updated · No Categories"]
+  CL --> DEAD["🆘 OptedOut · Do Not Contact ·<br/>Left The Company · Not Interested"]
+  COLD -.->|"re-entry theo rule OPS.0.6<br/>(hằng số CHƯA chốt)"| IC
+  classDef default fill:#fff,stroke:#CCC8D5;
+</pre>
+<div class="tblwrap"><table>
+<thead><tr><th>Nhóm nhãn</th><th>Giá trị lifecycle</th><th>Hệ quả trên contact list</th></tr></thead>
+<tbody>
+<tr><td><b>✅ Đường tiến</b></td><td>Interested → Schedule call → Platform signup → Projects</td><td>Rời SDR loop, chuyển sang phase KAM / deal</td></tr>
+<tr><td><b>🥶 Tạm dừng</b></td><td>Not Now · OOO · Email Updated · No Categories</td><td>Ẩn khỏi các view làm việc; quay lại theo re-entry rule (VD Not Now → 3 tháng — <b>chưa chốt</b>, xem OPS.0.6)</td></tr>
+<tr><td><b>🆘 Chấm dứt</b></td><td>OptedOut · Do Not Contact · Left The Company · Not Interested</td><td>Suppression — mọi đường gửi phải né (SDR.0.18)</td></tr>
+</tbody></table></div>
+<p class="fn"><b>[20/07 recount từ FE HEAD]</b> <code>ContactLifecycleEnum</code> = <b>18 giá trị</b> (không phải 20) — ngoài các nhãn trên còn nhãn hệ thống/tự động: Replied · Open · Click · Bounce · Dropped · PlatformSignUp · InProject · ProjectCompleted. <b>Row lifecycle dropdown render 14 option</b> (<code>CONTACT_LIFECYCLE_OPTIONS</code>): 9 nhãn SDR set tay + No Categories · Call Scheduled · Platform Sign Up · In Project · Project Completed (3 cái cuối read-only khi đã set). Bộ nhãn classify (<code>EmailLogCategorizeEnum</code>) = <b>11 giá trị</b> (CallScheduled · DoNotContact · EmailUpdated · Interested · LeftTheCompany · NoCategories · NotInterested · NotNow · NotResponded · OptedOut · OutOfOffice — verify FE HEAD 20/07). <span class="fn">Lưu ý drift: constant options của row dropdown có <code>InConversation</code> (KHÔNG có trong <code>ContactLifecycleEnum</code>) và thiếu <code>OutOfOffice</code> (có trong enum + facet) — cần BE confirm.</span></p>
+<div class="call new"><span class="t">Đã xác nhận 16/07</span>(1) Enum lifecycle trên UI đủ giá trị (ảnh 11). (2) <b>"Đã connect" tự động khi send</b> — nhưng qua <b>date filter</b> (<code>lastEmailSentDate</code>, sync trễ cỡ phút), KHÔNG phải lifecycle enum (enum không tự nhảy — verified 16/07 chiều, xem ⚠️ §1.3). (3) Có filter <code>In Conversation: Received a reply / No reply</code> tách sub-state ngay trên UI (ảnh 14).</div>
+<div class="call new"><span class="t">[21/07 verify live] 3 enum khác nhau — đừng lẫn: dropdown lifecycle vs ContactLifecycleEnum vs EmailLogCategorizeEnum</span>
+<b>(1) Dropdown lifecycle (<code>CONTACT_LIFECYCLE_OPTIONS</code>) = 14 stage chọn được</b> (verify live 21/07, theo đúng thứ tự filter): Prospect · In Conversation · Interested · Not Now · Opted Out · Email Updated · Do Not Contact · Left The Company · Not Interested · No Categories · <b>Call Scheduled</b> · Platform Sign Up · In Project · Project Completed. Cách viết chuẩn <b>"Call Scheduled"</b> (KHÔNG phải "Scheduled Call"). Đây là những stage SDR nhìn/đặt được trên UI.
+<b>(2) <code>ContactLifecycleEnum</code> (backend) = 18 giá trị</b> — superset của 14 stage trên + các giá trị hệ thống/không-chọn-tay (Replied · Open · Click · Bounce · Dropped…) do sync/campaign tự gán.
+<b>(3) "OOO / Out Of Office" KHÔNG phải là 1 lifecycle stage</b> — nó tồn tại như <code>EmailLogCategorizeEnum.OutOfOffice</code>, tức 1 <b>chip phân loại per-reply</b> (§5.9), KHÔNG nằm trong dropdown lifecycle. Đây chính là lý do các bản guideline SDR cũ liệt kê nhầm "OOO" như 1 lifecycle: <b>lifecycle (state của contact) và reply-categorize (nhãn của 1 email trả lời) là 2 enum khác nhau</b>.
+<b>(4) <code>LOCKED_LIFECYCLE_VALUES = {PlatformSignUp, InProject, ProjectCompleted}</code></b> — contact đang ở 1 trong 3 stage này thì chip lifecycle <b>read-only</b> (không rời được bằng tay; chi tiết cơ chế khoá ở §5.4c).</div>
+
+<h3 id="queue" class="anchor">1.3 · “Queue” chính là contact list được giao — lọc tự do <span class="b ok">chốt 16/07</span></h3>
+<p>Quyết định thiết kế quan trọng nhất của lean: <b>"queue" không phải hệ thống riêng — nó chính là contact list</b>. SDR mở contact list được giao rồi <b>lọc tự do</b> (Lifecycles · Has signal · keyword · sort) để tự dựng "ngăn việc" — <b>KHÔNG còn 3 view preset cứng</b>: công thức "3 ngăn" của spec đã <b>retired</b>, SDR nay lọc tay theo <a href="user-guideline-sdr-flows.html#page-filters">User guide · Flow 10 (Using filters)</a>. Ba công thức lọc hay dùng dưới đây chỉ là <b>gợi ý</b> (SDR tự bấm, không phải nút bấm sẵn):</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Ngăn việc (gợi ý)</th><th>Công thức filter (trên contact list được assign)</th><th>Bằng chứng UI 16/07</th><th>Ưu tiên</th></tr></thead>
+<tbody>
+<tr><td><b>Replies</b></td><td><code>In Conversation: Received a reply</code> <span class="fn">(= bConversationDate: syncDateRepliedEmailLog có)</span></td><td>Ảnh 14 + API 16/07: <b>3</b>/398</td><td>1 — xử lý trước</td></tr>
+<tr><td><b>Follow-ups</b></td><td><code>In Conversation: No reply</code> + <code>Last Email Sent Date ≤ hôm nay − N</code> <span class="fn">(N: mỗi SDR tự đặt theo lead)</span></td><td>Ảnh 13 + API 16/07: <b>26</b>/398 (N=0)</td><td>2</td></tr>
+<tr><td><b>New Prospects</b></td><td><b>Chưa từng gửi</b> (<code>Last Email Sent Date</code> không tồn tại) <span class="fn">— chính xác hơn Lifecycles=Prospect (sót contact chưa mang nhãn)</span></td><td>Ảnh 12 + API 16/07: <b>369</b>/398 (Prospect: 321)</td><td>3</td></tr>
+</tbody></table></div>
+<p class="fn">Nguyên liệu của các công thức lọc không chỉ có trên UI — chúng là field chính thức của <code>ContactV2ConditionInput</code> (API): <code>bListIds</code> · <code>bLifeCycles</code> · <code>bSyncDateRepliedEmailLog</code> · <code>bLastEmailSentDate</code> (introspect 16/07, xem DTO §5.1).</p>
+<p>Ba filter tự vận hành thành state machine, <b>không cần code thêm</b>: gửi xong → sync ghi <code>lastEmailSentDate</code> (trễ cỡ phút) → rớt khỏi New Prospects, chưa vào Follow-ups (chưa quá N ngày) → <em>"rời việc hôm nay"</em> (SDR.0.12). Khách reply → sync ghi <code>syncDateRepliedEmailLog</code> → tự nhảy sang view Replies. Classify (🥶/🆘) → SDR đổi lifecycle → rớt khỏi các view. Số kiểm chứng 16/07: <b>369 chưa gửi + 29 đã gửi (3 reply + 26 im lặng) = 398 = cả list ✓</b>.</p>
+<div class="call fix"><span class="t">Gap còn lại (2 mảnh nhỏ)</span>(1) <b>Saved filters</b> — để 3 công thức thành 3 nút bấm 1-click, đang <span class="b wip">🔵 In Progress</span> trong sprint. (2) <b>Re-entry rules</b> nhóm 🥶 — thuộc OPS.0.6, chưa chốt (lean: SDR rà tay bằng filter). Còn <b>N ngày follow-up KHÔNG cần chốt chung</b> — quyết định 16/07: mỗi SDR tự đặt theo lead mình nhận.</div>
+
+<h3 id="readiness" class="anchor">1.4 · Readiness 23 flows (sau các quyết định 16/07)</h3>
+<div class="tblwrap"><table>
+<thead><tr><th>Phase</th><th>✅ Chạy được</th><th>🟡 / 🔵 Gần xong</th><th>❌ Chưa có</th></tr></thead>
+<tbody>
+<tr><td><b>0 · Setup</b></td><td><a href="#adm01">ADM.0.1</a> · <a href="#adm03">ADM.0.3</a> · <a href="#adm07">ADM.0.7</a></td><td>—</td><td>—</td></tr>
+<tr><td><b>1 · Lists</b></td><td><a href="#sdr120">SDR.1.20</a> · <a href="#ops08">OPS.0.8</a></td><td>—</td><td><a href="#ops06">OPS.0.6</a> (list rules/approval)</td></tr>
+<tr><td><b>2 · SDR Loop</b></td><td><a href="#sdr01">SDR.0.1</a> · <a href="#sdr025">SDR.0.25</a> · <a href="#sdr03">SDR.0.3</a> · <a href="#sdr010">SDR.0.10</a> · <a href="#sdr011">SDR.0.11</a> · <a href="#sdr012">SDR.0.12</a> · <a href="#sdr013">SDR.0.13</a> · <a href="#sdr015">SDR.0.15</a> · <a href="#sdr016">SDR.0.16</a> · <a href="#sdr018">SDR.0.18</a></td><td>—</td><td><a href="#sdr017">SDR.0.17</a> (handoff)</td></tr>
+<tr><td><b>3 · KAM</b></td><td>—</td><td>—</td><td><a href="#kam">KAM.0.1 · 0.2 · 0.5 · 0.6 · 0.7 · 1.8</a></td></tr>
+</tbody></table></div>
+<p class="fn">So với audit 15/07 (5 ✅ / 7 🟡 / 11 ❌), bức tranh sáng lên đáng kể nhờ 2 quyết định: "queue" = chính contact list + view filter (không cần hệ thống riêng) và ADM.0.7 đổi nghĩa thành admin sửa info (đã có sẵn).</p>
+
+<h2 id="catalog" class="anchor">2 · Catalog GraphQL operations</h2>
+<p>Toàn bộ operation mà chuỗi lean flows chạm vào, đã verify qua <code>target/uat-lean-flow-check.py</code> (15/07, 23 bước PASS) và session UI 16/07:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Operation</th><th>Loại</th><th>Dùng cho flow</th><th>Trạng thái</th></tr></thead>
+<tbody>
+<tr><td><code>customLists</code> / <code>customList</code></td><td>query</td><td>SDR.1.20 · SDR.0.25</td><td><span class="b ok">✅ PASS</span></td></tr>
+<tr><td><code>createCustomList</code></td><td>mutation</td><td>SDR.1.20</td><td><span class="b ok">✅ PASS</span></td></tr>
+<tr><td><code>addContactsCustomList</code> / <code>UpdateMmCompaniesCustomListV2</code></td><td>mutation</td><td>SDR.1.20 (add members)</td><td><span class="b ok">✅ PASS</span> <span class="fn">count có trễ Atlas sync vài giây</span></td></tr>
+<tr><td><code>updateCustomList</code> / <code>bulkUpdateCustomList</code> (<code>assignedToIds</code>)</td><td>mutation</td><td>OPS.0.8</td><td><span class="b ok">✅ PASS</span></td></tr>
+<tr><td><code>customLists</code> filter <code>bAssignedToIds</code></td><td>query</td><td>OPS.0.8 · SDR.0.25</td><td><span class="b ok">✅ PASS</span></td></tr>
+<tr><td><code>selectAdmins</code></td><td>query</td><td>OPS.0.8 (picker, filter Roles)</td><td><span class="b ok">✅</span></td></tr>
+<tr><td><code>mmCompaniesV2</code> / <code>mmCompanyV2</code></td><td>query</td><td>SDR.0.3 (workspace)</td><td><span class="b ok">✅ PASS</span></td></tr>
+<tr><td><code>contactsV2</code> / <code>contactV2</code></td><td>query</td><td>SDR.0.3 · SDR.0.10 · views §1.3</td><td><span class="b ok">✅ PASS</span> <span class="fn">totalItems luôn 0 (bug) → đếm bằng contactV2Count</span></td></tr>
+<tr><td><code>contactV2Count</code></td><td>query</td><td>Đếm số view §1.3 (thay totalItems)</td><td><span class="b ok">✅ PASS 16/07 — số khớp tuyệt đối</span></td></tr>
+<tr><td><code>mmCompanyHistories</code> / <code>contactHistories</code></td><td>query</td><td>SDR.0.3 (timeline chống double-touch)</td><td><span class="b ok">✅ PASS</span></td></tr>
+<tr><td><code>sendEmailLog</code></td><td>mutation</td><td>SDR.0.11 · SDR.0.12</td><td><span class="b ok">✅ PASS</span> <span class="fn">bug mở: chưa prefill subject</span></td></tr>
+<tr><td><code>emailLogs</code> (kèm <code>preEmailLogId</code> thread, <code>categorize</code>)</td><td>query</td><td>SDR.0.12 · SDR.0.15</td><td><span class="b ok">✅ PASS</span></td></tr>
+<tr><td><code>updateLifecycleContactV2</code></td><td>mutation</td><td>SDR.0.16 · SDR.0.18</td><td><span class="b ok">✅ PASS</span></td></tr>
+<tr><td><code>EmailLogCategorizeEnum</code> (11 giá trị: CallScheduled · DoNotContact · EmailUpdated · Interested · LeftTheCompany · NoCategories · NotInterested · NotNow · NotResponded · OptedOut · OutOfOffice — OOO = <code>OutOfOffice</code>)</td><td>enum</td><td>SDR.0.16 per-reply</td><td><span class="b ok">✅ auto-chip hiển thị per-reply</span> <span class="fn">setter tay + side-effect lifecycle = P1 (G5/G20)</span></td></tr>
+<tr><td><code>setCategorizeEmailLog</code></td><td>mutation</td><td>SDR.0.16 per-reply setter tay</td><td><span class="b part">🟡 BE có, chạy OK · auto-classify đã live · CHƯA side-effect lifecycle (verified) — setter tay per-reply còn để ngỏ (G20)</span></td></tr>
+<tr><td><code>contactsV2InDifferentOwner</code> / <code>…Count</code></td><td>query</td><td>SDR.0.10 team coverage (§5.4b)</td><td><span class="b ok">✅ verify 20/07</span> <span class="fn">= contactsV2 bỏ scoping owner; FE bound = company + 5 lifecycle nóng</span></td></tr>
+<tr><td><code>relinkWorkExperienceCompany</code> / <code>bulkRelinkContactsWorkExperienceCompany</code> / <code>findContactsWithLinkedAliasMatch</code></td><td>mutation/query</td><td>ADM.0.3 Relink WE (§3.2)</td><td><span class="b ok">✅ mới 20/07</span> <span class="fn">thay Unlink; company-scoped + alias match ^alias$</span></td></tr>
+<tr><td><code>EmailLogType</code> (draft · replied · sentOut)</td><td>enum</td><td>SDR.0.15 conversation thread (hướng message)</td><td><span class="b ok">✅</span> <span class="fn">là HƯỚNG email, KHÁC categorize; chip lifecycle = <code>ConversationEmailLog.lifecycle</code> read-only</span></td></tr>
+<tr><td>"View as role" preview</td><td>client-side</td><td>ADM.0.1/0.7 (§Δ3 #11)</td><td><span class="b ok">✅ mới</span> <span class="fn">sessionStorage <code>admin-role-preview</code>, không gọi API — chỉ đổi render</span></td></tr>
+<tr><td>Deal pipeline (tạo deal từ Interested)</td><td>—</td><td>SDR.0.17</td><td><span class="b gap">❌ chưa có</span> <span class="fn">Deal v2 hiện là data M&amp;A crawl, khác nghĩa</span></td></tr>
+<tr><td>Zoom booking / recording / transcript</td><td>—</td><td>KAM.0.1–1.8</td><td><span class="b gap">❌ chưa có</span> <span class="fn">recording/transcript đã chạy cho Interview/Meeting, chưa nối KAM call</span></td></tr>
+</tbody></table></div>
+
+<div class="call new"><span class="t">Shape input/output đã verify bằng introspection 16/07</span>Toàn bộ khối DTO trong tài liệu lấy từ schema UAT thật qua <code>target/uat-introspect-lean-ops.py</code> → <code>target/_lean_ops_shapes.json</code> — không chép từ spec. Phát hiện đáng giá: (1) filter <code>bLastEmailSentDate</code> · <code>bLifeCycles</code> · <code>bSyncDateRepliedEmailLog</code> · <code>bListIds</code> là field chính thức của <code>ContactV2ConditionInput</code> ⇒ các công thức lọc của §1.3 chạy được cả ở tầng API; (2) mutation <code>setCategorizeEmailLog</code> đã tồn tại ⇒ classify per-reply có sẵn ở tầng data (nay BE đã có producer auto-chip; setter tay còn để ngỏ).</div>
+
+<!-- ============ PHASE 0 ============ -->
+<h2 id="adm01" class="anchor">3 · Phase 0 — Setup (Admin)</h2>
+<h3 class="fh">3.1 · ADM.0.1 — Tạo user + gán role SDR / KAM <span class="b ok">✅ Có</span></h3>
+<figure class="mid"><img src="01-adm-users-list.png" alt="Users list"/><figcaption><b>Hình 1 — Trang quản lý Admins.</b> Cột Roles có badge <b>SDR</b>, <b>KAM</b> riêng (SDR Internal Fintalent, KAM Fintalent, SDR Fintalent) bên cạnh các role cũ (Admin, Super Admin, Data Manager…). Filter theo Roles ngay trên đầu trang.</figcaption></figure>
+<div class="grid2">
+<figure class="crop"><img src="02-adm-create-user-role-dropdown.png" alt="Create user"/><figcaption><b>Hình 2 — Modal Create new Admin.</b> First/Last name, Email (req), Roles (req — dropdown chọn SDR/KAM), password tự generate.</figcaption></figure>
+<figure class="crop"><img src="05-sdr-login-scope.png" alt="SDR login"/><figcaption><b>Hình 3 — Login bằng account SDR.</b> SDR vào menu Sales Management và chỉ thấy list được giao (scope đúng).</figcaption></figure>
+</div>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Step (spec)</th><th>Thực tế UAT</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Admin tạo user account cho từng người</td><td><span class="b ok">✅</span> modal Create new Admin (hình 2)</td></tr>
+<tr><td>2</td><td>Gán role SDR / KAM / Ops / Admin</td><td><span class="b ok">✅</span> role SDR + KAM đã có; <span class="b gap">❌ chưa có role Ops riêng</span> (Ops đang dùng Admin/Sale Admin)</td></tr>
+<tr><td>3</td><td>Verify quyền đúng theo role ("KAM calls-only" là permission)</td><td><span class="b part">🟡</span> phân quyền chi tiết đang In Progress; chưa có permission "KAM calls-only"</td></tr>
+<tr><td>4</td><td>User login thấy đúng phạm vi của mình</td><td><span class="b ok">✅</span> hình 3 — SDR chỉ thấy 2 list được giao</td></tr>
+</tbody></table></div>
+<div class="call new"><span class="t">[21/07 verify live] Bộ role + tầng API</span>Cột Roles của trang Admins có <b>7 role</b> đã xác nhận live: <b>SDR · KAM · Data Manager · Super Admin · Admin · Sale Admin · Campaign Manager</b> (role là multi-select — 1 user có thể mang nhiều role). Tầng API: picker/list admin dùng <code>selectAdmins(query: AdminQueryInput)</code> → <code>SelectAdmin{id, fullName, email, firstName, lastName, avatar, isActive}</code>; lọc theo role qua <code>AdminConditionInput.bRoles</code> (<code>AdminV2FilterInput</code>). <span class="fn">Mutation tạo/sửa admin (form "Create new Admin", gán role, generate password) chưa nằm trong introspection lean-ops — <b>// mutation shape (createAdmin/updateAdmin) cần introspect lại</b>.</span></div>
+
+<h3 id="adm03" class="anchor fh">3.2 · ADM.0.3 — Import companies + contacts <span class="b ok">✅ Có</span></h3>
+<p>Data companies + contacts đã có sẵn trong hệ thống (import từ nguồn crawl/CRM cũ). SDR có quyền sửa record và tạo contact mới khi thiếu:</p>
+<figure class="crop"><img src="04-adm-create-contact.png" alt="Create contact"/><figcaption><b>Hình 4 — Create Contact.</b> Identifier = LinkedIn URL <i>hoặc</i> email (bắt buộc 1 trong 2 — chống trùng ngay từ input); First/Last name optional.</figcaption></figure>
+<div class="call note"><span class="t">Ghi chú lean</span>Bulk import theo file (step 1–5 của spec) không cần lặp lại cho launch vì data đã nạp; dedupe đầy đủ theo data standards vẫn là backlog. Việc còn lại của flow này chỉ là bổ sung contact lẻ (hình 4).</div>
+<div class="call new"><span class="t">Kiểm chứng UI 16–17/07 — 3 hành vi kỹ thuật của Create Contact</span>
+(1) <b>Dedupe UI</b>: nhập email/LinkedIn đã tồn tại → mở panel <b>"Duplicate Found — Step 2 of 2"</b> hiển thị contact cũ để sửa tại chỗ (Back/Done), không tạo record — khớp API status <code>DUPLICATE_FOUND</code> của <code>createContactV2</code> (enum: CREATED · DUPLICATE_FOUND · MERGED, có <code>force</code> để merge).
+(2) <b>Crawl-on-create</b>: nhập LinkedIn URL → hệ thống tự crawl name, location, avatar, work experience về profile.
+(3) <b>Link WE → company</b>: mỗi dòng work experience chưa link có nút <i>"Link ‹company› to a company"</i> → picker company (company phải tồn tại trong Companies) → click row là link <b>ngay, không confirm</b> (toast "Linked") → màn bonus <b>"Apply ‹company› to N other contacts"</b> áp cùng link cho mọi contact có cùng company text (công cụ normalize hàng loạt). <b>[20/07] Unlink đã retired (15/07) → thay bằng Relink</b>: dòng ĐÃ link nay có icon <b>Relink</b> = trỏ WE sang company khác (cùng picker, mode=relink); relink company-scoped + bulk theo alias, rebuild emails. Muốn "gỡ" = relink lại về company cũ. GQL: <code>relinkWorkExperienceCompany</code> / <code>bulkRelinkContactsWorkExperienceCompany</code> / <code>findContactsWithLinkedAliasMatch</code>. Chi tiết + ảnh: <a href="user-guideline-v3.html#a3-link">user-guideline-v3 · A3+</a>.</div>
+<h4>DTO — tạo contact lẻ + dedupe (verify introspection)</h4>
+<div class="dto"><span class="c">// mutation createContactV2(input) → AdminCreateContactV2Result</span>
+CreateContactV2Input {
+  email? · linkedinUrl?    <span class="c">// identifier — cần ≥1 (chống trùng ngay từ input)</span>
+  firstName? · lastName? · fullName? · title? · companyName? · phoneNumber?
+  linkedCompanyId?: MongoID    mmId?: Int    addressCountry? · location? · emails?: [String!]
+  force?: Boolean          <span class="c">// true = bỏ qua cảnh báo trùng, merge vào contact khớp</span>
+}
+AdminCreateContactV2Result {
+  status<span class="req">*</span>: CreateContactV2Status   <span class="c">// CREATED · DUPLICATE_FOUND · MERGED</span>
+  contact: AdminContact    winnerId?: String    otherMatchedIds?: [String!]
+  existingContacts?: [AdminContactDuplicatePreview{id, matchedBy, fullName, companyName, linkedinUrl, emails}]
+  conflicts?: [AdminCreateContactV2Conflict{field, winnerValue, incomingValue}]
+}
+<span class="c">// status=DUPLICATE_FOUND ⇒ FE mở panel "Duplicate Found — Step 2/2", liệt kê existingContacts để sửa tại chỗ (không tạo record).</span>
+<span class="c">// Bulk import file (step 1–5 spec) KHÔNG cần cho launch — data đã nạp sẵn; dedupe theo data-standards còn là backlog.</span></div>
+
+<h3 id="adm07" class="anchor fh">3.3 · ADM.0.7 — Admin cập nhật info cho SDR / KAM <span class="b ok">✅ Có</span></h3>
+<div class="call fix"><span class="t">Đổi nghĩa 16/07 (khác spec gốc)</span>Spec gốc ADM.0.7 = "Configure sending domains + mailboxes" (SPF/DKIM). Vận hành lean chốt lại: <b>Admin sửa thông tin của SDR/KAM</b> (họ không tự sửa). Cấu hình gửi mail per-user (signature, sender name) nằm ngay trong màn này — hình 5. Phần sending domain/SPF/DKIM tổng thể do dev/infra quản, ngoài phạm vi flow.</div>
+<figure class="mid"><img src="03-adm-edit-user-info.png" alt="Update admin info"/><figcaption><b>Hình 5 — Update Admin Information · tab Email Configuration.</b> Admin sửa cho từng SDR: Signature (rich text), Sender Name, file đính kèm mặc định. Các tab khác: General Setting · Billing · Payment · Activities Log.</figcaption></figure>
+<div class="call new"><span class="t">[21/07 verify live] Update Admin drawer = 5 tab; field lưu ở Email Configuration</span>Drawer "Update Admin Information" có <b>5 tab</b>: <b>General Setting · Billing · Payment · Activities Log · Email Configuration</b>. Tab Email Configuration ghi thẳng vào record <code>Admin</code> (introspect): <b><code>signature</code>: String</b> (rich-text, bake vào body email khi gửi — không có field BE riêng trên email log, xem §5.5) · <b><code>senderName</code>: String</b> · <b><code>attachments</code>: [AdminFileAttachment!]</b> (file đính kèm mặc định — cùng kho với "Attach from document library" ở §5.5). <span class="fn">Mutation lưu (updateAdmin / update-email-config) chưa nằm trong introspection lean-ops — <b>// mutation shape cần introspect lại</b>; các field đích thì đã chắc từ type <code>Admin</code>.</span></div>
+
+<!-- ============ PHASE 1 ============ -->
+<h2 id="sdr120" class="anchor">4 · Phase 1 — Chuẩn bị contact lists (PIC: Ops)</h2>
+<h3 class="fh">4.1 · SDR.1.20 — Tạo list + add contacts <span class="b ok">✅ Có · UAT 4/4 PASS</span></h3>
+<figure class="mid"><img src="06-contacts-filter-panel.png" alt="Contacts filter"/><figcaption><b>Hình 6 — /contacts với filter panel.</b> Ops filter 15.459 contacts theo Lifecycles · In Conversation · Classification · Owner · Work Experience · Countries · Cities · Campaign · <b>Last Email Sent Date</b> · Custom List… rồi chọn và Add to list.</figcaption></figure>
+<div class="grid2">
+<figure class="crop"><img src="07-add-to-list-drawer.png" alt="Add to list"/><figcaption><b>Hình 7 — Drawer Add to list.</b> Apply cho 20 đã chọn <i>hoặc</i> toàn bộ matching (cap 10.000/lần). Chọn list có sẵn hoặc tạo mới.</figcaption></figure>
+<figure class="crop"><img src="08-list-detail-members.png" alt="List detail"/><figcaption><b>Hình 8 — List detail (16072026v1 · 419 members).</b> Tab Members với đầy đủ bộ filter của /contacts áp trong phạm vi list — nền tảng để SDR lọc tự do §1.3; panel trái group theo Lifecycles/Companies.</figcaption></figure>
+</div>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Step</th><th>Operation</th><th>Kết quả 15/07</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Ops mở Lists V2</td><td><code>customLists</code></td><td><span class="b ok">PASS</span></td></tr>
+<tr><td>2</td><td>Filter contacts đã import</td><td><code>contactsV2</code></td><td><span class="b ok">PASS</span></td></tr>
+<tr><td>3</td><td>Tạo list từ kết quả filter</td><td><code>createCustomList</code></td><td><span class="b ok">PASS</span></td></tr>
+<tr><td>4</td><td>Add members + verify count</td><td><code>addContactsCustomList</code> → <code>customList.memberCount</code></td><td><span class="b ok">PASS</span> <span class="fn">count trễ vài giây (Atlas sync)</span></td></tr>
+</tbody></table></div>
+<h4>DTO input/output — verify UAT 16/07</h4>
+<div class="dto"><span class="c">// mutation createCustomList(input) → AdminCustomListDetail</span>
+CreateCustomListInput {
+  name<span class="req">*</span>:          RequiredStringMax2kChars
+  type<span class="req">*</span>:          CustomListTypeEnum        <span class="c">// Contact | Company | Talent</span>
+  contactIds? · mmCompanyIds? · talentIds?: [MongoID]
+  assignedToIds?: [MongoID]                 <span class="c">// giao SDR được ngay lúc tạo</span>
+  category?:      CustomListCategoryEnum
+}
+<span class="c">// mutation addContactsCustomList(ids: [MongoID!]!, input) → [AdminCustomList!]</span>
+AdminAddContactsCustomListInput { contactIds<span class="req">*</span>: [MongoID!] }
+<span class="c">// Output AdminCustomListDetail (field chính)</span>
+{ id, name, type, category, assignedToIds, assignedTo[], memberCount, createdBy, createdDate }</div>
+<h4>Sequence — tạo list &amp; add members xuyên tầng</h4>
+<pre class="mermaid">
+sequenceDiagram
+  autonumber
+  participant Ops as Ops (UI /contacts · Add to list)
+  participant GQL as GraphQL admin-api-uat
+  participant DB as Mongo (custom_lists · contacts)
+  Ops->>GQL: createCustomList(input{name, type: Contact})
+  GQL->>DB: insert custom_lists
+  GQL-->>Ops: AdminCustomListDetail {id, memberCount: 0}
+  Ops->>GQL: addContactsCustomList(ids:[listId], input{contactIds})
+  GQL->>DB: push members
+  GQL-->>Ops: [AdminCustomList]
+  Note over GQL,DB: memberCount sync Atlas trễ vài giây<br/>(verify nên retry)
+  Ops->>GQL: customList(id) — verify memberCount
+</pre>
+
+<h4 id="atl-map" class="anchor">4.1b · Bản đồ Add-to-list — 7 entry point + hành vi membership <span class="b ok">✅ deep-check UI 17/07</span></h4>
+<p>Add-to-list không chỉ có 1 đường từ /contacts — có <b>7 entry point</b>, tất cả hội tụ về cùng 1 kho membership (<code>custom_lists.members</code>) với cùng semantics. Đã chạy thật từng đường trên list QA riêng (tự tạo → verify count → tự xoá):</p>
+<pre class="mermaid">
+flowchart LR
+  subgraph EP["Entry points (UI)"]
+    E1["/contacts — tick n người<br/>hoặc All matching (cap 10.000/run)"]
+    E2["Chip <b>Lists</b> trên từng contact row<br/>→ drawer <b>Manage lists for ‹contact›</b>"]
+    E3["List detail → <b>+ Add members</b><br/>(drawer tự exclude member cũ<br/>qua chip ✕ Custom List)"]
+    E4["Company detail → tab <b>Employees</b>"]
+    E5["/companies — tick company<br/>→ Add to list (list <b>Company</b>)<br/>+ Preview contacts"]
+    E6["Campaign detail → tab <b>People</b>"]
+    E7["Marketing Email → tab <b>People</b>"]
+  end
+  P["Drawer <b>Add to list</b><br/>Apply to: Selected (n) ⊕ All matching<br/>picker chọn list — KHÔNG tạo được list mới"]
+  M[("membership<br/>custom_lists ⟷ contacts")]
+  E1 --> P
+  E3 --> P
+  E4 --> P
+  E6 --> P
+  E7 --> P
+  E2 -->|"tick/untick nhiều list → nút xác nhận<br/>nhãn động: Add to N / Remove from N list(s)<br/>(có + Create New riêng)"| M
+  E5 -->|"list loại Company"| M
+  P --> M
+  M --> V["Bộ lọc của SDR (§1.3)<br/>+ member count (sync trễ vài giây)"]
+  classDef default fill:#fff,stroke:#CCC8D5;
+</pre>
+<div class="tblwrap"><table>
+<thead><tr><th>Hành vi</th><th>Kết quả kiểm chứng 17/07 (UI, list QA)</th></tr></thead>
+<tbody>
+<tr><td>Dedup khi add trùng</td><td><b>Im lặng bỏ qua</b> — add Selected(1) → Members 1; add lại đúng người đó → vẫn 1, không cảnh báo. Membership là upsert idempotent.</td></tr>
+<tr><td>All matching sau khi đổi filter</td><td>Tính lại theo filter <b>hiện tại</b> lúc bấm Add — không giữ tập cũ. Cap 10.000/run (note ngay trong drawer: "This run adds up to 10,000 of N contacts").</td></tr>
+<tr><td>Member count</td><td>Sync trễ vài giây (Atlas) — verify count nên retry; UI Lists page có thể hiện 0 ngay sau add rồi mới nhảy.</td></tr>
+<tr><td>Tạo list mới ở đâu</td><td>Drawer Add-to-list <b>không</b> tạo được (search tên lạ → "No lists found", nút Add disabled). Tạo ở: (1) trang <b>Lists → + Create New</b>; (2) drawer <b>Manage lists</b> per-contact cũng có + Create New.</td></tr>
+<tr><td>Remove members</td><td>Tick member trong list → action bar <b>Remove from list</b> → confirm "Remove N contact(s) from this list?" → count giảm ngay. Không đụng contact gốc.</td></tr>
+<tr><td>Xoá list còn members</td><td><b>Được</b>, không cảnh báo về members — membership chỉ là link, contacts nguyên vẹn.</td></tr>
+<tr><td>Manage lists per-contact (E2)</td><td>Drawer "Manage lists for ‹tên›": toàn bộ list + checkbox (tick = member), sửa nhiều list 1 lần → nút xác nhận <b>nhãn động</b> (Add to N / Remove from N list(s); "Save" disabled khi chưa đổi); kèm Actions (assign owner / delete list) từng row. Verified: tick + Add to 1 list(s) → member count +1. Là đường add/remove <b>1 người lẻ</b> nhanh nhất.</td></tr>
+<tr><td>Campaign / Marketing Email People (E6/E7)</td><td>Đều là bảng contacts đầy đủ filter (campaign thêm Done · Skipped · Personalize) + chip <b>Add to list</b> per-row + bulk selection — cùng component với /contacts.</td></tr>
+<tr><td>Add vào NHIỀU list 1 lần</td><td><b>Được</b> — picker cho tick nhiều list, nút xác nhận thành "Add to N list(s)", 1 click add vào tất cả (verified: 2 list cùng +1).</td></tr>
+<tr><td>"Select all N matching" trên action bar</td><td>Có ngưỡng: tập <b>vượt bulk limit</b> (15,465) → toàn bộ nút action <b>disabled</b> + link Undo; tập nhỏ (21) → enabled bình thường. Muốn add tập lớn: radio <b>All matching</b> trong drawer (tự cap 10.000/run).</td></tr>
+<tr><td>Selection persistence</td><td>Giữ nguyên qua <b>Load more</b> / chuyển tab (verified: 1 selected → Load more → vẫn 1 selected).</td></tr>
+<tr><td>Preview contacts (E5)</td><td>Tick companies → <b>Preview contacts</b> mở bảng contact gộp của các company đã chọn → tick → <b>Add to list</b> hoạt động như thường (verified 17/07).</td></tr>
+<tr><td>Scope theo role (SDR)</td><td>Verified qua Login-as: SDR chỉ thấy contacts thuộc list được giao, <b>không có + Create Contact</b>, Segments không có <b>+ Create New</b>/Actions — quyền "Ops tạo list, SDR làm việc" được UI enforce. (19/07: menu SDR bỏ hẳn trang Contacts.)</td></tr>
+<tr><td><b>[v3] SDR-list gate</b></td><td>List có flag <b>SDR list</b>: membership độc quyền. Contact đã thuộc SDR list khác → add <b>bị bypass + toast skip</b> (không move như form text; Timeline vẫn ghi added — 2 lệch cần dev sửa, xem <a href="#delta3">Δ3#3</a>).</td></tr>
+<tr><td><b>[v3] Tạo list</b></td><td>Chỉ ở <b>Segments → + Create New</b> (modal Type/List name/SDR list). Drawer Add-to-list nay có pagination + filter riêng nhưng vẫn <b>không</b> tạo được list.</td></tr>
+<tr><td><b>[v3] Member count</b></td><td>Lag nặng hơn với list mới (0 kéo dài &gt;60s) — nguồn sự thật là <b>Members tab</b> + <b>Timeline</b>.</td></tr>
+</tbody></table></div>
+<div class="grid2">
+<figure class="crop"><img src="65-manage-lists-for-contact.png" alt="Manage lists"/><figcaption><b>Hình 6b — Drawer "Manage lists for ‹contact›"</b> (mở từ chip Lists trên row): checkbox từng list, + Create New, Save.</figcaption></figure>
+<figure class="crop"><img src="66-campaign-people-tab.png" alt="Campaign people"/><figcaption><b>Hình 6c — Campaign · tab People.</b> Bảng contacts + chip Add to list per-row — entry point E6.</figcaption></figure>
+</div>
+<div class="call note"><span class="t">Mapping GraphQL</span>Mọi entry point cuối cùng đều gọi <code>addContactsCustomList(ids:[listId], input{contactIds})</code> (bulk) hoặc cập nhật membership qua <code>updateCustomList/bulkUpdateCustomList</code> (drawer Manage lists sửa nhiều list 1 lần). Remove members = biến thể remove của cùng nhóm mutation. Số liệu view đọc bằng <code>contactV2Count</code> với filter <code>bListIds</code> (§2).</div>
+
+<h3 id="ops08" class="anchor fh">4.2 · OPS.0.8 — Assign list cho SDR <span class="b ok">✅ Có</span></h3>
+<div class="grid2">
+<figure class="crop"><img src="09-list-assign-sdr.png" alt="Assign owner"/><figcaption><b>Hình 9 — Assign owner trên list.</b> Picker <b>filter được theo Roles: SDR</b> — chọn đúng người theo role (điểm spec từng ghi "chưa ràng buộc role" nay đã có ở picker).</figcaption></figure>
+<figure class="crop"><img src="10-sdr-my-lists.png" alt="SDR my lists"/><figcaption><b>Hình 10 — Góc nhìn SDR sau khi được giao.</b> Login SDR Internal Fintalent → Lists chỉ hiện 2 list của mình (16072026v1 · 15072026v2).</figcaption></figure>
+</div>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Step</th><th>Thực tế</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Ops chọn list</td><td><span class="b ok">✅</span></td></tr>
+<tr><td>2</td><td>Assign cho 1 SDR + priority flag</td><td><span class="b ok">✅</span> <code>assignedToIds</code> (updateCustomList / bulkUpdateCustomList) — <span class="b gap">❌ chưa có priority flag</span> (P2)</td></tr>
+<tr><td>3</td><td>Members đổ vào view New Prospects của rep</td><td><span class="b ok">✅ theo model mới</span> — member mới mặc định lifecycle Prospect → tự xuất hiện khi SDR bấm filter New Prospects (§1.3)</td></tr>
+<tr><td>4</td><td>Rep nhìn thấy list được giao</td><td><span class="b ok">✅</span> hình 10 + filter <code>bAssignedToIds</code> PASS</td></tr>
+</tbody></table></div>
+<h4>DTO — assign qua assignedToIds (verify UAT 16/07)</h4>
+<div class="dto"><span class="c">// mutation updateCustomList(id: MongoID!, input) → AdminCustomListDetail — assign = set assignedToIds</span>
+UpdateCustomListInput { name<span class="req">*</span>, type<span class="req">*</span>, assignedToIds?: [MongoID], contactIds?, category?, … }
+<span class="c">// bulkUpdateCustomList: adds/removes assignedToIds trên nhiều list một lần (PASS 15/07)</span>
+<span class="c">// SDR đọc list của mình: query customLists(query{condition{bAssignedToIds…}, pagination}) → AdminCustomListPaginatedResponse</span></div>
+
+<h3 id="ops06" class="anchor fh">4.3 · OPS.0.6 — List rules (approval + hằng số vận hành) <span class="b gap">❌ Chưa có</span></h3>
+<div class="call fix"><span class="t">Đổi nghĩa 16/07</span>"Queue rules" trong spec = <b>list rules</b> trong lean: (a) <b>list approval</b> — duyệt list trước khi giao cho SDR; (b) <b>rule vận hành</b> nằm trong định nghĩa 3 filter §1.3: re-entry rule cho nhóm 🥶 (VD Not Now → 3 tháng), thứ tự ưu tiên view. Riêng N ngày follow-up: <b>mỗi SDR tự đặt theo lead</b> (16/07), không cần chốt chung.</div>
+<div class="aslist">
+<div class="as"><h4>As-is</h4><p>Chưa có approval gate (spec lean gốc từng chấp nhận "Ops tạo = Ops duyệt", gate để B2 — nay chốt là hạng mục riêng chưa làm). Re-entry 🥶 <b>chưa được sign-off</b> — blocker #7 (phần N follow-up đã gỡ: per-SDR, 16/07).</p></div>
+<div class="to"><h4>To-be (đề xuất)</h4><p>(1) Ops sign-off re-entry per nhãn 🥶 + thứ tự view (N follow-up: mỗi SDR tự đặt, khỏi sign-off). (2) Encode vào <b>saved filters</b> đặt tên chuẩn (<code>Q1-Replies</code> · <code>Q2-Followups</code> · <code>Q3-NewProspects</code>) — hằng số sống trong filter, đổi rule = sửa filter, không cần config UI. (3) Approval: thêm trạng thái <code>draft/approved</code> trên custom list, chỉ list approved mới assign được (contract nhỏ trên <code>updateCustomList</code>).</p></div>
+</div>
+
+<h4>Activity — hành trình Ops chuẩn bị &amp; giao list (kèm approval gate to-be)</h4>
+<pre class="mermaid">
+flowchart TD
+  A(["Ops cần feed việc cho SDR"]) --> B["Filter /contacts theo ICP (§4.1)"]
+  B --> C["Add to list — tạo mới / chọn list có sẵn"]
+  C --> D{"Chất lượng list ổn?"}
+  D -->|"Chưa — lọc lại"| B
+  D -->|"Ổn"| E{{"❌ to-be OPS.0.6: approval gate<br/>draft → approved (chỉ list approved mới assign được)"}}
+  E --> F["Assign list cho SDR — assignedToIds (§4.2)"]
+  F --> G["Member chưa-từng-gửi tự xuất hiện<br/>trong view New Prospects của SDR (§1.3)"]
+  G --> H(["SDR bắt đầu vòng lặp §5"])
+  classDef default fill:#fff,stroke:#CCC8D5;
+</pre>
+
+<!-- ============ PHASE 2 ============ -->
+<h2 id="sdr01" class="anchor">5 · Phase 2 — The SDR Loop</h2>
+<p class="fn">Toàn bộ 11 flow của Phase 2 là MỘT vòng lặp: contact list → workspace → email → follow-up → reply → classify → quay lại list hoặc thoát ra deal/suppression.</p>
+<h4>Activity — một ngày làm việc của SDR (vòng lặp Replies → Follow-ups → New Prospects)</h4>
+<pre class="mermaid">
+flowchart TD
+  A(["SDR login"]) --> B["Mở contact list được giao (§5.2)"]
+  B --> C{"View REPLIES<br/>còn contact?"}
+  C -->|"Có"| D["Mở reply kèm thread (§5.8)"]
+  D --> E["Classify 1/9 nhãn (§5.9)"]
+  E --> F{"Nhãn?"}
+  F -->|"✅ Interested"| G["(to-be G2) tạo deal →<br/>handoff KAM (§5.10)"]
+  F -->|"🥶 tạm dừng / 🆘 loại"| H["Contact rời các view"]
+  G --> C
+  H --> C
+  C -->|"Hết"| I{"View FOLLOW-UPS<br/>còn contact đến hạn N?"}
+  I -->|"Có"| J["Mở thread → reply tiếp (§5.7)"]
+  J --> K["Sent date reset →<br/>contact lặn N ngày"]
+  K --> I
+  I -->|"Hết"| L{"View NEW PROSPECTS<br/>còn contact?"}
+  L -->|"Có"| M["Mở workspace →<br/>tự chọn người (§5.3–5.4)"]
+  M --> N["Compose 1:1 → Send (§5.5–5.6)"]
+  N --> O["Auto-log + sync lastEmailSentDate<br/>→ 'rời việc hôm nay'"]
+  O --> L
+  L -->|"Hết"| P(["Xong việc hôm nay"])
+  classDef default fill:#fff,stroke:#CCC8D5;
+</pre>
+<p class="fn" style="text-align:center">Thứ tự ưu tiên: Replies → Follow-ups → New Prospects. Mọi hành động đều tự đưa contact ra khỏi bộ lọc tương ứng — hết cả 3 nhóm = xong việc.</p>
+<h4>Vòng lặp SDR ↔ User guide Flow — cả vòng đã chạy, chỉ hở đúng bước hand-off</h4>
+<pre class="mermaid">
+flowchart TD
+  L["Login<br/>(Flow 1)"] --> O["Mở list được giao &amp; tìm contact<br/>(Flow 2)"]
+  O --> M["Quản lý / classify contact<br/>(Flow 3)"]
+  M --> S["Gửi email 1:1<br/>(Flow 4)"]
+  S --> RP(["Khách reply về"])
+  RP --> IN["Inbox: đọc &amp; trả lời<br/>(Flow 5)"]
+  IN --> FU["Follow-up khi khách im lặng<br/>(Flow 6)"]
+  FU --> OC["Kênh khác — WhatsApp / LinkedIn<br/>(Flow 7)"]
+  OC --> Q{"Interested?"}
+  Q -->|"Chưa · 🥶 tạm dừng · 🆘 loại"| O
+  Q -->|"Có ✅"| HO["Hand-off sang KAM<br/>(Flow —, ❌ SDR.0.17 chưa build)"]
+  class L,O,M,S,RP,IN,FU,OC,Q ok;
+  class HO gap;
+  classDef default fill:#fff,stroke:#CCC8D5;
+  classDef ok fill:#ECFDF3,stroke:#12B76A;
+  classDef gap fill:#FEE4E2,stroke:#D92D20,color:#912018;
+</pre>
+<p class="fn" style="text-align:center">Xanh = bước đã chạy được (Flow 1–7 map thẳng vào User guide) · Đỏ = lối ra Interested→KAM chưa build (SDR.0.17). Vòng lặp trọn vẹn trừ đúng 1 hand-off.</p>
+
+<h3 class="fh">5.1 · SDR.0.1 — Login → contact list, lọc tự do <span class="fn">(spec gọi là "Sales Queue 3 ngăn")</span> <span class="b ok">✅ Có</span> <span class="fn">↔ User guide: <a href="user-guideline-sdr-flows.html#page-login">Flow 1–2</a></span></h3>
+<p>SDR login → mở contact list được giao → <b>lọc tự do</b> (§1.3); 3 công thức lọc hay dùng minh hoạ dưới đây (SDR tự bấm, không phải nút preset). Bằng chứng:</p>
+<figure class="mid"><img src="11-filter-lifecycle-dropdown.png" alt="Lifecycle filter"/><figcaption><b>Hình 11 — Filter Lifecycles trong list member view.</b> Dropdown đủ enum: Prospect · In Conversation · Interested · Not Now · Opted Out · Email Updated · Do Not Contact · Left The Company · Not Interested… (mỗi giá trị có include/exclude).</figcaption></figure>
+<div class="grid2">
+<figure class="crop"><img src="12-bucket-new-prospects.png" alt="New prospects bucket"/><figcaption><b>Hình 12 — View New Prospects.</b> <code>Lifecycles: Prospect</code> trên list 419 members → 322 contacts chưa đụng vào.</figcaption></figure>
+<figure class="crop"><img src="14-bucket-replies.png" alt="Replies bucket"/><figcaption><b>Hình 13 — View Replies.</b> Filter <code>In Conversation: Received a reply</code> (Yes/No + Received a reply/No reply) → 7 contacts cần xử lý.</figcaption></figure>
+</div>
+<div class="call new"><span class="t">[21/07 verify live] Cơ chế panel filter Lifecycles + "+ Add filter"</span><b>(1) Mỗi giá trị lifecycle</b> trong panel = <b>1 checkbox + nút xanh ✓ (include) + nút đỏ ✕ (exclude)</b> ⇒ chọn được cả 2 chiều "phải có nhãn X" / "loại nhãn X" trên cùng 1 dòng. Đầu panel có <b>2 radio Has a lifecycle / No lifecycle</b> (lọc contact có/không mang bất kỳ nhãn nào) + <b>ô search</b> + <b>⊕ Paste list</b> (dán loạt giá trị). <b>(2) "+ Add filter"</b> mở panel <b>"Customize Quick Filters"</b> — pin/reset từng filter vào thanh quick bar (checkbox per-filter, nút "Reset defaults", dòng đếm "N filters pinned to quick bar"); "Last Email" là <b>cột</b>, không phải filter trong registry.</div>
+<div class="call new"><span class="t">[21/07 verify live] Thanh filter list-detail = Lifecycles + Has signal (signal có 2 CẤP)</span><b>Sửa lại bản trước</b> — "chỉ filter Lifecycles" (§Δ3 #5) là do <b>stale localStorage view-pref</b> giấu mất Has signal + cột Signals; build 21/07 thực tế: <b>(1) Thanh filter members</b> (phải, lọc CONTACT) = <b>2 filter: Lifecycles + Has signal</b>. <b>(2) Cột Signals</b> của bảng members hiện 2 loại chip — <b>⚡ event</b> (tin công ty: fund launch/acquisition…) vs <b>💼 job</b> (đổi chức danh cấp cá nhân), kèm tuổi ("2mo", "+2") — cùng phân loại với §5.5 Way-4. <b>(3) Rail company trái</b> (khi expand <code>»</code>) filter = <b>Lifecycle + Has signal</b> nhưng lọc trên <b>COMPANIES</b>. ⇒ <b>"Has signal" tồn tại 2 CẤP</b>: members bar = <i>contact đích thân</i> có signal; rail = <i>company</i> có signal. <b>Evidence URL/field:</b> Has signal (members) → <code>clMemberContact_bHasSignal=eq:true</code> · Lifecycles (members) → <code>clMemberContact_bLifeCycles=in:Prospect</code> · chọn company ở rail → <code>clMemberContact_bWorkExperiences … linkedCompanyIds:[‹id›]</code>. ⇒ <code>ContactV2ConditionInput</code> có thêm field <code>bHasSignal</code> <span class="fn">(// field name suy từ URL param — confirm khi introspect lại, chưa có trong bản introspect 16/07)</span>. <b>Số kiểm chứng</b> (list 17072026v3 = 359 members / 111 companies): Lifecycles ✓ Prospect (members) <b>359 → 107</b> · Has signal Yes (members) <b>359 → 246</b> · Has signal Yes (rail company) <b>111 → 29</b>.</div>
+<h4>Ba bề mặt filter của lean — mỗi thanh lọc cái gì (số kiểm chứng list 17072026v3)</h4>
+<pre class="mermaid">
+flowchart TD
+  subgraph MB["List · thanh members — lọc CONTACT"]
+    MB1["Lifecycles<br/>Prospect: 359 → 107"]
+    MB2["Has signal (cấp CONTACT)<br/>Yes: 359 → 246"]
+  end
+  subgraph CR["List · rail company — lọc COMPANY (rồi ra người của company đó)"]
+    CR1["Lifecycle"]
+    CR2["Has signal (cấp COMPANY)<br/>Yes: 111 → 29"]
+  end
+  subgraph IB["Inbox · thanh filter — lọc thread/reply"]
+    IB1["Lifecycles · Contact Classification · Owner"]
+    IB2["Work Experience → Company type<br/>Sponsor: 27 → 25"]
+    IB3["Countries · Cities · + Add filter"]
+  end
+  MB --> R1(["Tập CONTACT đã lọc"])
+  CR --> R2(["Company khớp → người của company đó"])
+  IB --> R3(["Thread / reply đã lọc"])
+  MB2 -.->|"cùng tên 'Has signal' · KHÁC cấp"| CR2
+  classDef default fill:#fff,stroke:#CCC8D5;
+</pre>
+<p class="fn">Ba bề mặt độc lập: thanh members lọc trực tiếp trên CONTACT · rail company lọc trên COMPANY rồi trả về người của company khớp · thanh Inbox lọc thread/reply. <b>"Has signal" tồn tại 2 cấp</b> — contact đích thân có signal (members) vs company có signal (rail).</p>
+<div class="aslist">
+<div class="as"><h4>As-is</h4><p>Lọc tự do chạy được ngay; SDR bấm filter tay mỗi lần (3–4 click) để dựng ngăn việc. Chưa có "zero-decision entry" — login xong phải tự điều hướng vào list.</p></div>
+<div class="to"><h4>To-be</h4><p><b>Saved filters</b> (🔵 In Progress) → 3 công thức lọc thành nút 1-click. Sau đó: landing mặc định của role SDR = list view với saved filter Q1 bật sẵn (P1, FE nhỏ).</p></div>
+</div>
+<h4>DTO — công thức lọc ở tầng API (chạy thật 16/07 chiều, số khớp tuyệt đối)</h4>
+<div class="dto"><span class="c">// Đếm: dùng contactV2Count(query) — LƯU Ý totalItems của contactsV2 luôn = 0 (bug BE đã biết)</span>
+<span class="c">// Membership: bListIds — filter shape: GroupFieldFilterInput{operator, items:[FieldFilterInput{operator!, value:[JSON]}]}</span>
+<span class="c">// "In Conversation" của UI = bConversationDate (composite theo NGÀY, không phải lifecycle enum):</span>
+ConversationDateV2FilterItemInput { syncDateRepliedEmailLog: [FieldFilterInput], lastEmailSentDate: [FieldFilterInput] }
+
+<span class="c">// === 3 công thức lọc — verify trên list 16072026v1 (398 members) — 369 + 29(=3+26) = 398 ✓ ===</span>
+<span class="c">// NEW PROSPECTS — chưa từng gửi                                          → 369</span>
+{ bListIds: {operator:"and", items:[{operator:"in", value:[listId]}]},
+  bConversationDate: {operator:"and", items:[{ lastEmailSentDate: [{operator:"exists", value:[false]}] }]} }
+<span class="c">// REPLIES — đã có trả lời (ưu tiên 1)                                     → 3</span>
+{ bListIds: …, bConversationDate: {operator:"and", items:[{ syncDateRepliedEmailLog: [{operator:"gte", value:["1980-01-01"]}] }]} }
+<span class="c">// FOLLOW-UPS — gửi rồi, im lặng quá N ngày (N mỗi SDR tự đặt)             → 26 (N=0)</span>
+{ bListIds: …, bConversationDate: {operator:"and", items:[{ syncDateRepliedEmailLog: [{operator:"exists", value:[false]}],
+                                                            lastEmailSentDate: [{operator:"lte", value:["(now − N)"]}] }]} }</div>
+<div class="call fix"><span class="t">⚠️ 2 điểm verify 16/07 chiều — chỉnh lại cách hiểu buổi sáng</span>(1) <b>"In Conversation" của UI là filter theo ngày gửi/reply</b> (bConversationDate), không phải lifecycle enum — vì vậy nó "tự động" đúng nghĩa: gửi xong <code>lastEmailSentDate</code> xuất hiện (qua sync job, <b>trễ cỡ phút</b> — contact QA sau ~5 phút chưa thấy). (2) <b>Lifecycle enum KHÔNG tự nhảy khi send</b> (test: send xong lifecycle vẫn rỗng) — enum chỉ đổi khi SDR classify. Hệ quả: <b>view nên dựa trên bConversationDate</b> (nguồn sự thật đã-gửi/đã-reply); lifecycle enum dùng cho classify + suppression. Công thức lifecycle <code>Prospect</code> vẫn chạy (321/398) nhưng sót 48 contact chưa gửi mà không mang nhãn Prospect (VD contact tạo tay có lifecycle <b>rỗng</b> — verified).</div>
+
+<h3 id="sdr025" class="anchor fh">5.2 · SDR.0.25 — Xem list được giao <span class="b ok">✅ Có</span> <span class="fn">↔ User guide: <a href="user-guideline-sdr-flows.html#page-login">Flow 1–2</a></span></h3>
+<p>Hình 10 (§4.2): SDR thấy đúng các list của mình kèm member count. Danh sách list "được giao" = query <code>customLists</code> lọc theo assignee = user hiện tại; row hiển thị <code>memberCount</code> + badge role của <code>assignedToIds</code> + cột Category (<code>category:SDR</code>). <b>Gap P2:</b> chưa có cột "work-through progress" (VD "34 of 120 worked") — lean có thể suy từ count các bộ lọc (worked = tổng − New Prospects).</p>
+<h4>DTO — list được giao (verify introspection)</h4>
+<div class="dto"><span class="c">// query customLists(query: CustomListQueryInput) → AdminCustomListPaginatedResponse{items:[AdminCustomList!], totalItems}</span>
+CustomListConditionInput {
+  bAssignedToIds<span class="req">▸</span>: GroupFieldFilterInput   <span class="c">// = [userId của SDR] ⇒ chỉ list assign cho mình</span>
+  type: CustomListTypeEnum   <span class="c">// Contact</span>    keyword? · bMemberCount? · bCreatedBy? · bCreatedDate?
+}
+AdminCustomList {
+  id · name · <b>memberCount</b>: Int · <b>assignedToIds</b>: [MongoID!] · assignedTo: [Admin!]
+  <b>category</b>: CustomListCategoryEnum   <span class="c">// SDR | KAM — "SDR" là giá trị cột Category, không phải badge riêng</span>
+  type: CustomListTypeEnum · contactIds: [MongoID!] · createdBy: MetadataUser
+}
+<span class="c">// ▸ FE lấy filter membership qua bAssignedToIds; count list qua totalItems của response này (KHÁC contactsV2 vốn trả totalItems=0).</span></div>
+<div class="call new"><span class="t">[21/07 verify live] View-as-role scoping — SDR thấy 8/15 menu</span>Menu <b>Sales Management (v2)</b> của admin đủ = <b>15 mục</b>: Segments (Lists) · Inbox · Meetings · Contacts · Companies · Email Queues · Email Logs · Signals · Deals · Job Search · Message Templates · Snippets · Documents · Campaigns · Marketing Emails. View SDR (view-as-role hoặc SDR thật) <b>ẩn 7 mục</b> {Contacts · Companies · Email Queues · Email Logs · Signals · Deals · Job Search} ⇒ <b>SDR còn 8 mục</b>. Đây là lý do SDR chỉ tiếp cận list được giao + inbox, không đụng CRM tổng.</div>
+
+<h3 id="sdr03" class="anchor fh">5.3 · SDR.0.3 — Account / Contact workspace <span class="b ok">✅ Có · UAT 5/5 PASS</span> <span class="fn">↔ User guide: <a href="user-guideline-sdr-flows.html#page-find">Flow 2 (workspace)</a></span></h3>
+<figure class="mid"><img src="15-contact-detail.png" alt="Contact detail"/><figcaption><b>Hình 14 — Contact detail.</b> Panel trái: liên hệ, Lifecycle, Type, Owner, Lists, Emails. Giữa: Work Experience đầy đủ (company + badge Sponsor/Corporate). Tab: Overview · Timeline · Signals · Conversations (41).</figcaption></figure>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Step</th><th>Operation</th><th>Kết quả 15/07</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Mở account từ contact list</td><td><code>mmCompaniesV2</code></td><td><span class="b ok">PASS</span></td></tr>
+<tr><td>2</td><td>Company summary</td><td><code>mmCompanyV2</code></td><td><span class="b ok">PASS</span> summary + contacts/signals/deals count</td></tr>
+<tr><td>3</td><td>Contacts của company</td><td><code>contactsV2</code> (linked company)</td><td><span class="b ok">PASS</span></td></tr>
+<tr><td>4–5</td><td>Activity timeline (chống double-touch)</td><td><code>mmCompanyHistories</code> + <code>contactHistories</code></td><td><span class="b ok">PASS</span></td></tr>
+</tbody></table></div>
+<h4>DTO — contact workspace (verify introspection)</h4>
+<div class="dto"><span class="c">// query contactV2(id: MongoID) → AdminContactV2Detail  — nguồn cho panel detail của workspace</span>
+AdminContactV2Detail {
+  id · firstName · lastName · fullName · avatar · titles: [String!] · emails: [String!]
+  <b>lifeCycles</b>: [String!]   types: [String!]   totalYearsOfExperience: Float   <span class="c">// panel trái: Lifecycle · Type · Experience</span>
+  phoneNumber · addressCountry · addressCity · linkedinUrl                        <span class="c">// facts rail</span>
+  <b>workExperiences</b>: [AdminContactV2WorkExperience{company, position, from, to, ongoing, linkedCompany, emails}]
+  labels: [String!]   listIds: [String!]   ownerIds: [String!]   owners: [Admin!]   <b>customLists</b>: [CustomList!]
+  <b>lastEmail</b>: EmailLog   <b>conversationSnapshot</b>: {lastSentDate, lastRepliedDate, firstRepliedDate, lastConversationDate}
+  companies: [AdminMmCompanyV2Detail!]   dataHealth: {tier, issues, missingFields}   campaignInfos · marketingEmailInfos
+}
+<span class="c">// SDR/KAM: cụm Type/Owner/Lists/Emails bị ẩn (hideSalesFields) — xem §5.4c/§5.5.</span></div>
+
+<h3 id="sdr010" class="anchor fh">5.4 · SDR.0.10 — Tự chọn contact đích <span class="b ok">✅ Có</span> <span class="fn">↔ User guide: <a href="user-guideline-sdr-flows.html#f-pick">Flow 2 (pick contact)</a></span></h3>
+<p>V1 đúng chủ trương "con người quyết định who": SDR đứng ở workspace (hình 14), xem work experience + lifecycle + hoạt động cũ rồi tự chọn ai để email. Không có AI gợi ý — đúng lean, không phải gap.</p>
+<div class="call new"><span class="t">Tầng data của bảng members (verify introspection)</span>Bảng member của list detail chạy trên <code>contactsV2(query: ContactV2QueryInput)</code> → items <code>AdminContactV2</code>, đếm bằng <code>contactV2Count</code> (vì <code>totalItems</code> luôn 0). Dữ liệu từng dòng để SDR ra quyết định chọn người, tất cả nằm trong <code>AdminContactV2</code>: <b><code>lifeCycles</code>: [String!]</b> (cột Lifecycle Stage) · <code>titles</code> · <code>addressCountry</code> · <code>addressCity</code> (cột Country/City tách riêng, sort được — §Δ3 #10) · <b><code>lastEmail</code>: EmailLog</b> + <b><code>conversationSnapshot</code></b>{<code>lastSentDate</code>, <code>lastRepliedDate</code>} (cột Last Contact + aging meter 💬) · <code>owners</code>/<code>ownerIds</code> · <code>customLists</code>. Filter membership + các công thức lọc qua <code>bListIds</code> · <code>bLifeCycles</code> · <code>bConversationDate</code> của <code>ContactV2ConditionInput</code> (§1.3/§5.1). <span class="fn">Cột Signals của list detail lấy từ nguồn signal riêng, KHÔNG phải field trên <code>AdminContactV2</code> — shape signal chưa introspect ở lean-ops.</span></div>
+
+
+<h3 id="sdr010b" class="anchor fh">5.4b · Team coverage — "held by teammates" (contact thuộc <i>different owner</i>) <span class="b ok">✅ verify code + API + UI 20/07</span> <span class="fn">↔ User guide: <a href="user-guideline-sdr-flows.html#page-find">Flow 2 (held by teammates)</a></span></h3>
+<p><b>Tính năng lên UAT sau đợt capture 19/07</b> (FE plan <code>merge-coverage-into-member-table</code>): trong list detail, <b>chọn 1 company ở rail trái</b> → cuối bảng members xuất hiện block <b>dòng xám view-only</b> + pill <b>"N held by teammates"</b> — những contact ở CÙNG COMPANY đó nhưng <b>không thuộc list đang mở</b>, đang được người khác giữ trong list của họ. Mục đích: <b>chống double-touch ở cấp company/account</b> — SDR list độc quyền (§Δ3 #3) chỉ chặn trùng CONTACT, không chặn 2 rep cùng đánh 1 COMPANY qua 2 contact khác nhau; block này lấp đúng lỗ đó (soft guard: chỉ hiển thị, chưa chặn gửi — G1 vẫn mở).</p>
+<figure><img src="v3s-120-held-by-teammates.jpg" alt="Held by teammates"/><figcaption><b>[20/07] QA thật trên UAT</b> — list QA chỉ có 1 member (Shashank Jain, EQT). Chọn card <b>EQT Group</b> ở rail trái → chip "Viewing as EQT Group" + pill <b>"2 held by teammates"</b> + 2 dòng xám <b>Salil Dias Sabir</b>, <b>Julia Zhu</b> (đang nằm trong list của SDR Internal Fintalent / Omer / Admin 02 — lifecycle Platform Sign Up). Dấu ⚠ đỏ cạnh pill = cảnh báo anomaly (chỉ admin thấy): Shashank vừa là member vừa match coverage.</figcaption></figure>
+<h4>Điều kiện hiển thị — contact phải thỏa ĐỦ 4 điều kiện</h4>
+<div style="border:1px solid var(--n-200);border-radius:14px;background:#fff;padding:16px 18px;margin:14px 0">
+  <div style="font-weight:800;margin-bottom:10px">Company X — ai HIỆN trong block "held by teammates"? (sau khi chọn company X ở rail trái)</div>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 14px;font-size:13.5px;align-items:center">
+    <div style="border:1px solid var(--n-200);border-left:4px solid var(--pp-600);border-radius:8px;padding:8px 12px"><b>A</b> — member của list ĐANG MỞ (list bạn) · lifecycle bất kỳ</div>
+    <div><span class="b ok">hiện — dòng MEMBER bình thường</span></div>
+    <div style="border:1px solid var(--n-200);border-left:4px solid #12B76A;border-radius:8px;padding:8px 12px"><b>B</b> — nằm trong list <u>còn sống</u> của NGƯỜI KHÁC · lifecycle nóng: Interested / Call Scheduled / Platform Sign Up / In Project / Project Completed <b>(= từ Interested trở lên trong funnel — chốt Đông 20/07)</b></div>
+    <div><span class="b ok">✔ HIỆN — dòng xám "held by teammates" (view-only)</span></div>
+    <div style="border:1px solid var(--n-200);border-left:4px solid var(--n-400);border-radius:8px;padding:8px 12px"><b>C</b> — trong list người khác nhưng lifecycle Prospect / In Conversation / nhãn đóng (Not Interested, Opted Out…)</div>
+    <div><span class="b" style="background:var(--n-100);color:var(--n-600);border:1px solid var(--n-200)">✘ không hiện — chưa tính là va chạm</span></div>
+    <div style="border:1px solid var(--n-200);border-left:4px solid var(--err);border-radius:8px;padding:8px 12px"><b>D</b> — KHÔNG thuộc list nào (hoặc chỉ thuộc list đã xoá)</div>
+    <div><span class="b" style="background:var(--errbg);color:var(--err);border:1px solid #fcd2cd">✘ không bao giờ hiện — chưa ai giữ</span></div>
+  </div>
+  <div class="fn" style="margin-top:10px">Điều kiện company = có work experience <b>ongoing</b> đã <b>link</b> đúng company đang chọn. Query bị bound chặt (không chọn company → không fetch gì). Member của list đang mở bị dedup khỏi block. Verify UAT 20/07: Battery Ventures 181 người @company → coverage 173; 2 người ngoài list + 6 người chỉ còn list-đã-xoá không bao giờ hiện. <b>[20/07 re-check FE]</b> Coverage files (<code>use-coverage-rows.ts</code>, <code>contacts-v2-in-different-owner*</code>) byte-identical so với 19/07 — logic không đổi.</div>
+</div>
+<h4>Semantics đã kiểm chứng (API 20/07, token SDR "Dong SDR" + đối chứng admin)</h4>
+<div class="tblwrap"><table>
+<thead><tr><th>Khía cạnh</th><th>Kết quả verify</th></tr></thead>
+<tbody>
+<tr><td>Nguồn dữ liệu</td><td>Query riêng <code>contactsV2InDifferentOwner</code> (+<code>…Count</code>) — chính là <code>contactsV2</code> nhưng <b>BỎ scoping "chỉ list của tôi"</b>; FE tự bound = company đang chọn (WE ongoing đã link) + 5 lifecycle nóng; <b>không chọn company → không fetch</b> (guard chống đọc cả CRM). Count phải gọi query riêng vì <code>totalItems</code> trả null.</td></tr>
+<tr><td>"Người khác giữ" nghĩa là gì</td><td>Nằm trong ≥1 list <b>còn tồn tại</b> mà người khác giữ — hiểu RỘNG: mọi loại list có người quản (kể cả list của Admin/Sale Admin như Thao/Omer), không riêng SDR list. List đã xoá không tính: 6 contact chỉ còn <code>listIds</code> trỏ list đã xoá bị loại.</td></tr>
+<tr><td>Contact ngoài mọi list</td><td><b>Không bao giờ hiện</b> — probe coverage + <code>bListIds exists:false</code> trả rỗng; contact 0-list tại đúng company không xuất hiện.</td></tr>
+<tr><td>Số đối chứng Battery Ventures (company-only)</td><td>Admin đếm: tổng ongoing <b>181</b> · có list <b>179</b> · ngoài list <b>2</b>. Coverage token SDR: <b>173</b> = 179 − 6 (list đã xoá). EQT Group + 5 lifecycle nóng: coverage = <b>3/3</b> khớp tuyệt đối admin.</td></tr>
+<tr><td>Super admin gọi cùng query</td><td>Rule "different owner" bị <b>bypass</b> — trả cả 181 (kể cả 2 unlisted). Rule chỉ siết với role sales.</td></tr>
+<tr><td><b>2 case (pill vs ⚠) — chính xác từ code</b></td><td><code>coverage.rows</code> (contact ở company + list người khác + hot lifecycle) chia 2 nhánh theo có/không là member list đang mở (<code>use-coverage-rows</code> + drawer <code>index.tsx:668-704</code>): <b>(case 2) KHÔNG ở list đang mở</b> → <code>coverageDeduped</code> → dòng xám + pill <b>"{coverageDeduped.length} held by teammates"</b> (<code>:1257</code>). <b>(case 1) ĐANG ở list đang mở</b> (vừa list mình vừa list người khác) → <code>coverageDups</code> → KHÔNG vào pill; thay vào đó admin/test thấy <b>⚠ "{coverageDups.length} in two lists"</b> (<code>:1282</code>) + highlight amber dòng member. Tức <b>held-by = case 2 (KHÔNG ở list đang mở), ⚠ = case 1 (ở cả 2 list)</b> — <b>chốt Đông 20/07: đúng intent</b>.</td></tr>
+<tr><td>Quyền trên dòng coverage</td><td>Role sales: dòng bị <b>khoá selection</b> (view-only — biết để né, không thao tác được); click pill scroll xuống block.</td></tr>
+</tbody></table></div>
+<div class="call note"><span class="t">Ý nghĩa trong flow SDR (quy trình đề xuất)</span>Định email ai đó ở company X → chọn X ở rail trái: (1) block <b>rỗng</b> = company "sạch" → cứ gửi. (2) Block <b>có người</b> = đồng đội đang giữ contact ở stage nóng tại company này → <b>đừng email ai ở company X vội</b>: nhìn cột Owner/Lists của dòng xám để biết ai giữ → hỏi người đó trước (phối hợp hoặc nhường), hoặc chuyển sang company khác trong list. "Bỏ qua hay phối hợp" là quy ước team (giống handoff #5) — hệ thống chỉ hiển thị, không chặn. Khi deal pipeline chưa build (G2), block này chính là proxy "account đang có deal của ai".</div>
+<p class="fn">Chưa chốt (cần dev confirm): (1) contact nằm trong list KHÁC của <i>chính mình</i> có bị BE loại không — FE chỉ dedup member của list đang mở; (2) list <i>không assign cho ai</i> có tính là "người khác giữ" không (mọi list ở Battery đều có assignee nên chưa tách được). Nguồn FE: <code>use-coverage-rows.ts</code> · <code>contacts-v2-in-different-owner.gql.ts</code> (commit "merge team-coverage rows into member table").</p>
+
+<h3 id="sdr045" class="anchor fh">5.4c · Member-row actions + role gating + lifecycle lock <span class="b ok">✅ verify source 20/07</span></h3>
+<p>Action trên 1 dòng member (list detail) — bảng chia <b>2 mode</b> (Lean/Simple vs Full); SDR/KAM hard-lock ở Simple. Gating verify từ source HEAD:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Action</th><th>Vị trí</th><th>SDR/KAM</th><th>Admin</th><th>Evidence</th></tr></thead>
+<tbody>
+<tr><td>Open detail</td><td>Click name/title → overlay <code>contact-v2:detail</code></td><td>✔</td><td>✔</td><td>ungated</td></tr>
+<tr><td>Lifecycle chip (classify)</td><td>Cột Lifecycle (lean) / inline (full)</td><td>✔ (chip <b>vẫn editable</b> cho SDR)</td><td>✔</td><td><code>contacts-v2-columns.tsx:657</code> không readonly</td></tr>
+<tr><td>Signal · Last Contact · ✉ Send · WhatsApp · LinkedIn</td><td>Cột + icon comms</td><td>✔</td><td>✔</td><td>comms icons luôn render <code>contact-actions/index.tsx:227,240</code></td></tr>
+<tr><td>Add to Campaign / Marketing Email / another List · Remove from list · Delete · Update bucket</td><td><b>⋮ More</b> menu</td><td><b>✘ ẩn</b></td><td>✔</td><td><code>contact-actions-cell/index.tsx:56 hideMore={isRoleSdr‖isRoleKam}</code>; MoreMenu render <code>!hideMore</code> (<code>:244</code>)</td></tr>
+<tr><td>Update type · Assign owner</td><td>Detail drawer (KHÔNG phải row action; assign owner drawer-only cả với admin)</td><td><b>✘</b> (sales fields hidden)</td><td>✔</td><td>owner bỏ khỏi <code>CUSTOM_LIST_MEMBERS_COLUMN_PRESET</code>; SDR: <code>hideSalesFields</code></td></tr>
+<tr><td>Schedule call 🗓</td><td>Icon β</td><td>✘</td><td>disabled "Coming soon" (highest-authority)</td><td><code>use-contact-actions.ts:227</code></td></tr>
+</tbody></table></div>
+<div class="call new"><span class="t">Lifecycle lock (chính xác)</span><code>LOCKED_LIFECYCLE_VALUES = {PlatformSignUp, InProject, ProjectCompleted}</code> (<code>contact-lifecycle-options.ts:75</code>). Khoá theo <b>giá trị HIỆN TẠI</b> của contact (<code>lifecycle-badge/index.tsx:113,141</code>): nếu contact đang ở 1 trong 3 → <b>cả chip read-only</b> (không mở dropdown, tooltip "set automatically... can't be edited") ⇒ không rời được 3 stage này bằng tay. Stage khác → dropdown thường, và <b>3 giá trị này VẪN chọn được</b> (không bị filter — chỉ Bounce/Click/Dropped/Open bị ẩn). ⇒ khoá kiểu <b>"cấm rời", KHÔNG cấm vào</b> — <b>chốt Đông 20/07 = đúng intent</b>: contact đang ở 3 stage này không tự rời được, nhưng vẫn <b>set/chuyển VÀO được</b> từ stage khác (by design, không phải bug).</div>
+<h4>SDR fixed list + per-menu capability (verify live + source 20/07)</h4>
+<div class="tblwrap"><table>
+<thead><tr><th>Surface</th><th>SDR/KAM</th><th>Evidence (flag/file)</th></tr></thead>
+<tbody>
+<tr><td>Segments page</td><td>Chỉ xem list được giao; <b>không</b> Create/Assign/Actions/Created-By filter; lock tab Contact</td><td><code>custom-list-list/index.tsx:22-25</code> hideActions/hideCreateButton/hideCreatedByFilter/lockedType = <code>isSalesScoped</code>; assign <code>canAssign=DataManager‖highestAuthority</code></td></tr>
+<tr><td>List detail (fixed list)</td><td><b>Không Add members, không Remove</b> (không selection)</td><td>drawer <code>:1228 hideHeaderActions=realIsSalesRole</code> · <code>:1229 hideSelection=realIsSalesRole</code> (key theo <b>REAL role</b> → super-admin view-as-SDR VẪN thấy; chỉ SDR thật mất)</td></tr>
+<tr><td>Density</td><td>Simple khoá, không toggle</td><td><code>use-contact-view-mode.ts:92</code></td></tr>
+<tr><td>Inbox</td><td>Đọc thread + reply/compose; đủ filter</td><td>page không role-gate</td></tr>
+<tr><td>Meetings</td><td>View-only (HubSpot sync — không ai create)</td><td>không có nút create</td></tr>
+<tr><td>Message Templates · Snippets · Documents</td><td><b>Full CRUD</b> (không role gate); Snippet "Private" chỉ là tag hiển thị theo <code>ownerId</code>, FE không enforce owner-only</td><td>grep isRoleSdr/Kam = 0 match trong 3 module</td></tr>
+<tr><td>Campaigns</td><td>Create (trong folder, gate <code>id!=='All'</code>) · edit/delete · Create Folder; <b>KHÔNG Add people</b></td><td><code>people-tab-v2/index.tsx:94 canAddContacts=!(isRoleSdr‖isRoleKam)</code></td></tr>
+<tr><td>Marketing Emails</td><td>Create/edit/delete; <b>KHÔNG Add people</b></td><td><code>...people-tab-v2/index.tsx:91</code> cùng rule</td></tr>
+</tbody></table></div>
+<p class="fn">⚠️ View-as-role không 100% trung thực cho membership capability: add/remove/export khoá theo <code>useAdminRealRoles()</code> (REAL role) chứ không theo impersonated flag → super-admin "view as SDR" vẫn thấy +Add members/Remove; chỉ SDR/KAM thật mới mất. Visibility gate (route, sidebar, create/actions/assign, Simple lock, ⋮ hide, coverage lock) thì impersonation-aware. Nguồn: <code>gt2-260720-*.md</code> (member-row / contact-detail / sdr-gating).</p>
+
+<h3 id="sdr011" class="anchor fh">5.5 · SDR.0.11 — Compose email 1:1 <span class="b ok">✅ Có</span> <span class="fn">↔ User guide: <a href="user-guideline-sdr-flows.html#page-send">Flow 4</a></span></h3>
+<figure class="mid"><img src="17-compose-email.png" alt="Compose"/><figcaption><b>Hình 15 — Compose từ contact.</b> From = mailbox SDR (finuat423@gmail.com), To prefill từ contact, có Snippets + Template. <b>Bug mở (To Do):</b> subject chưa prefill khi tạo mail mới.</figcaption></figure>
+<div class="call new"><span class="t">Khảo sát bottom bar compose 17/07 — 4 công cụ</span>
+<b>📎 upload</b> file từ máy · <b>🗂 "Attach from document library"</b> → modal <b>Select Documents</b> (<b>[20/07] chỉ tab Common · Contact</b>, Published only — xem callout dưới) — kho file chuẩn công ty, cùng nguồn với "Attach files" per-user ở §3.3; map vào <code>attachments: [EmailLogAttachmentInput!]</code> của <code>sendEmailLog</code> · <b>Snippets</b> — block text tái sử dụng, search + toggle EN/DE, click chèn tại con trỏ · <b>Template</b> — 2 mode <i>Insert Template</i> (chèn thêm) / <i>Replace Template</i> (ghi đè draft). Ảnh chi tiết: <a href="user-guideline-v3.html#c4">user-guideline-v3 · C4</a>.</div>
+<div class="call new"><span class="t">[20/07 re-check] Compose "reply v2" (commit 73cde420f2) + document picker</span><b>(a)</b> <b>Dock toggle</b> left/right (nhớ preference qua đóng/mở). <b>(b)</b> <b>Suggested recipients</b>: người đã trong conversation xếp trên kết quả search ở dropdown To/Cc (dropdown mở khi gõ). Cc/Bcc vẫn ẩn. <b>(c)</b> <b>Select Documents từ compose chỉ 2 tab Common + Contact</b> (Published only) — kho chung vẫn có type Campaign nhưng compose KHÔNG offer (hard-scope <code>types:[Common,Contact]</code>, <code>compose-attachments.tsx</code>). <b>(d)</b> Subject prefill <b>vẫn bug</b>: <code>applyTemplate()</code> chỉ ghi body; template item không có field subject (reply/forward thì có subject qua payload <code>open()</code>). <b>(e)</b> <code>&lt;/&gt;</code> HTML toggle gate <code>isAccessTestFeature</code> — nhiều khả năng ẩn với SDR prod.</div>
+<div class="call new"><span class="t">[20/07 re-check #2] Send-mail — 2 cơ chế + full flow (verify source)</span><b>2 nút "send" khác nhau:</b> <b>(A) floating composer</b> (<code>inbox-compose-floating</code>, zustand singleton) mở từ profile "Send email" (<code>mode:new, subject:''</code>) / list row ✉ / Conversations New Email·Reply·Forward — auto-log Conversations. <b>(B) per-email hover ✉</b> = <code>mailto:</code> handoff sang Outlook (BCC inbox log, <code>useSendContactEmail</code>) — KHÔNG mở composer. <b>Flow composer:</b> From = mailbox của chính mình; To prefill + suggested = participants; Cc toggle, Bcc ẩn; Subject reply/forward = RE:/FW:, new = rỗng (bug); body ReactQuill, <b>signature bake vào body</b> (không field BE riêng); footer 📎 / 🗂 (Published + Common/Contact) / Snippets(EN/DE) / Template(Insert prepend no-sig · Replace overwrite +baseline+sig, default Insert). <b>On Send</b>: <code>useAdminEmailLogSendEmail('replyInbox')</code> → invalidate <code>['contact-conversation']</code> (auto-log) → reset window, <b>no recall</b>; nếu <code>isFromBlocked</code> (UAT chặn Omer, Prod chặn test accounts Long/Thao/Tin) → <b>ẩn nút Send</b>. KHÔNG có block riêng theo SDR/KAM trên form (chỉ entry-point + sales cluster khác).</div>
+<div class="call new"><span class="t">[21/07] Entry path thứ 5 — compose prefill từ Signal</span>Ngoài <i>profile "Send email" / list row ✉ / Conversations New·Reply·Forward</i>, còn <b>vào compose từ Signal</b>. Cột <b>Signals</b> có <b>2 loại</b>: <b>⚡ Signal</b> (tin công ty — fund launch/acquisition/auction, vd "BauWatch ticks live…", "Wafra launches fund…") và <b>💼 Job</b> (đổi chức danh/vai trò cấp cá nhân, vd "Associate Partner – M&amp;A…"). Click headline <b>⚡</b> → <b>signal detail</b> → top-right <b>"Use this email content to reply"</b> (hoặc <b>Copy email — EN/DE</b> chỉ lấy text) → floating composer mở với <b>body đã draft sẵn</b> từ nội dung signal, <b>To rỗng</b> (SDR tự thêm contact), Subject theo bug "new" = rỗng. Chỉ dạng <b>⚡</b> prefill email — <b>💼 Job</b> không draft. User guide: <a href="user-guideline-sdr-flows.html#way-4">SDR flows · Way 4</a>.</div>
+
+<div class="call new"><span class="t">[20/07] Contact detail — field sửa được</span>Tất cả qua <code>updateContactV2Fields(id,input)</code> (patch cache, toast "Saved", history refresh +2s): <b>First/Last name</b> (click → 2 input, blur commit; ghi firstName+lastName+fullName) · <b>Phone</b> (regex) · <b>Location</b> = 2 dropdown Country+City (2 save riêng addressCountry/addressCity) · <b>LinkedIn URL</b> (+ nút <b>✨ Enrich</b> <code>enrichContactsFromLinkedinV2</code>) · <b>Link/Relink WE→company</b> (gate permission <code>contact.experience.edit</code>; overlay <code>contact-v2:link-we</code> / <code>relink-we</code>). Education/Certificates read-only. <b>SDR/KAM: cụm Type/Owner/Lists/Emails bị ẩn</b> (<code>hideSalesFields</code>) ⇒ rep không đổi type/owner/list từ detail.</div>
+
+<h3 id="sdr012" class="anchor fh">5.6 · SDR.0.12 — Send → auto-log → rời việc hôm nay <span class="b ok">✅ Có (theo model mới)</span> <span class="fn">↔ User guide: <a href="user-guideline-sdr-flows.html#s-compose">Flow 4 (send/log)</a></span></h3>
+<figure class="mid"><img src="18-email-log-after-send.png" alt="Email logs"/><figcaption><b>Hình 16 — Email Logs sau khi send</b> (capture từ màn <b>admin</b> — xem gap dưới). Mỗi email gửi qua <code>sendEmailLog</code> tự sinh log: subject, from/to, content, sent date, source Task; tab All / Sent Out / Replied / Draft.</figcaption></figure>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Step</th><th>Thực tế</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Gửi email</td><td><span class="b ok">✅</span> <code>sendEmailLog</code> PASS (gửi thật khi test có <code>--send-to</code>)</td></tr>
+<tr><td>2</td><td>Activity tự động log</td><td><span class="b ok">✅</span> <code>emailLogs</code> ghi tự động — hình 16</td></tr>
+<tr><td>3</td><td>Account rời việc hôm nay</td><td><span class="b ok">✅ tự vận hành</span> — lifecycle tự nhảy In Conversation (as-is) + sent date hôm nay → không match view nào (§1.3)</td></tr>
+</tbody></table></div>
+<div class="call gap"><span class="t">Gap quyền (P1)</span>SDR <b>chưa xem được Email Logs</b> — hình 16 phải chụp từ account admin. SDR cần thấy log của chính mình để tự tránh double-touch. Đề xuất: mở màn Email Logs (read-only, scope = log của user) cho role SDR.</div>
+<h4>DTO — send &amp; email log (verify UAT 16/07)</h4>
+<div class="dto"><span class="c">// mutation sendEmailLog(input) → Boolean</span>
+AdminEmailLogSendEmailInput {
+  from?:     FintalentEmail          <span class="c">// mailbox SDR (cấu hình ở §3.3)</span>
+  to<span class="req">*</span>:       [FintalentEmail!]
+  cc? · bcc?: [FintalentEmail!]
+  subject<span class="req">*</span>:  String    content<span class="req">*</span>: String    stringContent<span class="req">*</span>: String
+  preEmailLogId?: MongoID            <span class="c">// nối THREAD — chính là cơ chế reply / follow-up trong chuỗi cũ</span>
+  attachments?: [EmailLogAttachmentInput!]    emailAliases?: [String!]
+}
+<span class="c">// query emailLogs(query{condition{emails · from · sentDate · categorizes…}, pagination}) → AdminEmailLogPaginatedResponse</span>
+AdminEmailLog { id, subject, from, to[], sentDate, status, categorize, createdDate }</div>
+<h4>Sequence — send → auto-log → lifecycle tự nhảy → rời việc hôm nay</h4>
+<pre class="mermaid">
+sequenceDiagram
+  autonumber
+  participant SDR as SDR (Compose)
+  participant GQL as GraphQL
+  participant DB as Mongo (email_logs · contacts)
+  SDR->>GQL: sendEmailLog(input{from, to, subject, content})
+  GQL->>DB: insert email_logs (auto-log — không ghi tay)
+  DB-->>DB: sync job ghi contact.lastEmailSentDate<br/>(⚠️ trễ cỡ phút — lifecycle enum KHÔNG tự nhảy, verified 16/07)
+  GQL-->>SDR: true
+  Note over DB: lastEmailSentDate xuất hiện ⇒ rớt khỏi view New Prospects (chưa-từng-gửi),<br/>chưa vào Follow-ups (chưa quá N ngày) — đúng nghĩa "rời việc hôm nay"
+</pre>
+
+<h3 id="sdr013" class="anchor fh">5.7 · SDR.0.13 — Follow-up <span class="b ok">✅ Có — N do mỗi SDR tự đặt</span> <span class="fn">↔ User guide: <a href="user-guideline-sdr-flows.html#page-followup">Flow 6</a></span></h3>
+<div class="call fix"><span class="t">Đổi nghĩa 16/07</span>Không có scheduler đặt lịch. <b>Follow-up = SDR reply tiếp trong thread</b> khi contact nổi lên ở view Follow-ups — view này tự gom "gửi rồi mà im quá N ngày" bằng filter <code>Last Email Sent Date</code> (hình 17). Gửi tiếp → sent date reset → contact lặn N ngày rồi tự nổi lại nếu khách vẫn im. Override = SDR chủ động mở thread gửi sớm hơn bất kỳ lúc nào.</div>
+<figure class="crop"><img src="13-filter-last-email-sent.png" alt="Last email sent date filter"/><figcaption><b>Hình 17 — Filter Last Email Sent Date.</b> Chip <code>≥ 2026-06-16</code> chạy đúng trên list member view. View Follow-ups dùng chiều ngược lại (<code>≤ hôm nay − N</code>).</figcaption></figure>
+<h4>Bộ filter của view Follow-ups — đủ 3 điều kiện (KHÔNG chỉ mình filter ngày)</h4>
+<div class="dto"><span class="c">// View Follow-ups = gửi rồi mà khách IM LẶNG quá hạn — 3 điều kiện bắt buộc đi cùng nhau:</span>
+1. Lifecycles          = In Conversation      <span class="c">// đã từng gửi (lifecycle tự nhảy khi send)</span>
+2. In Conversation     = No reply             <span class="c">// LOẠI khách đã trả lời — reply thuộc view Replies, xử lý ngay</span>
+3. Last Email Sent Date ≤ hôm nay − N ngày    <span class="c">// đo ĐỘ IM LẶNG: email cuối gửi đi đã đủ lâu chưa</span>
+<span class="c">// N KHÔNG phải hằng số chung (quyết định 16/07): mỗi SDR tự đặt theo lead mình nhận —</span>
+<span class="c">// chỉnh mốc ngày ngay trên filter. Gửi follow-up → sent date reset → contact lặn N ngày rồi tự nổi lại.</span></div>
+<p><b>Việc còn lại: không còn gì chặn.</b> N do từng SDR tự đặt; UAT sẵn <code>aiGenerateFollowupEmail</code> (AI viết follow-up) có thể gắn vào bước reply — P2, không chặn.</p>
+<div class="call new"><span class="t">Tầng API của cơ chế follow-up (verify introspection)</span>Việc "gom contact đến hạn follow-up" không cần op riêng — chạy trên 2 field ngưỡng-ngày của <code>ContactV2ConditionInput</code>: <b><code>bLastEmailSentDate</code></b> (email cuối gửi đi ≤ hôm nay − N ⇒ đã im đủ lâu) đi kèm <b><code>bSyncDateRepliedEmailLog</code> exists:false</b> (chưa có reply — loại khách đã trả lời). Đây cũng là 2 field <code>conversationSnapshot</code>.<code>lastSentDate</code>/<code>lastRepliedDate</code> ở tầng đọc. Gửi follow-up = <code>sendEmailLog</code> với <code>preEmailLogId</code> nối thread (§5.6) → <code>lastEmailSentDate</code> reset → contact lặn N ngày. <span class="fn">Mutation soạn nội dung bằng AI <code>aiGenerateFollowupEmail</code> chưa nằm trong introspection lean-ops — <b>// AI-gen shape cần introspect lại</b>; nó chỉ sinh draft, không thay cơ chế filter trên.</span></div>
+
+<h3 id="sdr015" class="anchor fh">5.8 · SDR.0.15 — Mở reply kèm thread <span class="b ok">✅ Có</span> <span class="fn">↔ User guide: <a href="user-guideline-sdr-flows.html#page-inbox">Flow 5</a></span></h3>
+<div class="grid2">
+<figure class="crop"><img src="19-inbox-replies.png" alt="Reply thread"/><figcaption><b>Hình 18 — Conversations của contact có reply.</b> Thread 3 messages (gửi → khách trả lời → gửi tiếp); nhãn "Replied" trên message của khách; lifecycle đã set Not Interested sau khi đọc.</figcaption></figure>
+<figure class="crop"><img src="20-reply-thread-reply-button.png" alt="Reply in thread"/><figcaption><b>Hình 19 — Reply ngay trong thread.</b> Nút ↩ mở compose quote đầy đủ context — đây cũng chính là thao tác follow-up (§5.7).</figcaption></figure>
+</div>
+<p><b>Đã verify live 21/07:</b> Conversations 2-pane (thread list | thread, Expand all) chạy thật; đọc "là reply hay không" bằng <b>mũi tên hướng</b> ↙ inbound (khách) / ↗ outbound (mình) — §5.9. Cấu trúc dữ liệu đúng: thread qua <code>preEmailLogId</code> PASS, Inbox v2 đã Done Release Prod. <b>Còn 1 gap hạ tầng (không chặn flow):</b> đường sync reply trên UAT chập chờn (lúc nhận lúc không) nên E2E "khách reply → tự nổi lên bộ lọc Replies" chưa test ổn định được — theo dõi ở G7 (P1).</p>
+<div class="call new"><span class="t">[20/07 re-check] Inbox v2 + InQueueTag</span><b>(1)</b> Inbox SDR (<code>/inboxes-v2</code>, template <code>inboxes-list-template</code>) <b>không có chip "In Conversation"</b> (đã strip từ trước; ME inbox nay cũng ẩn — commit <code>001950af9a</code>; <b>campaign inbox tab vẫn còn → BUG thiếu nhất quán, cần ẩn (G19)</b>). Bộ lọc Inbox thực tế (verify live 20/07): Lifecycles · Contact Classification · Owner · Work Experience · Countries · Cities · <b>Last Email</b> · + Add filter. Filter theo lifecycle stage (Stages rail trái ~17–18 giá trị), <b>không</b> có In Conversation. <b>(2)</b> <b>InQueueTag</b> = pill cam "In Queue" trên thread row / message card khi email outbound <b>chưa có <code>sentDate</code></b> (đang trong send queue) — <code>conversation-status-tag/index.tsx</code>; nối trang admin <b>Email Queues</b>. <b>(3)</b> Per-message chip = <code>ConversationEmailLog.lifecycle</code> (read-only, BE tự gán từ nội dung); derive qua positive <code>EmailLogType:[SENT_OUT,REPLIED]</code> (commit <code>3becc245e0</code>). <code>EmailLogType</code> = hướng message, <b>KHÔNG</b> phải enum categorize — đừng lẫn.</div>
+<div class="call new"><span class="t">[21/07 verify live] Inbox filter Work Experience → Company type Sponsor</span>Panel <b>Work Experience</b> của Inbox có filter <b>Company type</b> (Sponsor/Corporate/Portfolio). Chọn <b>Sponsor</b> → encode <code>inboxFiltersV2_bWorkExperiences … linkedCompanyFlags:["isSponsor"]</code>; kiểm chứng list 17072026v3: <b>27 → 25</b> (rows toàn firm sponsor: Ardian · General Atlantic · Carlyle).</div>
+<h4>Sequence — reply → nổi lên view Replies → đọc thread → classify</h4>
+<pre class="mermaid">
+sequenceDiagram
+  autonumber
+  participant M as Mail (inbound)
+  participant SYS as Sync (BE)
+  participant DB as Mongo
+  participant SDR as SDR (Inbox v2)
+  participant GQL as GraphQL
+  M-->>SYS: reply của khách (⚠️ UAT chập chờn — G7)
+  SYS->>DB: email_logs mới (preEmailLogId → thread)<br/>contact.syncDateRepliedEmailLog = now
+  Note over DB: contact tự nổi lên view Replies (In Conversation + Received a reply)
+  SDR->>GQL: emailLogs(condition{emails: [contact]}) — đọc thread đầy đủ
+  SDR->>GQL: as-is — updateLifecycleContactV2(id, {nextLifeCycles: [NotNow]})
+  SDR->>GQL: to-be (BE đã có) — setCategorizeEmailLog(logId,<br/>{categorize: NotNow, contactId})
+  GQL->>DB: cập nhật lifecycle + side-effects ⇒ contact rời view Replies
+</pre>
+
+<h3 id="sdr016" class="anchor fh">5.9 · SDR.0.16 — Classify reply <span class="b ok">✅ Có</span> <span class="fn">per-reply auto-chip ✅ · SDR set lifecycle cấp contact tay · ↔ User guide: <a href="user-guideline-sdr-flows.html#page-inbox">Flow 5</a></span></h3>
+<div class="call new"><span class="t">[20/07] Cơ chế nhãn per-reply trên build hiện tại — hệ thống TỰ ĐỌC NỘI DUNG reply để gán nhãn</span>Mỗi message trong Conversations/Inbox mang <b>chip nhãn tự động</b>: hệ thống đánh giá nội dung câu trả lời của khách rồi gán nhãn cho <i>chính message đó</i>. Quan sát thật trên thread QA (cùng 1 contact): reply "we have a long-standing exclusive arrangement… no need to follow up" → chip <i>Not Interested</i>; reply sau "Is your 48-hour shortlist offer still on the table?" → chip <i>Interested</i>; thread đã chốt lịch → <i>Call Scheduled</i>; không phân loại được → <i>Open</i>. SDR/KAM <b>không sửa được chip</b> (click chỉ mở/đóng message) và chip <b>không tự đổi lifecycle contact</b> — SDR vẫn classify cấp contact bằng dropdown lifecycle. Đọc đúng: chip = "hệ thống đọc reply giùm" (gợi ý + lịch sử quét nhanh cả thread), lifecycle contact = quyết định chính thức của SDR. Tầng data: nhãn nằm per-email-log — đúng field <code>categorize</code>/<code>setCategorizeEmailLog</code> đã introspect 16/07, nay BE đã có producer tự động.</div>
+<div class="call new"><span class="t">[21/07 verify live] "Là reply hay không" — đọc HƯỚNG message, không đọc chip</span><b>Tell tin cậy = mũi tên hướng</b>: <b>↙ inbound + tên contact</b> = reply thật của khách; <b>↗ outbound + tên bạn</b> = email bạn gửi đi. Tầng data = <code>EmailLogType</code> (<code>replied</code> inbound vs <code>sentOut</code> outbound) — đây là <b>hướng</b>, KHÁC enum categorize. Chip categorize (<code>EmailLogCategorizeEnum</code>, 11 nhãn) <b>hiện trên CẢ 2 chiều</b>: reply của khách được gán nhãn thật (Out Of Office / Interested / Not Interested / Call Scheduled…), còn email bạn gửi / chưa phân loại hiện <b>"Open"</b> (= trạng thái UI chưa-classify) ⇒ <b>có chip ≠ là reply</b>. Dùng mũi tên, đừng dựa vào sự-hiện-diện của chip. Nhắc lại: <b>"Out Of Office" là chip reply-categorize</b> (<code>EmailLogCategorizeEnum.OutOfOffice</code>), <b>KHÔNG phải lifecycle</b> (§1.2).</div>
+<h4>Reply hay send? — đọc HƯỚNG mũi tên, không đọc sự-hiện-diện của chip</h4>
+<pre class="mermaid">
+flowchart TD
+  MSG(["1 message trong thread"]) --> DIR{"Mũi tên hướng?<br/>(EmailLogType)"}
+  DIR -->|"↙ inbound (replied)"| INB["Reply THẬT của khách"]
+  DIR -->|"↗ outbound (sentOut)"| OUT["Email MÌNH gửi đi"]
+  INB --> CHIP1["Chip categorize THẬT<br/>Interested / OOO / Not Interested…"]
+  OUT --> CHIP2["Chip 'Open'<br/>(= chưa classify)"]
+  CHIP1 --> READ["SDR đọc reply"]
+  READ --> LC["SDR set lifecycle contact — tay<br/>updateLifecycleContactV2"]
+  W["⚠️ CẢ 2 chiều đều có chip ⇒ đừng dùng sự-hiện-diện của chip.<br/>Tell tin cậy = HƯỚNG mũi tên"] -.-> DIR
+  classDef default fill:#fff,stroke:#CCC8D5;
+</pre>
+<figure class="crop"><img src="v3s-71-inbox-thread.png" alt="Auto chips per reply"/><figcaption><b>[20/07] Nhãn tự động per-reply</b> — cùng 1 contact: reply cũ chip <i>Not Interested</i>, reply mới chip <i>Interested</i> — hệ thống đọc nội dung TỪNG message và gán nhãn riêng cho message đó.</figcaption></figure>
+
+<figure class="mid"><img src="21-classify-lifecycle-dropdown.png" alt="Classify lifecycle"/><figcaption><b>Hình 20 — As-is: classify ở cấp CONTACT.</b> Dropdown lifecycle ngay trên row: Prospect · In Conversation · Interested · Not Now · Opted Out · Email Updated · Do Not Contact · Left The Company · Not Interested.</figcaption></figure>
+<div class="aslist">
+<div class="as"><h4>As-is</h4><p>SDR đọc reply rồi đổi <b>lifecycle của contact</b> (hình 20, <code>updateLifecycleContactV2</code> PASS — side-effects đúng). Enum <code>EmailLogCategorizeEnum</code> đủ trong schema và <b>BE đã có mutation <code>setCategorizeEmailLog</code></b> (introspect 16/07) — nhưng <b>chưa có UX classify từng reply trong Inbox</b>.</p></div>
+<div class="to"><h4>To-be (🔵 In Progress)</h4><p>Classify <b>per-reply</b>: chọn 1/9 nhãn ngay trên message → hệ thống tự cập nhật lifecycle contact + side-effects. Giữ nguyên enum verbatim (OOO = <code>OutOfOffice</code>) — blocker #8/#14 đã giải từ schema.</p></div>
+</div>
+<h4>DTO — classify (verify UAT 16/07)</h4>
+<div class="dto"><span class="c">// AS-IS — classify cấp CONTACT: mutation updateLifecycleContactV2(id, input) → AdminContactDetail</span>
+UpdateLifeCycleInputV2 { nextLifeCycles<span class="req">*</span>: [ContactLifecycleEnum!], email?: FintalentEmail }
+<span class="c">// BE ĐÃ CÓ — classify cấp REPLY: mutation setCategorizeEmailLog(id, input) → AdminEmailLogDetail</span>
+AdminSetCategorizeEmailLogInput { categorize?: EmailLogCategorizeEnum, contactId?: MongoID, campaignTargetId?: MongoID }
+<span class="c">// EmailLogCategorizeEnum (11): CallScheduled · Interested · NotInterested · DoNotContact · NotNow ·</span>
+<span class="c">//   NoCategories · OutOfOffice · OptedOut · LeftTheCompany · EmailUpdated · NotResponded</span>
+<span class="c">// ContactLifecycleEnum (18 — recount FE HEAD 20/07, KHÔNG có 'Replied'): thêm Open · Click · Bounce · Dropped · PlatformSignUp · InProject · ProjectCompleted · CallScheduled · NoCategories · OutOfOffice · NotResponded…</span>
+<span class="c">// Row dropdown render 14 option (CONTACT_LIFECYCLE_OPTIONS): 9 nhãn tay + NoCategories · CallScheduled · PlatformSignUp · InProject · ProjectCompleted</span></div>
+<h4>UX flow đề xuất — nối BE có sẵn vào Inbox (to-be, FE-only)</h4>
+<ol class="steps">
+<li><b>Điểm đặt control:</b> trên MỖI message reply của khách (Inbox v2 + tab Conversations của contact) hiện nút <b>Classify ▾</b> — dropdown 11 nhãn <code>EmailLogCategorizeEnum</code>, tô màu theo nhóm (✅ Interested/CallScheduled · 🥶 NotNow/OOO/EmailUpdated/NoCategories/NotResponded · 🆘 OptedOut/DoNotContact/LeftTheCompany/NotInterested).</li>
+<li><b>Chọn nhãn</b> → FE gọi <code>setCategorizeEmailLog(logId, {categorize, contactId})</code> — 1 call duy nhất, không cần màn hình mới.</li>
+<li><b>Side-effect — ⚠️ verified 16/07: mutation hiện CHỈ set <code>categorize</code> trên log, KHÔNG đổi lifecycle contact.</b> Hai lựa chọn: (a) FE gọi kèm <code>updateLifecycleContactV2</code> (2 call — làm được ngay); (b) đề xuất BE thêm side-effect trong <code>setCategorizeEmailLog</code> (P1, gọn hơn cho mọi client).</li>
+<li><b>Hiển thị lại:</b> badge nhãn nằm ngay trên message đã classify; reply chưa classify = việc còn tồn. Lọc được vì <code>EmailLogConditionInput</code> đã có sẵn field <code>categorizes</code> (introspect 16/07) — thêm tab "Chưa classify" trong Inbox chỉ là 1 filter.</li>
+<li><b>Nhãn Interested</b> → điểm nối tương lai với handoff KAM (SDR.0.17): hiện toast "Tạo deal &amp; chuyển KAM?" khi G2 ship.</li>
+</ol>
+<pre class="mermaid">
+flowchart LR
+  A(["Reply của khách<br/>trong thread"]) --> B["SDR bấm Classify ▾<br/>(11 nhãn, tô màu nhóm)"]
+  B --> C["setCategorizeEmailLog(logId,<br/>{categorize, contactId})"]
+  C --> D["BE: categorize trên log<br/>+ lifecycle contact"]
+  D --> E{"Nhãn?"}
+  E -->|"✅ Interested"| F["(to-be G2) tạo deal → handoff KAM"]
+  E -->|"🥶 NotNow / OOO…"| G["Ẩn khỏi view làm việc,<br/>quay lại theo re-entry rule"]
+  E -->|"🆘 OptedOut / DNC…"| H["Suppression — mọi send path né"]
+  classDef default fill:#fff,stroke:#CCC8D5;
+</pre>
+<p class="fn">Toàn bộ làm được ở FE (2 call/lần classify) — không chờ BE; nếu BE nhận thêm side-effect (P1) thì còn 1 call. Filter "chưa classify" dùng field <code>categorizes</code> có sẵn.</p>
+
+<h3 id="sdr017" class="anchor fh">5.10 · SDR.0.17 — Interested → deal → handoff KAM <span class="b gap">❌ Chưa có</span> <span class="fn">↔ User guide: chưa có Flow (hand-off chưa tài liệu hoá — deferred)</span></h3>
+<div class="aslist">
+<div class="as"><h4>As-is</h4><p>Classify Interested chỉ đổi lifecycle. <b>Không</b> tự tạo deal, <b>không</b> có handoff. Deal v2 hiện tại là data M&amp;A crawl — khác nghĩa pipeline deal, phải build từ đầu.</p></div>
+<div class="to"><h4>To-be (P0 — conversion event của cả motion)</h4><p>(1) Trigger: lifecycle → Interested. (2) Tạo record deal {contact, company, SDR nguồn, ngày}. (3) Gán KAM (round-robin hoặc Ops chọn) → contact xuất hiện trong view của KAM (lean: filter <code>lifecycle = Interested + owner = KAM</code>). (4) Thông báo KAM. Contract chi tiết viết được ngay — không kẹt quyết định nào.</p></div>
+</div>
+
+<h3 id="sdr018" class="anchor fh">5.11 · SDR.0.18 — Xử lý OptedOut / Do Not Contact <span class="b ok">✅ Có (tay) · gap chặn cứng</span> <span class="fn">↔ User guide: <a href="user-guideline-sdr-flows.html#page-manage">Flow 3 (lifecycle)</a></span></h3>
+<figure class="mid"><img src="22-contact-opted-out-badge.png" alt="Opted out contacts"/><figcaption><b>Hình 21 — Suppression qua lifecycle.</b> Filter <code>Lifecycles: Opted Out (+1)</code> → các contact Opted Out / Do Not Contact với badge đỏ ngay trên row.</figcaption></figure>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Step</th><th>Thực tế</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Classify OptedOut / DNC</td><td><span class="b ok">✅</span> set lifecycle PASS (hình 21)</td></tr>
+<tr><td>2</td><td>Suppression flag ghi nhận</td><td><span class="b ok">✅</span> flag = lifecycle; 3 filter ngăn §1.3 tự loại nhóm 🆘</td></tr>
+<tr><td>3</td><td><b>Mọi</b> send path chặn contact này</td><td><span class="b part">🟡</span> mới ở mức cảnh báo campaign health (<code>CONTACT_DO_NOT_CONTACT_LIFECYCLE</code>), <b>chưa chặn cứng khi gửi</b> — task To Do (P0)</td></tr>
+</tbody></table></div>
+<div class="dto"><span class="c">// Đặt suppression = set lifecycle (verify introspection): mutation updateLifecycleContactV2(id, input) → AdminContactDetail</span>
+UpdateLifeCycleInputV2 { nextLifeCycles<span class="req">*</span>: [ContactLifecycleEnum!], email?: FintalentEmail }
+<span class="c">// SDR chọn OptedOut / DoNotContact / LeftTheCompany / NotInterested ⇒ contact vào nhóm 🆘.</span>
+<span class="c">// Constant FE CONTACT_DO_NOT_CONTACT_LIFECYCLE = tập nhãn 🆘 dùng để CẢNH BÁO campaign health.</span></div>
+<div class="call gap"><span class="t">Gap chặn cứng vẫn mở (G1 · P0) — nêu rõ ranh giới đã-có / chưa-có</span><b>ĐÃ CÓ:</b> (1) set nhãn 🆘 bằng <code>updateLifecycleContactV2</code>; (2) bộ lọc §1.3 tự loại nhóm 🆘 khỏi màn làm việc; (3) cảnh báo campaign health dựa <code>CONTACT_DO_NOT_CONTACT_LIFECYCLE</code>. <b>CHƯA CÓ:</b> chốt chặn ở tầng gửi — <code>sendEmailLog</code> (và các send path campaign/marketing) <b>không</b> kiểm tra lifecycle 🆘 trước khi gửi ⇒ vẫn có thể gửi cho contact OptedOut/DNC. Việc cần: thêm check reject trong <code>sendEmailLog</code> + mọi send path (G1).</div>
+
+<!-- ============ PHASE 3 ============ -->
+<h2 id="kam" class="anchor">6 · Phase 3 — KAM Calls + AI Outcome <span class="b gap">❌ Toàn bộ chưa build</span></h2>
+<p>6 flow của KAM chưa có UI/BE — phần này là <b>to-be thuần</b>, chia 2 mức theo độ sẵn sàng viết spec:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Flow</th><th>Steps (spec)</th><th>Mức sẵn sàng</th></tr></thead>
+<tbody>
+<tr><td><b>KAM.0.2</b> Calls list trong ngày</td><td>Mở danh sách calls của mình → prep = mở workspace</td><td><span class="b part">Viết spec được ngay</span> — lean: filter <code>lifecycle = Schedule call + owner = tôi</code>, cùng pattern §1.3</td></tr>
+<tr><td><b>KAM.0.1</b> Book call qua Zoom API</td><td>Từ deal Interested → book → chọn giờ, gửi invite → call xuất hiện trong calls list</td><td><span class="b gap">Kẹt hạ tầng Zoom</span> — phụ thuộc SDR.0.17 (deal) trước</td></tr>
+<tr><td><b>KAM.0.5</b> Call + ghi âm</td><td>Thực hiện call → recording</td><td><span class="b gap">Kẹt quyết định</span> ⚠️ blocker #10: consent ghi âm Đức (§201 StGB) + GDPR — deadline cứng nhất. Hạ tầng recording đã chạy cho Interview/Meeting, chưa nối KAM call</td></tr>
+<tr><td><b>KAM.0.6</b> Recording → transcript → memory</td><td>Nhận recording → transcript → lưu account memory</td><td><span class="b gap">Kẹt quyết định</span> ⚠️ blocker #12: Zoom native vs ASR riêng. Transcript ingestion đã chạy cho interview/meeting</td></tr>
+<tr><td><b>KAM.0.7</b> AI classify outcome</td><td>AI đọc transcript → {outcome, why, confidence} → move deal → low confidence = needs_review</td><td><span class="b gap">Kẹt quyết định</span> ⚠️ blocker #11: chốt enum won / lost / follow_up / no_show</td></tr>
+<tr><td><b>KAM.1.8</b> Review outcome AI flag</td><td>Mở danh sách needs_review → confirm/sửa → lưu làm eval data</td><td><span class="b part">Viết spec được ngay</span> sau khi #11 chốt</td></tr>
+</tbody></table></div>
+<h4>Activity — KAM call flow (đề xuất — toàn bộ chưa build)</h4>
+<pre class="mermaid">
+flowchart TD
+  A(["Contact Interested<br/>(handoff từ SDR — G2)"]) --> B["KAM book call qua Zoom API (KAM.0.1)"]
+  B --> C["Call vào calls list — filter<br/>lifecycle CallScheduled (KAM.0.2)"]
+  C --> D["Prep: mở workspace của account"]
+  D --> E{"⚠️ #10 Consent ghi âm<br/>(Đức §201 StGB + GDPR)?"}
+  E -->|"OK"| F["Call + recording (KAM.0.5)"]
+  F --> G["Transcript (⚠️ #12 Zoom native vs ASR)<br/>→ account memory (KAM.0.6)"]
+  G --> H["AI outcome {outcome, why, confidence}<br/>(⚠️ #11 chốt enum) (KAM.0.7)"]
+  H --> I{"Confidence thấp?"}
+  I -->|"Có"| J["needs_review → KAM confirm / sửa (KAM.1.8)<br/>→ lưu làm eval data"]
+  I -->|"Không"| K["Move deal theo outcome"]
+  J --> K
+  classDef default fill:#fff,stroke:#CCC8D5;
+</pre>
+<div class="call note"><span class="t">Nguyên tắc tài liệu cho phần chưa build</span>Flow đủ điều kiện (KAM.0.2, KAM.1.8, SDR.0.17) → viết contract chi tiết để dev cầm là code được. Flow kẹt quyết định (KAM.0.1/0.5/0.6/0.7) → chỉ ghi steps + <b>Decision needed</b> (ai chốt, chặn gì), tránh viết mò rồi sửa lại.</div>
+
+<h2 id="sys" class="anchor">7 · SYS behaviors (chạy ngầm)</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>SYS</th><th>Behavior</th><th>Trạng thái theo model mới</th></tr></thead>
+<tbody>
+<tr><td>SYS.1</td><td>Queue computation <span class="fn">(tên spec)</span></td><td><span class="b ok">✅ thay bằng filter §1.3</span> — deterministic từ lifecycle + sent date; không cần materialize</td></tr>
+<tr><td>SYS.3</td><td>Activity auto-log khi send</td><td><span class="b ok">✅</span> emailLogs (hình 16)</td></tr>
+<tr><td>SYS.6</td><td>Queue exit sau action <span class="fn">(tên spec)</span></td><td><span class="b ok">✅ tự vận hành</span> — lifecycle nhảy + sent date reset (§5.6)</td></tr>
+<tr><td>SYS.7</td><td>Single-rep lock (list = exclusive ownership)</td><td><span class="b part">🟡</span> <b>Đã có:</b> assign qua <code>updateCustomList</code>/<code>bulkUpdateCustomList</code> (<code>assignedToIds</code> — §4.2) · SDR-list độc quyền chặn trùng CONTACT (§4.1b) · team-coverage "held by teammates" soft-guard cấp COMPANY (§5.4b, chỉ hiển thị). <b>Chưa có:</b> owner-check khi gửi — <code>sendEmailLog</code> không verify contact có thuộc list của người gửi ⇒ lock mới là quy ước, chưa enforce runtime.</td></tr>
+<tr><td>SYS.8</td><td>Sign-up detection → deal closed-won</td><td><span class="b part">🟡</span> <b>Đã có:</b> lifecycle <code>Platform Sign Up</code> tồn tại trong <code>ContactLifecycleEnum</code> + nằm trong <code>LOCKED_LIFECYCLE_VALUES</code> (chip read-only khi đạt — §5.4c, hình 14). <b>Chưa có:</b> transition sang Platform Sign Up KHÔNG tạo/di chuyển deal record — deal pipeline chưa build (G2/§5.10), nên mắt xích sign-up→closed-won còn đứt.</td></tr>
+</tbody></table></div>
+
+<h2 id="gapreg" class="anchor">8 · GAP register hợp nhất</h2>
+<div class="call note"><span class="t">Bug (defect) tách riêng</span>Danh sách <b>lỗi đã build nhưng sai/thiếu</b> (subject prefill, SDR-list copy, campaign inbox chip, member-count lag, signal skeleton, suppression chưa chặn cứng…) nay gom vào file riêng: <b><a href="bugs-v3.html">bugs-v3.html</a></b>. Bảng dưới đây là <b>GAP + flow chưa build</b> (list approval, deal/handoff, KAM, Zoom) — giữ nguyên để theo dõi readiness.</div>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>GAP</th><th>Sev</th><th>Flow</th><th>Việc cần làm</th></tr></thead>
+<tbody>
+<tr><td>G1</td><td>Chặn cứng suppression trên mọi send path (mới có cảnh báo)</td><td><span class="b p0">P0</span></td><td>SDR.0.18 / SYS</td><td>Check lifecycle 🆘 trong <code>sendEmailLog</code> + campaign path → reject</td></tr>
+<tr><td>G2</td><td>Deal pipeline + handoff KAM chưa có</td><td><span class="b p0">P0</span></td><td>SDR.0.17</td><td>Contract §5.10 to-be — viết được ngay</td></tr>
+<tr><td>G3</td><td>Re-entry rules nhóm 🥶 chưa chốt (blocker #7) — N follow-up đã gỡ: per-SDR (16/07)</td><td><span class="b p2">P2</span></td><td>OPS.0.6</td><td>Lean: SDR rà tay filter 🥶; muốn tự động cần field "ngày đổi lifecycle"</td></tr>
+<tr><td>G4</td><td>Saved filters (công thức lọc → nút 1-click)</td><td><span class="b p1">P1</span></td><td>SDR.0.1</td><td>🔵 In Progress trong sprint — nicety trên model lọc-tự-do đã chạy</td></tr>
+<tr><td>G5</td><td>Classify per-reply UX trong Inbox</td><td><span class="b p1">P1</span></td><td>SDR.0.16</td><td>🔵 In Progress; BE đã sẵn (<code>setCategorizeEmailLog</code>) — chỉ nối UX</td></tr>
+<tr><td>G6</td><td>SDR chưa xem được Email Logs của mình</td><td><span class="b p1">P1</span></td><td>SDR.0.12</td><td>Mở màn log read-only scope theo user</td></tr>
+<tr><td>G7</td><td>Reply sync UAT chập chờn → chưa verify được E2E</td><td><span class="b p1">P1</span></td><td>SDR.0.15</td><td>Ổn định inbound sync rồi test lại</td></tr>
+<tr><td>G8</td><td>List approval gate</td><td><span class="b p1">P1</span></td><td>OPS.0.6</td><td>Trạng thái draft/approved trên custom list</td></tr>
+<tr><td>G9</td><td>Role Ops riêng + permission "KAM calls-only"</td><td><span class="b p1">P1</span></td><td>ADM.0.1</td><td>Phân quyền đang In Progress</td></tr>
+<tr><td>G10</td><td>Priority flag khi assign list</td><td><span class="b p2">P2</span></td><td>OPS.0.8</td><td>Field nhỏ trên custom list</td></tr>
+<tr><td>G11</td><td>Work-through progress per list</td><td><span class="b p2">P2</span></td><td>SDR.0.25</td><td>Suy từ count 3 filter ngăn</td></tr>
+<tr><td>G12</td><td>Subject chưa prefill khi compose</td><td><span class="b p2">P2</span></td><td>SDR.0.11</td><td>Bug To Do — <b>vẫn còn 19/07</b></td></tr>
+<tr><td>G13 <span class="b ok">v3</span></td><td>SDR-list: behavior <b>bypass + toast là chuẩn</b> (chốt 19/07). Còn 2 lỗi cosmetic: form text nói "removes from other SDR lists" (sai — cần đổi thành skip) · Timeline ghi "Members added" cả khi add bị skip</td><td><span class="b p2">P2</span></td><td>SDR.1.20</td><td>Sửa copy form + Timeline không ghi (hoặc ghi "skipped") khi bypass</td></tr>
+<tr><td>G14 <span class="b ok">v3</span></td><td><s>SDR list detail chỉ có filter Lifecycles</s> — <b>ĐÓNG (sửa 21/07)</b>: members bar thực tế có <b>Lifecycles + Has signal + "+ Add filter" (Customize Quick Filters)</b>; "chỉ Lifecycles" trước đây là do stale localStorage view-pref (§5.1). Lọc follow-up theo ngày dùng Inbox (Flow 5) hoặc saved filters (G4)</td><td><span class="b ok">Đóng</span></td><td>SDR.0.1</td><td>—</td></tr>
+<tr><td>G15 <span class="b ok">v3</span></td><td>Member count lag dài trên list mới (0 &gt;60s dù Members tab có người)</td><td><span class="b p2">P2</span></td><td>SDR.1.20</td><td>Đẩy sync count hoặc đọc count từ members query</td></tr>
+<tr><td>G16 <span class="b ok">v3</span></td><td>Landing sau login của SDR/KAM là /projects (talent platform) thay vì workspace Sales</td><td><span class="b p2">P2</span></td><td>C0</td><td>Default route theo role → /segments</td></tr>
+<tr><td>G17 <span class="b ok">v3</span></td><td><s>Per-message chip cần setter cho SDR</s> — <b>ĐÓNG (chốt 19/07)</b>: chip do <b>hệ thống tự đánh giá reply</b> để xếp lifecycle, SDR không chỉnh là by-design. G5 (classify per-reply UX) theo đó cũng đóng theo hướng auto-classification.</td><td><span class="b ok">Đóng</span></td><td>SDR.0.16</td><td>—</td></tr>
+<tr><td>G18 <span class="b ok">v3</span></td><td>Drawer chi tiết <b>Signal</b> (click headline từ list) treo skeleton kéo dài (&gt;30s chưa render, verify 19/07) — "+N" expand inline vẫn hoạt động tốt. <b>[21/07] re-check:</b> drawer render OK ~2s (BauWatch, list 17072026v3) + có action <b>"Use this email content to reply"</b> → compose prefill (§5.5); skeleton-hang <b>không tái hiện</b> lần này — cần verify lại trên signal data nặng hơn trước khi đóng</td><td><span class="b p2">P2</span></td><td>SDR.0.3</td><td>Fix data-load của signal detail drawer</td></tr>
+<tr><td>G20</td><td><code>setCategorizeEmailLog</code> chưa side-effect lifecycle contact (verified 16/07)</td><td><span class="b p1">P1</span></td><td>SDR.0.16</td><td>BE thêm side-effect, hoặc FE gọi kèm <code>updateLifecycleContactV2</code></td></tr>
+<tr><td>G21</td><td>Toàn bộ Zoom stack (book/record/transcript/AI)</td><td><span class="b p0">P0</span></td><td>KAM.*</td><td>Chốt blockers #10 · #11 · #12 trước, rồi build</td></tr>
+<tr><td>G19 <span class="b ok">v3</span></td><td><b>Inbox "In Conversation" không nhất quán</b>: SDR inbox + ME inbox đã ẩn chip, <b>campaign inbox tab vẫn hiển thị</b> (chốt với Đông 20/07 = BUG)</td><td><span class="b p2">P2</span></td><td>SDR.0.15 / campaign</td><td>Ẩn chip In Conversation ở campaign inbox tab cho khớp SDR/ME (<code>inbox-v2-filter-toolbar.tsx</code>)</td></tr>
+</tbody></table></div>
+<div class="call gap"><span class="t">3 quyết định phải chốt trước khi ship phase 3 (blockers)</span>Đây <b>không phải task code</b> — là 3 câu hỏi mà người có thẩm quyền (sếp / legal / Ops) phải trả lời trước; chưa trả lời thì dev build kiểu gì cũng phải làm lại.</div>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Câu hỏi phải trả lời</th><th>Vì sao chặn</th><th>Chặn flow</th></tr></thead>
+<tbody>
+<tr><td><b>#10</b></td><td><b>Xin đồng ý ghi âm kiểu gì?</b> (thông báo đầu call · disclaimer Zoom · điều khoản trong invite) + lưu bằng chứng đồng ý ở đâu, giữ recording bao lâu</td><td>Luật Đức §201 StGB coi ghi âm không được các bên đồng ý là <b>phạm luật hình sự</b> + GDPR; khách chủ yếu ở DACH → ràng buộc pháp lý, "deadline cứng nhất"</td><td>KAM.0.5</td></tr>
+<tr><td><b>#11</b></td><td><b>Bộ giá trị kết quả cuộc gọi là gì?</b> Đề xuất: <code>won / lost / follow_up / no_show</code> — có thêm <code>not_now</code> riêng không?</td><td>Output của AI, logic move deal và mọi báo cáo xây trên bộ enum này — đổi sau là phải migrate data</td><td>KAM.0.7</td></tr>
+<tr><td><b>#12</b></td><td><b>Lấy transcript bằng đường nào?</b> Transcript có sẵn của Zoom vs tự chạy ASR riêng (VD Whisper)</td><td>Đánh đổi chi phí · chất lượng tiếng Đức · privacy (audio có ra bên thứ ba?) · độ trễ — pipeline ingest khác hẳn nhau theo lựa chọn</td><td>KAM.0.6</td></tr>
+</tbody></table></div>
+<p class="fn">Tin tốt: 3 blocker khác trong spec đã <b>giải xong bằng verify thực tế</b> — #6 inbound reply (UAT đã sync được reply của khách) · #14 lifecycle enum (schema có đủ nhãn) · #3 schema tokens (đã xác định <code>assignedToIds</code>).</p>
+
+<h2 id="plan" class="anchor">9 · Kế hoạch đề xuất (phased)</h2>
+<ol class="steps">
+<li><b>Saved filters (G4)</b> — encode 3 công thức lọc thành nút 1-click; công thức Follow-ups để mốc ngày cho SDR tự chỉnh (N per-SDR, 16/07). Xong bước này: SDR loop chạy end-to-end trọn vẹn (trừ per-reply classify). <i>Effort: nhỏ.</i></li>
+<li><b>Chặn cứng suppression (G1)</b> — điều kiện an toàn để gửi thật ở quy mô. <i>Effort: BE nhỏ, P0.</i></li>
+<li><b>Per-reply classify + Email Logs cho SDR (G5, G6)</b> — hoàn thiện nhánh xử lý reply. G5 đang chạy sẵn trong sprint.</li>
+<li><b>Deal + handoff KAM (G2)</b> — conversion event; mở khoá phase 3. Kèm KAM.0.2 (calls view = filter) và KAM.1.8 spec.</li>
+<li><b>Zoom stack (G21)</b> — sau khi chốt #10/#11/#12. Tận dụng hạ tầng recording/transcript sẵn có của Interview/Meeting.</li>
+<li><b>Polish (G8–G12)</b> — approval gate, role Ops, priority flag, progress, subject prefill.</li>
+</ol>
+
+<h2 id="appendix" class="anchor">10 · Phụ lục — nguồn</h2>
+<div class="tblwrap"><table>
+<thead><tr><th>Nguồn</th><th>Vai trò</th></tr></thead>
+<tbody>
+<tr><td><code>fintalent-osw-lean-launch.md.pdf</code> (15/07) + <code>fintalent-osw-lean-launch-23-flows.md</code></td><td>Spec gốc 23 flows + sub-steps + blockers</td></tr>
+<tr><td><code>target/uat-lean-flow-check.py</code> → <code>uat-lean-flow-check-results.json</code></td><td>Chạy thử từng bước qua GraphQL trên UAT 15/07 (23 PASS)</td></tr>
+<tr><td><code>target/uat-introspect-lean-ops.py</code> → <code>target/_lean_ops_shapes.json</code></td><td>Introspection schema UAT 16/07 — nguồn của mọi khối DTO input/output + sequence</td></tr>
+<tr><td><code>target/uat-lean-deep-check-260716.py</code> → <code>_lean_deep_check_260716.json</code> · <code>_lean_view_counts_260716.json</code></td><td>Vòng verify sâu 16/07 chiều: chạy thật 3 công thức view (369+3+26=398 ✓), test send→lifecycle (không tự nhảy), setCategorizeEmailLog (không side-effect), contact mới lifecycle rỗng</td></tr>
+<tr><td>21 ảnh capture <code>LEAN-LAUNCH/*.png</code> (16/07, admin-uat.fintalent.io)</td><td>Bằng chứng UI; ảnh 14–21 đã che thông tin khách thật; bản gốc trong <code>_originals/</code></td></tr>
+<tr><td>Quyết định vận hành 16/07 (session với Đông)</td><td>ADM.0.7 = admin sửa info · "queue" = chính contact list + 3 view filter theo lifecycle · Prospect→In Conversation tự động · follow-up = reply trong thread + filter Last Email Sent Date · OPS.0.6 = list rules/approval</td></tr>
+<tr><td><code>plans/reports/audit-260715-1424-uat-osw-lean-flows.md</code> · <code>fintalent-flows-260716.html</code> · <code>fintalent-report-260716.html</code></td><td>Audit UAT 15/07 · flow readiness · kanban window report</td></tr>
+<tr><td><b>[20/07]</b> Verify team-coverage/different-owner + auto-chip + sort Country/City: đọc code FE (<code>use-coverage-rows.ts</code>, <code>contacts-v2-in-different-owner.gql.ts</code>) + probe API bằng token SDR (Battery Ventures 181/179/173/2 · EQT 3/3) + QA list tự tạo/tự xoá trên UAT + 2 ảnh <code>v3s-120/121</code></td><td>Nguồn của §5.4b, callout [20/07] §5.9 và Δ3 #9–#10</td></tr>
+<tr><td><b>[20/07 re-check ~30 commit]</b> Re-verify toàn bộ với FE <code>develop</code> @ <code>714f6e4cf2</code> (vs basis doc <code>f71fed708f</code>): 5 report source-audit (<code>plans/reports/gt-260720-*.md</code>) + edit-map (<code>plans/reports/edit-map-260720-1920-*.md</code>) + live walk admin + View-as-role SDR (menu trim, inbox filter set, Simple/Full, Country/City, link-WE) + ảnh <code>v3s-140</code> (view-as-role). Enum recount từ <code>generated/admin/graphql.ts</code>: ContactLifecycleEnum=18, EmailLogCategorizeEnum=11.</td><td>Nguồn của Δ3 #11–#15 + mọi callout [20/07 re-check]</td></tr>
+</tbody></table></div>
+<p class="fn">Tài liệu song hành cho người dùng cuối (Admin/Ops/SDR): <a href="user-guideline-v3.html"><b>user-guideline-v3.html</b></a> + bản riêng reps <a href="user-guideline-sdr.html"><b>user-guideline-sdr.html</b></a> — hướng dẫn thao tác theo luồng công việc. Cập nhật tài liệu: sửa trực tiếp <code>LEAN-LAUNCH/index-v3.html</code> (v1/v2 giữ làm mốc). Mermaid render local qua <code>mermaid.min.js</code> (không cần mạng). In PDF: Ctrl/Cmd+P.</p>
+
+</main>
+</div>
+<script>
+  mermaid.initialize({startOnLoad:true, securityLevel:'loose', theme:'neutral', themeVariables:{fontSize:'13px'}, flowchart:{curve:'basis', useMaxWidth:false}, sequence:{useMaxWidth:false}});
+</script>
+</body>
+</html>
