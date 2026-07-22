@@ -94,7 +94,7 @@
     <div class="grp">Nền tảng</div>
     <a href="#overview">1 · Tổng quan motion</a>
     <a href="#lifecycle" class="h2">1.2 Lifecycle = state machine</a>
-    <a href="#queue" class="h2">1.3 “Queue” = contact list</a>
+    <a href="#queue" class="h2">1.3 Không còn 3 view — gửi theo trường hợp</a>
     <a href="#readiness" class="h2">1.4 Readiness 23 flows</a>
     <a href="#catalog">2 · Catalog GraphQL ops</a>
     <div class="grp">§3 · Phase 0 Setup</div>
@@ -108,7 +108,7 @@
     <a href="#ops06" class="h2">4.3 OPS.0.6 List rules ⛔</a>
     <div class="grp">§5 · Phase 2 SDR Loop</div>
     <a href="#sdrview" class="h2">5.0 SDR view &amp; quyền ✅</a>
-    <a href="#sdr01">5.1 SDR.0.1 List + lọc tự do ✅</a>
+    <a href="#sdr01">5.1 SDR.0.1 Làm việc trên list ✅</a>
     <a href="#sdr025" class="h2">5.2 SDR.0.25 My lists</a>
     <a href="#sdr03" class="h2">5.3 SDR.0.3 Workspace</a>
     <a href="#sdr010" class="h2">5.4 SDR.0.10 Chọn contact</a>
@@ -161,7 +161,7 @@
 </table></div>
 </div>
 </div>
-<div class="call note"><span class="t">Tóm cả máy trong 1 câu</span>Ops phát danh sách công ty cho SDR → SDR lọc list tự do (lifecycle · tín hiệu · ngày gửi) để dựng ngăn việc → mở từng contact, tự chọn người, gửi email tay → hệ thống tự ghi log + lifecycle tự nhảy → khách trả lời thì dán nhãn → ai "Interested" thì chuyển KAM gọi Zoom chốt → AI nghe ghi âm và tự ghi kết quả (phase 3, chưa build).</div>
+<div class="call note"><span class="t">Tóm cả máy trong 1 câu</span>Ops phát danh sách công ty cho SDR → SDR <b>làm việc trên list được giao</b>, quyết định gửi email cho từng contact <b>theo trường hợp</b> (chưa từng gửi · trả lời reply của khách · follow-up khi im lâu · vừa có signal mới) → gửi email tay → hệ thống tự ghi log + lifecycle tự nhảy → khách trả lời thì <b>hệ thống tự dán nhãn reply</b>, SDR đọc &amp; set lifecycle contact → ai "Interested" thì chuyển KAM gọi Zoom chốt → AI nghe ghi âm và tự ghi kết quả (phase 3, chưa build).</div>
 
 <h2 id="delta3" class="anchor">Δ3 · Build 19/07 — re-walk toàn bộ, có gì đổi <span class="b ok">✅ verify UI + behavior 19/07</span></h2>
 <p>Đi lại toàn bộ chuỗi flow bằng admin (<code>dev@fintalent.io</code>) + Login-as <b>SDR Internal Fintalent</b> + Login-as <b>KAM Fintalent</b>; test hành vi trên list QA tự tạo/tự xoá. Xếp theo mức ảnh hưởng:</p>
@@ -280,18 +280,19 @@ flowchart LR
 <b>(3) "OOO / Out Of Office" KHÔNG phải là 1 lifecycle stage</b> — nó tồn tại như <code>EmailLogCategorizeEnum.OutOfOffice</code>, tức 1 <b>chip phân loại per-reply</b> (§5.9), KHÔNG nằm trong dropdown lifecycle. Đây chính là lý do các bản guideline SDR cũ liệt kê nhầm "OOO" như 1 lifecycle: <b>lifecycle (state của contact) và reply-categorize (nhãn của 1 email trả lời) là 2 enum khác nhau</b>.
 <b>(4) <code>LOCKED_LIFECYCLE_VALUES = {PlatformSignUp, InProject, ProjectCompleted}</code></b> — contact đang ở 1 trong 3 stage này thì chip lifecycle <b>read-only</b> (không rời được bằng tay; chi tiết cơ chế khoá ở §5.4c).</div>
 
-<h3 id="queue" class="anchor">1.3 · “Queue” chính là contact list được giao — lọc tự do <span class="b ok">chốt 16/07</span></h3>
-<p>Quyết định thiết kế quan trọng nhất của lean: <b>"queue" không phải hệ thống riêng — nó chính là contact list</b>. SDR mở contact list được giao rồi <b>lọc tự do</b> (Lifecycles · Has signal · keyword · sort) để tự dựng "ngăn việc" — <b>KHÔNG còn 3 view preset cứng</b>: công thức "3 ngăn" của spec đã <b>retired</b>, SDR nay lọc tay theo <a href="sdr-flows.html#page-filters">User guide · Flow 10 (Using filters)</a>. Ba công thức lọc hay dùng dưới đây chỉ là <b>gợi ý</b> (SDR tự bấm, không phải nút bấm sẵn):</p>
+<h3 id="queue" class="anchor">1.3 · Không còn “queue” / 3 view — SDR làm việc trên list, gửi mail theo trường hợp <span class="b ok">cập nhật 22/07</span></h3>
+<p>Không có "queue" riêng, và <b>SDR KHÔNG dựng được "3 view" bằng filter</b>: trên members bar của list, SDR/KAM bị <b>khoá "+ Add filter"</b> (<code>lockFilters = isRoleSdr‖isRoleKam</code> → <code>showAddFilter=false</code>, <code>contacts-list-template/index.tsx:772</code>) — chỉ còn <b>quick-filter pin sẵn</b> (Lifecycles · Has signal · Has-new-signals), comment source gọi là <i>"a fixed slice, not a filter workbench"</i>. Vì thiếu filter <code>In Conversation</code> / <code>Last Email Sent Date</code>, SDR <b>không lọc ra được Replies/Follow-ups</b> trên list. Thay vào đó SDR <b>làm việc trên list + Inbox và quyết định gửi mail theo TRƯỜNG HỢP</b>. Bảng dưới: mỗi trường hợp = 1 lý do gửi + cách SDR nhận biết (số kiểm chứng API 16/07 vẫn đúng ở tầng logic):</p>
 <div class="tblwrap"><table>
-<thead><tr><th>Ngăn việc (gợi ý)</th><th>Công thức filter (trên contact list được assign)</th><th>Bằng chứng UI 16/07</th><th>Ưu tiên</th></tr></thead>
+<thead><tr><th>Trường hợp gửi mail</th><th>SDR nhận biết thế nào (do bị khoá filter)</th><th>Logic / field (API)</th><th>Ưu tiên</th></tr></thead>
 <tbody>
-<tr><td><b>Replies</b></td><td><code>In Conversation: Received a reply</code> <span class="fn">(= bConversationSnapshot: syncDateRepliedEmailLog có)</span></td><td>Ảnh 14 + API 16/07: <b>3</b>/398</td><td>1 — xử lý trước</td></tr>
-<tr><td><b>Follow-ups</b></td><td><code>In Conversation: No reply</code> + <code>Last Email Sent Date ≤ hôm nay − N</code> <span class="fn">(N: mỗi SDR tự đặt theo lead)</span></td><td>Ảnh 13 + API 16/07: <b>26</b>/398 (N=0)</td><td>2</td></tr>
-<tr><td><b>New Prospects</b></td><td><b>Chưa từng gửi</b> (<code>Last Email Sent Date</code> không tồn tại) <span class="fn">— chính xác hơn Lifecycles=Prospect (sót contact chưa mang nhãn)</span></td><td>Ảnh 12 + API 16/07: <b>369</b>/398 (Prospect: 321)</td><td>3</td></tr>
+<tr><td><b>B · Trả lời reply của khách</b></td><td>Ở <b>Inbox</b> (SDR có đủ filter ở Inbox) — thread có reply ↙ inbound</td><td><code>In Conversation: Received a reply</code> (<code>bConversationSnapshot.syncDateRepliedEmailLog</code>) · API 16/07: <b>3</b>/398</td><td>1 — trước tiên</td></tr>
+<tr><td><b>D · Có signal mới sau email cuối</b></td><td>Quick-filter <b>Has new signals since our last email = Yes</b> (pin sẵn — SDR dùng được)</td><td><code>aHasSignalSinceReply:true</code> (signalDate &gt; lastEmailSentDate) — §5.1</td><td>2 — cớ có ngữ cảnh</td></tr>
+<tr><td><b>C · Follow-up khi im lâu</b></td><td>Đọc <b>cột Last Contact + aging meter 💬</b> (KHÔNG filter được ngày trên members bar) — sort/scan</td><td><code>In Conversation: No reply</code> + <code>Last Email Sent Date ≤ hôm nay − N</code> · API 16/07: <b>26</b>/398 (N=0)</td><td>3</td></tr>
+<tr><td><b>A · Chưa từng gửi</b> (first touch)</td><td>Quick-filter <b>Lifecycles = Prospect</b> (SDR có) — hoặc contact chưa có Last Contact</td><td><code>Last Email Sent Date</code> không tồn tại (chính xác hơn Prospect) · API 16/07: <b>369</b>/398 (Prospect 321)</td><td>4</td></tr>
 </tbody></table></div>
 <p class="fn">Nguyên liệu của các công thức lọc không chỉ có trên UI — chúng là field chính thức của <code>ContactV2ConditionInput</code> (API): <code>bListIds</code> · <code>bLifeCycles</code> · <code>bSyncDateRepliedEmailLog</code> · <code>bLastEmailSentDate</code> (introspect 16/07, xem DTO §5.1).</p>
-<p>Ba filter tự vận hành thành state machine, <b>không cần code thêm</b>: gửi xong → sync ghi <code>lastEmailSentDate</code> (trễ cỡ phút) → rớt khỏi New Prospects, chưa vào Follow-ups (chưa quá N ngày) → <em>"rời việc hôm nay"</em> (SDR.0.12). Khách reply → sync ghi <code>syncDateRepliedEmailLog</code> → tự nhảy sang view Replies. Classify (🥶/🆘) → SDR đổi lifecycle → rớt khỏi các view. Số kiểm chứng 16/07: <b>369 chưa gửi + 29 đã gửi (3 reply + 26 im lặng) = 398 = cả list ✓</b>.</p>
-<div class="call fix"><span class="t">Gap còn lại (2 mảnh nhỏ)</span>(1) <b>Saved filters</b> — để 3 công thức thành 3 nút bấm 1-click, đang <span class="b wip">🔵 In Progress</span> trong sprint. (2) <b>Re-entry rules</b> nhóm 🥶 — thuộc OPS.0.6, chưa chốt (lean: SDR rà tay bằng filter). Còn <b>N ngày follow-up KHÔNG cần chốt chung</b> — quyết định 16/07: mỗi SDR tự đặt theo lead mình nhận.</div>
+<p class="fn">Các mốc tự vận hành ở tầng data (không cần code thêm): gửi xong → sync ghi <code>lastEmailSentDate</code> (trễ cỡ phút) → contact hết là "chưa gửi". Khách reply → sync ghi <code>syncDateRepliedEmailLog</code> → nổi lên <b>Inbox</b>. Signal mới về sau email cuối → khớp <code>aHasSignalSinceReply</code>. Số kiểm chứng 16/07 (list 16072026v1): <b>369 chưa gửi + 29 đã gửi (3 reply + 26 im lặng) = 398 = cả list ✓</b> — verify ở tầng API/admin; SDR trên members bar chỉ tiếp cận tập con qua quick-filter pin sẵn.</p>
+<div class="call fix"><span class="t">Hệ quả của việc SDR bị khoá filter</span>(1) <b>Replies</b> xử lý ở <b>Inbox</b> (nơi SDR có đủ filter), không lọc trên list. (2) <b>Follow-up "im lâu"</b> nhận biết bằng <b>cột Last Contact / aging meter 💬</b>, không phải filter ngày. (3) <b>Saved filters</b> (G4, 🔵) nếu ship = quick-filter pin thêm cho SDR — SDR vẫn không tự tạo filter. (4) Re-entry nhóm 🥶 (OPS.0.6) chưa chốt; N follow-up: mỗi SDR tự canh theo Last Contact (16/07).</div>
 
 <h3 id="readiness" class="anchor">1.4 · Readiness 23 flows (sau các quyết định 16/07)</h3>
 <div class="tblwrap"><table>
@@ -523,31 +524,28 @@ flowchart TD
 <!-- ============ PHASE 2 ============ -->
 <h2 id="phase2" class="anchor">5 · Phase 2 — The SDR Loop</h2>
 <p class="fn">Toàn bộ 11 flow của Phase 2 là MỘT vòng lặp: contact list → workspace → email → follow-up → reply → classify → quay lại list hoặc thoát ra deal/suppression.</p>
-<h4>Activity — một ngày làm việc của SDR (vòng lặp Replies → Follow-ups → New Prospects)</h4>
+<h4>Activity — một ngày làm việc của SDR (không còn 3 view — gửi mail theo trường hợp)</h4>
 <pre class="mermaid">
 flowchart TD
-  A(["SDR login"]) --> B["Mở contact list được giao (§5.2)"]
-  B --> C{"View REPLIES<br/>còn contact?"}
-  C -->|"Có"| D["Mở reply kèm thread (§5.8)"]
-  D --> E["Đọc reply (auto-chip) →<br/>set lifecycle contact (§5.9)"]
-  E --> F{"Nhãn?"}
-  F -->|"✅ Interested"| G["(to-be G2) tạo deal →<br/>handoff KAM (§5.10)"]
-  F -->|"🥶 tạm dừng / 🆘 loại"| H["Contact rời các view"]
-  G --> C
-  H --> C
-  C -->|"Hết"| I{"View FOLLOW-UPS<br/>còn contact đến hạn N?"}
-  I -->|"Có"| J["Mở thread → reply tiếp (§5.7)"]
-  J --> K["Sent date reset →<br/>contact lặn N ngày"]
-  K --> I
-  I -->|"Hết"| L{"View NEW PROSPECTS<br/>còn contact?"}
-  L -->|"Có"| M["Mở workspace →<br/>tự chọn người (§5.3–5.4)"]
-  M --> N["Compose 1:1 → Send (§5.5–5.6)"]
-  N --> O["Auto-log + sync lastEmailSentDate<br/>→ 'rời việc hôm nay'"]
-  O --> L
-  L -->|"Hết"| P(["Xong việc hôm nay"])
+  A(["SDR login → mở list được giao (§5.2)"]) --> INB{"INBOX: có reply<br/>mới của khách?"}
+  INB -->|"Có"| R["Trả lời reply trong thread (§5.8)<br/>hệ thống auto-nhãn → SDR set lifecycle (§5.9)"]
+  R --> Q1{"Interested?"}
+  Q1 -->|"✅"| G["(to-be G2) tạo deal → handoff KAM"]
+  Q1 -->|"🥶 / 🆘"| INB
+  G --> INB
+  INB -->|"Hết reply"| L["Quét MEMBERS list<br/>quick-filter pin: Lifecycles · Has signal · Has-new-signals<br/>+ cột Last Contact 💬 — SDR KHÔNG '+ Add filter'"]
+  L --> C{"Trường hợp gửi?"}
+  C -->|"Signal mới sau email cuối"| D["Gửi lại có ngữ cảnh (⚡/💼)"]
+  C -->|"Chưa từng gửi (Prospect)"| N["First-touch email"]
+  C -->|"Đã gửi · Last Contact dài"| F["Follow-up trong thread (§5.7)"]
+  D --> O["Gửi tay → auto-log → lifecycle/sent-date đổi (§5.6)"]
+  N --> O
+  F --> O
+  O --> C
+  C -->|"Hết"| P(["Xong việc hôm nay"])
   classDef default fill:#fff,stroke:#CCC8D5;
 </pre>
-<p class="fn" style="text-align:center">Thứ tự ưu tiên: Replies → Follow-ups → New Prospects. Mọi hành động đều tự đưa contact ra khỏi bộ lọc tương ứng — hết cả 3 nhóm = xong việc.</p>
+<p class="fn" style="text-align:center">Không còn thứ tự 3 view cứng. Ưu tiên: <b>reply (Inbox)</b> → <b>signal mới</b> → <b>chưa gửi</b> → <b>follow-up im lâu</b>; nhận biết qua Inbox + quick-filter pin + cột Last Contact (do bị khoá "+ Add filter").</p>
 <h4>Vòng lặp SDR ↔ User guide Flow — cả vòng đã chạy, chỉ hở đúng bước hand-off</h4>
 <pre class="mermaid">
 flowchart TD
@@ -602,8 +600,8 @@ flowchart TD
 </div>
 <div class="call fix"><span class="t">⚠️ View-as-role KHÔNG 100% trung thực</span>Admin “view as SDR” khoá theo <b>REAL role</b> (<code>useAdminRealRoles()</code>) cho <b>membership capability</b> — Add/Remove/export <b>vẫn hiện</b> với super-admin đang preview; chỉ SDR/KAM <b>thật</b> mới mất. Còn visibility (route · menu · create/assign · Simple lock · ⋮ hide · coverage lock) thì impersonation-aware. Chi tiết + file: <a href="#sdr045">§5.4c</a>.</div>
 
-<h3 id="sdr01" class="anchor fh">5.1 · SDR.0.1 — Login → contact list, lọc tự do <span class="fn">(spec gọi là "Sales Queue 3 ngăn")</span> <span class="b ok">✅ Có</span> <span class="fn">↔ User guide: <a href="sdr-flows.html#page-login">Flow 1–2</a></span></h3>
-<p>SDR login → mở contact list được giao → <b>lọc tự do</b> (§1.3); 3 công thức lọc hay dùng minh hoạ dưới đây (SDR tự bấm, không phải nút preset). Bằng chứng:</p>
+<h3 id="sdr01" class="anchor fh">5.1 · SDR.0.1 — Login → làm việc trên list được giao (gửi mail theo trường hợp) <span class="b ok">✅ Có</span> <span class="fn">↔ User guide: <a href="sdr-flows.html#page-login">Flow 1–2</a></span></h3>
+<p>SDR login → mở list được giao. <b>SDR bị khoá "+ Add filter"</b> (chỉ quick-filter pin sẵn — <code>lockFilters</code>, §1.3) nên KHÔNG tự dựng 3 view; SDR gửi mail <b>theo trường hợp</b> (§1.3). Các công thức lọc dưới đây mô tả <b>LOGIC</b> từng trường hợp (chạy ở tầng API + Inbox); ảnh minh hoạ:</p>
 <figure class="mid"><img src="11-filter-lifecycle-dropdown.png" alt="Lifecycle filter"/><figcaption><b>Hình 11 — Filter Lifecycles trong list member view.</b> Dropdown đủ enum: Prospect · In Conversation · Interested · Not Now · Opted Out · Email Updated · Do Not Contact · Left The Company · Not Interested… (mỗi giá trị có include/exclude).</figcaption></figure>
 <div class="grid2">
 <figure class="crop"><img src="12-bucket-new-prospects.png" alt="New prospects bucket"/><figcaption><b>Hình 12 — View New Prospects.</b> <code>Lifecycles: Prospect</code> trên list 419 members → 322 contacts chưa đụng vào.</figcaption></figure>
