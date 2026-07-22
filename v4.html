@@ -294,12 +294,16 @@
 
 <h3 id="a1-edge" class="edgehead anchor">A1.x · Edge cases</h3>
 <ol class="steps edge">
-<li id="ea-1-1" data-code="A1.x.1"><b>Generate / copy the password.</b> In the Create form the <b>Password</b> is auto-generated. Click <b>Generate again</b> to make a new one, <b>copy it</b>, and send it to the hire through a private channel. They can change it after their first login.</li>
+<li id="ea-1-1" data-code="A1.x.1"><b>Generate / copy the password.</b> In the Create form the <b>Password</b> is auto-generated. Click <b>Generate again</b> to make a new one, <b>copy it</b>, and send it to the hire through a private channel. They can change it after their first login.
+  <figure class="crop"><img src="adminx-02b-password-row.png" alt="Password field"/><figcaption><b>A1.x.1</b> — the Password field: masked value · 👁 show/hide · copy · <b>Generate again</b>.</figcaption></figure>
+</li>
 <li id="ea-1-2" data-code="A1.x.2"><b>Edit an existing account.</b> Admins → the user's row <b>⋮</b> → <b>Edit / View Details</b> → the <b>Update Admin Information</b> drawer. <b>General Setting</b> = name · phone · avatar · <b>Roles</b> (fix a wrong role here — no need to recreate). <b>Email Configuration</b> = <b>Signature</b> (auto-appended to every email they send) · <b>Sender Name</b> · default <b>Attach files</b> → <b>Save</b>. The drawer also carries <b>Billing · Payment · Activities Log</b> tabs (an SDR typically only needs <b>General Setting</b> + <b>Email Configuration</b>). <span class="fn">(Best to set the signature here before their first send; the SDR can also edit their own later.)</span>
-  <figure><img src="sdrx-05-general-setting.png" alt="General Setting"/><figcaption><b>A1.x.2a</b> — General Setting: name · phone · avatar · Roles.</figcaption></figure>
+  <figure><img src="sdrx-05b-general-setting-sdr.png" alt="General Setting (SDR account)"/><figcaption><b>A1.x.2a</b> — <span class="fn">(an SDR account)</span> General Setting: name · phone · avatar · Roles.</figcaption></figure>
   <figure><img src="sdrx-06-email-config.png" alt="Email Configuration"/><figcaption><b>A1.x.2b</b> — Email Configuration: Signature · Sender Name · Attach files → Save.</figcaption></figure>
 </li>
-<li id="ea-1-3" data-code="A1.x.3"><b>Act truly as them — "Login as".</b> To use the app as that person (their assigned lists, their mailbox) — Admins row <b>⋮</b> → <b>Login as Admin</b>. (This is how every SDR screenshot in this guide was captured.)</li>
+<li id="ea-1-3" data-code="A1.x.3"><b>Act truly as them — "Login as".</b> To use the app as that person (their assigned lists, their mailbox), on the <b>Admins</b> table each row has a <b>purple "Login as" button</b> in the <b>Actions</b> column (also reachable from the row <b>⋮</b> menu). Click it to enter the app as them. (This is how every SDR screenshot in this guide was captured.)
+  <figure><img src="adminx-07-login-as-circled.png" alt="Login as button"/><figcaption><b>A1.x.3</b> — the <b>Login as</b> button (circled): one purple button per row in the Actions column.</figcaption></figure>
+</li>
 <li id="ea-1-4" data-code="A1.x.4"><b>Preview what they'll see — "View as role".</b> The <b>eye icon</b> by your profile (bottom-left) → pick <b>SDR</b> → a banner "Viewing UI as SDR". It's <b>UI-only</b>: you still see <b>your own</b> data and your real permissions still apply — it just shows which menus/buttons/columns that role gets.
   <figure><img src="v3s-140-view-as-role-sdr.png" alt="View as role SDR"/><figcaption><b>A1.x.4</b> — View as role → SDR: the preview banner + the trimmed SDR menu.</figcaption></figure>
 </li>
@@ -314,7 +318,9 @@
 
 <h3 id="a2-open" class="anchor">A2.1 · Open the Create Contact form</h3>
 <ol class="steps adm">
-<li data-code="A2.1"><b>Sales Management → Contacts</b> → the contacts table. Top-right sits <b>+ Create Contact</b> <span class="fn">(Admin/Ops only — the SDR view has no such button).</span></li>
+<li data-code="A2.1"><b>Sales Management → Contacts</b> → the contacts table. Top-right sits <b>+ Create Contact</b> <span class="fn">(Admin/Ops only — the SDR view has no such button).</span>
+  <figure><img src="adminx-06-create-contact-circled.png" alt="Create Contact button location"/><figcaption><b>A2.1</b> — <b>+ Create Contact</b> (circled) at the <b>top-right</b> of the Contacts page.</figcaption></figure>
+</li>
 <li data-code="A2.2"><b>Click + Create Contact</b> → the <b>Create Contact</b> drawer opens: <b>LinkedIn or email required</b> + an optional Name.
   <figure><img src="adminx-03-create-contact.png" alt="Create Contact drawer"/><figcaption><b>A2.2</b> — the empty drawer: <b>LinkedIn URL</b> <b>OR</b> <b>Email</b>, plus optional First/Last name.</figcaption></figure>
 </li>
@@ -491,6 +497,9 @@
     </li>
   </ol>
   (The <b>Segments (Lists)</b> page also shows the per-list <b>Members</b> column, if you'd rather check there.)
+</li>
+<li id="eo-3-8" data-code="O3.x.8"><b>Add to several lists at once.</b> The <b>Add to list</b> drawer isn't one-list-only — <b>tick as many lists as you want</b> (use the search to find them). The confirm button counts your picks: with two lists ticked it reads <b>"Add to 2 list(s)"</b> → click it and the selected contact(s) are added to <b>all</b> those lists in one go.
+  <figure><img src="68-atl-two-lists.png" alt="Add to two lists at once"/><figcaption><b>O3.x.8</b> — <b>two</b> lists ticked in the drawer → the confirm button becomes <b>"Add to 2 list(s)"</b> → Save adds to both.</figcaption></figure>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-o2"><span class="k">← Prev</span><b>O2 · Create a list</b></a><a class="next" data-goto="page-o4"><span class="k">Next →</span><b>O4 · Remove members</b></a></div>
