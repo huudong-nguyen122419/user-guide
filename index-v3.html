@@ -107,6 +107,7 @@
     <a href="#ops08" class="h2">4.2 OPS.0.8 Assign list</a>
     <a href="#ops06" class="h2">4.3 OPS.0.6 List rules ⛔</a>
     <div class="grp">§5 · Phase 2 SDR Loop</div>
+    <a href="#sdrview" class="h2">5.0 SDR view &amp; quyền ✅</a>
     <a href="#sdr01">5.1 SDR.0.1 List + lọc tự do ✅</a>
     <a href="#sdr025" class="h2">5.2 SDR.0.25 My lists</a>
     <a href="#sdr03" class="h2">5.3 SDR.0.3 Workspace</a>
@@ -567,6 +568,39 @@ flowchart TD
   classDef gap fill:#FEE4E2,stroke:#D92D20,color:#912018;
 </pre>
 <p class="fn" style="text-align:center">Xanh = bước đã chạy được (Flow 1–7 map thẳng vào User guide) · Đỏ = lối ra Interested→KAM chưa build (SDR.0.17). Vòng lặp trọn vẹn trừ đúng 1 hand-off.</p>
+
+<h3 id="sdrview" class="anchor fh">5.0 · View &amp; quyền của SDR/KAM (khác Ops/Admin) <span class="b ok">✅ verify source + live 20–21/07</span></h3>
+<p>Nguyên tắc phân vai: <b>Ops/Admin chuẩn bị &amp; sở hữu data</b> (tạo list, giao việc, sửa CRM tổng); <b>SDR/KAM chỉ LÀM VIỆC trên list được giao</b>. UI enforce khác biệt này ở 3 tầng: (1) menu, (2) trang bị ẩn, (3) hành động bị khoá trong từng trang. Ma trận từng hành động + evidence file ở <a href="#sdr045">§5.4c</a> — mục này là bản tóm nhìn-nhanh.</p>
+<h4>Tầng 1 — Menu Sales Management (SDR thấy 8 / 15)</h4>
+<div class="tblwrap"><table>
+<thead><tr><th>Menu (Sales v2)</th><th>Ops/Admin</th><th>SDR/KAM</th></tr></thead>
+<tbody>
+<tr><td>Segments (Lists) · Inbox · Meetings · Message Templates · Snippets · Documents · Campaigns · Marketing Emails</td><td><span class="b ok">✅</span></td><td><span class="b ok">✅ 8 mục</span></td></tr>
+<tr><td><b>Contacts · Companies · Email Queues · Email Logs · Signals · Deals · Job Search</b></td><td><span class="b ok">✅</span></td><td><span class="b gap">✘ ẩn (7 mục)</span></td></tr>
+</tbody></table></div>
+<p class="fn">Admin Sales v2 = <b>15 mục</b>; SDR/KAM bị trim còn <b>8</b> ⇒ SDR không tiếp cận CRM tổng (Contacts/Companies), chỉ list được giao + Inbox (§5.2). Landing sau login = <code>/projects</code> (G16 — nên đổi về <code>/segments</code>).</p>
+<h4>Tầng 2–3 — SDR/KAM làm được gì / KHÔNG (Ops/Admin đầy đủ)</h4>
+<div class="aslist">
+<div class="to"><h4>✅ SDR/KAM LÀM ĐƯỢC</h4><p>
+• Xem list được <b>giao</b> (không thấy list người khác) + lọc: Lifecycles · Has signal · Has-new-signals-since-last-email<br/>
+• Mở contact detail; <b>set lifecycle CẤP CONTACT</b> (chip editable — trừ 3 stage khoá PlatformSignUp/InProject/ProjectCompleted, §5.4c)<br/>
+• Comms per-row: <b>✉ Compose · WhatsApp · LinkedIn</b><br/>
+• Inbox: đọc thread + reply / compose (đủ filter)<br/>
+• Message Templates · Snippets · Documents: <b>full CRUD</b><br/>
+• Campaigns / Marketing Emails: create / edit / delete<br/>
+• Sửa field cơ bản contact: name · phone · location · LinkedIn (Relink WE nếu có <code>contact.experience.edit</code>)
+</p></div>
+<div class="as"><h4>✘ KHÔNG (chỉ Ops/Admin)</h4><p>
+• KHÔNG có trang <b>Contacts / Companies</b>, KHÔNG <b>+ Create Contact</b><br/>
+• List: KHÔNG Create · Assign · Add members · Remove · Delete · bulk<br/>
+• Density <b>Simple bị khoá</b> (không toggle Full)<br/>
+• Row <b>⋮ More</b> ẩn: Add to Campaign / Marketing Email / another List · Update bucket<br/>
+• KHÔNG đổi <b>Type · Owner · Lists · Emails</b> (sales fields hidden ở detail)<br/>
+• KHÔNG classify reply — chip do hệ thống auto-gán (§5.9); KHÔNG Add people vào Campaign/Marketing<br/>
+• Dòng team-coverage <b>view-only</b> (§5.4b) · <b>🗓 Schedule call</b> ẩn
+</p></div>
+</div>
+<div class="call fix"><span class="t">⚠️ View-as-role KHÔNG 100% trung thực</span>Admin “view as SDR” khoá theo <b>REAL role</b> (<code>useAdminRealRoles()</code>) cho <b>membership capability</b> — Add/Remove/export <b>vẫn hiện</b> với super-admin đang preview; chỉ SDR/KAM <b>thật</b> mới mất. Còn visibility (route · menu · create/assign · Simple lock · ⋮ hide · coverage lock) thì impersonation-aware. Chi tiết + file: <a href="#sdr045">§5.4c</a>.</div>
 
 <h3 id="sdr01" class="anchor fh">5.1 · SDR.0.1 — Login → contact list, lọc tự do <span class="fn">(spec gọi là "Sales Queue 3 ngăn")</span> <span class="b ok">✅ Có</span> <span class="fn">↔ User guide: <a href="sdr-flows.html#page-login">Flow 1–2</a></span></h3>
 <p>SDR login → mở contact list được giao → <b>lọc tự do</b> (§1.3); 3 công thức lọc hay dùng minh hoạ dưới đây (SDR tự bấm, không phải nút preset). Bằng chứng:</p>
