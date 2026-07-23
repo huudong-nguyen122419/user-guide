@@ -223,6 +223,7 @@
     <a href="#e-2-7" class="st2" data-page="page-find">2.x.7 · Simple vs Full view</a>
     <a href="#e-2-8" class="st2" data-page="page-find">2.x.8 · Show / hide columns</a>
     <a href="#e-2-9" class="st2" data-page="page-find">2.x.9 · Still loading (0 of N)</a>
+    <a href="#e-2-10" class="st2" data-page="page-find">2.x.10 · "+N" more roles</a>
     <a class="flow" data-page="page-send"><span class="n">3</span> Send a 1:1 email</a>
     <a href="#s-paths" class="st" data-page="page-send">3.1 · 3 ways into compose</a>
     <a href="#way-1" class="st2" data-page="page-send">3.1.1 · List row ✉</a>
@@ -718,6 +719,10 @@
 <li id="e-2-9" data-code="2.x.9"><b>"Showing 0 of N" — the list is still loading.</b> A count of <b>0</b> with grey skeleton rows just means the members are still fetching (can lag a moment on big lists). Wait a beat — it fills in.
   <figure><img src="v3s-172-loading-state.png" alt="List still loading — Showing 0 of N with skeleton rows"/><figcaption><b>2.x.9</b> — <b>Showing 0 of N</b> + grey skeleton rows = still loading; it populates in a moment.</figcaption></figure>
 </li>
+<li id="e-2-10" data-code="2.x.10"><b>"+N" — a contact with several roles.</b> When someone holds more than two jobs, the extra ones are folded behind a small <b>"+N"</b> chip in the Title / Work Experiences cell. Click <b>+N</b> to expand every role inline (past &amp; present); click the <b>▲</b> that appears to collapse them again. The same <b>+N</b> pattern in the <b>Signals</b> column hides extra signals — click it to see them all.
+  <figure><img src="sdrx-73-plusn-badge.png" alt="+N roles chip (collapsed)"/><figcaption><b>2.x.10 · before</b> — two roles shown; the <b>+N</b> chip hides the rest.</figcaption></figure>
+  <figure><img src="sdrx-74-plusn-expanded.png" alt="+N roles expanded inline"/><figcaption><b>2.x.10 · after</b> — click <b>+N</b> → all roles expand inline (click <b>▲</b> to collapse).</figcaption></figure>
+</li>
 </ol>
 <div class="pagernav"><a data-goto="page-login"><span class="k">← Prev</span><b>Flow 1 · Log in</b></a><a class="next" data-goto="page-send"><span class="k">Next →</span><b>Flow 3 · Send a 1:1 email</b></a></div>
 </section>
@@ -780,14 +785,27 @@
 <h3 id="s-compose" class="anchor">3.2 · Compose &amp; send <span class="fn">(same window for all 4 ways)</span></h3>
 <p>The whole job here is to <b>send a good email successfully</b> — 4 steps:</p>
 <ol class="steps">
-<li data-code="3.1"><b>Check From / To / Cc.</b> <b>From</b> is your own mailbox (filled in by default). <b>To</b> is the contact you started from (already pre-filled) — you can also type extra recipients here. To copy someone else, click <b>Cc</b> at the right of the To row → a Cc field appears → type their email and press <b>Enter</b> (it becomes a chip; the <b>✕</b> removes it).
-  <figure class="crop"><img src="sdrx-47-cc.png" alt="From To Cc"/><figcaption><b>3.1</b> — From · To · <b>Cc</b>: click <b>Cc</b> (circled), then type the email to copy someone in.</figcaption></figure>
+<li data-code="3.1"><b>Check From / To / Cc.</b> Both address fields are pre-filled — check them before sending:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>From</b> = <b>your own mailbox</b>, filled in automatically from the email set up on your <b>SDR profile</b>. You can't change it in compose — it's set by your Admin (you only view it → <a data-goto="page-login" href="#e-1-3" style="font-weight:700;cursor:pointer">Flow 1 · your account ↗</a>).</li>
+  <li><b>To</b> = the <b>contact's email</b>, pre-filled from the person you started from. You <b>can</b> change it or add <b>extra recipients</b> — type an email and press <b>Enter</b> (each becomes a chip; the <b>✕</b> removes it).</li>
+  <li><b>Cc</b> = copy someone else: click <b>Cc</b> at the right of the To row → a Cc field appears → type their email and press <b>Enter</b>.</li>
+  </ul>
+  <figure><img src="sdrx-80-compose-from-to-cc.png" alt="Compose window — From, To, Cc"/><figcaption><b>3.1</b> — <b>①</b> From = your profile email (view-only) · <b>②</b> To = the contact's email (editable, add more) · <b>③</b> Cc = copy someone in.</figcaption></figure>
 </li>
 <li data-code="3.2"><b>Type the Subject yourself</b> in "Add a subject" at the very top. For a <b>new</b> email it starts <u>empty</u> and does <b>not</b> auto-fill, even from a Template (known bug). The Send button blocks an empty subject — so you can't forget.
   <figure><img src="v3s-21-compose-subject.png" alt="Subject box"/><figcaption><b>3.2</b> — the subject box (red frame) — type it yourself.</figcaption></figure>
 </li>
 <li data-code="3.3"><b>Write your message</b> in the body (personalize with their role &amp; signal from Flow 2). <span class="fn">Want to start from a Template, drop in a Snippet, or attach a file? See Edge cases (3.x).</span></li>
 <li data-code="3.4">Proofread → <b>Send</b>. It auto-logs into Conversations, your <b>signature</b> (Flow 1.x.5) is appended automatically, and there is <b>no recall</b>.</li>
+<li data-code="3.5"><b>See your sent email.</b> The moment you send, your email is logged to the contact's <b>Conversations</b>. There are <b>two ways</b> to open it — both land on the <b>same Conversation</b>:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>From the list</b> — click the contact's <b>💬 conversation</b> icon (Last Contact column) → the Conversations drawer opens with your email at the <b>top</b> of the thread, marked <b>"just now"</b>, sent by you.</li>
+  <li><b>From the contact</b> — open the contact and switch to the <b>Conversations</b> tab.</li>
+  </ul>
+  The left pane lists every message; click yours to read it on the right (From = you, To = the contact, plus your signature).
+  <figure><img src="sdrx-82-sent-in-conversation.png" alt="Your sent email at the top of the contact's Conversations"/><figcaption><b>3.5</b> — your just-sent email sits at the <b>top of Conversations</b> ("just now"); the right pane shows it in full.</figcaption></figure>
+</li>
 </ol>
 
 <h3 id="s-edge" class="edgehead anchor">3.x · Edge cases — write faster with Templates · Snippets · Documents</h3>
@@ -868,12 +886,12 @@
 <h3 id="i-edge" class="edgehead anchor">4.x · Edge cases</h3>
 <ol class="steps edge">
 <li id="e-5-1" data-code="4.x.1"><b>Reply all</b> — the <b>double ↩↩ arrow</b> (left of Reply, circled below) answers the sender <b>plus everyone else on the thread's To/Cc</b>. Use it only when several people are genuinely in the conversation (an assistant or colleague was copied). Same compose window as Reply, but the <b>To</b> line is pre-filled with <b>every email address in the thread</b> — so your one reply goes out <b>from your mailbox to all of them at once</b>. Hover the button to preview the full recipient list (e.g. <code>To: oemer.gueven@fintalent.com, dz@dzadvisory.de</code>), and remove anyone you don't want before you send.
-  <figure><img src="sdrx-45-replyall-circled.png" alt="Reply all button circled"/><figcaption><b>4.x.1</b> — the <b>Reply all</b> button (double arrow), leftmost of the three.</figcaption></figure>
+  <figure><img src="sdrx-84-replyall-hover.png" alt="Reply all button hovered — tooltip previews every recipient"/><figcaption><b>4.x.1</b> — <b>hover Reply all</b> (leftmost of the three) → the tooltip previews every recipient (<b>To: tien@fintalent.com, tin@cyberhq.net</b>) before you send.</figcaption></figure>
 </li>
 <li id="e-5-2" data-code="4.x.2"><b>Forward</b> — the <b>➡ arrow</b> (right of Reply, circled below) sends this message on to <b>someone new</b>. Same window, but <b>To starts empty</b> for you to type the new recipient; the original message is carried in the body.
   <figure><img src="sdrx-46-forward-circled.png" alt="Forward button circled"/><figcaption><b>4.x.2</b> — the <b>Forward</b> button (arrow pointing right), rightmost of the three.</figcaption></figure>
 </li>
-<li id="e-5-3" data-code="4.x.3"><b>Filters.</b> The Inbox bar carries the full set; <b>+ Add filter</b> opens <b>Customize Quick Filters</b> (pin filters, Reset defaults) to build your own quick bar. Use it to slice big queues (only DACH, only CFOs).
+<li id="e-5-3" data-code="4.x.3"><b>Filters.</b> The Inbox bar carries the full set; <b>+ Add filter</b> opens <b>Customize Quick Filters</b> (pin filters, Reset defaults) to build your own quick bar. Use it to slice big queues (only DACH, only CFOs). <a data-goto="page-filters" href="#flt-inbox" style="font-weight:700;cursor:pointer">Full Inbox-filter reference → Flow 9.3 ↗</a>
   <div class="tblwrap"><table>
   <thead><tr><th>Filter</th><th>What it narrows · how to use</th></tr></thead>
   <tbody>
