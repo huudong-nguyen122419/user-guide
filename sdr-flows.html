@@ -424,8 +424,17 @@
   <li><b>↙ inbound arrow + the contact's name</b> = <b>a reply from the prospect</b> (their words) — the message to read and answer.</li>
   <li><b>↗ outbound arrow + your own name</b> = <b>an email you sent</b> (e.g. "Dong SDR ↗").</li>
   </ul>
-  Each message also shows an <b>auto chip</b> the system assigns from the content: the prospect's replies get a meaningful one (<b>Out Of Office · Interested · Not Interested · Call Scheduled…</b>), while your own sends / anything not yet classified show <b>Open</b>. Read the chip as a quick hint only — you can't edit it, and it doesn't change the contact's lifecycle by itself. So use the <b>arrow</b> (not the chip) to tell a reply from a send.
-  <figure><img src="sdrx-56c-reply-signals-annot.png" alt="Reply signals in a conversation (SDR view)"/><figcaption><b>4.2</b> — <b>①</b> a reply = <b>↙ inbound arrow</b> + a real chip ("Out Of Office"); <b>②</b> your send = <b>↗ outbound arrow</b> + your name; <b>③</b> your send's chip just shows <b>Open</b>.</figcaption></figure>
+  Each message also shows an <b>auto chip</b> the system assigns from the content: the prospect's replies get a meaningful one (<b>Out Of Office · Interested · Not Interested · Call Scheduled…</b>), while your own <b>sent</b> emails carry a <b>delivery-status</b> chip (below). Read any chip as a hint only — you can't edit it and it doesn't change the contact's lifecycle by itself; use the <b>arrow</b> (not the chip) to tell a reply from a send.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Chip</th><th>On</th><th>What it means</th><th>Your move</th></tr></thead>
+  <tbody>
+  <tr><td><b>Delivered</b></td><td>your send</td><td>Sent &amp; delivered — the prospect hasn't opened it yet.</td><td>Give it time, then follow up.</td></tr>
+  <tr><td><b>Open</b></td><td>your send</td><td>The prospect <b>opened</b> your email (or it isn't classified yet).</td><td>Warm signal — worth a follow-up.</td></tr>
+  <tr><td>⚠️ <b>Dropped</b></td><td>your send</td><td><b>The email did NOT go out</b> — it failed to send.</td><td><b>Send it again</b> — this one needs your attention.</td></tr>
+  <tr><td><b>Interested · Call Scheduled</b></td><td>their reply</td><td>The system read the reply as a positive signal.</td><td>Read it, then set the contact's Lifecycle.</td></tr>
+  <tr><td><b>Not Interested · Out Of Office · …</b></td><td>their reply</td><td>The system's quick read of what they wrote.</td><td>Read it, then set the Lifecycle.</td></tr>
+  </tbody></table></div>
+  <figure><img src="sdrx-56c-reply-signals-annot.png" alt="Reply signals in a conversation (SDR view)"/><figcaption><b>4.2</b> — <b>①</b> a reply = <b>↙ inbound arrow</b> + a real chip ("Out Of Office"); <b>②</b> your send = <b>↗ outbound arrow</b> + your name; <b>③</b> your send's chip = a delivery status (<b>Delivered · Open · ⚠️ Dropped</b>).</figcaption></figure>
 </li>
 <li data-code="4.3"><b>Read the email.</b> Click the row → the contact opens on <b>Conversations</b>: the thread list is on the left, the selected message on the right, <b>Expand all</b> unfolds the whole exchange. Read what they actually wrote — the chip is only a hint.
   <figure><img src="sdrx-42b-reply-arrows-annot.png" alt="Conversation thread"/><figcaption><b>4.3</b> — Conversations: thread list (left) + the message (right). The three action arrows sit at the <b>top-right of the open message</b>: <b>① Reply all · ② Reply · ③ Forward</b>.</figcaption></figure>
