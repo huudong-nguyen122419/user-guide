@@ -953,57 +953,52 @@
 <!-- ===================== FLOW 10 · USING FILTERS ===================== -->
 <section class="page" id="page-filters">
 <h2><span class="who sdr">SDR</span><span class="n">Flow 9 ·</span> Using filters</h2>
-<div class="goal"><b>Goal:</b> know every filter you meet as an SDR — <b>where</b> it lives and <b>how</b> to use it — so you can cut any list or inbox down to exactly the people you want.</div>
+<div class="goal"><b>Goal:</b> know every filter you meet as an SDR — grouped by the <b>page</b> it lives on — so you can cut any list or inbox down to exactly the people you want. Each filter comes with a plain <b>"I want to find…"</b> so you know when to reach for it.</div>
 
-<p>Filters sit on <b>three surfaces</b>, each with a different set:</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Surface</th><th>Filters you get</th><th>Where</th></tr></thead>
-<tbody>
-<tr><td><b>Your list — members bar</b> (right)</td><td>Lifecycles · Has signal</td><td>Flow 2</td></tr>
-<tr><td><b>Your list — company rail</b> (left)</td><td>Lifecycle · Has signal</td><td>Flow 2.x.6</td></tr>
-<tr><td><b>Inbox bar</b></td><td>Lifecycles · Contact Classification · Owner · Work Experience · Countries · Cities · + Add filter</td><td>Flow 4</td></tr>
-</tbody></table></div>
-<p class="fn">How a filter dropdown works everywhere: each value has a <b>✓ include</b> (keep only these) and an <b>✕ exclude</b> (hide these); <b>Has / No …</b> radios catch records with/without any value; <b>Paste list</b> takes one value per line. Several ✓ together = <b>OR</b>.</p>
+<p>Filters live on <b>three surfaces</b>, and each page has its own set — so we walk them <b>page by page</b>. The tool itself works the same everywhere:</p>
+<p class="fn"><b>How every filter dropdown works:</b> each value has a <b>✓ include</b> (keep only these) and an <b>✕ exclude</b> (hide these); the <b>Has / No …</b> radios catch records with / without any value; <b>Paste list</b> takes one value per line. Several ✓ together = <b>OR</b>. All screenshots below are real SDR-login runs — watch the <b>count before → after</b>.</p>
 
-<p class="fn">All screenshots below are real runs on an SDR login — watch the <b>count before → after</b> and note <i>why</i> the rows change.</p>
+<h3 id="flt-list-members" class="anchor">9.1 · On your list — the members bar (filters your contacts)</h3>
+<p>The bar over the table (right side) filters the <b>people</b> in your list. It carries <b>Lifecycles</b>, <b>Has signal</b>, and <b>New signal since follow-up</b>.</p>
+<h4>Lifecycles — by stage</h4>
+<p><b>"I want to find contacts whose lifecycle is Prospect."</b> → open <b>Lifecycles</b> → click the green <b>✓</b> on <b>Prospect</b>. ✓ include keeps only that stage; ✕ exclude hides it; several ✓ = OR; the <b>Has / No lifecycle</b> radios and <b>Paste list</b> are here too. Add <b>✕ Opted Out · ✕ Not Interested</b> to also drop the dead ones.</p>
+<div class="call note"><span class="t">In action</span>The list opens at <b>359</b> contacts (all stages). ✓ <b>Prospect</b> → <b>359 → 107</b>, and every remaining row shows "Prospect" in the Lifecycle Stage column. <b>Why:</b> ✓ include keeps only that stage, so the 252 at other stages are hidden.</div>
+<figure><img src="sdrx-flt-lifecycle-demo.png" alt="Lifecycles filter result"/><figcaption><b>9.1</b> — chip <b>Lifecycles : Prospect</b> → <b>Showing 20 of 107</b>; every Lifecycle Stage cell = Prospect.</figcaption></figure>
+<figure><img src="v3s-95-sdr-lifecycles-filter.png" alt="Lifecycles dropdown"/><figcaption><b>9.1 · control</b> — ✓ include / ✕ exclude per value, Has / No radios, Paste list.</figcaption></figure>
+<h4>Has signal — people with fresh news</h4>
+<p><b>"I want to find contacts who personally have a signal."</b> → open <b>Has signal</b> → tick <b>Yes</b>. Keeps people who have a ⚡ news / 💼 job signal — shown in the <b>Signals</b> column — the warmest people to reach out to.</p>
+<div class="call note"><span class="t">In action</span>359 → <b>246</b>: every remaining row has a value in the Signals column.</div>
+<figure><img src="sdrx-flt-members-hassignal-demo.png" alt="Members Has signal result"/><figcaption><b>9.1</b> — chip <b>Has signal : Yes</b> → <b>Showing 20 of 246</b>; the Signals column is filled on every row.</figcaption></figure>
+<h4>New signal since follow-up</h4>
+<p><b>"I want to find contacts I've already emailed who just got a new signal."</b> → tick <b>Yes</b> on <b>New signal since follow-up</b>. A strong re-engagement trigger: they went quiet, but now there's fresh news to reach out about.</p>
 
-<h3 id="flt-lifecycle" class="anchor">9.1 · Lifecycles — filter your contacts by stage</h3>
-<p>On your list <i>and</i> in the Inbox. <b>✓ include</b> keeps only that stage; <b>✕ exclude</b> hides it; several ✓ = OR; plus <b>Has / No lifecycle</b> radios and <b>Paste list</b>.</p>
-<div class="call note"><span class="t">In action</span>The list opens at <b>359</b> contacts (all stages). Open <b>Lifecycles</b> → click the green <b>✓</b> on <b>Prospect</b> → the list drops to <b>359 → 107</b>, and <b>every remaining row shows "Prospect"</b> in the Lifecycle Stage column. <b>Why:</b> ✓ include = keep only that stage, so the 252 contacts at other stages are hidden.</div>
-<figure><img src="sdrx-flt-lifecycle-demo.png" alt="Lifecycles filter result"/><figcaption><b>9.1 · result</b> — <span class="fn">(SDR)</span> chip <b>Lifecycles : Prospect</b> → <b>Showing 20 of 107</b>; every Lifecycle Stage cell = Prospect.</figcaption></figure>
-<figure><img src="v3s-95-sdr-lifecycles-filter.png" alt="Lifecycles dropdown"/><figcaption><b>9.1 · control</b> — the ✓ include / ✕ exclude buttons per value, Has/No radios, Paste list.</figcaption></figure>
-
-<h3 id="flt-company" class="anchor">9.2 · Has signal — on your list, at two levels</h3>
-<p><b>Has signal</b> sits in <b>two</b> places on your list and they mean different things:</p>
-<ul>
-<li><b>Members bar</b> (right, over contacts) — keeps <b>people who personally have a signal</b>; the <b>Signals</b> column shows it (⚡ news / 💼 job).</li>
-<li><b>Company rail</b> (left, over firms) — keeps <b>companies that have a signal</b>.</li>
-</ul>
-<div class="call note"><span class="t">In action — members bar (contacts)</span>The list opens at <b>359</b>. Open <b>Has signal</b> on the members bar → tick <b>Yes</b> → <b>359 → 246</b>, and every remaining row has a value in the <b>Signals</b> column. <b>Why:</b> only contacts that personally have at least one signal stay.</div>
-<figure><img src="sdrx-flt-members-hassignal-demo.png" alt="Members Has signal result"/><figcaption><b>10.2a · contacts</b> — <span class="fn">(SDR)</span> chip <b>Has signal : Yes</b> → <b>Showing 20 of 246</b>; the Signals column is filled on every row.</figcaption></figure>
-<div class="call note"><span class="t">In action — company rail (firms)</span>Expand the rail (<b>111</b> companies). Open <b>Has signal</b> on the rail → <b>Yes</b> → <b>111 → 29</b> firms — the best ones to open a conversation with.</div>
-<figure><img src="sdrx-flt-hassignal-demo.png" alt="Company rail Has signal result"/><figcaption><b>10.2b · firms</b> — <span class="fn">(SDR)</span> company rail <b>Has signal : Yes</b> → <b>29</b> firms.</figcaption></figure>
+<h3 id="flt-list-rail" class="anchor">9.2 · On your list — the company rail (filters the firms)</h3>
+<p>Expand the rail (<b>»</b> on the left). Its bar filters <b>companies</b>, not people — pick a firm and its people show in the table. It carries <b>Lifecycle</b> and <b>Has signal</b> (+ 🔍 search).</p>
+<h4>Has signal — firms with news</h4>
+<p><b>"I want to find companies that have a fresh signal."</b> → on the rail, open <b>Has signal</b> → <b>Yes</b>. These are the best firms to open a conversation with; click one to see its people.</p>
+<div class="call note"><span class="t">In action</span>Rail opens at <b>111</b> companies → <b>Has signal : Yes</b> → <b>111 → 29</b> firms.</div>
+<figure><img src="sdrx-flt-hassignal-demo.png" alt="Company rail Has signal result"/><figcaption><b>9.2</b> — company rail <b>Has signal : Yes</b> → <b>29</b> firms.</figcaption></figure>
 <figure><img src="sdrx-57b-company-rail-filter-sdr.png" alt="Company rail filters"/><figcaption><b>9.2 · bars</b> — members bar = <b>Lifecycles · Has signal</b>; company rail = <b>Lifecycle · Has signal</b> (+ 🔍 search).</figcaption></figure>
+<div class="call note"><span class="t">Same word, two levels</span>"Has signal" on the <b>rail</b> = the <b>company</b> has news; "Has signal" on the <b>members bar</b> (9.1) = the <b>person</b> has news. Pick the level you actually want.</div>
 
-<h3 id="flt-inbox" class="anchor">9.3 · Inbox filters — slice a big reply queue</h3>
-<p>The Inbox bar (Flow 4) carries the full set. Combine them to zero in (e.g. only DACH CFOs who replied):</p>
+<h3 id="flt-inbox" class="anchor">9.3 · In the Inbox (filters your reply queue)</h3>
+<p>The Inbox bar carries the fullest set — combine them to zero in (e.g. only DACH sponsors who replied). Same ✓ / ✕ tool everywhere:</p>
 <div class="tblwrap"><table>
-<thead><tr><th>Filter</th><th>What it narrows · how to use</th></tr></thead>
+<thead><tr><th>Filter</th><th>"I want to find…" &amp; how to use</th></tr></thead>
 <tbody>
-<tr><td><b>Lifecycles</b></td><td>by contact stage — same ✓/✕ tool as 10.1</td></tr>
-<tr><td><b>Contact Classification</b></td><td>contact <b>type</b>: <b>Talent · Client · Other</b> (each ✓/✕; Has/No radios + Paste list)</td></tr>
-<tr><td><b>Owner</b></td><td>which teammate owns the contact — pick yourself to see only yours</td></tr>
-<tr><td><b>Work Experience</b></td><td>career facts — see 10.4</td></tr>
-<tr><td><b>Countries · Cities</b></td><td>the contact's location — pick a geography (DACH, UK…)</td></tr>
-<tr><td><b>+ Add filter</b></td><td><b>Customize Quick Filters</b> — pin/unpin which filters show on the bar (Reset defaults)</td></tr>
+<tr><td><b>Lifecycles</b></td><td>"…replies from contacts at a given stage." → ✓ / ✕ per stage (as in 9.1)</td></tr>
+<tr><td><b>Contact Classification</b></td><td>"…replies from a given contact type." → <b>Talent · Client · Other</b> (✓ / ✕; Has / No; Paste list)</td></tr>
+<tr><td><b>Owner</b></td><td>"…only replies on contacts I own." → pick yourself</td></tr>
+<tr><td><b>Work Experience</b></td><td>"…people by their career facts (firm type, title, location…)." → see the panel below</td></tr>
+<tr><td><b>Countries · Cities</b></td><td>"…contacts in a geography (DACH, UK…)." → pick the location</td></tr>
+<tr><td><b>+ Add filter</b></td><td><b>Customize Quick Filters</b> — pin / unpin which filters show on the bar (Reset defaults)</td></tr>
 </tbody></table></div>
-<div class="call note"><span class="t">In action</span>The Inbox holds <b>27</b> replies. Open <b>Work Experience → Company type = Sponsor</b> (green ✓) → <b>27 → 25</b>. <b>Why:</b> only people whose company is flagged <b>Sponsor</b> stay — and indeed every remaining row is a PE sponsor firm (Ardian · General Atlantic · Carlyle).</div>
-<figure><img src="sdrx-flt-inbox-we-demo.png" alt="Inbox Work Experience Sponsor result"/><figcaption><b>9.3 · result</b> — <span class="fn">(SDR)</span> chip <b>Work Experience : Sponsor</b> → <b>Showing 20 of 25</b>; rows are all sponsor firms.</figcaption></figure>
-
-<h3 id="flt-we" class="anchor">9.4 · Work Experience — the power filter (every field)</h3>
-<p>Filters people by their <b>career</b>, not just their contact record. Top toggle <b>Match any (OR)</b> / <b>Match all (AND)</b> decides whether a person must meet <i>one</i> or <i>all</i> of:</p>
+<div class="call note"><span class="t">In action</span>Inbox holds <b>27</b> replies → <b>Work Experience → Company type = Sponsor</b> (✓) → <b>27 → 25</b>; every remaining row is a PE sponsor firm (Ardian · General Atlantic · Carlyle).</div>
+<figure><img src="sdrx-flt-inbox-we-demo.png" alt="Inbox Work Experience Sponsor result"/><figcaption><b>9.3</b> — chip <b>Work Experience : Sponsor</b> → <b>Showing 20 of 25</b>; rows are all sponsor firms.</figcaption></figure>
+<h4>Work Experience — the power filter</h4>
+<p><b>"I want to find people who work at a Sponsor firm as a Managing Director."</b> This filters people by their <b>career</b>, not just the contact record. The top toggle <b>Match any (OR) / Match all (AND)</b> decides whether a person must meet <i>one</i> or <i>all</i> of:</p>
 <ul>
-<li><b>Company type</b> — Sponsor · Corporate · Portfolio (each ✓ include / ✕ exclude) — used in the 10.3 demo.</li>
+<li><b>Company type</b> — Sponsor · Corporate · Portfolio (✓ include / ✕ exclude) — used in the demo above.</li>
 <li><b>Email validity</b> — Valid · Invalid · Validating · None.</li>
 <li><b>Currently / Past</b> — the role is ongoing or historical.</li>
 <li><b>Position</b> — job title (e.g. "Managing Director").</li>
@@ -1011,7 +1006,7 @@
 <li><b>Company Description</b> — a keyword in the firm's description.</li>
 <li><b>Company country / city</b>.</li>
 </ul>
-<figure><img src="sdrx-flt-we-panel.png" alt="Work Experience filter panel"/><figcaption><b>9.4 · panel</b> — <span class="fn">(SDR)</span> the full Work Experience panel: Match any/all · Company type · Email validity · Currently/Past · Position · Company/linked · Description · country/city.</figcaption></figure>
+<figure><img src="sdrx-flt-we-panel.png" alt="Work Experience filter panel"/><figcaption><b>9.3 · panel</b> — the full Work Experience panel: Match any / all · Company type · Email validity · Currently / Past · Position · Company / linked · Description · country / city.</figcaption></figure>
 <div class="pagernav"><a data-goto="page-marketing"><span class="k">← Prev</span><b>Flow 8 · Manage ME</b></a><a class="next" data-goto="page-faq"><span class="k">Next →</span><b>Flow 10 · FAQ</b></a></div>
 </section>
 
