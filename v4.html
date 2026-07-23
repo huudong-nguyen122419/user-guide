@@ -220,6 +220,9 @@
     <a href="#e-2-4" class="st2" data-page="page-find">2.x.4 · View company detail</a>
     <a href="#e-2-5" class="st2" data-page="page-find">2.x.5 · Sort the table</a>
     <a href="#e-2-6" class="st2" data-page="page-find">2.x.6 · Has signal (2 levels)</a>
+    <a href="#e-2-7" class="st2" data-page="page-find">2.x.7 · Simple vs Full view</a>
+    <a href="#e-2-8" class="st2" data-page="page-find">2.x.8 · Show / hide columns</a>
+    <a href="#e-2-9" class="st2" data-page="page-find">2.x.9 · Still loading (0 of N)</a>
     <a class="flow" data-page="page-send"><span class="n">3</span> Send a 1:1 email</a>
     <a href="#s-paths" class="st" data-page="page-send">3.1 · 3 ways into compose</a>
     <a href="#way-1" class="st2" data-page="page-send">3.1.1 · List row ✉</a>
@@ -666,10 +669,10 @@
   <li><b>✕ exclude</b> = <b>hide</b> contacts at that stage (drop them, keep the rest).</li>
   <li>Several <b>✓</b> together = <b>OR</b> — a contact matches if it's at <i>any</i> ticked stage.</li>
   </ul>
-  The <b>Has a lifecycle / No lifecycle</b> radios catch contacts with/without any label; <b>Paste list</b> takes one value per line. E.g. tick <b>✓ Prospect</b> to work only untouched people; add <b>✕ Opted Out</b> · <b>✕ Not Interested</b> to hide the dead ones.
+  The <b>Has a lifecycle / No lifecycle</b> radios catch contacts with/without any label; <b>Paste list</b> takes one value per line. E.g. tick <b>✓ Prospect</b> to work only untouched people; add <b>✕ Opted Out</b> · <b>✕ Not Interested</b> to hide the dead ones. <a data-goto="page-filters" href="#flt-list-members" style="font-weight:700;cursor:pointer">Full Lifecycles reference → Flow 9.1 ↗</a>
   <figure><img src="v3s-95-sdr-lifecycles-filter.png" alt="Lifecycles filter"/><figcaption><b>2.x.1</b> — Lifecycles filter: ✓/✕ per value, Has/No radios, Paste list.</figcaption></figure>
 </li>
-<li id="e-2-2" data-code="2.x.2"><b>Keyword search.</b> The box over the table searches names, titles, companies, and remembers <b>Recent searches</b>. Search + Lifecycles combine.
+<li id="e-2-2" data-code="2.x.2"><b>Keyword search.</b> The box over the table searches names, titles, companies, and remembers <b>Recent searches</b>. Search + Lifecycles combine. <a data-goto="page-filters" href="#flt-list-members" style="font-weight:700;cursor:pointer">More list filters → Flow 9.1 ↗</a>
   <figure><img src="v3s-96-sdr-list-search.png" alt="Keyword search"/><figcaption><b>2.x.2</b> — keyword search with Recent searches memory.</figcaption></figure>
 </li>
 <li id="e-2-3" data-code="2.x.3"><b>"Held by teammates" — check before you email.</b>
@@ -683,8 +686,21 @@
   <figure><img src="sdrx-52c-rail-collapsed-sdr.png" alt="Expand company rail (SDR view)"/><figcaption><b>2.x.3 · step</b> — the left <b>company rail</b> is collapsed to logos only by default; click the <b>»</b> toggle at its top to expand it.</figcaption></figure>
   <figure><img src="sdrx-48-held-teammates.png" alt="Held by teammates"/><figcaption><b>2.x.3 · result</b> — ① pick a company → ② the "N held by teammates" pill + gray rows (Case 2).</figcaption></figure>
 </li>
-<li id="e-2-4" data-code="2.x.4"><b>View a company's detail.</b> In the left rail, <b>click the company name</b> → its <b>detail drawer</b> opens on the right with the firm's profile: a short <b>description</b>, plus <b>Alias names · Industry · Website · Location · LinkedIn · Email domains · Parent</b>, and a <b>Lists · Add to list</b> control. Use it to sanity-check the firm before working its people.
-  <figure><img src="sdrx-50-company-detail.png" alt="Company detail drawer"/><figcaption><b>2.x.4</b> — <b>click the company name</b> in the left rail → the company detail drawer (Industry · Website · Location · LinkedIn · Email domains · Parent).</figcaption></figure>
+<li id="e-2-4" data-code="2.x.4"><b>View a company's detail.</b> In the left company rail, <b>click the company name</b> (highlighted in the image) → its <b>detail drawer</b> opens on the right with the firm's profile. Use it to sanity-check a firm before working its people. Each field:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Field</th><th>What it shows</th></tr></thead>
+  <tbody>
+  <tr><td><b>Name + logo</b></td><td>The company name, with status chips (e.g. <b>Sponsor</b> · <b>In Conversation</b>).</td></tr>
+  <tr><td><b>Description</b></td><td>One-line summary of the firm — sector, size, region (e.g. "PE firm, EUR 50–250m enterprise value, DACH").</td></tr>
+  <tr><td><b>Alias names</b></td><td>Other names / spellings the firm is also known by.</td></tr>
+  <tr><td><b>Industry</b></td><td>The firm's industry classification.</td></tr>
+  <tr><td><b>Website</b></td><td>Company website — opens in a new tab.</td></tr>
+  <tr><td><b>Location</b></td><td>HQ city &amp; country.</td></tr>
+  <tr><td><b>LinkedIn</b></td><td>The company's LinkedIn page — opens in a new tab.</td></tr>
+  <tr><td><b>Email domains</b></td><td>The firm's email domains (e.g. dbag.com, dbag.de) — handy to sanity-check a contact's email address.</td></tr>
+  <tr><td><b>Parent</b></td><td>Parent company, if any (— when there's none).</td></tr>
+  </tbody></table></div>
+  <figure><img src="sdrx-50-company-detail.png" alt="Company detail drawer — click the company name to open it"/><figcaption><b>2.x.4</b> — <b>click the company name</b> in the left rail (highlighted) → the company detail drawer opens on the right.</figcaption></figure>
 </li>
 <li id="e-2-5" data-code="2.x.5"><b>Sort by Country / City / Last Contact.</b> <b>Country</b>, <b>City</b> and <b>Last Contact</b> are sortable columns — <b>click the header</b> to sort (click once = A→Z / oldest→newest, click again = reverse; empty values group first). Sort by <b>Country / City</b> to work one geography at a time; sort by <b>Last Contact</b> to surface who's gone quiet (feeds Flow 5).
   <figure><img src="sdrx-32-list-members-simple.png" alt="Sortable columns"/><figcaption><b>2.x.5</b> — click <b>Country · City · Last Contact</b> headers to sort.</figcaption></figure>
@@ -694,11 +710,14 @@
   <li><b>Members bar</b> (right, over contacts) → <b>Has signal : Yes</b> keeps <b>people who personally have a signal</b>; the <b>Signals</b> column then has a value on every row (⚡ news / 💼 job). E.g. 359 → 246.</li>
   <li><b>Company rail</b> (left, over firms) → expand it (<b>»</b>) and its bar shows <b>Lifecycle · Has signal</b> (+ 🔍 search). <b>Has signal : Yes</b> keeps <b>firms that have a signal</b> — the best ones to open with. E.g. 111 → 29.</li>
   </ul>
-  <span class="fn">Same dropdown tool as Lifecycles: ✓ include / ✕ exclude, Has/No radios, Paste list.</span>
+  <span class="fn">Same dropdown tool as Lifecycles: ✓ include / ✕ exclude, Has/No radios, Paste list.</span> <a data-goto="page-filters" href="#flt-list-rail" style="font-weight:700;cursor:pointer">Full company-rail reference → Flow 9.2 ↗</a>
   <figure><img src="sdrx-57b-company-rail-filter-sdr.png" alt="Company rail filters (SDR view)"/><figcaption><b>2.x.6</b> — members bar = <b>Lifecycles · Has signal</b>; company rail = <b>Lifecycle · Has signal</b> (+ 🔍 search).</figcaption></figure>
 </li>
 <li id="e-2-7" data-code="2.x.7"><b>Simple vs Full view.</b> Top-right of the table is a <b>Simple / Full</b> toggle. <b>Simple</b> (default) shows the lean columns; <b>Full</b> adds more detail per row. Switch anytime — it only changes what you see, not the data.</li>
 <li id="e-2-8" data-code="2.x.8"><b>Show / hide columns.</b> The <b>gear ⚙</b> button (next to the Simple/Full toggle) opens a column picker — tick the columns you want shown, untick the rest. Handy when you only care about Signals or Last Contact.</li>
+<li id="e-2-9" data-code="2.x.9"><b>"Showing 0 of N" — the list is still loading.</b> A count of <b>0</b> with grey skeleton rows just means the members are still fetching (can lag a moment on big lists). Wait a beat — it fills in.
+  <figure><img src="v3s-172-loading-state.png" alt="List still loading — Showing 0 of N with skeleton rows"/><figcaption><b>2.x.9</b> — <b>Showing 0 of N</b> + grey skeleton rows = still loading; it populates in a moment.</figcaption></figure>
+</li>
 </ol>
 <div class="pagernav"><a data-goto="page-login"><span class="k">← Prev</span><b>Flow 1 · Log in</b></a><a class="next" data-goto="page-send"><span class="k">Next →</span><b>Flow 3 · Send a 1:1 email</b></a></div>
 </section>
@@ -1091,8 +1110,10 @@
     a.addEventListener('click', function(e){
       e.preventDefault();
       var id=a.getAttribute('data-goto');
-      history.replaceState(null,'','#'+id);
-      showPage(id);
+      var href=a.getAttribute('href')||'';
+      var sub=(href.charAt(0)==='#')?href.slice(1):'';
+      history.replaceState(null,'','#'+(sub||id));
+      showPage(id, sub||null);
     });
   });
 
