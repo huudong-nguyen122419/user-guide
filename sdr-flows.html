@@ -457,8 +457,18 @@
 
 <h3 id="i-core" class="anchor">4.1 · View &amp; answer a reply</h3>
 <ol class="steps">
-<li data-code="4.1"><b>Open the replies</b>: click <b>Inbox</b> in the left menu — one row per contact who wrote back, showing <b>Account | Last Email</b> (subject + preview + date). Auto-replies/OOO land here too.
-  <figure><img src="v3s-72-sdr-inbox.png" alt="Inbox"/><figcaption><b>4.1</b> — Inbox: one row per reply (Account | Last Email).</figcaption></figure>
+<li data-code="4.1"><b>Open the replies</b>: click <b>Inbox</b> in the left menu — one row per contact who wrote back (auto-replies / OOO land here too). Each row has two columns:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>Account</b> — who it's from: avatar, <b>name</b>, email address, phone, and city / country.</li>
+  <li><b>Last Email</b> — the most recent message in that thread, shown in three parts:
+    <ul style="margin:4px 0 0;padding-left:18px">
+    <li><b>Subject</b> (bold, top line) — the email's subject (e.g. "Re: [UAT] Test send email 02").</li>
+    <li><b>Preview</b> (grey, middle) — the opening line of the body, so you can triage without opening it.</li>
+    <li><b>Date</b> (bottom) — when it arrived (e.g. "Jul 17, 13:11").</li>
+    </ul>
+  </li>
+  </ul>
+  <figure><img src="v3s-72-sdr-inbox.png" alt="Inbox"/><figcaption><b>4.1</b> — Inbox: one row per reply — <b>Account</b> (name · email · phone · location) + <b>Last Email</b> (subject · preview · date).</figcaption></figure>
 </li>
 <li data-code="4.2"><b>Spot which messages are replies — and glance at the auto chip.</b> The clearest signal is the <b>direction arrow</b> next to the sender in the thread:
   <ul style="margin:6px 0 0;padding-left:18px">
@@ -478,8 +488,27 @@
   <figure><img src="sdrx-56c-reply-signals-annot.png" alt="Reply signals in a conversation (SDR view)"/><figcaption><b>4.2</b> — <b>①</b> a reply = <b>↙ inbound arrow</b> + a real chip ("Out Of Office"); <b>②</b> your send = <b>↗ outbound arrow</b> + your name; <b>③</b> your send's chip = a delivery status (<b>Delivered · Open · ⚠️ Dropped</b>).</figcaption></figure>
   <figure><img src="sdrx-86-reply-chips.png" alt="Reply chips in the thread list (Out Of Office · Interested · Not Now)"/><figcaption><b>4.2 · chips</b> — the coloured <b>reply chips</b> down the thread list: <b>Out Of Office · Interested · Not Now</b> — the system's quick read of each reply. (Your own sent rows instead carry a delivery-status chip — Delivered · Open · ⚠️ Dropped.)</figcaption></figure>
 </li>
-<li data-code="4.3"><b>Read the email.</b> Click the row → the contact opens on <b>Conversations</b>: the thread list is on the left, the selected message on the right, <b>Expand all</b> unfolds the whole exchange. Read what they actually wrote — the chip is only a hint.
-  <figure><img src="sdrx-42b-reply-arrows-annot.png" alt="Conversation thread"/><figcaption><b>4.3</b> — Conversations: thread list (left) + the message (right). The three action arrows sit at the <b>top-right of the open message</b>: <b>① Reply all · ② Reply · ③ Forward</b>.</figcaption></figure>
+<li data-code="4.3"><b>Read the email — and know where it came from.</b> Click any row → the contact opens on <b>Conversations</b>: the <b>thread list</b> is on the left, the <b>selected message</b> on the right. <b>Expand all</b> unfolds the whole exchange. Read what they actually wrote — the chip is only a hint.
+  <p style="margin:8px 0 2px"><b>What a "thread" is:</b> one <b>conversation</b> = every email exchanged with that contact under one subject, grouped together. Each item in the left list is a thread; a small <b>count badge</b> (e.g. <b>2 · 3 · 12</b>) shows how many messages it holds. Click to open it, then use the <b>›</b> / <b>Expand</b> chevron to unfold every message in order.</p>
+  <b>Anatomy of a thread row</b> (left list):
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>Avatar + name</b> — who the latest message is from.</li>
+  <li><b>Direction arrow</b> — <b>↗</b> = an email <b>you sent</b> (e.g. "Dong SDR ↗"); the prospect's name with no outbound arrow = <b>their reply</b>.</li>
+  <li><b>Source icon</b> (small ✉) — hover it to see where a <b>sent</b> email came from (see the table). A <b>reply</b> has none.</li>
+  <li><b>Auto chip</b> — the system's read (Out Of Office · Interested · Not Now …) → see <a data-goto="page-inbox" href="#i-core" style="font-weight:700;cursor:pointer">4.2</a>.</li>
+  <li><b>Count badge</b> = messages in the thread · <b>Date</b> = when the latest one arrived.</li>
+  </ul>
+  <b>Where a sent email came from</b> — hover the small ✉ source icon:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Source</th><th>What it means</th><th>How to tell</th></tr></thead>
+  <tbody>
+  <tr><td><b>Direct</b></td><td>You wrote &amp; sent it yourself, 1:1 (Flow 3).</td><td><b>↗ your name</b>, <b>no</b> source icon.</td></tr>
+  <tr><td><b>Campaign</b></td><td>Sent by an automated <b>campaign</b> sequence the contact is enrolled in.</td><td>Source icon → tooltip <b>"Campaign: [name]"</b>.</td></tr>
+  <tr><td><b>Marketing Email</b></td><td>Sent as part of a <b>marketing email</b> send.</td><td>Source icon → tooltip <b>"Marketing Email: [name]"</b>.</td></tr>
+  </tbody></table></div>
+  <figure><img src="sdrx-88-source-marketing.png" alt="Hover the source icon — tooltip names the email's source"/><figcaption><b>4.3</b> — hover the ✉ <b>source icon</b> on a sent email → the tooltip names where it came from (here <b>Marketing Email: V1 …</b>). Direct 1:1 sends show <b>no</b> source icon; campaign sends read <b>"Campaign: …"</b>.</figcaption></figure>
+  <div class="call note"><span class="t">Reply vs no reply</span>A thread with an <b>inbound</b> message means the prospect <b>wrote back</b> — answer it (4.4 / 4.5). A thread that's only your own <b>↗ sends</b> has <b>no reply yet</b> — that's a follow-up candidate (<a data-goto="page-followup" style="font-weight:700;cursor:pointer">Flow 5 ↗</a>).</div>
+  <figure><img src="sdrx-42b-reply-arrows-annot.png" alt="Conversation thread"/><figcaption><b>4.3 · actions</b> — the three action arrows sit at the <b>top-right of the open message</b>: <b>① Reply all · ② Reply · ③ Forward</b>.</figcaption></figure>
 </li>
 <li data-code="4.4"><b>Decide: reply or not.</b> If it needs an answer, reply (4.5). If it doesn't (e.g. a plain "not interested" or an auto-reply), skip replying and just <b>set the contact's Lifecycle</b> so it leaves the queue.</li>
 <li data-code="4.5"><b>Click Reply</b> — the <b>single ↩ arrow</b> at the <b>top-right of the open message</b> (circled below). It answers <b>only the person who wrote</b> — the normal choice for 1:1 outreach. <span class="fn">(The double-arrow <b>Reply all</b> and the <b>Forward</b> arrow sit right next to it — see Edge cases.)</span>
