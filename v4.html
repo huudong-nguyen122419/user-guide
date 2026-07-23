@@ -873,11 +873,11 @@
   <div class="tblwrap"><table>
   <thead><tr><th>Chip</th><th>On</th><th>What it means</th><th>Your move</th></tr></thead>
   <tbody>
-  <tr><td><b>Delivered</b></td><td>your send</td><td>Sent &amp; delivered — the prospect hasn't opened it yet.</td><td>Give it time, then follow up.</td></tr>
-  <tr><td><b>Open</b></td><td>your send</td><td>The prospect <b>opened</b> your email (or it isn't classified yet).</td><td>Warm signal — worth a follow-up.</td></tr>
-  <tr><td>⚠️ <b>Dropped</b></td><td>your send</td><td><b>The email did NOT go out</b> — it failed to send.</td><td><b>Send it again</b> — this one needs your attention.</td></tr>
-  <tr><td><b>Interested · Call Scheduled</b></td><td>their reply</td><td>The system read the reply as a positive signal.</td><td>Read it, then set the contact's Lifecycle.</td></tr>
-  <tr><td><b>Not Interested · Out Of Office · …</b></td><td>their reply</td><td>The system's quick read of what they wrote.</td><td>Read it, then set the Lifecycle.</td></tr>
+  <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;white-space:nowrap;background:#64748B">Delivered</span></td><td>your send</td><td>Sent &amp; delivered — the prospect hasn't opened it yet.</td><td>Give it time, then follow up.</td></tr>
+  <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;white-space:nowrap;background:#1E90FF">Open</span></td><td>your send</td><td>The prospect <b>opened</b> your email (or it isn't classified yet).</td><td>Warm signal — worth a follow-up.</td></tr>
+  <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;white-space:nowrap;background:#D97706">⚠ Dropped</span></td><td>your send</td><td><b>The email did NOT go out</b> — it failed to send.</td><td><b>Send it again</b> — this one needs your attention.</td></tr>
+  <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;white-space:nowrap;background:#16A34A">Interested</span> <span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;white-space:nowrap;background:#16A34A">Call Scheduled</span></td><td>their reply</td><td>The system read the reply as a positive signal.</td><td>Read it, then set the contact's Lifecycle.</td></tr>
+  <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;white-space:nowrap;background:#008080">Out Of Office</span> <span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;white-space:nowrap;background:#64748B">Not Interested</span> …</td><td>their reply</td><td>The system's quick read of what they wrote.</td><td>Read it, then set the Lifecycle.</td></tr>
   </tbody></table></div>
   <figure><img src="sdrx-56c-reply-signals-annot.png" alt="Reply signals in a conversation (SDR view)"/><figcaption><b>4.2</b> — <b>①</b> a reply = <b>↙ inbound arrow</b> + a real chip ("Out Of Office"); <b>②</b> your send = <b>↗ outbound arrow</b> + your name; <b>③</b> your send's chip = a delivery status (<b>Delivered · Open · ⚠️ Dropped</b>).</figcaption></figure>
   <figure><img src="sdrx-86-reply-chips.png" alt="Reply chips in the thread list (Out Of Office · Interested · Not Now)"/><figcaption><b>4.2 · chips</b> — the coloured <b>reply chips</b> down the thread list: <b>Out Of Office · Interested · Not Now</b> — the system's quick read of each reply. (Your own sent rows instead carry a delivery-status chip — Delivered · Open · ⚠️ Dropped.)</figcaption></figure>
@@ -892,7 +892,7 @@
   <li><b>Auto chip</b> — the system's read (Out Of Office · Interested · Not Now …) → see <a data-goto="page-inbox" href="#i-core" style="font-weight:700;cursor:pointer">4.2</a>.</li>
   <li><b>Count badge</b> = messages in the thread · <b>Date</b> = when the latest one arrived.</li>
   </ul>
-  <b>Where a sent email came from</b> — hover the small ✉ source icon:
+  <b>Where a sent email came from</b> — <b>Campaign</b> and <b>Marketing Email</b> use the <b>same small ✉ badge</b>, so you <b>hover it</b> to tell them apart (the tooltip spells out which). A <b>Direct</b> 1:1 send has <b>no badge</b> at all:
   <div class="tblwrap"><table>
   <thead><tr><th>Source</th><th>What it means</th><th>How to tell</th></tr></thead>
   <tbody>
@@ -905,7 +905,7 @@
   <figure><img src="sdrx-42b-reply-arrows-annot.png" alt="Conversation thread"/><figcaption><b>4.3 · actions</b> — the three action arrows sit at the <b>top-right of the open message</b>: <b>① Reply all · ② Reply · ③ Forward</b>.</figcaption></figure>
 </li>
 <li data-code="4.4"><b>Decide: reply or not.</b> If it needs an answer, reply (4.5). If it doesn't (e.g. a plain "not interested" or an auto-reply), skip replying and just <b>classify the contact</b> (Flow 3) so it leaves the queue.</li>
-<li data-code="4.5"><b>Click Reply</b> — the <b>single ↩ arrow</b> at the <b>top-right of the open message</b> (circled below). It answers <b>only the person who wrote</b> — the normal choice for 1:1 outreach. <span class="fn">(The double-arrow <b>Reply all</b> and the <b>Forward</b> arrow sit right next to it — see Edge cases.)</span>
+<li data-code="4.5"><b>Click Reply</b> — the <b>single ↩ arrow</b> at the <b>top-right of the open message</b> (circled below). It answers <b>only the person who wrote</b> — the normal choice for 1:1 outreach. The <b>subject auto-fills</b> as <b>RE: [the original subject]</b> (you can still edit it). <span class="fn">(The double-arrow <b>Reply all</b> and the <b>Forward</b> arrow sit right next to it — see Edge cases.)</span>
   <figure><img src="sdrx-44-reply-circled.png" alt="Reply button circled"/><figcaption><b>4.5</b> — the <b>Reply</b> button (single arrow) at the top-right of the message.</figcaption></figure>
 </li>
 <li data-code="4.6"><b>What opens:</b> a <b>compose window</b> with the subject already set to <i>RE: …</i>, the <b>sender pre-filled in To</b>, and the original message quoted below. It stays in the <b>same thread</b>.
@@ -916,10 +916,10 @@
 
 <h3 id="i-edge" class="edgehead anchor">4.x · Edge cases</h3>
 <ol class="steps edge">
-<li id="e-5-1" data-code="4.x.1"><b>Reply all</b> — the <b>double ↩↩ arrow</b> (left of Reply, circled below) answers the sender <b>plus everyone else on the thread's To/Cc</b>. Use it only when several people are genuinely in the conversation (an assistant or colleague was copied). Same compose window as Reply, but the <b>To</b> line is pre-filled with <b>every email address in the thread</b> — so your one reply goes out <b>from your mailbox to all of them at once</b>. Hover the button to preview the full recipient list (e.g. <code>To: oemer.gueven@fintalent.com, dz@dzadvisory.de</code>), and remove anyone you don't want before you send.
+<li id="e-5-1" data-code="4.x.1"><b>Reply all</b> — the <b>double ↩↩ arrow</b> (left of Reply, circled below) answers the sender <b>plus everyone else on the thread's To/Cc</b>. Use it only when several people are genuinely in the conversation (an assistant or colleague was copied). Same compose window as Reply, but the <b>To</b> line is pre-filled with <b>every email address in the thread</b> — so your one reply goes out <b>from your mailbox to all of them at once</b>. Hover the button to preview the full recipient list (e.g. <code>To: oemer.gueven@fintalent.com, dz@dzadvisory.de</code>), and remove anyone you don't want before you send. Like Reply, the <b>subject auto-fills</b> as <b>RE: [original subject]</b>.
   <figure><img src="sdrx-84-replyall-hover.png" alt="Reply all button hovered — tooltip previews every recipient"/><figcaption><b>4.x.1</b> — <b>hover Reply all</b> (leftmost of the three) → the tooltip previews every recipient (<b>To: tien@fintalent.com, tin@cyberhq.net</b>) before you send.</figcaption></figure>
 </li>
-<li id="e-5-2" data-code="4.x.2"><b>Forward</b> — the <b>➡ arrow</b> (right of Reply, circled below) sends this message on to <b>someone new</b>. Same window, but <b>To starts empty</b> for you to type the new recipient; the original message is carried in the body.
+<li id="e-5-2" data-code="4.x.2"><b>Forward</b> — the <b>➡ arrow</b> (right of Reply, circled below) sends this message on to <b>someone new</b>. Same window, but <b>To starts empty</b> for you to type the new recipient; the original message is carried in the body. The <b>subject auto-fills</b> as <b>FW: [original subject]</b>.
   <figure><img src="sdrx-46-forward-circled.png" alt="Forward button circled"/><figcaption><b>4.x.2</b> — the <b>Forward</b> button (arrow pointing right), rightmost of the three.</figcaption></figure>
 </li>
 <li id="e-5-3" data-code="4.x.3"><b>Filters.</b> The Inbox bar carries the full set; <b>+ Add filter</b> opens <b>Customize Quick Filters</b> (pin filters, Reset defaults) to build your own quick bar. Use it to slice big queues (only DACH, only CFOs). <a data-goto="page-filters" href="#flt-inbox" style="font-weight:700;cursor:pointer">Full Inbox-filter reference → Flow 9.3 ↗</a>
