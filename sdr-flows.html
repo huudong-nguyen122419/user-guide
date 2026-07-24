@@ -800,6 +800,7 @@
 <tr><td><b>Cancel</b></td><td><b>Removed from the queue</b> &mdash; these will <b>not</b> be sent.</td></tr>
 </tbody></table></div>
 <figure><img src="sdrx-me-23-email-queue.png" alt="Email Queue tab — In Queue / Delivered / Cancel"/><figcaption><b>8.6</b> &mdash; the <b>Email Queue</b> tab: <b>In Queue &middot; Delivered &middot; Cancel</b> (+ All), with columns <b>Subject &middot; Content &middot; Status &middot; Attachments &middot; Sent Date</b> and <b>Sources / Campaigns / Expected Run Date</b> filters.</figcaption></figure>
+<p class="fn"><b>Heads-up (UAT):</b> the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> for a while after a send &mdash; even when the email already went out. If it looks empty, refresh, or just confirm the send in the contact's <a data-goto="page-marketing" href="#me-conv" style="font-weight:700;cursor:pointer">Conversations (8.7) &#8599;</a>.</p>
 <p>Act on a row from the <b>&#8942; three-dot</b> menu (on rows in <b>In Queue</b>):</p>
 <ul style="margin:6px 0 0;padding-left:18px">
 <li><b>Set as delivered</b> &mdash; send that email <b>right now</b>, without waiting for the queue.</li>
@@ -808,16 +809,17 @@
 <div class="call warn"><span class="t">Check before you leave it</span>Anything left in <b>In Queue</b> <b>will</b> go out. If someone shouldn't receive it, <b>cancel</b> them &mdash; don't just ignore the row.</div>
 
 <h3 id="me-conv" class="anchor">8.7 &middot; Verify in the contact's Conversations</h3>
-<p>The moment you force send, each queued email is written into that contact's conversation. To check:</p>
+<p>The moment your Admin force-sends, each email is written into that contact's conversation &mdash; even while it's still queued. To check:</p>
 <p><b>People</b> tab &rarr; open the <b>contact</b> &rarr; <b>Conversations</b> &rarr; find the thread with the <b>marketing icon</b>. Its <b>chip</b> tracks the whole life of the send:</p>
 <div class="tblwrap"><table>
 <thead><tr><th>Chip</th><th>Means</th></tr></thead>
 <tbody>
-<tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#64748B">In Queue</span></td><td>Queued, not sent yet.</td></tr>
+<tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#D97706">In Queue</span></td><td>Queued, not sent yet.</td></tr>
 <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#64748B">Delivered</span></td><td>It went out.</td></tr>
 <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#1E90FF">Open</span></td><td>They opened it.</td></tr>
 <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#D97706">&#9888; Bounce / Dropped</span></td><td>It failed &mdash; that address didn't take it.</td></tr>
 </tbody></table></div>
+<figure><img src="sdrx-me-24-conversation-chip.png" alt="Marketing email in the contact's Conversations with a status chip"/><figcaption><b>8.7</b> &mdash; the marketing send in the contact's <b>Conversations</b>: the thread carries the <b>&#9993;/&#8599; marketing icons</b> and a <b>status chip</b> (captured here as <b>In Queue</b>), and the body shows the <b>personalized</b> copy.</figcaption></figure>
 <p>When they <b>reply</b>, the thread also picks up the <b>reply icon</b> and a <b>lifecycle chip</b> per email (the system's read of the reply &mdash; see <a data-goto="page-inbox" href="#i-core" style="font-weight:700;cursor:pointer">Flow 4.2 &#8599;</a>).</p>
 
 <h3 id="me-followup" class="anchor">8.8 &middot; Then: replies, bounces &amp; drops</h3>
