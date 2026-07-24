@@ -1070,8 +1070,25 @@
 <li><b>You created it</b> yourself (8.1).</li>
 <li><b>Admin / Ops created it and assigned you</b> &mdash; already set up, often with people already added. This is the usual case.</li>
 </ul>
-<p>Filter by status with the tabs <b>All &middot; Draft &middot; Paused &middot; Running &middot; Finished</b>. Each row shows <b>Name</b> (+ From address &amp; status), <b>People</b>, <b>Delivered</b>, <b>Open Rate</b>, <b>Reply Rate</b>, <b>Bounce/Dropped Rate</b>, <b>Progress</b> and <b>Last run</b> &mdash; your at-a-glance health check.</p>
-<figure><img src="sdrx-me-00-list.png" alt="Marketing Emails list"/><figcaption><b>8.2</b> &mdash; the ME list: status tabs, and per-ME People / Delivered / Open / Reply / Bounce-Dropped / Progress.</figcaption></figure>
+<p>Filter by status with the tabs <b>All &middot; Draft &middot; Paused &middot; Running &middot; Finished</b>.</p>
+<figure><img src="sdrx-me-00-list.png" alt="Marketing Emails list"/><figcaption><b>8.2</b> &mdash; the ME list: status tabs + the per-ME numbers.</figcaption></figure>
+
+<h4>8.2a &middot; Reading the numbers</h4>
+<p>Every row carries the ME's whole health check. Here's what each one actually counts:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Column</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td><b>Name</b></td><td>The ME's name, the <b>From</b> address it sends as, and its <b>status chip</b> &mdash; <b>Draft (created on&hellip;)</b>, <b>Started on&hellip;</b> or <b>Paused</b>.</td></tr>
+<tr><td><b>People</b></td><td>How many contacts are <b>in the ME right now</b> (its recipient list). An old ME can show <b>0</b> if people were removed after it ran.</td></tr>
+<tr><td><b>Delivered</b></td><td>How many emails were <b>actually delivered</b>. It counts <b>emails, not people</b> &mdash; one contact can receive several over time, so you'll see rows like <b>1 person / 12 delivered</b>.</td></tr>
+<tr><td><b>Open Rate</b></td><td><b>% opened</b>, with the raw count in brackets. <b>100% (1)</b> = the one delivered mail was opened. Higher = your subject line is landing.</td></tr>
+<tr><td><b>Reply Rate</b></td><td><b>% that got a reply</b>, with the <b>total number of replies</b> in brackets &mdash; so <b>100% (11)</b> means every delivered mail was answered, and 11 replies came in altogether. This is the number that matters most.</td></tr>
+<tr><td><b>Bounce/Dropped Rate</b></td><td><b>% that failed</b> (bounced or dropped), count in brackets. Anything above <b>0</b> is a to-do: those people never got it &mdash; reach them via <a data-goto="page-send" style="font-weight:700;cursor:pointer">Flow 3 &middot; 1:1 email &#8599;</a>.</td></tr>
+<tr><td><b>Progress</b></td><td>How far the send has got: an <b>empty grey bar + 0%</b> while it's still Draft; a <b>full purple bar + green &#10003;</b> once everything has gone out.</td></tr>
+<tr><td><b>Last run</b></td><td>When the ME <b>last actually sent</b> (&mdash; if it never has).</td></tr>
+</tbody></table></div>
+<p class="fn"><b>Note:</b> the three rates stay <b>blank</b> on a <b>Draft</b> ME &mdash; nothing has been sent yet, so there's nothing to measure.</p>
+<figure><img src="sdrx-me-06-metrics.png" alt="Marketing Email list metrics with real values"/><figcaption><b>8.2a</b> &mdash; the same columns with real numbers: Drafts show <b>0%</b> and blank rates; sent MEs show <b>% (count)</b> per rate and a <b>full bar + &#10003;</b>.</figcaption></figure>
 
 <h3 id="me-people" class="anchor">8.3 &middot; Add people to the ME</h3>
 <p>Recipients come from your lists:</p>
