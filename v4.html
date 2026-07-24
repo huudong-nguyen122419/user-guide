@@ -254,7 +254,22 @@
     <a href="#r-linkedin" class="st" data-page="page-reach">6.2 · LinkedIn profile</a>
 
     <div class="grp">SDR — bulk outreach</div>
-    <a class="flow" data-page="page-campaign"><span class="n">7</span> Manage campaign</a>
+    <a class="flow" data-page="page-campaign"><span class="n">7</span> Manage a campaign</a>
+    <a href="#cmp-create" class="st" data-page="page-campaign">7.1 · Create (folder first)</a>
+    <a href="#cmp-steps" class="st" data-page="page-campaign">7.2 · Build the sequence</a>
+    <a href="#cmp-view" class="st" data-page="page-campaign">7.3 · View campaigns</a>
+    <a href="#cmp-people" class="st" data-page="page-campaign">7.4 · People</a>
+    <a href="#cmp-run" class="st" data-page="page-campaign">7.5 · Schedule &amp; run</a>
+    <a href="#cmp-queue" class="st" data-page="page-campaign">7.6 · Email Queue</a>
+    <a href="#cmp-replies" class="st" data-page="page-campaign">7.7 · Replies (campaign Inbox)</a>
+    <a href="#cmp-followup" class="st" data-page="page-campaign">7.8 · Bounces · hot replies</a>
+    <a href="#cmp-edge" class="st edge" data-page="page-campaign">7.x · Edge cases</a>
+    <a href="#ce-1" class="st2" data-page="page-campaign">7.x.1 · A/B variants</a>
+    <a href="#ce-2" class="st2" data-page="page-campaign">7.x.2 · Sidestep (conditional)</a>
+    <a href="#ce-3" class="st2" data-page="page-campaign">7.x.3 · Folders &amp; owner</a>
+    <a href="#ce-4" class="st2" data-page="page-campaign">7.x.4 · Enabled toggle</a>
+    <a href="#ce-5" class="st2" data-page="page-campaign">7.x.5 · Status tabs</a>
+    <a href="#ce-6" class="st2" data-page="page-campaign">7.x.6 · Adding people</a>
     <a class="flow" data-page="page-marketing"><span class="n">8</span> Manage a Marketing Email</a>
     <a href="#me-create" class="st" data-page="page-marketing">8.1 · Create a ME</a>
     <a href="#tpl-step" class="st" data-page="page-marketing">8b · Create / edit a template</a>
@@ -1033,9 +1048,89 @@
 
 <!-- ===================== FLOW 8 · MANAGE CAMPAIGN ===================== -->
 <section class="page" id="page-campaign">
-<h2><span class="who sdr">SDR</span><span class="n">Flow 7 ·</span> Manage campaign</h2>
-<div class="call warn"><span class="t">Chưa rõ permission</span>Chưa rõ permission nên chưa đi flow trong đây.</div>
-<div class="pagernav"><a data-goto="page-reach"><span class="k">← Prev</span><b>Flow 6 · WhatsApp / LinkedIn</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 8 · Manage ME</b></a></div>
+<h2><span class="who sdr">SDR</span><span class="n">Flow 7 ·</span> Manage a campaign</h2>
+<div class="goal"><b>Goal:</b> run a <b>multi-step outreach sequence</b> (a "campaign") &mdash; a drip of emails with <b>delays</b> between them and optional <b>A/B variants</b>, sent to a list and tracked per contact. Where a <b>Marketing Email</b> (Flow 8) is <b>one</b> send, a <b>campaign</b> is a <b>sequence</b>: Step 1 &rarr; wait &rarr; Step 2 &rarr; &hellip;</div>
+<div class="call note"><span class="t">Yours vs your Admin's</span>You <b>build &amp; schedule</b> the campaign (folder, steps, timing, variants) and can set it <b>Draft &rarr; Scheduled</b>. Actually <b>enabling / running</b> it (the <b>Enabled</b> toggle) is an <b>Admin / Ops</b> action &mdash; then you <b>monitor</b> the Email Queue and the campaign <b>Inbox</b> and handle replies.</div>
+
+<h3 id="cmp-create" class="anchor">7.1 &middot; Create a campaign (folder first)</h3>
+<p><b>Campaigns live inside folders.</b> So &mdash; unlike a Marketing Email, which you create directly &mdash; you <b>create a folder first</b>, open it, and only then create the campaign.</p>
+<ol class="steps">
+<li data-code="7.1.1">Left menu &rarr; <b>Campaigns</b> &rarr; <b>+ Create Folder</b> (top-right). Fill <b>Owner</b>, <b>Name</b> (required) and <b>Description</b> &rarr; <b>Create</b>.
+  <figure><img src="sdrx-camp-01-folder.png" alt="Create Folder form"/><figcaption><b>7.1.1</b> &mdash; the <b>Create Folder</b> form: <b>Owner &middot; Name &middot; Description</b>.</figcaption></figure>
+</li>
+<li data-code="7.1.2">You land <b>inside the new folder</b> (it's selected in the right-hand <b>folder rail</b>). A <b>+ Create Campaign</b> button now appears &mdash; it <b>only shows inside a folder</b>. Click it.
+  <figure><img src="sdrx-camp-02-infolder.png" alt="Inside a folder, Create Campaign appears"/><figcaption><b>7.1.2</b> &mdash; inside a folder, the <b>+ Create Campaign</b> button appears (top-right).</figcaption></figure>
+</li>
+<li data-code="7.1.3">The <b>create wizard</b> opens &mdash; name the campaign (click the <b>&#9998;</b>), pick a <b>timezone</b>, then two wizard steps: <b>1 Contacts &rarr; 2 Steps</b>.
+  <figure><img src="sdrx-camp-03-create-wizard.png" alt="Create campaign wizard"/><figcaption><b>7.1.3</b> &mdash; the wizard: <b>1 Contacts &rarr; 2 Steps</b>, with name + timezone at the top.</figcaption></figure>
+</li>
+<li data-code="7.1.4"><b>Contacts</b> (wizard step 1) is where recipients would be loaded. On the <b>SDR login it's empty</b> &mdash; click <b>Skip</b> to go straight to <b>Steps</b>; you add people later on the <a data-goto="page-campaign" href="#cmp-people" style="font-weight:700;cursor:pointer">People tab (7.4)</a> or Admin/Ops loads them. <span class="fn">(Same limitation as Marketing Emails.)</span></li>
+</ol>
+
+<h3 id="cmp-steps" class="anchor">7.2 &middot; Build the sequence (steps)</h3>
+<p>A campaign is a <b>list of steps</b>. Each step is <b>one email</b> with a <b>timing</b> (send right away, or wait N days) and one or more <b>variants</b> (A/B). The step editor is <b>identical to a Marketing Email step</b>.</p>
+<ol class="steps">
+<li data-code="7.2.1"><b>Steps</b> tab &rarr; <b>+ Create new step</b>.
+  <figure><img src="sdrx-camp-04-steps-empty.png" alt="Empty Steps tab"/><figcaption><b>7.2.1</b> &mdash; empty <b>Steps</b> tab &rarr; <b>+ Create new step</b>.</figcaption></figure>
+</li>
+<li data-code="7.2.2">Write the step: <b>Subject</b>, <b>Body</b> (rich text), <b>Variables</b>, <b>Snippets</b>, <b>CC</b>, attachments &mdash; same editor and controls as the <a data-goto="page-marketing" href="#tpl-step" style="font-weight:700;cursor:pointer">Marketing Email step (Flow 8b) &#8599;</a>. Click <b>Create</b>.
+  <figure><img src="sdrx-camp-05-step-editor.png" alt="Campaign step editor"/><figcaption><b>7.2.2</b> &mdash; the step editor (same as a Marketing Email step): Subject, body, Variables / Snippets / CC.</figcaption></figure>
+</li>
+<li data-code="7.2.3">The step lists as <b>Step 1 - Day 1</b> with its <b>timing</b> ("Right away") and variant <b>A</b>.
+  <figure><img src="sdrx-camp-06-sequence.png" alt="Step 1 in the sequence"/><figcaption><b>7.2.3</b> &mdash; <b>Step 1 &middot; Day 1 &middot; Right away &middot; variant A</b>.</figcaption></figure>
+</li>
+<li data-code="7.2.4"><b>Timing.</b> Click the timing pill to set <b>Deliver after a delay</b> (<b>Days</b>). <b>0</b> = right away; <b>N</b> = this step goes out N days after the previous one &mdash; that's the <b>"Day X"</b> label on the step.
+  <figure><img src="sdrx-camp-07-timing.png" alt="Deliver after a delay"/><figcaption><b>7.2.4</b> &mdash; <b>Deliver after a delay: Days = N</b> (0 = Right away).</figcaption></figure>
+</li>
+<li data-code="7.2.5">Add follow-ups with <b>+ Create new step</b>. A follow-up usually waits a day or two &mdash; e.g. <b>Step 2 - Day 2 &middot; Wait for 1 day</b>. Build the whole sequence this way.
+  <figure><img src="sdrx-camp-08-sequence-2steps.png" alt="Two-step sequence"/><figcaption><b>7.2.5</b> &mdash; a 2-step sequence: <b>Step 1</b> Right away, <b>Step 2</b> Wait 1 day.</figcaption></figure>
+</li>
+</ol>
+<p class="fn">Two campaign-only extras &mdash; <b>A/B variants</b> and <b>Sidesteps</b> &mdash; are in <a data-goto="page-campaign" href="#cmp-edge" style="font-weight:700;cursor:pointer">Edge cases (7.x) &#8599;</a>.</p>
+
+<h3 id="cmp-view" class="anchor">7.3 &middot; View campaigns (the list)</h3>
+<p>Left menu &rarr; <b>Campaigns</b> lists every campaign, grouped into <b>folders</b> (right rail). The top tabs filter by <b>status</b>: <b>All &middot; Scheduled &middot; Draft &middot; Running &middot; Finished &middot; Paused &middot; Archive</b>. Each row shows the <b>Enabled</b> toggle, <b>Total Steps</b>, <b>People</b>, <b>Open / Reply / Bounce rates</b>, <b>Progress</b>, <b>Delivered</b> and <b>Last run</b>.</p>
+<figure><img src="sdrx-camp-00-list.png" alt="Campaigns list"/><figcaption><b>7.3</b> &mdash; the campaign list: status tabs, the <b>folder rail</b>, the <b>Enabled</b> toggle and per-campaign metrics.</figcaption></figure>
+
+<h3 id="cmp-people" class="anchor">7.4 &middot; People</h3>
+<p>The <b>People</b> tab is the campaign's recipient list. It carries the same filter bar as your lists, <b>plus campaign-only filters</b>: <b>Done</b> (finished the whole sequence) and <b>Skipped</b>. Adding people from a list works like Marketing Emails &mdash; and, as there, the <b>add-to-campaign</b> action isn't built for the SDR role on UAT yet, so campaigns usually come with people <b>already loaded by Admin / Ops</b>.</p>
+<figure><img src="sdrx-camp-12-people.png" alt="Campaign People tab"/><figcaption><b>7.4</b> &mdash; the <b>People</b> tab with the campaign-only <b>Done</b> / <b>Skipped</b> filters.</figcaption></figure>
+
+<h3 id="cmp-run" class="anchor">7.5 &middot; Schedule &amp; run</h3>
+<div class="call warn"><span class="t">Running is Admin / Ops</span>As the SDR you can move the campaign <b>Draft &rarr; Scheduled</b> (the status dropdown, top-right). Actually <b>turning it on</b> &mdash; the <b>Enabled</b> toggle on the list &mdash; and sending is an <b>Admin / Ops</b> action, like force-sending a Marketing Email. Your job after that is to <b>monitor</b>.</div>
+<figure><img src="sdrx-camp-11-status.png" alt="Draft to Scheduled status"/><figcaption><b>7.5</b> &mdash; the status control: <b>Draft &rarr; Scheduled</b>. Enabling / running is the Admin's <b>Enabled</b> toggle.</figcaption></figure>
+
+<h3 id="cmp-queue" class="anchor">7.6 &middot; The Email Queue</h3>
+<p>Once the campaign is running, the <b>Email Queues</b> tab holds every queued send in the same three tabs as a Marketing Email &mdash; <b>In Queue &middot; Delivered &middot; Cancel</b> (+ All) &mdash; with columns <b>Subject / Content / Status / Attachments / Sent Date / Created</b> and filters for <b>Sources / Expected Run Date / Steps</b>.</p>
+<figure><img src="sdrx-camp-13-queue.png" alt="Campaign Email Queue"/><figcaption><b>7.6</b> &mdash; the campaign <b>Email Queue</b>: tabs <b>In Queue &middot; Delivered &middot; Cancel</b> and the queue columns.</figcaption></figure>
+<p class="fn"><b>Heads-up (UAT):</b> as with Marketing Emails, the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> even when the campaign has already delivered. If it looks empty, refresh, or confirm via the <a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">campaign Inbox (7.7)</a> and the contact's Conversations.</p>
+
+<h3 id="cmp-replies" class="anchor">7.7 &middot; Replies &mdash; the campaign Inbox</h3>
+<p>Every campaign has its own <b>Inbox</b> tab &mdash; the replies it pulled back, <b>categorized by lifecycle</b> down the left (Prospect &middot; Interested &middot; Not Interested &middot; Out Of Office &middot; Bounced / Dropped &middot; Open &middot; Click&hellip;). It's your <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 inbox &#8599;</a>, scoped to this campaign.</p>
+<figure><img src="sdrx-camp-14-inbox.png" alt="Campaign Inbox tab"/><figcaption><b>7.7</b> &mdash; the campaign <b>Inbox</b>: replies filed under lifecycle categories (here one <b>Not Interested</b>).</figcaption></figure>
+<p>Each send is also written into that contact's <b>Conversations</b> with a <b>status chip</b> (In Queue &rarr; Delivered &rarr; Open &rarr; Bounce) &mdash; exactly like a Marketing Email; see <a data-goto="page-marketing" href="#me-conv" style="font-weight:700;cursor:pointer">Flow 8 &middot; 8.7 &#8599;</a>.</p>
+
+<h3 id="cmp-followup" class="anchor">7.8 &middot; Then: bounces, drops &amp; hot replies</h3>
+<ul style="margin:6px 0 0;padding-left:18px">
+<li><b>Replies</b> &mdash; read &amp; answer them via <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &middot; View &amp; answer replies &#8599;</a>; set the lifecycle so the campaign stops chasing people who said no.</li>
+<li><b>Bounce / Dropped?</b> that address failed &mdash; reach the person another way with a <a data-goto="page-send" style="font-weight:700;cursor:pointer">1:1 email (Flow 3) &#8599;</a>.</li>
+<li><b>Hot reply?</b> book the meeting &mdash; the reply is the point of the whole sequence.</li>
+</ul>
+
+<h3 id="cmp-edge" class="edgehead anchor">7.x &middot; Edge cases</h3>
+<ol class="steps edge">
+<li id="ce-1" data-code="7.x.1"><b>A/B variants.</b> Under any step, <b>+ Add variant</b> creates an alternative email (<b>A</b>, <b>B</b>, &hellip;) for that step &mdash; the system splits sends between them so you can test subject / copy.
+  <figure><img src="sdrx-camp-09-variants.png" alt="A/B variants on a step"/><figcaption><b>7.x.1</b> &mdash; Step 1 with two variants <b>A</b> and <b>B</b>.</figcaption></figure>
+</li>
+<li id="ce-2" data-code="7.x.2"><b>Sidestep (conditional).</b> <b>Create sidestep</b> adds a <b>conditional</b> email that fires on a reply category &mdash; e.g. an auto-response when the reply is <b>Out Of Office</b>. Pick the condition at the top of the sidestep editor.
+  <figure><img src="sdrx-camp-10-sidestep.png" alt="Sidestep with Out Of Office condition"/><figcaption><b>7.x.2</b> &mdash; a <b>sidestep</b> keyed to the <b>Out Of Office</b> condition.</figcaption></figure>
+</li>
+<li id="ce-3" data-code="7.x.3"><b>Folders &amp; owner.</b> Campaigns are organised into <b>folders</b> (right rail, each with a count). A folder has an <b>Owner</b> &mdash; set on create (7.1.1); it decides whose group the campaign shows under. Use folders to keep campaigns per teammate / segment / region.</li>
+<li id="ce-4" data-code="7.x.4"><b>Enabled toggle.</b> The <b>Enabled</b> column on the list turns a campaign's sending <b>on / off</b> without deleting it. Flipping it on (running) is an <b>Admin / Ops</b> action.</li>
+<li id="ce-5" data-code="7.x.5"><b>Status tabs.</b> Beyond Draft/Running: <b>Scheduled</b> (set to start later), <b>Paused</b> (running but temporarily stopped), <b>Finished</b> (sequence complete), <b>Archive</b> (put away, out of the active list).</li>
+<li id="ce-6" data-code="7.x.6"><b>Adding people.</b> The <b>add contacts</b> step (wizard) and the <b>add-to-campaign</b> action from a list aren't built for the SDR role on UAT yet &mdash; campaigns arrive with people <b>already loaded</b> by Admin / Ops. You still review them on the <a data-goto="page-campaign" href="#cmp-people" style="font-weight:700;cursor:pointer">People tab (7.4)</a>.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-reach"><span class="k">← Prev</span><b>Flow 6 · WhatsApp / LinkedIn</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 8 · Manage a Marketing Email</b></a></div>
 </section>
 
 <!-- ===================== FLOW 9 · MANAGE ME ===================== -->
