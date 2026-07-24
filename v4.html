@@ -256,13 +256,14 @@
     <div class="grp">SDR — bulk outreach</div>
     <a class="flow" data-page="page-campaign"><span class="n">7</span> Manage campaign</a>
     <a class="flow" data-page="page-marketing"><span class="n">8</span> Manage a Marketing Email</a>
-    <a href="#me-open" class="st" data-page="page-marketing">8.1 · Open &amp; read template</a>
-    <a href="#me-people" class="st" data-page="page-marketing">8.2 · People — recipients</a>
-    <a href="#me-preview" class="st" data-page="page-marketing">8.3 · Preview &amp; mark reviewed</a>
-    <a href="#me-activate" class="st" data-page="page-marketing">8.4 · Draft → Active</a>
-    <a href="#me-send" class="st" data-page="page-marketing">8.5 · Force send &amp; queue</a>
-    <a href="#me-conv" class="st" data-page="page-marketing">8.6 · Check Conversations</a>
-    <a href="#me-followup" class="st" data-page="page-marketing">8.7 · Watch for replies</a>
+    <a href="#me-create" class="st" data-page="page-marketing">8.1 · Create a ME (+ template)</a>
+    <a href="#me-view" class="st" data-page="page-marketing">8.2 · View your MEs</a>
+    <a href="#me-people" class="st" data-page="page-marketing">8.3 · Add people to the ME</a>
+    <a href="#me-preview" class="st" data-page="page-marketing">8.4 · Preview &amp; mark reviewed</a>
+    <a href="#me-send" class="st" data-page="page-marketing">8.5 · Force send</a>
+    <a href="#me-queue" class="st" data-page="page-marketing">8.6 · Email Queue (3 tabs)</a>
+    <a href="#me-conv" class="st" data-page="page-marketing">8.7 · Verify in Conversations</a>
+    <a href="#me-followup" class="st" data-page="page-marketing">8.8 · Replies · bounce · drop</a>
 
     <div class="grp">SDR — reference</div>
     <a class="flow" data-page="page-filters"><span class="n">9</span> Using filters</a>
@@ -1024,51 +1025,124 @@
 <!-- ===================== FLOW 9 · MANAGE ME ===================== -->
 <section class="page" id="page-marketing">
 <h2><span class="who sdr">SDR</span><span class="n">Flow 8 ·</span> Manage a Marketing Email</h2>
-<div class="goal"><b>Goal:</b> take a <b>marketing email (ME)</b> that's been set up and <b>assigned to you</b> — recipients already added — from <b>review</b> → <b>send</b> → <b>watch for replies</b>. One ME sends the <b>same templated email</b>, personalized per contact, to a whole list at once.</div>
+<div class="goal"><b>Goal:</b> run a <b>marketing email (ME)</b> end to end — build or open one, load the right people, review &amp; personalize every mail, get it sent, then watch what comes back. One ME sends the <b>same templated email</b>, personalized per contact, to a whole list at once.</div>
+<div class="call note"><span class="t">Yours vs your Admin's</span>You do everything <b>except turning the ME on</b>. Flipping <b>Draft &rarr; Active</b> ("run marketing email") is an <b>Admin / Ops</b> action &mdash; you prepare it, they activate it, then you <b>force send</b> and manage the queue.</div>
 
-<h3 id="me-open" class="anchor">8.1 · Open your ME &amp; read the template</h3>
-<p>Left menu → <b>Marketing Emails</b> → open the one assigned to you (its <b>From</b> is your address; status <b>Draft</b>). It opens on tabs — <b>Template · People · Preview · Timeline</b> (+ Inbox). Start on <b>Template</b> and read the whole thing so you know exactly what every recipient will get:</p>
+<h3 id="me-create" class="anchor">8.1 &middot; Create a Marketing Email</h3>
+<ol class="steps">
+<li data-code="8.1.1">Left menu &rarr; <b>Marketing Emails</b> &rarr; <b>+ Create Marketing Email</b> (top-right).</li>
+<li data-code="8.1.2">Fill the header bar:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>Name</b> &mdash; <b>required</b>. It is the <b>title at the top-left</b> (starts as "New Marketing Email"); click the <b>&#9998; pencil</b> and type your own.</li>
+  <li><b>Timezone</b> &mdash; optional; defaults to <b>(UTC+01:00) Europe</b>. It decides the clock your sends run on.</li>
+  <li><b>Description</b> &mdash; optional free text (top-right); leave it blank if you don't need it.</li>
+  </ul>
+</li>
+<li data-code="8.1.3">Click <b>Next</b> &rarr; you move to step <b>&#9313; Template</b>.</li>
+</ol>
+<figure><img src="sdrx-me-04-create.png" alt="Create Marketing Email form"/><figcaption><b>8.1</b> &mdash; <b>&#9312;</b> Name (required, click &#9998;) &middot; <b>&#9313;</b> Timezone (defaults to UTC+01:00) &middot; <b>&#9314;</b> Description (optional) &middot; <b>&#9315;</b> Next &rarr; Template.</figcaption></figure>
+
+<h4>8.1a &middot; Create the template (a step)</h4>
+<p>Open the ME &rarr; <b>Template</b> tab &rarr; <b>Create new step</b> (a brand-new ME has none). <b>A step = one email.</b> What you fill in:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Field / control</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><b>Subject</b></td><td>The email's subject line (top of the editor).</td></tr>
+<tr><td><b>Select an email template</b></td><td>Optional &mdash; prefill the whole step from a saved <b>Message Template</b> instead of writing from scratch.</td></tr>
+<tr><td><b>Body</b> + formatting toolbar</td><td>The message. Full rich text: H1/H2, font &amp; size, <b>B</b>/<i>I</i>/<u>U</u>/S, quote, lists, indent, colour, link, clear-format.</td></tr>
+<tr><td><b>Variables</b></td><td>Insert <b>merge fields</b> &mdash; e.g. <code>{{contact.firstName}} {{contact.lastName}}</code> &mdash; auto-filled per contact when it sends.</td></tr>
+<tr><td><b>Snippets</b></td><td>Drop in one of your saved snippets (see Flow 3.x).</td></tr>
+<tr><td><b>CC</b></td><td>Copy someone on every send of this step.</td></tr>
+<tr><td><b>Upload files</b></td><td>Attach files to the email (each attachment shows with an <b>&#10005;</b> to remove).</td></tr>
+<tr><td><b>Signature</b></td><td>Append your signature (Flow 1.x.5).</td></tr>
+<tr><td><b>Force Update</b></td><td>Tick it when you edit a template <b>after</b> per-contact previews were already generated, so your change is pushed onto them.</td></tr>
+<tr><td><b>Save</b></td><td>Saves the step.</td></tr>
+</tbody></table></div>
+<figure><img src="sdrx-me-05-step-editor.png" alt="Marketing Email step editor"/><figcaption><b>8.1a</b> &mdash; the step editor: <b>&#9312;</b> Subject &middot; <b>&#9313;</b> start from a saved template &middot; <b>&#9314;</b> formatting toolbar &middot; <b>&#9315;</b> Variables / Snippets &middot; <b>&#9316;</b> Force Update &middot; <b>&#9317;</b> Save &middot; <b>&#9318;</b> attachments &middot; <b>&#9319;</b> Signature &middot; CC.</figcaption></figure>
+<figure><img src="sdrx-me-01-template.png" alt="Template tab with Step 1"/><figcaption><b>8.1a &middot; result</b> &mdash; the <b>Template</b> tab now shows <b>Step 1</b> with your subject + body (merge fields still shown raw here).</figcaption></figure>
+
+<h4>8.1b &middot; Edit the template</h4>
+<p>Same place, same form: <b>Template</b> tab &rarr; <b>click the step</b> &rarr; change the subject / body / attachments &rarr; <b>Save</b>. The <b>&#128465; bin</b> on the step header deletes it. If previews were already generated, tick <b>Force Update</b> so your edit reaches them.</p>
+
+<h3 id="me-view" class="anchor">8.2 &middot; View your Marketing Emails</h3>
+<p>Left menu &rarr; <b>Marketing Emails</b> shows every ME you can work on. They come from <b>two sources</b>:</p>
 <ul style="margin:6px 0 0;padding-left:18px">
-<li><b>Subject + body</b> — the message itself (here: "Join us at the Frankfurt M&amp;A Summit 2026").</li>
-<li><b>Merge fields</b> like <code>{{contact.firstName}} {{contact.lastName}}</code> — placeholders auto-filled <b>per contact</b> when it sends (you'll see them resolved in Preview, 8.3).</li>
+<li><b>You created it</b> yourself (8.1).</li>
+<li><b>Admin / Ops created it and assigned you</b> &mdash; already set up, often with people already added. This is the usual case.</li>
 </ul>
-<figure><img src="sdrx-me-01-template.png" alt="Marketing Email — Template tab"/><figcaption><b>8.1</b> — the <b>Template</b> tab: subject + body with <code>{{contact.firstName}}</code> / <code>{{contact.lastName}}</code> merge fields.</figcaption></figure>
+<p>Filter by status with the tabs <b>All &middot; Draft &middot; Paused &middot; Running &middot; Finished</b>. Each row shows <b>Name</b> (+ From address &amp; status), <b>People</b>, <b>Delivered</b>, <b>Open Rate</b>, <b>Reply Rate</b>, <b>Bounce/Dropped Rate</b>, <b>Progress</b> and <b>Last run</b> &mdash; your at-a-glance health check.</p>
+<figure><img src="sdrx-me-00-list.png" alt="Marketing Emails list"/><figcaption><b>8.2</b> &mdash; the ME list: status tabs, and per-ME People / Delivered / Open / Reply / Bounce-Dropped / Progress.</figcaption></figure>
 
-<h3 id="me-people" class="anchor">8.2 · People — see who will receive it</h3>
-<p>The <b>People</b> tab lists every recipient already added to this ME (24 here). It's the same table &amp; filters as your lists, <b>plus two ME-specific filters</b>: <b>Content Reviewed</b> (have you checked this person's mail yet?) and <b>Personalize</b>. Tick rows to open a bulk bar — <b>Add to list · Add to campaign · Add to marketing email · Remove contacts</b>.</p>
-<figure><img src="sdrx-me-02-people.png" alt="Marketing Email — People tab"/><figcaption><b>8.2</b> — the <b>People</b> tab: the recipient list + the ME-only <b>Content Reviewed</b> and <b>Personalize</b> filters.</figcaption></figure>
+<h3 id="me-people" class="anchor">8.3 &middot; Add people to the ME</h3>
+<p>Recipients come from your lists:</p>
+<ol class="steps">
+<li data-code="8.3.1"><b>Segments (Lists)</b> &rarr; open the list you were given.</li>
+<li data-code="8.3.2">Find the people you want &mdash; same tools as <a data-goto="page-find" style="font-weight:700;cursor:pointer">Flow 2 &middot; Find a target contact &#8599;</a> (filters, search, signals).</li>
+<li data-code="8.3.3"><b>Select</b> the contacts &rarr; <b>Add to marketing email</b>. The <b>Add to marketing email</b> drawer opens.</li>
+<li data-code="8.3.4">In the drawer: <b>choose the ME</b>, then <b>choose each contact and which email address to use</b>. A contact can have several addresses &mdash; a ME sends to <b>one address per contact</b>, so pick deliberately. The addresses are grouped in three tabs:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>Valid</b> &mdash; verified addresses; use these.</li>
+  <li><b>Missing + Invalid</b> &mdash; no address, or one that failed validation.</li>
+  <li><b>Platform sign up</b> &mdash; the address they signed up to the platform with.</li>
+  </ul>
+</li>
+<li data-code="8.3.5">Click <b>Add to marketing email</b>.</li>
+</ol>
+<p>They now appear on the ME's <b>People</b> tab &mdash; the full recipient list. It has the same table &amp; filters as your lists, <b>plus two ME-only filters</b>: <b>Content Reviewed</b> (has this person's mail been checked?) and <b>Personalize</b>.</p>
+<figure><img src="sdrx-me-02-people.png" alt="Marketing Email People tab"/><figcaption><b>8.3</b> &mdash; the <b>People</b> tab: everyone who will receive this ME, plus the <b>Content Reviewed</b> and <b>Personalize</b> filters.</figcaption></figure>
 
-<h3 id="me-preview" class="anchor">8.3 · Preview, personalize, then mark reviewed</h3>
-<p>The <b>Preview</b> tab is the <b>review step</b> — this is where you check every mail before it goes out. Pick a contact on the <b>left</b> → the <b>right</b> pane shows their <b>exact email with merge fields resolved</b> (e.g. "Hi <b>Tin Nguyen</b>," plus their real title &amp; company). The body is a full editor, so you can <b>tweak / personalize this one contact's copy</b> if needed. Work down the list.</p>
-<p>When you're happy, click <b>All</b> (top of the list) to select everyone → <b>Bulk Actions</b> → <b>Mark as reviewed</b> (this sets <b>Content Reviewed</b> on all of them, so you know the whole batch has been checked).</p>
-<figure><img src="sdrx-me-03-preview.png" alt="Marketing Email — Preview tab"/><figcaption><b>8.3</b> — <b>Preview</b>: left = pick a contact; right = their <b>personalized</b> email (editable). Then <b>All → Bulk Actions → Mark as reviewed</b>.</figcaption></figure>
+<h3 id="me-preview" class="anchor">8.4 &middot; Preview, personalize &amp; mark as reviewed</h3>
+<p>The <b>Preview</b> tab is the review gate &mdash; nothing should go out unchecked.</p>
+<ol class="steps">
+<li data-code="8.4.1">Open the <b>Preview</b> tab &rarr; <b>click a contact</b> on the left.</li>
+<li data-code="8.4.2"><b>Read the email they will actually get</b> on the right &mdash; merge fields are resolved here (e.g. "Hi <b>Tin Nguyen</b>," plus their real title &amp; company).</li>
+<li data-code="8.4.3"><b>Personalize</b> if it needs it &mdash; the body is a full editor, so you can tweak <b>this one contact's</b> copy. Work down the list.</li>
+<li data-code="8.4.4">When the batch is done: <b>select the contacts</b> (<b>All</b> at the top selects everyone) &rarr; <b>Bulk Actions</b> &rarr; <b>Mark as reviewed</b>. That sets <b>Content Reviewed</b> on them.</li>
+</ol>
+<figure><img src="sdrx-me-03-preview.png" alt="Marketing Email Preview tab"/><figcaption><b>8.4</b> &mdash; <b>Preview</b>: left = pick a contact, right = their <b>personalized</b> email (editable). Then <b>All &rarr; Bulk Actions &rarr; Mark as reviewed</b>.</figcaption></figure>
 
-<h3 id="me-activate" class="anchor">8.4 · Flip Draft → Active</h3>
-<p>Top-right, switch the status toggle from <b>Draft</b> to <b>Active</b>. This <b>arms</b> the ME for sending — the <b>Force send</b> control only appears once the ME is Active.</p>
-<div class="call note"><span class="t">Order matters</span>Review first (8.3), then activate. Only flip to Active when the whole batch is checked and the People list is exactly who you mean to email.</div>
+<h3 id="me-send" class="anchor">8.5 &middot; Force send</h3>
+<p>Your Admin flips the ME from <b>Draft</b> to <b>Active</b> (you can't &mdash; see the note at the top). Once it's Active:</p>
+<ol class="steps">
+<li data-code="8.5.1">Open the <b>marketing email detail</b>.</li>
+<li data-code="8.5.2">Go to the <b>Template</b> tab.</li>
+<li data-code="8.5.3">Click <b>Force Send</b>.</li>
+<li data-code="8.5.4">Go to the <b>Email Queue</b> tab and <b>check the count</b> &mdash; the number of queued emails should match the <b>number of contacts you marked as reviewed</b>. If it doesn't, something's off; don't just carry on.</li>
+</ol>
 
-<h3 id="me-send" class="anchor">8.5 · Force send → the Email Queue</h3>
-<p>On the <b>Template</b> tab (now Active) click <b>Force send</b>, then open the <b>Email Queue</b>. This is your control room before anything actually lands:</p>
+<h3 id="me-queue" class="anchor">8.6 &middot; The Email Queue &mdash; three tabs</h3>
+<p>The queue is your control room. Every email sits in one of three tabs:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Tab</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td><b>Sent out</b></td><td><b>Will be sent, but hasn't gone yet</b> &mdash; waiting in the queue.</td></tr>
+<tr><td><b>Delivered</b></td><td><b>Already sent.</b></td></tr>
+<tr><td><b>Cancel</b></td><td><b>Removed from the queue</b> &mdash; these will <b>not</b> be sent.</td></tr>
+</tbody></table></div>
+<p>Act on a row from the <b>&#8942; three-dot</b> menu (on rows in <b>Sent out</b>):</p>
 <ul style="margin:6px 0 0;padding-left:18px">
-<li><b>Count check</b> — the queue should hold <b>one email per person</b> (e.g. 24 people → 24 queued). If the number's off, something's wrong.</li>
-<li><b>Expected run</b> — each row shows <b>when it will actually go out</b>. They're <b>scheduled</b>, not instant — so you have a window to fix things.</li>
-<li><b>Cancel</b> — select rows → <b>Cancel email queue</b> to <b>stop</b> sending to those contacts (they won't get it).</li>
-<li><b>Send now</b> — select a row → <b>Set as delivered</b> to send that one <b>immediately</b>, without waiting for the expected run.</li>
+<li><b>Set as delivered</b> &mdash; send that email <b>right now</b>, without waiting for the queue.</li>
+<li><b>Cancel email queue</b> &mdash; pull it out of the queue so it is <b>never</b> sent.</li>
 </ul>
-<div class="call warn"><span class="t">Force send hits everyone</span>It queues an email for <b>every</b> person still in the ME's People tab. If you only want a subset, <b>trim the People list first</b> (8.2) — or cancel the unwanted rows in the queue before they run.</div>
+<div class="call warn"><span class="t">Check before you leave it</span>Anything left in <b>Sent out</b> <b>will</b> go out. If someone shouldn't receive it, <b>cancel</b> them &mdash; don't just ignore the row.</div>
 
-<h3 id="me-conv" class="anchor">8.6 · Check it landed — the contact's Conversations</h3>
-<p>Back on <b>People</b> → open a contact → <b>Conversations</b>: the marketing email shows up as a <b>sent (↗) thread</b>. Its <b>chip</b> tells you the state:</p>
-<ul style="margin:6px 0 0;padding-left:18px">
-<li><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#64748B">In Queue</span> — still waiting in the queue (hasn't gone out yet).</li>
-<li><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#1E90FF">Delivered</span> — it's gone out. <span class="fn">(Same chips as <a data-goto="page-inbox" href="#i-core" style="font-weight:700;cursor:pointer">Flow 4.2</a>.)</span></li>
-</ul>
+<h3 id="me-conv" class="anchor">8.7 &middot; Verify in the contact's Conversations</h3>
+<p>The moment you force send, each queued email is written into that contact's conversation. To check:</p>
+<p><b>People</b> tab &rarr; open the <b>contact</b> &rarr; <b>Conversations</b> &rarr; find the thread with the <b>marketing icon</b>. Its <b>chip</b> tracks the whole life of the send:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Chip</th><th>Means</th></tr></thead>
+<tbody>
+<tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#64748B">In Queue</span></td><td>Queued, not sent yet.</td></tr>
+<tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#64748B">Delivered</span></td><td>It went out.</td></tr>
+<tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#1E90FF">Open</span></td><td>They opened it.</td></tr>
+<tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#D97706">&#9888; Bounce / Dropped</span></td><td>It failed &mdash; that address didn't take it.</td></tr>
+</tbody></table></div>
+<p>When they <b>reply</b>, the thread also picks up the <b>reply icon</b> and a <b>lifecycle chip</b> per email (the system's read of the reply &mdash; see <a data-goto="page-inbox" href="#i-core" style="font-weight:700;cursor:pointer">Flow 4.2 &#8599;</a>).</p>
 
-<h3 id="me-followup" class="anchor">8.7 · Then: watch for replies</h3>
-<p>Once it's out, it's back to normal outreach:</p>
+<h3 id="me-followup" class="anchor">8.8 &middot; Then: replies, bounces &amp; drops</h3>
 <ul style="margin:6px 0 0;padding-left:18px">
-<li><b>Replies</b> land in your <b>Inbox</b> — read &amp; answer them via <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 · View &amp; answer replies ↗</a>. Keep an eye out and follow up.</li>
-<li><b>Bounced / Dropped?</b> the send failed for that person — reach them another way: send a <b>1:1 email</b> via <a data-goto="page-send" style="font-weight:700;cursor:pointer">Flow 3 · Send a 1:1 email ↗</a>.</li>
+<li><b>Watch for replies</b> &mdash; they land in your <b>Inbox</b>; read and answer them via <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &middot; View &amp; answer replies &#8599;</a>.</li>
+<li><b>Bounce / Dropped?</b> that send failed &mdash; reach the person another way: send a <b>1:1 email</b> via <a data-goto="page-send" style="font-weight:700;cursor:pointer">Flow 3 &middot; Send a 1:1 email &#8599;</a>.</li>
 </ul>
 <div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 7 · Manage campaign</b></a><a class="next" data-goto="page-filters"><span class="k">Next →</span><b>Flow 9 · Using filters</b></a></div>
 </section>
