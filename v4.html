@@ -1119,13 +1119,19 @@
 <h3 id="me-preview" class="anchor">8.4 &middot; Preview, personalize &amp; mark as reviewed</h3>
 <p>The <b>Preview</b> tab is the review gate &mdash; nothing should go out unchecked.</p>
 <ol class="steps">
-<li data-code="8.4.1">Open the <b>Preview</b> tab &rarr; <b>click a contact</b> on the left.</li>
-<li data-code="8.4.2"><b>Read the email they will actually get</b> on the right &mdash; merge fields are resolved here (e.g. "Hi <b>Tin Nguyen</b>," plus their real title &amp; company).</li>
-<li data-code="8.4.3"><b>Personalize</b> if it needs it &mdash; the body is a full editor, so you can tweak <b>this one contact's</b> copy. Work down the list.</li>
-<li data-code="8.4.4">When the batch is done: <b>select the contacts</b> (<b>All</b> at the top selects everyone) &rarr; <b>Bulk Actions</b> &rarr; <b>Mark as reviewed</b>. That sets <b>Content Reviewed</b> on them.</li>
+<li data-code="8.4.1">Open the <b>Preview</b> tab &rarr; <b>click a contact</b> on the left.
+  <figure><img src="sdrx-me-03-preview.png" alt="Preview tab — pick a contact"/><figcaption><b>8.4.1</b> &mdash; <b>&#9312;</b> open the <b>Preview</b> tab &middot; <b>&#9313;</b> click a contact in the left list.</figcaption></figure>
+</li>
+<li data-code="8.4.2"><b>Read the email they will actually get</b> on the right &mdash; merge fields are resolved here (e.g. "Hi <b>Tin Nguyen</b>," plus their real title &amp; company).
+  <figure><img src="sdrx-me-12-personalized.png" alt="Merge fields resolved for this contact"/><figcaption><b>8.4.2</b> &mdash; the merge fields resolve to <b>this contact's</b> real data (First name: Tin &middot; title &middot; company); the body opens "<b>Hi Tin Nguyen,</b>".</figcaption></figure>
+</li>
+<li data-code="8.4.3"><b>Personalize</b> if it needs it &mdash; the body is a full editor, so you can tweak <b>this one contact's</b> copy. Work down the list.
+  <figure><img src="sdrx-me-13-edit.png" alt="Typing a personal line for this contact"/><figcaption><b>8.4.3</b> &mdash; typed a <b>personal line just for this contact</b> (highlighted); everyone else keeps the standard copy.</figcaption></figure>
+</li>
+<li data-code="8.4.4">When the batch is done: <b>select the contacts</b> (<b>All</b> at the top selects everyone) &rarr; <b>Bulk Actions</b> &rarr; <b>Mark as reviewed</b>. That sets <b>Content Reviewed</b> on them.
+  <figure><img src="sdrx-me-09-mark-reviewed.png" alt="Select All → Bulk Actions → Mark all as Reviewed"/><figcaption><b>8.4.4</b> &mdash; <b>&#9312;</b> <b>Select All</b> &middot; <b>&#9313;</b> <b>Bulk Actions</b> &middot; <b>&#9314;</b> <b>Mark all as Reviewed</b> (sets Content Reviewed).</figcaption></figure>
+</li>
 </ol>
-<figure><img src="sdrx-me-03-preview.png" alt="Marketing Email Preview tab"/><figcaption><b>8.4.1&ndash;3</b> &mdash; <b>Preview</b>: <b>&#9312;</b> pick a contact (left) &middot; <b>&#9313;</b> their <b>personalized</b> email with merge fields resolved (right) &middot; <b>&#9314;</b> edit to personalize this one contact.</figcaption></figure>
-<figure><img src="sdrx-me-09-mark-reviewed.png" alt="Select All → Bulk Actions → Mark all as Reviewed"/><figcaption><b>8.4.4</b> &mdash; <b>&#9312;</b> <b>Select All</b> &middot; <b>&#9313;</b> <b>Bulk Actions</b> &middot; <b>&#9314;</b> <b>Mark all as Reviewed</b> (sets Content Reviewed). The menu also has <b>Mark all as Not Reviewed</b> and <b>Mark all as Not Personalized</b>.</figcaption></figure>
 
 <h3 id="me-send" class="anchor">8.5 &middot; Force send</h3>
 <p>Your Admin flips the ME from <b>Draft</b> to <b>Active</b> (you can't &mdash; see the note at the top). Once it's Active:</p>
@@ -1183,6 +1189,9 @@
 </li>
 <li id="e-8-6" data-code="8.x.6"><b>Force Update.</b> Tick this <b>before Save</b> to push your latest template edit onto everything already generated for this step. Its own tooltip: <i>"Force Update will apply the latest version of this email template to the current step in the campaign flow within the Preview tab &mdash; including personalized emails, marked-as-done steps, and previously saved versions."</i> <div class="call warn"><span class="t">Use with caution</span>It <b>overwrites existing content</b> &mdash; any per-contact personalization, "reviewed" marks, or saved versions on this step are replaced by the new template. Leave it <b>unticked</b> on a fresh step that has no previews yet.</div></li>
 <li id="e-8-7" data-code="8.x.7"><b>Upload files.</b> <b>Upload files</b> (bottom-left) attaches files to the email; each attachment shows with an <b>&#10005;</b> to remove. A <b>Signature</b> button (bottom-right) appends your signature (Flow 1.x.5).</li>
+<li id="e-8-8" data-code="8.x.8"><b>Filter the People / Preview list.</b> Both tabs carry the same filter bar as your lists &mdash; <b>Lifecycles &middot; Has signal &middot; Contact Classification &middot; Owner &middot; Work Experience &middot; Countries &middot; Cities</b> &mdash; plus two ME-only ones: <b>Content Reviewed</b> (checked yet?) and <b>Personalize</b>. Handy to review in batches, e.g. "show only the ones I haven't reviewed". Full reference: <a data-goto="page-filters" href="#flt-inbox" style="font-weight:700;cursor:pointer">Flow 9 &middot; Using filters &#8599;</a>.</li>
+<li id="e-8-9" data-code="8.x.9"><b>Un-mark: Not Reviewed / Not Personalized.</b> The same <b>Bulk Actions</b> menu (8.4.4) also has <b>Mark all as Not Reviewed</b> (clears the Content-Reviewed flag &mdash; use it if you need to re-check a batch) and <b>Mark all as Not Personalized</b> (clears the personalize flag).</li>
+<li id="e-8-10" data-code="8.x.10"><b>Review a subset, not everyone.</b> You don't have to <b>Select All</b> &mdash; tick just the contacts you want and mark those reviewed. This matters because <b>only Content-Reviewed contacts go into the Email Queue</b> when the ME is activated and force-sent: anyone <b>not</b> reviewed is <b>skipped</b>. So marking a subset reviewed is a deliberate way to send to only those people.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 7 · Manage campaign</b></a><a class="next" data-goto="page-filters"><span class="k">Next →</span><b>Flow 9 · Using filters</b></a></div>
 </section>
