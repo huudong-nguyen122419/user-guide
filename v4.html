@@ -257,7 +257,9 @@
     <a class="flow" data-page="page-campaign"><span class="n">7</span> Manage campaign</a>
     <a class="flow" data-page="page-marketing"><span class="n">8</span> Manage a Marketing Email</a>
     <a href="#me-create" class="st" data-page="page-marketing">8.1 · Create a ME (+ template)</a>
+    <a href="#me-step" class="st2" data-page="page-marketing">8.1a · Create the template</a>
     <a href="#me-view" class="st" data-page="page-marketing">8.2 · View your MEs</a>
+    <a href="#me-metrics" class="st2" data-page="page-marketing">8.2a · Reading the numbers</a>
     <a href="#me-people" class="st" data-page="page-marketing">8.3 · Add people to the ME</a>
     <a href="#me-preview" class="st" data-page="page-marketing">8.4 · Preview &amp; mark reviewed</a>
     <a href="#me-send" class="st" data-page="page-marketing">8.5 · Force send</a>
@@ -1031,7 +1033,9 @@
 
 <h3 id="me-create" class="anchor">8.1 &middot; Create a Marketing Email</h3>
 <ol class="steps">
-<li data-code="8.1.1">Left menu &rarr; <b>Marketing Emails</b> &rarr; <b>+ Create Marketing Email</b> (top-right).</li>
+<li data-code="8.1.1">Left menu &rarr; <b>Marketing Emails</b> &rarr; <b>+ Create Marketing Email</b> (top-right).
+  <figure><img src="sdrx-me-07-create-entry.png" alt="Marketing Emails page with the Create button"/><figcaption><b>8.1.1</b> &mdash; the <b>/marketing-emails</b> page: <b>&#9312;</b> open it from the left menu, <b>&#9313;</b> then hit <b>+ Create Marketing Email</b> (top-right).</figcaption></figure>
+</li>
 <li data-code="8.1.2">Fill the header bar:
   <ul style="margin:6px 0 0;padding-left:18px">
   <li><b>Name</b> &mdash; <b>required</b>. It is the <b>title at the top-left</b> (starts as "New Marketing Email"); click the <b>&#9998; pencil</b> and type your own.</li>
@@ -1041,10 +1045,9 @@
 </li>
 <li data-code="8.1.3">Click <b>Next</b> &rarr; you move to step <b>&#9313; Template</b>.</li>
 </ol>
-<figure><img src="sdrx-me-07-create-entry.png" alt="Marketing Emails page with the Create button"/><figcaption><b>8.1.1</b> &mdash; the <b>/marketing-emails</b> page: <b>&#9312;</b> open it from the left menu, <b>&#9313;</b> then hit <b>+ Create Marketing Email</b> (top-right).</figcaption></figure>
 <figure><img src="sdrx-me-04-create.png" alt="Create Marketing Email form"/><figcaption><b>8.1</b> &mdash; <b>&#9312;</b> Name (required, click &#9998;) &middot; <b>&#9313;</b> Timezone (defaults to UTC+01:00) &middot; <b>&#9314;</b> Description (optional) &middot; <b>&#9315;</b> Next &rarr; Template.</figcaption></figure>
 
-<h4>8.1a &middot; Create the template (a step)</h4>
+<h4 id="me-step" class="anchor">8.1a &middot; Create the template (a step)</h4>
 <p>A brand-new ME opens on the <b>Templates</b> tab with <b>no step yet</b> &mdash; it says <i>"Please add an email step to start viewing preview email"</i>. Click <b>+ Create new step</b>. <b>A step = one email.</b> <span class="fn">(The <b>Preview</b> tab only appears once at least one step exists.)</span></p>
 <figure><img src="sdrx-me-08-create-step.png" alt="Empty ME — Create new step"/><figcaption><b>8.1a &middot; empty state</b> &mdash; a new ME's <b>Templates</b> tab: no step yet &rarr; <b>+ Create new step</b>.</figcaption></figure>
 <p>The step editor opens &mdash; what you fill in:</p>
@@ -1071,10 +1074,19 @@
 <li><b>You created it</b> yourself (8.1).</li>
 <li><b>Admin / Ops created it and assigned you</b> &mdash; already set up, often with people already added. This is the usual case.</li>
 </ul>
-<p>Filter by status with the tabs <b>All &middot; Draft &middot; Paused &middot; Running &middot; Finished</b>.</p>
-<figure><img src="sdrx-me-00-list.png" alt="Marketing Emails list"/><figcaption><b>8.2</b> &mdash; the ME list: status tabs + the per-ME numbers.</figcaption></figure>
+<p>The tabs across the top filter the list by <b>status</b> (each with a count):</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Tab</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td><b>All</b></td><td>Every ME you can access, whatever its status.</td></tr>
+<tr><td><b>Draft</b></td><td>Created but <b>not sent yet</b> (not activated). Still fully editable &mdash; this is where a ME sits while you build &amp; review it.</td></tr>
+<tr><td><b>Running</b></td><td><b>Active and sending</b> (or scheduled to). Shows a <b>Started on&hellip;</b> chip. Admin flips it here from Draft.</td></tr>
+<tr><td><b>Paused</b></td><td>Was Running but <b>temporarily stopped</b> &mdash; no sends go out until it's resumed.</td></tr>
+<tr><td><b>Finished</b></td><td>The run is <b>complete</b> &mdash; every queued email has gone out.</td></tr>
+</tbody></table></div>
+<figure><img src="sdrx-me-00-list.png" alt="Marketing Emails list"/><figcaption><b>8.2</b> &mdash; the ME list: the <b>All / Draft / Paused / Running / Finished</b> status tabs + the per-ME numbers.</figcaption></figure>
 
-<h4>8.2a &middot; Reading the numbers</h4>
+<h4 id="me-metrics" class="anchor">8.2a &middot; Reading the numbers</h4>
 <p>Every row carries the ME's whole health check. Here's what each one actually counts:</p>
 <div class="tblwrap"><table>
 <thead><tr><th>Column</th><th>What it means</th></tr></thead>
