@@ -636,7 +636,7 @@
 <section class="page" id="page-marketing">
 <h2><span class="n">Flow 8 ·</span> Manage a Marketing Email</h2>
 <div class="goal"><b>Goal:</b> run a <b>marketing email (ME)</b> end to end — build or open one, load the right people, review &amp; personalize every mail, get it sent, then watch what comes back. One ME sends the <b>same templated email</b>, personalized per contact, to a whole list at once.</div>
-<div class="call note"><span class="t">Yours vs your Admin's</span>You do everything <b>except turning the ME on</b>. Flipping <b>Draft &rarr; Active</b> ("run marketing email") is an <b>Admin / Ops</b> action &mdash; you prepare it, they activate it, then you <b>force send</b> and manage the queue.</div>
+<div class="call note"><span class="t">Yours vs your Admin's</span>You do everything <b>except turning the ME on and sending it</b>. Both <b>Draft &rarr; Active</b> ("run marketing email") <b>and Force Send</b> are <b>Admin / Ops</b> actions &mdash; you prepare &amp; review, they activate and force-send, then you <b>monitor the Email Queue</b> and handle replies.</div>
 
 <h3 id="me-create" class="anchor">8.1 &middot; Create a Marketing Email</h3>
 <ol class="steps">
@@ -781,13 +781,13 @@
 </li>
 </ol>
 
-<h3 id="me-send" class="anchor">8.5 &middot; Force send</h3>
-<p>Your Admin flips the ME from <b>Draft</b> to <b>Active</b> (you can't &mdash; see the note at the top). Once it's Active:</p>
+<h3 id="me-send" class="anchor">8.5 &middot; Force send (Admin) &mdash; then you check</h3>
+<div class="call warn"><span class="t">No Force Send on the SDR view</span><b>Force Send is an Admin / Ops action</b> &mdash; on the SDR login there is <b>no Force Send button</b> (the ME's &#8942; menu only offers <b>Edit / View Details</b>). Your Admin both flips the ME <b>Draft &rarr; Active</b> and clicks <b>Force Send</b>.</div>
+<p>Once your Admin has force-sent, your job is to <b>check the queue</b>:</p>
 <ol class="steps">
 <li data-code="8.5.1">Open the <b>marketing email detail</b>.</li>
-<li data-code="8.5.2">Go to the <b>Template</b> tab.</li>
-<li data-code="8.5.3">Click <b>Force Send</b>.</li>
-<li data-code="8.5.4">Go to the <b>Email Queue</b> tab and <b>check the count</b> &mdash; the number of queued emails should match the <b>number of contacts you marked as reviewed</b>. If it doesn't, something's off; don't just carry on.</li>
+<li data-code="8.5.2">Go to the <b>Email Queue</b> tab.</li>
+<li data-code="8.5.3"><b>Check the count</b> &mdash; the number of queued emails should match the <b>number of contacts you marked as reviewed</b> (8.4.5). If it doesn't, something's off; flag it &mdash; don't just carry on.</li>
 </ol>
 
 <h3 id="me-queue" class="anchor">8.6 &middot; The Email Queue &mdash; three tabs</h3>
