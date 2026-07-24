@@ -648,17 +648,11 @@
 <div class="tblwrap"><table>
 <thead><tr><th>Field / control</th><th>What it does</th></tr></thead>
 <tbody>
-<tr><td><b>Subject</b></td><td>The email's subject line (top of the editor).</td></tr>
-<tr><td><b>Select an email template</b></td><td>Optional &mdash; prefill the whole step from a saved <b>Message Template</b> instead of writing from scratch.</td></tr>
+<tr><td><b>Subject</b></td><td>The email's subject line (top of the editor). You can drop <b>variables</b> in here too &mdash; via the <b>{ }</b> icon (see 8.x.4).</td></tr>
 <tr><td><b>Body</b> + formatting toolbar</td><td>The message. Full rich text: H1/H2, font &amp; size, <b>B</b>/<i>I</i>/<u>U</u>/S, quote, lists, indent, colour, link, clear-format.</td></tr>
-<tr><td><b>Variables</b></td><td>Insert <b>merge fields</b> &mdash; e.g. <code>{{contact.firstName}} {{contact.lastName}}</code> &mdash; auto-filled per contact when it sends.</td></tr>
-<tr><td><b>Snippets</b></td><td>Drop in one of your saved snippets (see Flow 3.x).</td></tr>
-<tr><td><b>CC</b></td><td>Copy someone on every send of this step.</td></tr>
-<tr><td><b>Upload files</b></td><td>Attach files to the email (each attachment shows with an <b>&#10005;</b> to remove).</td></tr>
-<tr><td><b>Signature</b></td><td>Append your signature (Flow 1.x.5).</td></tr>
-<tr><td><b>Force Update</b></td><td>Tick it when you edit a template <b>after</b> per-contact previews were already generated, so your change is pushed onto them.</td></tr>
-<tr><td><b>Save</b></td><td>Saves the step.</td></tr>
+<tr><td><b>Create / Save</b></td><td><b>Create</b> saves a brand-new step; re-open a step and the button reads <b>Save</b> instead. The <b>&#128465; bin</b> on the step header deletes it.</td></tr>
 </tbody></table></div>
+<p class="fn">The rest of the editor &mdash; <b>saved Template &middot; Variables &middot; Snippets &middot; CC &middot; Upload files &middot; Signature &middot; Force Update</b> &mdash; is covered in the <a data-goto="page-marketing" href="#me-edge" style="font-weight:700;cursor:pointer">Edge cases (8.x) &#8599;</a>.</p>
 <figure><img src="sdrx-me-05-step-editor.png" alt="Marketing Email step editor"/><figcaption><b>8.1a</b> &mdash; the step editor: <b>&#9312;</b> Subject &middot; <b>&#9313;</b> start from a saved template &middot; <b>&#9314;</b> formatting toolbar &middot; <b>&#9315;</b> Variables / Snippets &middot; <b>&#9316;</b> Force Update &middot; <b>&#9317;</b> Save &middot; <b>&#9318;</b> attachments &middot; <b>&#9319;</b> Signature &middot; CC.</figcaption></figure>
 <figure><img src="sdrx-me-01-template.png" alt="Template tab with Step 1"/><figcaption><b>8.1a &middot; result</b> &mdash; the <b>Template</b> tab now shows <b>Step 1</b> with your subject + body (merge fields still shown raw here).</figcaption></figure>
 
@@ -772,7 +766,17 @@
 </ul>
 <h3 id="me-edge" class="edgehead anchor">8.x &middot; Edge cases</h3>
 <ol class="steps edge">
-<li id="e-8-1" data-code="8.x.1"><b>Edit a template step.</b> Same place, same form: <b>Templates</b> tab &rarr; <b>click the step</b> &rarr; change the subject / body / attachments &rarr; <b>Save</b>. The <b>&#128465; bin</b> on the step header deletes it. If per-contact previews were already generated, tick <b>Force Update</b> so your edit reaches them.</li>
+<li id="e-8-1" data-code="8.x.1"><b>Edit a template step.</b> Same place, same form: <b>Templates</b> tab &rarr; <b>click the step</b> &rarr; change the subject / body / attachments &rarr; <b>Save</b>. The <b>&#128465; bin</b> on the step header deletes it. If per-contact previews were already generated, tick <b>Force Update</b> (8.x.6) so your edit reaches them.</li>
+<li id="e-8-2" data-code="8.x.2"><b>Start from a saved Template.</b> Rather than writing from scratch, use <b>Select an email template</b> (top of the step editor) to prefill the whole step from a saved template. You build &amp; manage those in <a data-goto="page-send" href="#e-4-1" style="font-weight:700;cursor:pointer">Flow 3.x.1 &middot; Templates &#8599;</a>.</li>
+<li id="e-8-3" data-code="8.x.3"><b>Insert a Snippet.</b> Click <b>Snippets</b> (bottom of the editor &mdash; it enables once your cursor is in the body) to drop in a saved reusable block. You build snippets in <a data-goto="page-send" href="#e-4-2" style="font-weight:700;cursor:pointer">Flow 3.x.2 &middot; Snippets &#8599;</a>.</li>
+<li id="e-8-4" data-code="8.x.4"><b>Variables (merge fields) &mdash; the right way to personalize.</b> <b>Never type a name by hand</b> like "Hi [Name]" &mdash; that stays literal and won't personalize. Instead: put your cursor where you want it &rarr; click <b>Variables</b> &rarr; pick a field. The list covers <b>First name &middot; Last name &middot; Full name &middot; Phone number &middot; Title &middot; Location &middot; Company name &middot; LinkedIn &middot; Sponsor &middot; Board observer</b>. It inserts a token like <code>{{contact.firstName}}</code> that fills in <b>per contact</b> when it sends. You can also add variables to the <b>Subject</b> line &mdash; click the <b>{ }</b> icon (next to CC, top-right).
+  <figure><img src="sdrx-me-10-variables.png" alt="Variables merge-field picker"/><figcaption><b>8.x.4</b> &mdash; <b>&#9312;</b> click <b>Variables</b> (cursor in the body) &middot; <b>&#9313;</b> pick a merge field (don't type <code>[Name]</code> by hand) &middot; the <b>{ }</b> icon adds them to the Subject.</figcaption></figure>
+</li>
+<li id="e-8-5" data-code="8.x.5"><b>CC someone.</b> Click <b>CC</b> (top-right of the editor) &rarr; an <b>Add cc</b> field appears &rarr; type who to copy on every send of this step.
+  <figure><img src="sdrx-me-11-cc.png" alt="CC → Add cc field"/><figcaption><b>8.x.5</b> &mdash; <b>&#9312;</b> click <b>CC</b> &rarr; <b>&#9313;</b> an <b>Add cc</b> field opens to type the copied recipient.</figcaption></figure>
+</li>
+<li id="e-8-6" data-code="8.x.6"><b>Force Update.</b> Tick this <b>before Save</b> when you edit a step <b>after</b> per-contact previews were already generated &mdash; it <b>pushes your change onto those existing previews</b>. Without it, previews already made keep the <b>old</b> copy. <span class="fn">(Leave it unticked on a fresh step that has no previews yet.)</span></li>
+<li id="e-8-7" data-code="8.x.7"><b>Upload files.</b> <b>Upload files</b> (bottom-left) attaches files to the email; each attachment shows with an <b>&#10005;</b> to remove. A <b>Signature</b> button (bottom-right) appends your signature (Flow 1.x.5).</li>
 </ol>
 <div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 7 · Manage campaign</b></a><a class="next" data-goto="page-filters"><span class="k">Next →</span><b>Flow 9 · Using filters</b></a></div>
 </section>
