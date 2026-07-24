@@ -160,16 +160,18 @@
     <a href="#cmp-steps" class="st" data-page="page-campaign">7.2 · Build the sequence</a>
     <a href="#cmp-view" class="st" data-page="page-campaign">7.3 · View campaigns</a>
     <a href="#cmp-people" class="st" data-page="page-campaign">7.4 · Add people</a>
-    <a href="#cmp-run" class="st" data-page="page-campaign">7.5 · Schedule &amp; run</a>
-    <a href="#cmp-queue" class="st" data-page="page-campaign">7.6 · Email Queue</a>
-    <a href="#cmp-replies" class="st" data-page="page-campaign">7.7 · Replies (campaign Inbox)</a>
-    <a href="#cmp-followup" class="st" data-page="page-campaign">7.8 · Bounces · hot replies</a>
+    <a href="#cmp-preview" class="st" data-page="page-campaign">7.5 · Preview &amp; review</a>
+    <a href="#cmp-run" class="st" data-page="page-campaign">7.6 · Schedule &amp; run</a>
+    <a href="#cmp-queue" class="st" data-page="page-campaign">7.7 · Email Queue</a>
+    <a href="#cmp-replies" class="st" data-page="page-campaign">7.8 · Verify replies</a>
+    <a href="#cmp-followup" class="st" data-page="page-campaign">7.9 · Bounces · hot replies</a>
     <a href="#cmp-edge" class="st edge" data-page="page-campaign">7.x · Edge cases</a>
     <a href="#ce-1" class="st2" data-page="page-campaign">7.x.1 · A/B variants</a>
     <a href="#ce-2" class="st2" data-page="page-campaign">7.x.2 · Sidestep (conditional)</a>
     <a href="#ce-3" class="st2" data-page="page-campaign">7.x.3 · Folders &amp; owner</a>
     <a href="#ce-4" class="st2" data-page="page-campaign">7.x.4 · Enabled toggle</a>
     <a href="#ce-5" class="st2" data-page="page-campaign">7.x.5 · Status tabs</a>
+    <a href="#ce-6" class="st2" data-page="page-campaign">7.x.6 · Assigned (skip add)</a>
     <a class="flow" data-page="page-marketing"><span class="n">8</span> Manage a Marketing Email</a>
     <a href="#me-create" class="st" data-page="page-marketing">8.1 · Create a ME</a>
     <a href="#tpl-step" class="st" data-page="page-marketing">8b · Create / edit a template</a>
@@ -195,6 +197,7 @@
     <a href="#te-5" class="st2" data-page="page-marketing">8.x.10 · CC</a>
     <a href="#te-6" class="st2" data-page="page-marketing">8.x.11 · Force Update</a>
     <a href="#te-7" class="st2" data-page="page-marketing">8.x.12 · Upload · Signature</a>
+    <a href="#e-8-13" class="st2" data-page="page-marketing">8.x.13 · Assigned (skip add)</a>
 
     <div class="grp">D · Reference</div>
     <a class="flow" data-page="page-filters"><span class="n">9</span> Using filters</a>
@@ -687,6 +690,7 @@
 
 <h3 id="cmp-people" class="anchor">7.4 &middot; Add people to the campaign</h3>
 <div class="call warn"><span class="t">Not available yet for SDR</span>Just like Marketing Emails, this flow <b>isn't built for the SDR role on UAT yet</b> &mdash; the contact list has <b>no select + &ldquo;Add to campaign&rdquo;</b> action. For now, campaigns come with people <b>already loaded by Admin / Ops</b>. The steps below are the <b>intended flow</b>, for when it ships.</div>
+<p class="fn"><b>Assigned a campaign that already has people</b> and told not to add more? <b>Skip this section</b> &mdash; just work those contacts (see <a data-goto="page-campaign" href="#ce-6" style="font-weight:700;cursor:pointer">7.x.6 &#8599;</a>).</p>
 <p>Recipients come from your lists:</p>
 <ol class="steps">
 <li data-code="7.4.1"><b>Segments (Lists)</b> &rarr; open the list you were given.</li>
@@ -704,21 +708,31 @@
 <p>The <b>People</b> tab is then the campaign's recipient list &mdash; same filter bar as your lists, <b>plus campaign-only filters</b>: <b>Done</b> (finished the whole sequence) and <b>Skipped</b>.</p>
 <figure><img src="sdrx-camp-12-people.png" alt="Campaign People tab"/><figcaption><b>7.4</b> &mdash; the <b>People</b> tab with the campaign-only <b>Done</b> / <b>Skipped</b> filters.</figcaption></figure>
 
-<h3 id="cmp-run" class="anchor">7.5 &middot; Schedule &amp; run</h3>
+<h3 id="cmp-preview" class="anchor">7.5 &middot; Preview, personalize &amp; review</h3>
+<p>Before the campaign runs, <b>review what every contact will actually get</b> on the <b>Preview</b> tab &mdash; the campaign's review gate, exactly like a Marketing Email's.</p>
+<ol class="steps">
+<li data-code="7.5.1">Open the <b>Preview</b> tab &rarr; <b>click a contact</b> on the left.</li>
+<li data-code="7.5.2">The right pane shows the <b>contact header</b> (name &middot; email &middot; title &amp; company &middot; quick-jump icons) and <b>every step of the sequence</b> as collapsible rows &mdash; <b>Step 1 - Day 1</b>, <b>Step 2 - Day 2</b>, &hellip; Expand a step to read the exact email that contact will get, with merge fields resolved.</li>
+<li data-code="7.5.3"><b>Personalize</b> a step for this one contact if it needs it, then <b>Save</b> &mdash; a <b>&#10024; Personalized</b> icon appears on their row (same behaviour as a Marketing Email; details in <a data-goto="page-marketing" href="#me-preview" style="font-weight:700;cursor:pointer">Flow 8 &middot; 8.4 &#8599;</a>).</li>
+<li data-code="7.5.4"><b>Mark reviewed</b> &mdash; the row then shows a <b>(Done)</b> tag. Use the <b>Personalize / Done / Skipped</b> filters (top-left) to track who's still to review. Once a contact replies, each step also carries their <b>reply-category</b> chip (e.g. <b>Not Interested</b>).</li>
+</ol>
+<figure><img src="sdrx-camp-15-preview.png" alt="Campaign Preview tab"/><figcaption><b>7.5</b> &mdash; the <b>Preview</b> tab: pick a contact (left), read &amp; personalize <b>each step</b> of the sequence (right); the row shows <b>(Done)</b> + <b>&#10024; Personalized</b>.</figcaption></figure>
+
+<h3 id="cmp-run" class="anchor">7.6 &middot; Schedule &amp; run</h3>
 <div class="call warn"><span class="t">Running is Admin / Ops</span>As the SDR you can move the campaign <b>Draft &rarr; Scheduled</b> (the status dropdown, top-right). Actually <b>turning it on</b> &mdash; the <b>Enabled</b> toggle on the list &mdash; and sending is an <b>Admin / Ops</b> action, like force-sending a Marketing Email. Your job after that is to <b>monitor</b>.</div>
-<figure><img src="sdrx-camp-11-status.png" alt="Draft to Scheduled status"/><figcaption><b>7.5</b> &mdash; the status control: <b>Draft &rarr; Scheduled</b>. Enabling / running is the Admin's <b>Enabled</b> toggle.</figcaption></figure>
+<figure><img src="sdrx-camp-11-status.png" alt="Draft to Scheduled status"/><figcaption><b>7.6</b> &mdash; the status control: <b>Draft &rarr; Scheduled</b>. Enabling / running is the Admin's <b>Enabled</b> toggle.</figcaption></figure>
 
-<h3 id="cmp-queue" class="anchor">7.6 &middot; The Email Queue</h3>
+<h3 id="cmp-queue" class="anchor">7.7 &middot; The Email Queue</h3>
 <p>Once the campaign is running, the <b>Email Queues</b> tab holds every queued send in the same three tabs as a Marketing Email &mdash; <b>In Queue &middot; Delivered &middot; Cancel</b> (+ All) &mdash; with columns <b>Subject / Content / Status / Attachments / Sent Date / Created</b> and filters for <b>Sources / Expected Run Date / Steps</b>.</p>
-<figure><img src="sdrx-camp-13-queue.png" alt="Campaign Email Queue"/><figcaption><b>7.6</b> &mdash; the campaign <b>Email Queue</b>: tabs <b>In Queue &middot; Delivered &middot; Cancel</b> and the queue columns.</figcaption></figure>
-<p class="fn"><b>Heads-up (UAT):</b> as with Marketing Emails, the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> even when the campaign has already delivered. If it looks empty, refresh, or confirm via the <a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">campaign Inbox (7.7)</a> and the contact's Conversations.</p>
+<figure><img src="sdrx-camp-13-queue.png" alt="Campaign Email Queue"/><figcaption><b>7.7</b> &mdash; the campaign <b>Email Queue</b>: tabs <b>In Queue &middot; Delivered &middot; Cancel</b> and the queue columns.</figcaption></figure>
+<p class="fn"><b>Heads-up (UAT):</b> as with Marketing Emails, the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> even when the campaign has already delivered. If it looks empty, refresh, or confirm via the <a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">campaign Inbox (7.8)</a> and the contact's Conversations.</p>
 
-<h3 id="cmp-replies" class="anchor">7.7 &middot; Replies &mdash; the campaign Inbox</h3>
+<h3 id="cmp-replies" class="anchor">7.8 &middot; Verify: Conversations &amp; the campaign Inbox</h3>
 <p>Every campaign has its own <b>Inbox</b> tab &mdash; the replies it pulled back, <b>categorized by lifecycle</b> down the left (Prospect &middot; Interested &middot; Not Interested &middot; Out Of Office &middot; Bounced / Dropped &middot; Open &middot; Click&hellip;). It's your <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 inbox &#8599;</a>, scoped to this campaign.</p>
-<figure><img src="sdrx-camp-14-inbox.png" alt="Campaign Inbox tab"/><figcaption><b>7.7</b> &mdash; the campaign <b>Inbox</b>: replies filed under lifecycle categories (here one <b>Not Interested</b>).</figcaption></figure>
+<figure><img src="sdrx-camp-14-inbox.png" alt="Campaign Inbox tab"/><figcaption><b>7.8</b> &mdash; the campaign <b>Inbox</b>: replies filed under lifecycle categories (here one <b>Not Interested</b>).</figcaption></figure>
 <p>Each send is also written into that contact's <b>Conversations</b> with a <b>status chip</b> (In Queue &rarr; Delivered &rarr; Open &rarr; Bounce) &mdash; exactly like a Marketing Email; see <a data-goto="page-marketing" href="#me-conv" style="font-weight:700;cursor:pointer">Flow 8 &middot; 8.7 &#8599;</a>.</p>
 
-<h3 id="cmp-followup" class="anchor">7.8 &middot; Then: bounces, drops &amp; hot replies</h3>
+<h3 id="cmp-followup" class="anchor">7.9 &middot; Then: bounces, drops &amp; hot replies</h3>
 <ul style="margin:6px 0 0;padding-left:18px">
 <li><b>Replies</b> &mdash; read &amp; answer them via <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &middot; View &amp; answer replies &#8599;</a>; set the lifecycle so the campaign stops chasing people who said no.</li>
 <li><b>Bounce / Dropped?</b> that address failed &mdash; reach the person another way with a <a data-goto="page-send" style="font-weight:700;cursor:pointer">1:1 email (Flow 3) &#8599;</a>.</li>
@@ -736,6 +750,7 @@
 <li id="ce-3" data-code="7.x.3"><b>Folders &amp; owner.</b> Campaigns are organised into <b>folders</b> (right rail, each with a count). A folder has an <b>Owner</b> &mdash; set on create (7.1.1); it decides whose group the campaign shows under. Use folders to keep campaigns per teammate / segment / region.</li>
 <li id="ce-4" data-code="7.x.4"><b>Enabled toggle.</b> The <b>Enabled</b> column on the list turns a campaign's sending <b>on / off</b> without deleting it. Flipping it on (running) is an <b>Admin / Ops</b> action.</li>
 <li id="ce-5" data-code="7.x.5"><b>Status tabs.</b> Beyond Draft/Running: <b>Scheduled</b> (set to start later), <b>Paused</b> (running but temporarily stopped), <b>Finished</b> (sequence complete), <b>Archive</b> (put away, out of the active list).</li>
+<li id="ce-6" data-code="7.x.6"><b>Assigned a ready campaign &mdash; skip &ldquo;Add people&rdquo;.</b> Often you're handed a campaign Admin / Ops has <b>already loaded with people</b>, with instructions <b>not to add more</b> &mdash; just work those contacts. Then <b>skip</b> <a data-goto="page-campaign" href="#cmp-people" style="font-weight:700;cursor:pointer">7.4 &middot; Add people</a> entirely and go straight to the <b>People</b> tab and the sequence.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-reach"><span class="k">← Prev</span><b>Flow 6 · WhatsApp / LinkedIn</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 8 · Manage a Marketing Email</b></a></div>
 </section>
@@ -827,6 +842,7 @@
 
 <h3 id="me-people" class="anchor">8.3 &middot; Add people to the ME</h3>
 <div class="call warn"><span class="t">Not available yet for SDR</span>This flow <b>isn't built for the SDR role on UAT yet</b> &mdash; the contact list has <b>no select + "Add to marketing email"</b> action. For now, your MEs come with people <b>already added by Admin / Ops</b>. The steps below are the intended flow, for when it ships.</div>
+<p class="fn"><b>Assigned an ME that already has people</b> and told not to add more? <b>Skip this section</b> &mdash; just work those contacts (see <a data-goto="page-marketing" href="#e-8-13" style="font-weight:700;cursor:pointer">8.x.13 &#8599;</a>).</p>
 <p>Recipients come from your lists:</p>
 <ol class="steps">
 <li data-code="8.3.1"><b>Segments (Lists)</b> &rarr; open the list you were given.</li>
@@ -977,6 +993,7 @@
 <li id="te-7" data-code="8.x.12"><b>Upload files &amp; Signature.</b> <b>Upload files</b> (bottom-left) attaches files to the email; each attachment shows with an <b>&#10005;</b> to remove. A <b>Signature</b> button (bottom-right) appends your signature (Flow 1.x.5).
   <figure><img src="sdrx-me-20-upload.png" alt="Upload files and attachment"/><figcaption><b>8.x.12</b> &mdash; <b>Upload files</b> (bottom-left); each attachment shows with an <b>&#10005;</b> to remove.</figcaption></figure>
 </li>
+<li id="e-8-13" data-code="8.x.13"><b>Assigned a ready ME &mdash; skip &ldquo;Add people&rdquo;.</b> Often you're handed an ME Admin / Ops has <b>already loaded with people</b>, with instructions <b>not to add more</b> &mdash; just review &amp; personalize those contacts. Then <b>skip</b> <a data-goto="page-marketing" href="#me-people" style="font-weight:700;cursor:pointer">8.3 &middot; Add people</a> and go straight to <a data-goto="page-marketing" href="#me-preview" style="font-weight:700;cursor:pointer">8.4 &middot; Preview</a>.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 7 · Manage campaign</b></a><a class="next" data-goto="page-filters"><span class="k">Next →</span><b>Flow 9 · Using filters</b></a></div>
 </section>
