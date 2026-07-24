@@ -159,7 +159,7 @@
     <a href="#cmp-create" class="st" data-page="page-campaign">7.1 · Create (folder first)</a>
     <a href="#cmp-steps" class="st" data-page="page-campaign">7.2 · Build the sequence</a>
     <a href="#cmp-view" class="st" data-page="page-campaign">7.3 · View campaigns</a>
-    <a href="#cmp-people" class="st" data-page="page-campaign">7.4 · People</a>
+    <a href="#cmp-people" class="st" data-page="page-campaign">7.4 · Add people</a>
     <a href="#cmp-run" class="st" data-page="page-campaign">7.5 · Schedule &amp; run</a>
     <a href="#cmp-queue" class="st" data-page="page-campaign">7.6 · Email Queue</a>
     <a href="#cmp-replies" class="st" data-page="page-campaign">7.7 · Replies (campaign Inbox)</a>
@@ -170,7 +170,6 @@
     <a href="#ce-3" class="st2" data-page="page-campaign">7.x.3 · Folders &amp; owner</a>
     <a href="#ce-4" class="st2" data-page="page-campaign">7.x.4 · Enabled toggle</a>
     <a href="#ce-5" class="st2" data-page="page-campaign">7.x.5 · Status tabs</a>
-    <a href="#ce-6" class="st2" data-page="page-campaign">7.x.6 · Adding people</a>
     <a class="flow" data-page="page-marketing"><span class="n">8</span> Manage a Marketing Email</a>
     <a href="#me-create" class="st" data-page="page-marketing">8.1 · Create a ME</a>
     <a href="#tpl-step" class="st" data-page="page-marketing">8b · Create / edit a template</a>
@@ -686,8 +685,23 @@
 <p>Left menu &rarr; <b>Campaigns</b> lists every campaign, grouped into <b>folders</b> (right rail). The top tabs filter by <b>status</b>: <b>All &middot; Scheduled &middot; Draft &middot; Running &middot; Finished &middot; Paused &middot; Archive</b>. Each row shows the <b>Enabled</b> toggle, <b>Total Steps</b>, <b>People</b>, <b>Open / Reply / Bounce rates</b>, <b>Progress</b>, <b>Delivered</b> and <b>Last run</b>.</p>
 <figure><img src="sdrx-camp-00-list.png" alt="Campaigns list"/><figcaption><b>7.3</b> &mdash; the campaign list: status tabs, the <b>folder rail</b>, the <b>Enabled</b> toggle and per-campaign metrics.</figcaption></figure>
 
-<h3 id="cmp-people" class="anchor">7.4 &middot; People</h3>
-<p>The <b>People</b> tab is the campaign's recipient list. It carries the same filter bar as your lists, <b>plus campaign-only filters</b>: <b>Done</b> (finished the whole sequence) and <b>Skipped</b>. Adding people from a list works like Marketing Emails &mdash; and, as there, the <b>add-to-campaign</b> action isn't built for the SDR role on UAT yet, so campaigns usually come with people <b>already loaded by Admin / Ops</b>.</p>
+<h3 id="cmp-people" class="anchor">7.4 &middot; Add people to the campaign</h3>
+<div class="call warn"><span class="t">Not available yet for SDR</span>Just like Marketing Emails, this flow <b>isn't built for the SDR role on UAT yet</b> &mdash; the contact list has <b>no select + &ldquo;Add to campaign&rdquo;</b> action. For now, campaigns come with people <b>already loaded by Admin / Ops</b>. The steps below are the <b>intended flow</b>, for when it ships.</div>
+<p>Recipients come from your lists:</p>
+<ol class="steps">
+<li data-code="7.4.1"><b>Segments (Lists)</b> &rarr; open the list you were given.</li>
+<li data-code="7.4.2">Find the people you want &mdash; same tools as <a data-goto="page-find" style="font-weight:700;cursor:pointer">Flow 2 &middot; Find a target contact &#8599;</a> (filters, search, signals).</li>
+<li data-code="7.4.3"><b>Select</b> the contacts &rarr; <b>Add to campaign</b>. The <b>Add to campaign</b> drawer opens.</li>
+<li data-code="7.4.4">In the drawer: <b>choose the campaign</b>, then <b>choose each contact and which email address to use</b>. A contact can have several addresses &mdash; a campaign sends to <b>one address per contact</b>, so pick deliberately. The addresses are grouped in three tabs:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>Valid</b> &mdash; verified addresses; use these.</li>
+  <li><b>Missing + Invalid</b> &mdash; no address, or one that failed validation.</li>
+  <li><b>Platform sign up</b> &mdash; the address they signed up to the platform with.</li>
+  </ul>
+</li>
+<li data-code="7.4.5">Click <b>Add to campaign</b>. They now appear on the <b>People</b> tab.</li>
+</ol>
+<p>The <b>People</b> tab is then the campaign's recipient list &mdash; same filter bar as your lists, <b>plus campaign-only filters</b>: <b>Done</b> (finished the whole sequence) and <b>Skipped</b>.</p>
 <figure><img src="sdrx-camp-12-people.png" alt="Campaign People tab"/><figcaption><b>7.4</b> &mdash; the <b>People</b> tab with the campaign-only <b>Done</b> / <b>Skipped</b> filters.</figcaption></figure>
 
 <h3 id="cmp-run" class="anchor">7.5 &middot; Schedule &amp; run</h3>
@@ -722,7 +736,6 @@
 <li id="ce-3" data-code="7.x.3"><b>Folders &amp; owner.</b> Campaigns are organised into <b>folders</b> (right rail, each with a count). A folder has an <b>Owner</b> &mdash; set on create (7.1.1); it decides whose group the campaign shows under. Use folders to keep campaigns per teammate / segment / region.</li>
 <li id="ce-4" data-code="7.x.4"><b>Enabled toggle.</b> The <b>Enabled</b> column on the list turns a campaign's sending <b>on / off</b> without deleting it. Flipping it on (running) is an <b>Admin / Ops</b> action.</li>
 <li id="ce-5" data-code="7.x.5"><b>Status tabs.</b> Beyond Draft/Running: <b>Scheduled</b> (set to start later), <b>Paused</b> (running but temporarily stopped), <b>Finished</b> (sequence complete), <b>Archive</b> (put away, out of the active list).</li>
-<li id="ce-6" data-code="7.x.6"><b>Adding people.</b> The <b>add contacts</b> step (wizard) and the <b>add-to-campaign</b> action from a list aren't built for the SDR role on UAT yet &mdash; campaigns arrive with people <b>already loaded</b> by Admin / Ops. You still review them on the <a data-goto="page-campaign" href="#cmp-people" style="font-weight:700;cursor:pointer">People tab (7.4)</a>.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-reach"><span class="k">← Prev</span><b>Flow 6 · WhatsApp / LinkedIn</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 8 · Manage a Marketing Email</b></a></div>
 </section>
