@@ -137,6 +137,10 @@
     <a class="flow adm" data-page="page-a3"><span class="n">A3</span> Run a ME / campaign</a>
     <a href="#a3-me" class="st" data-page="page-a3">A3.1 · Run a Marketing Email</a>
     <a href="#a3-camp" class="st" data-page="page-a3">A3.2 · Run a campaign (Enabled)</a>
+    <a class="flow adm" data-page="page-b1"><span class="n">B1</span> Invite talents to a project</a>
+    <a class="flow adm" data-page="page-b2"><span class="n">B2</span> Timesheets (logged work)</a>
+    <a class="flow adm" data-page="page-b3"><span class="n">B3</span> Create a Client Invoice</a>
+    <a class="flow adm" data-page="page-b4"><span class="n">B4</span> Talent invoices</a>
 
     <div class="grp ops">Ops — preparing the work</div>
     <a class="flow ops" data-page="page-o1"><span class="n">O1</span> Your Ops workspace</a>
@@ -460,7 +464,91 @@
 </li>
 <li data-code="A3.2.3">The campaign detail (Steps &middot; People &middot; Preview &middot; Email Queues) looks <b>the same as the SDR view</b> &mdash; see SDR <a data-goto="page-campaign" style="font-weight:700;cursor:pointer">Flow 6 &#8599;</a> for every tab.</li>
 </ol>
-<div class="pagernav"><a data-goto="page-a2"><span class="k">← Prev</span><b>A2 · Create a contact</b></a><a class="next" data-goto="page-o1"><span class="k">Next → (Ops)</span><b>O1 · Your Ops workspace</b></a></div>
+<div class="pagernav"><a data-goto="page-a2"><span class="k">← Prev</span><b>A2 · Create a contact</b></a><a class="next" data-goto="page-b1"><span class="k">Next →</span><b>B1 · Invite talents</b></a></div>
+</section>
+
+<!-- ===================== B1 · INVITE TALENTS ===================== -->
+<section class="page" id="page-b1">
+<h2><span class="who adm">ADMIN</span><span class="n adm">B1 ·</span> Invite talents to a project</h2>
+<div class="goal adm"><b>Goal:</b> a client project needs candidates &mdash; find the right freelancers in the talent pool and <b>invite</b> them to apply. Everything is scoped to <b>one project</b>.</div>
+<ol class="steps">
+<li data-code="B1.1"><b>Project Management &rarr; Invite Talents.</b> The page asks you to <b>select the project first</b> &mdash; the dropdown lists each project as a card: title, client &amp; contact, <b>#PR id</b>, seniority / experience / rate type / duration / timezone / languages, and its running score &mdash; <b>&ldquo;X invited &middot; Y applied&rdquo;</b>.
+  <figure><img src="sdrx-bil-01-invite-project.png" alt="Select the project first"/><figcaption><b>B1.1</b> &mdash; pick the project; each option shows client, #PR id and <b>invited / applied</b> counts.</figcaption></figure>
+</li>
+<li data-code="B1.2"><b>Filter the pool.</b> The full talent pool loads (9,000+). Cut it down with the filter bar &mdash; <b>Statuses &middot; Invited Status &middot; Professional Background &middot; Functional Expertise &middot; Industry &amp; Sector &middot; Classification &middot; Years of Experience &middot; Seniority Levels &middot; Countries &middot; Cities &middot; Timezone Offsets &middot; Languages &middot; Has Contract</b>.</li>
+<li data-code="B1.3"><b>Read a talent row</b> before inviting: the <b>Active</b> badge, their title &amp; experience, a <b>Contracts chip</b> (&ldquo;1 Active &middot; 1 Completed&rdquo;), and the <b>Engagement</b> column &mdash; <b>INV</b> accepted/invited &middot; <b>APP</b> applied/hired &middot; <b>CTR</b> active/completed contracts. Row icons open LinkedIn, the CV (PDF) and chat.
+  <figure><img src="sdrx-bil-02-invite-list.png" alt="Talent pool with engagement stats"/><figcaption><b>B1.2&ndash;3</b> &mdash; filter the pool; each row carries the <b>engagement stats</b> and a <b>contracts chip</b>.</figcaption></figure>
+</li>
+<li data-code="B1.4"><b>Tick the talents &rarr; Invite Talents.</b> Selecting rows reveals the <b>&#128100; Invite Talents</b> button (top bar) &mdash; it sends the project invite to everyone selected; the project's <b>invited</b> count goes up and the talent shows under <b>Invited Status</b>.
+  <figure><img src="sdrx-bil-03-invite-selected.png" alt="Invite Talents button"/><figcaption><b>B1.4</b> &mdash; tick talents &rarr; <b>Invite Talents</b>.</figcaption></figure>
+</li>
+</ol>
+<div class="pagernav"><a data-goto="page-a3"><span class="k">← Prev</span><b>A3 · Run a ME / campaign</b></a><a class="next" data-goto="page-b2"><span class="k">Next →</span><b>B2 · Timesheets</b></a></div>
+</section>
+
+<!-- ===================== B2 · TIMESHEETS ===================== -->
+<section class="page" id="page-b2">
+<h2><span class="who adm">ADMIN</span><span class="n adm">B2 ·</span> Timesheets &mdash; the work talents log</h2>
+<div class="goal adm"><b>Goal:</b> a hired talent <b>logs their hours on the talent app</b>; you see every logged block here and know <b>what is billed and what still isn't</b>. This page is the source for client invoices (B3).</div>
+<div class="call note"><span class="t">Who does what</span><b>Talent</b> logs work (date range + hours) per contract on the <b>talent app</b> &rarr; it appears here instantly. <b>You</b> review the hours and bill them to the client (B3).</div>
+<ol class="steps">
+<li data-code="B2.1"><b>Contracts &amp; Invoices &rarr; Timesheets.</b> The header totals give the whole book at a glance: <b>Total Hours Worked &middot; Total Costs &middot; Total Revenue &middot; Total Outstanding Invoices &middot; Total Submitted / Unsubmitted Revenue &middot; Total Outstanding Liabilities</b> (hover the <b>?</b> for each definition).</li>
+<li data-code="B2.2"><b>Find the talent.</b> Search, filter by <b>Commitment</b>, pick from <b>Select talents</b>, or keep the <b>&ldquo;Talents with Active Contract&rdquo;</b> toggle on (default). Sort by <b>Last Issued Date</b> or <b>Unbilled Hours</b> to see who needs billing first.</li>
+<li data-code="B2.3"><b>Read a talent block.</b> Each talent shows their <b>Remaining Deposit</b>, and <b>one line per contract</b>: links to the <b>Project / Client / Contract</b>, the billing cadence (&ldquo;Hourly &middot; Every 14 days &middot; 232 EUR&rdquo;), the <b>Last Issued</b> date and &mdash; the key number &mdash; the <b>unbilled hours</b> (e.g. &ldquo;43h unbilled&rdquo;). Under it sit the talent's logged blocks: <i>&ldquo;Dec 1 &ndash; Dec 3 &middot; 12 hours&rdquo;</i>.
+  <figure><img src="sdrx-bil-04-timesheets.png" alt="Timesheets page"/><figcaption><b>B2</b> &mdash; totals on top; per-contract lines with cadence, rate, <b>Last Issued</b> and <b>unbilled hours</b>.</figcaption></figure>
+</li>
+<li data-code="B2.4"><b>Open the Contract</b> link for the full picture: the contract drawer holds <b>General Settings</b> (project, talent, billing address, recipients, dates) and the invoice ledgers &mdash; <b>Client Invoices &middot; Talent Invoices &middot; Commission Invoices &middot; Timeline</b>.
+  <figure><img src="sdrx-bil-07-contract-drawer.png" alt="Contract drawer"/><figcaption><b>B2.4</b> &mdash; the contract drawer: settings + <b>Client / Talent / Commission invoice</b> tabs.</figcaption></figure>
+</li>
+<li data-code="B2.5"><b>Sync Data</b> (top-right) refreshes the numbers if something looks stale.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-b1"><span class="k">← Prev</span><b>B1 · Invite talents</b></a><a class="next" data-goto="page-b3"><span class="k">Next →</span><b>B3 · Create a Client Invoice</b></a></div>
+</section>
+
+<!-- ===================== B3 · CLIENT INVOICE ===================== -->
+<section class="page" id="page-b3">
+<h2><span class="who adm">ADMIN</span><span class="n adm">B3 ·</span> Create a Client Invoice</h2>
+<div class="goal adm"><b>Goal:</b> turn a talent's <b>unbilled hours</b> into an invoice the client pays. Start from <b>Timesheets</b> (button on each talent) or from <b>Client Invoices &rarr; Create new Client Invoice</b>.</div>
+<ol class="steps">
+<li data-code="B3.1">On <b>Timesheets</b>, find the talent with unbilled hours &rarr; click <b>Create Client Invoice</b> (their Actions column). The same form opens from <b>Client Invoices &rarr; Create new Client Invoice</b>.</li>
+<li data-code="B3.2"><b>Pick the contract.</b> The <b>Contract</b> dropdown (filter chips <b>Active / Completed</b>) lists the talent's contracts &mdash; pick the one whose timesheets you're billing.
+  <figure><img src="sdrx-bil-06-contract-picker.png" alt="Contract picker"/><figcaption><b>B3.2</b> &mdash; the contract picker: status pill + contract name + talent.</figcaption></figure>
+</li>
+<li data-code="B3.3"><b>Fill the invoice:</b>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Field</th><th>What goes in</th></tr></thead>
+  <tbody>
+  <tr><td><b>File invoice (PDF)</b></td><td>Optional &mdash; upload an externally generated PDF.</td></tr>
+  <tr><td><b>Type</b>*</td><td><b>Standard Invoice</b> (default) or another type from the list.</td></tr>
+  <tr><td><b>Service period start / end</b>*</td><td>The date range you're billing &mdash; matches the timesheet blocks.</td></tr>
+  <tr><td><b>Issued Date</b></td><td>Defaults to today.</td></tr>
+  <tr><td><b>Billing rate</b>* &middot; <b>Quantity</b>*</td><td>Rate &times; quantity (hours) &rarr; the <b>Amount</b> computes itself.</td></tr>
+  <tr><td><b>Fintalent Bank Account</b>*</td><td>Which account the client pays into &mdash; its <b>Info</b> box fills automatically.</td></tr>
+  <tr><td><b>Description</b>* &middot; <b>Client contact</b>*</td><td>What the line covers &middot; the client billing address.</td></tr>
+  <tr><td><b>&#8853; Additional items</b></td><td>Extra lines (expenses, adjustments) on the same invoice.</td></tr>
+  </tbody></table></div>
+  <figure><img src="sdrx-bil-05-invoice-form.png" alt="Create Client Invoice form"/><figcaption><b>B3.3</b> &mdash; the <b>Create Client Invoice</b> form.</figcaption></figure>
+</li>
+<li data-code="B3.4"><b>Create.</b> The invoice lands in <b>Client Invoices</b> as <b>Draft</b> &rarr; work it through <b>Issued &rarr; Paid</b> (or <b>Archived</b>). Rows link the <b>timesheets they cover</b> (&ldquo;Timesheets (Jul 20 &ndash; 21)&rdquo;) and any <b>Generated Invoices</b>. <b>One-Time Invoices</b> (no contract) have their own create button. <b>Outstanding Client Invoices</b> (left menu) is the chase list of what's unpaid.
+  <figure><img src="sdrx-bil-08-client-invoices.png" alt="Client Invoices list"/><figcaption><b>B3.4</b> &mdash; <b>Client Invoices</b>: Draft &middot; Issued &middot; Paid &middot; Archived, with the covered timesheets on each row.</figcaption></figure>
+</li>
+</ol>
+<div class="pagernav"><a data-goto="page-b2"><span class="k">← Prev</span><b>B2 · Timesheets</b></a><a class="next" data-goto="page-b4"><span class="k">Next →</span><b>B4 · Talent invoices</b></a></div>
+</section>
+
+<!-- ===================== B4 · TALENT INVOICES ===================== -->
+<section class="page" id="page-b4">
+<h2><span class="who adm">ADMIN</span><span class="n adm">B4 ·</span> Talent invoices &mdash; what you owe the talent</h2>
+<div class="goal adm"><b>Goal:</b> the other side of the money: the <b>talent invoices Fintalent</b> for their logged work (usually from the <b>talent app</b>), and you track it to <b>Paid</b>.</div>
+<ol class="steps">
+<li data-code="B4.1"><b>Contracts &amp; Invoices &rarr; Talent Invoices.</b> Tabs: <b>All &middot; Client Paid</b> (the linked client invoice is settled &mdash; the talent can now be paid) <b>&middot; Paid &middot; Disputed</b>.</li>
+<li data-code="B4.2">Each row shows the covered <b>timesheets</b>, the <b>Amount</b>, its <b>Status</b> and &mdash; crucially &mdash; the <b>Linked Client Invoice</b>: talent money is tied to the client invoice that funds it.
+  <figure><img src="sdrx-bil-09-talent-invoices.png" alt="Talent Invoices list"/><figcaption><b>B4</b> &mdash; <b>Talent Invoices</b>: All &middot; Client Paid &middot; Paid &middot; Disputed, each linked to its client invoice.</figcaption></figure>
+</li>
+<li data-code="B4.3"><b>Create New</b> (top-right) lets you raise a talent invoice <b>on the talent's behalf</b> &mdash; normally the talent submits it themselves from the talent app.</li>
+<li data-code="B4.4">Filters &mdash; <b>Types &middot; Projects &middot; Clients &middot; Talents &middot; Tax Claimed &middot; VAT Included</b> &mdash; slice the ledger for reconciliation.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-b3"><span class="k">← Prev</span><b>B3 · Client Invoice</b></a><a class="next" data-goto="page-o1"><span class="k">Next → (Ops)</span><b>O1 · Your Ops workspace</b></a></div>
 </section>
 
 <!-- ===================== O1 · OPS WORKSPACE ===================== -->
@@ -481,7 +569,7 @@
   <figure><img src="v3s-140-view-as-role-sdr.png" alt="View as role SDR"/><figcaption><b>O1.x.1</b> — View as role → SDR: the preview banner + the trimmed SDR menu.</figcaption></figure>
 </li>
 </ol>
-<div class="pagernav"><a data-goto="page-a3"><span class="k">← Prev (Admin)</span><b>A3 · Run a ME / campaign</b></a><a class="next" data-goto="page-o2"><span class="k">Next →</span><b>O2 · Create a list</b></a></div>
+<div class="pagernav"><a data-goto="page-b4"><span class="k">← Prev (Admin)</span><b>B4 · Talent invoices</b></a><a class="next" data-goto="page-o2"><span class="k">Next →</span><b>O2 · Create a list</b></a></div>
 </section>
 
 <!-- ===================== O2 · CREATE LIST ===================== -->
