@@ -134,6 +134,9 @@
     <a href="#ea-2-2" class="st2" data-page="page-a2">A2.x.2 · Link / relink company</a>
     <a href="#ea-2-3" class="st2" data-page="page-a2">A2.x.3 · Neither field</a>
     <a href="#ea-2-4" class="st2" data-page="page-a2">A2.x.4 · Supplement info (edit)</a>
+    <a class="flow adm" data-page="page-a3"><span class="n">A3</span> Run a ME / campaign</a>
+    <a href="#a3-me" class="st" data-page="page-a3">A3.1 · Run a Marketing Email</a>
+    <a href="#a3-camp" class="st" data-page="page-a3">A3.2 · Run a campaign (Enabled)</a>
 
     <div class="grp ops">Ops — preparing the work</div>
     <a class="flow ops" data-page="page-o1"><span class="n">O1</span> Your Ops workspace</a>
@@ -429,7 +432,35 @@
 <li id="ea-2-3" data-code="A2.x.3"><b>Neither LinkedIn nor email.</b> Creation is <b>blocked</b> — the form requires one of the two.</li>
 <li id="ea-2-4" data-code="A2.x.4"><b>Supplement the info (edit after create).</b> A fresh contact — even one auto-filled from LinkedIn — is often missing details the crawl can't reach: <b>Phone</b>, <b>Contact Classification</b>, <b>Owner</b>, extra emails, lifecycle, etc. Open the contact → the detail drawer → <b>click the empty field</b> → type or pick the value → it <b>auto-saves</b> (toast "Saved"). Fill these in <u>before</u> assigning the person into a working list.</li>
 </ol>
-<div class="pagernav"><a data-goto="page-a1"><span class="k">← Prev</span><b>A1 · Create account</b></a><a class="next" data-goto="page-o1"><span class="k">Next → (Ops)</span><b>O1 · Your Ops workspace</b></a></div>
+<div class="pagernav"><a data-goto="page-a1"><span class="k">← Prev</span><b>A1 · Create account</b></a><a class="next" data-goto="page-a3"><span class="k">Next →</span><b>A3 · Run a ME / campaign</b></a></div>
+</section>
+
+<!-- ===================== A3 · RUN ME / CAMPAIGN ===================== -->
+<section class="page" id="page-a3">
+<h2><span class="who adm">ADMIN</span><span class="n adm">A3 ·</span> Run a Marketing Email / campaign <span class="fn">(Admin/Ops only &mdash; the SDR view has no Force Send / Enabled control)</span></h2>
+<div class="goal adm"><b>Goal:</b> the SDR prepares the ME / campaign (steps, people, review) &mdash; <b>you turn it on and send it</b>. This is the Admin half of the hand-off in SDR <a data-goto="page-marketing" href="#me-send" style="font-weight:700;cursor:pointer">Flow 7.5 &#8599;</a> and <a data-goto="page-campaign" href="#cmp-run" style="font-weight:700;cursor:pointer">Flow 6.6 &#8599;</a>.</div>
+
+<h3 id="a3-me" class="anchor">A3.1 &middot; Run a Marketing Email (activate + Force Send)</h3>
+<ol class="steps">
+<li data-code="A3.1.1">Open the <b>Marketing Email</b> the SDR prepared.</li>
+<li data-code="A3.1.2"><b>Activate it:</b> flip the header switch <b>Draft &rarr; Active</b> (top-right).</li>
+<li data-code="A3.1.3">Go to the <b>Template</b> tab &rarr; click <b>Force Send</b> (top-right of the step). This button is <b>Admin-only</b> &mdash; the SDR login doesn't see it. Only contacts the SDR marked <b>Content Reviewed</b> are sent.
+  <figure><img src="sdrx-adm-01-run-me.png" alt="Active switch + Force Send"/><figcaption><b>A3.1</b> &mdash; <b>&#9312;</b> header switch <b>Draft &rarr; Active</b> &middot; <b>&#9313;</b> <b>Force Send</b> on the Template tab (Admin-only).</figcaption></figure>
+</li>
+<li data-code="A3.1.4"><b>Check the Email Queue</b> tab &mdash; it fills with one row per email: <b>In Queue</b> (waiting) &rarr; <b>Delivered</b> (sent, with Sent Date) or <b>Cancel</b> (pulled &mdash; will not send). The count should match the reviewed contacts.
+  <figure><img src="sdrx-adm-02-queue-data.png" alt="Email Queue with data"/><figcaption><b>A3.1.4</b> &mdash; after Force Send: the queue with per-email <b>status</b> and <b>Sent Date</b>. <span class="fn">(The SDR view of this tab currently shows 0 / &ldquo;Couldn't load&rdquo; &mdash; known display bug; the data is here on the Admin view.)</span></figcaption></figure>
+</li>
+</ol>
+
+<h3 id="a3-camp" class="anchor">A3.2 &middot; Run a campaign (the Enabled toggle)</h3>
+<ol class="steps">
+<li data-code="A3.2.1">Open <b>Campaigns</b> &rarr; find the campaign (the SDR sets it <b>Draft &rarr; Scheduled</b>; you run it).</li>
+<li data-code="A3.2.2">Flip the <b>Enabled</b> toggle on its row &mdash; that turns the sending <b>on</b>; the status moves through <b>Running &rarr; Finished</b> (or <b>Paused</b> if you flip it off).
+  <figure><img src="sdrx-camp-20-enabled.png" alt="Enabled toggle on the campaigns list"/><figcaption><b>A3.2</b> &mdash; the <b>Enabled</b> toggle on the campaign list &mdash; the on/off switch for sending (Admin-only).</figcaption></figure>
+</li>
+<li data-code="A3.2.3">The campaign detail (Steps &middot; People &middot; Preview &middot; Email Queues) looks <b>the same as the SDR view</b> &mdash; see SDR <a data-goto="page-campaign" style="font-weight:700;cursor:pointer">Flow 6 &#8599;</a> for every tab.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-a2"><span class="k">← Prev</span><b>A2 · Create a contact</b></a><a class="next" data-goto="page-o1"><span class="k">Next → (Ops)</span><b>O1 · Your Ops workspace</b></a></div>
 </section>
 
 <!-- ===================== O1 · OPS WORKSPACE ===================== -->
@@ -450,7 +481,7 @@
   <figure><img src="v3s-140-view-as-role-sdr.png" alt="View as role SDR"/><figcaption><b>O1.x.1</b> — View as role → SDR: the preview banner + the trimmed SDR menu.</figcaption></figure>
 </li>
 </ol>
-<div class="pagernav"><a data-goto="page-a2"><span class="k">← Prev (Admin)</span><b>A2 · Create a contact</b></a><a class="next" data-goto="page-o2"><span class="k">Next →</span><b>O2 · Create a list</b></a></div>
+<div class="pagernav"><a data-goto="page-a3"><span class="k">← Prev (Admin)</span><b>A3 · Run a ME / campaign</b></a><a class="next" data-goto="page-o2"><span class="k">Next →</span><b>O2 · Create a list</b></a></div>
 </section>
 
 <!-- ===================== O2 · CREATE LIST ===================== -->
@@ -1186,7 +1217,7 @@
 </ol>
 
 <h3 id="cmp-run" class="anchor">6.6 &middot; Schedule &amp; run</h3>
-<div class="call warn"><span class="t">Running is Admin / Ops</span>As the SDR you can move the campaign <b>Draft &rarr; Scheduled</b> (the status dropdown, top-right). Actually <b>turning it on</b> &mdash; the <b>Enabled</b> toggle on the list &mdash; and sending is an <b>Admin / Ops</b> action, like force-sending a Marketing Email. Your job after that is to <b>monitor</b>.</div>
+<div class="call warn"><span class="t">Running is Admin / Ops</span>As the SDR you can move the campaign <b>Draft &rarr; Scheduled</b> (the status dropdown, top-right). Actually <b>turning it on</b> &mdash; the <b>Enabled</b> toggle on the list &mdash; and sending is an <b>Admin / Ops</b> action (the Admin side is <a data-goto="page-a3" href="#a3-camp" style="font-weight:700;cursor:pointer">Flow A3.2 &#8599;</a>), like force-sending a Marketing Email. Your job after that is to <b>monitor</b>.</div>
 <figure><img src="sdrx-camp-11-status.png" alt="Draft to Scheduled status"/><figcaption><b>6.6</b> &mdash; the status control: <b>Draft &rarr; Scheduled</b>. Enabling / running is the Admin's <b>Enabled</b> toggle.</figcaption></figure>
 
 <h3 id="cmp-queue" class="anchor">6.7 &middot; The Email Queue</h3>
@@ -1413,7 +1444,7 @@
 </ol>
 
 <h3 id="me-send" class="anchor">7.5 &middot; Force send (Admin) &mdash; then you check</h3>
-<div class="call warn"><span class="t">No Force Send on the SDR view</span><b>Force Send is an Admin / Ops action</b> &mdash; on the SDR login there is <b>no Force Send button</b> (the ME's &#8942; menu only offers <b>Edit / View Details</b>). Your Admin both flips the ME <b>Draft &rarr; Active</b> and clicks <b>Force Send</b>.</div>
+<div class="call warn"><span class="t">No Force Send on the SDR view</span><b>Force Send is an Admin / Ops action</b> &mdash; on the SDR login there is <b>no Force Send button</b> (the ME's &#8942; menu only offers <b>Edit / View Details</b>). Your Admin both flips the ME <b>Draft &rarr; Active</b> and clicks <b>Force Send</b> &mdash; the Admin side is <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">Flow A3.1 &#8599;</a>.</div>
 <p>Once your Admin has force-sent, your job is to <b>check the queue</b>:</p>
 <ol class="steps">
 <li data-code="7.5.1">Open the <b>marketing email detail</b>.</li>
