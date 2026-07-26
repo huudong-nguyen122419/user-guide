@@ -198,6 +198,7 @@
     <a href="#ce-11" class="st2" data-page="page-campaign">6.x.11 · Language (EN/DE)</a>
     <a href="#ce-12" class="st2" data-page="page-campaign">6.x.12 · Force Update</a>
     <a href="#ce-13" class="st2" data-page="page-campaign">6.x.13 · Skip a step (= not sent)</a>
+    <a href="#ce-14" class="st2" data-page="page-campaign">6.x.14 · Notifications bell</a>
     <a class="flow" data-page="page-marketing"><span class="n">7</span> Manage a Marketing Email</a>
     <a href="#me-create" class="st" data-page="page-marketing">7.1 · Create a ME</a>
     <a href="#m7-1-1" class="st2" data-page="page-marketing">7.1.1 · Open MEs + Create</a>
@@ -685,7 +686,7 @@
 <li id="s6-1-2" data-code="6.1.2"><b>Create a folder.</b> Click <b>+ Create Folder</b> (top-right) &rarr; fill <b>Owner</b> (usually <b>you</b>), <b>Name</b> (required) and <b>Description</b> &rarr; <b>Create</b>.
   <figure><img src="sdrx-camp-01-folder.png" alt="Create Folder form"/><figcaption><b>6.1.2</b> &mdash; the <b>Create Folder</b> form: <b>&#9312; Owner</b> (here: you) &middot; <b>&#9313; Name</b> (required) &middot; <b>&#9314; Description</b> &middot; <b>&#9315; Create</b>.</figcaption></figure>
 </li>
-<li id="s6-1-3" data-code="6.1.3"><b>Open your folder.</b> You land inside the new folder &mdash; it's highlighted in the right-hand <b>folder rail</b>. (Come back to it any time by clicking it in the rail.)
+<li id="s6-1-3" data-code="6.1.3"><b>Open your folder.</b> You land inside the new folder &mdash; it's highlighted in the right-hand <b>folder rail</b>. (Come back to it any time by clicking it in the rail; rename it later via its <b>&#8942;</b> menu &mdash; <a data-goto="page-campaign" href="#ce-3" style="font-weight:700;cursor:pointer">6.x.3 &#8599;</a>.)
   <figure><img src="sdrx-camp-02-infolder.png" alt="Inside a folder, Create Campaign appears"/><figcaption><b>6.1.3</b> &mdash; inside your folder: <b>&#9313;</b> the folder is selected in the rail &middot; <b>&#9312;</b> the <b>+ Create Campaign</b> button appears.</figcaption></figure>
 </li>
 <li id="s6-1-4" data-code="6.1.4"><b>Create the campaign.</b> Click <b>+ Create Campaign</b> &mdash; the button <b>only shows inside a folder</b>; that's why the folder comes first.</li>
@@ -788,7 +789,7 @@
 <p class="fn"><b>Heads-up (UAT):</b> as with Marketing Emails, the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> even when the campaign has already delivered. If it looks empty, refresh, or confirm via the <a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">campaign Inbox (6.8)</a> and the contact's Conversations.</p>
 
 <h3 id="cmp-replies" class="anchor">6.8 &middot; Verify: Conversations &amp; the campaign Inbox</h3>
-<p>Every campaign has its own <b>Inbox</b> tab &mdash; the replies it pulled back, <b>categorized by lifecycle</b> down the left (Prospect &middot; Interested &middot; Not Interested &middot; Out Of Office &middot; Bounced / Dropped &middot; Open &middot; Click&hellip;). It's your <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 inbox &#8599;</a>, scoped to this campaign.</p>
+<p>Every campaign has its own <b>Inbox</b> tab &mdash; the replies it pulled back, <b>categorized by lifecycle</b> down the left (Prospect &middot; Interested &middot; Not Interested &middot; Out Of Office &middot; Bounced / Dropped &middot; Open &middot; Click&hellip;). It's your <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 inbox &#8599;</a>, scoped to this campaign. New replies also pop up under the <b>&#128276; bell</b> (top-right) &mdash; the <a data-goto="page-campaign" href="#ce-14" style="font-weight:700;cursor:pointer">Campaign Notifications feed (6.x.14) &#8599;</a>.</p>
 <figure><img src="sdrx-camp-14-inbox.png" alt="Campaign Inbox tab"/><figcaption><b>6.8</b> &mdash; the campaign <b>Inbox</b>: replies filed under lifecycle categories (here one <b>Not Interested</b>).</figcaption></figure>
 <p>Each send is also written into that contact's <b>Conversations</b> with a <b>status chip</b> (In Queue &rarr; Delivered &rarr; Open &rarr; Bounce) &mdash; exactly like a Marketing Email; see <a data-goto="page-marketing" href="#me-conv" style="font-weight:700;cursor:pointer">Flow 7 &middot; 7.7 &#8599;</a>.</p>
 
@@ -816,10 +817,20 @@
 <li id="ce-1" data-code="6.x.1"><b>A/B variants.</b> Under any step, <b>+ Add variant</b> creates an alternative email (<b>A</b>, <b>B</b>, &hellip;) for that step &mdash; each contact gets <b>one variant at random</b> (on the Preview the step reads <i>&ldquo;A random option will be sent&rdquo;</i>), so you can test subject / copy.
   <figure><img src="sdrx-camp-09-variants.png" alt="A/B variants on a step"/><figcaption><b>6.x.1</b> &mdash; Step 1 with two variants <b>A</b> and <b>B</b>.</figcaption></figure>
 </li>
-<li id="ce-2" data-code="6.x.2"><b>Sidestep (conditional).</b> <b>Create sidestep</b> adds a <b>conditional</b> email that fires on a reply category &mdash; e.g. an auto-response when the reply is <b>Out Of Office</b>. Pick the condition at the top of the sidestep editor.
-  <figure><img src="sdrx-camp-10-sidestep.png" alt="Sidestep with Out Of Office condition"/><figcaption><b>6.x.2</b> &mdash; a <b>sidestep</b> keyed to the <b>Out Of Office</b> condition.</figcaption></figure>
+<li id="ce-2" data-code="6.x.2"><b>Sidestep &mdash; a conditional branch.</b> A sidestep is an email that fires <b>automatically when a contact's reply lands in a chosen category</b> &mdash; e.g. an auto-response to an <b>Out Of Office</b>. Build one:
+  <ol style="margin:6px 0 0;padding-left:18px">
+  <li><b>Steps</b> tab &rarr; <b>+ Create sidestep</b>.</li>
+  <li><b>Pick the trigger condition</b> (the chip, top-left of the editor). The list: <b>Call Scheduled &middot; Interested &middot; Not Interested &middot; Do Not Contact &middot; Not Now &middot; Opted Out &middot; Out Of Office &middot; Left The Company</b>.</li>
+  <li><b>Write the email</b> &mdash; same editor as any step (template / variables / snippets all work) &rarr; <b>Create</b>.</li>
+  <li>The Steps tab now shows <b>two blocks</b>: <b>Main Step</b> (the normal drip) and <b>Side Step: &lsaquo;condition&rsaquo;</b> &mdash; a branch of its own, with <b>its own timing and variants</b>.</li>
+  </ol>
+  <figure><img src="sdrx-camp-34-sidestep-conditions.png" alt="Sidestep trigger conditions"/><figcaption><b>6.x.2</b> &mdash; the trigger-condition list: the sidestep fires when the reply is categorized as this.</figcaption></figure>
+  <figure><img src="sdrx-camp-35-sidestep-branch.png" alt="Main Step and Side Step blocks"/><figcaption><b>6.x.2</b> &mdash; after Create: <b>Main Step</b> (the drip) + <b>Side Step: Out Of Office</b> &mdash; its own branch with its own timing/variants.</figcaption></figure>
 </li>
-<li id="ce-3" data-code="6.x.3"><b>Folders &amp; owner.</b> Campaigns are organised into <b>folders</b> (right rail, each with a count). A folder has an <b>Owner</b> &mdash; set on create (6.1.1); it decides whose group the campaign shows under. Use folders to keep campaigns per teammate / segment / region.</li>
+<li id="ce-3" data-code="6.x.3"><b>Folders &amp; owner &mdash; and editing your own.</b> Campaigns are organised into <b>folders</b> (right rail, each with a count). A folder has an <b>Owner</b> &mdash; set on create (6.1.2); it decides whose group the campaign shows under. Use folders to keep campaigns per teammate / segment / region. <b>Edit your own folder:</b> hover it in the rail &rarr; the <b>&#8942;</b> menu &rarr; <b>Edit/ View Details</b> &rarr; the <b>Update Folder</b> drawer (Owner &middot; Name &middot; Description) &rarr; <b>Update</b>.
+  <figure><img src="sdrx-camp-32-folder-menu.png" alt="Folder three-dot menu"/><figcaption><b>6.x.3</b> &mdash; hover your folder &rarr; <b>&#8942;</b> &rarr; <b>Edit/ View Details</b>.</figcaption></figure>
+  <figure><img src="sdrx-camp-33-folder-edit.png" alt="Update Folder drawer"/><figcaption><b>6.x.3</b> &mdash; the <b>Update Folder</b> drawer: change Name / Description &rarr; <b>Update</b>.</figcaption></figure>
+</li>
 <li id="ce-4" data-code="6.x.4"><b>Enabled toggle.</b> The <b>Enabled</b> column on the list turns a campaign's sending <b>on / off</b> without deleting it. Flipping it on (running) is an <b>Admin / Ops</b> action.</li>
 <li id="ce-5" data-code="6.x.5"><b>Status tabs.</b> Beyond Draft/Running: <b>Scheduled</b> (set to start later), <b>Paused</b> (running but temporarily stopped), <b>Finished</b> (sequence complete), <b>Archive</b> (put away, out of the active list).</li>
 <li id="ce-6" data-code="6.x.6"><b>Assigned a ready campaign &mdash; skip &ldquo;Add people&rdquo;.</b> Often you're handed a campaign Admin / Ops has <b>already loaded with people</b>, with instructions <b>not to add more</b> &mdash; just work those contacts. Then <b>skip</b> <a data-goto="page-campaign" href="#cmp-people" style="font-weight:700;cursor:pointer">6.4 &middot; Add people</a> entirely and go straight to the <b>People</b> tab and the sequence.</li>
@@ -837,6 +848,9 @@
 <li id="ce-12" data-code="6.x.12"><b>Force Update.</b> When you <b>edit a step later</b> (after per-contact previews were generated), tick <b>Force Update</b> before <b>Save</b> to push the new copy onto those existing previews. <div class="call warn"><span class="t">Use with caution</span>It <b>overwrites existing content</b> &mdash; per-contact personalization and saved versions on this step are replaced by the new template. Leave it <b>unticked</b> on a fresh step.</div></li>
 <li id="ce-13" data-code="6.x.13"><b>Skip a step &mdash; what does it actually do?</b> <b>Skip = that email is NOT sent to that contact.</b> On the Preview, <b>Skip</b> on a step row skips <b>just that step for just that contact</b> &mdash; the step is tagged <b>Skipped</b> immediately (no confirm dialog) and the campaign simply moves on to their next step. <b>Skip All</b> (top-right) skips <b>every</b> step, i.e. this contact gets <b>nothing at all</b> from the campaign. Changed your mind? Click <b>Rollback Skip</b> on the step to undo. Skipped contacts are the ones the <b>Skipped</b> filter (and the People tab's Skipped filter) surfaces.
   <figure><img src="sdrx-camp-30-skip.png" alt="Skipped step with Rollback Skip"/><figcaption><b>6.x.13</b> &mdash; after <b>Skip</b>: the step is tagged <b>Skipped</b> (it will <b>not</b> be sent to this contact); <b>Rollback Skip</b> undoes it.</figcaption></figure>
+</li>
+<li id="ce-14" data-code="6.x.14"><b>The &#128276; bell &mdash; Campaign Notifications.</b> The bell (top-right, next to Create Folder) opens <b>Campaign Notifications</b> &mdash; a feed of every reply your campaigns pulled in: the <b>campaign name</b>, the <b>reply-category chip</b>, the contact, a snippet of the reply and how long ago. A <b>purple dot</b> = unread; <b>See More</b> loads older ones. Use it as your morning sweep &mdash; spot fresh replies without opening each campaign.
+  <figure><img src="sdrx-camp-31-notifications.png" alt="Campaign Notifications panel"/><figcaption><b>6.x.14</b> &mdash; the bell opens <b>Campaign Notifications</b>: campaign + category chip + reply snippet.</figcaption></figure>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-followup"><span class="k">← Prev</span><b>Flow 5 · Follow up</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 7 · Manage a Marketing Email</b></a></div>
@@ -1028,6 +1042,7 @@
 <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#D97706">In Queue</span></td><td>Queued, not sent yet.</td></tr>
 <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#64748B">Delivered</span></td><td>It went out.</td></tr>
 <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#1E90FF">Open</span></td><td>They opened it.</td></tr>
+<tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#2563EB">Click</span></td><td>They clicked a link in the email.</td></tr>
 <tr><td><span style="display:inline-block;padding:2px 9px;border-radius:9999px;color:#fff;font-size:11.5px;font-weight:600;background:#D97706">&#9888; Bounce / Dropped</span></td><td>It failed &mdash; that address didn't take it.</td></tr>
 </tbody></table></div>
 <figure><img src="sdrx-me-24-conversation-chip.png" alt="Marketing email in the contact's Conversations with a status chip"/><figcaption><b>7.7</b> &mdash; the marketing send in the contact's <b>Conversations</b>: the thread carries the <b>&#9993;/&#8599; marketing icons</b> and a <b>status chip</b> (captured here as <b>In Queue</b>), and the body shows the <b>personalized</b> copy.</figcaption></figure>
