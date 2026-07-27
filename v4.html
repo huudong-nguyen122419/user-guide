@@ -198,8 +198,8 @@
     <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Talent Active / Passive</a>
     <a href="#a6-model" class="st" data-page="page-a6">A6.1 · Mô hình dữ liệu</a>
     <a href="#a6-rule" class="st" data-page="page-a6">A6.2 · Điều kiện phân loại</a>
-    <a href="#a6-query" class="st" data-page="page-a6">A6.3 · Dựng bộ lọc</a>
-    <a href="#a6-limits" class="st" data-page="page-a6">A6.4 · Giới hạn engine</a>
+    <a href="#a6-query" class="st" data-page="page-a6">A6.3 · Dựng bộ lọc Work Experience</a>
+    <a href="#a6-limits" class="st" data-page="page-a6">A6.4 · Giới hạn cần biết</a>
     <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x · Edge cases</a>
     <a href="#ec-6-1" class="st2" data-page="page-a6">A6.x.1 · Classification ≠ nhóm</a>
     <a href="#ec-6-2" class="st2" data-page="page-a6">A6.x.2 · Nhiều vai trò song song</a>
@@ -766,7 +766,7 @@
   </tbody></table></div>
   <p class="fn"><b>Co-occurrence là bắt buộc.</b> Tách thành hai điều kiện rời (&ldquo;có làm ở sponsor&rdquo; + &ldquo;có chức danh Operating Partner&rdquo;) sẽ bắt nhầm người có chức danh ở công ty này còn cờ sponsor ở công ty khác.</p>
 </li>
-<li data-code="A6.2.2"><b>Chỉ tính vai trò đang diễn ra.</b> Vai trò đã nghỉ không kể &mdash; người từng làm ở quỹ PE nhưng nay đã rời vẫn là talent. Trên UI dùng tuỳ chọn <b>currently</b> trong bộ lọc <b>Work Experience</b>; không có nó thì kết quả sẽ dính cả vai trò cũ.</li>
+<li data-code="A6.2.2"><b>Chỉ tính vai trò đang diễn ra.</b> Vai trò đã nghỉ không kể &mdash; người từng làm ở quỹ PE nhưng nay đã rời vẫn là talent. Trên UI tích <b>Currently</b> trong bộ lọc <b>Work Experience</b> &mdash; xem <a href="#a6-query" style="font-weight:700;cursor:pointer">A6.3.3 &#8599;</a>; không tích thì kết quả dính cả vai trò cũ.</li>
 <li data-code="A6.2.3"><b>Ba trường hợp ra Active</b> dù chức danh trông giống:
   <div class="tblwrap"><table>
   <thead><tr><th>Đầu vào</th><th>Vì sao Active</th></tr></thead>
@@ -779,41 +779,65 @@
 <li data-code="A6.2.4"><b>Thứ tự ưu tiên khi khớp nhiều nhóm:</b> <code>A &gt; B &gt; C</code>. Một talent chỉ mang một kết luận; khớp bất kỳ nhóm nào trong A/B/C là đủ để ra <b>Passive</b>.</li>
 </ol>
 
-<h3 id="a6-query" class="anchor">A6.3 &middot; Dựng bộ lọc trên UI</h3>
+<h3 id="a6-query" class="anchor">A6.3 &middot; Dựng bộ lọc Work Experience</h3>
+<div class="call note"><span class="t">Vì sao phải dùng đúng bộ lọc này</span>Chỉ <b>Work Experience</b> mới ép được <b>cờ công ty</b> và <b>chức danh</b> khớp trên <u>cùng một dòng</u>. Ghép hai bộ lọc rời sẽ bắt nhầm người có chức danh ở công ty này còn cờ sponsor ở công ty khác &mdash; xem <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.2.1 &#8599;</a>.</div>
 <ol class="steps adm">
-<li data-code="A6.3.1"><b>User Management &rarr; Talents</b> &rarr; <b>Add filter</b> &rarr; ghim <b>Work Experience</b> (nhóm <i>WORK EXPERIENCE</i>).</li>
-<li data-code="A6.3.2"><b>Đặt ba điều kiện trong cùng một khối Work Experience</b> &mdash; để engine áp chúng lên cùng một dòng:
-  <div class="tblwrap"><table>
-  <thead><tr><th>Điều kiện</th><th>Giá trị</th></tr></thead>
-  <tbody>
-  <tr><td><b>company type</b></td><td><code>sponsor</code> (cho A và B) hoặc <code>portfolio</code> (cho C)</td></tr>
-  <tr><td><b>position</b></td><td>các chức danh của nhóm tương ứng ở <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.2.1 &#8599;</a></td></tr>
-  <tr><td><b>currently</b></td><td>bật &mdash; chỉ lấy vai trò đang diễn ra</td></tr>
-  </tbody></table></div>
+<li data-code="A6.3.1"><b>Ghim bộ lọc.</b> <b>User Management &rarr; Talents &rarr; Add filter</b>, gõ <code>work</code> vào ô <b>Search filters&hellip;</b>, tích <b>Work Experience</b> (nhóm <i>WORK EXPERIENCE</i>). Đóng bảng &mdash; chip <b>Work Experience</b> xuất hiện ở cuối thanh lọc.</li>
+
+<li data-code="A6.3.2"><b>Mở chip &rarr; hiểu 5 vùng của bảng.</b> Mỗi <b>khối đánh số</b> tương ứng <b>một dòng work experience</b>; mọi điều kiện trong cùng khối phải khớp trên chính dòng đó.
+  <figure><img src="tsx-24-we-filter-fields.png" alt="Các trường của bộ lọc Work Experience"/><figcaption><b>A6.3.2</b> &mdash; <b>&#9312;</b> <b>Match any (OR) / Match all (AND)</b>: cách <i>nhiều khối</i> kết hợp &middot; <b>&#9313;</b> <b>Company type</b>: Sponsor / Corporate / Portfolio, mỗi dòng có <b>&#10003;</b> (phải có) và <b>&#10005;</b> (loại) &middot; <b>&#9314;</b> <b>Currently / Past</b>: đang làm hay đã nghỉ &middot; <b>&#9315;</b> <b>Position</b>: ô nhập chức danh &middot; <b>&#9316;</b> <b>Add another experience</b>: thêm khối &mdash; tức thêm <i>một dòng khác</i>, không phải thêm điều kiện cho dòng cũ.</figcaption></figure>
 </li>
-<li data-code="A6.3.3"><b>Chạy hai lượt</b>: lượt một <code>sponsor</code> + chức danh A/B, lượt hai <code>portfolio</code> + chức danh C. Gộp kết quả.</li>
-<li data-code="A6.3.4"><b>Đối chiếu bằng cột <i>Work Experiences</i></b> trên bảng &mdash; cột này hiện vai trò hiện tại kèm công ty và mốc <b>Present</b>; vai trò cũ nằm sau <b>Show N past roles</b>. Dùng để soát nhanh trước khi đổi status hàng loạt.</li>
-<li data-code="A6.3.5"><b>Ghi kết quả:</b> mở talent &rarr; chip status dưới ảnh đại diện &rarr; chọn <b>Passive</b>. Công tắc hai chiều, không nhảy sang giá trị enum khác.
-  <figure><img src="tsx-20-talent-status-chip.png" alt="Chip status trên talent detail"/><figcaption><b>A6.3.5</b> &mdash; <b>&#9312;</b> status hiện tại &middot; <b>&#9313;</b> giá trị đổi được &middot; <b>&#9314;</b> <b>Employment Status</b> &mdash; trường khác, luật không đọc.</figcaption></figure>
+
+<li data-code="A6.3.3"><b>Dựng truy vấn nhóm A</b> &mdash; ba thao tác, tất cả trong <b>khối &#9312;</b>:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Vùng</th><th>Làm gì</th></tr></thead>
+  <tbody>
+  <tr><td><b>Company type</b></td><td>Tích <b>Sponsor</b>. Dòng chuyển nền xanh &mdash; nghĩa là <i>phải có</i> cờ này.</td></tr>
+  <tr><td><b>Currently / Past</b></td><td>Tích <b>Currently</b>. Bỏ qua bước này là kết quả dính cả vai trò đã nghỉ.</td></tr>
+  <tr><td><b>Position</b></td><td>Gõ từng chức danh rồi <b>Enter</b> &mdash; mỗi lần Enter tạo <b>một pill</b>. Các pill trong một ô nối bằng <b>OR</b>.</td></tr>
+  </tbody></table></div>
+  <figure><img src="tsx-25-we-filter-built.png" alt="Bộ lọc Work Experience đã dựng xong"/><figcaption><b>A6.3.3</b> &mdash; <b>&#9312;</b> <b>Sponsor</b> đã chọn (nền xanh, có <b>&#10005;</b> để gỡ) &middot; <b>&#9313;</b> <b>Currently</b> đã tích &middot; <b>&#9314;</b> hai pill nối <b>OR</b>: <code>Operating Partner</code> thường và <code>"President"</code> có ngoặc kép &middot; <b>&#9315;</b> số kết quả cập nhật ngay, không cần bấm gì thêm.</figcaption></figure>
+</li>
+
+<li data-code="A6.3.4"><b>Cú pháp ô Position</b> &mdash; bốn thao tác quyết định độ chính xác:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Gõ / bấm</th><th>Kết quả</th><th>Khớp gì</th></tr></thead>
+  <tbody>
+  <tr><td><code>Operating Partner</code></td><td>pill xanh, khớp <b>chuỗi con</b></td><td>bất cứ chỗ nào trong chức danh, kể cả giữa từ</td></tr>
+  <tr><td><code>"President"</code> (có ngoặc kép)</td><td>pill xanh, khớp <b>nguyên từ</b></td><td>ranh giới từ &mdash; nhưng vẫn khớp khi từ đó nằm trong chức danh dài hơn, xem <a href="#a6-limits" style="font-weight:700;cursor:pointer">A6.4.1 &#8599;</a></td></tr>
+  <tr><td><b>bấm vào pill</b></td><td>đảo <b>phải có &harr; loại trừ</b></td><td>pill đỏ có dấu &#8856; = loại chức danh đó</td></tr>
+  <tr><td><b>&#8644;</b> góc dưới ô</td><td>đảo <b>toàn bộ</b> pill trong ô</td><td>dùng khi cần lật cả danh sách sang loại trừ</td></tr>
+  </tbody></table></div>
+  <p class="fn">Cùng cú pháp áp dụng cho ô <b>Company</b> và <b>Company Description</b>.</p>
+</li>
+
+<li data-code="A6.3.5"><b>Chạy hai lượt rồi gộp.</b> Lượt một: <code>Sponsor</code> + chức danh nhóm <b>A</b> và <b>B</b>. Lượt hai: sửa <b>Company type</b> thành <code>Portfolio</code> + chức danh nhóm <b>C</b>. Đừng gộp vào một lượt bằng cách tích cả Sponsor lẫn Portfolio &mdash; chức danh nhóm C sẽ ăn sang công ty sponsor và ngược lại.</li>
+
+<li data-code="A6.3.6"><b>Soát bằng cột <i>Work Experiences</i></b> ngay trên bảng kết quả: cột này hiện vai trò hiện tại kèm công ty; vai trò cũ nằm sau <b>Show N past roles</b>. Soát trước khi đổi status &mdash; bộ lọc đưa đúng dòng nhưng không thay được phán đoán về chức danh nhập nhằng.</li>
+
+<li data-code="A6.3.7"><b>Ghi kết quả.</b> Mở talent &rarr; chip status dưới ảnh đại diện &rarr; chọn <b>Passive</b>.
+  <figure><img src="tsx-20-talent-status-chip.png" alt="Chip status trên talent detail"/><figcaption><b>A6.3.7</b> &mdash; <b>&#9312;</b> status hiện tại &middot; <b>&#9313;</b> giá trị đổi được &middot; <b>&#9314;</b> <b>Employment Status</b> &mdash; trường khác, luật không đọc.</figcaption></figure>
+  <p class="fn">Muốn giữ danh sách để xử lý dần: chọn hết kết quả &rarr; <b>Bulk Actions &rarr; Add to list</b>. Nhưng status thì vẫn phải sửa từng người &mdash; xem <a href="#a6-limits" style="font-weight:700;cursor:pointer">A6.4.5 &#8599;</a>.</p>
 </li>
 </ol>
 
-<h3 id="a6-limits" class="anchor">A6.4 &middot; Giới hạn của engine lọc</h3>
+<h3 id="a6-limits" class="anchor">A6.4 &middot; Giới hạn cần biết trước khi tin kết quả</h3>
 <ol class="steps adm">
-<li data-code="A6.4.1"><b>position chỉ khớp theo chuỗi con, không có ranh giới từ.</b> Không có <code>\b</code>, không neo đầu/cuối chuỗi. Hệ quả trực tiếp:
+<li data-code="A6.4.1"><b>Ngoặc kép là &ldquo;nguyên từ&rdquo;, không phải &ldquo;nguyên chức danh&rdquo;.</b> <code>"President"</code> vẫn khớp <b>Vice President</b>, <b>M&amp;A Vice President</b>, <b>Executive Vice President</b> &mdash; vì <i>President</i> là một từ trọn vẹn bên trong các chức danh đó. Cách chặn duy nhất: thêm pill loại trừ <code>"Vice President"</code> vào cùng ô.
   <div class="tblwrap"><table>
-  <thead><tr><th>Lọc</th><th>Nuốt luôn</th></tr></thead>
+  <thead><tr><th>Gõ</th><th>Vẫn nuốt</th><th>Sửa bằng</th></tr></thead>
   <tbody>
-  <tr><td><code>President</code></td><td><b>Vice President</b> &mdash; nhiễu lớn nhất, phải loại tay</td></tr>
-  <tr><td><code>Acquisitions</code></td><td>Talent Acquisition · Customer Acquisition</td></tr>
-  <tr><td><code>Partner</code></td><td>tên công ty kết thúc bằng &ldquo;Partners&rdquo;</td></tr>
-  <tr><td><code>CEO</code></td><td>CEO Office · Chief of Staff to the CEO</td></tr>
+  <tr><td><code>"President"</code></td><td>Vice President · Executive Vice President</td><td>pill loại trừ <code>"Vice President"</code></td></tr>
+  <tr><td><code>Partner</code> (không ngoặc)</td><td>tên công ty kết thúc bằng <i>Partners</i></td><td>dùng <code>"Partner"</code></td></tr>
+  <tr><td><code>Acquisitions</code></td><td>Talent Acquisitions · Customer Acquisitions</td><td>pill loại trừ <code>"Talent"</code></td></tr>
+  <tr><td><code>CEO</code></td><td>CEO Office · Chief of Staff to the CEO</td><td>pill loại trừ <code>"Office"</code>, <code>"Chief of Staff"</code></td></tr>
   </tbody></table></div>
-  <p class="fn">Cách chữa duy nhất là thêm điều kiện <b>loại trừ</b> cho đúng biến thể gây nhiễu.</p>
 </li>
-<li data-code="A6.4.2"><b>&ldquo;Business Development&rdquo; không phải M&amp;A.</b> BD là bán hàng. Loại chức danh chứa cụm này, <b>trừ khi</b> cùng chức danh có mỏ neo <b>M&amp;A</b> / <b>Mergers &amp; Acquisitions</b> / <b>Corporate Development</b> / <b>Transactions</b>.</li>
+<li data-code="A6.4.2"><b>&ldquo;Business Development&rdquo; không phải M&amp;A.</b> BD là bán hàng. Loại chức danh chứa cụm này, <b>trừ khi</b> cùng chức danh có mỏ neo <b>M&amp;A</b> / <b>Mergers &amp; Acquisitions</b> / <b>Corporate Development</b> / <b>Transactions</b>. Bộ lọc không diễn được điều kiện &ldquo;trừ khi&rdquo; này &mdash; phải soát tay ở <a href="#a6-query" style="font-weight:700;cursor:pointer">A6.3.6 &#8599;</a>.</li>
 <li data-code="A6.4.3"><b>Cờ công ty đến từ nguồn ngoài và có thể sai.</b> Đã gặp quỹ lớn bị gắn cờ <code>corporate</code> thay vì <code>sponsor</code>, và cùng một công ty tồn tại nhiều bản ghi với cờ khác nhau. Kết quả bất thường ở một cái tên quen thì kiểm tra bản ghi công ty trước, đừng kết luận talent bị phân loại sai.</li>
-<li data-code="A6.4.4"><b>Luật không phải là quyết định cuối.</b> Nó dọn phần lớn; admin vẫn sửa tay từng trường hợp theo <a href="#a6-query" style="font-weight:700;cursor:pointer">A6.3.5 &#8599;</a>.</li>
+<li data-code="A6.4.4"><b>Dòng chưa link được công ty thì không có cờ</b> &rarr; không bao giờ lọt vào kết quả, dù chức danh khớp hoàn hảo. Đây là <a href="#a6-rule" style="font-weight:700;cursor:pointer">nhánh phủ định của luật &#8599;</a>, không phải lỗi bộ lọc.</li>
+<li data-code="A6.4.5"><b>Không có thao tác đổi status hàng loạt.</b> <b>Bulk Actions</b> chỉ có: Export PDF Talents · Add to list · Remove from list · Export Talents (CSV) · Set Skip Review · Set Require Review. Đổi Active/Passive <b>chỉ làm được ở talent detail, từng người một</b>. Với danh sách dài thì gom vào list trước rồi chia nhau xử lý.</li>
+<li data-code="A6.4.6"><b>Bộ lọc nằm trong URL.</b> Sau khi dựng xong, thanh địa chỉ chứa toàn bộ điều kiện &mdash; lưu lại link đó là lần sau mở ra dùng ngay, không phải dựng lại từ đầu.</li>
 </ol>
 
 <h3 id="a6-edge" class="edgehead anchor">A6.x &middot; Edge cases</h3>
