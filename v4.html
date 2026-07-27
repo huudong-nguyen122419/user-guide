@@ -224,6 +224,7 @@
     <a href="#ba-5" class="st2" data-page="page-b3">B3.x.5 · Chưa submit = chưa bill</a>
     <a href="#ba-6" class="st2" data-page="page-b3">B3.x.6 · Mở invoice từ Timesheets</a>
     <a href="#ba-7" class="st2" data-page="page-b3">B3.x.7 · Sửa hoá đơn Draft</a>
+    <a href="#ba-8" class="st2" data-page="page-b3">B3.x.8 · Timesheet đã đổi</a>
 
     <div class="grp ops">Ops — preparing the work</div>
     <a class="flow ops" data-page="page-o1"><span class="n">O1</span> Your Ops workspace</a>
@@ -995,12 +996,25 @@
   <p class="fn">Ngay trên ô <b>Quantity</b> có nhắc lại cảnh báo <b>&ldquo;X hrs to bill · Y hrs worked&rdquo;</b> &mdash; đọc lại lần cuối ở đây.</p>
   <figure><img src="sdrx-ts-09-admin-invoice-form.png" alt="Form Create Client Invoice"/><figcaption><b>B3.3.2</b> &mdash; Service period &middot; Billing rate &middot; <b>Quantity = hours to bill</b> &middot; Amount tự tính.</figcaption></figure>
 </li>
-<li data-code="B3.3.3">Đủ và đúng thì bấm <b>Create</b>. Hoá đơn được tạo ở trạng thái <b>Draft</b>, gắn nhãn <b>Timesheets (khoảng ngày)</b> &mdash; xem ngay ở <a href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4 &#8599;</a>.</li>
+<li data-code="B3.3.3"><b>Soát phần expense report (nếu talent có khai).</b> Các khoản chi phí talent khai <b>không nằm ở dòng giờ công</b> mà rơi xuống cuối form, mỗi khoản một dòng. Kiểm từng mục:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Cần xem</th><th>Đối chiếu với</th></tr></thead>
+  <tbody>
+  <tr><td><b>Description</b></td><td>Nội dung talent ghi &mdash; đủ rõ để client hiểu đang trả cho cái gì.</td></tr>
+  <tr><td><b>Currency</b></td><td>Đúng tiền tệ của contract.</td></tr>
+  <tr><td><b>Quantity &times; Amount = Total</b></td><td>Số tự tính; <b>Total EUR</b> là số thực sự cộng vào hoá đơn.</td></tr>
+  <tr><td><b>File invoice expense</b></td><td>Chứng từ gốc. Ghi <i>&ldquo;no files yet&rdquo;</i> nghĩa là <b>talent chưa đính kèm</b> &mdash; đòi chứng từ trước khi bill, hoặc tự <b>Upload File</b> nếu đã nhận qua kênh khác.</td></tr>
+  </tbody></table></div>
+  <p>Khoản nào không hợp lệ thì bấm <b>&#8854;</b> đầu dòng để <b>bỏ khỏi hoá đơn này</b>; cần thêm khoản ngoài giờ công thì bấm <b>&#8853; Additional items</b>.</p>
+  <figure><img src="tsx-18-admin-check-expense.png" alt="Khối expense trong form hoá đơn"/><figcaption><b>B3.3.3</b> &mdash; <b>&#9312;</b> Description &middot; Currency &middot; Quantity &middot; Amount &middot; <b>&#9313;</b> <b>Total EUR</b> cộng vào hoá đơn &middot; <b>&#9314;</b> chứng từ đính kèm (đang <i>no files yet</i>) &middot; <b>&#9315;</b> bỏ khoản này &middot; <b>&#9316;</b> thêm khoản mới.</figcaption></figure>
+  <div class="call note"><span class="t">Không thấy expense talent đã khai?</span>Khoản đó nằm ngoài <b>Service period</b> &mdash; thường vì talent khai vào ngày không có giờ công. Nới khoảng ngày ra là nó hiện: xem <a data-goto="page-b2" href="#bt-8" style="font-weight:700;cursor:pointer">B2.x.8 &#8599;</a>.</div>
+</li>
+<li data-code="B3.3.4">Đủ và đúng thì bấm <b>Create</b>. Hoá đơn được tạo ở trạng thái <b>Draft</b>, gắn nhãn <b>Timesheets (khoảng ngày)</b> &mdash; xem ngay ở <a href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4 &#8599;</a>. Có expense thì tổng tiền đã gồm cả phần đó.</li>
 </ol>
 
 <h3 id="b3-pdf" class="anchor">B3.4 &middot; Xem hoá đơn vừa tạo &amp; kiểm tra file PDF</h3>
 <ol class="steps">
-<li data-code="B3.4.1"><b>Không cần rời trang Timesheets.</b> Tạo xong, quay lại danh sách &mdash; hoá đơn hiện ngay <b>trên chính dòng talent đó</b>: số hiệu &middot; loại &middot; trạng thái <b>Draft</b> &middot; khoảng ngày &middot; số giờ &middot; <b>Total Amount</b>. Có expense thì ghi thêm <i>&ldquo;(incl. &lt;số tiền&gt; &middot; N additional item)&rdquo;</i>. Mỗi lần bill là một khối, xếp chồng theo thứ tự.
+<li data-code="B3.4.1"><b>Không cần rời trang Timesheets.</b> Tạo xong, quay lại danh sách &mdash; hoá đơn hiện ngay <b>trên chính dòng talent đó</b>: số hiệu &middot; loại &middot; trạng thái <b>Draft</b> &middot; khoảng ngày &middot; số giờ &middot; <b>Total Amount</b>. Có expense thì ghi thêm <i>&ldquo;(incl. &lt;số tiền&gt; &middot; N additional item)&rdquo;</i> &mdash; đọc dòng này là biết ngay hoá đơn có bao nhiêu khoản ngoài giờ công, không cần mở ra. Mỗi lần bill là một khối, xếp chồng theo thứ tự.
   <figure><img src="sdrx-ts-24-admin-view-ts-link.png" alt="Hoá đơn hiện trên dòng talent"/><figcaption><b>B3.4.1</b> &mdash; <b>&#9313;</b> các hoá đơn đã tạo, hiện thẳng trên dòng talent ở trang Timesheets.</figcaption></figure></li>
 <li data-code="B3.4.2"><b>Bấm vào khối hoá đơn</b> &rarr; mở drawer <b>Update Client Invoice</b> ngay tại chỗ. Trong drawer có sẵn: nút <b>&#10515; tải PDF</b> cạnh tiêu đề &middot; dropdown <b>trạng thái</b> + <b>Update</b> &middot; toàn bộ form để sửa &middot; các link <b>View Timesheets &middot; View Contract &middot; View Project &middot; View Talent &middot; View Client</b>.
   <figure><img src="sdrx-ts-16-invoice-from-row.png" alt="Drawer Update Client Invoice"/><figcaption><b>B3.4.2</b> &mdash; <b>&#9312;</b> drawer kèm nút <b>&#10515;</b> tải PDF &middot; <b>&#9313;</b> trạng thái + Update &middot; <b>&#9314;</b> tóm tắt contract &amp; timesheet.</figcaption></figure></li>
@@ -1055,6 +1069,9 @@
   </tbody></table></div>
   <p class="fn">Sửa xong nên <b>tải lại PDF</b> (<a href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4.3 &#8599;</a>) để chắc file khớp với số đã sửa &mdash; PDF được sinh lại theo dữ liệu mới nhất.</p>
   <div class="call note"><span class="t">Chỉ khi còn Draft</span>Sửa thoải mái khi hoá đơn chưa gửi. Đã chuyển sang trạng thái tiếp theo thì thuộc flow <b>Issue Client Invoices</b>, không sửa tuỳ tiện được nữa.</div>
+</li>
+<li id="ba-8" data-code="B3.x.8"><b>&ldquo;Timesheets have changed, please check again&rdquo;.</b> Mở lại một hoá đơn <b>Draft</b> mà thấy thông báo này nghĩa là <b>timesheet nguồn đã thay đổi</b> sau lúc tạo hoá đơn &mdash; talent submit thêm ngày, hoặc admin đã bấm <b>Sync Data</b> và số liệu mới về.
+  <p>Việc cần làm: đối chiếu lại <b>Service period</b> và <b>Quantity</b> với <a href="#b3-view" style="font-weight:700;cursor:pointer">View Timesheets &#8599;</a>, sửa nếu lệch rồi <b>Update</b>. Đừng gửi hoá đơn khi còn thông báo này &mdash; số trên hoá đơn có thể đã cũ.</p>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-b2"><span class="k">← Prev</span><b>B2 · Talent log &amp; submit</b></a><a class="next" data-goto="page-o1"><span class="k">Next → (Ops)</span><b>O1 · Your Ops workspace</b></a></div>
