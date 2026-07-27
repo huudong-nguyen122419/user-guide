@@ -31,6 +31,24 @@
   nav a.st2{padding-left:50px;font-size:11.5px;color:var(--n-400);display:none}
   nav a.st2.show{display:block}
   nav a.st:hover,nav a.st2:hover{color:var(--pp-700)}
+  /* ---- ô tìm kiếm trên đầu nav ---- */
+  .navsearch{position:relative;margin:2px 0 10px}
+  .navsearch input{width:100%;box-sizing:border-box;padding:7px 26px 7px 28px;font-family:inherit;font-size:12.5px;
+    border:1px solid var(--n-200);border-radius:8px;background:#fff;color:var(--n-700)}
+  .navsearch input::placeholder{color:var(--n-400)}
+  .navsearch input:focus{outline:none;border-color:var(--pp-500);box-shadow:0 0 0 3px var(--pp-100)}
+  .navsearch .ico{position:absolute;left:9px;top:15px;font-size:11px;color:var(--n-400);pointer-events:none}
+  .navsearch .clr{position:absolute;right:5px;top:9px;border:0;background:none;cursor:pointer;color:var(--n-400);
+    font-size:15px;line-height:1;padding:2px 4px;display:none}
+  .navsearch .clr:hover{color:var(--n-700)}
+  .navsearch .cnt{font-size:10.5px;color:var(--n-400);padding:5px 2px 0;display:none}
+  .navsearch.has .clr,.navsearch.has .cnt{display:block}
+  /* khi đang tìm: chỉ hiện mục khớp, không phụ thuộc flow đang mở */
+  nav.searching a{display:none}
+  nav.searching a.hit{display:block}
+  nav.searching .grp{display:none}
+  nav.searching .grp.hit{display:block}
+  nav a mark{background:#FDE68A;color:inherit;border-radius:2px;padding:0 1px}
   nav .grp{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--n-400);margin:16px 0 3px;padding:0 10px;font-weight:800}
   main{padding:34px 46px 120px;max-width:1010px}
   h1{font-size:27px;line-height:1.2;margin:0 0 6px;color:var(--n-900);letter-spacing:-.02em}
@@ -97,6 +115,12 @@
   <div class="brand"><span class="dot"></span>Fintalent OSW</div>
   <div class="sub">SDR · by task-flow · build 21 Jul</div>
   <nav>
+    <div class="navsearch">
+      <span class="ico">&#128269;</span>
+      <input id="navq" type="search" autocomplete="off" placeholder="Tìm flow hoặc step…" aria-label="Tìm flow hoặc step">
+      <button class="clr" type="button" title="Xoá (Esc)">&times;</button>
+      <div class="cnt"></div>
+    </div>
     <div class="grp">A · Getting started</div>
     <a class="flow" data-page="page-login"><span class="n">1</span> Log in &amp; find your workspace</a>
     <a href="#l-login" class="st" data-page="page-login">1.1 · Log in</a>
@@ -1282,6 +1306,81 @@
   } else {
     showPage('page-login');
   }
+})();
+
+/* ---- tìm kiếm trong nav: lọc theo tên flow / step, bỏ dấu tiếng Việt ---- */
+(function(){
+  var nav  = document.querySelector('nav');
+  var wrap = nav && nav.querySelector('.navsearch');
+  if(!wrap) return;
+  var box  = wrap.querySelector('input');
+  var clr  = wrap.querySelector('.clr');
+  var cnt  = wrap.querySelector('.cnt');
+  var links  = Array.prototype.slice.call(nav.querySelectorAll('a'));
+  var groups = Array.prototype.slice.call(nav.querySelectorAll('.grp'));
+  var orig   = links.map(function(a){ return a.innerHTML; });
+
+  /* bỏ dấu nhưng vẫn giữ ánh xạ về chỉ số gốc để highlight đúng chỗ */
+  function fold(s){
+    var out='', map=[];
+    for(var i=0;i<s.length;i++){
+      var c=s[i].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+      if(c==='đ') c='d';
+      for(var k=0;k<c.length;k++){ out+=c[k]; map.push(i); }
+    }
+    return {s:out, map:map};
+  }
+  function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function reset(){
+    nav.classList.remove('searching');
+    wrap.classList.remove('has');
+    links.forEach(function(a,i){ a.classList.remove('hit'); a.innerHTML=orig[i]; });
+    groups.forEach(function(g){ g.classList.remove('hit'); });
+    cnt.textContent='';
+  }
+
+  function run(q){
+    q=(q||'').trim();
+    if(!q){ reset(); return; }
+    var nq=fold(q).s;
+    nav.classList.add('searching');
+    wrap.classList.add('has');
+    var n=0;
+    links.forEach(function(a,i){
+      var raw=a.textContent, f=fold(raw), at=f.s.indexOf(nq);
+      if(at<0){ a.classList.remove('hit'); a.innerHTML=orig[i]; return; }
+      a.classList.add('hit'); n++;
+      var s=f.map[at], e=f.map[Math.min(at+nq.length-1, f.map.length-1)]+1;
+      a.innerHTML=esc(raw.slice(0,s))+'<mark>'+esc(raw.slice(s,e))+'</mark>'+esc(raw.slice(e));
+    });
+    /* nhãn nhóm chỉ hiện khi bên dưới nó còn mục khớp */
+    var kids=Array.prototype.slice.call(nav.children), cur=null, seen=false;
+    kids.forEach(function(el){
+      if(el.classList && el.classList.contains('grp')){
+        if(cur) cur.classList.toggle('hit', seen);
+        cur=el; seen=false;
+      } else if(el.tagName==='A' && el.classList.contains('hit')){ seen=true; }
+    });
+    if(cur) cur.classList.toggle('hit', seen);
+    cnt.textContent = n ? (n+' kết quả') : 'Không tìm thấy';
+  }
+
+  box.addEventListener('input', function(){ run(box.value); });
+  box.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){ box.value=''; reset(); box.blur(); }
+    if(e.key==='Enter'){
+      var first=nav.querySelector('a.hit');
+      if(first) first.click();
+    }
+  });
+  clr.addEventListener('click', function(){ box.value=''; reset(); box.focus(); });
+  /* bấm "/" ở bất kỳ đâu để nhảy vào ô tìm kiếm */
+  document.addEventListener('keydown', function(e){
+    if(e.key==='/' && document.activeElement!==box && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){
+      e.preventDefault(); box.focus();
+    }
+  });
 })();
 </script>
 </body>

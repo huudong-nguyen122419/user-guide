@@ -34,6 +34,24 @@
   nav a.st2{padding-left:52px;font-size:11.5px;color:var(--n-400);display:none}
   nav a.st2.show{display:block}
   nav a.st:hover,nav a.st2:hover{color:var(--pp-700)}
+  /* ---- ô tìm kiếm trên đầu nav ---- */
+  .navsearch{position:relative;margin:2px 0 10px}
+  .navsearch input{width:100%;box-sizing:border-box;padding:7px 26px 7px 28px;font-family:inherit;font-size:12.5px;
+    border:1px solid var(--n-200);border-radius:8px;background:#fff;color:var(--n-700)}
+  .navsearch input::placeholder{color:var(--n-400)}
+  .navsearch input:focus{outline:none;border-color:var(--pp-500);box-shadow:0 0 0 3px var(--pp-100)}
+  .navsearch .ico{position:absolute;left:9px;top:15px;font-size:11px;color:var(--n-400);pointer-events:none}
+  .navsearch .clr{position:absolute;right:5px;top:9px;border:0;background:none;cursor:pointer;color:var(--n-400);
+    font-size:15px;line-height:1;padding:2px 4px;display:none}
+  .navsearch .clr:hover{color:var(--n-700)}
+  .navsearch .cnt{font-size:10.5px;color:var(--n-400);padding:5px 2px 0;display:none}
+  .navsearch.has .clr,.navsearch.has .cnt{display:block}
+  /* khi đang tìm: chỉ hiện mục khớp, không phụ thuộc flow đang mở */
+  nav.searching a{display:none}
+  nav.searching a.hit{display:block}
+  nav.searching .grp{display:none}
+  nav.searching .grp.hit{display:block}
+  nav a mark{background:#FDE68A;color:inherit;border-radius:2px;padding:0 1px}
   nav .grp{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--n-400);margin:16px 0 3px;padding:0 10px;font-weight:800}
   nav .grp.ops{color:var(--ops)}
   main{padding:34px 46px 120px;max-width:1010px}
@@ -120,6 +138,12 @@
   <div class="brand"><span class="dot"></span>Fintalent OSW</div>
   <div class="sub">Ops + SDR · by task-flow · build 21 Jul</div>
   <nav>
+    <div class="navsearch">
+      <span class="ico">&#128269;</span>
+      <input id="navq" type="search" autocomplete="off" placeholder="Tìm flow hoặc step…" aria-label="Tìm flow hoặc step">
+      <button class="clr" type="button" title="Xoá (Esc)">&times;</button>
+      <div class="cnt"></div>
+    </div>
     <div class="grp adm">Admin — setup</div>
     <a class="flow adm" data-page="page-a1"><span class="n">A1</span> Create an SDR/KAM account</a>
     <a href="#a1-open" class="st" data-page="page-a1">A1.1 · Open Admins</a>
@@ -164,6 +188,7 @@
     <a href="#ba-3" class="st2" data-page="page-b3">B3.x.3 · Nhiều đợt bill</a>
     <a href="#ba-4" class="st2" data-page="page-b3">B3.x.4 · Lệch 2 trang PDF</a>
     <a href="#ba-5" class="st2" data-page="page-b3">B3.x.5 · Chưa submit = chưa bill</a>
+    <a href="#ba-6" class="st2" data-page="page-b3">B3.x.6 · Mở invoice từ Timesheets</a>
 
     <div class="grp ops">Ops — preparing the work</div>
     <a class="flow ops" data-page="page-o1"><span class="n">O1</span> Your Ops workspace</a>
@@ -517,9 +542,12 @@
 
 <h3 id="b2-open" class="anchor">B2.1 &middot; Mở màn hình Timesheet</h3>
 <ol class="steps">
-<li data-code="B2.1.1"><b>Đăng nhập talent portal</b> (<code>talent.fintalent.io</code>) bằng tài khoản talent.</li>
-<li data-code="B2.1.2">Mở menu <b>&#9776;</b> (góc trên-trái) &rarr; nhóm <b>Work</b> &rarr; <b>Timesheet</b>. <span class="fn">(Timesheet nằm trong menu &#9776;, không có ở thanh điều hướng dưới cùng.)</span></li>
-<li data-code="B2.1.3"><b>Chọn project cần log.</b> Nếu talent <b>chỉ có 1 contract Active</b> thì hệ thống <b>tự chọn sẵn</b> project đó (tên hiện ở thanh trên cùng, kèm nhãn <b>Ongoing</b>). Có nhiều contract thì bấm vào thanh đó để đổi project.</li>
+<li data-code="B2.1.1"><b>Đăng nhập talent portal</b> (<code>talent.fintalent.io</code>) bằng tài khoản talent.
+  <figure><img src="sdrx-ts-10-talent-login.png" alt="Màn đăng nhập talent portal"/><figcaption><b>B2.1.1</b> &mdash; màn <b>Independent Consultant Sign In</b> của talent portal.</figcaption></figure></li>
+<li data-code="B2.1.2">Mở menu <b>&#9776;</b> (góc trên-trái) &rarr; nhóm <b>Work</b> &rarr; <b>Timesheet</b>. <span class="fn">(Timesheet nằm trong menu &#9776;, không có ở thanh điều hướng dưới cùng.)</span>
+  <figure><img src="sdrx-ts-17-talent-work-menu.png" alt="Menu Work → Timesheet"/><figcaption><b>B2.1.2</b> &mdash; <b>&#9312;</b> menu <b>Work</b> &middot; <b>&#9313;</b> mục <b>Timesheet</b>.</figcaption></figure></li>
+<li data-code="B2.1.3"><b>Chọn project cần log.</b> Nếu talent <b>chỉ có 1 contract Active</b> thì hệ thống <b>tự chọn sẵn</b> project đó (tên hiện ở thanh trên cùng, kèm nhãn <b>Ongoing</b>). Có nhiều contract thì bấm vào thanh đó để đổi project.
+  <figure><img src="sdrx-ts-18-talent-project-bar.png" alt="Thanh chọn project"/><figcaption><b>B2.1.3</b> &mdash; thanh project (nhãn <b>Ongoing</b>); chỉ 1 contract Active thì hệ thống tự chọn.</figcaption></figure></li>
 <li data-code="B2.1.4"><b>Đọc panel tổng</b> trước khi làm gì &mdash; ba con số này là thước đo cả flow:
   <div class="tblwrap"><table>
   <thead><tr><th>Dòng</th><th>Ý nghĩa</th></tr></thead>
@@ -534,8 +562,10 @@
 
 <h3 id="b2-log" class="anchor">B2.2 &middot; Log work</h3>
 <ol class="steps">
-<li data-code="B2.2.1"><b>Chọn tuần.</b> Dùng <b>&lsaquo;</b> / <b>&rsaquo;</b> cạnh nút <b>Today</b> để về đúng tuần đã làm việc.</li>
-<li data-code="B2.2.2"><b>Kéo trên lưới giờ</b> của đúng cột ngày, từ giờ bắt đầu đến giờ kết thúc.</li>
+<li data-code="B2.2.1"><b>Chọn tuần.</b> Dùng <b>&lsaquo;</b> / <b>&rsaquo;</b> cạnh nút <b>Today</b> để về đúng tuần đã làm việc.
+  <figure><img src="sdrx-ts-19-talent-week-nav.png" alt="Chọn tuần"/><figcaption><b>B2.2.1</b> &mdash; <b>&#9312;</b> <b>Today</b> + mũi tên &lsaquo; &rsaquo; đổi tuần &middot; <b>&#9313;</b> tổng giờ đã log của tuần.</figcaption></figure></li>
+<li data-code="B2.2.2"><b>Kéo trên lưới giờ</b> của đúng cột ngày, từ giờ bắt đầu đến giờ kết thúc.
+  <figure><img src="sdrx-ts-20-talent-drag-grid.png" alt="Kéo trên lưới giờ"/><figcaption><b>B2.2.2</b> &mdash; kéo dọc trong đúng cột ngày, từ giờ bắt đầu tới giờ kết thúc.</figcaption></figure></li>
 <li data-code="B2.2.3">Cửa sổ <b>Record New Timesheet Entry</b> mở ra &mdash; kiểm tra lại <b>Date</b>, sửa <b>giờ bắt đầu / kết thúc</b> cho chính xác, và <b>bắt buộc nhập Note</b> (mô tả công việc, sẽ in ra ở phụ lục hoá đơn).
   <figure><img src="sdrx-ts-02-talent-log-entry.png" alt="Modal Record New Timesheet Entry"/><figcaption><b>B2.2.3</b> &mdash; Date &middot; giờ bắt đầu&ndash;kết thúc &middot; <b>Note (bắt buộc)</b> &rarr; <b>Create</b>.</figcaption></figure>
 </li>
@@ -548,14 +578,17 @@
   <li>Ngày <b>đã submit</b> rồi (đã khoá).</li>
   <li>Ngày <b>trong tương lai</b> (sau hôm nay).</li>
   </ul>
-</li>
+
+  <figure><img src="sdrx-ts-21-talent-disabled-days.png" alt="Ngày không log được"/><figcaption><b>B2.2.5</b> &mdash; <b>&#9312;</b> ngày bị làm mờ = không log được &middot; <b>&#9313;</b> hôm nay.</figcaption></figure></li>
 </ol>
 
 <h3 id="b2-submit" class="anchor">B2.3 &middot; Submit timesheet (chốt Hour(s) to bill)</h3>
 <div class="call warn"><span class="t">Submit là một chiều</span>Hộp xác nhận ghi rõ: <b>&ldquo;Once submitted, it cannot be edited&rdquo;</b>. Soát kỹ số giờ trước khi bấm Yes.</div>
 <ol class="steps">
-<li data-code="B2.3.1">Bấm <b>Submit Timesheet</b> (nút chỉ bật khi <b>pending submission &gt; 0h</b>).</li>
-<li data-code="B2.3.2">Hộp <b>Select Timesheet for Submission</b> liệt kê <b>từng ngày đang chờ</b>. Mặc định tất cả được tick &mdash; bỏ tick ngày nào chưa muốn submit, hoặc lọc theo khoảng ngày ở ô <b>Timesheet date</b>.</li>
+<li data-code="B2.3.1">Bấm <b>Submit Timesheet</b> (nút chỉ bật khi <b>pending submission &gt; 0h</b>).
+  <figure><img src="sdrx-ts-01-talent-summary.png" alt="Nút Submit Timesheet"/><figcaption><b>B2.3.1</b> &mdash; <b>&#9314;</b> nút <b>Submit Timesheet</b> chỉ bật khi còn giờ pending.</figcaption></figure></li>
+<li data-code="B2.3.2">Hộp <b>Select Timesheet for Submission</b> liệt kê <b>từng ngày đang chờ</b>. Mặc định tất cả được tick &mdash; bỏ tick ngày nào chưa muốn submit, hoặc lọc theo khoảng ngày ở ô <b>Timesheet date</b>.
+  <figure><img src="sdrx-ts-04-talent-submit-dialog.png" alt="Danh sách ngày chờ submit"/><figcaption><b>B2.3.2</b> &mdash; mỗi ngày một dòng, có checkbox; lọc thêm bằng <b>Timesheet date</b>.</figcaption></figure></li>
 <li data-code="B2.3.3"><b>Điều chỉnh <i>Hour(s) to bill</i></b> nếu cần. Mỗi dòng có 2 cột:
   <div class="tblwrap"><table>
   <thead><tr><th>Cột</th><th>Sửa được?</th><th>Ý nghĩa</th></tr></thead>
@@ -565,7 +598,8 @@
   </tbody></table></div>
   <figure><img src="sdrx-ts-04-talent-submit-dialog.png" alt="Hộp Select Timesheet for Submission"/><figcaption><b>B2.3.3</b> &mdash; <b>&#9312;&#9313;</b> sửa <b>Hour(s) to bill</b> từng ngày &middot; <b>&#9314;</b> <b>Submit all N working days</b>.</figcaption></figure>
 </li>
-<li data-code="B2.3.4">Bấm <b>Submit all N working days</b>.</li>
+<li data-code="B2.3.4">Bấm <b>Submit all N working days</b>.
+  <figure><img src="sdrx-ts-04-talent-submit-dialog.png" alt="Nút Submit all"/><figcaption><b>B2.3.4</b> &mdash; nút <b>Submit all N working days</b> ở cuối hộp thoại.</figcaption></figure></li>
 <li data-code="B2.3.5">Hộp xác nhận <b>Submit Timesheet</b> hiện ra &rarr; bấm <b>Yes</b>. <span class="fn">(Bấm No thì quay lại sửa tiếp; nếu bỏ qua hộp này thì mọi thao tác sau đó đều không ăn.)</span>
   <figure><img src="sdrx-ts-05-talent-confirm.png" alt="Hộp xác nhận submit"/><figcaption><b>B2.3.5</b> &mdash; <b>&ldquo;Once submitted, it cannot be edited&rdquo;</b> &rarr; <b>Yes</b>.</figcaption></figure>
 </li>
@@ -573,7 +607,8 @@
 
 <h3 id="b2-verify" class="anchor">B2.4 &middot; Kiểm tra lại sau khi submit</h3>
 <ol class="steps">
-<li data-code="B2.4.1"><b>pending submission</b> phải về <b>0h</b>.</li>
+<li data-code="B2.4.1"><b>pending submission</b> phải về <b>0h</b>.
+  <figure><img src="sdrx-ts-22-talent-after-submit.png" alt="Panel sau khi submit"/><figcaption><b>B2.4.1&ndash;B2.4.3</b> &mdash; <b>&#9312;</b> submitted / worked / <b>pending 0h</b> &middot; <b>&#9313;</b> ô tím đậm = đã submit, không sửa được &middot; <b>&#9314;</b> chú thích màu.</figcaption></figure></li>
 <li data-code="B2.4.2"><b>submitted</b> tăng đúng bằng tổng <i>hours to bill</i> vừa chốt; <b>Worked</b> tăng đúng bằng tổng giờ đã log.
   <p class="fn"><b>Ví dụ thật:</b> trước khi submit: submitted 14:40 / worked 16:30. Log thêm 4h (03/07) + 3h (04/07) = 7h, submit với to bill 3:30 + 3:00 = 6:30.
   Sau khi submit: <b>submitted 21:10</b> (14:40 + 6:30) &middot; <b>worked 23:30</b> (16:30 + 7:00) &middot; pending <b>0h</b>.</p>
@@ -604,9 +639,12 @@
 
 <h3 id="b3-sync" class="anchor">B3.1 &middot; Xem &amp; đồng bộ timesheet</h3>
 <ol class="steps">
-<li data-code="B3.1.1">Menu trái &rarr; <b>Contracts &amp; Invoices</b> &rarr; <b>Timesheets</b>.</li>
-<li data-code="B3.1.2"><b>Lọc đúng talent</b> bằng ô <b>Select talents</b> (gõ tên/email rồi chọn). Toggle <b>Talents with Active Contract</b> để chỉ xem người đang có contract chạy.</li>
-<li data-code="B3.1.3">Bấm <b>Sync Data</b> trên dòng của talent &mdash; kéo số liệu mới nhất từ timesheet talent vừa submit.</li>
+<li data-code="B3.1.1">Menu trái &rarr; <b>Contracts &amp; Invoices</b> &rarr; <b>Timesheets</b>.
+  <figure><img src="sdrx-ts-11-admin-menu.png" alt="Menu Contracts & Invoices"/><figcaption><b>B3.1.1</b> &mdash; nhóm <b>Contracts &amp; Invoices</b> &rarr; <b>Timesheets</b>.</figcaption></figure></li>
+<li data-code="B3.1.2"><b>Lọc đúng talent</b> bằng ô <b>Select talents</b> (gõ tên/email rồi chọn). Toggle <b>Talents with Active Contract</b> để chỉ xem người đang có contract chạy.
+  <figure><img src="sdrx-ts-07-admin-row.png" alt="Lọc talent trên trang Timesheets"/><figcaption><b>B3.1.2</b> &mdash; <b>&#9312;</b> ô lọc talent; các nút thao tác nằm ở cuối dòng.</figcaption></figure></li>
+<li data-code="B3.1.3">Bấm <b>Sync Data</b> trên dòng của talent &mdash; kéo số liệu mới nhất từ timesheet talent vừa submit.
+  <figure><img src="sdrx-ts-23-admin-sync-data.png" alt="Nút Sync Data"/><figcaption><b>B3.1.3</b> &mdash; <b>&#9312;</b> <b>Sync Data</b> ở cột <b>Actions</b> &middot; <b>&#9313;</b> <b>Create Client Invoice</b>.</figcaption></figure></li>
 <li data-code="B3.1.4"><b>Đọc dòng của talent</b> &mdash; ba thông tin quyết định:
   <div class="tblwrap"><table>
   <thead><tr><th>Thông tin</th><th>Ý nghĩa</th></tr></thead>
@@ -621,7 +659,8 @@
 
 <h3 id="b3-view" class="anchor">B3.2 &middot; View Timesheets &mdash; soát trước khi bill</h3>
 <ol class="steps">
-<li data-code="B3.2.1">Bấm <b>View Timesheets</b> trên dòng talent &rarr; mở lịch tháng của riêng talent đó.</li>
+<li data-code="B3.2.1">Bấm <b>View Timesheets</b> trên dòng talent &rarr; mở lịch tháng của riêng talent đó.
+  <figure><img src="sdrx-ts-24-admin-view-ts-link.png" alt="Link View Timesheets"/><figcaption><b>B3.2.1</b> &mdash; <b>&#9312;</b> <b>View Timesheets</b> &middot; <b>&#9313;</b> hoá đơn đã tạo hiện ngay trên dòng.</figcaption></figure></li>
 <li data-code="B3.2.2"><b>Đối chiếu ba tổng</b> ở góc trên-trái:
   <div class="tblwrap"><table>
   <thead><tr><th>Chỉ số</th><th>Phải bằng</th></tr></thead>
@@ -630,7 +669,8 @@
   <tr><td><b>Total hours worked</b></td><td>tổng giờ log thật.</td></tr>
   <tr><td><b>Total uninvoiced hours</b></td><td>phần chưa xuất hoá đơn &mdash; khớp với <b>Unbilled</b> ở B3.1.4.</td></tr>
   </tbody></table></div>
-</li>
+
+  <figure><img src="sdrx-ts-25-admin-ts-totals.png" alt="Ba tổng và ô ngày"/><figcaption><b>B3.2.2&ndash;B3.2.3</b> &mdash; <b>&#9312;</b> ba tổng &middot; <b>&#9313;</b> mỗi ô ngày ghi &ldquo;X hrs to bill &middot; Y hrs worked&rdquo; &middot; <b>&#9314;</b> đổi tháng.</figcaption></figure></li>
 <li data-code="B3.2.3"><b>Soát từng ô ngày.</b> Ô hiện <b>&ldquo;X hrs to bill&rdquo;</b>; nếu ngày đó có điều chỉnh thì hiện cả <b>&ldquo;X hrs to bill · Y hrs worked&rdquo;</b>, kèm khung giờ và Note talent đã ghi.
   <figure><img src="sdrx-ts-08-admin-view-timesheets.png" alt="View Timesheets"/><figcaption><b>B3.2</b> &mdash; ba tổng ở trên; mỗi ô ngày hiện <b>to bill</b> và <b>worked</b> khi hai số khác nhau.</figcaption></figure>
 </li>
@@ -639,7 +679,8 @@
 
 <h3 id="b3-invoice" class="anchor">B3.3 &middot; Create Client Invoice</h3>
 <ol class="steps">
-<li data-code="B3.3.1">Bấm <b>Create Client Invoice</b> (trên dòng talent ở Timesheets, hoặc <b>Client Invoices &rarr; Create new Client Invoice</b>).</li>
+<li data-code="B3.3.1">Bấm <b>Create Client Invoice</b> (trên dòng talent ở Timesheets, hoặc <b>Client Invoices &rarr; Create new Client Invoice</b>).
+  <figure><img src="sdrx-ts-07-admin-row.png" alt="Nút Create Client Invoice"/><figcaption><b>B3.3.1</b> &mdash; <b>&#9315;</b> <b>Create Client Invoice</b> ngay trên dòng talent.</figcaption></figure></li>
 <li data-code="B3.3.2"><b>Form tự điền theo contract</b> &mdash; kiểm tra từng trường:
   <div class="tblwrap"><table>
   <thead><tr><th>Trường</th><th>Phải là</th></tr></thead>
@@ -657,14 +698,18 @@
   <p class="fn">Ngay trên ô <b>Quantity</b> có nhắc lại cảnh báo <b>&ldquo;X hrs to bill · Y hrs worked&rdquo;</b> &mdash; đọc lại lần cuối ở đây.</p>
   <figure><img src="sdrx-ts-09-admin-invoice-form.png" alt="Form Create Client Invoice"/><figcaption><b>B3.3.2</b> &mdash; Service period &middot; Billing rate &middot; <b>Quantity = hours to bill</b> &middot; Amount tự tính.</figcaption></figure>
 </li>
-<li data-code="B3.3.3">Đủ và đúng thì bấm <b>Create</b>. Hoá đơn được tạo ở trạng thái <b>Draft</b>, gắn nhãn <b>Timesheets (khoảng ngày)</b>.</li>
+<li data-code="B3.3.3">Đủ và đúng thì bấm <b>Create</b>. Hoá đơn được tạo ở trạng thái <b>Draft</b>, gắn nhãn <b>Timesheets (khoảng ngày)</b>.
+  <figure><img src="sdrx-ts-12-invoice-actions.png" alt="Hoá đơn vừa tạo"/><figcaption><b>B3.3.3</b> &mdash; hoá đơn mới: số hiệu &middot; nhãn <b>Timesheets (Jul 3 &ndash; 4)</b> &middot; trạng thái <b>Draft</b>.</figcaption></figure></li>
 </ol>
 
 <h3 id="b3-pdf" class="anchor">B3.4 &middot; Kiểm tra file PDF</h3>
 <ol class="steps">
-<li data-code="B3.4.1">Mở <b>Client Invoices</b> &rarr; tìm hoá đơn vừa tạo &rarr; ở cột <b>Actions</b> bấm nút <b>&#10515;</b> (nút thứ hai, cạnh nút &#128065; xem). Chờ vài giây &mdash; PDF mở ở <b>tab mới</b>.</li>
-<li data-code="B3.4.2"><b>Trang 1 &mdash; phần tính tiền.</b> Đối chiếu: số hoá đơn &middot; địa chỉ + VAT của client &middot; <b>HOUR(S)</b> (hoặc <b>DAY(S)</b> với contract Daily) &middot; <b>RATE</b> &middot; <b>AMOUNT</b> &middot; <b>TOTAL AMOUNT DUE</b> &middot; hạn thanh toán (theo <i>Payment terms</i> của contract) &middot; thông tin ngân hàng.</li>
-<li data-code="B3.4.3"><b>Trang 2 &mdash; phụ lục timesheet.</b> Liệt kê <b>từng ngày</b> talent đã log kèm khung giờ và Note. Đây là phần cho client thấy <b>công việc thực tế</b>.</li>
+<li data-code="B3.4.1">Mở <b>Client Invoices</b> &rarr; tìm hoá đơn vừa tạo &rarr; ở cột <b>Actions</b> bấm nút <b>&#10515;</b> (nút thứ hai, cạnh nút &#128065; xem). Chờ vài giây &mdash; PDF mở ở <b>tab mới</b>.
+  <figure><img src="sdrx-ts-13-download-pdf.png" alt="Nút tải PDF ở cột Actions"/><figcaption><b>B3.4.1</b> &mdash; <b>&#9312;</b> xem chi tiết &middot; <b>&#9313;</b> <b>tải PDF</b>.</figcaption></figure></li>
+<li data-code="B3.4.2"><b>Trang 1 &mdash; phần tính tiền.</b> Đối chiếu: số hoá đơn &middot; địa chỉ + VAT của client &middot; <b>HOUR(S)</b> (hoặc <b>DAY(S)</b> với contract Daily) &middot; <b>RATE</b> &middot; <b>AMOUNT</b> &middot; <b>TOTAL AMOUNT DUE</b> &middot; hạn thanh toán (theo <i>Payment terms</i> của contract) &middot; thông tin ngân hàng.
+  <figure><img src="sdrx-ts-14-pdf-page1.png" alt="PDF trang 1"/><figcaption><b>B3.4.2</b> &mdash; dòng tính tiền và <b>TOTAL AMOUNT DUE</b> kèm hạn thanh toán.</figcaption></figure></li>
+<li data-code="B3.4.3"><b>Trang 2 &mdash; phụ lục timesheet.</b> Liệt kê <b>từng ngày</b> talent đã log kèm khung giờ và Note. Đây là phần cho client thấy <b>công việc thực tế</b>.
+  <figure><img src="sdrx-ts-15-pdf-page2.png" alt="PDF trang 2"/><figcaption><b>B3.4.3</b> &mdash; phụ lục: từng ngày + khung giờ + Note talent đã ghi.</figcaption></figure></li>
 <li data-code="B3.4.4">Số khớp thì gửi client. Lệch thì huỷ/sửa hoá đơn trước khi gửi.</li>
 </ol>
 
@@ -686,6 +731,16 @@
   <p class="fn">Số tiền trên hoá đơn <b>vẫn đúng</b> (tính theo to bill). Đang chờ xác nhận có bổ sung dòng giải thích chênh lệch vào phụ lục hay không.</p>
 </li>
 <li id="ba-5" data-code="B3.x.5"><b>Talent chưa submit thì không bill được.</b> Giờ mới log mà chưa submit nằm ở <b>pending submission</b> bên talent &mdash; không vào <b>Unbilled</b>, nên không xuất hiện khi tạo hoá đơn. Nhắc talent submit trước.</li>
+<li id="ba-6" data-code="B3.x.6"><b>Mở hoá đơn ngay từ trang Timesheets &mdash; không cần vòng qua menu.</b> Sau khi tạo, mỗi dòng talent hiển thị luôn khối thông tin hoá đơn (số hiệu &middot; khoảng timesheet &middot; số giờ &middot; số tiền &middot; trạng thái). <b>Bấm thẳng vào khối đó</b> &rarr; mở drawer <b>Update Client Invoice</b> ngay tại chỗ, có sẵn:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li>nút <b>&#10515; tải PDF</b> cạnh tiêu đề;</li>
+  <li>dropdown <b>trạng thái</b> (Draft &rarr; Issued &rarr; Paid&hellip;) và nút <b>Update</b>;</li>
+  <li>thanh tóm tắt <b>PROJECT / CLIENT / TALENT / CONTRACT / TIMESHEET</b> và các link <b>View Timesheets &middot; View Contract &middot; View Project &middot; View Talent &middot; View Client</b>;</li>
+  <li>toàn bộ form hoá đơn để sửa lại nếu cần.</li>
+  </ul>
+  <figure><img src="sdrx-ts-16-invoice-from-row.png" alt="Mở client invoice từ dòng timesheet"/><figcaption><b>B3.x.6</b> &mdash; <b>&#9312;</b> drawer <b>Update Client Invoice</b> (kèm nút tải PDF) &middot; <b>&#9313;</b> trạng thái + Update &middot; <b>&#9314;</b> tóm tắt contract &amp; timesheet.</figcaption></figure>
+  <p class="fn">Nhanh hơn đường <b>Client Invoices &rarr; tìm hoá đơn</b> ở <a data-goto="page-b3" href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4 &#8599;</a> khi bạn vừa tạo xong và muốn kiểm tra ngay.</p>
+</li>
 </ol>
 <div class="pagernav"><a data-goto="page-b2"><span class="k">← Prev</span><b>B2 · Talent log &amp; submit</b></a><a class="next" data-goto="page-o1"><span class="k">Next → (Ops)</span><b>O1 · Your Ops workspace</b></a></div>
 </section>
@@ -1948,6 +2003,81 @@
   } else {
     showPage(DEFAULT);
   }
+})();
+
+/* ---- tìm kiếm trong nav: lọc theo tên flow / step, bỏ dấu tiếng Việt ---- */
+(function(){
+  var nav  = document.querySelector('nav');
+  var wrap = nav && nav.querySelector('.navsearch');
+  if(!wrap) return;
+  var box  = wrap.querySelector('input');
+  var clr  = wrap.querySelector('.clr');
+  var cnt  = wrap.querySelector('.cnt');
+  var links  = Array.prototype.slice.call(nav.querySelectorAll('a'));
+  var groups = Array.prototype.slice.call(nav.querySelectorAll('.grp'));
+  var orig   = links.map(function(a){ return a.innerHTML; });
+
+  /* bỏ dấu nhưng vẫn giữ ánh xạ về chỉ số gốc để highlight đúng chỗ */
+  function fold(s){
+    var out='', map=[];
+    for(var i=0;i<s.length;i++){
+      var c=s[i].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+      if(c==='đ') c='d';
+      for(var k=0;k<c.length;k++){ out+=c[k]; map.push(i); }
+    }
+    return {s:out, map:map};
+  }
+  function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function reset(){
+    nav.classList.remove('searching');
+    wrap.classList.remove('has');
+    links.forEach(function(a,i){ a.classList.remove('hit'); a.innerHTML=orig[i]; });
+    groups.forEach(function(g){ g.classList.remove('hit'); });
+    cnt.textContent='';
+  }
+
+  function run(q){
+    q=(q||'').trim();
+    if(!q){ reset(); return; }
+    var nq=fold(q).s;
+    nav.classList.add('searching');
+    wrap.classList.add('has');
+    var n=0;
+    links.forEach(function(a,i){
+      var raw=a.textContent, f=fold(raw), at=f.s.indexOf(nq);
+      if(at<0){ a.classList.remove('hit'); a.innerHTML=orig[i]; return; }
+      a.classList.add('hit'); n++;
+      var s=f.map[at], e=f.map[Math.min(at+nq.length-1, f.map.length-1)]+1;
+      a.innerHTML=esc(raw.slice(0,s))+'<mark>'+esc(raw.slice(s,e))+'</mark>'+esc(raw.slice(e));
+    });
+    /* nhãn nhóm chỉ hiện khi bên dưới nó còn mục khớp */
+    var kids=Array.prototype.slice.call(nav.children), cur=null, seen=false;
+    kids.forEach(function(el){
+      if(el.classList && el.classList.contains('grp')){
+        if(cur) cur.classList.toggle('hit', seen);
+        cur=el; seen=false;
+      } else if(el.tagName==='A' && el.classList.contains('hit')){ seen=true; }
+    });
+    if(cur) cur.classList.toggle('hit', seen);
+    cnt.textContent = n ? (n+' kết quả') : 'Không tìm thấy';
+  }
+
+  box.addEventListener('input', function(){ run(box.value); });
+  box.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){ box.value=''; reset(); box.blur(); }
+    if(e.key==='Enter'){
+      var first=nav.querySelector('a.hit');
+      if(first) first.click();
+    }
+  });
+  clr.addEventListener('click', function(){ box.value=''; reset(); box.focus(); });
+  /* bấm "/" ở bất kỳ đâu để nhảy vào ô tìm kiếm */
+  document.addEventListener('keydown', function(e){
+    if(e.key==='/' && document.activeElement!==box && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){
+      e.preventDefault(); box.focus();
+    }
+  });
 })();
 </script>
 </body>
