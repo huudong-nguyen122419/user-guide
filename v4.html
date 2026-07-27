@@ -199,9 +199,9 @@
     <a class="flow tal" data-page="page-b2"><span class="n">B2</span> Talent · log &amp; submit timesheet</a>
     <a href="#b2-open" class="st" data-page="page-b2">B2.1 · Mở Timesheet</a>
     <a href="#b2-log" class="st" data-page="page-b2">B2.2 · Log work</a>
-    <a href="#b2-submit" class="st" data-page="page-b2">B2.3 · Submit &amp; Edit timesheet</a>
-    <a href="#b2-verify" class="st" data-page="page-b2">B2.4 · Kiểm tra sau submit</a>
-    <a href="#b2-expense" class="st" data-page="page-b2">B2.5 · Expense report</a>
+    <a href="#b2-expense" class="st" data-page="page-b2">B2.3 · Expense report</a>
+    <a href="#b2-submit" class="st" data-page="page-b2">B2.4 · Submit &amp; Edit timesheet</a>
+    <a href="#b2-verify" class="st" data-page="page-b2">B2.5 · Kiểm tra sau submit</a>
     <a href="#b2-edge" class="st edge" data-page="page-b2">B2.x · Edge cases</a>
     <a href="#bt-1" class="st2" data-page="page-b2">B2.x.1 · Daily — Day(s) to bill</a>
     <a href="#bt-2" class="st2" data-page="page-b2">B2.x.2 · Log/submit theo đợt</a>
@@ -210,12 +210,12 @@
     <a href="#bt-5" class="st2" data-page="page-b2">B2.x.5 · Nhiều project</a>
     <a href="#bt-6" class="st2" data-page="page-b2">B2.x.6 · Ask question</a>
     <a href="#bt-7" class="st2" data-page="page-b2">B2.x.7 · Billing / payment info</a>
+    <a href="#bt-8" class="st2" data-page="page-b2">B2.x.8 · Expense ngày không log</a>
     <a class="flow adm" data-page="page-b3"><span class="n">B3</span> Timesheet → invoice (Admin)</a>
     <a href="#b3-sync" class="st" data-page="page-b3">B3.1 · Xem &amp; Sync Data</a>
     <a href="#b3-view" class="st" data-page="page-b3">B3.2 · View Timesheets</a>
     <a href="#b3-invoice" class="st" data-page="page-b3">B3.3 · Create Client Invoice</a>
-    <a href="#b3-pdf" class="st" data-page="page-b3">B3.4 · Kiểm tra PDF</a>
-    <a href="#b3-talent-invoice" class="st" data-page="page-b3">B3.5 · Talent invoice</a>
+    <a href="#b3-pdf" class="st" data-page="page-b3">B3.4 · Xem hoá đơn &amp; PDF</a>
     <a href="#b3-edge" class="st edge" data-page="page-b3">B3.x · Edge cases</a>
     <a href="#ba-1" class="st2" data-page="page-b3">B3.x.1 · Daily = số ngày</a>
     <a href="#ba-2" class="st2" data-page="page-b3">B3.x.2 · "Total Hours Worked"</a>
@@ -458,7 +458,7 @@
 <h3 id="a1-create" class="anchor">A1.2 · Create the account</h3>
 <ol class="steps adm">
 <li data-code="A1.2"><b>Click + Create New</b> (top-right of the Admins table) → the <b>Create new Admin</b> form opens.</li>
-<li data-code="A1.3"><b>Fill in the details</b> — <b>First name · Last name · Email</b> (= their login username; use the company email) · <b>Phone</b> (optional) · <b>Roles*</b> (pick <b>SDR</b> or <b>KAM</b> — tick both if they cover both) · <b>Password</b> (auto-generated). <span class="fn">Regenerate / copy the password → edge A1.x.1.</span>
+<li data-code="A1.3"><b>Fill in the details</b> — <b>First name · Last name · Email</b> (= their login username; use the company email) · <b>Phone</b> (optional) · <b>Roles*</b> (pick <b>SDR</b> or <b>KAM</b> — tick both if they cover both) · <b>Password</b> (auto-generated). <span class="fn">Regenerate / copy the password → <a href="#ea-1-1" style="font-weight:700;cursor:pointer">A1.x.1 ↗</a>.</span>
   <figure><img src="adminx-02-create-admin.png" alt="Create new Admin form"/><figcaption><b>A1.3</b> — Create new Admin form: Name · Email · <b>Roles*</b> · auto-generated Password · Avatar.</figcaption></figure>
 </li>
 <li data-code="A1.4"><b>Click Create</b> → the new user appears in the table. Verify the role badge in the <b>Roles</b> column, then ask them to log in.</li>
@@ -557,7 +557,7 @@
 
 <h3 id="a4-list" class="anchor">A4.1 &middot; The list &mdash; what you see that the SDR doesn't</h3>
 <ol class="steps adm">
-<li data-code="A4.1.1"><b>Sales Management &rarr; Campaigns.</b> The header count is the whole workspace (<b>49</b> on UAT), not your own &mdash; the SDR only ever sees campaigns assigned to them.
+<li data-code="A4.1.1"><b>Sales Management &rarr; Campaigns.</b> The header count is the <b>whole workspace</b>, not your own &mdash; the SDR only ever sees campaigns assigned to them.
   <figure><img src="admc-01-list.png" alt="Admin campaign list"/><figcaption><b>A4.1</b> &mdash; <b>&#9312;</b> every campaign in the workspace &middot; <b>&#9313;</b> status tabs &middot; <b>&#9314;</b> the <b>Assignee</b> column (Admin-only) &middot; <b>&#9315;</b> <b>every</b> user's folders in the right pane.</figcaption></figure>
 </li>
 <li data-code="A4.1.2"><b>Status tabs.</b> <b>All &middot; Scheduled &middot; Draft &middot; Running &middot; Finished &middot; Paused &middot; Archive</b> &mdash; each with a live count. <b>Archive</b> only exists here; that's where <a href="#ec-4-2" style="font-weight:700;cursor:pointer">A4.x.2 &#8599;</a> puts things.</li>
@@ -600,7 +600,7 @@
 <li data-code="A4.4.1"><b>Open it</b> (click the name, or <b>&#8942; &rarr; Edit/View Details</b>). The header carries: editable <b>name</b> (&#9998;) &middot; <b>timezone</b> &middot; <b>description</b> &middot; the <b>owner</b> with a <b>&#9881;</b> badge &middot; and, once it is live, the <b>Active</b> switch.
   <figure><img src="admc-09-detail.png" alt="Admin campaign detail"/><figcaption><b>A4.4.1</b> &mdash; <b>&#9312;</b> timezone (drives send hours) &middot; <b>&#9313;</b> owner + <b>&#9881;</b> sending account &middot; <b>&#9314;</b> the tab row &middot; <b>&#9315;</b> <b>Force Send</b> on <u>each</u> step &middot; <b>&#9316;</b> <b>Create new step</b> / <b>Create sidestep</b>.</figcaption></figure>
 </li>
-<li data-code="A4.4.2"><b>The tab row depends on state.</b> A Draft or Finished campaign shows <b>Steps &middot; People &middot; Email Queues &middot; Data Health &beta; &middot; Timeline</b>; once it is running you also get <b>Inbox</b> and <b>Preview</b>. <span class="fn">(UAT also renders some &ldquo;V1&rdquo; duplicates of these tabs &mdash; legacy screens that are hidden on production. Ignore them.)</span></li>
+<li data-code="A4.4.2"><b>The tab row depends on state.</b> A Draft or Finished campaign shows <b>Steps &middot; People &middot; Email Queues &middot; Data Health &beta; &middot; Timeline</b>; once it is running you also get <b>Inbox</b> and <b>Preview</b>. <span class="fn">(You may also see &ldquo;V1&rdquo; duplicates of these tabs &mdash; legacy screens kept around for comparison. Ignore them.)</span></li>
 <li data-code="A4.4.3"><b>Force Send per step</b> (Admin-only). Each step has its own <b>Force Send</b> &mdash; it pushes <u>that</u> step now instead of waiting for its <i>Right away</i> / <i>Wait for N days</i> timing. Use it to unblock a step that missed its window; don't use it to skip a wait you set on purpose.</li>
 <li data-code="A4.4.4"><b>&#9881; on the owner avatar &rarr; change the sending account.</b> It opens the list of Fintalent accounts (the current one is not in the list) &mdash; picking one switches the account the campaign sends <b>From</b>. The list page then shows the new <b>From:</b> address on the row.</li>
 <li data-code="A4.4.5"><b>Email Queues</b> &mdash; sub-tabs <b>All &middot; In Queue &middot; Delivered &middot; Cancel</b>, filters <b>Sources &middot; Expected Run Date &middot; Steps</b>, and an <b>Attachments</b> column the SDR-side write-up doesn't cover. This is where you prove an email actually left.
@@ -652,7 +652,7 @@
 
 <h3 id="a5-list" class="anchor">A5.1 &middot; The list</h3>
 <ol class="steps adm">
-<li data-code="A5.1.1"><b>Sales Management &rarr; Marketing Emails.</b> Again the whole workspace (<b>86</b> on UAT). Tabs: <b>All &middot; Draft &middot; Paused &middot; Running &middot; Finished</b> &mdash; note there is <b>no Archive</b> and <b>no folder pane</b>; MEs are flat.
+<li data-code="A5.1.1"><b>Sales Management &rarr; Marketing Emails.</b> Again the <b>whole workspace</b>. Tabs: <b>All &middot; Draft &middot; Paused &middot; Running &middot; Finished</b> &mdash; note there is <b>no Archive</b> and <b>no folder pane</b>; MEs are flat.
   <figure><img src="admm-01-list.png" alt="Admin marketing email list"/><figcaption><b>A5.1</b> &mdash; <b>&#9312;</b> every user's MEs &middot; <b>&#9313;</b> status tabs &middot; <b>&#9314;</b> <b>+ Create Marketing Email</b> &middot; <b>&#9315;</b> the rate columns.</figcaption></figure>
 </li>
 <li data-code="A5.1.2"><b>Read a row:</b> name + <b>From</b> address + status pill &middot; <b>People</b> &middot; <b>Delivered</b> &middot; <b>Open Rate</b> &middot; <b>Reply Rate</b> &middot; <b>Bounce/Dropped Rate</b> &middot; <b>Progress</b> (&#10003; when the blast finished). There is <b>no Enabled toggle and no Assignee column</b> here &mdash; an ME is switched on from inside, and its owner shows in the detail header.</li>
@@ -668,7 +668,7 @@
 
 <h3 id="a5-inside" class="anchor">A5.3 &middot; Inside the ME</h3>
 <ol class="steps adm">
-<li data-code="A5.3.1"><b>Open it.</b> Header: editable <b>name</b> &middot; <b>timezone</b> &middot; <b>description</b> &middot; <b>owner</b> with the <b>&#9881;</b> badge &middot; the <b>Active</b> switch. Tabs: <b>Inbox &middot; Template &middot; People &middot; Preview &middot; Email Queues &middot; Data Health &beta; &middot; Timeline</b>. <span class="fn">(The &ldquo;V1&rdquo; duplicates visible on UAT are legacy screens, hidden on production &mdash; ignore them.)</span>
+<li data-code="A5.3.1"><b>Open it.</b> Header: editable <b>name</b> &middot; <b>timezone</b> &middot; <b>description</b> &middot; <b>owner</b> with the <b>&#9881;</b> badge &middot; the <b>Active</b> switch. Tabs: <b>Inbox &middot; Template &middot; People &middot; Preview &middot; Email Queues &middot; Data Health &beta; &middot; Timeline</b>. <span class="fn">(Any &ldquo;V1&rdquo; duplicates you see are legacy screens &mdash; ignore them.)</span>
   <figure><img src="admm-03-detail.png" alt="ME detail header"/><figcaption><b>A5.3.1</b> &mdash; <b>&#9312;</b> owner + <b>&#9881;</b> + the <b>Active</b> switch &middot; <b>&#9313;</b> the tab row &middot; <b>&#9314;</b> <b>Force Send</b> and the step's delete icon.</figcaption></figure>
 </li>
 <li data-code="A5.3.2"><b>Template</b> holds the single step. It carries the <b>Force Send</b> button from <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">A3.1.3 &#8599;</a> plus a <b>&#128465; delete</b> on the step &mdash; deleting it empties the ME, so only do that on a Draft.</li>
@@ -790,20 +790,32 @@
   <tr><td><b>Talent</b></td><td>Ô ngày trắng &rarr; kéo tạo entry được &rarr; Create được &rarr; <b>submit được</b></td></tr>
   <tr><td><b>Admin</b></td><td>Form <i>Create Client Invoice</i> <b>không tự điền</b> service period, <b>Quantity = 0</b>; mở picker thì ngày <b>08, 09, 10</b> đều <b>bị khoá</b> &rarr; không chọn được</td></tr>
   </tbody></table></div>
-  <b>Đã đo trên UAT 27/07:</b> talent log 08/07 + 10/07, chừa 09/07, submit &rarr; Admin tạo <code>IN-26-07-27-ICAISI-3</code> phủ 08&rarr;10/07 &rarr; talent log bù 09/07 (2h) &rarr; submit thành công &rarr; Admin không tạo được hoá đơn cho 2h đó.
-  <br><b>Việc cần làm:</b> nếu talent lỡ bỏ sót một ngày giữa kỳ, <b>đừng tự log bù</b> &mdash; báo Admin/Ops trước. Đã ghi thành bug <b>TS-06</b> trong <code>docs/bug-checking-log.md</code>.</div>
+  <b>Việc cần làm:</b> lỡ bỏ sót một ngày giữa kỳ đã xuất hoá đơn thì <b>đừng tự log bù</b> &mdash; giờ đó sẽ nằm lại, không ai bill được. <b>Báo Admin/Ops trước</b> để xử lý.</div>
   <figure><img src="sdrx-ts-21-talent-disabled-days.png" alt="Ngày không log được"/><figcaption><b>B2.2.6</b> &mdash; <b>&#9312;</b> ngày bị làm mờ = không log được &middot; <b>&#9313;</b> hôm nay.</figcaption></figure></li>
 </ol>
 
-<h3 id="b2-submit" class="anchor">B2.3 &middot; Submit &amp; Edit timesheet (chốt Hour(s) to bill)</h3>
+<h3 id="b2-expense" class="anchor">B2.3 &middot; Khai expense report (nếu có chi phí phát sinh)</h3>
+<div class="call note"><span class="t">Không bắt buộc</span>Talent <b>có thể khai hoặc không</b>. Đã khai thì khoản đó <b>được cộng vào client invoice</b> cùng đợt &mdash; tách riêng khỏi tiền công, không đụng đến số giờ.</div>
+<ol class="steps">
+<li data-code="B2.3.1">Bấm <b>+ Add expense report</b> (ngay dưới <b>Submit Timesheet</b>) &rarr; hộp <b>Add new expense report</b>.</li>
+<li data-code="B2.3.2"><b>Điền các trường bắt buộc:</b> <b>Expense report date</b> (ngày phát sinh) &middot; <b>Description</b> (mô tả, sẽ đi vào hoá đơn) &middot; <b>Currency</b> (mặc định lấy theo contract) &middot; <b>Quantity</b> &middot; <b>Amount</b>. Dòng <b>Total</b> tự tính = Quantity &times; Amount. Có thể <b>Upload file</b> đính kèm hoá đơn gốc.
+  <figure><img src="tsx-05-expense-form.png" alt="Form Add new expense report"/><figcaption><b>B2.3.2</b> &mdash; <b>&#9312;</b> ngày + mô tả &middot; <b>&#9313;</b> Currency &middot; Quantity &middot; Amount &middot; <b>&#9314;</b> <b>Total</b> tự tính &middot; <b>&#9315;</b> đính kèm hoá đơn.</figcaption></figure>
+</li>
+<li data-code="B2.3.3">Bấm <b>Save</b>. Panel bên phải đổi từ <b>0 expense report</b> thành <b>1 expense report</b>.</li>
+<li data-code="B2.3.4"><b>Xem lại / sửa / xoá:</b> bấm vào dòng <b>N expense report</b> &rarr; hộp <b>Expense reports</b>: mỗi khoản một dòng (ngày &middot; mô tả &middot; Amount &middot; Quantity &middot; <b>Total Amount</b>) kèm nút <b>&#9998;</b> sửa và <b>&#128465;</b> xoá, lọc theo <b>Expense date</b>, và <b>Grand total</b> ở cuối.
+  <figure><img src="tsx-06-expense-list.png" alt="Danh sách expense reports"/><figcaption><b>B2.3.4</b> &mdash; <b>&#9312;</b> mỗi khoản một dòng &middot; <b>&#9313;</b> sửa / xoá &middot; <b>&#9314;</b> <b>Grand total</b> &mdash; số này sẽ cộng vào client invoice.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="b2-submit" class="anchor">B2.4 &middot; Submit &amp; Edit timesheet (chốt Hour(s) to bill)</h3>
 <div class="call warn"><span class="t">Submit là một chiều</span>Hộp xác nhận ghi rõ: <b>&ldquo;Once submitted, it cannot be edited&rdquo;</b>. Soát kỹ số giờ trước khi bấm Yes.</div>
 <ol class="steps">
-<li data-code="B2.3.1">Bấm <b>Submit Timesheet</b> (nút chỉ bật khi <b>pending submission &gt; 0h</b>).
+<li data-code="B2.4.1">Bấm <b>Submit Timesheet</b> (nút chỉ bật khi <b>pending submission &gt; 0h</b>).
   <p class="fn">Mở hộp ra mà <b>không thấy nút submit</b>, chỉ thấy cảnh báo <b>&ldquo;Update your billing or payment details&rdquo;</b> &rarr; tài khoản chưa khai <b>billing address / payment info</b>. Xử lý ở <a href="#bt-7" style="font-weight:700;cursor:pointer">B2.x.7 &#8599;</a> rồi quay lại bước này.</p>
-  <figure><img src="sdrx-ts-01-talent-summary.png" alt="Nút Submit Timesheet"/><figcaption><b>B2.3.1</b> &mdash; <b>&#9314;</b> nút <b>Submit Timesheet</b> chỉ bật khi còn giờ pending.</figcaption></figure></li>
-<li data-code="B2.3.2">Hộp <b>Select Timesheet for Submission</b> liệt kê <b>từng ngày đang chờ</b> (không phải từng entry &mdash; nhiều entry trong một ngày được gộp lại). Mặc định <b>tất cả được tick</b>; đầu hộp có bộ đếm <b>&ldquo;N working days selected&rdquo;</b> và link <b>Uncheck all</b>. Lọc thêm bằng ô <b>Timesheet date</b> (From &rarr; To).
-  <figure><img src="tsx-02-submit-dialog.png" alt="Cấu trúc hộp Select Timesheet for Submission"/><figcaption><b>B2.3.2</b> &mdash; <b>&#9312;</b> bộ đếm + <b>Uncheck all</b> &middot; <b>&#9313;</b> cột <b>Hour(s) to bill</b> sửa được &middot; <b>&#9314;</b> nút submit ghi rõ số ngày đang chọn.</figcaption></figure></li>
-<li data-code="B2.3.3"><b>Điều chỉnh <i>Hour(s) to bill</i></b> nếu cần. Mỗi dòng có 2 cột:
+  <figure><img src="sdrx-ts-01-talent-summary.png" alt="Nút Submit Timesheet"/><figcaption><b>B2.4.1</b> &mdash; <b>&#9314;</b> nút <b>Submit Timesheet</b> chỉ bật khi còn giờ pending.</figcaption></figure></li>
+<li data-code="B2.4.2">Hộp <b>Select Timesheet for Submission</b> liệt kê <b>từng ngày đang chờ</b> (không phải từng entry &mdash; nhiều entry trong một ngày được gộp lại). Mặc định <b>tất cả được tick</b>; đầu hộp có bộ đếm <b>&ldquo;N working days selected&rdquo;</b> và link <b>Uncheck all</b>. Lọc thêm bằng ô <b>Timesheet date</b> (From &rarr; To).
+  <figure><img src="tsx-02-submit-dialog.png" alt="Cấu trúc hộp Select Timesheet for Submission"/><figcaption><b>B2.4.2</b> &mdash; <b>&#9312;</b> bộ đếm + <b>Uncheck all</b> &middot; <b>&#9313;</b> cột <b>Hour(s) to bill</b> sửa được &middot; <b>&#9314;</b> nút submit ghi rõ số ngày đang chọn.</figcaption></figure></li>
+<li data-code="B2.4.3"><b>Điều chỉnh <i>Hour(s) to bill</i></b> nếu cần. Mỗi dòng có 2 cột:
   <div class="tblwrap"><table>
   <thead><tr><th>Cột</th><th>Sửa được?</th><th>Ý nghĩa</th></tr></thead>
   <tbody>
@@ -811,17 +823,17 @@
   <tr><td><b>Hour(s) to bill</b></td><td><b>Có</b></td><td>Số giờ thực sự đem tính tiền. Mặc định bằng số giờ log; giảm xuống nếu thoả thuận chỉ tính một phần.</td></tr>
   </tbody></table></div>
   <p class="fn"><b>Thế nào là &ldquo;đã edit&rdquo;:</b> khi hai cột của cùng một dòng <b>khác nhau</b>. Bằng nhau = giữ nguyên giờ log; khác nhau = talent đã chủ động chốt lại số giờ tính tiền.</p>
-  <figure><img src="tsx-03-edit-tobill.png" alt="Đã sửa hours to bill và bỏ tick một ngày"/><figcaption><b>B2.3.3</b> &mdash; ví dụ thật: <b>&#9312;</b> worked <b>02:30:00</b> &middot; <b>&#9313;</b> to bill <b>02:00:00</b> &rarr; <b>khác nhau = đã edit</b>. <b>&#9314;</b> dòng Jul 10 bị bỏ tick (chuyển sang nền trắng) &middot; <b>&#9315;</b> bộ đếm còn <b>1 working day selected</b>.</figcaption></figure>
+  <figure><img src="tsx-03-edit-tobill.png" alt="Đã sửa hours to bill và bỏ tick một ngày"/><figcaption><b>B2.4.3</b> &mdash; ví dụ thật: <b>&#9312;</b> worked <b>02:30:00</b> &middot; <b>&#9313;</b> to bill <b>02:00:00</b> &rarr; <b>khác nhau = đã edit</b>. <b>&#9314;</b> dòng Jul 10 bị bỏ tick (chuyển sang nền trắng) &middot; <b>&#9315;</b> bộ đếm còn <b>1 working day selected</b>.</figcaption></figure>
 </li>
-<li data-code="B2.3.4"><b>Quyết định submit ngày nào.</b> Nút ở cuối hộp <b>đổi chữ theo số dòng đang tick</b>: tick cả 2 ngày &rarr; <b>Submit all 2 working days</b>; bỏ tick còn 1 &rarr; <b>Submit 1 working day</b>. Đọc nút này trước khi bấm &mdash; đó là cách nhanh nhất để biết mình đang chốt bao nhiêu ngày. Chi tiết ở <a href="#bt-3" style="font-weight:700;cursor:pointer">B2.x.3 &#8599;</a>.</li>
-<li data-code="B2.3.5">Hộp xác nhận <b>Submit Timesheet</b> hiện ra &rarr; bấm <b>Yes</b>. <span class="fn">(Bấm No thì quay lại sửa tiếp; nếu bỏ qua hộp này thì mọi thao tác sau đó đều không ăn.)</span>
-  <figure><img src="sdrx-ts-05-talent-confirm.png" alt="Hộp xác nhận submit"/><figcaption><b>B2.3.5</b> &mdash; <b>&ldquo;Once submitted, it cannot be edited&rdquo;</b> &rarr; <b>Yes</b>.</figcaption></figure>
+<li data-code="B2.4.4"><b>Quyết định submit ngày nào.</b> Nút ở cuối hộp <b>đổi chữ theo số dòng đang tick</b>: tick cả 2 ngày &rarr; <b>Submit all 2 working days</b>; bỏ tick còn 1 &rarr; <b>Submit 1 working day</b>. Đọc nút này trước khi bấm &mdash; đó là cách nhanh nhất để biết mình đang chốt bao nhiêu ngày. Chi tiết ở <a href="#bt-3" style="font-weight:700;cursor:pointer">B2.x.3 &#8599;</a>.</li>
+<li data-code="B2.4.5">Hộp xác nhận <b>Submit Timesheet</b> hiện ra &rarr; bấm <b>Yes</b>. <span class="fn">(Bấm No thì quay lại sửa tiếp; nếu bỏ qua hộp này thì mọi thao tác sau đó đều không ăn.)</span>
+  <figure><img src="sdrx-ts-05-talent-confirm.png" alt="Hộp xác nhận submit"/><figcaption><b>B2.4.5</b> &mdash; <b>&ldquo;Once submitted, it cannot be edited&rdquo;</b> &rarr; <b>Yes</b>.</figcaption></figure>
 </li>
 </ol>
 
-<h3 id="b2-verify" class="anchor">B2.4 &middot; Kiểm tra lại sau khi submit</h3>
+<h3 id="b2-verify" class="anchor">B2.5 &middot; Kiểm tra lại sau khi submit</h3>
 <ol class="steps">
-<li data-code="B2.4.1"><b><i>pending submission</i> phải giảm đúng bằng phần vừa submit</b> &mdash; <b>không nhất thiết về 0h</b>:
+<li data-code="B2.5.1"><b><i>pending submission</i> phải giảm đúng bằng phần vừa submit</b> &mdash; <b>không nhất thiết về 0h</b>:
   <div class="tblwrap"><table>
   <thead><tr><th>Vừa làm gì</th><th>pending sau đó</th></tr></thead>
   <tbody>
@@ -830,28 +842,16 @@
   </tbody></table></div>
   <p class="fn">Thấy pending &gt; 0 sau khi submit thì <b>không phải lỗi</b> &mdash; kiểm tra lại xem còn ngày nào chưa tick.</p>
 </li>
-<li data-code="B2.4.2"><b>submitted</b> tăng đúng bằng tổng <i>hours to bill</i> vừa chốt; <b>Worked</b> tăng đúng bằng tổng <i>giờ đã log</i>. Hai số này lệch nhau chính là phần đã edit ở <a href="#b2-submit" style="font-weight:700;cursor:pointer">B2.3.3 &#8599;</a>.
+<li data-code="B2.5.2"><b>submitted</b> tăng đúng bằng tổng <i>hours to bill</i> vừa chốt; <b>Worked</b> tăng đúng bằng tổng <i>giờ đã log</i>. Hai số này lệch nhau chính là phần đã edit ở <a href="#b2-submit" style="font-weight:700;cursor:pointer">B2.3.3 &#8599;</a>.
   <p class="fn"><b>Ví dụ 1 &mdash; submit hết:</b> trước: submitted 14:40 / worked 16:30. Log thêm 4h (03/07) + 3h (04/07) = 7h, submit với to bill 3:30 + 3:00 = 6:30.
   Sau: <b>submitted 21:10</b> (14:40 + 6:30) &middot; <b>worked 23:30</b> (16:30 + 7:00) &middot; pending <b>0h</b>.</p>
   <p class="fn"><b>Ví dụ 2 &mdash; submit một phần:</b> trước: submitted 21:10 / worked 23:30 / pending 0h. Log 08/07 (2:30) và 10/07 (1:30) &rarr; pending <b>4h</b>. Chỉ tick 08/07, sửa to bill xuống <b>2:00</b> rồi submit.
   Sau: <b>submitted 23:10</b> (+2:00 = hours to bill) &middot; <b>Worked 26:00</b> (+2:30 = giờ log) &middot; pending <b>1:30</b> (ngày 10/07 còn lại).</p>
 </li>
-<li data-code="B2.4.3"><b>Ngày vừa submit chuyển sang tím đậm</b> và không sửa được nữa; ngày <b>bỏ lại vẫn tím nhạt</b>, vẫn còn nút <b>&#10005;</b>, vẫn sửa được.
-  <figure><img src="tsx-04-after-partial.png" alt="Sau khi submit một phần"/><figcaption><b>B2.4</b> &mdash; ví dụ 2 ở trên: <b>&#9312;</b> Jul 8 <b>tím đậm</b> = đã chốt &middot; <b>&#9313;</b> Jul 10 <b>tím nhạt</b> = vẫn chờ &middot; <b>&#9314;</b> pending <b>1h30</b> (không về 0) &middot; <b>&#9315;</b> đầu cột ngày đã submit hiện <b>02:00 = hours to bill</b>, không phải 02:30 giờ log.</figcaption></figure>
+<li data-code="B2.5.3"><b>Ngày vừa submit chuyển sang tím đậm</b> và không sửa được nữa; ngày <b>bỏ lại vẫn tím nhạt</b>, vẫn còn nút <b>&#10005;</b>, vẫn sửa được.
+  <figure><img src="tsx-04-after-partial.png" alt="Sau khi submit một phần"/><figcaption><b>B2.5</b> &mdash; ví dụ 2 ở trên: <b>&#9312;</b> Jul 8 <b>tím đậm</b> = đã chốt &middot; <b>&#9313;</b> Jul 10 <b>tím nhạt</b> = vẫn chờ &middot; <b>&#9314;</b> pending <b>1h30</b> (không về 0) &middot; <b>&#9315;</b> đầu cột ngày đã submit hiện <b>02:00 = hours to bill</b>, không phải 02:30 giờ log.</figcaption></figure>
 </li>
-<li data-code="B2.4.4"><b>Kiểm tra chú thích màu.</b> Khung <b>Calendar</b> góc trên-phải liệt kê đúng những trạng thái đang có trên lịch: <b>Dates already submitted</b> (xanh lá / tím đậm) và <b>Dates pending submission</b> (tím nhạt). Không còn dòng <i>pending</i> nghĩa là đã submit hết.</li>
-</ol>
-<h3 id="b2-expense" class="anchor">B2.5 &middot; Khai expense report (nếu có chi phí phát sinh)</h3>
-<div class="call note"><span class="t">Không bắt buộc</span>Talent <b>có thể khai hoặc không</b>. Đã khai thì khoản đó <b>được cộng vào client invoice</b> cùng đợt &mdash; tách riêng khỏi tiền công, không đụng đến số giờ.</div>
-<ol class="steps">
-<li data-code="B2.5.1">Bấm <b>+ Add expense report</b> (ngay dưới <b>Submit Timesheet</b>) &rarr; hộp <b>Add new expense report</b>.</li>
-<li data-code="B2.5.2"><b>Điền các trường bắt buộc:</b> <b>Expense report date</b> (ngày phát sinh) &middot; <b>Description</b> (mô tả, sẽ đi vào hoá đơn) &middot; <b>Currency</b> (mặc định lấy theo contract) &middot; <b>Quantity</b> &middot; <b>Amount</b>. Dòng <b>Total</b> tự tính = Quantity &times; Amount. Có thể <b>Upload file</b> đính kèm hoá đơn gốc.
-  <figure><img src="tsx-05-expense-form.png" alt="Form Add new expense report"/><figcaption><b>B2.5.2</b> &mdash; <b>&#9312;</b> ngày + mô tả &middot; <b>&#9313;</b> Currency &middot; Quantity &middot; Amount &middot; <b>&#9314;</b> <b>Total</b> tự tính &middot; <b>&#9315;</b> đính kèm hoá đơn.</figcaption></figure>
-</li>
-<li data-code="B2.5.3">Bấm <b>Save</b>. Panel bên phải đổi từ <b>0 expense report</b> thành <b>1 expense report</b>.</li>
-<li data-code="B2.5.4"><b>Xem lại / sửa / xoá:</b> bấm vào dòng <b>N expense report</b> &rarr; hộp <b>Expense reports</b>: mỗi khoản một dòng (ngày &middot; mô tả &middot; Amount &middot; Quantity &middot; <b>Total Amount</b>) kèm nút <b>&#9998;</b> sửa và <b>&#128465;</b> xoá, lọc theo <b>Expense date</b>, và <b>Grand total</b> ở cuối.
-  <figure><img src="tsx-06-expense-list.png" alt="Danh sách expense reports"/><figcaption><b>B2.5.4</b> &mdash; <b>&#9312;</b> mỗi khoản một dòng &middot; <b>&#9313;</b> sửa / xoá &middot; <b>&#9314;</b> <b>Grand total</b> &mdash; số này sẽ cộng vào client invoice.</figcaption></figure>
-</li>
+<li data-code="B2.5.4"><b>Kiểm tra chú thích màu.</b> Khung <b>Calendar</b> góc trên-phải liệt kê đúng những trạng thái đang có trên lịch: <b>Dates already submitted</b> (xanh lá / tím đậm) và <b>Dates pending submission</b> (tím nhạt). Không còn dòng <i>pending</i> nghĩa là đã submit hết.</li>
 </ol>
 
 <p>Xong bước này thì đến lượt Admin: <a data-goto="page-b3" style="font-weight:700;cursor:pointer">B3 &middot; Manage timesheet &rarr; invoice &#8599;</a>.</p>
@@ -897,7 +897,7 @@
 <li id="bt-7" data-code="B2.x.7"><b>Chưa khai billing address / payment info &rarr; submit bị chặn.</b> Talent có contract Active mà chưa khai thì <b>vẫn log work bình thường</b> &mdash; entry tạo được, <b>pending submission</b> vẫn tăng &mdash; nhưng đến bước submit thì hộp thoại <b>không có nút Submit</b>, thay bằng cảnh báo:
   <p class="fn" style="margin:6px 0"><i>&ldquo;Update your billing or payment details &mdash; Due to UK DAC7 regulations, we're required to collect additional billing or tax information from freelancers with an active contract&hellip;&rdquo;</i></p>
   <figure><img src="tsx-08-billing-block.png" alt="Hộp submit bị chặn vì thiếu billing"/><figcaption><b>B2.x.7a</b> &mdash; <b>&#9312;</b> chỗ đáng ra là nút Submit &rarr; thành cảnh báo <b>DAC7</b> &middot; <b>&#9313;</b> nút <b>Update billing</b> &middot; <b>&#9314;</b> danh sách ngày vẫn hiện bình thường (nên dễ tưởng là submit được).</figcaption></figure>
-  <div class="call note"><span class="t">Điểm dễ hiểu nhầm</span>Việc chặn <b>không xảy ra lúc log</b> mà <b>chỉ ở bước submit</b> &mdash; đã kiểm chứng trên UAT. Talent có thể log cả tuần rồi mới phát hiện không submit được, nên khai sớm ngay khi contract vừa Active.</div>
+  <div class="call note"><span class="t">Điểm dễ hiểu nhầm</span>Việc chặn <b>không xảy ra lúc log</b> mà <b>chỉ ở bước submit</b>. Talent có thể log cả tuần rồi mới phát hiện không submit được, nên khai sớm ngay khi contract vừa Active.</div>
   <p><b>Khai ở đâu:</b> bấm <b>Update billing</b> ngay trong cảnh báo, hoặc vào thẳng <b>My Profile &rarr; My Earnings</b> (<code>/earnings</code>). Trang này có <b>hai thẻ riêng biệt</b>, phải điền <b>cả hai</b> mới hết chặn:</p>
   <figure><img src="tsx-09-earnings.png" alt="Trang My Earnings"/><figcaption><b>B2.x.7b</b> &mdash; <b>&#9312;</b> <b>Billing</b> (địa chỉ xuất hoá đơn) &middot; <b>&#9313;</b> <b>Payment method</b> (tài khoản nhận tiền) &middot; <b>&#9314;</b> Paid Earnings &middot; Referral Earnings &middot; Pending Invoices.</figcaption></figure>
   <ul style="margin:6px 0 0;padding-left:18px">
@@ -908,7 +908,20 @@
     <figure><img src="tsx-11-payment-form.png" alt="Form Add payment method"/><figcaption><b>B2.x.7d</b> &mdash; <b>&#9312;</b> ô <b>Bank info</b> &middot; <b>&#9313;</b> <b>Save</b>.</figcaption></figure>
   </li>
   </ul>
-  <p class="fn">Khai xong quay lại <a href="#b2-submit" style="font-weight:700;cursor:pointer">B2.3 &#8599;</a> &mdash; hộp submit hiện lại nút bình thường.</p>
+  <p class="fn">Khai xong quay lại <a href="#b2-submit" style="font-weight:700;cursor:pointer">B2.4 &#8599;</a> &mdash; hộp submit hiện lại nút bình thường.</p>
+</li>
+<li id="bt-8" data-code="B2.x.8"><b>Khai expense vào ngày không log work &rarr; dễ bị bỏ sót.</b> Expense được tính vào hoá đơn theo <b>ngày ghi trên expense</b> có nằm trong <b>Service period</b> của hoá đơn hay không &mdash; mà Service period lại <b>tự điền theo những ngày có giờ đã submit</b>.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Tình huống</th><th>Kết quả khi Admin tạo hoá đơn</th></tr></thead>
+  <tbody>
+  <tr><td>Expense rơi vào ngày <b>có</b> log work</td><td>Tự động vào hoá đơn, cộng thẳng vào tổng tiền.</td></tr>
+  <tr><td>Expense rơi vào ngày <b>không</b> log work</td><td><b>Không xuất hiện</b> &mdash; Service period tự điền không chạm tới ngày đó.</td></tr>
+  </tbody></table></div>
+  <p><b>Ví dụ:</b> talent log work ngày <b>20/07</b>, không log ngày <b>22/07</b> nhưng khai một expense <b>75 EUR</b> cho ngày 22/07. Admin tạo hoá đơn &rarr; Service period tự điền <b>20/07 &rarr; 20/07</b>, tiền chỉ có 2h &times; 120 = <b>240 EUR</b>, <b>không có dòng expense nào</b>.</p>
+  <figure><img src="tsx-13-expense-outside-period.png" alt="Expense ngoài service period"/><figcaption><b>B2.x.8a</b> &mdash; <b>&#9312;</b> Service period tự điền chỉ phủ ngày có log work &middot; <b>&#9313;</b> mục <b>Additional items</b> trống, expense 22/07 không được đưa vào.</figcaption></figure>
+  <p><b>Cách xử lý (Admin làm):</b> nới <b>Service period end date</b> ra tới ngày của expense &mdash; khoản đó hiện ra ngay trong form, kèm <b>Total</b> riêng và cộng vào tổng hoá đơn.</p>
+  <figure><img src="tsx-14-expense-inside-period.png" alt="Nới service period, expense hiện ra"/><figcaption><b>B2.x.8b</b> &mdash; <b>&#9312;</b> sửa end date thành <b>22/07</b> &middot; <b>&#9313;</b> expense hiện ra ngay: <b>75 EUR</b>.</figcaption></figure>
+  <p class="fn">Vì vậy talent nên <b>báo trước cho Admin/Ops</b> khi khai expense vào ngày không có giờ công, để Admin nhớ nới khoảng ngày lúc tạo hoá đơn.</p>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-b1"><span class="k">← Prev</span><b>B1 · Invite talents</b></a><a class="next" data-goto="page-b3"><span class="k">Next →</span><b>B3 · Timesheet → invoice (Admin)</b></a></div>
@@ -923,9 +936,9 @@
 <h3 id="b3-sync" class="anchor">B3.1 &middot; Xem &amp; đồng bộ timesheet</h3>
 <ol class="steps">
 <li data-code="B3.1.1">Menu trái &rarr; <b>Contracts &amp; Invoices</b> &rarr; <b>Timesheets</b>.
-  <figure><img src="sdrx-ts-11-admin-menu.png" alt="Menu Contracts & Invoices"/><figcaption><b>B3.1.1</b> &mdash; nhóm <b>Contracts &amp; Invoices</b> &rarr; <b>Timesheets</b>.</figcaption></figure></li>
+  <figure><img src="tsx-12-admin-menu-timesheets.png" alt="Menu Contracts & Invoices → Timesheets"/><figcaption><b>B3.1.1</b> &mdash; <b>&#9312;</b> nhóm <b>Contracts &amp; Invoices</b> khi mở ra &middot; <b>&#9313;</b> mục <b>Timesheets</b> (nằm cuối nhóm, dưới Commission Invoices).</figcaption></figure></li>
 <li data-code="B3.1.2"><b>Lọc đúng talent</b> bằng ô <b>Select talents</b> (gõ tên/email rồi chọn). Toggle <b>Talents with Active Contract</b> để chỉ xem người đang có contract chạy.
-  <figure><img src="sdrx-ts-07-admin-row.png" alt="Lọc talent trên trang Timesheets"/><figcaption><b>B3.1.2</b> &mdash; <b>&#9312;</b> ô lọc talent; các nút thao tác nằm ở cuối dòng.</figcaption></figure></li>
+  <figure><img src="sdrx-ts-07-admin-row.png" alt="Lọc talent trên trang Timesheets"/><figcaption><b>B3.1.2</b> &mdash; <b>&#9312;</b> ô <b>Select talents</b> đã chọn talent (chip <b>Active</b> + tên).</figcaption></figure></li>
 <li data-code="B3.1.3">Bấm <b>Sync Data</b> trên dòng của talent &mdash; kéo số liệu mới nhất từ timesheet talent vừa submit.
   <figure><img src="sdrx-ts-23-admin-sync-data.png" alt="Nút Sync Data"/><figcaption><b>B3.1.3</b> &mdash; <b>&#9312;</b> <b>Sync Data</b> ở cột <b>Actions</b> &middot; <b>&#9313;</b> <b>Create Client Invoice</b>.</figcaption></figure></li>
 <li data-code="B3.1.4"><b>Đọc dòng của talent</b> &mdash; ba thông tin quyết định:
@@ -950,7 +963,7 @@
   <tbody>
   <tr><td><b>Total hours to bill</b></td><td>tổng <i>submitted</i> bên talent portal &mdash; số dùng để tính tiền.</td></tr>
   <tr><td><b>Total hours worked</b></td><td>tổng giờ log thật.</td></tr>
-  <tr><td><b>Total uninvoiced hours</b></td><td>phần chưa xuất hoá đơn &mdash; khớp với <b>Unbilled</b> ở B3.1.4.</td></tr>
+  <tr><td><b>Total uninvoiced hours</b></td><td>phần chưa xuất hoá đơn &mdash; khớp với <b>Unbilled</b> ở <a href="#b3-sync" style="font-weight:700;cursor:pointer">B3.1.4 &#8599;</a>.</td></tr>
   </tbody></table></div>
 
   <figure><img src="sdrx-ts-25-admin-ts-totals.png" alt="Ba tổng và ô ngày"/><figcaption><b>B3.2.2&ndash;B3.2.3</b> &mdash; <b>&#9312;</b> ba tổng &middot; <b>&#9313;</b> mỗi ô ngày ghi &ldquo;X hrs to bill &middot; Y hrs worked&rdquo; &middot; <b>&#9314;</b> đổi tháng.</figcaption></figure></li>
@@ -969,7 +982,7 @@
   <thead><tr><th>Trường</th><th>Phải là</th></tr></thead>
   <tbody>
   <tr><td><b>Contract / Project / Client</b></td><td>đúng contract đang bill.</td></tr>
-  <tr><td><b>Service period start / end</b></td><td>đúng khoảng ngày chưa invoice (B3.1.4).</td></tr>
+  <tr><td><b>Service period start / end</b></td><td>đúng khoảng ngày chưa invoice (<a href="#b3-sync" style="font-weight:700;cursor:pointer">B3.1.4 &#8599;</a>).</td></tr>
   <tr><td><b>Issued Date</b></td><td>mặc định hôm nay.</td></tr>
   <tr><td><b>Billing rate</b></td><td>= <b>billing rate</b> trong contract (rate client trả).</td></tr>
   <tr><td><b>Quantity</b></td><td><b>= hours to bill</b> (Hourly) hoặc <b>= days to bill</b> (Daily) &mdash; <b>không</b> phải số giờ log.</td></tr>
@@ -985,25 +998,26 @@
   <figure><img src="sdrx-ts-12-invoice-actions.png" alt="Hoá đơn vừa tạo"/><figcaption><b>B3.3.3</b> &mdash; hoá đơn mới: số hiệu &middot; nhãn <b>Timesheets (Jul 3 &ndash; 4)</b> &middot; trạng thái <b>Draft</b>.</figcaption></figure></li>
 </ol>
 
-<h3 id="b3-pdf" class="anchor">B3.4 &middot; Kiểm tra file PDF</h3>
+<h3 id="b3-pdf" class="anchor">B3.4 &middot; Xem hoá đơn vừa tạo &amp; kiểm tra file PDF</h3>
 <ol class="steps">
-<li data-code="B3.4.1">Mở <b>Client Invoices</b> &rarr; tìm hoá đơn vừa tạo &rarr; ở cột <b>Actions</b> bấm nút <b>&#10515;</b> (nút thứ hai, cạnh nút &#128065; xem). Chờ vài giây &mdash; PDF mở ở <b>tab mới</b>.
-  <figure><img src="sdrx-ts-13-download-pdf.png" alt="Nút tải PDF ở cột Actions"/><figcaption><b>B3.4.1</b> &mdash; <b>&#9312;</b> xem chi tiết &middot; <b>&#9313;</b> <b>tải PDF</b>.</figcaption></figure></li>
-<li data-code="B3.4.2"><b>Trang 1 &mdash; phần tính tiền.</b> Đối chiếu: số hoá đơn &middot; địa chỉ + VAT của client &middot; <b>HOUR(S)</b> (hoặc <b>DAY(S)</b> với contract Daily) &middot; <b>RATE</b> &middot; <b>AMOUNT</b> &middot; <b>TOTAL AMOUNT DUE</b> &middot; hạn thanh toán (theo <i>Payment terms</i> của contract) &middot; thông tin ngân hàng.
-  <figure><img src="sdrx-ts-14-pdf-page1.png" alt="PDF trang 1"/><figcaption><b>B3.4.2</b> &mdash; dòng tính tiền và <b>TOTAL AMOUNT DUE</b> kèm hạn thanh toán.</figcaption></figure></li>
-<li data-code="B3.4.3"><b>Trang 2 &mdash; phụ lục timesheet.</b> Liệt kê <b>từng ngày</b> talent đã log kèm khung giờ và Note. Đây là phần cho client thấy <b>công việc thực tế</b>.
-  <figure><img src="sdrx-ts-15-pdf-page2.png" alt="PDF trang 2"/><figcaption><b>B3.4.3</b> &mdash; phụ lục: từng ngày + khung giờ + Note talent đã ghi.</figcaption></figure></li>
-<li data-code="B3.4.4">Số khớp thì gửi client. Lệch thì huỷ/sửa hoá đơn trước khi gửi.</li>
+<li data-code="B3.4.1"><b>Không cần rời trang Timesheets.</b> Tạo xong, quay lại danh sách &mdash; hoá đơn hiện ngay <b>trên chính dòng talent đó</b>: số hiệu &middot; loại &middot; trạng thái <b>Draft</b> &middot; khoảng ngày &middot; số giờ &middot; <b>Total Amount</b>. Có expense thì ghi thêm <i>&ldquo;(incl. &lt;số tiền&gt; &middot; N additional item)&rdquo;</i>. Mỗi lần bill là một khối, xếp chồng theo thứ tự.
+  <figure><img src="sdrx-ts-24-admin-view-ts-link.png" alt="Hoá đơn hiện trên dòng talent"/><figcaption><b>B3.4.1</b> &mdash; <b>&#9313;</b> các hoá đơn đã tạo, hiện thẳng trên dòng talent ở trang Timesheets.</figcaption></figure></li>
+<li data-code="B3.4.2"><b>Bấm vào khối hoá đơn</b> &rarr; mở drawer <b>Update Client Invoice</b> ngay tại chỗ. Trong drawer có sẵn: nút <b>&#10515; tải PDF</b> cạnh tiêu đề &middot; dropdown <b>trạng thái</b> + <b>Update</b> &middot; toàn bộ form để sửa &middot; các link <b>View Timesheets &middot; View Contract &middot; View Project &middot; View Talent &middot; View Client</b>.
+  <figure><img src="sdrx-ts-16-invoice-from-row.png" alt="Drawer Update Client Invoice"/><figcaption><b>B3.4.2</b> &mdash; <b>&#9312;</b> drawer kèm nút <b>&#10515;</b> tải PDF &middot; <b>&#9313;</b> trạng thái + Update &middot; <b>&#9314;</b> tóm tắt contract &amp; timesheet.</figcaption></figure></li>
+<li data-code="B3.4.3"><b>Bấm &#10515;</b> &rarr; chờ vài giây, <b>PDF mở ở tab mới</b> (file tải từ kho, không phải cửa sổ tải xuống).
+  <p class="fn"><b>Đường thứ hai:</b> menu <b>Contracts &amp; Invoices &rarr; Client Invoices</b> &rarr; tìm hoá đơn &rarr; cột <b>Actions</b> có <b>&#128065;</b> (xem chi tiết) và <b>&#10515;</b> (tải PDF) &mdash; kết quả giống hệt. Dùng khi cần lọc/tìm giữa nhiều hoá đơn của nhiều talent.</p>
+  <figure><img src="sdrx-ts-13-download-pdf.png" alt="Nút tải PDF ở trang Client Invoices"/><figcaption><b>B3.4.3</b> &mdash; đường thứ hai, ở trang <b>Client Invoices</b>: <b>&#9312;</b> xem chi tiết &middot; <b>&#9313;</b> tải PDF.</figcaption></figure></li>
+<li data-code="B3.4.4"><b>Trang 1 &mdash; phần tính tiền.</b> Đối chiếu: số hoá đơn &middot; địa chỉ + VAT của client &middot; <b>HOUR(S)</b> (hoặc <b>DAY(S)</b> với contract Daily) &middot; <b>RATE</b> &middot; <b>AMOUNT</b> &middot; <b>TOTAL AMOUNT DUE</b> &middot; hạn thanh toán (theo <i>Payment terms</i> của contract) &middot; thông tin ngân hàng.
+  <figure><img src="sdrx-ts-14-pdf-page1.png" alt="PDF trang 1"/><figcaption><b>B3.4.4</b> &mdash; dòng tính tiền và <b>TOTAL AMOUNT DUE</b> kèm hạn thanh toán.</figcaption></figure></li>
+<li data-code="B3.4.5"><b>Trang 2 &mdash; phụ lục timesheet.</b> Liệt kê <b>từng ngày</b> talent đã log kèm khung giờ và Note. Đây là phần cho client thấy <b>công việc thực tế</b>.
+  <div class="call note"><span class="t">Hai con số, hai mục đích</span>Phụ lục này in <b>số giờ talent đã log</b> &mdash; để client thấy công việc thực tế. Còn <b>số giờ đem tính tiền vẫn là <i>hours to bill</i></b> ở trang 1. Talent có giảm giờ khi submit thì hai trang sẽ lệch nhau, và đó là <b>đúng thiết kế</b> &mdash; xem <a href="#ba-4" style="font-weight:700;cursor:pointer">B3.x.4 &#8599;</a>.</div>
+  <figure><img src="sdrx-ts-15-pdf-page2.png" alt="PDF trang 2"/><figcaption><b>B3.4.5</b> &mdash; phụ lục: từng ngày + khung giờ + Note talent đã ghi.</figcaption></figure></li>
+<li data-code="B3.4.6">Số khớp thì <b>đi tới flow Issue Client Invoices</b>. Lệch thì huỷ/sửa hoá đơn trước khi gửi.</li>
 </ol>
-
-<h3 id="b3-talent-invoice" class="anchor">B3.5 &middot; Talent invoice &mdash; tiền trả talent</h3>
-<p>Đối ứng với client invoice: <b>Contracts &amp; Invoices &rarr; Talent Invoices</b>. Tabs: <b>All &middot; Client Paid</b> (client đã trả &rarr; đủ điều kiện trả talent) <b>&middot; Paid &middot; Disputed</b>. Mỗi dòng gắn <b>Linked Client Invoice</b> &mdash; tiền trả talent luôn gắn với hoá đơn client tương ứng.</p>
-<div class="call warn"><span class="t">Rate nào cho hoá đơn nào</span>Trong phần <b>Overview</b>, dòng <b>&ldquo;Pay rate&rdquo;</b> là <b>rate áp cho chính hoá đơn đang xem</b>: hoá đơn <b>client</b> dùng <b>billing rate</b> (client trả), hoá đơn <b>talent</b> dùng <b>pay rate</b> (Fintalent trả talent). Kiểm tra Amount phải xem <b>đang là hoá đơn của ai</b> rồi mới nhân rate tương ứng.</div>
-<p class="fn"><b>Chưa xác định:</b> trên UAT, sau khi tạo client invoice và bấm <b>Sync Data</b> (tooltip ghi <i>&ldquo;Sync Data Draft Talent Invoices&rdquo;</i>), talent invoice <b>vẫn chưa được sinh</b> khi client invoice còn ở trạng thái <b>Draft</b>. Đang chờ xác nhận đường sinh talent invoice (đợi client invoice <b>Issued</b>? talent tự tạo ở <i>Earnings &amp; Billing</i>? hay admin bấm <b>Create New</b>?).</p>
 
 <h3 id="b3-edge" class="edgehead anchor">B3.x &middot; Edge cases</h3>
 <ol class="steps edge">
-<li id="ba-1" data-code="B3.x.1"><b>Contract Daily &mdash; Quantity là số NGÀY.</b> <b>1 ngày công = 8 giờ.</b> Ví dụ đã kiểm chứng: talent log 8h (13/07) + 6h (14/07) = 14h, chốt to bill 8h + 4h = <b>12h</b> &rarr; Quantity = <b>12 &divide; 8 = 1.5 ngày</b> &rarr; Amount = 1.5 &times; 500 USD = <b>750 USD</b>. Trên PDF cột đổi từ <b>HOUR(S)</b> thành <b>DAY(S)</b>.</li>
+<li id="ba-1" data-code="B3.x.1"><b>Contract Daily &mdash; Quantity là số NGÀY.</b> <b>1 ngày công = 8 giờ.</b> Ví dụ: talent log 8h (13/07) + 6h (14/07) = 14h, chốt to bill 8h + 4h = <b>12h</b> &rarr; Quantity = <b>12 &divide; 8 = 1.5 ngày</b> &rarr; Amount = 1.5 &times; 500 USD = <b>750 USD</b>. Trên PDF cột đổi từ <b>HOUR(S)</b> thành <b>DAY(S)</b>.</li>
 <li id="ba-2" data-code="B3.x.2"><b>Ý nghĩa &ldquo;Total Hours Worked&rdquo; ở trang danh sách.</b> Con số ở header và ở cột bảng của trang Timesheets là <b>tổng hours to bill</b> (số đem tính tiền). Muốn xem <b>giờ log thật</b> thì mở <b>View Timesheets</b> &mdash; ở đó có riêng hai dòng <i>to bill</i> và <i>worked</i>.</li>
 <li id="ba-3" data-code="B3.x.3"><b>Nhiều đợt bill trên cùng contract.</b> Mỗi lần bill chỉ lấy phần <b>uninvoiced</b>; những ngày đã nằm trong hoá đơn trước không bị tính lại. Dòng talent hiện lại lịch sử các hoá đơn đã tạo kèm khoảng ngày.</li>
 <li id="ba-4" data-code="B3.x.4"><b>Chênh lệch giữa hai trang PDF &mdash; cần biết khi client hỏi.</b> Trang 1 tính theo <b>to bill</b>, trang 2 liệt kê theo <b>giờ log thật</b> &mdash; nên hai trang có thể ra hai con số:
@@ -1544,7 +1558,7 @@
   <li><b>Account</b> — who it's from: avatar, <b>name</b>, email address, phone, and city / country.</li>
   <li><b>Last Email</b> — the most recent message in that thread, shown in three parts:
     <ul style="margin:4px 0 0;padding-left:18px">
-    <li><b>Subject</b> (bold, top line) — the email's subject (e.g. "Re: [UAT] Test send email 02").</li>
+    <li><b>Subject</b> (bold, top line) — the email's subject (e.g. "Re: How mid-cap PE firms staff DD in 5 days").</li>
     <li><b>Preview</b> (grey, middle) — the opening line of the body, so you can triage without opening it.</li>
     <li><b>Date</b> (bottom) — when it arrived (e.g. "Jul 17, 13:11").</li>
     </ul>
@@ -1743,7 +1757,7 @@
 <figure><img src="sdrx-camp-00-list.png" alt="Campaigns list"/><figcaption><b>6.3</b> &mdash; the campaign list: status tabs, the <b>folder rail</b>, the <b>Enabled</b> toggle and per-campaign metrics.</figcaption></figure>
 
 <h3 id="cmp-people" class="anchor">6.4 &middot; Add people to the campaign</h3>
-<div class="call warn"><span class="t">Not available yet for SDR</span>Just like Marketing Emails, this flow <b>isn't built for the SDR role on UAT yet</b> &mdash; the contact list has <b>no select + &ldquo;Add to campaign&rdquo;</b> action. For now, campaigns come with people <b>already loaded by Admin / Ops</b>. The steps below are the <b>intended flow</b>, for when it ships.</div>
+<div class="call warn"><span class="t">Not available yet for SDR</span>Just like Marketing Emails, this flow <b>isn't available to the SDR role yet</b> &mdash; the contact list has <b>no select + &ldquo;Add to campaign&rdquo;</b> action. For now, campaigns come with people <b>already loaded by Admin / Ops</b>. The steps below are the <b>intended flow</b>, for when it ships.</div>
 <p class="fn"><b>Assigned a campaign that already has people</b> and told not to add more? <b>Skip this section</b> &mdash; just work those contacts (see <a data-goto="page-campaign" href="#ce-6" style="font-weight:700;cursor:pointer">6.x.6 &#8599;</a>).</p>
 <p>Recipients come from your lists:</p>
 <ol class="steps">
@@ -1788,7 +1802,7 @@
 <h3 id="cmp-queue" class="anchor">6.7 &middot; The Email Queue</h3>
 <p>Once the campaign is running, the <b>Email Queues</b> tab holds every queued send in the same three tabs as a Marketing Email &mdash; <b>In Queue &middot; Delivered &middot; Cancel</b> (+ All) &mdash; with columns <b>Subject / Content / Status / Attachments / Sent Date / Created</b> and filters for <b>Sources / Expected Run Date / Steps</b>.</p>
 <figure><img src="sdrx-camp-13-queue.png" alt="Campaign Email Queue"/><figcaption><b>6.7</b> &mdash; the campaign <b>Email Queue</b>: tabs <b>In Queue &middot; Delivered &middot; Cancel</b> and the queue columns.</figcaption></figure>
-<p class="fn"><b>Heads-up (UAT):</b> as with Marketing Emails, the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> even when the campaign has already delivered. If it looks empty, refresh, or confirm via the <a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">campaign Inbox (6.8)</a> and the contact's Conversations.</p>
+<p class="fn"><b>Heads-up:</b> as with Marketing Emails, the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> even when the campaign has already delivered. If it looks empty, refresh, or confirm via the <a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">campaign Inbox (6.8)</a> and the contact's Conversations.</p>
 
 <h3 id="cmp-replies" class="anchor">6.8 &middot; Verify: Conversations &amp; the campaign Inbox</h3>
 <p>Every campaign has its own <b>Inbox</b> tab &mdash; the replies it pulled back, <b>categorized by lifecycle</b> down the left (Prospect &middot; Interested &middot; Not Interested &middot; Out Of Office &middot; Bounced / Dropped &middot; Open &middot; Click&hellip;). It's your <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 inbox &#8599;</a>, scoped to this campaign. New replies also pop up under the <b>&#128276; bell</b> (top-right) &mdash; the <a data-goto="page-campaign" href="#ce-14" style="font-weight:700;cursor:pointer">Campaign Notifications feed (6.x.14) &#8599;</a>.</p>
@@ -1944,7 +1958,7 @@
 </tbody></table></div>
 
 <h3 id="me-people" class="anchor">7.3 &middot; Add people to the ME</h3>
-<div class="call warn"><span class="t">Not available yet for SDR</span>This flow <b>isn't built for the SDR role on UAT yet</b> &mdash; the contact list has <b>no select + "Add to marketing email"</b> action. For now, your MEs come with people <b>already added by Admin / Ops</b>. The steps below are the intended flow, for when it ships.</div>
+<div class="call warn"><span class="t">Not available yet for SDR</span>This flow <b>isn't available to the SDR role yet</b> &mdash; the contact list has <b>no select + "Add to marketing email"</b> action. For now, your MEs come with people <b>already added by Admin / Ops</b>. The steps below are the intended flow, for when it ships.</div>
 <p class="fn"><b>Assigned an ME that already has people</b> and told not to add more? <b>Skip this section</b> &mdash; just work those contacts (see <a data-goto="page-marketing" href="#e-8-13" style="font-weight:700;cursor:pointer">7.x.13 &#8599;</a>).</p>
 <p>Recipients come from your lists:</p>
 <ol class="steps">
@@ -2027,7 +2041,7 @@
 <tr><td><b>Cancel</b></td><td><b>Removed from the queue</b> &mdash; these will <b>not</b> be sent.</td></tr>
 </tbody></table></div>
 <figure><img src="sdrx-me-23-email-queue.png" alt="Email Queue tab — In Queue / Delivered / Cancel"/><figcaption><b>7.6</b> &mdash; the <b>Email Queue</b> tab: <b>In Queue &middot; Delivered &middot; Cancel</b> (+ All), with columns <b>Subject &middot; Content &middot; Status &middot; Attachments &middot; Sent Date</b> and <b>Sources / Campaigns / Expected Run Date</b> filters.</figcaption></figure>
-<p class="fn"><b>Heads-up (UAT):</b> the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> for a while after a send &mdash; even when the email already went out. If it looks empty, refresh, or just confirm the send in the contact's <a data-goto="page-marketing" href="#me-conv" style="font-weight:700;cursor:pointer">Conversations (7.7) &#8599;</a>.</p>
+<p class="fn"><b>Heads-up:</b> the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> for a while after a send &mdash; even when the email already went out. If it looks empty, refresh, or just confirm the send in the contact's <a data-goto="page-marketing" href="#me-conv" style="font-weight:700;cursor:pointer">Conversations (7.7) &#8599;</a>.</p>
 <p>Act on a row from the <b>&#8942; three-dot</b> menu (on rows in <b>In Queue</b>):</p>
 <ul style="margin:6px 0 0;padding-left:18px">
 <li><b>Set as delivered</b> &mdash; send that email <b>right now</b>, without waiting for the queue.</li>
