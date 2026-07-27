@@ -32,14 +32,17 @@
   nav a.st2.show{display:block}
   nav a.st:hover,nav a.st2:hover{color:var(--pp-700)}
   /* ---- ô tìm kiếm trên đầu nav ---- */
-  .navsearch{position:relative;margin:2px 0 10px}
-  .navsearch input{width:100%;box-sizing:border-box;padding:7px 26px 7px 28px;font-family:inherit;font-size:12.5px;
-    border:1px solid var(--n-200);border-radius:8px;background:#fff;color:var(--n-700)}
+  .navsearch{margin:2px 0 10px}
+  .navsearch .row{position:relative;display:block}
+  .navsearch input{display:block;width:100%;box-sizing:border-box;padding:7px 26px 7px 30px;font-family:inherit;
+    font-size:12.5px;line-height:18px;border:1px solid var(--n-200);border-radius:8px;background:#fff;color:var(--n-700)}
+  .navsearch input::-webkit-search-decoration,.navsearch input::-webkit-search-cancel-button{-webkit-appearance:none}
   .navsearch input::placeholder{color:var(--n-400)}
   .navsearch input:focus{outline:none;border-color:var(--pp-500);box-shadow:0 0 0 3px var(--pp-100)}
-  .navsearch .ico{position:absolute;left:9px;top:15px;font-size:11px;color:var(--n-400);pointer-events:none}
-  .navsearch .clr{position:absolute;right:5px;top:9px;border:0;background:none;cursor:pointer;color:var(--n-400);
-    font-size:15px;line-height:1;padding:2px 4px;display:none}
+  .navsearch .ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:13px;height:13px;
+    color:var(--n-400);pointer-events:none}
+  .navsearch .clr{position:absolute;right:4px;top:50%;transform:translateY(-50%);border:0;background:none;
+    cursor:pointer;color:var(--n-400);font-size:15px;line-height:1;padding:2px 4px;display:none}
   .navsearch .clr:hover{color:var(--n-700)}
   .navsearch .cnt{font-size:10.5px;color:var(--n-400);padding:5px 2px 0;display:none}
   .navsearch.has .clr,.navsearch.has .cnt{display:block}
@@ -116,9 +119,11 @@
   <div class="sub">SDR · by task-flow · build 21 Jul</div>
   <nav>
     <div class="navsearch">
-      <span class="ico">&#128269;</span>
-      <input id="navq" type="search" autocomplete="off" placeholder="Tìm flow hoặc step…" aria-label="Tìm flow hoặc step">
-      <button class="clr" type="button" title="Xoá (Esc)">&times;</button>
+      <div class="row">
+        <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14" stroke-linecap="round"/></svg>
+        <input id="navq" type="search" autocomplete="off" placeholder="Search flow or step…" aria-label="Search flow or step">
+        <button class="clr" type="button" title="Clear (Esc)">&times;</button>
+      </div>
       <div class="cnt"></div>
     </div>
     <div class="grp">A · Getting started</div>
@@ -1363,7 +1368,7 @@
       } else if(el.tagName==='A' && el.classList.contains('hit')){ seen=true; }
     });
     if(cur) cur.classList.toggle('hit', seen);
-    cnt.textContent = n ? (n+' kết quả') : 'Không tìm thấy';
+    cnt.textContent = n ? (n+(n>1?' results':' result')) : 'No match';
   }
 
   box.addEventListener('input', function(){ run(box.value); });
