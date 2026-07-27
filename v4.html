@@ -794,9 +794,12 @@
   <tr><td>Ngày <b>trước Start date</b> của contract</td><td>Chưa phát sinh công việc theo hợp đồng.</td></tr>
   <tr><td>Ngày <b>đã submit</b></td><td>Đã chốt hours to bill, khoá lại.</td></tr>
   <tr><td>Ngày <b>trong tương lai</b></td><td>Chỉ log được việc đã làm.</td></tr>
-  <tr><td>Ngày nằm <b>trong khoảng đã có invoice</b></td><td>Admin đã xuất hoá đơn cho khoảng đó &mdash; <b>khoá cả những ngày còn trống</b> trong khoảng, không riêng ngày đã log.</td></tr>
+  <tr><td>Ngày <b>đã có trên một invoice</b></td><td>Ngày đã submit rồi được Admin đưa vào client invoice &mdash; khoá vĩnh viễn.</td></tr>
   </tbody></table></div>
-  <p class="fn"><b>Ví dụ trường hợp thứ tư:</b> Start date 01/07. Talent log ngày <b>3, 5, 8</b> rồi submit. Ngày 10/07 Admin tạo client invoice phủ khoảng <b>03&ndash;08/07</b>. Từ lúc đó các ngày <b>4, 6, 7</b> &mdash; dù chưa hề log &mdash; <b>không log thêm được nữa</b>, vì chúng nằm trong khoảng đã xuất hoá đơn. Quên ngày nào thì phải báo Admin/Ops.</p>
+  <div class="call note"><span class="t">Ngày trống giữa dải hoá đơn thì sao? &mdash; Vẫn log được</span>Hoá đơn <b>chỉ khoá đúng những ngày đã submit</b>, <b>không</b> khoá cả khoảng thời gian.
+  <br><b>Đã kiểm chứng trên UAT (27/07):</b> talent log 08/07 và 10/07, chừa trống 09/07, submit cả hai. Admin tạo client invoice <code>IN-26-07-27-ICAISI-3</code> với <i>service period</i> <b>08/07 &rarr; 10/07</b>.
+  Kết quả: cột <b>08</b> và <b>10</b> bị làm mờ, còn <b>09/07 vẫn trắng và vẫn mở được hộp <i>Record New Timesheet Entry</i></b> &mdash; dù nằm giữa khoảng đã xuất hoá đơn.
+  <br>Vậy: quên một ngày ở giữa thì <b>vẫn tự log bù được</b>; ngày đó sẽ nằm ở <b>pending submission</b> và đi vào <b>đợt hoá đơn sau</b>. <span class="fn">(Kiểm chứng với hoá đơn ở trạng thái <b>Draft</b> &mdash; chưa thử với hoá đơn đã <b>Issued</b>.)</span></div>
   <figure><img src="sdrx-ts-21-talent-disabled-days.png" alt="Ngày không log được"/><figcaption><b>B2.2.6</b> &mdash; <b>&#9312;</b> ngày bị làm mờ = không log được &middot; <b>&#9313;</b> hôm nay.</figcaption></figure></li>
 </ol>
 
@@ -883,7 +886,7 @@
   <ul style="margin:6px 0 0;padding-left:18px">
   <li><b>Trước khi submit</b> &mdash; sửa được: bấm <b>thân entry</b> để mở <b>Modify Timesheet Entry</b> (đổi giờ/Note &rarr; <b>Update</b>), hoặc bấm <b>&#10005;</b> để xoá hẳn rồi log lại.</li>
   <li><b>Sau khi submit</b> &mdash; <b>không sửa được</b>, hộp xác nhận đã ghi rõ <i>&ldquo;Once submitted, it cannot be edited&rdquo;</i>. Phải báo Admin/Ops xử lý trước khi hoá đơn được xuất.</li>
-  <li><b>Sau khi đã có hoá đơn</b> &mdash; ngoài ngày đã log, <b>cả những ngày còn trống trong khoảng hoá đơn cũng bị khoá</b> (xem <a href="#b2-log" style="font-weight:700;cursor:pointer">B2.2.6 &#8599;</a>). Lúc này chỉ Admin/Ops can thiệp được.</li>
+  <li><b>Sau khi đã có hoá đơn</b> &mdash; ngày đã lên hoá đơn khoá vĩnh viễn, chỉ Admin/Ops can thiệp được. Nhưng <b>ngày còn trống nằm giữa khoảng hoá đơn thì vẫn log bù được</b> &mdash; xem <a href="#b2-log" style="font-weight:700;cursor:pointer">B2.2.6 &#8599;</a>.</li>
   </ul>
   <figure><img src="tsx-01-entry-actions.png" alt="Nút xoá và sửa trên entry chưa submit"/><figcaption><b>B2.x.4</b> &mdash; <b>&#9312;</b> <b>&#10005;</b> xoá &middot; <b>&#9313;</b> bấm thân entry để sửa. Chỉ có trên entry <b>tím nhạt</b>; entry tím đậm không có hai thứ này.</figcaption></figure>
 </li>
