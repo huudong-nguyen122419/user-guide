@@ -48,7 +48,7 @@
   .navsearch.has .clr,.navsearch.has .cnt{display:block}
   /* khi đang tìm: chỉ hiện mục khớp, không phụ thuộc flow đang mở */
   nav.searching a{display:none !important}
-  nav.searching a.hit{display:block !important}
+  nav.searching a.hit,nav.searching a.kid{display:block !important}
   nav.searching .grp{display:none}
   nav.searching .grp.hit{display:block}
   nav a mark{background:#FDE68A;color:inherit;border-radius:2px;padding:0 1px}
@@ -1340,7 +1340,7 @@
   function reset(){
     nav.classList.remove('searching');
     wrap.classList.remove('has');
-    links.forEach(function(a,i){ a.classList.remove('hit'); a.innerHTML=orig[i]; });
+    links.forEach(function(a,i){ a.classList.remove('hit'); a.classList.remove('kid'); a.innerHTML=orig[i]; });
     groups.forEach(function(g){ g.classList.remove('hit'); });
     cnt.textContent='';
   }
@@ -1359,13 +1359,20 @@
       var s=f.map[at], e=f.map[Math.min(at+nq.length-1, f.map.length-1)]+1;
       a.innerHTML=esc(raw.slice(0,s))+'<mark>'+esc(raw.slice(s,e))+'</mark>'+esc(raw.slice(e));
     });
+    /* khớp tên một flow lớn -> mở luôn toàn bộ step con của flow đó */
+    var items=Array.prototype.slice.call(nav.children), inFlow=false;
+    items.forEach(function(el){
+      if(el.tagName!=='A'){ if(el.classList && el.classList.contains('grp')) inFlow=false; return; }
+      if(el.classList.contains('flow')){ inFlow = el.classList.contains('hit'); el.classList.remove('kid'); return; }
+      el.classList.toggle('kid', inFlow && !el.classList.contains('hit'));
+    });
     /* nhãn nhóm chỉ hiện khi bên dưới nó còn mục khớp */
-    var kids=Array.prototype.slice.call(nav.children), cur=null, seen=false;
-    kids.forEach(function(el){
+    var cur=null, seen=false;
+    items.forEach(function(el){
       if(el.classList && el.classList.contains('grp')){
         if(cur) cur.classList.toggle('hit', seen);
         cur=el; seen=false;
-      } else if(el.tagName==='A' && el.classList.contains('hit')){ seen=true; }
+      } else if(el.tagName==='A' && (el.classList.contains('hit')||el.classList.contains('kid'))){ seen=true; }
     });
     if(cur) cur.classList.toggle('hit', seen);
     cnt.textContent = n ? (n+(n>1?' results':' result')) : 'No match';
