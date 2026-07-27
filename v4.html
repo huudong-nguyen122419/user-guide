@@ -199,14 +199,16 @@
     <a class="flow tal" data-page="page-b2"><span class="n">B2</span> Talent · log &amp; submit timesheet</a>
     <a href="#b2-open" class="st" data-page="page-b2">B2.1 · Mở Timesheet</a>
     <a href="#b2-log" class="st" data-page="page-b2">B2.2 · Log work</a>
-    <a href="#b2-submit" class="st" data-page="page-b2">B2.3 · Submit (hours to bill)</a>
+    <a href="#b2-submit" class="st" data-page="page-b2">B2.3 · Submit &amp; Edit timesheet</a>
     <a href="#b2-verify" class="st" data-page="page-b2">B2.4 · Kiểm tra sau submit</a>
+    <a href="#b2-expense" class="st" data-page="page-b2">B2.5 · Expense report</a>
     <a href="#b2-edge" class="st edge" data-page="page-b2">B2.x · Edge cases</a>
     <a href="#bt-1" class="st2" data-page="page-b2">B2.x.1 · Daily — Day(s) to bill</a>
     <a href="#bt-2" class="st2" data-page="page-b2">B2.x.2 · Log/submit theo đợt</a>
     <a href="#bt-3" class="st2" data-page="page-b2">B2.x.3 · Submit một phần</a>
     <a href="#bt-4" class="st2" data-page="page-b2">B2.x.4 · Lỡ tay</a>
-    <a href="#bt-5" class="st2" data-page="page-b2">B2.x.5 · Expense report</a>
+    <a href="#bt-5" class="st2" data-page="page-b2">B2.x.5 · Nhiều project</a>
+    <a href="#bt-6" class="st2" data-page="page-b2">B2.x.6 · Ask question</a>
     <a class="flow adm" data-page="page-b3"><span class="n">B3</span> Timesheet → invoice (Admin)</a>
     <a href="#b3-sync" class="st" data-page="page-b3">B3.1 · Xem &amp; Sync Data</a>
     <a href="#b3-view" class="st" data-page="page-b3">B3.2 · View Timesheets</a>
@@ -736,7 +738,7 @@
   <figure><img src="sdrx-ts-10-talent-login.png" alt="Màn đăng nhập talent portal"/><figcaption><b>B2.1.1</b> &mdash; màn <b>Independent Consultant Sign In</b> của talent portal.</figcaption></figure></li>
 <li data-code="B2.1.2">Mở menu <b>&#9776;</b> (góc trên-trái) &rarr; nhóm <b>Work</b> &rarr; <b>Timesheet</b>. <span class="fn">(Timesheet nằm trong menu &#9776;, không có ở thanh điều hướng dưới cùng.)</span>
   <figure><img src="sdrx-ts-17-talent-work-menu.png" alt="Menu Work → Timesheet"/><figcaption><b>B2.1.2</b> &mdash; <b>&#9312;</b> menu <b>Work</b> &middot; <b>&#9313;</b> mục <b>Timesheet</b>.</figcaption></figure></li>
-<li data-code="B2.1.3"><b>Chọn project cần log.</b> Nếu talent <b>chỉ có 1 contract Active</b> thì hệ thống <b>tự chọn sẵn</b> project đó (tên hiện ở thanh trên cùng, kèm nhãn <b>Ongoing</b>). Có nhiều contract thì bấm vào thanh đó để đổi project.
+<li data-code="B2.1.3"><b>Chọn project cần log.</b> Nếu talent <b>chỉ có 1 contract Active</b> thì hệ thống <b>tự chọn sẵn</b> project đó (tên hiện ở thanh trên cùng, kèm nhãn <b>Ongoing</b>) &mdash; không phải làm gì. Có <b>nhiều contract Active</b> thì <b>bấm vào chính thanh đó</b> để mở danh sách và đổi project; mỗi project có lịch, số tổng và hàng chờ submit <b>riêng</b>. Chi tiết ở <a href="#bt-5" style="font-weight:700;cursor:pointer">B2.x.5 &#8599;</a>.
   <figure><img src="sdrx-ts-18-talent-project-bar.png" alt="Thanh chọn project"/><figcaption><b>B2.1.3</b> &mdash; thanh project (nhãn <b>Ongoing</b>); chỉ 1 contract Active thì hệ thống tự chọn.</figcaption></figure></li>
 <li data-code="B2.1.4"><b>Đọc panel tổng</b> trước khi làm gì &mdash; ba con số này là thước đo cả flow:
   <div class="tblwrap"><table>
@@ -747,6 +749,22 @@
   <tr><td><b>… pending submission</b></td><td>Giờ đã log nhưng <b>chưa submit</b>. Bằng <b>0h</b> thì nút Submit bị mờ.</td></tr>
   </tbody></table></div>
   <figure><img src="sdrx-ts-01-talent-summary.png" alt="Panel tổng của Timesheet"/><figcaption><b>B2.1.4</b> &mdash; <b>&#9312;</b> submitted = hours to bill &middot; <b>&#9313;</b> Worked = giờ log &middot; <b>&#9314;</b> nút Submit bật khi có giờ pending.</figcaption></figure>
+</li>
+<li data-code="B2.1.5"><b>Khai <i>billing address</i> và <i>payment info</i> &mdash; làm sớm, đừng để đến lúc submit.</b> Talent có contract Active mà <b>chưa khai</b> thì vẫn <b>log work bình thường</b>, nhưng đến bước submit hộp thoại sẽ <b>không có nút Submit</b>, thay bằng cảnh báo:
+  <p class="fn" style="margin:6px 0"><i>&ldquo;Update your billing or payment details &mdash; Due to UK DAC7 regulations, we're required to collect additional billing or tax information from freelancers with an active contract&hellip;&rdquo;</i></p>
+  <figure><img src="tsx-08-billing-block.png" alt="Hộp submit bị chặn vì thiếu billing"/><figcaption><b>B2.1.5</b> &mdash; <b>&#9312;</b> chỗ đáng ra là nút Submit &rarr; thành cảnh báo <b>DAC7</b> &middot; <b>&#9313;</b> nút <b>Update billing</b> &middot; <b>&#9314;</b> danh sách ngày vẫn hiện bình thường (nên dễ tưởng là submit được).</figcaption></figure>
+</li>
+<li data-code="B2.1.6"><b>Khai ở đâu:</b> bấm <b>Update billing</b> trong cảnh báo, hoặc vào thẳng <b>My Profile &rarr; My Earnings</b> (<code>/earnings</code>). Trang này có <b>hai thẻ riêng biệt</b>, phải điền <b>cả hai</b>:
+  <figure><img src="tsx-09-earnings.png" alt="Trang My Earnings"/><figcaption><b>B2.1.6</b> &mdash; <b>&#9312;</b> <b>Billing</b> (địa chỉ xuất hoá đơn) &middot; <b>&#9313;</b> <b>Payment method</b> (tài khoản nhận tiền) &middot; <b>&#9314;</b> Paid Earnings &middot; Referral Earnings &middot; Pending Invoices.</figcaption></figure>
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>Add billing address</b> &rarr; drawer <b>Tax &amp; Payment Information</b>: <b>Account Type</b> (Individual Professional / Firm&nbsp;&mdash;&nbsp;Company) &middot; họ tên &middot; <b>Birthday</b> &middot; email &middot; điện thoại &middot; <b>Address / City / Postcode / Country</b> &middot; <b>Tax Identification Number (TIN)</b>. Có cả <b>Recipients / Cc / Bcc</b> &mdash; địa chỉ nhận hoá đơn. Các ô có <b style="color:#E11D48">*</b> là bắt buộc.
+    <figure><img src="tsx-10-billing-form.png" alt="Form Tax & Payment Information"/><figcaption><b>B2.1.6a</b> &mdash; <b>&#9312;</b> Account Type &middot; <b>&#9313;</b> thông tin cá nhân &middot; <b>&#9314;</b> địa chỉ &middot; <b>&#9315;</b> <b>TIN bắt buộc</b>, VAT tuỳ chọn.</figcaption></figure>
+  </li>
+  <li><b>Add payment method</b> &rarr; một ô <b>Bank info</b> duy nhất (text tự do: tên ngân hàng, số tài khoản / IBAN / SWIFT&hellip;) &rarr; <b>Save</b>.
+    <figure><img src="tsx-11-payment-form.png" alt="Form Add payment method"/><figcaption><b>B2.1.6b</b> &mdash; <b>&#9312;</b> ô <b>Bank info</b> &middot; <b>&#9313;</b> <b>Save</b>.</figcaption></figure>
+  </li>
+  </ul>
+  <div class="call note"><span class="t">Điểm dễ hiểu nhầm</span>Thiếu billing address <b>không chặn việc log work</b> &mdash; đã kiểm chứng: entry vẫn tạo được, số <b>pending submission</b> vẫn tăng. Chặn chỉ xảy ra <b>ở bước submit</b>. Vì vậy talent có thể log cả tuần rồi mới phát hiện không submit được.</div>
 </li>
 </ol>
 
@@ -759,26 +777,36 @@
 <li data-code="B2.2.3">Cửa sổ <b>Record New Timesheet Entry</b> mở ra &mdash; kiểm tra lại <b>Date</b>, sửa <b>giờ bắt đầu / kết thúc</b> cho chính xác, và <b>bắt buộc nhập Note</b> (mô tả công việc, sẽ in ra ở phụ lục hoá đơn).
   <figure><img src="sdrx-ts-02-talent-log-entry.png" alt="Modal Record New Timesheet Entry"/><figcaption><b>B2.2.3</b> &mdash; Date &middot; giờ bắt đầu&ndash;kết thúc &middot; <b>Note (bắt buộc)</b> &rarr; <b>Create</b>.</figcaption></figure>
 </li>
-<li data-code="B2.2.4">Bấm <b>Create</b>. Entry hiện lên lịch với màu <b>tím nhạt</b> = <b>chưa submit</b> (còn nút <b>&#10005;</b> để xoá). Entry <b>tím đậm</b> là đã submit &mdash; <b>bị khoá</b>.
+<li data-code="B2.2.4">Bấm <b>Create</b>. Entry hiện lên lịch với màu <b>tím nhạt</b> = <b>chưa submit</b>. Entry <b>tím đậm</b> là đã submit &mdash; <b>bị khoá</b>.
   <figure><img src="sdrx-ts-03-talent-entry-states.png" alt="Entry chưa submit và đã submit"/><figcaption><b>B2.2.4</b> &mdash; tím <b>nhạt</b> = chưa submit (sửa/xoá được) &middot; tím <b>đậm</b> = đã submit (khoá).</figcaption></figure>
 </li>
-<li data-code="B2.2.5"><b>Ngày nào log được?</b> Ô ngày bị làm mờ là không log được:
+<li data-code="B2.2.5"><b>Sửa hoặc xoá entry chưa submit.</b> Hai thao tác khác nhau, dễ nhầm:
   <ul style="margin:6px 0 0;padding-left:18px">
-  <li>Ngày <b>trước Start date</b> của contract.</li>
-  <li>Ngày <b>đã submit</b> rồi (đã khoá).</li>
-  <li>Ngày <b>trong tương lai</b> (sau hôm nay).</li>
+  <li><b>Bấm vào thân entry</b> &rarr; mở <b>Modify Timesheet Entry</b> &mdash; đổi giờ hoặc Note rồi <b>Update</b>.</li>
+  <li><b>Bấm &#10005; ở góc trên-phải entry</b> &rarr; <b>xoá</b> hẳn entry đó.</li>
   </ul>
-
-  <figure><img src="sdrx-ts-21-talent-disabled-days.png" alt="Ngày không log được"/><figcaption><b>B2.2.5</b> &mdash; <b>&#9312;</b> ngày bị làm mờ = không log được &middot; <b>&#9313;</b> hôm nay.</figcaption></figure></li>
+  <figure><img src="tsx-01-entry-actions.png" alt="Sửa và xoá entry"/><figcaption><b>B2.2.5</b> &mdash; <b>&#9312;</b> nút <b>&#10005;</b> xoá &middot; <b>&#9313;</b> bấm thân entry để <b>sửa</b> &middot; <b>&#9314;</b> chú thích màu (đã submit / đang chờ) &middot; <b>&#9315;</b> số giờ đang chờ submit.</figcaption></figure>
+</li>
+<li data-code="B2.2.6"><b>Ngày nào log được?</b> Ô ngày bị làm mờ là không log được &mdash; <b>bốn</b> trường hợp:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Trường hợp</th><th>Vì sao</th></tr></thead>
+  <tbody>
+  <tr><td>Ngày <b>trước Start date</b> của contract</td><td>Chưa phát sinh công việc theo hợp đồng.</td></tr>
+  <tr><td>Ngày <b>đã submit</b></td><td>Đã chốt hours to bill, khoá lại.</td></tr>
+  <tr><td>Ngày <b>trong tương lai</b></td><td>Chỉ log được việc đã làm.</td></tr>
+  <tr><td>Ngày nằm <b>trong khoảng đã có invoice</b></td><td>Admin đã xuất hoá đơn cho khoảng đó &mdash; <b>khoá cả những ngày còn trống</b> trong khoảng, không riêng ngày đã log.</td></tr>
+  </tbody></table></div>
+  <p class="fn"><b>Ví dụ trường hợp thứ tư:</b> Start date 01/07. Talent log ngày <b>3, 5, 8</b> rồi submit. Ngày 10/07 Admin tạo client invoice phủ khoảng <b>03&ndash;08/07</b>. Từ lúc đó các ngày <b>4, 6, 7</b> &mdash; dù chưa hề log &mdash; <b>không log thêm được nữa</b>, vì chúng nằm trong khoảng đã xuất hoá đơn. Quên ngày nào thì phải báo Admin/Ops.</p>
+  <figure><img src="sdrx-ts-21-talent-disabled-days.png" alt="Ngày không log được"/><figcaption><b>B2.2.6</b> &mdash; <b>&#9312;</b> ngày bị làm mờ = không log được &middot; <b>&#9313;</b> hôm nay.</figcaption></figure></li>
 </ol>
 
-<h3 id="b2-submit" class="anchor">B2.3 &middot; Submit timesheet (chốt Hour(s) to bill)</h3>
+<h3 id="b2-submit" class="anchor">B2.3 &middot; Submit &amp; Edit timesheet (chốt Hour(s) to bill)</h3>
 <div class="call warn"><span class="t">Submit là một chiều</span>Hộp xác nhận ghi rõ: <b>&ldquo;Once submitted, it cannot be edited&rdquo;</b>. Soát kỹ số giờ trước khi bấm Yes.</div>
 <ol class="steps">
 <li data-code="B2.3.1">Bấm <b>Submit Timesheet</b> (nút chỉ bật khi <b>pending submission &gt; 0h</b>).
   <figure><img src="sdrx-ts-01-talent-summary.png" alt="Nút Submit Timesheet"/><figcaption><b>B2.3.1</b> &mdash; <b>&#9314;</b> nút <b>Submit Timesheet</b> chỉ bật khi còn giờ pending.</figcaption></figure></li>
-<li data-code="B2.3.2">Hộp <b>Select Timesheet for Submission</b> liệt kê <b>từng ngày đang chờ</b>. Mặc định tất cả được tick &mdash; bỏ tick ngày nào chưa muốn submit, hoặc lọc theo khoảng ngày ở ô <b>Timesheet date</b>.
-  <figure><img src="sdrx-ts-04-talent-submit-dialog.png" alt="Danh sách ngày chờ submit"/><figcaption><b>B2.3.2</b> &mdash; mỗi ngày một dòng, có checkbox; lọc thêm bằng <b>Timesheet date</b>.</figcaption></figure></li>
+<li data-code="B2.3.2">Hộp <b>Select Timesheet for Submission</b> liệt kê <b>từng ngày đang chờ</b> (không phải từng entry &mdash; nhiều entry trong một ngày được gộp lại). Mặc định <b>tất cả được tick</b>; đầu hộp có bộ đếm <b>&ldquo;N working days selected&rdquo;</b> và link <b>Uncheck all</b>. Lọc thêm bằng ô <b>Timesheet date</b> (From &rarr; To).
+  <figure><img src="tsx-02-submit-dialog.png" alt="Cấu trúc hộp Select Timesheet for Submission"/><figcaption><b>B2.3.2</b> &mdash; <b>&#9312;</b> bộ đếm + <b>Uncheck all</b> &middot; <b>&#9313;</b> cột <b>Hour(s) to bill</b> sửa được &middot; <b>&#9314;</b> nút submit ghi rõ số ngày đang chọn.</figcaption></figure></li>
 <li data-code="B2.3.3"><b>Điều chỉnh <i>Hour(s) to bill</i></b> nếu cần. Mỗi dòng có 2 cột:
   <div class="tblwrap"><table>
   <thead><tr><th>Cột</th><th>Sửa được?</th><th>Ý nghĩa</th></tr></thead>
@@ -786,10 +814,10 @@
   <tr><td><b>Hour(s) worked</b></td><td>Không</td><td>Đúng số giờ đã log &mdash; giữ nguyên để đối chiếu.</td></tr>
   <tr><td><b>Hour(s) to bill</b></td><td><b>Có</b></td><td>Số giờ thực sự đem tính tiền. Mặc định bằng số giờ log; giảm xuống nếu thoả thuận chỉ tính một phần.</td></tr>
   </tbody></table></div>
-  <figure><img src="sdrx-ts-04-talent-submit-dialog.png" alt="Hộp Select Timesheet for Submission"/><figcaption><b>B2.3.3</b> &mdash; <b>&#9312;&#9313;</b> sửa <b>Hour(s) to bill</b> từng ngày &middot; <b>&#9314;</b> <b>Submit all N working days</b>.</figcaption></figure>
+  <p class="fn"><b>Thế nào là &ldquo;đã edit&rdquo;:</b> khi hai cột của cùng một dòng <b>khác nhau</b>. Bằng nhau = giữ nguyên giờ log; khác nhau = talent đã chủ động chốt lại số giờ tính tiền.</p>
+  <figure><img src="tsx-03-edit-tobill.png" alt="Đã sửa hours to bill và bỏ tick một ngày"/><figcaption><b>B2.3.3</b> &mdash; ví dụ thật: <b>&#9312;</b> worked <b>02:30:00</b> &middot; <b>&#9313;</b> to bill <b>02:00:00</b> &rarr; <b>khác nhau = đã edit</b>. <b>&#9314;</b> dòng Jul 10 bị bỏ tick (chuyển sang nền trắng) &middot; <b>&#9315;</b> bộ đếm còn <b>1 working day selected</b>.</figcaption></figure>
 </li>
-<li data-code="B2.3.4">Bấm <b>Submit all N working days</b>.
-  <figure><img src="sdrx-ts-04-talent-submit-dialog.png" alt="Nút Submit all"/><figcaption><b>B2.3.4</b> &mdash; nút <b>Submit all N working days</b> ở cuối hộp thoại.</figcaption></figure></li>
+<li data-code="B2.3.4"><b>Quyết định submit ngày nào.</b> Nút ở cuối hộp <b>đổi chữ theo số dòng đang tick</b>: tick cả 2 ngày &rarr; <b>Submit all 2 working days</b>; bỏ tick còn 1 &rarr; <b>Submit 1 working day</b>. Đọc nút này trước khi bấm &mdash; đó là cách nhanh nhất để biết mình đang chốt bao nhiêu ngày. Chi tiết ở <a href="#bt-3" style="font-weight:700;cursor:pointer">B2.x.3 &#8599;</a>.</li>
 <li data-code="B2.3.5">Hộp xác nhận <b>Submit Timesheet</b> hiện ra &rarr; bấm <b>Yes</b>. <span class="fn">(Bấm No thì quay lại sửa tiếp; nếu bỏ qua hộp này thì mọi thao tác sau đó đều không ăn.)</span>
   <figure><img src="sdrx-ts-05-talent-confirm.png" alt="Hộp xác nhận submit"/><figcaption><b>B2.3.5</b> &mdash; <b>&ldquo;Once submitted, it cannot be edited&rdquo;</b> &rarr; <b>Yes</b>.</figcaption></figure>
 </li>
@@ -797,14 +825,39 @@
 
 <h3 id="b2-verify" class="anchor">B2.4 &middot; Kiểm tra lại sau khi submit</h3>
 <ol class="steps">
-<li data-code="B2.4.1"><b>pending submission</b> phải về <b>0h</b>.
-  <figure><img src="sdrx-ts-22-talent-after-submit.png" alt="Panel sau khi submit"/><figcaption><b>B2.4.1&ndash;B2.4.3</b> &mdash; <b>&#9312;</b> submitted / worked / <b>pending 0h</b> &middot; <b>&#9313;</b> ô tím đậm = đã submit, không sửa được &middot; <b>&#9314;</b> chú thích màu.</figcaption></figure></li>
-<li data-code="B2.4.2"><b>submitted</b> tăng đúng bằng tổng <i>hours to bill</i> vừa chốt; <b>Worked</b> tăng đúng bằng tổng giờ đã log.
-  <p class="fn"><b>Ví dụ thật:</b> trước khi submit: submitted 14:40 / worked 16:30. Log thêm 4h (03/07) + 3h (04/07) = 7h, submit với to bill 3:30 + 3:00 = 6:30.
-  Sau khi submit: <b>submitted 21:10</b> (14:40 + 6:30) &middot; <b>worked 23:30</b> (16:30 + 7:00) &middot; pending <b>0h</b>.</p>
+<li data-code="B2.4.1"><b><i>pending submission</i> phải giảm đúng bằng phần vừa submit</b> &mdash; <b>không nhất thiết về 0h</b>:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Vừa làm gì</th><th>pending sau đó</th></tr></thead>
+  <tbody>
+  <tr><td>Tick <b>hết</b> các ngày rồi submit</td><td><b>0h</b></td></tr>
+  <tr><td>Bỏ tick một số ngày (submit một phần)</td><td><b>&gt; 0h</b> &mdash; đúng bằng số giờ của những ngày còn lại</td></tr>
+  </tbody></table></div>
+  <p class="fn">Thấy pending &gt; 0 sau khi submit thì <b>không phải lỗi</b> &mdash; kiểm tra lại xem còn ngày nào chưa tick.</p>
 </li>
-<li data-code="B2.4.3">Ngày vừa submit chuyển sang <b>tím đậm</b> và <b>không sửa được nữa</b>.</li>
+<li data-code="B2.4.2"><b>submitted</b> tăng đúng bằng tổng <i>hours to bill</i> vừa chốt; <b>Worked</b> tăng đúng bằng tổng <i>giờ đã log</i>. Hai số này lệch nhau chính là phần đã edit ở <a href="#b2-submit" style="font-weight:700;cursor:pointer">B2.3.3 &#8599;</a>.
+  <p class="fn"><b>Ví dụ 1 &mdash; submit hết:</b> trước: submitted 14:40 / worked 16:30. Log thêm 4h (03/07) + 3h (04/07) = 7h, submit với to bill 3:30 + 3:00 = 6:30.
+  Sau: <b>submitted 21:10</b> (14:40 + 6:30) &middot; <b>worked 23:30</b> (16:30 + 7:00) &middot; pending <b>0h</b>.</p>
+  <p class="fn"><b>Ví dụ 2 &mdash; submit một phần:</b> trước: submitted 21:10 / worked 23:30 / pending 0h. Log 08/07 (2:30) và 10/07 (1:30) &rarr; pending <b>4h</b>. Chỉ tick 08/07, sửa to bill xuống <b>2:00</b> rồi submit.
+  Sau: <b>submitted 23:10</b> (+2:00 = hours to bill) &middot; <b>Worked 26:00</b> (+2:30 = giờ log) &middot; pending <b>1:30</b> (ngày 10/07 còn lại).</p>
+</li>
+<li data-code="B2.4.3"><b>Ngày vừa submit chuyển sang tím đậm</b> và không sửa được nữa; ngày <b>bỏ lại vẫn tím nhạt</b>, vẫn còn nút <b>&#10005;</b>, vẫn sửa được.
+  <figure><img src="tsx-04-after-partial.png" alt="Sau khi submit một phần"/><figcaption><b>B2.4</b> &mdash; ví dụ 2 ở trên: <b>&#9312;</b> Jul 8 <b>tím đậm</b> = đã chốt &middot; <b>&#9313;</b> Jul 10 <b>tím nhạt</b> = vẫn chờ &middot; <b>&#9314;</b> pending <b>1h30</b> (không về 0) &middot; <b>&#9315;</b> đầu cột ngày đã submit hiện <b>02:00 = hours to bill</b>, không phải 02:30 giờ log.</figcaption></figure>
+</li>
+<li data-code="B2.4.4"><b>Kiểm tra chú thích màu.</b> Khung <b>Calendar</b> góc trên-phải liệt kê đúng những trạng thái đang có trên lịch: <b>Dates already submitted</b> (xanh lá / tím đậm) và <b>Dates pending submission</b> (tím nhạt). Không còn dòng <i>pending</i> nghĩa là đã submit hết.</li>
 </ol>
+<h3 id="b2-expense" class="anchor">B2.5 &middot; Khai expense report (nếu có chi phí phát sinh)</h3>
+<div class="call note"><span class="t">Không bắt buộc</span>Talent <b>có thể khai hoặc không</b>. Đã khai thì khoản đó <b>được cộng vào client invoice</b> cùng đợt &mdash; tách riêng khỏi tiền công, không đụng đến số giờ.</div>
+<ol class="steps">
+<li data-code="B2.5.1">Bấm <b>+ Add expense report</b> (ngay dưới <b>Submit Timesheet</b>) &rarr; hộp <b>Add new expense report</b>.</li>
+<li data-code="B2.5.2"><b>Điền các trường bắt buộc:</b> <b>Expense report date</b> (ngày phát sinh) &middot; <b>Description</b> (mô tả, sẽ đi vào hoá đơn) &middot; <b>Currency</b> (mặc định lấy theo contract) &middot; <b>Quantity</b> &middot; <b>Amount</b>. Dòng <b>Total</b> tự tính = Quantity &times; Amount. Có thể <b>Upload file</b> đính kèm hoá đơn gốc.
+  <figure><img src="tsx-05-expense-form.png" alt="Form Add new expense report"/><figcaption><b>B2.5.2</b> &mdash; <b>&#9312;</b> ngày + mô tả &middot; <b>&#9313;</b> Currency &middot; Quantity &middot; Amount &middot; <b>&#9314;</b> <b>Total</b> tự tính &middot; <b>&#9315;</b> đính kèm hoá đơn.</figcaption></figure>
+</li>
+<li data-code="B2.5.3">Bấm <b>Save</b>. Panel bên phải đổi từ <b>0 expense report</b> thành <b>1 expense report</b>.</li>
+<li data-code="B2.5.4"><b>Xem lại / sửa / xoá:</b> bấm vào dòng <b>N expense report</b> &rarr; hộp <b>Expense reports</b>: mỗi khoản một dòng (ngày &middot; mô tả &middot; Amount &middot; Quantity &middot; <b>Total Amount</b>) kèm nút <b>&#9998;</b> sửa và <b>&#128465;</b> xoá, lọc theo <b>Expense date</b>, và <b>Grand total</b> ở cuối.
+  <figure><img src="tsx-06-expense-list.png" alt="Danh sách expense reports"/><figcaption><b>B2.5.4</b> &mdash; <b>&#9312;</b> mỗi khoản một dòng &middot; <b>&#9313;</b> sửa / xoá &middot; <b>&#9314;</b> <b>Grand total</b> &mdash; số này sẽ cộng vào client invoice.</figcaption></figure>
+</li>
+</ol>
+
 <p>Xong bước này thì đến lượt Admin: <a data-goto="page-b3" style="font-weight:700;cursor:pointer">B3 &middot; Manage timesheet &rarr; invoice &#8599;</a>.</p>
 
 <h3 id="b2-edge" class="edgehead anchor">B2.x &middot; Edge cases</h3>
@@ -814,9 +867,37 @@
   <div class="call warn"><span class="t">Đang có sai lệch hiển thị</span>Khi sửa <b>Hour(s) to bill</b>, cột <b>Day(s) to bill</b> trong hộp này <b>không tính lại ngay</b> (vẫn hiện số quy từ giờ đã log). Số tiền trên hoá đơn thì <b>vẫn đúng</b> (quy từ hours to bill). Xem <a data-goto="page-b3" href="#ba-4" style="font-weight:700;cursor:pointer">B3.x.4 &#8599;</a>.</div>
 </li>
 <li id="bt-2" data-code="B2.x.2"><b>Log mỗi ngày hay gom nhiều ngày rồi submit một lần?</b> Cả hai đều được &mdash; tuỳ talent. Có thể log xong một ngày là submit ngay, hoặc log cả tuần rồi submit một lượt (hộp submit liệt kê tất cả ngày đang chờ).</li>
-<li id="bt-3" data-code="B2.x.3"><b>Bỏ tick để submit một phần.</b> Không bắt buộc submit hết &mdash; bỏ tick những ngày chưa chắc chắn, submit số còn lại trước; ngày bỏ lại vẫn nằm ở <b>pending submission</b>.</li>
-<li id="bt-4" data-code="B2.x.4"><b>Lỡ tay thì xử lý thế nào?</b> Trước khi submit: bấm <b>&#10005;</b> trên entry để xoá rồi log lại. <b>Sau khi submit thì không sửa được</b> &mdash; phải báo Admin/Ops xử lý.</li>
-<li id="bt-5" data-code="B2.x.5"><b>Expense report.</b> Nút <b>+ Add expense report</b> ngay dưới Submit Timesheet dùng để khai chi phí phát sinh, tách khỏi số giờ công.</li>
+<li id="bt-3" data-code="B2.x.3"><b>Submit một phần &mdash; log 3 ngày nhưng chỉ chốt 2.</b> Hộp submit là nơi <b>quyết định ngày nào được chốt</b>, không phải nút &ldquo;gửi tất cả&rdquo;.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Thao tác</th><th>Kết quả ngay trên hộp</th></tr></thead>
+  <tbody>
+  <tr><td>Mở hộp</td><td>Mọi ngày đang chờ đều <b>được tick sẵn</b>; bộ đếm ghi <b>&ldquo;N working days selected&rdquo;</b>.</td></tr>
+  <tr><td><b>Bỏ tick</b> một dòng</td><td>Dòng đó chuyển từ nền tím sang <b>nền trắng</b>; bộ đếm giảm; chữ trên nút đổi theo (<b>Submit 1 working day</b>).</td></tr>
+  <tr><td><b>Uncheck all</b></td><td>Bỏ tick toàn bộ &mdash; dùng khi chỉ muốn chốt đúng một hai ngày, tick lại cho nhanh.</td></tr>
+  <tr><td>Lọc <b>Timesheet date</b></td><td>Thu hẹp danh sách theo khoảng ngày, tiện khi hàng chờ dài.</td></tr>
+  </tbody></table></div>
+  <p class="fn"><b>Ví dụ:</b> talent log ngày <b>5, 6, 7</b> nhưng ngày 7 còn phải xác nhận lại với client &rarr; bỏ tick ngày 7, bấm <b>Submit 2 working days</b>. Ngày 5 và 6 <b>khoá lại</b> (tím đậm); ngày 7 <b>vẫn tím nhạt</b>, vẫn sửa/xoá được, và vẫn nằm trong <b>pending submission</b> &mdash; hôm sau chốt tiếp trong một đợt submit khác.</p>
+  <p class="fn">Hệ quả: <b>một contract có thể có nhiều đợt submit</b>, và Admin cũng có thể xuất nhiều đợt hoá đơn tương ứng &mdash; xem <a data-goto="page-b3" href="#ba-3" style="font-weight:700;cursor:pointer">B3.x.3 &#8599;</a>.</p>
+</li>
+<li id="bt-4" data-code="B2.x.4"><b>Lỡ tay thì xử lý thế nào?</b>
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>Trước khi submit</b> &mdash; sửa được: bấm <b>thân entry</b> để mở <b>Modify Timesheet Entry</b> (đổi giờ/Note &rarr; <b>Update</b>), hoặc bấm <b>&#10005;</b> để xoá hẳn rồi log lại.</li>
+  <li><b>Sau khi submit</b> &mdash; <b>không sửa được</b>, hộp xác nhận đã ghi rõ <i>&ldquo;Once submitted, it cannot be edited&rdquo;</i>. Phải báo Admin/Ops xử lý trước khi hoá đơn được xuất.</li>
+  <li><b>Sau khi đã có hoá đơn</b> &mdash; ngoài ngày đã log, <b>cả những ngày còn trống trong khoảng hoá đơn cũng bị khoá</b> (xem <a href="#b2-log" style="font-weight:700;cursor:pointer">B2.2.6 &#8599;</a>). Lúc này chỉ Admin/Ops can thiệp được.</li>
+  </ul>
+  <figure><img src="tsx-01-entry-actions.png" alt="Nút xoá và sửa trên entry chưa submit"/><figcaption><b>B2.x.4</b> &mdash; <b>&#9312;</b> <b>&#10005;</b> xoá &middot; <b>&#9313;</b> bấm thân entry để sửa. Chỉ có trên entry <b>tím nhạt</b>; entry tím đậm không có hai thứ này.</figcaption></figure>
+</li>
+<li id="bt-5" data-code="B2.x.5"><b>Talent có nhiều contract Active cùng lúc.</b> Thanh project trên cùng khi đó là một <b>bộ chọn</b> &mdash; bấm vào để đổi sang project khác. Cần nhớ:
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li>Lịch, ba con số tổng (<i>submitted / Worked / pending</i>), hàng chờ submit và expense report <b>đều theo từng project</b> &mdash; đổi project là đổi toàn bộ dữ liệu trên màn hình.</li>
+  <li><b>Submit không gộp giữa các project</b>: mỗi project phải submit riêng, và Admin cũng xuất hoá đơn riêng theo contract.</li>
+  <li>URL mang theo <code>?projectId=&hellip;</code> &mdash; nếu thấy số liệu &ldquo;sai&rdquo;, việc đầu tiên là kiểm tra tên project trên thanh trên cùng có đúng không.</li>
+  </ul>
+  <figure><img src="sdrx-ts-18-talent-project-bar.png" alt="Thanh chọn project"/><figcaption><b>B2.x.5</b> &mdash; thanh project kèm nhãn <b>Ongoing</b>; nhiều contract thì bấm vào đây để đổi.</figcaption></figure>
+</li>
+<li id="bt-6" data-code="B2.x.6"><b>Ask question &mdash; hỏi Fintalent ngay trong flow.</b> Nút <b>Ask question</b> (dưới <i>Add expense report</i>) <b>không mở form</b> mà chuyển thẳng sang <b>Chat</b>, vào đúng cuộc trò chuyện <b>Fintalent Team</b> gắn với contract đang chọn (<code>/chat/&lt;contractId&gt;</code>). Dùng khi lỡ submit sai, thiếu ngày, hoặc không rõ nên tính bao nhiêu giờ.
+  <figure><img src="tsx-07-ask-question.png" alt="Ask question mở chat"/><figcaption><b>B2.x.6</b> &mdash; <b>&#9312;</b> hai luồng chat: <b>Client</b> (Application) và <b>Fintalent Team</b> (Conversation) &middot; <b>&#9313;</b> nội dung &middot; <b>&#9314;</b> ô nhập tin nhắn.</figcaption></figure>
+</li>
 </ol>
 <div class="pagernav"><a data-goto="page-b1"><span class="k">← Prev</span><b>B1 · Invite talents</b></a><a class="next" data-goto="page-b3"><span class="k">Next →</span><b>B3 · Timesheet → invoice (Admin)</b></a></div>
 </section>
