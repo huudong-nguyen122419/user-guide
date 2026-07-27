@@ -196,17 +196,21 @@
     <a href="#em-5-4" class="st2" data-page="page-a5">A5.x.4 · Switch sender safely</a>
     <a href="#em-5-5" class="st2" data-page="page-a5">A5.x.5 · Timeline = A4.6</a>
     <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Talent Active / Passive</a>
-    <a href="#a6-filter" class="st" data-page="page-a6">A6.1 · Lọc Classification = PE/VC</a>
-    <a href="#a6-rule" class="st" data-page="page-a6">A6.2 · Cây quyết định</a>
-    <a href="#a6-check" class="st" data-page="page-a6">A6.3 · Soát từng người</a>
-    <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x · Edge cases &amp; giới hạn</a>
-    <a href="#ec-6-1" class="st2" data-page="page-a6">A6.x.1 · Bộ lọc bỏ sót nhóm A/B</a>
-    <a href="#ec-6-2" class="st2" data-page="page-a6">A6.x.2 · Title lệch work experience</a>
-    <a href="#ec-6-3" class="st2" data-page="page-a6">A6.x.3 · Nhóm C phải dùng WE filter</a>
-    <a href="#ec-6-4" class="st2" data-page="page-a6">A6.x.4 · Business Development</a>
-    <a href="#ec-6-5" class="st2" data-page="page-a6">A6.x.5 · Nhãn công ty có thể sai</a>
-    <a href="#ec-6-6" class="st2" data-page="page-a6">A6.x.6 · Không ghi lý do Passive</a>
-    <a href="#ec-6-7" class="st2" data-page="page-a6">A6.x.7 · Không đụng dữ liệu</a>
+    <a href="#a6-model" class="st" data-page="page-a6">A6.1 &middot; Three fields</a>
+    <a href="#a6-list" class="st" data-page="page-a6">A6.2 &middot; Build the working list</a>
+    <a href="#a6-rule" class="st" data-page="page-a6">A6.3 &middot; The decision rule</a>
+    <a href="#a6-q1" class="st" data-page="page-a6">A6.4 &middot; Queue 1 — Passive → Active</a>
+    <a href="#a6-q2" class="st" data-page="page-a6">A6.5 &middot; Queue 2 — Active → Passive</a>
+    <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x &middot; Edge cases</a>
+    <a href="#ec-6-1" class="st2" data-page="page-a6">A6.x.1 · In Review queue</a>
+    <a href="#ec-6-2" class="st2" data-page="page-a6">A6.x.2 · ReviewPassive — resubmit</a>
+    <a href="#ec-6-3" class="st2" data-page="page-a6">A6.x.3 · No bulk status update</a>
+    <a href="#ec-6-4" class="st2" data-page="page-a6">A6.x.4 · Title vs work experience</a>
+    <a href="#ec-6-5" class="st2" data-page="page-a6">A6.x.5 · Employers not linked</a>
+    <a href="#ec-6-6" class="st2" data-page="page-a6">A6.x.6 · Group C unreachable</a>
+    <a href="#ec-6-7" class="st2" data-page="page-a6">A6.x.7 · Where the reason lives</a>
+    <a href="#ec-6-8" class="st2" data-page="page-a6">A6.x.8 · Wrong company flags</a>
+    <a href="#ec-6-9" class="st2" data-page="page-a6">A6.x.9 · No operational impact</a>
     <a class="flow adm" data-page="page-b1"><span class="n">B1</span> Invite talents to a project</a>
     <a class="flow tal" data-page="page-b2"><span class="n">B2</span> Talent · log &amp; submit timesheet</a>
     <a href="#b2-open" class="st" data-page="page-b2">B2.1 · Mở Timesheet</a>
@@ -725,97 +729,176 @@
 
 <!-- ===================== A6 · TALENT ACTIVE / PASSIVE ===================== -->
 <section class="page" id="page-a6">
-<h2><span class="who adm">ADMIN</span><span class="n adm">A6 &middot;</span> Talent Active / Passive classification <span class="fn">(lọc Classification &rarr; soát từng người &rarr; đổi status)</span></h2>
-<div class="goal adm"><b>Mục tiêu:</b> tách <b>client</b> (người đang ở bên mua &mdash; quỹ PE hoặc công ty portfolio) ra khỏi <b>talent</b> (nguồn cung). Client &rarr; <b>Passive</b>, không đưa vào luồng mời project. Talent &rarr; <b>Active</b>.</div>
+<h2><span class="who adm">ADMIN</span><span class="n adm">A6 &middot;</span> Talent Active / Passive classification <span class="fn">(filter &rarr; review &rarr; update status)</span></h2>
+<div class="goal adm"><b>Goal:</b> keep <b>clients</b> out of the talent supply. A <b>client</b> is someone who currently sits on the <b>buy side</b> &mdash; holding a role at a PE fund (groups A/B) or running a PE-backed portfolio company (group C). Clients must be <b>Passive</b> so they never enter the project-invitation flow. Everyone else is <b>talent</b> and must be <b>Active</b>.</div>
+<div class="call warn"><span class="t">Production is read-only for this flow</span>Run the filters and read the data on production, but <b>never change a status there</b> while the rule is still being tuned. Do every status change on <b>UAT</b> first and confirm the result before touching live records.</div>
 
-<h3 id="a6-filter" class="anchor">A6.1 &middot; Lọc đầu vào &mdash; Classification = PE/VC</h3>
+<h3 id="a6-model" class="anchor">A6.1 &middot; Three fields you must not confuse</h3>
 <ol class="steps adm">
-<li data-code="A6.1.1"><b>User Management &rarr; Talents &rarr; mở chip <i>Classification</i></b>.</li>
-<li data-code="A6.1.2"><b>Tích đủ 6 ô</b> trong nhánh <b>Private Equity / Venture Capital</b> &mdash; ô cha <u>và</u> cả 5 ô con:
+<li data-code="A6.1.1"><b>Status</b> &mdash; the talent lifecycle field, 9 possible values: <code>Guest</code>, <code>Incomplete</code>, <code>PaymentRequired</code>, <code>InReview</code>, <code>Rejected</code>, <code>Active</code>, <code>Passive</code>, <code>ReviewPassive</code>, <code>Temp</code>. The status chip on a talent profile only lets you switch between <b>Active</b> and <b>Passive</b>; every other value is set by the system or by the review actions in <a href="#a6-edge" style="font-weight:700;cursor:pointer">A6.x &#8599;</a>. The chip is <b>read-only</b> unless the current status is already Active or Passive.</li>
+<li data-code="A6.1.2"><b>Employment Status</b> &mdash; a different field, shown as a line of text on the profile: <i>Full-time Employee</i>, <i>Part-time Employee</i>, <i>Independent Consultant / Freelancer</i>, <i>Unemployed</i>, <i>Other</i>. This is what the legacy automatic rule reads. It is <b>not</b> the same as Status, and it is not evidence of who someone works for.</li>
+<li data-code="A6.1.3"><b>Company Background</b> &mdash; the filter chip formerly labelled <i>Classification</i>. It describes the <b>type of company a talent has worked at across their whole career</b>, inferred by AI from each employer, with a year count attached. It does <u>not</u> say where they work today. Someone who spent one year at a PE fund a decade ago still carries the <i>Private Equity / Venture Capital</i> label. Treat it as a way to <b>narrow the haystack</b>, never as the answer.</li>
+</ol>
+
+<h3 id="a6-list" class="anchor">A6.2 &middot; Build the working list</h3>
+<ol class="steps adm">
+<li data-code="A6.2.1"><b>Open <i>User Management &rarr; Talents</i>.</b> Note the four controls you will use:
+  <figure><img src="a6-01-filter-bar.png" alt="Talents list controls"/><figcaption><b>A6.2.1</b> &mdash; <b>&#9312;</b> <b>Company Background</b> chip &mdash; the first cluster &middot; <b>&#9313;</b> keyword search box with a <b>Simple / Advanced</b> toggle &middot; <b>&#9314;</b> <b>Add filter</b> &mdash; pins filters that are not on the bar by default &middot; <b>&#9315;</b> <b>N In Review</b> &mdash; the review queue, see <a href="#ec-6-1" style="font-weight:700;cursor:pointer">A6.x.1 &#8599;</a>.</figcaption></figure>
+</li>
+
+<li data-code="A6.2.2"><b>First cluster &mdash; Company Background = PE / VC.</b> Open the chip and tick <b>all six boxes</b> in the <i>Private Equity / Venture Capital</i> branch:
   <div class="tblwrap"><table>
-  <thead><tr><th>Ô cần tích</th><th>Số người</th></tr></thead>
+  <thead><tr><th>Box to tick</th><th>People (production)</th></tr></thead>
   <tbody>
-  <tr><td><b>Private Equity / Venture Capital</b> <span class="fn">(ô cha)</span></td><td>262</td></tr>
+  <tr><td><b>Private Equity / Venture Capital</b> <span class="fn">(the parent)</span></td><td>262</td></tr>
   <tr><td>Mega-Cap PE</td><td>16</td></tr>
   <tr><td>Upper Mid-Market PE</td><td>29</td></tr>
   <tr><td>Mid-Market PE</td><td>234</td></tr>
   <tr><td>Venture Capital</td><td>0</td></tr>
   <tr><td>Growth Equity</td><td>4</td></tr>
-  <tr><td><b>Tổng sau khi gộp</b></td><td><b>276</b></td></tr>
+  <tr><td><b>Combined</b></td><td><b>276</b></td></tr>
   </tbody></table></div>
-  <p class="fn"><b>Phải tích cả ô cha lẫn 5 ô con.</b> Tích riêng ô cha ra 262, tích riêng 5 lá ra 276 &mdash; có <b>14 người chỉ mang nhãn lá mà không mang nhãn cha</b>. Thiếu một bên là sót.</p>
-  <figure><img src="tsx-23-classification-not-group.png" alt="Bộ lọc Classification"/><figcaption><b>A6.1.2</b> &mdash; <b>&#9312;</b> hai radio <i>Has / No company background</i>, không đụng tới &middot; <b>&#9313;</b> cây nhóm nền công ty &mdash; cuộn tới nhánh <b>Private Equity / Venture Capital</b> và tích đủ 6 ô.</figcaption></figure>
+  <p class="fn"><b>Tick the parent AND all five children.</b> The parent alone returns 262, the five leaves alone return 276 &mdash; <b>14 people carry only a leaf label and no parent label</b>. Miss either side and you lose them.</p>
 </li>
-<li data-code="A6.1.3"><b>Lưu lại link.</b> Toàn bộ điều kiện nằm trong URL &mdash; lần sau mở link là ra đúng danh sách, không phải dựng lại.</li>
-<li data-code="A6.1.4"><b>Ý nghĩa của danh sách này:</b> đây là những người <b>từng làm</b> ở một công ty được xếp loại PE/VC &mdash; bất kể bao lâu, bất kể chức danh, bất kể còn làm hay đã nghỉ. Nó <b>không</b> có nghĩa họ đang ở bên mua. Việc xác định đó là của <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.2 &#8599;</a>.</li>
+
+<li data-code="A6.2.3"><b>Split into two work queues</b> by adding the <b>Statuses</b> chip:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Queue</th><th>Statuses filter</th><th>What you are looking for</th></tr></thead>
+  <tbody>
+  <tr><td><b>Queue 1</b> &mdash; <a href="#a6-q1" style="font-weight:700;cursor:pointer">A6.3 &#8599;</a></td><td><code>Passive</code></td><td>people wrongly locked out of project invitations</td></tr>
+  <tr><td><b>Queue 2</b> &mdash; <a href="#a6-q2" style="font-weight:700;cursor:pointer">A6.4 &#8599;</a></td><td><code>Active</code></td><td>clients still sitting in the talent pool</td></tr>
+  </tbody></table></div>
+  <p class="fn">Work one queue at a time. Mixing them means you cannot tell which direction a change is going.</p>
+</li>
+
+<li data-code="A6.2.4"><b>Narrow further with the keyword search box.</b> Switch it to <b>Advanced</b> and the syntax hints appear right under it:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Type</th><th>Effect</th></tr></thead>
+  <tbody>
+  <tr><td><code>partner</code></td><td>matches anywhere in the profile text</td></tr>
+  <tr><td><code>"operating partner"</code></td><td>quotes force a whole-word / exact-phrase match</td></tr>
+  <tr><td><code>-consultant</code></td><td>a leading minus <b>excludes</b> the term</td></tr>
+  <tr><td><code>-"business development"</code></td><td>excludes an exact phrase</td></tr>
+  <tr><td>click a pill</td><td>flips it between include and exclude</td></tr>
+  <tr><td>drag a pill onto another</td><td>groups them; the <b>AND / OR</b> control switches how the group joins</td></tr>
+  </tbody></table></div>
+  <p class="fn">Useful passes: <code>-consultant -advisory -advisor</code> strips out service providers; <code>"operating partner" "managing partner" principal</code> surfaces the buy-side titles.</p>
+</li>
+
+<li data-code="A6.2.5"><b>Optional second angle &mdash; the Work Experience filter.</b> Company Background looks at career history; the Work Experience filter looks at <b>who someone works for right now</b>. Pin it via <b>Add filter</b> &rarr; type <code>work</code> &rarr; tick <b>Work Experience</b>.
+  <figure><img src="tsx-25-we-filter-built.png" alt="Work Experience filter"/><figcaption><b>A6.2.5</b> &mdash; <b>&#9312;</b> <b>Company type</b>: Sponsor / Corporate / Portfolio &middot; <b>&#9313;</b> tick <b>Currently</b> so past roles drop out &middot; <b>&#9314;</b> <b>Position</b> &mdash; each Enter creates a pill; click a pill to invert it; <code>"quotes"</code> = whole word &middot; <b>&#9315;</b> live result count.</figcaption></figure>
+  <p><b>Everything inside one numbered block must match on the same work-experience row.</b> <i>Add another experience</i> creates a second block, meaning a second row &mdash; not an extra condition on the first one.</p>
+  <p class="fn">On production this filter returns <b>62</b> people currently at a sponsor and <b>156</b> currently at a portfolio company. Only <b>16</b> of those 62 also carry the PE/VC background label, so the two filters find genuinely different people &mdash; run both.</p>
+</li>
+
+<li data-code="A6.2.6"><b>Freeze the list before you start reviewing.</b> Two ways, use both:
+  <ul>
+  <li><b>Copy the URL.</b> Every filter is encoded in the address bar, so the link reproduces the exact list later.</li>
+  <li><b>Select all &rarr; Bulk Actions &rarr; Add to list.</b> This gives a stable worklist you can split across people. <b>Bulk Actions cannot change status</b> &mdash; it only offers Export PDF, Add to list, Remove from list, Export CSV, Set Skip Review, Set Require Review.</li>
+  </ul>
+</li>
 </ol>
 
-<h3 id="a6-rule" class="anchor">A6.2 &middot; Cây quyết định</h3>
-<div class="call note"><span class="t">Soát theo thứ tự, dừng ở nhánh khớp đầu tiên</span></div>
+<h3 id="a6-rule" class="anchor">A6.3 &middot; The decision rule</h3>
+<div class="call note"><span class="t">Read the title first. Only open work experience when the title is not conclusive.</span></div>
 <ol class="steps adm">
-<li data-code="A6.2.1"><b>Bước 1 &mdash; Có công ty nào link được không?</b>
+<li data-code="A6.3.1"><b>Step 1 &mdash; does the job title match group A, B or C?</b> Match against the <b>role part</b> of the title only, i.e. the text <u>before</u> <code>at</code> / <code>@</code> / <code>chez</code>. Fund names very often contain the word <i>Partners</i>, and matching the whole string turns "Manager at Fide <b>Partners</b>" into a false hit.
   <div class="tblwrap"><table>
-  <thead><tr><th>Tình trạng</th><th>Kết luận</th></tr></thead>
+  <thead><tr><th>Group</th><th>Company</th><th>Representative titles</th></tr></thead>
   <tbody>
-  <tr><td><b>Không có công ty nào</b> nằm trong danh sách Mergermarket <span class="fn">(không dòng work experience nào link được công ty)</span></td><td><b>talent &rarr; Active</b> &mdash; dừng, không xét tiếp</td></tr>
-  <tr><td>Có ít nhất một công ty link được</td><td>&rarr; sang <b>bước 2</b></td></tr>
+  <tr><td><b>A</b></td><td rowspan="2">PE fund <span class="fn">(sponsor)</span></td><td>Operating Partner &middot; Operating Director &middot; Head of Portfolio Operations &middot; Value Creation &middot; Head of Transformation &middot; Talent Partner &middot; Head of Human Capital</td></tr>
+  <tr><td><b>B</b></td><td>Deal Partner &middot; Partner &middot; Managing Partner &middot; General Partner &middot; Founding Partner &middot; Managing Director &middot; Principal &middot; Investment Director &middot; Investment Manager &middot; Investment Professional &middot; Vice President &middot; Director</td></tr>
+  <tr><td><b>C</b></td><td>PE-backed portfolio company</td><td>Chair &middot; Chairman &middot; Non-Executive Director &middot; CEO &middot; Chief Executive &middot; President &middot; Geschäftsführer &middot; CFO &middot; Finance Director &middot; Head of Finance &middot; Head of M&amp;A &middot; Head of Corporate Development &middot; M&amp;A Director</td></tr>
+  </tbody></table></div>
+  <p><b>Exclusions apply first.</b> If the title contains any of these, it is <b>not</b> a match regardless of what else it says: <code>Associate</code>, <code>Analyst</code>, <code>Investor Relations</code>, <code>Fundraising</code>, <code>Fund Finance</code>, <code>Capital Formation</code>, <code>Fund Accountant</code>, <code>Fund Controller</code>, <code>Taxation</code>, <code>Internship</code>, <code>Intern</code>, <code>Trainee</code>, <code>Werkstudent</code>, <code>Working Student</code>, <code>Junior</code>, <code>Apprentice</code>. These are the two "do not target" buckets: no budget, and back office.</p>
+</li>
+
+<li data-code="A6.3.2"><b>Step 2 &mdash; does the title say they sell advice?</b> If the title contains <code>consultant</code>, <code>consulting</code>, <code>advisory</code> or <code>advisor</code>, they run an M&amp;A advisory practice. <b>That makes them talent &rarr; Active</b>, even when the title also matches a group. A "Principal <b>Consultant</b>" is a consultant, not a fund Principal.</li>
+
+<li data-code="A6.3.3"><b>Step 3 &mdash; the title is not conclusive, so open work experience.</b> Find the company named in the title and read its description (<i>industry</i>, <i>main activities</i>):
+  <div class="tblwrap"><table>
+  <thead><tr><th>What the description says</th><th>Verdict</th></tr></thead>
+  <tbody>
+  <tr><td>"consulting firm", "advisory", "self-employed", "350+ consultants"</td><td><b>Active</b> &mdash; service provider</td></tr>
+  <tr><td>"private equity sponsor", "investment firm", "alternative asset manager", "LBO"</td><td><b>Passive</b> &mdash; buy side</td></tr>
+  <tr><td><b>no description at all</b></td><td><b>the title stands</b> &rarr; Passive if it matched in step 1</td></tr>
   </tbody></table></div>
 </li>
-<li data-code="A6.2.2"><b>Bước 2 &mdash; Title có khớp nhóm A / B / C không?</b>
+
+<li data-code="A6.3.4"><b>Step 4 &mdash; no group match anywhere? Fall back to Employment Status.</b>
   <div class="tblwrap"><table>
-  <thead><tr><th>Nhóm</th><th>Loại công ty</th><th>Title</th></tr></thead>
+  <thead><tr><th>Employment Status</th><th>Verdict</th></tr></thead>
   <tbody>
-  <tr><td><b>A</b></td><td rowspan="2">quỹ PE <span class="fn">(sponsor)</span></td><td>Operating Partner · Head of Portfolio Operations · Value Creation · Talent Partner</td></tr>
-  <tr><td><b>B</b></td><td>Deal Partner · Principal · Investment Director</td></tr>
-  <tr><td><b>C</b></td><td>công ty portfolio</td><td>Chair · CEO · CFO · Head of M&amp;A / Corporate Development</td></tr>
-  </tbody></table></div>
-  <p><b>Khớp &rarr; client &rarr; Passive.</b> Dừng, không xét employment status.</p>
-</li>
-<li data-code="A6.2.3"><b>Bước 3 &mdash; Không khớp A/B/C, xét employment status.</b>
-  <div class="tblwrap"><table>
-  <thead><tr><th>Employment Status</th><th>Kết luận</th></tr></thead>
-  <tbody>
-  <tr><td><b>Full time</b></td><td><b>Passive</b></td></tr>
-  <tr><td>Freelancer · Part time · Unemployed · Other</td><td><b>Active</b></td></tr>
+  <tr><td><b>Full-time Employee</b> or <b>Part-time Employee</b></td><td>Passive</td></tr>
+  <tr><td>Independent Consultant / Freelancer &middot; Unemployed &middot; Other</td><td>Active</td></tr>
   </tbody></table></div>
 </li>
-<li data-code="A6.2.4"><b>Tóm tắt cả cây:</b>
-  <div class="tblwrap"><table>
-  <thead><tr><th>#</th><th>Điều kiện</th><th>Kết luận</th></tr></thead>
-  <tbody>
-  <tr><td>1</td><td>không có công ty nào link được</td><td>Active <span class="fn">(talent)</span></td></tr>
-  <tr><td>2</td><td>có công ty link được <b>và</b> title khớp A/B/C</td><td>Passive <span class="fn">(client)</span></td></tr>
-  <tr><td>3</td><td>có công ty link được, title không khớp, <b>Full time</b></td><td>Passive</td></tr>
-  <tr><td>4</td><td>có công ty link được, title không khớp, không Full time</td><td>Active</td></tr>
-  </tbody></table></div>
+
+<li data-code="A6.3.5"><b>Two overrides that beat everything above.</b>
+  <ul>
+  <li><b>A completed contract with Fintalent &rarr; Active.</b> They have already delivered as talent; that is proof, not inference.</li>
+  <li><b>A status a human set on purpose stays put.</b> Check the <i>Activity Logs</i> tab before overturning anything.</li>
+  </ul>
 </li>
 </ol>
 
-<h3 id="a6-check" class="anchor">A6.3 &middot; Soát từng người &mdash; đọc gì, ở đâu</h3>
+<h3 id="a6-q1" class="anchor">A6.4 &middot; Queue 1 &mdash; Passive that should be Active</h3>
+<div class="goal adm">These are freelancers and consultants locked out of every project invitation for no good reason. On production this is the larger of the two problems.</div>
 <ol class="steps adm">
-<li data-code="A6.3.1"><b>Company link</b> &mdash; cột <b>Work Experiences</b> trên bảng kết quả. Dòng nào <b>bấm được vào tên công ty</b> là đã link; dòng chỉ có chữ trơn là chưa link. Vai trò cũ nằm sau <b>Show N past roles</b>.
-  <figure><img src="tsx-21-talent-work-experience.png" alt="Một dòng work experience"/><figcaption><b>A6.3.1</b> &mdash; <b>&#9312;</b> một dòng: chức danh &middot; công ty &middot; khoảng thời gian. Công ty link được thì có nhãn loại đi kèm (<i>Sponsor</i> / <i>Portfolio</i> / <i>Corporate</i>).</figcaption></figure>
+<li data-code="A6.4.1"><b>Filter:</b> Company Background = the six PE/VC boxes, <b>Statuses = Passive</b>. Add <code>-consultant -advisory -advisor</code> in the search box only if you want to see the harder cases first &mdash; leaving it off shows the obvious wins.</li>
+<li data-code="A6.4.2"><b>Read each row against <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3 &#8599;</a>.</b> The frequent patterns that mean "should be Active":
+  <ul>
+  <li>Title openly says <b>consultant / advisory / freelance</b> &mdash; e.g. <i>"Private Equity Consultant"</i>, <i>"Independent Consultant at Various"</i>, <i>"Freelance in Transaction Services"</i>.</li>
+  <li>Title carries an <b>excluded</b> word &mdash; <i>Associate</i>, <i>Analyst</i>, <i>Intern</i>.</li>
+  <li><b>No current role at all</b>, and Employment Status is not Full/Part-time &mdash; students, people between jobs, MBA candidates.</li>
+  <li>Current employer is a plain <b>corporate</b> (group D) &mdash; deliberately out of scope.</li>
+  </ul>
 </li>
-<li data-code="A6.3.2"><b>Title</b> &mdash; dòng chữ ngay dưới email &amp; địa chỉ của talent trên bảng. Đây là <b>title tự khai</b>, không phải chức danh trong work experience &mdash; hai chỗ này lệch nhau khá thường, xem <a href="#ec-6-2" style="font-weight:700;cursor:pointer">A6.x.2 &#8599;</a>.</li>
-<li data-code="A6.3.3"><b>Employment Status</b> &mdash; ở talent detail, ngay dưới chip status. Muốn xem hàng loạt thì ghim thêm bộ lọc <b>Employee Statuses</b> qua <b>Add filter</b>.
-  <figure><img src="tsx-20-talent-status-chip.png" alt="Chip status và Employment Status trên talent detail"/><figcaption><b>A6.3.3</b> &mdash; <b>&#9312;</b> status hiện tại &middot; <b>&#9313;</b> giá trị đổi được (Active &harr; Passive) &middot; <b>&#9314;</b> <b>Employment Status</b> &mdash; dùng ở bước 3.</figcaption></figure>
+<li data-code="A6.4.3"><b>Open the talent, confirm, then switch the chip to Active.</b> Click the status chip under the avatar and pick <b>Active</b>. A short confirmation appears; there is no reason field on this direction.
+  <figure><img src="a6-05-status-chip.png" alt="Talent status chip"/><figcaption><b>A6.4.3</b> &mdash; <b>&#9312;</b> current status chip, click to open &middot; <b>&#9313;</b> the only alternative offered &mdash; the chip switches between Active and Passive and nothing else &middot; <b>&#9314;</b> <b>Employment Status</b> printed on the header line, used in <a href="#a6-rule" style="font-weight:700;cursor:pointer">step 4 &#8599;</a>.</figcaption></figure>
+  <p class="fn">Hovering the chip on a Passive talent shows <i>Passive since &lt;date&gt;</i> plus the reason that was recorded &mdash; read it before you overturn the decision.</p>
 </li>
-<li data-code="A6.3.4"><b>Ghi kết luận.</b> Mở talent &rarr; chip status &rarr; chọn <b>Active</b> hoặc <b>Passive</b>. Chỉ đổi được hai giá trị này, không nhảy sang giá trị enum khác.
-  <p class="fn">Không có thao tác đổi status hàng loạt &mdash; <b>Bulk Actions</b> chỉ có Export PDF / Add to list / Remove from list / Export CSV / Set Skip Review / Set Require Review. Muốn chia việc thì <b>Add to list</b> trước rồi xử lý dần theo list.</p>
-</li>
+<li data-code="A6.4.4"><b>Work through the list, not the page.</b> Changing a status re-runs the filter, so rows shift under you. This is why <a href="#a6-list" style="font-weight:700;cursor:pointer">A6.2.6 &#8599;</a> tells you to freeze the list first.</li>
 </ol>
 
-<h3 id="a6-edge" class="edgehead anchor">A6.x &middot; Edge cases &amp; giới hạn</h3>
+<h3 id="a6-q2" class="anchor">A6.5 &middot; Queue 2 &mdash; Active that should be Passive</h3>
+<div class="goal adm">Clients sitting in the talent pool. Fewer in number, but each one is a person Fintalent might accidentally pitch to as supply.</div>
+<ol class="steps adm">
+<li data-code="A6.5.1"><b>Filter:</b> Company Background = the six PE/VC boxes, <b>Statuses = Active</b>.</li>
+<li data-code="A6.5.2"><b>Scan titles for the buy-side vocabulary</b> from <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3.1 &#8599;</a>. Strong signals: <i>Managing Partner at &hellip; Capital</i>, <i>Vice President at &hellip; Partners</i>, <i>Private Equity Investment Manager</i>, <i>Operating Partner</i>, <i>Venture Partner</i>.</li>
+<li data-code="A6.5.3"><b>Open work experience and confirm the employer is a fund.</b> The description settles it &mdash; <i>"Founded an independent private equity sponsor pursuing leveraged buyout transactions"</i> is conclusive; <i>"Management/Strategy Consulting"</i> is the opposite.
+  <p class="fn">Watch for a second concurrent role. Several people describe themselves as an advisor in the title while still holding a fund seat &mdash; the fund seat wins.</p>
+</li>
+<li data-code="A6.5.4"><b>Switch the chip to Passive &mdash; a reason is mandatory.</b>
+  <figure><img src="a6-06-set-passive-modal.png" alt="Set Talent Status to Passive modal"/><figcaption><b>A6.5.4</b> &mdash; <b>&#9312;</b> confirmation line naming the talent &middot; <b>&#9313;</b> four preset reasons, one must be selected &middot; <b>&#9314;</b> <b>Reasons</b> free-text box &mdash; fill this in, it is the only place the real explanation survives &middot; <b>&#9315;</b> <b>Exit</b> cancels, <b>Yes</b> commits.</figcaption></figure>
+  <p>The presets are <i>Unable to verify freelance status</i>, <i>Evidence insufficient</i>, <i>Reference unresponsive</i>, <i>Other</i>. None of them says "is a client", so pick the closest and <b>write the real reason in the text box</b> &mdash; for example <i>"Managing Partner at Contour Point Capital, an independent PE sponsor &mdash; group B."</i></p>
+</li>
+<li data-code="A6.5.5"><b>Verify.</b> Reload the profile: the chip reads Passive, and hovering it shows <i>Passive since &lt;today&gt;</i> with the reason you typed. The talent also disappears from the Active queue.</li>
+</ol>
+
+<h3 id="a6-edge" class="edgehead anchor">A6.x &middot; Edge cases</h3>
 <ol class="steps edge">
-<li id="ec-6-1" data-code="A6.x.1"><b>Bộ lọc này bỏ sót phần lớn nhóm A/B.</b> Trong 62 người thật sự <b>đang</b> làm ở quỹ PE, danh sách Classification chỉ chứa <b>16</b>. Ngược lại, 94% người trong danh sách <b>không</b> đang ở quỹ PE (họ từng làm rồi đã rời đi). Danh sách 276 người là điểm bắt đầu, không phải tập đầy đủ.</li>
-<li id="ec-6-2" data-code="A6.x.2"><b>Title tự khai lệch với work experience.</b> Đã gặp người ghi title <i>&ldquo;Freelance, former Private Equity Professional&rdquo;</i> trong khi work experience vẫn để <b>đang làm</b> tại một quỹ PE. Title nói đã nghỉ, dữ liệu nói còn làm. Gặp mâu thuẫn thì mở talent detail xem mốc thời gian của dòng work experience.</li>
-<li id="ec-6-3" data-code="A6.x.3"><b>Nhóm C không lọc được bằng Classification.</b> Ô đúng về logic là <i>Corporate / Industry &rarr; PE-Backed / Portfolio Company</i>, nhưng nhãn đó hiện <b>chưa gán cho ai</b>. Muốn ra nhóm C phải dùng bộ lọc <b>Work Experience</b>: <i>company type = Portfolio</i> + <i>Currently</i> &rarr; 156 người.
-  <figure><img src="tsx-25-we-filter-built.png" alt="Bộ lọc Work Experience đã dựng"/><figcaption><b>A6.x.3</b> &mdash; <b>&#9312;</b> chọn loại công ty &middot; <b>&#9313;</b> tích <b>Currently</b> &middot; <b>&#9314;</b> ô Position, mỗi Enter tạo một pill (bấm pill để đảo sang loại trừ; <code>"ngoặc kép"</code> = khớp nguyên từ) &middot; <b>&#9315;</b> số kết quả.</figcaption></figure>
+<li id="ec-6-1" data-code="A6.x.1"><b>The <i>In Review</i> queue &mdash; new sign-ups waiting for approval.</b> The <b>N In Review</b> button at the top right of the talents list opens the queue one profile at a time.
+  <figure><img src="a6-07-in-review.png" alt="In Review profile toolbar"/><figcaption><b>A6.x.1</b> &mdash; <b>&#9312;</b> status chip reads <b>In Review</b> and is <b>not editable</b> &middot; <b>&#9313;</b> <b>Reject Talent</b> &rarr; status becomes <i>Rejected</i>; <b>Approve Talent</b> &rarr; confirmation dialog, then the talent enters the normal pool &middot; <b>&#9314;</b> pager &mdash; step through the whole queue without going back to the list &middot; <b>&#9315;</b> Employment Status, visible on the header.</figcaption></figure>
+  <p><b>Approving is where classification should happen, not after.</b> Read the work experience while the profile is open: if the person is a client, approve first and then set Passive per <a href="#a6-q2" style="font-weight:700;cursor:pointer">A6.5 &#8599;</a> &mdash; the chip is locked while the status is In Review.</p>
 </li>
-<li id="ec-6-4" data-code="A6.x.4"><b>Title ghép &mdash; &ldquo;Business Development&rdquo; không phải M&amp;A.</b> BD là bán hàng. Không tính là khớp nhóm A/B/C, <b>trừ khi</b> cùng title có mỏ neo <b>M&amp;A</b> / <b>Mergers &amp; Acquisitions</b> / <b>Corporate Development</b> / <b>Transactions</b>.</li>
-<li id="ec-6-5" data-code="A6.x.5"><b>Nhãn loại công ty đến từ nguồn ngoài và có thể sai.</b> Đã gặp quỹ lớn bị gắn <i>Corporate</i> thay vì <i>Sponsor</i>, và một talent bị link nhầm sang công ty khác hẳn. Kết quả bất thường ở một cái tên quen thì kiểm tra bản ghi công ty trước, đừng vội kết luận talent bị phân loại sai.</li>
-<li id="ec-6-6" data-code="A6.x.6"><b>Hệ thống không ghi lý do Passive.</b> Trường lý do đang <b>trống 100%</b>. Sau khi đổi status không có chỗ nào truy lại được vì sao &mdash; nên nếu cần vết, ghi ra ngoài trước khi sửa.</li>
-<li id="ec-6-7" data-code="A6.x.7"><b>Đổi status không đụng dữ liệu vận hành.</b> Passive chỉ chặn luồng mời project. Contract đang chạy, timesheet, hoá đơn <b>giữ nguyên</b> &mdash; xem <a data-goto="page-b3" style="font-weight:700;cursor:pointer">B3 &#8599;</a>.</li>
+<li id="ec-6-2" data-code="A6.x.2"><b><i>ReviewPassive</i> &mdash; a Passive talent resubmitted their profile.</b> The profile shows a <i>Talent Resubmit since &lt;date&gt;</i> panel next to the original Passive reason, and the toolbar offers <b>three</b> buttons instead of two:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Button</th><th>Resulting status</th><th>When to use it</th></tr></thead>
+  <tbody>
+  <tr><td><b>Approve Review Passive</b> <span class="fn">(green)</span></td><td><b>Active</b></td><td>the new evidence answers the original reason</td></tr>
+  <tr><td><b>Reject Review Passive</b> <span class="fn">(red)</span></td><td><b>Passive</b></td><td>nothing material changed &mdash; back to where they were</td></tr>
+  <tr><td><b>Reject Talent</b> <span class="fn">(red)</span></td><td><b>Rejected</b></td><td>they do not belong on the platform at all</td></tr>
+  </tbody></table></div>
+  <p>Always read the original Passive reason first &mdash; it is shown on the same screen. Approving without checking whether the resubmission actually addresses it defeats the point of the queue.</p>
+</li>
+<li id="ec-6-3" data-code="A6.x.3"><b>There is no bulk status update.</b> <b>Bulk Actions</b> offers Export PDF Talents, Add to list, Remove from list, Export Talents (CSV), Set Skip Review, Set Require Review &mdash; and nothing else. Every status change is one profile at a time. For a long list, <b>Add to list</b> first and split the list between people.</li>
+<li id="ec-6-4" data-code="A6.x.4"><b>The title and the work experience disagree.</b> Common and important. Seen in production: a title reading <i>"Freelance, former Private Equity Professional"</i> on a profile whose work experience still shows an <b>ongoing</b> role at a PE fund. The title claims they left; the data says they did not. Open the row and check the end date before deciding.</li>
+<li id="ec-6-5" data-code="A6.x.5"><b>Most current employers are not linked, so company flags are missing.</b> Roughly <b>63%</b> of talents have a current role whose employer was never matched to the Mergermarket company list &mdash; no Sponsor / Portfolio / Corporate flag to read. For those people the title and the free-text company description are the only evidence. This is also why the Work Experience filter cannot replace the title check: every one of the strongest buy-side hits found on production sat at an <b>unflagged</b> company.</li>
+<li id="ec-6-6" data-code="A6.x.6"><b>Group C cannot be reached through Company Background.</b> The logically correct box is <i>Corporate / Industry &rarr; PE-Backed / Portfolio Company</i>, but that label is <b>assigned to nobody</b> &mdash; zero people on production and on UAT. The only route to group C is the Work Experience filter with <i>company type = Portfolio</i> + <i>Currently</i>, which returns 156 people.</li>
+<li id="ec-6-7" data-code="A6.x.7"><b>Where the Passive reason actually lives.</b> The reason you type is written to the <b>activity log</b>, not to a field on the talent record &mdash; the record's own <code>passiveReason</code> field stays empty. It surfaces in two places: the tooltip on the status chip, and the <i>Passive since</i> panel on the profile. If you need an audit trail, the <b>Activity Logs</b> tab is the place to look.</li>
+<li id="ec-6-8" data-code="A6.x.8"><b>Company type flags come from an external source and can be wrong.</b> Production has investment banks flagged as <i>sponsor</i>, and at least one talent linked to an entirely different company than the one named in their title. When a familiar name produces a surprising result, check the company record before concluding the talent is misclassified.</li>
+<li id="ec-6-9" data-code="A6.x.9"><b>Changing status does not touch anything operational.</b> Passive only removes someone from the project-invitation flow. Running contracts, timesheets and invoices are unaffected &mdash; see <a data-goto="page-b3" style="font-weight:700;cursor:pointer">B3 &#8599;</a>.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-a5"><span class="k">&larr; Prev</span><b>A5 &middot; Manage a marketing email</b></a><a class="next" data-goto="page-b1"><span class="k">Next &rarr;</span><b>B1 &middot; Invite talents</b></a></div>
 </section>
