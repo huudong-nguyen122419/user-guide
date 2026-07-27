@@ -169,6 +169,33 @@
     <a class="flow adm" data-page="page-a3"><span class="n">A3</span> Run a ME / campaign</a>
     <a href="#a3-me" class="st" data-page="page-a3">A3.1 · Run a Marketing Email</a>
     <a href="#a3-camp" class="st" data-page="page-a3">A3.2 · Run a campaign (Enabled)</a>
+    <a class="flow adm" data-page="page-a4"><span class="n">A4</span> Manage a campaign (Admin)</a>
+    <a href="#a4-list" class="st" data-page="page-a4">A4.1 · The list</a>
+    <a href="#a4-row" class="st" data-page="page-a4">A4.2 · Row actions (⋮)</a>
+    <a href="#a4-assign" class="st" data-page="page-a4">A4.3 · Reassign</a>
+    <a href="#a4-inside" class="st" data-page="page-a4">A4.4 · Inside the campaign</a>
+    <a href="#a4-health" class="st" data-page="page-a4">A4.5 · Data Health</a>
+    <a href="#a4-audit" class="st" data-page="page-a4">A4.6 · Timeline / audit</a>
+    <a href="#a4-edge" class="st edge" data-page="page-a4">A4.x · Edge cases</a>
+    <a href="#ec-4-1" class="st2" data-page="page-a4">A4.x.1 · What a clone copies</a>
+    <a href="#ec-4-2" class="st2" data-page="page-a4">A4.x.2 · Archive vs Delete</a>
+    <a href="#ec-4-3" class="st2" data-page="page-a4">A4.x.3 · Reassign ≠ sender</a>
+    <a href="#ec-4-4" class="st2" data-page="page-a4">A4.x.4 · Draft has no toggle</a>
+    <a href="#ec-4-5" class="st2" data-page="page-a4">A4.x.5 · Cross-campaign overlap</a>
+    <a href="#ec-4-6" class="st2" data-page="page-a4">A4.x.6 · Collapse the folder pane</a>
+    <a class="flow adm" data-page="page-a5"><span class="n">A5</span> Manage a marketing email (Admin)</a>
+    <a href="#a5-list" class="st" data-page="page-a5">A5.1 · The list</a>
+    <a href="#a5-row" class="st" data-page="page-a5">A5.2 · Row actions</a>
+    <a href="#a5-inside" class="st" data-page="page-a5">A5.3 · Inside the ME</a>
+    <a href="#a5-inbox" class="st" data-page="page-a5">A5.4 · The ME's own Inbox</a>
+    <a href="#a5-health" class="st" data-page="page-a5">A5.5 · Data Health + Config</a>
+    <a href="#a5-edge" class="st edge" data-page="page-a5">A5.x · Edge cases</a>
+    <a href="#em-5-1" class="st2" data-page="page-a5">A5.x.1 · No delete / archive</a>
+    <a href="#em-5-2" class="st2" data-page="page-a5">A5.x.2 · Force Send scope</a>
+    <a href="#em-5-3" class="st2" data-page="page-a5">A5.x.3 · Cancelled ≠ failed</a>
+    <a href="#em-5-4" class="st2" data-page="page-a5">A5.x.4 · Switch sender safely</a>
+    <a href="#em-5-5" class="st2" data-page="page-a5">A5.x.5 · V1 tabs</a>
+    <a href="#em-5-6" class="st2" data-page="page-a5">A5.x.6 · Timeline = A4.6</a>
     <a class="flow adm" data-page="page-b1"><span class="n">B1</span> Invite talents to a project</a>
     <a class="flow tal" data-page="page-b2"><span class="n">B2</span> Talent · log &amp; submit timesheet</a>
     <a href="#b2-open" class="st" data-page="page-b2">B2.1 · Mở Timesheet</a>
@@ -517,7 +544,167 @@
 </li>
 <li data-code="A3.2.3">The campaign detail (Steps &middot; People &middot; Preview &middot; Email Queues) looks <b>the same as the SDR view</b> &mdash; see SDR <a data-goto="page-campaign" style="font-weight:700;cursor:pointer">Flow 6 &#8599;</a> for every tab.</li>
 </ol>
-<div class="pagernav"><a data-goto="page-a2"><span class="k">← Prev</span><b>A2 · Create a contact</b></a><a class="next" data-goto="page-b1"><span class="k">Next →</span><b>B1 · Invite talents</b></a></div>
+<div class="pagernav"><a data-goto="page-a2"><span class="k">&larr; Prev</span><b>A2 &middot; Create a contact</b></a><a class="next" data-goto="page-a4"><span class="k">Next &rarr;</span><b>A4 &middot; Manage a campaign</b></a></div>
+</section>
+
+
+<!-- ===================== A4 · MANAGE A CAMPAIGN ===================== -->
+<section class="page" id="page-a4">
+<h2><span class="who adm">ADMIN</span><span class="n adm">A4 &middot;</span> Manage a campaign <span class="fn">(Admin/Ops &mdash; every campaign in the workspace, not just your own)</span></h2>
+<div class="goal adm"><b>Goal:</b> the SDR <b>builds</b> one campaign at a time (SDR <a data-goto="page-campaign" href="#cmp-create" style="font-weight:700;cursor:pointer">Flow 6 &#8599;</a>). You <b>run the whole book</b> &mdash; you see every SDR's campaigns, move them between folders, hand them to another owner, force a step out, and audit who changed what. Turning one on is A3 <a data-goto="page-a3" href="#a3-camp" style="font-weight:700;cursor:pointer">A3.2 &#8599;</a>; everything else lives here.</div>
+
+<h3 id="a4-list" class="anchor">A4.1 &middot; The list &mdash; what you see that the SDR doesn't</h3>
+<ol class="steps adm">
+<li data-code="A4.1.1"><b>Sales Management &rarr; Campaigns.</b> The header count is the whole workspace (<b>49</b> on UAT), not your own &mdash; the SDR only ever sees campaigns assigned to them.
+  <figure><img src="admc-01-list.png" alt="Admin campaign list"/><figcaption><b>A4.1</b> &mdash; <b>&#9312;</b> every campaign in the workspace &middot; <b>&#9313;</b> status tabs &middot; <b>&#9314;</b> the <b>Assignee</b> column (Admin-only) &middot; <b>&#9315;</b> <b>every</b> user's folders in the right pane.</figcaption></figure>
+</li>
+<li data-code="A4.1.2"><b>Status tabs.</b> <b>All &middot; Scheduled &middot; Draft &middot; Running &middot; Finished &middot; Paused &middot; Archive</b> &mdash; each with a live count. <b>Archive</b> only exists here; that's where <a href="#ec-4-2" style="font-weight:700;cursor:pointer">A4.x.2 &#8599;</a> puts things.</li>
+<li data-code="A4.1.3"><b>The folder pane (right).</b> Lists <b>all</b> folders with their campaign counts &mdash; <i>tin's (20)</i>, <i>Sang (8)</i>, <i>Sponsors USA (8)</i>&hellip; Click one to scope the list, use <b>Search folder</b> to find it, <b>+ Create Folder</b> to add one. An SDR sees only their own folders, so <b>you are the one who can tidy across people</b>.</li>
+<li data-code="A4.1.4"><b>Read a row.</b> Left to right: <b>checkbox</b> (bulk) &middot; <b>&#8942;</b> (row menu) &middot; <b>Enabled</b> toggle &middot; <b>name + From address + status pill + folder chip</b> &middot; <b>Assignee</b> (role badge + person) &middot; <b>Total Steps</b> &middot; <b>People</b>.</li>
+<li data-code="A4.1.5"><b>Scroll right for the numbers:</b> <b>Open Rate &middot; Reply Rate &middot; Bounce/Dropped Rate &middot; Progress &middot; Delivered &middot; Last run</b>. Headers with &#8645; are sortable &mdash; sort by <b>Bounce/Dropped Rate</b> to find the campaign that is burning the domain.
+  <figure><img src="admc-06-metrics.png" alt="Metric columns"/><figcaption><b>A4.1.5</b> &mdash; <b>&#9312;</b> the three rates &middot; <b>&#9313;</b> Progress bar (&#10003; when finished) &middot; Delivered &middot; Last run.</figcaption></figure>
+</li>
+<li data-code="A4.1.6"><b>Timeline view.</b> The <b>&#10216;&#10217;</b> button beside the search box swaps the table for a <b>month timeline</b> &mdash; one bar per campaign across the days, today highlighted, <b>&lsaquo;</b> <b>&rsaquo;</b> to change month. Fastest way to see what is <b>overlapping</b> before you turn another one on.
+  <figure><img src="admc-05-timeline-view.png" alt="Campaign timeline view"/><figcaption><b>A4.1.6</b> &mdash; <b>&#9312;</b> the <b>&#10216;&#10217;</b> toggle &middot; <b>&#9313;</b> the day strip &middot; <b>&#9314;</b> one bar per campaign, coloured by status.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="a4-row" class="anchor">A4.2 &middot; Row actions (&#8942;) &mdash; six, against the SDR's one</h3>
+<ol class="steps adm">
+<li data-code="A4.2.1">Click <b>&#8942;</b> on any row. <b>Edit/View Details &middot; Delete &middot; Archive &middot; Move campaign &middot; Clone campaign &middot; Manage assignee.</b> The SDR view of the same menu has <b>Edit/View Details only</b>.
+  <figure><img src="admc-02-row-menu.png" alt="Admin row menu"/><figcaption><b>A4.2.1</b> &mdash; the six-item Admin row menu; <b>Delete</b> (top) and <b>Manage assignee</b> (bottom) are the two the SDR never gets.</figcaption></figure>
+</li>
+<li data-code="A4.2.2"><b>Move campaign</b> &rarr; <i>Choose a Campaign Folder Target</i>. Pick the destination folder; the dialog prints the campaign, its <b>From</b>, <b>Total People</b>, <b>Total Steps</b> and its <b>current folder</b> so you can check you grabbed the right row &rarr; <b>Move Campaign</b>.
+  <figure><img src="admc-07-move.png" alt="Move campaign dialog"/><figcaption><b>A4.2.2</b> &mdash; <b>&#9312;</b> target folder &middot; <b>&#9313;</b> the summary that confirms which campaign you are moving.</figcaption></figure>
+</li>
+<li data-code="A4.2.3"><b>Clone campaign</b> &rarr; same dialog, but the folder you pick is where the <b>copy</b> lands. Use it to reuse a proven sequence for the next segment instead of retyping the steps.
+  <figure><img src="admc-08-clone.png" alt="Clone campaign dialog"/><figcaption><b>A4.2.3</b> &mdash; <b>&#9312;</b> <b>Clone Campaign</b>. The clone starts as a fresh Draft &mdash; see <a href="#ec-4-1" style="font-weight:700;cursor:pointer">A4.x.1 &#8599;</a> for what does <u>not</u> come along.</figcaption></figure>
+</li>
+<li data-code="A4.2.4"><b>Archive</b> takes it out of the working tabs into <b>Archive</b>; <b>Delete</b> removes it. Prefer <b>Archive</b> &mdash; the numbers stay reachable.</li>
+</ol>
+
+<h3 id="a4-assign" class="anchor">A4.3 &middot; Reassign &mdash; one campaign or a whole batch</h3>
+<ol class="steps adm">
+<li data-code="A4.3.1"><b>&#8942; &rarr; Manage assignee</b> opens <b>Assign assignee</b>: search by name/email, filter by <b>Roles</b>, <b>+ Add filter</b>, and the current owner is pre-ticked. Pick the new person &rarr; <b>Save</b>. This is what you use when an SDR leaves or a book gets rebalanced.
+  <figure><img src="admc-03-assignee.png" alt="Assign assignee drawer"/><figcaption><b>A4.3.1</b> &mdash; <b>&#9312;</b> search &middot; <b>&#9313;</b> <b>Roles</b> filter &middot; <b>&#9314;</b> the person currently assigned.</figcaption></figure>
+</li>
+<li data-code="A4.3.2"><b>In bulk:</b> tick several rows &rarr; the bar shows <b>&ldquo;N campaigns selected&rdquo;</b> + <b>Assign assignee</b>. That is the <b>only</b> bulk action on this page &mdash; there is no bulk delete/move, so a mis-click can't wipe a book.
+  <figure><img src="admc-04-bulk.png" alt="Bulk assign"/><figcaption><b>A4.3.2</b> &mdash; <b>&#9312;</b> selection count &middot; <b>&#9313;</b> the single bulk action.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="a4-inside" class="anchor">A4.4 &middot; Inside the campaign &mdash; the Admin controls</h3>
+<ol class="steps adm">
+<li data-code="A4.4.1"><b>Open it</b> (click the name, or <b>&#8942; &rarr; Edit/View Details</b>). The header carries: editable <b>name</b> (&#9998;) &middot; <b>timezone</b> &middot; <b>description</b> &middot; the <b>owner</b> with a <b>&#9881;</b> badge &middot; and, once it is live, the <b>Active</b> switch.
+  <figure><img src="admc-09-detail.png" alt="Admin campaign detail"/><figcaption><b>A4.4.1</b> &mdash; <b>&#9312;</b> timezone (drives send hours) &middot; <b>&#9313;</b> owner + <b>&#9881;</b> sending account &middot; <b>&#9314;</b> the tab row &middot; <b>&#9315;</b> <b>Force Send</b> on <u>each</u> step &middot; <b>&#9316;</b> <b>Create new step</b> / <b>Create sidestep</b>.</figcaption></figure>
+</li>
+<li data-code="A4.4.2"><b>The tab row depends on state.</b> A Draft/Finished campaign shows <b>Steps &middot; People &middot; People V1 &middot; Email Queues &middot; Data Health &beta; &middot; Timeline</b>; once it is running you also get <b>Inbox &middot; Inbox V1 &middot; Preview &middot; Preview V1</b>. <b>V1</b> tabs are the legacy views &mdash; work in the non-V1 ones unless you're comparing.</li>
+<li data-code="A4.4.3"><b>Force Send per step</b> (Admin-only). Each step has its own <b>Force Send</b> &mdash; it pushes <u>that</u> step now instead of waiting for its <i>Right away</i> / <i>Wait for N days</i> timing. Use it to unblock a step that missed its window; don't use it to skip a wait you set on purpose.</li>
+<li data-code="A4.4.4"><b>&#9881; on the owner avatar &rarr; change the sending account.</b> It opens the list of Fintalent accounts (the current one is not in the list) &mdash; picking one switches the account the campaign sends <b>From</b>. The list page then shows the new <b>From:</b> address on the row.</li>
+<li data-code="A4.4.5"><b>Email Queues</b> &mdash; sub-tabs <b>All &middot; In Queue &middot; Delivered &middot; Cancel</b>, filters <b>Sources &middot; Expected Run Date &middot; Steps</b>, and an <b>Attachments</b> column the SDR-side write-up doesn't cover. This is where you prove an email actually left.
+  <figure><img src="admc-12-queues.png" alt="Email queues"/><figcaption><b>A4.4.5</b> &mdash; <b>&#9312;</b> the four sub-tabs &middot; <b>&#9313;</b> filters &middot; <b>&#9314;</b> <b>Attachments</b>.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="a4-health" class="anchor">A4.5 &middot; Data Health &beta; &mdash; check the audience before you spend it</h3>
+<ol class="steps adm">
+<li data-code="A4.5.1">Open <b>Data Health &beta;</b>. A campaign that has never been scanned says <b>&ldquo;No health snapshot yet&rdquo;</b> &rarr; <b>Recompute live</b>.</li>
+<li data-code="A4.5.2"><b>Read the verdict + six cards:</b> <b>Total contacts &middot; In queue &middot; Delivered &middot; Healthy &middot; Critical &middot; Cross-campaign</b>, with the badge (<b>HEALTHY</b> / <b>CRITICAL</b>) and the snapshot timestamp.
+  <figure><img src="admc-10-data-health.png" alt="Campaign data health"/><figcaption><b>A4.5</b> &mdash; <b>&#9312;</b> verdict &middot; <b>&#9313;</b> the six cards &middot; <b>&#9314;</b> <b>Issues &amp; Actions</b> &middot; <b>&#9315;</b> the three detail columns.</figcaption></figure>
+</li>
+<li data-code="A4.5.3"><b>Work the detail columns.</b>
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>Contact data health</b> &mdash; Health tier (Healthy / Degraded / Critical) &middot; Email type (Personal / Work / Invalid work) &middot; <b>Suspect duplicate</b> pairs &middot; <b>Lifecycle risk</b> (contacts excluded from sends).</li>
+  <li><b>Email queue data</b> &mdash; Delivered / In queue / Not in queue / Cancelled, plus <b>Unbound merge tags</b> (a <code>{{contact.firstName}}</code> with nothing behind it).</li>
+  <li><b>Cross-campaign &amp; delivery</b> &mdash; contacts targeted by <b>&ge;2 campaigns at once</b> (the thing that drives the Critical tier), the <b>delivery signal</b> thresholds (<b>over-bound &ge;10%</b>, <b>over-unsubscribe &ge;5%</b>) and <b>recently contacted &middot; 7 days</b>.</li>
+  </ul>
+  <p class="fn">Each line has a <b>CLEAR</b> chip when it is at zero &mdash; that is the &ldquo;nothing to fix here&rdquo; marker, not a button that fixes something.</p>
+</li>
+<li data-code="A4.5.4">Anything under <b>Issues &amp; Actions</b> comes with a <b>Review &rarr;</b> that jumps to the offending contacts. Clear the Critical ones <u>before</u> flipping <b>Enabled</b>.</li>
+</ol>
+
+<h3 id="a4-audit" class="anchor">A4.6 &middot; Timeline &mdash; the audit trail</h3>
+<ol class="steps adm">
+<li data-code="A4.6.1">The <b>Timeline</b> tab logs <b>who changed what, when</b>, with the <b>before &rarr; after</b> value: <i>STATUS &mdash; &rarr; Completed</i>, <i>MARKED DONE &mdash; &rarr; Yes</i>, <i>CATEGORIZE OutOfOffice &rarr; NotInterested</i>. Entries name the actor (<i>by Dong SDR</i>, <i>by Fintalent System (Admin)</i>).
+  <figure><img src="admc-11-audit.png" alt="Campaign timeline audit"/><figcaption><b>A4.6</b> &mdash; <b>&#9312;</b> <b>Simple / Advanced</b> search &middot; <b>&#9313;</b> scope <b>All / Campaign / Contact</b> &middot; <b>&#9314;</b> actor + before&rarr;after on every entry.</figcaption></figure>
+</li>
+<li data-code="A4.6.2"><b>Advanced search syntax:</b> <code>-word</code> excludes &middot; click a pill to toggle it &middot; <code>"quotes"</code> for an exact match &middot; <b>AND/OR</b> switches how terms join. Use it to answer &ldquo;who removed those targets?&rdquo; in one query.</li>
+</ol>
+
+<h3 id="a4-edge" class="edgehead anchor">A4.x &middot; Edge cases</h3>
+<ol class="steps edge">
+<li id="ec-4-1" data-code="A4.x.1"><b>What a clone copies.</b> The <b>steps and their variants</b> come along; the <b>people</b> and every <b>metric</b> do not &mdash; the clone opens as a fresh <b>Draft</b> with 0 people. Add the audience again <a data-goto="page-campaign" href="#cmp-people" style="font-weight:700;cursor:pointer">(SDR Flow 6.4 &#8599;)</a> before you enable it.</li>
+<li id="ec-4-2" data-code="A4.x.2"><b>Archive vs Delete.</b> <b>Archive</b> moves it to the <b>Archive</b> tab &mdash; out of the way, still readable, still counted in history. <b>Delete</b> is gone. When someone asks to &ldquo;clean up&rdquo;, archive.</li>
+<li id="ec-4-3" data-code="A4.x.3"><b>Reassigning does not re-point the sending account.</b> <b>Manage assignee</b> changes <i>who owns</i> the campaign; the <b>From</b> address still comes from the account set with the <b>&#9881;</b> badge <a href="#a4-inside" style="font-weight:700;cursor:pointer">(A4.4.4 &#8599;)</a>. Hand a campaign over &rarr; check both, or the new owner's replies land in the old inbox.</li>
+<li id="ec-4-4" data-code="A4.x.4"><b>Draft campaigns have no Enabled toggle.</b> The switch on the row is blank until the campaign is at least <b>Scheduled</b>. Nothing is broken &mdash; the SDR has not finished the hand-off in <a data-goto="page-campaign" href="#cmp-run" style="font-weight:700;cursor:pointer">Flow 6.6 &#8599;</a>.</li>
+<li id="ec-4-5" data-code="A4.x.5"><b>&ldquo;Cross-campaign&rdquo; is the number to fear.</b> A contact sitting in two live campaigns gets two cold emails in the same week. Data Health flags it as <b>Critical</b> before the send, and the <b>Recently contacted &middot; 7 days</b> line catches it after. Resolve by pulling the person out of one campaign, not by ignoring the badge.</li>
+<li id="ec-4-6" data-code="A4.x.6"><b>The folder pane can be collapsed.</b> The <b>&#8249;</b> handle on its edge hides it and widens the table &mdash; useful when you are reading the rate columns. It re-opens with the same handle.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-a3"><span class="k">&larr; Prev</span><b>A3 &middot; Run a ME / campaign</b></a><a class="next" data-goto="page-a5"><span class="k">Next &rarr;</span><b>A5 &middot; Manage a marketing email</b></a></div>
+</section>
+
+<!-- ===================== A5 · MANAGE A MARKETING EMAIL ===================== -->
+<section class="page" id="page-a5">
+<h2><span class="who adm">ADMIN</span><span class="n adm">A5 &middot;</span> Manage a marketing email <span class="fn">(Admin/Ops &mdash; every ME in the workspace)</span></h2>
+<div class="goal adm"><b>Goal:</b> an ME is a <b>one-shot blast</b>, not a sequence &mdash; so managing it is about <b>who it goes out as</b>, <b>whether the audience is safe to mail</b>, and <b>what came back</b>. The SDR prepares and reviews it (SDR <a data-goto="page-marketing" href="#me-create" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a>); you activate and Force Send it in <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">A3.1 &#8599;</a>. Everything below is the surrounding admin work.</div>
+
+<h3 id="a5-list" class="anchor">A5.1 &middot; The list</h3>
+<ol class="steps adm">
+<li data-code="A5.1.1"><b>Sales Management &rarr; Marketing Emails.</b> Again the whole workspace (<b>86</b> on UAT). Tabs: <b>All &middot; Draft &middot; Paused &middot; Running &middot; Finished</b> &mdash; note there is <b>no Archive</b> and <b>no folder pane</b>; MEs are flat.
+  <figure><img src="admm-01-list.png" alt="Admin marketing email list"/><figcaption><b>A5.1</b> &mdash; <b>&#9312;</b> every user's MEs &middot; <b>&#9313;</b> status tabs &middot; <b>&#9314;</b> <b>+ Create Marketing Email</b> &middot; <b>&#9315;</b> the rate columns.</figcaption></figure>
+</li>
+<li data-code="A5.1.2"><b>Read a row:</b> name + <b>From</b> address + status pill &middot; <b>People</b> &middot; <b>Delivered</b> &middot; <b>Open Rate</b> &middot; <b>Reply Rate</b> &middot; <b>Bounce/Dropped Rate</b> &middot; <b>Progress</b> (&#10003; when the blast finished). There is <b>no Enabled toggle and no Assignee column</b> here &mdash; an ME is switched on from inside, and its owner shows in the detail header.</li>
+</ol>
+
+<h3 id="a5-row" class="anchor">A5.2 &middot; Row actions &mdash; deliberately thin</h3>
+<ol class="steps adm">
+<li data-code="A5.2.1"><b>&#8942;</b> gives you <b>Edit/View Details</b> and <b>Manage assignee</b>. That's all &mdash; <b>no Delete, no Archive, no Clone, no Move</b>, unlike a campaign <a data-goto="page-a4" href="#a4-row" style="font-weight:700;cursor:pointer">(A4.2 &#8599;)</a>. A sent blast is a record; it stays.
+  <figure><img src="admm-02-row-menu.png" alt="ME row menu"/><figcaption><b>A5.2.1</b> &mdash; two items only.</figcaption></figure>
+</li>
+<li data-code="A5.2.2"><b>Bulk</b> works the same way as campaigns: tick rows &rarr; <b>&ldquo;N marketing emails selected&rdquo;</b> &rarr; <b>Assign assignee</b>.</li>
+</ol>
+
+<h3 id="a5-inside" class="anchor">A5.3 &middot; Inside the ME</h3>
+<ol class="steps adm">
+<li data-code="A5.3.1"><b>Open it.</b> Header: editable <b>name</b> &middot; <b>timezone</b> &middot; <b>description</b> &middot; <b>owner</b> with the <b>&#9881;</b> badge &middot; the <b>Active</b> switch. Tabs: <b>Inbox &middot; Inbox V1 &middot; Template &middot; People &middot; People V1 &middot; Preview &middot; Preview V1 &middot; Email Queues &middot; Data Health &beta; &middot; Timeline</b>.
+  <figure><img src="admm-03-detail.png" alt="ME detail header"/><figcaption><b>A5.3.1</b> &mdash; <b>&#9312;</b> owner + <b>&#9881;</b> + the <b>Active</b> switch &middot; <b>&#9313;</b> the ten tabs &middot; <b>&#9314;</b> <b>Force Send</b> and the step's delete icon.</figcaption></figure>
+</li>
+<li data-code="A5.3.2"><b>Template</b> holds the single step. It carries the <b>Force Send</b> button from <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">A3.1.3 &#8599;</a> plus a <b>&#128465; delete</b> on the step &mdash; deleting it empties the ME, so only do that on a Draft.</li>
+<li data-code="A5.3.3"><b>&#9881; on the owner avatar &rarr; change the sending account.</b> Same control as a campaign: a list of Fintalent accounts, the current one excluded; picking one changes the account the blast sends <b>From</b>.
+  <figure><img src="admm-04-sender.png" alt="Sending account picker"/><figcaption><b>A5.3.3</b> &mdash; <b>&#9312;</b> the <b>&#9881;</b> badge &middot; <b>&#9313;</b> the account list. Set this <u>before</u> Force Send &mdash; it decides the From address and where replies land.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="a5-inbox" class="anchor">A5.4 &middot; The ME's own Inbox</h3>
+<ol class="steps adm">
+<li data-code="A5.4.1">The <b>Inbox</b> tab is this ME's replies only, with a category rail down the left: <b>All &middot; Prospect &middot; Interested &middot; Scheduled Call &middot; Platform Signup &middot; In Projects &middot; Project Completed &middot; Not Now &middot; Not Interested &middot; Email Updated &middot; Left The Company &middot; Out Of Office &middot; Do Not Contact &middot; Opted Out &middot; No Categories &middot; Bounced / Dropped &middot; Open &middot; Click</b>.
+  <figure><img src="admm-07-inbox.png" alt="ME inbox"/><figcaption><b>A5.4</b> &mdash; <b>&#9312;</b> the category rail (<b>Open</b> and <b>Click</b> are engagement, not replies) &middot; <b>&#9313;</b> filters &middot; <b>&#9314;</b> keyword search.</figcaption></figure>
+</li>
+<li data-code="A5.4.2"><b>Bounced / Dropped</b> and <b>Opted Out</b> are the two to read first after a blast &mdash; they decide whether the next ME to that segment should go out at all.</li>
+</ol>
+
+<h3 id="a5-health" class="anchor">A5.5 &middot; Data Health &beta; &mdash; and the Config the campaign side doesn't have</h3>
+<ol class="steps adm">
+<li data-code="A5.5.1"><b>Recompute live</b> &rarr; verdict + cards: <b>Total contacts &middot; Delivered &middot; Healthy &middot; Critical &middot; Hard bounces &middot; Replies &middot; 30d</b>.
+  <figure><img src="admm-05-data-health.png" alt="ME data health"/><figcaption><b>A5.5.1</b> &mdash; a real <b>CRITICAL</b> verdict: <b>&#9312;</b> badge &middot; <b>&#9313;</b> cards &middot; <b>&#9314;</b> the issue with its <b>Review &rarr;</b> &middot; <b>&#9315;</b> <b>Email logs data</b> (SendGrid delivery events + 7/14/30-day activity).</figcaption></figure>
+</li>
+<li data-code="A5.5.2"><b>Read the issue, not just the badge.</b> In the example above the ME is Critical because of <b>Recently contacted</b>: <i>&ldquo;these contacts already got an email from another campaign in the last 7 days &mdash; sending again risks over-contacting them&rdquo;</i>, 3 of 3. <b>Review &rarr;</b> opens exactly those people.</li>
+<li data-code="A5.5.3"><b>Email queue data</b> here also shows <b>Cancelled</b> and a <b>Recipient status</b> line (<i>Completed 3</i>) &mdash; the difference between &ldquo;we tried to send 3&rdquo; and &ldquo;1 actually got delivered&rdquo;.</li>
+<li data-code="A5.5.4"><b>Config</b> (top-right, ME-only). <i>&ldquo;Tune what the next scan flags for this marketing email&rdquo;</i> &rarr; <b>Cross-check duplicates</b>: tick the other MEs whose audiences should be treated as overlap &rarr; <b>Save</b>. Use it when you run a series to the same segment and want the scan to catch the repeat.
+  <figure><img src="admm-06-config.png" alt="Configure data health"/><figcaption><b>A5.5.4</b> &mdash; <b>&#9312;</b> Cross-check duplicates &middot; <b>&#9313;</b> pick the other MEs &middot; <b>&#9314;</b> <b>Save</b>.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="a5-edge" class="edgehead anchor">A5.x &middot; Edge cases</h3>
+<ol class="steps edge">
+<li id="em-5-1" data-code="A5.x.1"><b>An ME cannot be deleted or archived.</b> If a Draft is wrong, edit it or leave it &mdash; there is no cleanup action in the row menu. Plan names accordingly, because the list is long (86 and growing).</li>
+<li id="em-5-2" data-code="A5.x.2"><b>Force Send only reaches reviewed contacts.</b> Same rule as <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">A3.1.3 &#8599;</a>: people the SDR never marked <b>Content Reviewed</b> stay behind. A queue smaller than the People count usually means review, not a bug &mdash; check <b>People</b> before you chase it.</li>
+<li id="em-5-3" data-code="A5.x.3"><b>Cancelled &ne; failed.</b> In the example the queue reads <b>Delivered 1 &middot; Cancelled 2</b> of 3 people. Cancelled rows were pulled before sending (unreviewed, suppressed, or lifecycle-excluded) &mdash; they never hit the provider, so they don't count against the domain.</li>
+<li id="em-5-4" data-code="A5.x.4"><b>Change the sending account before, never during.</b> Switching the <b>&#9881;</b> account on a Running ME splits the thread: what already went out keeps the old From, replies to it land in the old inbox. Pause &rarr; switch &rarr; resume.</li>
+<li id="em-5-5" data-code="A5.x.5"><b>V1 tabs.</b> <b>Inbox V1 &middot; People V1 &middot; Preview V1</b> are the legacy screens kept alongside the new ones. They can show different counts &mdash; when they disagree, the non-V1 tab is the one to quote.</li>
+<li id="em-5-6" data-code="A5.x.6"><b>The Timeline tab works exactly as the campaign one</b> &mdash; same actor + before&rarr;after format, same <b>Simple / Advanced</b> search. See <a data-goto="page-a4" href="#a4-audit" style="font-weight:700;cursor:pointer">A4.6 &#8599;</a> rather than repeating it here.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-a4"><span class="k">&larr; Prev</span><b>A4 &middot; Manage a campaign</b></a><a class="next" data-goto="page-b1"><span class="k">Next &rarr;</span><b>B1 &middot; Invite talents</b></a></div>
 </section>
 
 <!-- ===================== B1 · INVITE TALENTS ===================== -->
@@ -536,7 +723,7 @@
   <figure><img src="sdrx-bil-03-invite-selected.png" alt="Invite Talents button"/><figcaption><b>B1.4</b> &mdash; tick talents &rarr; <b>Invite Talents</b>.</figcaption></figure>
 </li>
 </ol>
-<div class="pagernav"><a data-goto="page-a3"><span class="k">← Prev</span><b>A3 · Run a ME / campaign</b></a><a class="next" data-goto="page-b2"><span class="k">Next → (Talent)</span><b>B2 · Log &amp; submit timesheet</b></a></div>
+<div class="pagernav"><a data-goto="page-a5"><span class="k">&larr; Prev</span><b>A5 &middot; Manage a marketing email</b></a><a class="next" data-goto="page-b2"><span class="k">Next &rarr; (Talent)</span><b>B2 &middot; Log &amp; submit timesheet</b></a></div>
 </section>
 
 <!-- ===================== B2 · TALENT LOG & SUBMIT TIMESHEET ===================== -->
