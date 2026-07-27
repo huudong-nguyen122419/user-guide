@@ -50,8 +50,8 @@
   .navsearch .cnt{font-size:10.5px;color:var(--n-400);padding:5px 2px 0;display:none}
   .navsearch.has .clr,.navsearch.has .cnt{display:block}
   /* khi đang tìm: chỉ hiện mục khớp, không phụ thuộc flow đang mở */
-  nav.searching a{display:none}
-  nav.searching a.hit{display:block}
+  nav.searching a{display:none !important}
+  nav.searching a.hit{display:block !important}
   nav.searching .grp{display:none}
   nav.searching .grp.hit{display:block}
   nav a mark{background:#FDE68A;color:inherit;border-radius:2px;padding:0 1px}
@@ -2343,15 +2343,37 @@
     cnt.textContent = n ? (n+(n>1?' results':' result')) : 'No match';
   }
 
-  box.addEventListener('input', function(){ run(box.value); });
+  /* ---- đồng bộ với URL: ?q=<từ khoá>, giữ nguyên hash trang ---- */
+  function syncUrl(q){
+    try{
+      var u = new URL(window.location.href);
+      if(q) u.searchParams.set('q', q); else u.searchParams.delete('q');
+      history.replaceState(null, '', u.pathname + u.search + u.hash);
+    }catch(e){ /* file:// ở vài trình duyệt chặn replaceState — bỏ qua */ }
+  }
+  function apply(q, updateUrl){
+    run(q);
+    if(updateUrl !== false) syncUrl((q||'').trim());
+  }
+
+  box.addEventListener('input', function(){ apply(box.value); });
   box.addEventListener('keydown', function(e){
-    if(e.key==='Escape'){ box.value=''; reset(); box.blur(); }
+    if(e.key==='Escape'){ box.value=''; reset(); syncUrl(''); box.blur(); }
     if(e.key==='Enter'){
       var first=nav.querySelector('a.hit');
       if(first) first.click();
     }
   });
-  clr.addEventListener('click', function(){ box.value=''; reset(); box.focus(); });
+  clr.addEventListener('click', function(){ box.value=''; reset(); syncUrl(''); box.focus(); });
+
+  /* mở link có sẵn ?q= thì khôi phục lại kết quả tìm kiếm */
+  (function restore(){
+    var q='';
+    try{ q = new URL(window.location.href).searchParams.get('q') || ''; }catch(e){}
+    if(!q) return;
+    box.value = q;
+    apply(q, false);
+  })();
   /* bấm "/" ở bất kỳ đâu để nhảy vào ô tìm kiếm */
   document.addEventListener('keydown', function(e){
     if(e.key==='/' && document.activeElement!==box && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){
