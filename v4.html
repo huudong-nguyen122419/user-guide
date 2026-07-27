@@ -223,6 +223,7 @@
     <a href="#ba-4" class="st2" data-page="page-b3">B3.x.4 · Lệch 2 trang PDF</a>
     <a href="#ba-5" class="st2" data-page="page-b3">B3.x.5 · Chưa submit = chưa bill</a>
     <a href="#ba-6" class="st2" data-page="page-b3">B3.x.6 · Mở invoice từ Timesheets</a>
+    <a href="#ba-7" class="st2" data-page="page-b3">B3.x.7 · Sửa hoá đơn Draft</a>
 
     <div class="grp ops">Ops — preparing the work</div>
     <a class="flow ops" data-page="page-o1"><span class="n">O1</span> Your Ops workspace</a>
@@ -936,7 +937,7 @@
 <h3 id="b3-sync" class="anchor">B3.1 &middot; Xem &amp; đồng bộ timesheet</h3>
 <ol class="steps">
 <li data-code="B3.1.1">Menu trái &rarr; <b>Contracts &amp; Invoices</b> &rarr; <b>Timesheets</b>.
-  <figure><img src="tsx-12-admin-menu-timesheets.png" alt="Menu Contracts & Invoices → Timesheets"/><figcaption><b>B3.1.1</b> &mdash; <b>&#9312;</b> nhóm <b>Contracts &amp; Invoices</b> khi mở ra &middot; <b>&#9313;</b> mục <b>Timesheets</b> (nằm cuối nhóm, dưới Commission Invoices).</figcaption></figure></li>
+  <figure><img src="tsx-12-admin-menu-timesheets.png" alt="Menu Contracts & Invoices → Timesheets"/><figcaption><b>B3.1.1</b> &mdash; <b>&#9312;</b> nhóm <b>Contracts &amp; Invoices</b> &middot; <b>&#9313;</b> mục <b>Timesheets</b> ở cuối nhóm.</figcaption></figure></li>
 <li data-code="B3.1.2"><b>Lọc đúng talent</b> bằng ô <b>Select talents</b> (gõ tên/email rồi chọn). Toggle <b>Talents with Active Contract</b> để chỉ xem người đang có contract chạy.
   <figure><img src="sdrx-ts-07-admin-row.png" alt="Lọc talent trên trang Timesheets"/><figcaption><b>B3.1.2</b> &mdash; <b>&#9312;</b> ô <b>Select talents</b> đã chọn talent (chip <b>Active</b> + tên).</figcaption></figure></li>
 <li data-code="B3.1.3">Bấm <b>Sync Data</b> trên dòng của talent &mdash; kéo số liệu mới nhất từ timesheet talent vừa submit.
@@ -994,8 +995,7 @@
   <p class="fn">Ngay trên ô <b>Quantity</b> có nhắc lại cảnh báo <b>&ldquo;X hrs to bill · Y hrs worked&rdquo;</b> &mdash; đọc lại lần cuối ở đây.</p>
   <figure><img src="sdrx-ts-09-admin-invoice-form.png" alt="Form Create Client Invoice"/><figcaption><b>B3.3.2</b> &mdash; Service period &middot; Billing rate &middot; <b>Quantity = hours to bill</b> &middot; Amount tự tính.</figcaption></figure>
 </li>
-<li data-code="B3.3.3">Đủ và đúng thì bấm <b>Create</b>. Hoá đơn được tạo ở trạng thái <b>Draft</b>, gắn nhãn <b>Timesheets (khoảng ngày)</b>.
-  <figure><img src="sdrx-ts-12-invoice-actions.png" alt="Hoá đơn vừa tạo"/><figcaption><b>B3.3.3</b> &mdash; hoá đơn mới: số hiệu &middot; nhãn <b>Timesheets (Jul 3 &ndash; 4)</b> &middot; trạng thái <b>Draft</b>.</figcaption></figure></li>
+<li data-code="B3.3.3">Đủ và đúng thì bấm <b>Create</b>. Hoá đơn được tạo ở trạng thái <b>Draft</b>, gắn nhãn <b>Timesheets (khoảng ngày)</b> &mdash; xem ngay ở <a href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4 &#8599;</a>.</li>
 </ol>
 
 <h3 id="b3-pdf" class="anchor">B3.4 &middot; Xem hoá đơn vừa tạo &amp; kiểm tra file PDF</h3>
@@ -1006,7 +1006,7 @@
   <figure><img src="sdrx-ts-16-invoice-from-row.png" alt="Drawer Update Client Invoice"/><figcaption><b>B3.4.2</b> &mdash; <b>&#9312;</b> drawer kèm nút <b>&#10515;</b> tải PDF &middot; <b>&#9313;</b> trạng thái + Update &middot; <b>&#9314;</b> tóm tắt contract &amp; timesheet.</figcaption></figure></li>
 <li data-code="B3.4.3"><b>Bấm &#10515;</b> &rarr; chờ vài giây, <b>PDF mở ở tab mới</b> (file tải từ kho, không phải cửa sổ tải xuống).
   <p class="fn"><b>Đường thứ hai:</b> menu <b>Contracts &amp; Invoices &rarr; Client Invoices</b> &rarr; tìm hoá đơn &rarr; cột <b>Actions</b> có <b>&#128065;</b> (xem chi tiết) và <b>&#10515;</b> (tải PDF) &mdash; kết quả giống hệt. Dùng khi cần lọc/tìm giữa nhiều hoá đơn của nhiều talent.</p>
-  <figure><img src="sdrx-ts-13-download-pdf.png" alt="Nút tải PDF ở trang Client Invoices"/><figcaption><b>B3.4.3</b> &mdash; đường thứ hai, ở trang <b>Client Invoices</b>: <b>&#9312;</b> xem chi tiết &middot; <b>&#9313;</b> tải PDF.</figcaption></figure></li>
+  <figure><img src="tsx-15-invoice-detail-download.png" alt="Nút tải PDF trong drawer chi tiết hoá đơn"/><figcaption><b>B3.4.3</b> &mdash; <b>&#9312;</b> nút <b>&#10515;</b> nằm ngay cạnh số hiệu hoá đơn, trong drawer chi tiết.</figcaption></figure></li>
 <li data-code="B3.4.4"><b>Trang 1 &mdash; phần tính tiền.</b> Đối chiếu: số hoá đơn &middot; địa chỉ + VAT của client &middot; <b>HOUR(S)</b> (hoặc <b>DAY(S)</b> với contract Daily) &middot; <b>RATE</b> &middot; <b>AMOUNT</b> &middot; <b>TOTAL AMOUNT DUE</b> &middot; hạn thanh toán (theo <i>Payment terms</i> của contract) &middot; thông tin ngân hàng.
   <figure><img src="sdrx-ts-14-pdf-page1.png" alt="PDF trang 1"/><figcaption><b>B3.4.4</b> &mdash; dòng tính tiền và <b>TOTAL AMOUNT DUE</b> kèm hạn thanh toán.</figcaption></figure></li>
 <li data-code="B3.4.5"><b>Trang 2 &mdash; phụ lục timesheet.</b> Liệt kê <b>từng ngày</b> talent đã log kèm khung giờ và Note. Đây là phần cho client thấy <b>công việc thực tế</b>.
@@ -1017,17 +1017,22 @@
 
 <h3 id="b3-edge" class="edgehead anchor">B3.x &middot; Edge cases</h3>
 <ol class="steps edge">
-<li id="ba-1" data-code="B3.x.1"><b>Contract Daily &mdash; Quantity là số NGÀY.</b> <b>1 ngày công = 8 giờ.</b> Ví dụ: talent log 8h (13/07) + 6h (14/07) = 14h, chốt to bill 8h + 4h = <b>12h</b> &rarr; Quantity = <b>12 &divide; 8 = 1.5 ngày</b> &rarr; Amount = 1.5 &times; 500 USD = <b>750 USD</b>. Trên PDF cột đổi từ <b>HOUR(S)</b> thành <b>DAY(S)</b>.</li>
-<li id="ba-2" data-code="B3.x.2"><b>Ý nghĩa &ldquo;Total Hours Worked&rdquo; ở trang danh sách.</b> Con số ở header và ở cột bảng của trang Timesheets là <b>tổng hours to bill</b> (số đem tính tiền). Muốn xem <b>giờ log thật</b> thì mở <b>View Timesheets</b> &mdash; ở đó có riêng hai dòng <i>to bill</i> và <i>worked</i>.</li>
-<li id="ba-3" data-code="B3.x.3"><b>Nhiều đợt bill trên cùng contract.</b> Mỗi lần bill chỉ lấy phần <b>uninvoiced</b>; những ngày đã nằm trong hoá đơn trước không bị tính lại. Dòng talent hiện lại lịch sử các hoá đơn đã tạo kèm khoảng ngày.</li>
+<li id="ba-1" data-code="B3.x.1"><b>Contract Daily &mdash; Quantity là số NGÀY.</b> <b>1 ngày công = 8 giờ.</b> Ví dụ: talent log 8h (13/07) + 6h (14/07) = 14h, chốt to bill 8h + 4h = <b>12h</b> &rarr; Quantity = <b>12 &divide; 8 = 1.5 ngày</b> &rarr; Amount = 1.5 &times; 500 USD = <b>750 USD</b>. Trên PDF cột đổi từ <b>HOUR(S)</b> thành <b>DAY(S)</b>.
+  <figure><img src="sdrx-ts-06-talent-daily-days.png" alt="Cột Day(s) to bill của contract Daily"/><figcaption><b>B3.x.1</b> &mdash; quy đổi <b>giờ &divide; 8 = ngày</b>, thấy rõ ở cột <b>Day(s) to bill</b> lúc talent submit.</figcaption></figure></li>
+<li id="ba-2" data-code="B3.x.2"><b>Ý nghĩa &ldquo;Total Hours Worked&rdquo; ở trang danh sách.</b> Con số ở header và ở cột bảng của trang Timesheets là <b>tổng hours to bill</b> (số đem tính tiền). Muốn xem <b>giờ log thật</b> thì mở <b>View Timesheets</b> &mdash; ở đó có riêng hai dòng <i>to bill</i> và <i>worked</i>.
+  <figure><img src="sdrx-ts-25-admin-ts-totals.png" alt="Ba tổng trong View Timesheets"/><figcaption><b>B3.x.2</b> &mdash; <b>&#9312;</b> trong <b>View Timesheets</b> mới tách được <b>hours to bill</b> và <b>hours worked</b>.</figcaption></figure></li>
+<li id="ba-3" data-code="B3.x.3"><b>Nhiều đợt bill trên cùng contract.</b> Mỗi lần bill chỉ lấy phần <b>uninvoiced</b>; những ngày đã nằm trong hoá đơn trước không bị tính lại. Dòng talent hiện lại lịch sử các hoá đơn đã tạo kèm khoảng ngày.
+  <figure><img src="tsx-16-multiple-billing-rounds.png" alt="Nhiều đợt bill trên cùng dòng talent"/><figcaption><b>B3.x.3</b> &mdash; ba đợt bill của cùng một contract, xếp chồng theo thứ tự: <b>&#9312;</b> Jul 1&ndash;2 &middot; <b>&#9313;</b> Jul 3&ndash;4 &middot; <b>&#9314;</b> Jul 8&ndash;10 (đợt này có thêm expense).</figcaption></figure></li>
 <li id="ba-4" data-code="B3.x.4"><b>Chênh lệch giữa hai trang PDF &mdash; cần biết khi client hỏi.</b> Trang 1 tính theo <b>to bill</b>, trang 2 liệt kê theo <b>giờ log thật</b> &mdash; nên hai trang có thể ra hai con số:
   <ul style="margin:6px 0 0;padding-left:18px">
   <li><b>Hourly:</b> trang 1 = 6.50 giờ &middot; trang 2 = <i>Total Hour(s)</i> 7.00.</li>
   <li><b>Daily:</b> trang 1 = 1.50 ngày &middot; trang 2 = <i>Total Day(s)</i> 1.75 &mdash; <b>cùng đơn vị DAY(S) nên dễ bị hiểu nhầm nhất</b>.</li>
   </ul>
+  <figure><img src="tsx-17-pdf-two-pages-diff.png" alt="Hai trang PDF, hai con số"/><figcaption><b>B3.x.4</b> &mdash; <b>&#9312;</b> trang 1 tính tiền theo <b>hours to bill</b> &middot; <b>&#9313;</b> trang 2 liệt kê theo <b>giờ log thật</b>.</figcaption></figure>
   <p class="fn">Số tiền trên hoá đơn <b>vẫn đúng</b> (tính theo to bill). Đang chờ xác nhận có bổ sung dòng giải thích chênh lệch vào phụ lục hay không.</p>
 </li>
-<li id="ba-5" data-code="B3.x.5"><b>Talent chưa submit thì không bill được.</b> Giờ mới log mà chưa submit nằm ở <b>pending submission</b> bên talent &mdash; không vào <b>Unbilled</b>, nên không xuất hiện khi tạo hoá đơn. Nhắc talent submit trước.</li>
+<li id="ba-5" data-code="B3.x.5"><b>Talent chưa submit thì không bill được.</b> Giờ mới log mà chưa submit nằm ở <b>pending submission</b> bên talent &mdash; không vào <b>Unbilled</b>, nên không xuất hiện khi tạo hoá đơn. Nhắc talent submit trước.
+  <figure><img src="tsx-04-after-partial.png" alt="Giờ còn pending bên talent"/><figcaption><b>B3.x.5</b> &mdash; <b>&#9314;</b> phần <b>pending submission</b> bên talent &mdash; số này chưa sang được phía Admin.</figcaption></figure></li>
 <li id="ba-6" data-code="B3.x.6"><b>Mở hoá đơn ngay từ trang Timesheets &mdash; không cần vòng qua menu.</b> Sau khi tạo, mỗi dòng talent hiển thị luôn khối thông tin hoá đơn (số hiệu &middot; khoảng timesheet &middot; số giờ &middot; số tiền &middot; trạng thái). <b>Bấm thẳng vào khối đó</b> &rarr; mở drawer <b>Update Client Invoice</b> ngay tại chỗ, có sẵn:
   <ul style="margin:6px 0 0;padding-left:18px">
   <li>nút <b>&#10515; tải PDF</b> cạnh tiêu đề;</li>
@@ -1037,6 +1042,19 @@
   </ul>
   <figure><img src="sdrx-ts-16-invoice-from-row.png" alt="Mở client invoice từ dòng timesheet"/><figcaption><b>B3.x.6</b> &mdash; <b>&#9312;</b> drawer <b>Update Client Invoice</b> (kèm nút tải PDF) &middot; <b>&#9313;</b> trạng thái + Update &middot; <b>&#9314;</b> tóm tắt contract &amp; timesheet.</figcaption></figure>
   <p class="fn">Nhanh hơn đường <b>Client Invoices &rarr; tìm hoá đơn</b> ở <a data-goto="page-b3" href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4 &#8599;</a> khi bạn vừa tạo xong và muốn kiểm tra ngay.</p>
+</li>
+<li id="ba-7" data-code="B3.x.7"><b>Sửa lại hoá đơn còn ở trạng thái Draft.</b> Hoá đơn <b>Draft</b> vẫn sửa được toàn bộ &mdash; mở drawer <a href="#ba-6" style="font-weight:700;cursor:pointer">như B3.x.6 &#8599;</a>, chỉnh rồi bấm <b>Update</b> (góc trên-phải). Drawer đóng lại, dòng trên trang Timesheets cập nhật theo.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Sửa được</th><th>Hệ quả</th></tr></thead>
+  <tbody>
+  <tr><td><b>Service period start / end date</b></td><td>Đổi khoảng ngày &rarr; <b>Quantity tính lại</b>, và các expense rơi vào khoảng mới sẽ được kéo vào (xem <a data-goto="page-b2" href="#bt-8" style="font-weight:700;cursor:pointer">B2.x.8 &#8599;</a>).</td></tr>
+  <tr><td><b>Billing rate &middot; Quantity</b></td><td>Amount tính lại theo giá trị mới.</td></tr>
+  <tr><td><b>Description &middot; Client contact &middot; Fintalent Bank Account</b></td><td>Đổi nội dung in ra PDF.</td></tr>
+  <tr><td><b>Additional items</b></td><td>Thêm / bớt / sửa các khoản ngoài giờ công.</td></tr>
+  <tr><td><b>Type</b> (Standard Invoice&hellip;)</td><td>Đổi loại hoá đơn.</td></tr>
+  </tbody></table></div>
+  <p class="fn">Sửa xong nên <b>tải lại PDF</b> (<a href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4.3 &#8599;</a>) để chắc file khớp với số đã sửa &mdash; PDF được sinh lại theo dữ liệu mới nhất.</p>
+  <div class="call note"><span class="t">Chỉ khi còn Draft</span>Sửa thoải mái khi hoá đơn chưa gửi. Đã chuyển sang trạng thái tiếp theo thì thuộc flow <b>Issue Client Invoices</b>, không sửa tuỳ tiện được nữa.</div>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-b2"><span class="k">← Prev</span><b>B2 · Talent log &amp; submit</b></a><a class="next" data-goto="page-o1"><span class="k">Next → (Ops)</span><b>O1 · Your Ops workspace</b></a></div>
