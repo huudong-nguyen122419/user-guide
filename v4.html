@@ -209,6 +209,7 @@
     <a href="#bt-4" class="st2" data-page="page-b2">B2.x.4 · Lỡ tay</a>
     <a href="#bt-5" class="st2" data-page="page-b2">B2.x.5 · Nhiều project</a>
     <a href="#bt-6" class="st2" data-page="page-b2">B2.x.6 · Ask question</a>
+    <a href="#bt-7" class="st2" data-page="page-b2">B2.x.7 · Billing / payment info</a>
     <a class="flow adm" data-page="page-b3"><span class="n">B3</span> Timesheet → invoice (Admin)</a>
     <a href="#b3-sync" class="st" data-page="page-b3">B3.1 · Xem &amp; Sync Data</a>
     <a href="#b3-view" class="st" data-page="page-b3">B3.2 · View Timesheets</a>
@@ -730,7 +731,8 @@
 <section class="page" id="page-b2">
 <h2><span class="who tal">TALENT</span><span class="n tal">B2 &middot;</span> Log &amp; submit timesheet <span class="fn">(việc của talent, làm trên talent portal)</span></h2>
 <div class="goal"><b>Goal:</b> talent ghi lại số giờ đã làm cho contract đang chạy, rồi <b>submit</b> để Fintalent lấy đó xuất hoá đơn. Điểm cốt lõi: khi submit talent chốt <b>Hour(s) to bill</b> &mdash; <b>đó mới là số giờ đem tính tiền</b>, còn số giờ log vẫn được giữ để đối chiếu.</div>
-<div class="call note"><span class="t">Điều kiện bắt đầu</span>Phải có <b>contract ở trạng thái Active</b>. Talent chỉ log được cho project của contract đó, và <b>chỉ từ ngày bắt đầu (Start date) của contract trở đi</b>.</div>
+<div class="call note"><span class="t">Điều kiện bắt đầu</span>Phải có <b>contract ở trạng thái Active</b>. Talent chỉ log được cho project của contract đó, và <b>chỉ từ ngày bắt đầu (Start date) của contract trở đi</b>.
+<br>Nên khai <b>billing address</b> và <b>payment info</b> ngay từ đầu &mdash; thiếu thì vẫn log work được nhưng <b>đến lúc submit sẽ bị chặn</b>: <a href="#bt-7" style="font-weight:700;cursor:pointer">B2.x.7 &#8599;</a>.</div>
 
 <h3 id="b2-open" class="anchor">B2.1 &middot; Mở màn hình Timesheet</h3>
 <ol class="steps">
@@ -749,22 +751,6 @@
   <tr><td><b>… pending submission</b></td><td>Giờ đã log nhưng <b>chưa submit</b>. Bằng <b>0h</b> thì nút Submit bị mờ.</td></tr>
   </tbody></table></div>
   <figure><img src="sdrx-ts-01-talent-summary.png" alt="Panel tổng của Timesheet"/><figcaption><b>B2.1.4</b> &mdash; <b>&#9312;</b> submitted = hours to bill &middot; <b>&#9313;</b> Worked = giờ log &middot; <b>&#9314;</b> nút Submit bật khi có giờ pending.</figcaption></figure>
-</li>
-<li data-code="B2.1.5"><b>Khai <i>billing address</i> và <i>payment info</i> &mdash; làm sớm, đừng để đến lúc submit.</b> Talent có contract Active mà <b>chưa khai</b> thì vẫn <b>log work bình thường</b>, nhưng đến bước submit hộp thoại sẽ <b>không có nút Submit</b>, thay bằng cảnh báo:
-  <p class="fn" style="margin:6px 0"><i>&ldquo;Update your billing or payment details &mdash; Due to UK DAC7 regulations, we're required to collect additional billing or tax information from freelancers with an active contract&hellip;&rdquo;</i></p>
-  <figure><img src="tsx-08-billing-block.png" alt="Hộp submit bị chặn vì thiếu billing"/><figcaption><b>B2.1.5</b> &mdash; <b>&#9312;</b> chỗ đáng ra là nút Submit &rarr; thành cảnh báo <b>DAC7</b> &middot; <b>&#9313;</b> nút <b>Update billing</b> &middot; <b>&#9314;</b> danh sách ngày vẫn hiện bình thường (nên dễ tưởng là submit được).</figcaption></figure>
-</li>
-<li data-code="B2.1.6"><b>Khai ở đâu:</b> bấm <b>Update billing</b> trong cảnh báo, hoặc vào thẳng <b>My Profile &rarr; My Earnings</b> (<code>/earnings</code>). Trang này có <b>hai thẻ riêng biệt</b>, phải điền <b>cả hai</b>:
-  <figure><img src="tsx-09-earnings.png" alt="Trang My Earnings"/><figcaption><b>B2.1.6</b> &mdash; <b>&#9312;</b> <b>Billing</b> (địa chỉ xuất hoá đơn) &middot; <b>&#9313;</b> <b>Payment method</b> (tài khoản nhận tiền) &middot; <b>&#9314;</b> Paid Earnings &middot; Referral Earnings &middot; Pending Invoices.</figcaption></figure>
-  <ul style="margin:6px 0 0;padding-left:18px">
-  <li><b>Add billing address</b> &rarr; drawer <b>Tax &amp; Payment Information</b>: <b>Account Type</b> (Individual Professional / Firm&nbsp;&mdash;&nbsp;Company) &middot; họ tên &middot; <b>Birthday</b> &middot; email &middot; điện thoại &middot; <b>Address / City / Postcode / Country</b> &middot; <b>Tax Identification Number (TIN)</b>. Có cả <b>Recipients / Cc / Bcc</b> &mdash; địa chỉ nhận hoá đơn. Các ô có <b style="color:#E11D48">*</b> là bắt buộc.
-    <figure><img src="tsx-10-billing-form.png" alt="Form Tax & Payment Information"/><figcaption><b>B2.1.6a</b> &mdash; <b>&#9312;</b> Account Type &middot; <b>&#9313;</b> thông tin cá nhân &middot; <b>&#9314;</b> địa chỉ &middot; <b>&#9315;</b> <b>TIN bắt buộc</b>, VAT tuỳ chọn.</figcaption></figure>
-  </li>
-  <li><b>Add payment method</b> &rarr; một ô <b>Bank info</b> duy nhất (text tự do: tên ngân hàng, số tài khoản / IBAN / SWIFT&hellip;) &rarr; <b>Save</b>.
-    <figure><img src="tsx-11-payment-form.png" alt="Form Add payment method"/><figcaption><b>B2.1.6b</b> &mdash; <b>&#9312;</b> ô <b>Bank info</b> &middot; <b>&#9313;</b> <b>Save</b>.</figcaption></figure>
-  </li>
-  </ul>
-  <div class="call note"><span class="t">Điểm dễ hiểu nhầm</span>Thiếu billing address <b>không chặn việc log work</b> &mdash; đã kiểm chứng: entry vẫn tạo được, số <b>pending submission</b> vẫn tăng. Chặn chỉ xảy ra <b>ở bước submit</b>. Vì vậy talent có thể log cả tuần rồi mới phát hiện không submit được.</div>
 </li>
 </ol>
 
@@ -813,6 +799,7 @@
 <div class="call warn"><span class="t">Submit là một chiều</span>Hộp xác nhận ghi rõ: <b>&ldquo;Once submitted, it cannot be edited&rdquo;</b>. Soát kỹ số giờ trước khi bấm Yes.</div>
 <ol class="steps">
 <li data-code="B2.3.1">Bấm <b>Submit Timesheet</b> (nút chỉ bật khi <b>pending submission &gt; 0h</b>).
+  <p class="fn">Mở hộp ra mà <b>không thấy nút submit</b>, chỉ thấy cảnh báo <b>&ldquo;Update your billing or payment details&rdquo;</b> &rarr; tài khoản chưa khai <b>billing address / payment info</b>. Xử lý ở <a href="#bt-7" style="font-weight:700;cursor:pointer">B2.x.7 &#8599;</a> rồi quay lại bước này.</p>
   <figure><img src="sdrx-ts-01-talent-summary.png" alt="Nút Submit Timesheet"/><figcaption><b>B2.3.1</b> &mdash; <b>&#9314;</b> nút <b>Submit Timesheet</b> chỉ bật khi còn giờ pending.</figcaption></figure></li>
 <li data-code="B2.3.2">Hộp <b>Select Timesheet for Submission</b> liệt kê <b>từng ngày đang chờ</b> (không phải từng entry &mdash; nhiều entry trong một ngày được gộp lại). Mặc định <b>tất cả được tick</b>; đầu hộp có bộ đếm <b>&ldquo;N working days selected&rdquo;</b> và link <b>Uncheck all</b>. Lọc thêm bằng ô <b>Timesheet date</b> (From &rarr; To).
   <figure><img src="tsx-02-submit-dialog.png" alt="Cấu trúc hộp Select Timesheet for Submission"/><figcaption><b>B2.3.2</b> &mdash; <b>&#9312;</b> bộ đếm + <b>Uncheck all</b> &middot; <b>&#9313;</b> cột <b>Hour(s) to bill</b> sửa được &middot; <b>&#9314;</b> nút submit ghi rõ số ngày đang chọn.</figcaption></figure></li>
@@ -906,6 +893,22 @@
 </li>
 <li id="bt-6" data-code="B2.x.6"><b>Ask question &mdash; hỏi Fintalent ngay trong flow.</b> Nút <b>Ask question</b> (dưới <i>Add expense report</i>) <b>không mở form</b> mà chuyển thẳng sang <b>Chat</b>, vào đúng cuộc trò chuyện <b>Fintalent Team</b> gắn với contract đang chọn (<code>/chat/&lt;contractId&gt;</code>). Dùng khi lỡ submit sai, thiếu ngày, hoặc không rõ nên tính bao nhiêu giờ.
   <figure><img src="tsx-07-ask-question.png" alt="Ask question mở chat"/><figcaption><b>B2.x.6</b> &mdash; <b>&#9312;</b> hai luồng chat: <b>Client</b> (Application) và <b>Fintalent Team</b> (Conversation) &middot; <b>&#9313;</b> nội dung &middot; <b>&#9314;</b> ô nhập tin nhắn.</figcaption></figure>
+</li>
+<li id="bt-7" data-code="B2.x.7"><b>Chưa khai billing address / payment info &rarr; submit bị chặn.</b> Talent có contract Active mà chưa khai thì <b>vẫn log work bình thường</b> &mdash; entry tạo được, <b>pending submission</b> vẫn tăng &mdash; nhưng đến bước submit thì hộp thoại <b>không có nút Submit</b>, thay bằng cảnh báo:
+  <p class="fn" style="margin:6px 0"><i>&ldquo;Update your billing or payment details &mdash; Due to UK DAC7 regulations, we're required to collect additional billing or tax information from freelancers with an active contract&hellip;&rdquo;</i></p>
+  <figure><img src="tsx-08-billing-block.png" alt="Hộp submit bị chặn vì thiếu billing"/><figcaption><b>B2.x.7a</b> &mdash; <b>&#9312;</b> chỗ đáng ra là nút Submit &rarr; thành cảnh báo <b>DAC7</b> &middot; <b>&#9313;</b> nút <b>Update billing</b> &middot; <b>&#9314;</b> danh sách ngày vẫn hiện bình thường (nên dễ tưởng là submit được).</figcaption></figure>
+  <div class="call note"><span class="t">Điểm dễ hiểu nhầm</span>Việc chặn <b>không xảy ra lúc log</b> mà <b>chỉ ở bước submit</b> &mdash; đã kiểm chứng trên UAT. Talent có thể log cả tuần rồi mới phát hiện không submit được, nên khai sớm ngay khi contract vừa Active.</div>
+  <p><b>Khai ở đâu:</b> bấm <b>Update billing</b> ngay trong cảnh báo, hoặc vào thẳng <b>My Profile &rarr; My Earnings</b> (<code>/earnings</code>). Trang này có <b>hai thẻ riêng biệt</b>, phải điền <b>cả hai</b> mới hết chặn:</p>
+  <figure><img src="tsx-09-earnings.png" alt="Trang My Earnings"/><figcaption><b>B2.x.7b</b> &mdash; <b>&#9312;</b> <b>Billing</b> (địa chỉ xuất hoá đơn) &middot; <b>&#9313;</b> <b>Payment method</b> (tài khoản nhận tiền) &middot; <b>&#9314;</b> Paid Earnings &middot; Referral Earnings &middot; Pending Invoices.</figcaption></figure>
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li><b>Add billing address</b> &rarr; drawer <b>Tax &amp; Payment Information</b>: <b>Account Type</b> (Individual Professional / Firm&nbsp;&mdash;&nbsp;Company) &middot; họ tên &middot; <b>Birthday</b> &middot; email &middot; điện thoại &middot; <b>Address / City / Postcode / Country</b> &middot; <b>Tax Identification Number (TIN)</b>. Có cả <b>Recipients / Cc / Bcc</b> &mdash; địa chỉ nhận hoá đơn. Các ô có <b style="color:#E11D48">*</b> là bắt buộc.
+    <figure><img src="tsx-10-billing-form.png" alt="Form Tax & Payment Information"/><figcaption><b>B2.x.7c</b> &mdash; <b>&#9312;</b> Account Type &middot; <b>&#9313;</b> thông tin cá nhân &middot; <b>&#9314;</b> địa chỉ &middot; <b>&#9315;</b> <b>TIN bắt buộc</b>, VAT tuỳ chọn.</figcaption></figure>
+  </li>
+  <li><b>Add payment method</b> &rarr; một ô <b>Bank info</b> duy nhất (text tự do: tên ngân hàng, số tài khoản / IBAN / SWIFT&hellip;) &rarr; <b>Save</b>.
+    <figure><img src="tsx-11-payment-form.png" alt="Form Add payment method"/><figcaption><b>B2.x.7d</b> &mdash; <b>&#9312;</b> ô <b>Bank info</b> &middot; <b>&#9313;</b> <b>Save</b>.</figcaption></figure>
+  </li>
+  </ul>
+  <p class="fn">Khai xong quay lại <a href="#b2-submit" style="font-weight:700;cursor:pointer">B2.3 &#8599;</a> &mdash; hộp submit hiện lại nút bình thường.</p>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-b1"><span class="k">← Prev</span><b>B1 · Invite talents</b></a><a class="next" data-goto="page-b3"><span class="k">Next →</span><b>B3 · Timesheet → invoice (Admin)</b></a></div>
