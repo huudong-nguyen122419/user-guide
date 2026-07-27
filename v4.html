@@ -195,6 +195,16 @@
     <a href="#em-5-3" class="st2" data-page="page-a5">A5.x.3 · Cancelled ≠ failed</a>
     <a href="#em-5-4" class="st2" data-page="page-a5">A5.x.4 · Switch sender safely</a>
     <a href="#em-5-5" class="st2" data-page="page-a5">A5.x.5 · Timeline = A4.6</a>
+    <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Talent Active / Passive</a>
+    <a href="#a6-status" class="st" data-page="page-a6">A6.1 · Hai status</a>
+    <a href="#a6-view" class="st" data-page="page-a6">A6.2 · Xem &amp; đổi status</a>
+    <a href="#a6-rule" class="st" data-page="page-a6">A6.3 · Luật xác định Passive</a>
+    <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x · Edge cases</a>
+    <a href="#ec-6-1" class="st2" data-page="page-a6">A6.x.1 · Classification ≠ nhóm</a>
+    <a href="#ec-6-2" class="st2" data-page="page-a6">A6.x.2 · Nhiều việc cùng lúc</a>
+    <a href="#ec-6-3" class="st2" data-page="page-a6">A6.x.3 · Bẫy chức danh</a>
+    <a href="#ec-6-4" class="st2" data-page="page-a6">A6.x.4 · Cờ công ty sai</a>
+    <a href="#ec-6-5" class="st2" data-page="page-a6">A6.x.5 · Không đụng hồ sơ</a>
     <a class="flow adm" data-page="page-b1"><span class="n">B1</span> Invite talents to a project</a>
     <a class="flow tal" data-page="page-b2"><span class="n">B2</span> Talent · log &amp; submit timesheet</a>
     <a href="#b2-open" class="st" data-page="page-b2">B2.1 · Mở Timesheet</a>
@@ -707,7 +717,78 @@
 <li id="em-5-4" data-code="A5.x.4"><b>Change the sending account before, never during.</b> Switching the <b>&#9881;</b> account on a Running ME splits the thread: what already went out keeps the old From, replies to it land in the old inbox. Pause &rarr; switch &rarr; resume.</li>
 <li id="em-5-5" data-code="A5.x.5"><b>The Timeline tab works exactly as the campaign one</b> &mdash; same actor + before&rarr;after format, same <b>Simple / Advanced</b> search. See <a data-goto="page-a4" href="#a4-audit" style="font-weight:700;cursor:pointer">A4.6 &#8599;</a> rather than repeating it here.</li>
 </ol>
-<div class="pagernav"><a data-goto="page-a4"><span class="k">&larr; Prev</span><b>A4 &middot; Manage a campaign</b></a><a class="next" data-goto="page-b1"><span class="k">Next &rarr;</span><b>B1 &middot; Invite talents</b></a></div>
+<div class="pagernav"><a data-goto="page-a4"><span class="k">&larr; Prev</span><b>A4 &middot; Manage a campaign</b></a><a class="next" data-goto="page-a6"><span class="k">Next &rarr;</span><b>A6 &middot; Talent Active / Passive</b></a></div>
+</section>
+
+
+<!-- ===================== A6 · TALENT ACTIVE / PASSIVE ===================== -->
+<section class="page" id="page-a6">
+<h2><span class="who adm">ADMIN</span><span class="n adm">A6 &middot;</span> Talent Active / Passive classification <span class="fn">(ai còn là nguồn cung, ai thực chất là bên mua)</span></h2>
+<div class="goal adm"><b>Goal:</b> giữ cho danh sách talent chỉ còn <b>người thật sự nhận việc</b>. Người đang ngồi ghế quyết định ở quỹ PE hoặc công ty portfolio &mdash; tức <b>khách hàng tiềm năng của Fintalent</b> &mdash; phải được đánh <b>Passive</b> để không bị mời vào project như một freelancer.</div>
+
+<h3 id="a6-status" class="anchor">A6.1 &middot; Hai status cần quan tâm</h3>
+<ol class="steps adm">
+<li data-code="A6.1.1"><b>Talent có 8 status</b>, nhưng chỉ hai cái nói về việc &ldquo;còn nhận việc hay không&rdquo;:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Status</th><th>Nghĩa</th></tr></thead>
+  <tbody>
+  <tr><td><b>Active</b></td><td>Là nguồn cung &mdash; được mời vào project, xuất hiện khi Ops lọc talent.</td></tr>
+  <tr><td><b>Passive</b></td><td>Không mời nữa &mdash; hồ sơ vẫn còn để tra cứu, nhưng không coi là freelancer sẵn sàng.</td></tr>
+  <tr><td class="fn">Guest &middot; Incomplete &middot; Payment Required &middot; In Review &middot; Rejected &middot; Review Passive</td><td class="fn">Thuộc vòng đăng ký / duyệt hồ sơ, <b>không</b> nằm trong phạm vi flow này.</td></tr>
+  </tbody></table></div>
+  <figure><img src="tsx-22-talent-status-filter.png" alt="Bộ lọc Statuses trên danh sách talent"/><figcaption><b>A6.1.1</b> &mdash; <b>&#9312;</b> bộ lọc <b>Statuses</b> với đủ 8 giá trị &middot; <b>&#9313;</b> hai giá trị flow này quan tâm.</figcaption></figure>
+</li>
+<li data-code="A6.1.2"><b>Đừng nhầm với <i>Employment Status</i>.</b> Đó là trường khác, nằm ở dòng thông tin của talent (<i>Independent Consultant / Freelancer</i>, <i>Full-time</i>&hellip;), và có bộ lọc riêng <b>Employee Statuses</b>. Hệ thống <b>đang</b> tự đánh Passive dựa vào trường này (Full-time &rarr; Passive) &mdash; cách làm cũ, vẫn còn sai nhiều trường hợp, nên mới có luật ở <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3 &#8599;</a>.</li>
+</ol>
+
+<h3 id="a6-view" class="anchor">A6.2 &middot; Xem &amp; đổi status của một talent</h3>
+<ol class="steps adm">
+<li data-code="A6.2.1"><b>User Management &rarr; Talents</b> &rarr; mở talent. Chip status nằm <b>ngay dưới ảnh đại diện</b>.
+  <figure><img src="tsx-20-talent-status-chip.png" alt="Chip status trên talent detail"/><figcaption><b>A6.2</b> &mdash; <b>&#9312;</b> chip status hiện tại &middot; <b>&#9313;</b> bấm vào để đổi (Active &harr; Passive) &middot; <b>&#9314;</b> <b>Employment Status</b> &mdash; trường khác, đừng nhầm.</figcaption></figure>
+</li>
+<li data-code="A6.2.2"><b>Bấm chip &rarr; chọn giá trị còn lại.</b> Đang <b>Active</b> thì dropdown chỉ hiện <b>Passive</b> và ngược lại &mdash; đây là công tắc hai chiều, không nhảy sang các status khác được.</li>
+<li data-code="A6.2.3"><b>Trước khi đổi, đọc phần Work Experiences</b> ở nửa dưới trang: mỗi dòng có <b>chức danh &middot; công ty &middot; ngành &middot; khoảng thời gian</b>. Luật ở A6.3 đọc đúng những dòng này.
+  <figure><img src="tsx-21-talent-work-experience.png" alt="Work Experiences của talent"/><figcaption><b>A6.2.3</b> &mdash; <b>&#9312;</b> một dòng work experience: chức danh, công ty (có link) và khoảng thời gian &mdash; <i>Until Now</i> nghĩa là đang làm.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="a6-rule" class="anchor">A6.3 &middot; Luật xác định Passive</h3>
+<div class="call note"><span class="t">Ý tưởng một câu</span>Talent đang <b>ngồi ghế mua</b> ở một quỹ PE hoặc một công ty thuộc portfolio thì không phải nguồn cung &rarr; <b>Passive</b>.</div>
+<ol class="steps adm">
+<li data-code="A6.3.1"><b>Chỉ xét work experience đang diễn ra</b> (<i>Until Now</i>). Vai trò cũ không tính &mdash; người từng làm ở quỹ PE nhưng nay đã nghỉ vẫn là talent bình thường.</li>
+<li data-code="A6.3.2"><b>Điều kiện phải khớp cả hai vế trên <u>cùng một dòng</u> work experience:</b>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Nhóm</th><th>Công ty phải là</th><th>Chức năng phải là</th></tr></thead>
+  <tbody>
+  <tr><td><b>A</b> &mdash; Portfolio buyers</td><td rowspan="2"><b>Quỹ PE</b> (công ty mang cờ <i>sponsor</i> trong dữ liệu Mergermarket)</td><td>Operating Partner &middot; Head of Portfolio Operations / Value Creation &middot; Talent Partner</td></tr>
+  <tr><td><b>B</b> &mdash; Deal champions</td><td>Deal Partner &middot; Principal / Investment Director</td></tr>
+  <tr><td><b>C</b> &mdash; Portco executives</td><td><b>Công ty thuộc portfolio</b> của quỹ (cờ <i>portfolio</i>)</td><td>Chair &middot; CEO &middot; CFO &middot; Head of M&amp;A / Corporate Development</td></tr>
+  </tbody></table></div>
+  <p class="fn"><b>Cùng một dòng</b> là điểm mấu chốt: chức danh ở công ty này còn cờ sponsor ở công ty khác thì <b>không</b> tính.</p>
+</li>
+<li data-code="A6.3.3"><b>Khớp &rarr; Passive. Không khớp &rarr; Active.</b> Ba trường hợp hay bị hiểu nhầm, tất cả đều ra <b>Active</b>:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Tình huống</th><th>Vì sao vẫn Active</th></tr></thead>
+  <tbody>
+  <tr><td>Chức danh trông giống A/B/C nhưng <b>công ty không có trong dữ liệu Mergermarket</b></td><td>Không có cờ công ty thì không xác định được họ đang ở phía mua. <b>Đây chính là ngoại lệ quan trọng nhất.</b></td></tr>
+  <tr><td>Công ty <b>có</b> trong Mergermarket nhưng <b>không mang cờ</b> sponsor / portfolio</td><td>Công ty thường &mdash; không thuộc vòng tròn PE.</td></tr>
+  <tr><td><b>Nhóm D</b> &mdash; Head of M&amp;A / CSO / Group CFO ở <b>corporate độc lập</b></td><td><b>Cố ý loại khỏi luật:</b> người ở corporate vẫn có thể nhận việc freelance.</td></tr>
+  </tbody></table></div>
+</li>
+<li data-code="A6.3.4"><b>Admin vẫn quyết định cuối cùng.</b> Luật này chạy tự động để dọn phần lớn; gặp trường hợp sai thì vào talent detail sửa tay theo <a href="#a6-view" style="font-weight:700;cursor:pointer">A6.2 &#8599;</a>.</li>
+</ol>
+
+<h3 id="a6-edge" class="edgehead anchor">A6.x &middot; Edge cases</h3>
+<ol class="steps edge">
+<li id="ec-6-1" data-code="A6.x.1"><b>Bộ lọc &ldquo;Classification&rdquo; KHÔNG phải nhóm A/B/C.</b> Trên danh sách talent có bộ lọc tên <b>Classification</b> &mdash; đó là <b>nền công ty</b> (Investment Bank, PE / Venture Capital, Corporate / Industry, Startup, Independent / Freelance&hellip;), do hệ thống tự phân tích. Nó <b>không</b> nói talent thuộc nhóm A/B/C, và <b>không</b> dùng để quyết Active/Passive.
+  <figure><img src="tsx-23-classification-not-group.png" alt="Bộ lọc Classification"/><figcaption><b>A6.x.1</b> &mdash; <b>&#9312;</b> hai lựa chọn <i>Has / No company background</i> &middot; <b>&#9313;</b> cây nền công ty &mdash; khác hẳn nhóm A/B/C.</figcaption></figure>
+</li>
+<li id="ec-6-2" data-code="A6.x.2"><b>Một talent nhiều việc cùng lúc.</b> Chỉ cần <b>một dòng</b> work experience đang diễn ra khớp điều kiện là đủ để thành <b>Passive</b> &mdash; không cần tất cả các dòng đều khớp.</li>
+<li id="ec-6-3" data-code="A6.x.3"><b>Chức danh nghe giống nhưng không phải.</b> Vài bẫy hay gặp khi soát tay: <b>Vice President</b> bị nhầm thành <b>President</b>; <b>Business Development</b> là bán hàng chứ không phải mua bán doanh nghiệp (trừ khi cùng chức danh có <b>M&amp;A</b> / <b>Corporate Development</b> / <b>Transactions</b>); <b>Talent Acquisition</b> không liên quan gì đến <b>Acquisitions</b>.</li>
+<li id="ec-6-4" data-code="A6.x.4"><b>Dữ liệu công ty có thể sai cờ.</b> Cờ sponsor / portfolio đến từ nguồn ngoài, đã gặp trường hợp quỹ lớn bị gắn nhầm thành công ty thường. Thấy một cái tên quen mà kết quả ra Active thì kiểm tra lại bản ghi công ty trước khi kết luận talent bị phân loại sai.</li>
+<li id="ec-6-5" data-code="A6.x.5"><b>Đổi status không đụng tới hồ sơ.</b> Passive chỉ ngăn việc mời vào project. Contract đang chạy, timesheet, hoá đơn của talent <b>giữ nguyên</b> &mdash; xem <a data-goto="page-b3" style="font-weight:700;cursor:pointer">B3 &#8599;</a>.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-a5"><span class="k">&larr; Prev</span><b>A5 &middot; Manage a marketing email</b></a><a class="next" data-goto="page-b1"><span class="k">Next &rarr;</span><b>B1 &middot; Invite talents</b></a></div>
 </section>
 
 <!-- ===================== B1 · INVITE TALENTS ===================== -->
@@ -726,7 +807,7 @@
   <figure><img src="sdrx-bil-03-invite-selected.png" alt="Invite Talents button"/><figcaption><b>B1.4</b> &mdash; tick talents &rarr; <b>Invite Talents</b>.</figcaption></figure>
 </li>
 </ol>
-<div class="pagernav"><a data-goto="page-a5"><span class="k">&larr; Prev</span><b>A5 &middot; Manage a marketing email</b></a><a class="next" data-goto="page-b2"><span class="k">Next &rarr; (Talent)</span><b>B2 &middot; Log &amp; submit timesheet</b></a></div>
+<div class="pagernav"><a data-goto="page-a6"><span class="k">&larr; Prev</span><b>A6 &middot; Talent Active / Passive</b></a><a class="next" data-goto="page-b2"><span class="k">Next &rarr; (Talent)</span><b>B2 &middot; Log &amp; submit timesheet</b></a></div>
 </section>
 
 <!-- ===================== B2 · TALENT LOG & SUBMIT TIMESHEET ===================== -->
