@@ -230,6 +230,7 @@
     <a href="#bt-7" class="st2" data-page="page-b2">B2.x.7 · Billing / payment info</a>
     <a href="#bt-8" class="st2" data-page="page-b2">B2.x.8 · Expense on a non-worked day</a>
     <a class="flow adm" data-page="page-b3"><span class="n">B3</span> Timesheet → invoice (Admin)</a>
+<a href="#b3-approve" class="st" data-page="page-b3">B3.0 &middot; Approve the submission</a>
     <a href="#b3-sync" class="st" data-page="page-b3">B3.1 · View &amp; Sync Data</a>
     <a href="#b3-view" class="st" data-page="page-b3">B3.2 · View Timesheets</a>
     <a href="#b3-invoice" class="st" data-page="page-b3">B3.3 · Create Client Invoice</a>
@@ -243,6 +244,7 @@
     <a href="#ba-6" class="st2" data-page="page-b3">B3.x.6 · Open invoice from Timesheets</a>
     <a href="#ba-7" class="st2" data-page="page-b3">B3.x.7 · Editing a Draft invoice</a>
     <a href="#ba-8" class="st2" data-page="page-b3">B3.x.8 · Timesheets have changed</a>
+<a href="#ba-9" class="st2" data-page="page-b3">B3.x.9 &middot; Talent sees different words</a>
 <a class="flow adm" data-page="page-b4"><span class="n">B4</span> Publish a resource (Admin)</a>
 <a href="#b4-open" class="st" data-page="page-b4">B4.1 &middot; Open Resources</a>
 <a href="#b4-create" class="st" data-page="page-b4">B4.2 &middot; Create one</a>
@@ -1394,6 +1396,52 @@
 <div class="call note"><span class="t">Where this flow stops</span>At the <b>Draft</b> invoice. Everything after it &mdash; issuing the invoice to the client, marking it paid, and paying the talent &mdash; is handled by <b>separate flows that this guide does not cover yet</b>. Get the draft right and hand over; do not improvise the next step.</div>
 <div class="call note"><span class="t">The one rule about the numbers</span>Money is always calculated from <b>hours to bill</b> (the figure the talent locked in), <b>never</b> from the logged hours. The logged hours stay visible alongside on every screen so the two can be reconciled.</div>
 
+<h3 id="b3-approve" class="anchor">B3.0 &middot; Approve the submission first</h3>
+<div class="call warn"><span class="t">This screen is not in the menu &mdash; you have to type the URL</span><b>/timesheet-submissions</b> <span class="fn">(UAT: <code>https://admin-uat.fintalent.io/timesheet-submissions</code>)</span>. It is a real, guarded admin page with 592 records on UAT, but nothing in the left menu links to it. If you have never seen it, that is why.</div>
+<ol class="steps">
+<li data-code="B3.0.1"><b>What the page holds.</b> One row per submitted period, titled <b>Timesheets</b>. Columns: <b>Actions</b> &middot; <b>Total Hours</b> &middot; <b>Project</b> &middot; <b>Client</b> &middot; <b>Talent</b> &middot; <b>Status</b> &middot; submit date. The panel on the right filters by <b>Search</b>, <b>statuses</b>, <b>Projects</b>, <b>Talents</b>, <b>Clients</b>.
+  <p>Statuses are <b>Pending Approval</b>, <b>Approved</b> and <b>Rejected</b> &mdash; the same three the talent sees, under different names (<a href="#ba-9" style="font-weight:700;cursor:pointer">B3.x.9 &#8599;</a>).</p>
+  <figure><img src="tsa-01-list.png" alt="The timesheet submissions list"/><figcaption><b>B3.0.1</b> &mdash; <b>&#9312;</b> the table &middot; <b>&#9313;</b> the filter panel.</figcaption></figure>
+</li>
+
+<li data-code="B3.0.2"><b>The row menu changes with status</b>, the same way the Resources one does:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Row is</th><th>&#8942; offers</th></tr></thead>
+  <tbody>
+  <tr><td><b>Pending Approval</b></td><td>Edit/View Details &middot; Switch to Draft &middot; <b>Approve</b> &middot; <b>Reject</b></td></tr>
+  <tr><td><b>Approved</b></td><td>Edit/View Details &middot; Switch to Draft &middot; <b>Switch to Pending</b></td></tr>
+  </tbody></table></div>
+  <p><b>Switch to Pending is your undo.</b> Approved something by mistake? Put it back to Pending and decide again.</p>
+  <figure><img src="tsa-02-menu-pending.png" alt="Row menu on a pending submission"/><figcaption><b>B3.0.2</b> &mdash; a <b>Pending Approval</b> row: Approve and Reject only exist here.</figcaption></figure>
+</li>
+
+<li data-code="B3.0.3"><b>Approve</b> &rarr; <i>&ldquo;Do you want to approve this timesheet?&rdquo;</i> &rarr; <b>Yes</b>. That is the whole thing &mdash; no comment, no reason.</li>
+
+<li data-code="B3.0.4"><b>Reject asks for a reason and will not proceed without one.</b> The modal carries a required <b>Admin comment</b> box; the confirm button is red. Write something the talent can act on &mdash; this is the only thing they get back.
+  <figure><img src="tsa-03-reject.png" alt="Reject Timesheet modal"/><figcaption><b>B3.0.4</b> &mdash; <b>&#9312;</b> <b>Admin comment</b>, mandatory &middot; <b>&#9313;</b> the red <b>Reject</b>.</figcaption></figure>
+</li>
+
+<li data-code="B3.0.5"><b>Check the hours before you decide</b> &mdash; the <b>&#128065;</b> in the Actions column opens the submission, and it goes three levels deep:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Level</th><th>What you get</th></tr></thead>
+  <tbody>
+  <tr><td><b>Timesheet</b></td><td>project, talent, start/end date, total worked, then one row per day with its own status.</td></tr>
+  <tr><td><b>Tracking timesheet</b> <span class="fn">(&#128065; on a day)</span></td><td>the individual time entries for that day &mdash; start time, end time, time worked, description.</td></tr>
+  <tr><td><b>Edit time</b> <span class="fn">(&#9998; on an entry)</span></td><td><b>From</b>, <b>To</b> and <b>Description</b>, all editable, with <b>Update</b>.</td></tr>
+  </tbody></table></div>
+  <figure><img src="tsa-04-detail.png" alt="Submission detail"/><figcaption><b>B3.0.5</b> &mdash; <b>&#9312;</b> the day rows &middot; <b>&#9313;</b> the <b>&#128065;</b> that opens one.</figcaption></figure>
+  <figure><img src="tsa-05-tracking.png" alt="Tracking timesheet"/><figcaption><b>B3.0.5</b> &mdash; <b>&#9312;</b> the entries behind that day &middot; <b>&#9313;</b> the <b>&#9998;</b> that edits one.</figcaption></figure>
+</li>
+
+<li data-code="B3.0.6"><b>&#128027; Edit time opens, but you cannot use it.</b> The dialog appears <b>underneath</b> the <i>Tracking timesheet</i> dialog that launched it &mdash; only its title and its buttons peek out, and <b>nothing in it can be clicked</b>: not the From or To fields, not Description, not even <b>Cancel</b> or <b>Update</b>.
+  <p class="fn">Cause is a stacking order: <i>Tracking timesheet</i> renders at <code>z-index: 1001</code>, <b>Edit time</b> at <code>999</code>. Verified by hit-testing every control in the dialog &mdash; each one resolves to the dialog in front, not to itself.</p>
+  <p><b>What to do instead:</b> press <b>Esc</b> to get out, and <b>Reject with a comment</b> (<a href="#b3-approve" style="font-weight:700;cursor:pointer">B3.0.4 &#8599;</a>) so the talent fixes and resubmits. <b>Do not tell a talent their hours have been corrected from this screen</b> &mdash; on this build, they cannot have been.</p>
+  <div class="call note"><span class="t">If this is fixed, the reach is wider than you would expect</span>The control is offered on <b>Approved</b> submissions too, not only pending ones &mdash; and the talent is told their timesheet cannot be edited after submitting. Once it works, an edit here will be invisible to them, with no notification and no record of who changed what. Worth agreeing a rule before it goes live.</div>
+  <figure><img src="tsa-06-edit-time.png" alt="Edit time dialog stuck behind the Tracking timesheet dialog"/><figcaption><b>B3.0.6</b> &mdash; <b>&#9312;</b> the <b>Edit time</b> title, poking out above &middot; <b>&#9313;</b> its Cancel and Update, poking out below. Everything between them is covered, and all of it is unclickable.</figcaption></figure>
+</li>
+<li data-code="B3.0.7"><b>Only then move on.</b> Approved hours are what B3.1 onwards works with. Sync Data and Create Client Invoice do not check this screen for you.</li>
+</ol>
+
 <h3 id="b3-sync" class="anchor">B3.1 &middot; View &amp; sync the timesheet</h3>
 <ol class="steps">
 <li data-code="B3.1.1">Left menu &rarr; <b>Contracts &amp; Invoices</b> &rarr; <b>Timesheets</b>.
@@ -1560,6 +1608,16 @@
   </tbody></table></div>
   <p class="fn">After editing, <b>download the PDF again</b> (<a href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4.3 &#8599;</a>) to be sure the file matches the corrected figures &mdash; the PDF is regenerated from the latest data.</p>
   <div class="call warn"><span class="t">Draft only &mdash; and Draft is where your job ends</span>Edit freely while the invoice is still Draft. The status dropdown does offer <b>Issued</b>, <b>Paid</b> and <b>Archived</b>, but <b>do not touch it</b>: moving an invoice on belongs to a different flow, marking it <b>Paid</b> triggers work further downstream, and once it leaves Draft it is no longer freely editable. Finish your checks, leave it Draft, hand over.</div>
+</li>
+<li id="ba-9" data-code="B3.x.9"><b>The talent sees different words for the same three states &mdash; and one of them is misleading.</b>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Admin sees</th><th>Talent sees</th></tr></thead>
+  <tbody>
+  <tr><td>Pending Approval</td><td>Waiting Approval</td></tr>
+  <tr><td><b>Approved</b></td><td><b>Submitted</b></td></tr>
+  <tr><td>Rejected</td><td>Rejected</td></tr>
+  </tbody></table></div>
+  <p><b>Approved reads as &ldquo;Submitted&rdquo; on the talent side</b>, which is the same word they saw before you touched it. So a talent has no way to tell from the label whether you have approved them yet. If they ask, check this screen &mdash; do not take their word for the status.</p>
 </li>
 <li id="ba-8" data-code="B3.x.8"><b>&ldquo;Timesheets have changed, please check again&rdquo;.</b> Seeing this on a <b>Draft</b> invoice means the <b>source timesheet changed</b> after the invoice was created &mdash; the talent submitted more days, or an admin pressed <b>Sync Data</b> and newer figures arrived.
   <p><b>Reconcile without leaving the invoice:</b> the link row at the top of the drawer includes <b>View Timesheets</b> &mdash; clicking it <b>opens the talent's timesheet calendar on top</b>, with all three totals (<i>hours to bill / worked / uninvoiced</i>) and every day cell. Closing it with <b>&#10005;</b> returns you to the same invoice.</p>

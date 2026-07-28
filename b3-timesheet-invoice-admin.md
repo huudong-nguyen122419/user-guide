@@ -12,6 +12,7 @@ The one rule about the numbersMoney is always calculated from **hours to bill** 
 
 ### In this flow
 
+* [B3.0 · Approve the submission](b3-0-approve-the-submission.md)
 * [B3.1 · View & Sync Data](b3-1-view-and-sync-data.md)
 * [B3.2 · View Timesheets](b3-2-view-timesheets.md)
 * [B3.3 · Create Client Invoice](b3-3-create-client-invoice.md)

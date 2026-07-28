@@ -12,3 +12,4 @@
 * [B3.x.6 · Open invoice from Timesheets](b3-x-6-open-invoice-from-timesheets.md)
 * [B3.x.7 · Editing a Draft invoice](b3-x-7-editing-a-draft-invoice.md)
 * [B3.x.8 · Timesheets have changed](b3-x-8-timesheets-have-changed.md)
+* [B3.x.9 · Talent sees different words](b3-x-9-talent-sees-different-words.md)
