@@ -243,6 +243,28 @@
     <a href="#ba-6" class="st2" data-page="page-b3">B3.x.6 · Open invoice from Timesheets</a>
     <a href="#ba-7" class="st2" data-page="page-b3">B3.x.7 · Editing a Draft invoice</a>
     <a href="#ba-8" class="st2" data-page="page-b3">B3.x.8 · Timesheets have changed</a>
+<a class="flow adm" data-page="page-b4"><span class="n">B4</span> Publish a resource (Admin)</a>
+<a href="#b4-open" class="st" data-page="page-b4">B4.1 &middot; Open Resources</a>
+<a href="#b4-create" class="st" data-page="page-b4">B4.2 &middot; Create one</a>
+<a href="#b4-place" class="st" data-page="page-b4">B4.3 &middot; Decide where it shows</a>
+<a href="#b4-publish" class="st" data-page="page-b4">B4.4 &middot; Publish it</a>
+<a href="#b4-manage" class="st" data-page="page-b4">B4.5 &middot; Edit, draft, archive</a>
+<a href="#b4-edge" class="st edge" data-page="page-b4">B4.x &middot; Edge cases</a>
+<a href="#er-4-1" class="st2" data-page="page-b4">B4.x.1 &middot; Published but nobody sees it</a>
+<a href="#er-4-2" class="st2" data-page="page-b4">B4.x.2 &middot; There is no Delete</a>
+<a href="#er-4-3" class="st2" data-page="page-b4">B4.x.3 &middot; Type is locked after saving</a>
+<a href="#er-4-4" class="st2" data-page="page-b4">B4.x.4 &middot; The link is public</a>
+<a href="#er-4-5" class="st2" data-page="page-b4">B4.x.5 &middot; Errors arrive one at a time</a>
+<a href="#er-4-6" class="st2" data-page="page-b4">B4.x.6 &middot; No Display Page</a>
+<a class="flow tal" data-page="page-b5"><span class="n">B5</span> Talent &middot; find a resource</a>
+<a href="#b5-gate" class="st" data-page="page-b5">B5.1 &middot; Who can see them</a>
+<a href="#b5-list" class="st" data-page="page-b5">B5.2 &middot; The Resources page</a>
+<a href="#b5-open" class="st" data-page="page-b5">B5.3 &middot; Open one</a>
+<a href="#b5-blocks" class="st" data-page="page-b5">B5.4 &middot; The three placed blocks</a>
+<a href="#b5-edge" class="st edge" data-page="page-b5">B5.x &middot; Edge cases</a>
+<a href="#er-5-1" class="st2" data-page="page-b5">B5.x.1 &middot; The misleading empty state</a>
+<a href="#er-5-2" class="st2" data-page="page-b5">B5.x.2 &middot; Video has no download</a>
+<a href="#er-5-3" class="st2" data-page="page-b5">B5.x.3 &middot; Blocks and page disagree</a>
 
     <div class="grp ops">Ops — preparing the work</div>
     <a class="flow ops" data-page="page-o1"><span class="n">O1</span> Your Ops workspace</a>
@@ -1509,7 +1531,161 @@
   <p>If they differ, correct the invoice and click <b>Update</b>. <b>Never send an invoice while this message is showing</b> &mdash; the figures on it may be stale.</p>
 </li>
 </ol>
-<div class="pagernav"><a data-goto="page-b2"><span class="k">&larr; Prev</span><b>B2 &middot; Talent log &amp; submit</b></a><a class="next" data-goto="page-o1"><span class="k">Next &rarr; (Ops)</span><b>O1 &middot; Your Ops workspace</b></a></div>
+<div class="pagernav"><a data-goto="page-b2"><span class="k">&larr; Prev</span><b>B2 &middot; Talent log &amp; submit</b></a><a class="next" data-goto="page-b4"><span class="k">Next &rarr;</span><b>B4 &middot; Publish a resource</b></a></div>
+</section>
+
+<!-- ===================== B4 · PUBLISH A RESOURCE ===================== -->
+<section class="page" id="page-b4">
+<h2><span class="who adm">ADMIN</span><span class="n adm">B4 &middot;</span> Publish a resource</h2>
+<div class="goal adm"><b>Goal:</b> put a video or a PDF in front of talents &mdash; and know <b>which screen</b> it will land on, because that is a separate decision from publishing it.</div>
+<div class="call note"><span class="t">Two switches, not one</span><b>Status</b> decides <i>whether</i> talents can see it. <b>Display Page</b> decides <i>where else</i> it appears besides the Resources page. Setting one without thinking about the other is how resources end up published and unfindable &mdash; see <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>.</div>
+
+<h3 id="b4-open" class="anchor">B4.1 &middot; Open Resources</h3>
+<ol class="steps">
+<li data-code="B4.1.1">Left menu &rarr; <b>Content Management</b> &rarr; <b>Resources</b>. It sits alongside <b>Weekly Calls</b> and <b>Configuration</b> &mdash; not under Project or User Management, which is where people look first.
+  <figure><img src="res-01-menu.png" alt="Content Management menu with Resources"/><figcaption><b>B4.1.1</b> &mdash; the <b>Resources</b> entry under <b>Content Management</b>.</figcaption></figure></li>
+<li data-code="B4.1.2"><b>The four tabs are the status filter</b>, and each carries its own count. Everything you do to a resource for the rest of this flow moves it between them.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Tab</th><th>Holds</th></tr></thead>
+  <tbody>
+  <tr><td><b>All</b></td><td>every resource, whatever its status.</td></tr>
+  <tr><td><b>Draft</b></td><td>written but not released. <b>Talents cannot see these.</b></td></tr>
+  <tr><td><b>Published</b></td><td>live.</td></tr>
+  <tr><td><b>Archived</b></td><td>retired. Also invisible to talents, but kept.</td></tr>
+  </tbody></table></div>
+  <p>Below the tabs: a keyword search, quick filters for <b>Type</b> and <b>Source</b>, and <b>Add filter</b> for <b>Display Page</b> and <b>Published Date</b>. The table shows <b>Information</b> (thumbnail, status chip, publish date, title, description), <b>Type</b>, <b>Source</b>, <b>Display Page</b> and <b>Categories</b>.</p>
+  <div class="call warn"><span class="t">Categories is a column, not a filter</span>You can read a resource's categories in the table but you cannot filter on them here. Talents can &mdash; their page has a Categories picker. If you need to audit by category, sort it out visually or ask on the talent side.</div>
+  <figure><img src="res-02-list.png" alt="Resources list with status tabs"/><figcaption><b>B4.1.2</b> &mdash; <b>&#9312;</b> the four status tabs with their counts &middot; <b>&#9313;</b> how many rows the current tab is showing.</figcaption></figure></li>
+</ol>
+
+<h3 id="b4-create" class="anchor">B4.2 &middot; Create one</h3>
+<ol class="steps">
+<li data-code="B4.2.1">Click <b>Create New</b>, top right. A drawer opens over the list.
+  <figure><img src="res-03-create.png" alt="Create New button"/><figcaption><b>B4.2.1</b> &mdash; <b>Create New</b>.</figcaption></figure></li>
+<li data-code="B4.2.2"><b>Set <i>Resource Type</i> first</b>, before filling anything else in &mdash; the rest of the form changes underneath you when you touch it.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Field</th><th>Video</th><th>PDF</th></tr></thead>
+  <tbody>
+  <tr><td><b>Source</b> <span class="fn">(Youtube &middot; Vimeo &middot; Internal)</span></td><td>required</td><td><b>gone</b></td></tr>
+  <tr><td><b>Video URL</b></td><td>required</td><td><b>gone</b></td></tr>
+  <tr><td><b>Upload PDF File</b></td><td>&mdash;</td><td><b>required</b></td></tr>
+  </tbody></table></div>
+  <p>Everything else is shared: <b>Title</b> (required) &middot; <b>Status</b> &middot; <b>Display Page</b> &middot; <b>Categories</b> &middot; <b>Published At</b> &middot; <b>Description</b> &middot; <b>Thumbnail</b>.</p>
+  <figure><img src="res-04-video.png" alt="Create Resource form, Video type"/><figcaption><b>B4.2.2</b> &mdash; the two fields only <b>Video</b> has: <b>&#9312;</b> <b>Source</b> &middot; <b>&#9313;</b> <b>Video URL</b>.</figcaption></figure></li>
+<li data-code="B4.2.3">Switch to <b>PDF</b> and those two disappear; <b>Upload PDF File</b> takes their place and is mandatory.
+  <figure><img src="res-05-pdf.png" alt="Create Resource form, PDF type"/><figcaption><b>B4.2.3</b> &mdash; <b>Upload PDF File</b>, the field that replaces Source and Video URL.</figcaption></figure></li>
+<li data-code="B4.2.4"><b>Categories</b> offers two values &mdash; <b>Profile Tips</b> and <b>Interview Prep</b> &mdash; and a resource can carry both. This is the only field a talent can filter on, so leaving it empty makes the resource harder to find, not just untidy.</li>
+<li data-code="B4.2.5"><b>Thumbnail is optional but worth doing.</b> Leave it out on a PDF and the system generates one from the file's first page; that renders in the admin table, but talents get a plain placeholder card. Compare the cards in <a data-goto="page-b5" style="font-weight:700;cursor:pointer">B5.2 &#8599;</a> and you can see which resources had a thumbnail uploaded.</li>
+</ol>
+
+<h3 id="b4-place" class="anchor">B4.3 &middot; Decide where it shows</h3>
+<ol class="steps">
+<li data-code="B4.3.1"><b>Display Page</b> has three values, and each one puts a block on a different talent screen. This is the field people skip.
+  <figure><img src="res-06-display.png" alt="Display Page dropdown open"/><figcaption><b>B4.3.1</b> &mdash; the three values: <b>Home</b>, <b>Project</b>, <b>Project Details</b>.</figcaption></figure></li>
+<li data-code="B4.3.2"><b>What each one does</b> &mdash; all three were checked against live counts on UAT:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Display Page</th><th>Puts a <b>Resource</b> block on</th></tr></thead>
+  <tbody>
+  <tr><td><b>Home</b></td><td>the talent's <b>Home</b> page, low in the left column, under the standing FAQ cards.</td></tr>
+  <tr><td><b>Project</b></td><td>the <b>project list</b> (<i>Work</i>), at the bottom of the filter sidebar.</td></tr>
+  <tr><td><b>Project Details</b></td><td>a <b>single project's</b> page, top of the right column.</td></tr>
+  </tbody></table></div>
+  <p>Every block is split <b>Videos (n) / Documents (n)</b> and scrolls as a carousel. See all three in <a href="#b5-blocks" style="font-weight:700;cursor:pointer">B5.4 &#8599;</a>.</p>
+  <div class="call note"><span class="t">It is not a filter on the Resources page</span>Display Page does not restrict who finds the resource. A published resource appears on the talent <b>Resources</b> page regardless &mdash; Display Page only adds the extra placement. Leaving it blank is allowed and simply means &ldquo;Resources page only&rdquo;.</div></li>
+</ol>
+
+<h3 id="b4-publish" class="anchor">B4.4 &middot; Publish it</h3>
+<ol class="steps">
+<li data-code="B4.4.1"><b>Status defaults to Draft</b>, so a resource you just created is invisible to talents until you say otherwise. You can publish from inside the drawer (set <b>Status</b> &rarr; <b>Published</b>) or later from the row menu.</li>
+<li data-code="B4.4.2">From the list: row <b>&#8942;</b> &rarr; <b>Set Publish</b>. The menu always offers the <b>two statuses the resource is not currently in</b>, so what you see depends on the row:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Row is</th><th>Menu offers</th></tr></thead>
+  <tbody>
+  <tr><td>Draft</td><td>Edit/View Details &middot; Copy Resource Link &middot; <b>Set Publish</b> &middot; <b>Set Archive</b></td></tr>
+  <tr><td>Published</td><td>Edit/View Details &middot; Copy Resource Link &middot; <b>Set Draft</b> &middot; <b>Set Archive</b></td></tr>
+  <tr><td>Archived</td><td>Edit/View Details &middot; Copy Resource Link &middot; <b>Set Draft</b> &middot; <b>Set Publish</b></td></tr>
+  </tbody></table></div>
+  <figure><img src="res-08-rowmenu.png" alt="Row menu on a Published resource"/><figcaption><b>B4.4.2</b> &mdash; the row menu on a <b>Published</b> row: the two moves offered are <b>Set Draft</b> and <b>Set Archive</b>.</figcaption></figure></li>
+<li data-code="B4.4.3"><b>Confirm.</b> The dialog names the resource, shows the status change as chips, and tells you what publishing means &mdash; <i>&ldquo;It will be visible to users on the selected display page.&rdquo;</i> If you left Display Page empty, read that as the Resources page.
+  <figure><img src="res-09-publish.png" alt="Publish Resource confirmation"/><figcaption><b>B4.4.3</b> &mdash; <b>&#9312;</b> what publishing does &middot; <b>&#9313;</b> <b>Confirm</b>.</figcaption></figure></li>
+<li data-code="B4.4.4"><b>Publishing stamps <i>Published At</i> for you</b> &mdash; verified: a Draft with no date came back with the date and time of the confirm. That date then shows in the <b>Information</b> column and on the talent's card. It matters more than it looks: see <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>.</li>
+</ol>
+
+<h3 id="b4-manage" class="anchor">B4.5 &middot; Edit, draft, archive</h3>
+<ol class="steps">
+<li data-code="B4.5.1"><b>Edit</b> &mdash; click the title, or <b>&#8942;</b> &rarr; <b>Edit/View Details</b>. Same drawer, retitled <b>Update Resource: &lt;title&gt;</b>, and the button now reads <b>Update</b>. Two things differ from Create: <b>Resource Type is greyed out</b>, and <b>Published At</b> is already filled.
+  <figure><img src="res-10-edit.png" alt="Update Resource drawer"/><figcaption><b>B4.5.1</b> &mdash; <b>&#9312;</b> <b>Resource Type</b>, locked &middot; <b>&#9313;</b> <b>Published At</b>, stamped at publish.</figcaption></figure></li>
+<li data-code="B4.5.2"><b>Swap the file without recreating the resource.</b> The drawer shows the stored filename and a <b>Change PDF File</b> / <b>Change Thumbnail</b> button. Use this to correct a bad upload &mdash; the resource keeps its link, its date and its place.</li>
+<li data-code="B4.5.3"><b>Pull it back</b> &mdash; <b>Set Draft</b> hides it from talents while you fix it; <b>Set Archive</b> retires it for good. Both are reversible, and neither destroys anything.</li>
+<li data-code="B4.5.4"><b>Copy Resource Link</b> puts the file's own URL on your clipboard &mdash; handy for pasting into an email. Read <a href="#er-4-4" style="font-weight:700;cursor:pointer">B4.x.4 &#8599;</a> before you send it anywhere.</li>
+</ol>
+
+<h3 id="b4-edge" class="edgehead anchor">B4.x &middot; Edge cases</h3>
+<ol class="steps edge">
+<li id="er-4-1" data-code="B4.x.1"><b>Published, and still nobody can find it.</b> The talent <b>Resources</b> page only lists resources that have a <b>Published At</b> date. Status alone is not enough. On UAT this is not hypothetical: <b>26</b> resources are Published, the talent page shows <b>18</b>, and the missing <b>8</b> are exactly the ones whose date is empty.
+  <p>They are not entirely gone &mdash; if they carry a <b>Display Page</b> they still show in that block, because the blocks do not check the date. So the resource lives on the Home page but cannot be found by searching. Counted on UAT: Home block <b>17</b>, Resources page <b>12</b> of those same 17.</p>
+  <p><b>What to do:</b> publishing today stamps the date automatically, so this is legacy or imported data rather than something you will create by accident. Spot them in the <b>Published</b> tab &mdash; a row with a status chip and <b>no date under it</b>. Fix by opening <b>Edit</b> and setting <b>Published At</b>.</p></li>
+<li id="er-4-2" data-code="B4.x.2"><b>There is no Delete.</b> Not in the row menu, not in the drawer. A resource can only be moved between Draft, Published and Archived. <b>Archive is the delete</b> &mdash; use it, and stop looking for a bin.</li>
+<li id="er-4-3" data-code="B4.x.3"><b>Resource Type is locked once saved.</b> You cannot turn a Video into a PDF later. If you picked wrong, archive it and create the right one &mdash; there is no conversion.</li>
+<li id="er-4-4" data-code="B4.x.4"><b>Copy Resource Link gives you a public link.</b> It points at the file in S3 and <b>opens for anyone who has it</b> &mdash; no login, no membership, no paid-signup check. Every gate described in <a data-goto="page-b5" style="font-weight:700;cursor:pointer">B5 &#8599;</a> applies to the app, not to that URL. Treat it as publishing to the open web: fine for something you would put on the website, wrong for anything client-confidential.</li>
+<li id="er-4-5" data-code="B4.x.5"><b>Validation does not always show you everything at once.</b> On a <b>Video</b>, an empty form flags <b>Title</b> and <b>Video URL</b> together. On a <b>PDF</b> the file check comes second &mdash; submit an empty form and you only get <i>This field is mandatory!</i> under Title; fill the title in, submit again, and only then does <b>PDF File is required</b> appear. Fix, resubmit, and re-read the form rather than assuming the first pass listed everything.
+  <figure><img src="res-07-validation.png" alt="Validation errors on the create form"/><figcaption><b>B4.x.5</b> &mdash; a Video form submitted empty: <b>&#9312;</b> Title &middot; <b>&#9313;</b> Video URL, both flagged in the same pass.</figcaption></figure></li>
+<li id="er-4-6" data-code="B4.x.6"><b>No Display Page is a valid answer.</b> The field has no asterisk and saves empty. The resource is then reachable only from the talent <b>Resources</b> page &mdash; which is the right choice for reference material nobody needs pushed at them, and the wrong one for something you want seen.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-b3"><span class="k">&larr; Prev</span><b>B3 &middot; Timesheet &rarr; invoice</b></a><a class="next" data-goto="page-b5"><span class="k">Next &rarr; (Talent)</span><b>B5 &middot; Find a resource</b></a></div>
+</section>
+
+<!-- ===================== B5 · TALENT FINDS A RESOURCE ===================== -->
+<section class="page" id="page-b5">
+<h2><span class="who tal">TALENT</span><span class="n tal">B5 &middot;</span> Find a resource</h2>
+<div class="goal tal"><b>Goal:</b> the same feature seen from the other side &mdash; who gets in, where the material turns up, and what a talent can actually do with it.</div>
+
+<h3 id="b5-gate" class="anchor">B5.1 &middot; Who can see them</h3>
+<ol class="steps tal">
+<li data-code="B5.1.1"><b>Resources are behind the signup fee.</b> A talent who has not paid gets nothing &mdash; the request is refused at the server, not filtered in the page. Talents who have paid see the full published set.
+  <div class="call warn"><span class="t">The refusal does not look like a refusal</span>An unpaid talent is shown <b>&ldquo;No resources found &mdash; Try adjusting your search or filter&rdquo;</b>. That reads as an empty search. They will change the filters, find nothing, and conclude the library is empty rather than locked. If a talent reports &ldquo;there are no resources&rdquo;, check whether they have paid before you go looking for a bug.</div></li>
+<li data-code="B5.1.2"><b>Only Published reaches them.</b> The talent side cannot ask for Draft or Archived at all &mdash; the server decides, so there is no filter a talent could set that would expose unfinished material.</li>
+</ol>
+
+<h3 id="b5-list" class="anchor">B5.2 &middot; The Resources page</h3>
+<ol class="steps tal">
+<li data-code="B5.2.1"><b>Resources</b> in the top navigation (bottom bar on a narrow screen).
+  <figure><img src="res-11-talent-list.png" alt="Resources in the talent navigation"/><figcaption><b>B5.2.1</b> &mdash; the <b>Resources</b> entry.</figcaption></figure></li>
+<li data-code="B5.2.2"><b>Three controls and a count</b>: free-text <b>Search</b>, <b>All Types</b> (video / document) and <b>Categories</b> &mdash; the field admins fill in at <a href="#b4-create" style="font-weight:700;cursor:pointer">B4.2.4 &#8599;</a>. The count under them is the honest number of cards, so it is the quickest check that a change has gone live.
+  <figure><img src="res-12-talent-filters.png" alt="Search, type and category filters"/><figcaption><b>B5.2.2</b> &mdash; the filter row and the result count.</figcaption></figure></li>
+<li data-code="B5.2.3"><b>Read a card.</b> Thumbnail with <b>&#9654;</b> for video or <b>&#128065;</b> for document; a <b>&#11015; Document</b> chip on PDFs or a <b>duration badge</b> on videos; then title, description, <b>#category</b> chips and <b>Published at &lt;date&gt;</b>. Cards whose thumbnail is a plain Fintalent placeholder are ones nobody uploaded an image for.</li>
+</ol>
+
+<h3 id="b5-open" class="anchor">B5.3 &middot; Open one</h3>
+<ol class="steps tal">
+<li data-code="B5.3.1">Clicking a card opens its own page &mdash; <b>&larr; Back To Resources</b>, the title, the published date, the category chips and the description. <b>What you can do there depends on the type</b>:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Type</th><th>Actions</th></tr></thead>
+  <tbody>
+  <tr><td><b>PDF</b></td><td><b>&#128065; View Document</b> and <b>&#11015; Download Document</b></td></tr>
+  <tr><td><b>Video</b></td><td><b>&#9654; Watch Video</b> &mdash; nothing else</td></tr>
+  </tbody></table></div>
+  <figure><img src="res-13-talent-detail.png" alt="Resource detail page for a PDF"/><figcaption><b>B5.3.1</b> &mdash; a PDF: <b>View Document</b> and <b>Download Document</b> side by side.</figcaption></figure></li>
+</ol>
+
+<h3 id="b5-blocks" class="anchor">B5.4 &middot; The three placed blocks</h3>
+<ol class="steps tal">
+<li data-code="B5.4.1"><b>Home</b> &mdash; low in the left column, below the standing FAQ cards, a <b>Resource</b> block split <b>Videos (n) / Documents (n)</b>. Do not confuse it with those FAQ cards above it: those are fixed page content, not resources, and no admin setting moves them.
+  <figure><img src="res-14-home-block.png" alt="Resource block on the talent Home page"/><figcaption><b>B5.4.1</b> &mdash; <b>Display Page = Home</b> lands here.</figcaption></figure></li>
+<li data-code="B5.4.2"><b>Project</b> &mdash; the project list under <b>Work</b>, at the bottom of the filter sidebar, past Preferred Country.
+  <figure><img src="res-15-projectlist-block.png" alt="Resource block on the project list"/><figcaption><b>B5.4.2</b> &mdash; <b>Display Page = Project</b> lands here.</figcaption></figure></li>
+<li data-code="B5.4.3"><b>Project Details</b> &mdash; a single project's page, top of the right column, beside the briefing.
+  <figure><img src="res-16-projectdetail-block.png" alt="Resource tabs on a project detail page"/><figcaption><b>B5.4.3</b> &mdash; <b>Display Page = Project Details</b> lands here.</figcaption></figure></li>
+<li data-code="B5.4.4"><b>The same material, twice over.</b> A placed resource is not removed from the Resources page &mdash; the block is a shortcut to it, sitting where the talent is already looking. Nothing is exclusive to a block.</li>
+</ol>
+
+<h3 id="b5-edge" class="edgehead anchor">B5.x &middot; Edge cases</h3>
+<ol class="steps edge">
+<li id="er-5-1" data-code="B5.x.1"><b>&ldquo;No resources found&rdquo; usually is not about the filters.</b> The message is the same whether a search genuinely matched nothing or the talent has not paid the signup fee. Check payment first &mdash; see <a href="#b5-gate" style="font-weight:700;cursor:pointer">B5.1 &#8599;</a>.</li>
+<li id="er-5-2" data-code="B5.x.2"><b>Videos cannot be downloaded.</b> Only PDFs get a download button. If a talent needs a video offline, there is nothing in the product for that.</li>
+<li id="er-5-3" data-code="B5.x.3"><b>A block can show more than the Resources page.</b> The blocks list every published resource for their Display Page; the Resources page additionally requires a <b>Published At</b> date. So a talent can watch a video on their Home page and then fail to find it by searching. That is the admin-side gap in <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>, seen from the talent's chair.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-b4"><span class="k">&larr; Prev (Admin)</span><b>B4 &middot; Publish a resource</b></a><a class="next" data-goto="page-o1"><span class="k">Next &rarr; (Ops)</span><b>O1 &middot; Your Ops workspace</b></a></div>
 </section>
 
 <!-- ===================== O1 · OPS WORKSPACE ===================== -->
@@ -1530,7 +1706,7 @@
   <figure><img src="v3s-140-view-as-role-sdr.png" alt="View as role SDR"/><figcaption><b>O1.x.1</b> — View as role → SDR: the preview banner + the trimmed SDR menu.</figcaption></figure>
 </li>
 </ol>
-<div class="pagernav"><a data-goto="page-b3"><span class="k">← Prev (Admin)</span><b>B3 · Timesheet → invoice</b></a><a class="next" data-goto="page-o2"><span class="k">Next →</span><b>O2 · Create a list</b></a></div>
+<div class="pagernav"><a data-goto="page-b5"><span class="k">← Prev (Talent)</span><b>B5 · Find a resource</b></a><a class="next" data-goto="page-o2"><span class="k">Next →</span><b>O2 · Create a list</b></a></div>
 </section>
 
 <!-- ===================== O2 · CREATE LIST ===================== -->
