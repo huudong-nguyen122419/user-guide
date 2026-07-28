@@ -1,5 +1,5 @@
 ---
-description: the SDR prepares the ME / campaign (steps, people, review) — you turn it on and send it. This is the Admin half of the hand-off in SDR Flow 7.5 ↗ and Flow 6.6 ↗.
+description: "the SDR prepares the ME / campaign (steps, people, review) — you turn it on and send it. This is the Admin half of the hand-off in SDR Flow 7.5 ↗ and Flow 6.6 ↗."
 ---
 
 # A3 · Run a ME / campaign

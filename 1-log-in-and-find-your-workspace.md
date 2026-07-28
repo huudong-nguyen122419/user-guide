@@ -1,5 +1,5 @@
 ---
-description: Goal (core): get signed in, see your workspace, and know what each menu item is for. That's the whole job — account settings, signature, password, log out all live in Edge cases.
+description: "Goal (core): get signed in, see your workspace, and know what each menu item is for. That's the whole job — account settings, signature, password, log out all live in Edge cases."
 ---
 
 # 1 · Log in & find your workspace

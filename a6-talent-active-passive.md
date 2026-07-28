@@ -1,5 +1,5 @@
 ---
-description: keep clients out of the talent supply. A client is someone who currently sits on the buy side — holding a role at a PE fund (groups A/B) or running a PE-backed portfolio company (group C). Clients must be Passive so they never enter the project-invitation flow. Everyone else is talent and must be Active.
+description: "keep clients out of the talent supply. A client is someone who currently sits on the buy side — holding a role at a PE fund (groups A/B) or running a PE-backed portfolio company (group C). Clients must be Passive so they never enter the project-invitation flow. Everyone else is talent and must be Active."
 ---
 
 # A6 · Talent Active / Passive

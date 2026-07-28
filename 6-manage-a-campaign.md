@@ -1,5 +1,5 @@
 ---
-description: run a multi-step outreach sequence (a "campaign") — a drip of emails with delays between them and optional A/B variants, sent to a list and tracked per contact. Where a Marketing Email (Flow 7) is one send, a campaign is a sequence: Step 1 → wait → Step 2 → …
+description: "run a multi-step outreach sequence (a \"campaign\") — a drip of emails with delays between them and optional A/B variants, sent to a list and tracked per contact. Where a Marketing Email (Flow 7) is one send, a campaign is a sequence: Step 1 → wait → Step 2 → …"
 ---
 
 # 6 · Manage a campaign

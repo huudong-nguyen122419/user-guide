@@ -1,5 +1,5 @@
 ---
-description: put the right people into the list. There are three ways in — from the Contacts page (O3.1), from inside the list (O3.2), or from a company's Employees tab (O3.3). Filtering, keyword search, bulk-select and viewing a contact are in Edge cases.
+description: "put the right people into the list. There are three ways in — from the Contacts page (O3.1), from inside the list (O3.2), or from a company's Employees tab (O3.3). Filtering, keyword search, bulk-select and viewing a contact are in Edge cases."
 ---
 
 # O3 · Add contacts to list

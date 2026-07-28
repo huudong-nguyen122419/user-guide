@@ -1,5 +1,5 @@
 ---
-description: take the hours the talent submitted (B2 ↗), reconcile them, then issue the client invoice (what the client pays) and track the talent invoice (what the talent is paid).
+description: "take the hours the talent submitted (B2 ↗), reconcile them, then issue the client invoice (what the client pays) and track the talent invoice (what the talent is paid)."
 ---
 
 # B3 · Timesheet → invoice (Admin)

@@ -1,5 +1,5 @@
 ---
-description: the SDR builds one campaign at a time (SDR Flow 6 ↗). You run the whole book — you see every SDR's campaigns, move them between folders, hand them to another owner, force a step out, and audit who changed what. Turning one on is A3 A3.2 ↗; everything else lives here.
+description: "the SDR builds one campaign at a time (SDR Flow 6 ↗). You run the whole book — you see every SDR's campaigns, move them between folders, hand them to another owner, force a step out, and audit who changed what. Turning one on is A3 A3.2 ↗; everything else lives here."
 ---
 
 # A4 · Manage a campaign (Admin)

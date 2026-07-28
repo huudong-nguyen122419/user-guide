@@ -1,5 +1,5 @@
 ---
-description: an ME is a one-shot blast, not a sequence — so managing it is about who it goes out as, whether the audience is safe to mail, and what came back. The SDR prepares and reviews it (SDR Flow 7 ↗); you activate and Force Send it in A3.1 ↗. Everything below is the surrounding admin work.
+description: "an ME is a one-shot blast, not a sequence — so managing it is about who it goes out as, whether the audience is safe to mail, and what came back. The SDR prepares and reviews it (SDR Flow 7 ↗); you activate and Force Send it in A3.1 ↗. Everything below is the surrounding admin work."
 ---
 
 # A5 · Manage a marketing email (Admin)

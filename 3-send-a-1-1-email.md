@@ -1,5 +1,5 @@
 ---
-description: send one personal email to one person. There are 4 ways to open the compose window — each shown step-by-step below. They all end at the same compose window (3.2).
+description: "send one personal email to one person. There are 4 ways to open the compose window — each shown step-by-step below. They all end at the same compose window (3.2)."
 ---
 
 # 3 · Send a 1:1 email

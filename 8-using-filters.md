@@ -1,5 +1,5 @@
 ---
-description: know every filter you meet as an SDR — grouped by the page it lives on — so you can cut any list or inbox down to exactly the people you want. Each filter comes with a plain "I want to find…" so you know when to reach for it.
+description: "know every filter you meet as an SDR — grouped by the page it lives on — so you can cut any list or inbox down to exactly the people you want. Each filter comes with a plain \"I want to find…\" so you know when to reach for it."
 ---
 
 # 8 · Using filters

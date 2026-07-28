@@ -253,7 +253,9 @@ def elements_after_heading(start: Tag) -> list:
 def write_page(path: str, title: str, meta: str, description: str, body: list) -> None:
     lines = []
     if description:
-        lines += ['---', f'description: {description}', '---', '']
+        # Always quote: goals contain ': ', '#' and quotes, which break bare YAML.
+        quoted = description.replace('\\', '\\\\').replace('"', '\\"')
+        lines += ['---', f'description: "{quoted}"', '---', '']
     lines.append(f'# {title}')
     if meta:
         lines += ['', f'> {meta}']

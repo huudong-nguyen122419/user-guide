@@ -1,5 +1,5 @@
 ---
-description: nudge the people who went quiet, in the right order. Start: your list, sorted by Last Contact — the 💬 icon colors point at who's overdue.
+description: "nudge the people who went quiet, in the right order. Start: your list, sorted by Last Contact — the 💬 icon colors point at who's overdue."
 ---
 
 # 5 · Follow up on silent prospects

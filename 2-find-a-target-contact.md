@@ -1,5 +1,5 @@
 ---
-description: Goal (core): open the list Ops gave you → view the contacts → pick one and read it, ready to work. Filtering, searching and seeing other owners are in Edge cases.
+description: "Goal (core): open the list Ops gave you → view the contacts → pick one and read it, ready to work. Filtering, searching and seeing other owners are in Edge cases."
 ---
 
 # 2 · Find a target contact

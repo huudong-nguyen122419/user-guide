@@ -1,5 +1,5 @@
 ---
-description: a client project needs candidates — find the right freelancers in the talent pool and invite them to apply. Everything is scoped to one project.
+description: "a client project needs candidates — find the right freelancers in the talent pool and invite them to apply. Everything is scoped to one project."
 ---
 
 # B1 · Invite talents to a project

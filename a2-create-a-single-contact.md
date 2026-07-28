@@ -1,5 +1,5 @@
 ---
-description: add one person to the database. Bulk data is preloaded, so this is for one-offs.
+description: "add one person to the database. Bulk data is preloaded, so this is for one-offs."
 ---
 
 # A2 · Create a single contact

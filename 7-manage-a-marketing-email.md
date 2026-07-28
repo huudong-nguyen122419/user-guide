@@ -1,5 +1,5 @@
 ---
-description: run a marketing email (ME) end to end — build or open one, load the right people, review & personalize every mail, get it sent, then watch what comes back. One ME sends the same templated email, personalized per contact, to a whole list at once.
+description: "run a marketing email (ME) end to end — build or open one, load the right people, review & personalize every mail, get it sent, then watch what comes back. One ME sends the same templated email, personalized per contact, to a whole list at once."
 ---
 
 # 7 · Manage a Marketing Email

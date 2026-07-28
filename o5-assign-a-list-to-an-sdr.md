@@ -1,5 +1,5 @@
 ---
-description: hand the ready list to a rep so it shows up in their Segments (Lists). This is the moment Ops → SDR: after this, the SDR side of the guide takes over.
+description: "hand the ready list to a rep so it shows up in their Segments (Lists). This is the moment Ops → SDR: after this, the SDR side of the guide takes over."
 ---
 
 # O5 · Assign a list to an SDR

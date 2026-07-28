@@ -1,5 +1,5 @@
 ---
-description: the talent records the hours worked on a running contract, then submits them so Fintalent can invoice the client. The key point: submitting locks in Hour(s) to bill — that is the number the money is calculated from, while the logged hours are kept alongside it for reference.
+description: "the talent records the hours worked on a running contract, then submits them so Fintalent can invoice the client. The key point: submitting locks in Hour(s) to bill — that is the number the money is calculated from, while the logged hours are kept alongside it for reference."
 ---
 
 # B2 · Talent · log & submit timesheet
