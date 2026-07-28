@@ -361,9 +361,10 @@
     <a href="#mt-edge" class="st edge" data-page="page-meetings">4b.x &middot; Edge cases</a>
     <a href="#mc-1" class="st2" data-page="page-meetings">4b.x.1 · They ask to move it</a>
     <a href="#mc-4" class="st2" data-page="page-meetings">4b.x.2 · No Zoom on your account</a>
-    <a href="#mc-2" class="st2" data-page="page-meetings">4b.x.3 · Two clocks on every row</a>
-    <a href="#mc-3" class="st2" data-page="page-meetings">4b.x.4 · Which address gets the invite</a>
-    <a href="#mc-5" class="st2" data-page="page-meetings">4b.x.5 · Nobody is emailed automatically</a>
+    <a href="#mc-6" class="st2" data-page="page-meetings">4b.x.3 · The address must be a contact</a>
+    <a href="#mc-2" class="st2" data-page="page-meetings">4b.x.4 · Two clocks on every row</a>
+    <a href="#mc-3" class="st2" data-page="page-meetings">4b.x.5 · Which address gets the invite</a>
+    <a href="#mc-5" class="st2" data-page="page-meetings">4b.x.6 · Nobody is emailed automatically</a>
     <a class="flow" data-page="page-followup"><span class="n">5</span> Follow up on silent prospects</a>
     <a href="#fu-1" class="st" data-page="page-followup">5.1 · Open your list</a>
     <a href="#fu-2" class="st" data-page="page-followup">5.2 · View the contacts</a>
@@ -2221,13 +2222,20 @@
   <li>No new time? Cancel and leave it. The contact keeps the <b>Call Scheduled</b> lifecycle until somebody changes it, so fix the stage by hand or the inbox filter will keep offering them to you.</li>
   </ol>
 </li>
-<li id="mc-4" data-code="4b.x.2"><b>Nothing happens when you try to create a meeting &mdash; your account has no Zoom.</b> The meeting is created on a <b>Zoom account tied to you as host</b>. An SDR whose admin record carries no Zoom user id has nothing to create the meeting on, so the save fails.
-  <p><b>You cannot fix this yourself.</b> Ask an Admin to connect Zoom for your account; there is no setting on your side. Until it is done, either have somebody else host the call, or send a link from your own Zoom by hand &mdash; and note that a booking made outside Fintalent will not appear on the Meetings page or on the contact.</p>
-  <p class="fn">Reported behaviour on internal Fintalent SDR accounts; the working account used for this guide has Zoom connected, so the exact wording of the failure is not captured here.</p>
+<li id="mc-4" data-code="4b.x.2"><b>The form warns you before you start &mdash; your account has no Zoom.</b> Meetings are created on a <b>Zoom account tied to you as the host</b>. If nobody has linked one to your admin record, the form says so in a banner the moment it opens, and <b>Create meeting stays greyed out</b> no matter what you fill in:</p>
+  <div class="call warn"><span class="t">What you will see</span><i>&ldquo;Your account has no Zoom user linked yet. <b>Ask an admin to set your Zoom user ID</b> before scheduling meetings.&rdquo;</i></div>
+  <p><b>There is nothing to fix on your side</b> &mdash; no setting, no retry. Ask an Admin to set your Zoom user ID. Meanwhile either have a colleague who is set up host the call, or send a link from your own Zoom by hand &mdash; but a booking made outside Fintalent will <b>not</b> appear on the Meetings page, will not show on the contact, and gives you no <b>Start as host</b> button.</p>
+  <p class="fn">Verified on a real SDR account with no Zoom user (<i>SDR Internal Fintalent</i>). Note the block is a <b>guard, not a failure</b>: the form refuses up front rather than letting you fill everything in and erroring on save.</p>
+  <figure><img src="sc-09-no-zoom-user.png" alt="Create meeting blocked because the account has no Zoom user"/><figcaption><b>4b.x.2</b> &mdash; <b>&#9312;</b> the Zoom warning, shown before you type anything &middot; <b>&#9313;</b> the second guard from <a href="#mc-6" style="font-weight:700;cursor:pointer">4b.x.3 &#8599;</a> &middot; <b>&#9314;</b> <b>Create meeting</b>, greyed out &middot; <b>&#9315;</b> the account this was reproduced on.</figcaption></figure>
 </li>
-<li id="mc-2" data-code="4b.x.3"><b>Every row shows the time twice, and the second one is the safety net.</b> First line: the start in the meeting's timezone (<i>31 Jul 2026, 15:00 GMT+7</i>). Underneath, in orange, the same moment in <b>GMT+0</b>. Since the create form defaults to <b>your</b> timezone and not the contact's, the GMT+0 line is how you check you booked the hour you actually agreed.</li>
-<li id="mc-3" data-code="4b.x.4"><b>A contact with several addresses.</b> The invitation follows whichever address is selected in <b>Participant email</b>. If the thread you are replying to runs on a different address, change it on the form &mdash; afterwards the only fix is cancel and rebook.</li>
-<li id="mc-5" data-code="4b.x.5"><b>The booking does not email anybody, at any point.</b> Not on create, not on cancel. Every message the contact receives is one you wrote. It is the single most common way a call goes wrong.</li>
+<li id="mc-6" data-code="4b.x.3"><b>The address has to belong to a contact.</b> On the <b>Meetings</b> route you type the address yourself, and typing one the system does not recognise produces a second guard:</p>
+  <div class="call warn"><span class="t">What you will see</span><i>&ldquo;No matching contact found for this email. <b>A contact is required to create a Zoom meeting.</b>&rdquo;</i></div>
+  <p>So the Meetings route is not a free-text shortcut &mdash; it is a search. A booking always hangs off a contact record, which is what makes it show up on their <b>Meetings</b> tab and behind the calendar icon on their row.</p>
+  <p><b>If the person is not a contact yet, create the contact first</b>, then book from their row &mdash; the contact route (<a href="#mt-create" style="font-weight:700;cursor:pointer">4b.2 &#8599;</a>) sidesteps this entirely, because the participant is already resolved. Watch for it when the same person writes from a second address: the address on the thread may not be the one on their record.</p>
+</li>
+<li id="mc-2" data-code="4b.x.4"><b>Every row shows the time twice, and the second one is the safety net.</b> First line: the start in the meeting's timezone (<i>31 Jul 2026, 15:00 GMT+7</i>). Underneath, in orange, the same moment in <b>GMT+0</b>. Since the create form defaults to <b>your</b> timezone and not the contact's, the GMT+0 line is how you check you booked the hour you actually agreed.</li>
+<li id="mc-3" data-code="4b.x.5"><b>A contact with several addresses.</b> The invitation follows whichever address is selected in <b>Participant email</b>. If the thread you are replying to runs on a different address, change it on the form &mdash; afterwards the only fix is cancel and rebook.</li>
+<li id="mc-5" data-code="4b.x.6"><b>The booking does not email anybody, at any point.</b> Not on create, not on cancel. Every message the contact receives is one you wrote. It is the single most common way a call goes wrong.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-inbox"><span class="k">&larr; Prev</span><b>Flow 4 &middot; View &amp; answer replies</b></a><a class="next" data-goto="page-followup"><span class="k">Next &rarr;</span><b>Flow 5 &middot; Follow up</b></a></div>
 </section>

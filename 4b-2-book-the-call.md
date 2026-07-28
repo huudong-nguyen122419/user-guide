@@ -19,7 +19,7 @@
    |---|---|---|
    | **Participant email** | **yes** | Prefilled on the contact route. If they have several addresses, the picker decides which one gets the invite. |
    | **Date & time** | **yes** | The form says it outright: *“the meeting cannot be created without a start time”*. Confirm stays disabled until it is set. |
-   | **Timezone** | prefilled | Defaults to **yours**, not theirs. Read it again if you agreed a time in their local clock — see [4b.x.2 ↗](4b-x-3-two-clocks-on-every-row.md). |
+   | **Timezone** | prefilled | Defaults to **yours**, not theirs. Read it again if you agreed a time in their local clock — see [4b.x.2 ↗](4b-x-4-two-clocks-on-every-row.md). |
    | **Duration** | 30 minutes | Change only if you agreed otherwise. |
    | **Title** · **Notes** | optional | The title is prefilled and is what shows in their calendar. Notes are for you. |
 
