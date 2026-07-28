@@ -977,7 +977,8 @@
   <li>Current employer is a plain <b>corporate</b> (group D) &mdash; deliberately out of scope.</li>
   </ul>
 </li>
-<li data-code="A6.4.3"><b>Open the talent, confirm, then switch the chip to Active.</b> Click the status chip under the avatar and pick <b>Active</b>. A short confirmation appears; there is no reason field on this direction.
+<li data-code="A6.4.3"><b>Open the talent, confirm, then switch the chip to Active.</b> Same route as the other queue &mdash; <b>User Management &rarr; Talents</b>, click the name to open the profile drawer, then click the status chip under the avatar. On a Passive talent the dropdown offers the single option <b>Active</b>; the full click path is spelled out in <a href="#a6-q2" style="font-weight:700;cursor:pointer">A6.5.5 &#8599;</a>.
+  <p><b>This direction asks for no reason.</b> Picking Active opens a short confirmation and that is all &mdash; which is the asymmetry worth knowing: going Passive is always explained, going Active never is. If the reason matters, write it in the <b>Notes</b> tab before you flip the chip.</p>
   <figure><img src="a6-05-status-chip.png" alt="Talent status chip"/><figcaption><b>A6.4.3</b> &mdash; <b>&#9312;</b> current status chip, click to open &middot; <b>&#9313;</b> the only alternative offered &mdash; the chip switches between Active and Passive and nothing else &middot; <b>&#9314;</b> <b>Employment Status</b> printed on the header line, this is the <b>gate</b> read in <a href="#a6-rule" style="font-weight:700;cursor:pointer">step 1 &#8599;</a>.</figcaption></figure>
   <figure><img src="a6-08-set-active-modal.png" alt="Set Talent Status to Active dialog"/><figcaption><b>A6.4.3</b> &mdash; <b>&#9312;</b> the dialog names the talent &middot; <b>&#9313;</b> the target status &middot; <b>&#9314;</b> <b>Exit</b> cancels, <b>Yes</b> commits. Note there is <b>no reason field on this direction</b> &mdash; only the Passive direction asks for one.</figcaption></figure>
   <p class="fn">Hovering the chip on a Passive talent shows <i>Passive since &lt;date&gt;</i> plus the reason that was recorded &mdash; read it before you overturn the decision.</p>
@@ -996,11 +997,28 @@
 <li data-code="A6.5.4"><b>Open work experience and confirm the employer is a fund.</b> The description settles it &mdash; <i>"Founded an independent private equity sponsor pursuing leveraged buyout transactions"</i> is conclusive; <i>"Management/Strategy Consulting"</i> is the opposite.
   <p class="fn">Watch for a second concurrent role. Several people describe themselves as an advisor in the title while still holding a fund seat &mdash; the fund seat wins.</p>
 </li>
-<li data-code="A6.5.5"><b>Switch the chip to Passive &mdash; a reason is mandatory.</b>
-  <figure><img src="a6-06-set-passive-modal.png" alt="Set Talent Status to Passive modal"/><figcaption><b>A6.5.5</b> &mdash; <b>&#9312;</b> confirmation line naming the talent &middot; <b>&#9313;</b> four preset reasons, one must be selected &middot; <b>&#9314;</b> <b>Reasons</b> free-text box &mdash; fill this in, it is the only place the real explanation survives &middot; <b>&#9315;</b> <b>Exit</b> cancels, <b>Yes</b> commits.</figcaption></figure>
-  <p>The presets are <i>Unable to verify freelance status</i>, <i>Evidence insufficient</i>, <i>Reference unresponsive</i>, <i>Other</i>. None of them says "is a client", so pick the closest and <b>write the real reason in the text box</b> &mdash; for example <i>"Managing Partner at Contour Point Capital, an independent PE sponsor &mdash; group B."</i></p>
+<li data-code="A6.5.5"><b>Open the talent, then open the status chip.</b> Four clicks, and the last one is the one people miss:
+  <ol style="margin:8px 0 0;padding-left:20px">
+  <li><b>User Management &rarr; Talents</b> in the left sidebar &mdash; the route is <code>/talents</code>.</li>
+  <li><b>Click the talent's name</b> in the row. The profile opens as a <b>full-screen drawer</b> over the list and the URL gains <code>?id=&lt;talentId&gt;</code>, so this view can be bookmarked and shared.</li>
+  <li><b>Click the coloured status chip under the avatar</b> &mdash; <i>Active&nbsp;&#8964;</i>. It is a dropdown, not a label. Do not confuse it with the <i>Click to update</i> tooltip on the avatar itself, which changes the photo.</li>
+  <li>The dropdown offers <b>exactly one option</b>, the opposite value. On an Active talent that is <b>Passive</b>. Click it.</li>
+  </ol>
+  <figure><img src="a6-11-chip-dropdown.png" alt="Status chip dropdown on a talent profile"/><figcaption><b>A6.5.5</b> &mdash; <b>&#9312;</b> talent name, clicked from the list to get here &middot; <b>&#9313;</b> the status chip, click to open &middot; <b>&#9314;</b> the single option offered &mdash; the chip only ever switches between Active and Passive &middot; <b>&#9315;</b> <b>Employment Status</b> on the header line, the gate from <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3.1 &#8599;</a>.</figcaption></figure>
+  <p class="fn">The chip is <b>read-only</b> unless the current status is already Active or Passive. In Review, ReviewPassive, Guest and the rest are set by the review buttons instead &mdash; <a href="#a6-edge" style="font-weight:700;cursor:pointer">A6.x &#8599;</a>.</p>
 </li>
-<li data-code="A6.5.6"><b>Verify.</b> Reload the profile: the chip reads Passive, and hovering it shows <i>Passive since &lt;today&gt;</i> with the reason you typed. The talent also disappears from the Active queue.</li>
+<li data-code="A6.5.6"><b>Give the reason &mdash; this direction will not commit without one.</b> Picking Passive does not apply anything yet; it opens <b>Set Talent Status to Passive</b>, and the dialog is where the change actually happens.
+  <figure><img src="a6-06-set-passive-modal.png" alt="Set Talent Status to Passive modal"/><figcaption><b>A6.5.6</b> &mdash; <b>&#9312;</b> confirmation line naming the talent &middot; <b>&#9313;</b> four preset reasons, one must be selected &middot; <b>&#9314;</b> <b>Reasons</b> free-text box &mdash; fill this in, it is the only place the real explanation survives &middot; <b>&#9315;</b> <b>Exit</b> cancels, <b>Yes</b> commits.</figcaption></figure>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Field</th><th>Required</th><th>What to put in it</th></tr></thead>
+  <tbody>
+  <tr><td><b>Preset reason</b> <span class="fn">(radio)</span></td><td><b>yes</b> &mdash; one is preselected</td><td>None of the four says "is a client", so none of them fits this flow. Pick the closest, usually <i>Other</i>.</td></tr>
+  <tr><td><b>Reasons</b> <span class="fn">(free text)</span></td><td>technically optional</td><td><b>Always fill it in.</b> This is the only place the real explanation survives &mdash; e.g. <i>"Managing Partner at Contour Point Capital, an independent PE sponsor &mdash; group B."</i> or <i>"Employment Status is Full-time &mdash; not available for projects."</i></td></tr>
+  </tbody></table></div>
+  <p>The four presets are <i>Unable to verify freelance status</i>, <i>Evidence insufficient</i>, <i>Reference unresponsive</i>, <i>Other</i>. Then <b>Yes</b> commits &mdash; <b>Exit</b> closes the dialog and leaves the status untouched, so you can open this screen safely just to look at it.</p>
+  <p class="fn">Where the reason ends up: <b>not</b> on the talent record. It goes into the activity log and surfaces as the chip's hover tooltip &mdash; see <a href="#ec-6-7" style="font-weight:700;cursor:pointer">A6.x.7 &#8599;</a>. That is why a blank free-text box means the next reviewer has nothing to go on.</p>
+</li>
+<li data-code="A6.5.7"><b>Verify.</b> Reload the profile: the chip reads Passive, and hovering it shows <i>Passive since &lt;today&gt;</i> with the reason you typed. The talent also disappears from the Active queue.</li>
 </ol>
 
 <h3 id="a6-edge" class="edgehead anchor">A6.x &middot; Edge cases</h3>
