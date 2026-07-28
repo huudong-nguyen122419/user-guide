@@ -686,11 +686,23 @@
 <h3 id="mt-spot" class="anchor">4b.1 &middot; Spot the call in your replies</h3>
 <ol class="steps">
 <li data-code="4b.1.1"><b>Find the ones that asked for a call.</b> In <b>Inbox</b>, open the <b>Lifecycles</b> filter and pick <b>Call Scheduled</b>. That is the lifecycle stage a contact reaches when a call is on the table, and filtering by it turns your whole inbox into a short worklist.</li>
-<li data-code="4b.1.2"><b>The <i>Call Scheduled</i> chip lives in the <i>Lifecycle Stage</i> column</b> &mdash; on your lists and on the Contacts page. The Inbox does not show it by default; it shows Account and Last Email only, so use the filter there rather than hunting for the chip.
-  <p class="fn">If you want the chip in the Inbox too, the <b>&#9881;</b> column settings let you switch <b>Lifecycle</b> on inside the Account cell &mdash; see <a href="#e-5-5" style="font-weight:700;cursor:pointer">4.x.5 &#8599;</a>.</p>
-  <figure><img src="sc-05-chip-and-badge.png" alt="Call Scheduled chip and the meeting count badge"/><figcaption><b>4b.1.2</b> &mdash; <b>&#9312;</b> the <b>Call Scheduled</b> chip, in the <b>Lifecycle Stage</b> column &middot; <b>&#9313;</b> the badge on the calendar icon &mdash; how many calls this contact already has.</figcaption></figure>
+<li data-code="4b.1.2"><b>Two chips share the name &mdash; know which one you are looking at.</b> This trips people up, because both say much the same thing at different levels:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Chip</th><th>Sits on</th><th>Means</th></tr></thead>
+  <tbody>
+  <tr><td><b>Scheduled Call</b> <span class="fn">(dark)</span></td><td>a single <b>reply</b>, next to the sender's name in the thread</td><td>the system read <i>that message</i> and judged it to be about arranging a call. This is the one that tells you what to do.</td></tr>
+  <tr><td><b>Call Scheduled</b> <span class="fn">(green)</span></td><td>the <b>contact</b>, in the <b>Lifecycle Stage</b> column</td><td>where this person sits in the pipeline. This is what the <b>Lifecycles</b> filter searches.</td></tr>
+  </tbody></table></div>
+  <p>So you <b>filter</b> on the contact's lifecycle to build the worklist, then <b>read</b> the reply chips inside the thread to find the message that actually asks for something.</p>
+  <div class="call note"><span class="t">The reply chip can be buried</span>A thread collapses to its most recent message. A conversation showing <i>No Categories</i> at the top can still hold <b>Scheduled Call</b> replies further down &mdash; expand the thread before deciding nothing is there.</div>
+  <figure><img src="sc-15-reply-chip.png" alt="Scheduled Call chips on replies inside a thread"/><figcaption><b>4b.1.2</b> &mdash; two replies the system tagged <b>Scheduled Call</b>, inside a thread whose own chip reads <i>No Categories</i>.</figcaption></figure>
 </li>
-<li data-code="4b.1.3"><b>Open the reply and read it before you book anything.</b> Clicking the row opens the contact on <b>Conversations</b>, with <b>Meetings</b> as the tab next to it &mdash; and the tab carries a count, so you can see at a glance whether you have already booked this person.</li>
+<li data-code="4b.1.3"><b>Open it and read what they are asking for.</b> The chip only says &ldquo;this is about a call&rdquo; &mdash; it does not say which call, or what they want doing about it. Real example from production:
+  <div class="call note"><span class="t">What a Scheduled Call reply looks like</span><i>&ldquo;Apologies for the short notice &mdash; our investment committee moved to Thursday morning, so I need to <b>shift our 10am call</b>. Could we do Thursday 4pm CET instead, or alternatively Friday 9am CET? Same agenda, and please keep Katharina on the invite&hellip;&rdquo;</i></div>
+  <p>Read closely: that one is a <b>reschedule</b>, not a new booking, and it names <b>two options in their timezone</b>. Sort out which you are dealing with before touching the Meetings screen &mdash; a reschedule goes through <a href="#mc-1" style="font-weight:700;cursor:pointer">4b.x.1 &#8599;</a>, not through 4b.2.</p>
+  <p class="fn">Clicking the row opens the contact on <b>Conversations</b>, with <b>Meetings</b> as the tab beside it, carrying a count &mdash; so you can see whether this person is already booked before you read a word.</p>
+  <figure><img src="sc-16-reply-content.png" alt="A reply asking to move an existing call"/><figcaption><b>4b.1.3</b> &mdash; the part that decides what you do next: they are moving an existing call, and offering two slots in <b>CET</b>.</figcaption></figure>
+</li>
 </ol>
 
 <h3 id="mt-create" class="anchor">4b.2 &middot; Book the call</h3>
@@ -736,7 +748,8 @@
 <h3 id="mt-reply" class="anchor">4b.3 &middot; Reply to their email with the details</h3>
 <ol class="steps">
 <li data-code="4b.3.1"><b>Answer in the same thread.</b> Go back to the reply that asked for the call and use the <b>&#8617; reply arrow</b> on it, exactly as in <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &#8599;</a>. Keeping it in-thread is what makes the booking make sense to them.
-  <div class="call warn"><span class="t">The compose window does not carry the link</span>Whether you reply in the thread or use <b>Send email</b> from the meeting row, the message opens with the participant filled in and <b>your signature &mdash; and nothing else</b>. The join link is <u>not</u> inserted. Paste it in yourself, or they get a confirmation they cannot act on.</div>
+  <div class="call warn"><span class="t">The compose window does not carry the link</span>Whether you reply in the thread or use <b>Send email</b> from the meeting row, the message opens with the participant filled in, your signature, the quoted original &mdash; and <b>no join link</b>. Paste it in yourself, or they get a confirmation they cannot act on.</div>
+  <figure><img src="sc-17-reply-inthread.png" alt="Replying inside the original thread"/><figcaption><b>4b.3.1</b> &mdash; <b>&#9312;</b> the subject carries <b>RE:</b> and the original wording, which is what keeps it in their thread &middot; <b>&#9313;</b> Send, once the link is in.</figcaption></figure>
 </li>
 <li data-code="4b.3.2"><b>Write the three things they need:</b> the <b>date and time with the timezone spelled out</b>, the <b>duration</b>, and the <b>join link</b>. Time is the part that goes wrong &mdash; <i>&ldquo;Friday 31 July, 15:00 CET (08:00 UTC)&rdquo;</i> is worth the extra seconds.
   <p class="fn">Doing this often? Build it once as a <b>Snippet</b> with the fixed wording and paste the link into it &mdash; <a data-goto="page-send" href="#s-edge" style="font-weight:700;cursor:pointer">3.x &#8599;</a>.</p>
