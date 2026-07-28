@@ -2,7 +2,7 @@
 
 > 4b · Schedule a call
 
-1. **4b.2.1** — **Two ways in, and they are not identical.** The difference is who fills in the participant: **Prefer the contact route when you are answering a reply.** It carries the right address for you, and it is one click from the conversation you are already in. The Meetings route is for when you have the address in your head and not the contact on screen. Typing the address on the Meetings route still resolves the person: the title comes back as *“Fintalent call — <their name>”*. **The contact route is two clicks, and the second one catches people out.** The calendar icon does not open the booking form — it opens the **contact**, on its **Meetings** tab. The form is behind **+ Create meeting** in the top right of that panel: On the **Meetings** route the button is in the same place — **+ Create meeting**, top right of the page ([4b.4.1 ↗](4b-4-manage-booked-calls.md)).
+1. **4b.2.1** — **Two ways in, and they are not identical.** The difference is who fills in the participant: **Prefer the contact route when you are answering a reply.** It carries the right address for you, and it is one click from the conversation you are already in. The Meetings route is for when you have the address in your head and not the contact on screen. Typing the address on the Meetings route still resolves the person: the title comes back as *“Fintalent call — <their name>”*. **The contact route is two clicks, and the second one catches people out.** The calendar icon does not open the booking form — it opens the **contact**, on its **Meetings** tab. The form is behind **+ Create meeting** in the top right of that panel: **The Meetings route is one click.** **Meetings** in the left menu, then **+ Create meeting** in the top right — the same corner as on the contact panel, so the two routes feel alike once you know them. One difference from here: **Participant email** arrives empty, and it only accepts an address that already belongs to a contact — see [4b.x.3 ↗](4b-x-3-the-address-must-be-a-contact.md).
 
    | From | How | Participant email |
    |---|---|---|
@@ -16,6 +16,10 @@
    ![Where the Create meeting button sits on a contact](sc-10-open-create-drawer.png)
 
    *4b.2.1 — what the 📅 icon actually opens: ① the contact on its Meetings tab, next to Conversations · ② + Create meeting — this is the button that opens the form · ③ the four sub-tabs · ④ the same action offered in the empty state.*
+
+   ![The Create meeting button on the Meetings page](sc-13-meetings-route.png)
+
+   *4b.2.1 — the other way in: ① Meetings in the left menu · ② + Create meeting, which opens the same form.*
 
    ![Create meeting opened from the Meetings page](sc-08-create-from-page.png)
 

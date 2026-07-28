@@ -12,9 +12,9 @@
    | **The Meetings tab in a contact you already have open** | it sits next to **Conversations**, with its own count. |
    | **To cancel** | the meeting's row → **⋮** → **Cancel meeting**. |
 
-   ![The Meetings page](sc-11-meetings-row-actions.png)
+   ![Finding a meeting on the Meetings page](sc-11-meetings-find.png)
 
-   *4b.4.1 — ① + Create meeting · ② the four tabs with their counts · ③ Join meeting · ④ Start as host · ⑤ Copy join link · ⑥ ⋮ row actions. The row also prints the start time twice — your timezone, then GMT+0.*
+   *4b.4.1 — how you narrow the list: ① the four tabs with their counts · ② search by keyword · ③ filters by Host and Activity Date.*
 
 2. **4b.4.2** — **What each control on a row does.** Four of them, and the first two are not the same thing: If you take one thing from this section**Send the contact the *join* link. Open the call yourself with *Start as host*.** Handing out a host link would let whoever holds it run your meeting.
 
@@ -25,9 +25,9 @@
    | **Copy join link** | — | sending or resending the link to the contact. |
    | **⋮** | **Send email** · **Cancel meeting** | the only two row actions. There is no edit. |
 
-   ![The four controls on a meeting row](sc-11-meetings-row-actions.png)
+   ![The four controls on a meeting row](sc-14-row-actions.png)
 
-   *4b.4.2 — the four, left to right: ③ Join meeting · ④ Start as host · ⑤ Copy join link · ⑥ ⋮, which holds Send email and Cancel meeting.*
+   *4b.4.2 — the four, left to right: ① Join meeting · ② Start as host · ③ Copy join link · ④ ⋮, which holds Send email and Cancel meeting.*
 
 3. **4b.4.3** — **Cancelling, and what it destroys.** **⋮ → Cancel meeting** asks first, and the dialog is worth reading: *“This removes the Zoom meeting and its join link **for everyone**.”* Confirm and the booking leaves **Upcoming** and lands in **Cancelled** — it is not deleted, so the history stays. **The contact is not told.** If a real person was expecting that call, the cancellation email is yours to write. The tab counters do not refresh on the spot — they still read the old numbers until you reload the page. Do not take that as the cancellation having failed.
 
