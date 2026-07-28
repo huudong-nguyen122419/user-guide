@@ -744,14 +744,14 @@
 <p class="fn">Passive is not a punishment and not a quality judgement. It is a routing decision: Passive records are excluded from project invitations, nothing more. Being wrong in either direction costs money &mdash; a wrongly-Passive freelancer is supply you cannot sell, a wrongly-Active fund Partner is an invitation landing in a client's inbox.</p>
 
 <h4 style="margin:18px 0 8px">Rule 1 &mdash; the evidence, in strict order</h4>
-<p>Always work the four sources <b>in this order</b> and stop at the first one that answers. Later sources never overturn earlier ones.</p>
+<p>Always work the four sources <b>in this order</b> and stop at the first one that answers. Later sources never overturn earlier ones. <b>Employment Status sits at the top, not the bottom</b> &mdash; it is a gate, not a tie-breaker.</p>
 <div class="tblwrap"><table>
 <thead><tr><th style="width:34px">#</th><th>Source</th><th>Why it sits here</th></tr></thead>
 <tbody>
-<tr><td><b>1</b></td><td><b>The job title</b> &mdash; the headline the talent wrote about themselves</td><td>It is what the talent says they do <i>now</i>, in their own words. Roughly <b>86%</b> of the 276 production records are decided by the title alone.</td></tr>
-<tr><td><b>2</b></td><td><b>Work experience</b> &mdash; description of the company named in the title</td><td>Only when the title is genuinely ambiguous. Read the company that appears <u>in the title</u>, not every job on the profile.</td></tr>
-<tr><td><b>3</b></td><td><b>Employment Status</b></td><td>Pure fallback for titles that carry no signal at all &mdash; about <b>14%</b> of records.</td></tr>
-<tr><td><b>4</b></td><td><b>Overrides</b> &mdash; completed contract, or a status a human set on purpose</td><td>These beat all three above.</td></tr>
+<tr><td><b>1</b></td><td><b>Employment Status</b></td><td>The <b>closing gate</b>. Full-time or Part-time means someone else already pays for their week, so they cannot take a project &mdash; <b>Passive</b>, and nothing in the title reopens it. Decides <b>22%</b> of the 276 production records.</td></tr>
+<tr><td><b>2</b></td><td><b>The job title</b> &mdash; the headline the talent wrote about themselves</td><td>Only reached once the gate is passed. It is what the talent says they do <i>now</i>, in their own words. Decides <b>78%</b> of records.</td></tr>
+<tr><td><b>3</b></td><td><b>Work experience</b> &mdash; description of the company named in the title</td><td>Only when the title is genuinely ambiguous. Read the company that appears <u>in the title</u>, not every job on the profile.</td></tr>
+<tr><td><b>4</b></td><td><b>One override</b> &mdash; a status an admin set by hand</td><td>Beats all three above. It is the <b>only</b> bypass.</td></tr>
 </tbody></table></div>
 <div class="call warn"><span class="t">Company Background is not evidence</span>The <i>PE / VC</i> label is a career-history label produced by AI, not a statement about today. Of the 262 people carrying it on production, only <b>16 (6%)</b> currently hold a role at a company flagged as a sponsor. Use the chip to <b>build the list</b> and never as the answer for an individual.</div>
 
@@ -766,8 +766,9 @@
 </tbody></table></div>
 
 <h4 style="margin:18px 0 8px">Rule 3 &mdash; exclusions are a hard stop, and they run first</h4>
-<p>If the role part contains an exclusion term, the verdict is <b>Active</b> and the rule <b>ends there</b>. It does not fall through to the group tables, and it does not fall through to Employment Status.</p>
-<p>Two buckets, one reason each: <b>too junior to hold a budget</b>, and <b>back office &mdash; never a buyer</b>. An Investment Banking Senior Analyst is full-time employed at a bank, but they are a candidate, not a client.</p>
+<p>If the role part contains an exclusion term, the verdict is <b>Active</b> and the rule <b>ends there</b>. It does not fall through to the group tables. It is a hard stop <i>within the title</i>, so it never overturns the gate that already ran ahead of it.</p>
+<p>Two buckets, one reason each: <b>too junior to hold a budget</b>, and <b>back office &mdash; never a buyer</b>.</p>
+<p><b>But the gate still comes first.</b> An Investment Banking Senior Analyst is not a client &mdash; and if they are <b>Full-time</b>, they are still <b>Passive</b>, because they are not available either. The exclusion list settles <i>are they a buyer</i>; the gate settles <i>can they take work at all</i>. Both must pass before someone is Active.</p>
 <p class="fn">Match on <b>word boundaries</b>. Plain substring matching turns "M&amp;A <b>Intern</b>ational Manager" into an intern and "Head of <b>Intern</b>ational Capital Partnerships" into a trainee.</p>
 
 <h4 style="margin:18px 0 8px">Rule 4 &mdash; selling advice beats matching a group</h4>
@@ -792,26 +793,32 @@
 </tbody></table></div>
 <p class="fn">This net is deliberately wide, and it is <b>only safe inside the PE/VC-filtered list</b>. Applied to the whole talent base it would sweep up every banker and every corporate finance manager. Never run this keyword set without the Company Background chip in place.</p>
 
-<h4 style="margin:18px 0 8px">Rule 6 &mdash; Employment Status is a fallback, not a rule</h4>
-<p>Reach for it only when the role part matched nothing at all &mdash; no exclusion, no advisory word, no group keyword. <b>Full-time and Part-time count the same</b>: both mean somebody else already pays for their week, so <b>Passive</b>. Freelancer, Unemployed, Other and blank all mean <b>Active</b>.</p>
+<h4 style="margin:18px 0 8px">Rule 6 &mdash; Employment Status is the closing gate, and it runs first</h4>
+<p><b>Full-time Employee</b> and <b>Part-time Employee</b> both mean <b>Passive</b>, full stop. Somebody else already pays for their week, so they are not available for a Fintalent project &mdash; whatever their title says. Freelancer, Unemployed, Other and blank all pass the gate and go on to the title.</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Employment Status</th><th>Gate</th></tr></thead>
+<tbody>
+<tr><td><b>Full-time Employee</b> &middot; <b>Part-time Employee</b></td><td><b>Passive</b> &mdash; stop here, do not read the title</td></tr>
+<tr><td>Independent Consultant / Freelancer &middot; Unemployed &middot; Other &middot; blank</td><td>pass &mdash; go on to the title</td></tr>
+</tbody></table></div>
+<div class="call warn"><span class="t">Full-time and Active together is always wrong</span>The two fields contradict each other, so the record is broken by definition &mdash; you do not need to read the title to know it. On production there are exactly <b>two</b>: <i>Mehdi Benjelloun</i> (Investment Banking Senior Analyst) and <i>Sahib Maker</i> (Vice President at Apis Partners). Fix these before anything else in the queues.</div>
+<p class="fn"><b>Do not confuse this gate with the automatic rule at approval.</b> They are different mechanisms that happen to agree most of the time. The gate above is the business rule you apply. The automatic rule &mdash; <a href="#ec-6-1" style="font-weight:700;cursor:pointer">A6.x.1 &#8599;</a> &mdash; fires on <i>Skip Review + an ongoing role at a flagged company</i> and does not read Employment Status at all; the one-line verdict printed on the profile does read it, but that line is only a display. Treating Full/Part-time as Passive is <b>settled business policy</b>, not something the system currently enforces on its own.</p>
 
-<h4 style="margin:18px 0 8px">Rule 7 &mdash; two overrides beat everything</h4>
-<ul>
-<li><b>A completed contract with Fintalent &rarr; Active.</b> They have already delivered as talent. That is proof, not inference.</li>
-<li><b>A status a human set on purpose stays put.</b> Open <i>Activity Logs</i> before overturning anything: an entry with a named admin and a reason is a decision, not a default.</li>
-</ul>
+<h4 style="margin:18px 0 8px">Rule 7 &mdash; one override, and only one</h4>
+<p><b>A status an admin set by hand stays put.</b> Open <i>Activity Logs</i> before overturning anything: an entry with a named admin is a decision, and a decision outranks the rule. An entry with no actor, or no entry at all, is a default &mdash; the rule applies.</p>
+<div class="call warn"><span class="t">A completed contract is not an override</span>It used to be treated as proof that someone is talent. It is not: a full-time employee who delivered one project last year is still unavailable today. Contract history is <b>context for the reviewer</b>, never a reason to skip the gate.</div>
 
 <h4 style="margin:18px 0 8px">The rule as one flowchart</h4>
 <div class="tblwrap"><table>
 <thead><tr><th style="width:34px">#</th><th>Test, in order</th><th>If it fires</th></tr></thead>
 <tbody>
-<tr><td><b>0</b></td><td>Completed contract, or a deliberate human decision in Activity Logs</td><td><b>stop</b> &mdash; leave as is</td></tr>
-<tr><td><b>1</b></td><td>Role part contains an <b>exclusion</b> term</td><td><b>Active</b>, stop</td></tr>
-<tr><td><b>2</b></td><td>Role part contains an <b>advisory</b> term</td><td><b>Active</b>, stop</td></tr>
-<tr><td><b>3</b></td><td>Role part matches <b>group A, B or C</b></td><td><b>Passive</b>, stop</td></tr>
-<tr><td><b>4</b></td><td>Title ambiguous &rarr; company named in the title is an advisory firm</td><td><b>Active</b>, stop</td></tr>
-<tr><td><b>5</b></td><td>Nothing matched &rarr; Employment Status is Full-time or Part-time</td><td><b>Passive</b></td></tr>
-<tr><td><b>6</b></td><td>Nothing matched &rarr; anything else</td><td><b>Active</b></td></tr>
+<tr><td><b>0</b></td><td>An admin set the status <b>by hand</b> (Activity Logs)</td><td><b>stop</b> &mdash; leave as is</td></tr>
+<tr><td><b>1</b></td><td><b>Employment Status is Full-time or Part-time</b></td><td><b>Passive</b>, stop</td></tr>
+<tr><td><b>2</b></td><td>Role part contains an <b>exclusion</b> term</td><td><b>Active</b>, stop</td></tr>
+<tr><td><b>3</b></td><td>Role part contains an <b>advisory</b> term</td><td><b>Active</b>, stop</td></tr>
+<tr><td><b>4</b></td><td>Role part matches <b>group A, B or C</b></td><td><b>Passive</b>, stop</td></tr>
+<tr><td><b>5</b></td><td>Title ambiguous &rarr; company named in the title is an advisory firm</td><td><b>Active</b>, stop</td></tr>
+<tr><td><b>6</b></td><td>Nothing matched</td><td><b>Active</b></td></tr>
 </tbody></table></div>
 
 <h4 style="margin:18px 0 8px">What the rule says about production today</h4>
@@ -819,12 +826,12 @@
 <div class="tblwrap"><table>
 <thead><tr><th>Outcome</th><th>Count</th><th>Meaning</th></tr></thead>
 <tbody>
-<tr><td>Status already correct</td><td><b>162</b></td><td>&mdash;</td></tr>
-<tr><td>Active, should be Passive</td><td><b>51</b></td><td>clients able to receive project invitations &mdash; <a href="#a6-q2" style="font-weight:700;cursor:pointer">Queue 2 &#8599;</a></td></tr>
-<tr><td>Passive, should be Active</td><td><b>50</b></td><td>supply locked out of every invitation &mdash; <a href="#a6-q1" style="font-weight:700;cursor:pointer">Queue 1 &#8599;</a></td></tr>
-<tr><td>Exempt under rule 7</td><td><b>13</b></td><td>contract already delivered, or a named admin decided</td></tr>
+<tr><td>Status already correct</td><td><b>178</b></td><td>&mdash;</td></tr>
+<tr><td>Active, should be Passive</td><td><b>60</b></td><td>clients able to receive project invitations &mdash; <a href="#a6-q2" style="font-weight:700;cursor:pointer">Queue 2 &#8599;</a></td></tr>
+<tr><td>Passive, should be Active</td><td><b>33</b></td><td>supply locked out of every invitation &mdash; <a href="#a6-q1" style="font-weight:700;cursor:pointer">Queue 1 &#8599;</a></td></tr>
+<tr><td>Exempt under rule 7</td><td><b>5</b></td><td>a named admin set the status by hand</td></tr>
 </tbody></table></div>
-<p class="fn">The rule was validated against <b>23 records classified by hand</b> and reproduces all 23. That is the evidence it rests on &mdash; it is not proof it is right on the other 253, which is why every change still goes through a human read in A6.4 / A6.5.</p>
+<p class="fn">The rule was validated against the <b>23 records classified by hand</b> on 27 Jul plus the gate ruling of 28 Jul, and reproduces all of them. That is the evidence it rests on &mdash; it is not proof it is right on the other 253, which is why every change still goes through a human read in A6.4 / A6.5.</p>
 
 <h3 id="a6-model" class="anchor">A6.1 &middot; Three fields you must not confuse</h3>
 <ol class="steps adm">
@@ -895,9 +902,20 @@
 </ol>
 
 <h3 id="a6-rule" class="anchor">A6.3 &middot; The decision rule</h3>
-<div class="call note"><span class="t">Read the title first. Only open work experience when the title is not conclusive.</span></div>
+<div class="call note"><span class="t">Check Employment Status first. Then the title. Open work experience only when the title is not conclusive.</span></div>
 <ol class="steps adm">
-<li data-code="A6.3.1"><b>Step 1 &mdash; does the job title match group A, B or C?</b> Match against the <b>role part</b> of the title only, i.e. the text <u>before</u> <code>at</code> / <code>@</code> / <code>chez</code>. Fund names very often contain the word <i>Partners</i>, and matching the whole string turns "Manager at Fide <b>Partners</b>" into a false hit.
+<li data-code="A6.3.1"><b>Step 1 &mdash; the gate: what is their Employment Status?</b> This runs before you read the title, and it is the end of the line for two of the five values.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Employment Status</th><th>What to do</th></tr></thead>
+  <tbody>
+  <tr><td><b>Full-time Employee</b> &middot; <b>Part-time Employee</b></td><td><b>Passive.</b> Stop &mdash; do not read the title. Someone else already pays for their week, so they cannot take a project whatever their headline says.</td></tr>
+  <tr><td>Independent Consultant / Freelancer &middot; Unemployed &middot; Other &middot; blank</td><td>Gate passed &rarr; go to step 2.</td></tr>
+  </tbody></table></div>
+  <p><b>Full-time and Active on the same record is broken by definition</b> &mdash; the two fields contradict each other, and you do not need the title to know it. Sweep for these first: filter <b>Statuses = Active</b> and read the Employment Status column. On production there are exactly two, <i>Mehdi Benjelloun</i> and <i>Sahib Maker</i>.</p>
+  <p class="fn">The system does <b>not</b> enforce this gate for you. The automatic rule at approval &mdash; <a href="#ec-6-1" style="font-weight:700;cursor:pointer">A6.x.1 &#8599;</a> &mdash; fires on a different condition entirely and never reads Employment Status. So a Full-time employee can and does end up Active without anyone noticing; step 1 is how you catch them.</p>
+</li>
+
+<li data-code="A6.3.2"><b>Step 2 &mdash; does the job title match group A, B or C?</b> Match against the <b>role part</b> of the title only, i.e. the text <u>before</u> <code>at</code> / <code>@</code> / <code>chez</code>. Fund names very often contain the word <i>Partners</i>, and matching the whole string turns "Manager at Fide <b>Partners</b>" into a false hit.
   <div class="tblwrap"><table>
   <thead><tr><th>Group</th><th>Company</th><th>Representative titles</th></tr></thead>
   <tbody>
@@ -905,7 +923,7 @@
   <tr><td><b>B</b></td><td><b>Deal side &mdash; formal titles.</b> Deal Partner &middot; Partner &middot; Managing Partner &middot; Senior Partner &middot; General Partner &middot; Founding Partner &middot; Investment Partner &middot; Co-Head &middot; Managing Director &middot; Principal &middot; Investment Director &middot; Investment Manager &middot; Investment Principal &middot; Investment Professional &middot; Deal Lead &middot; Vice President &middot; VP &middot; Director<br><b>Deal side &mdash; vocabulary, no formal title needed <span class="fn">(added from manual review, see <a href="#a6-rulebook" style="font-weight:700;cursor:pointer">A6.0 rule 5 &#8599;</a>)</span>.</b> Investor &middot; Investing &middot; Investments &middot; Private Equity &middot; Venture Capital &middot; M&amp;A &middot; Mergers &middot; Buy&amp;build</td></tr>
   <tr><td><b>C</b></td><td>PE-backed portfolio company</td><td><b>Board &amp; C-suite.</b> Chair &middot; Chairman &middot; Executive Chairman &middot; Non-Executive Director &middot; Senior Independent Director &middot; CEO &middot; Chief Executive &middot; President &middot; Geschäftsführer &middot; Directeur Général &middot; CFO &middot; Finance Director &middot; Group CFO &middot; Interim CFO &middot; Head of Finance &middot; VP Finance<br><b>Deal &amp; corp-dev function, any seniority <span class="fn">(added from manual review)</span>.</b> Head of M&amp;A &middot; M&amp;A Director &middot; M&amp;A Manager &middot; Corporate Development &middot; Corporate Dev &middot; VP Corporate Development &middot; Head of Strategy &amp; M&amp;A &middot; Head of Transactions &middot; Founder &middot; Co-founder &middot; Entrepreneur</td></tr>
   </tbody></table></div>
-  <p><b>Exclusions run first and they are a hard stop.</b> If the <b>role part</b> contains any of these, the verdict is <b>Active</b> and you stop &mdash; you do <u>not</u> go on to the group tables, and you do <u>not</u> fall through to Employment Status in <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3.5 &#8599;</a>:</p>
+  <p><b>Within this step the exclusions run first, and they are a hard stop.</b> If the <b>role part</b> contains any of these, the verdict is <b>Active</b> and you stop &mdash; you do <u>not</u> go on to the group tables. Note this only ever applies to someone who already passed the gate in step 1: a Full-time Analyst was settled as <b>Passive</b> before you got here.</p>
   <div class="tblwrap"><table>
   <thead><tr><th>Bucket</th><th>Terms</th></tr></thead>
   <tbody>
@@ -916,21 +934,21 @@
   <p class="fn"><b>Match on word boundaries.</b> Plain substring matching turns "M&amp;A <b>Intern</b>ational Manager" into an intern and "Head of <b>Intern</b>ational Capital Partnerships" into a trainee &mdash; both were real false hits during the production run.</p>
 </li>
 
-<li data-code="A6.3.2"><b>Step 2 &mdash; does the title say they sell advice?</b> If the <b>role part</b> contains <code>consultant</code>, <code>consulting</code>, <code>consultancy</code>, <code>advisory</code>, <code>advisor</code> or <code>adviser</code>, they run an M&amp;A advisory practice. <b>That makes them talent &rarr; Active</b>, even when the same title also matches a group. A "Principal <b>Consultant</b>" is a consultant, not a fund Principal.
+<li data-code="A6.3.3"><b>Step 3 &mdash; does the title say they sell advice?</b> If the <b>role part</b> contains <code>consultant</code>, <code>consulting</code>, <code>consultancy</code>, <code>advisory</code>, <code>advisor</code> or <code>adviser</code>, they run an M&amp;A advisory practice. <b>That makes them talent &rarr; Active</b>, even when the same title also matches a group. A "Principal <b>Consultant</b>" is a consultant, not a fund Principal.
   <p class="fn"><b>Role part only</b> &mdash; the keyword must be in the job, not in the employer's name. "Managing Director and Founder at DZ <b>Consulting</b>" is a group B match and stays <b>Passive</b>; the word sits in the company name. Conversely the absence of an advisory word is equally decisive: "Founding Partner at Scandola | Buy-side M&amp;A" has none, so the group B match stands. See <a href="#a6-rulebook" style="font-weight:700;cursor:pointer">A6.0 rules 2 and 4 &#8599;</a>.</p>
 </li>
 
-<li data-code="A6.3.3"><b>Step 3 &mdash; the title is not conclusive, so open work experience.</b> Find the company named in the title and read its description (<i>industry</i>, <i>main activities</i>):
+<li data-code="A6.3.4"><b>Step 4 &mdash; the title is not conclusive, so open work experience.</b> Find the company named in the title and read its description (<i>industry</i>, <i>main activities</i>):
   <div class="tblwrap"><table>
   <thead><tr><th>What the description says</th><th>Verdict</th></tr></thead>
   <tbody>
   <tr><td>"consulting firm", "advisory", "self-employed", "350+ consultants"</td><td><b>Active</b> &mdash; service provider</td></tr>
   <tr><td>"private equity sponsor", "investment firm", "alternative asset manager", "LBO"</td><td><b>Passive</b> &mdash; buy side</td></tr>
-  <tr><td><b>no description at all</b></td><td><b>the title stands</b> &rarr; Passive if it matched in step 1</td></tr>
+  <tr><td><b>no description at all</b></td><td><b>the title stands</b> &rarr; Passive if it matched in step 2</td></tr>
   </tbody></table></div>
 </li>
 
-<li data-code="A6.3.4"><b>Shortcut &mdash; the profile often tells you outright.</b> Under the Employment Status line the system prints its own one-line verdict, and it is the same signal the automatic rule uses:
+<li data-code="A6.3.5"><b>Shortcut &mdash; the profile often tells you outright.</b> Under the Employment Status line the system prints its own one-line verdict, and it is the same signal the automatic rule uses:
   <div class="tblwrap"><table>
   <thead><tr><th>Line on the profile</th><th>What produced it</th></tr></thead>
   <tbody>
@@ -939,40 +957,28 @@
   <tr><td>nothing printed</td><td>neither condition holds &mdash; the automatic rule leaves them Active</td></tr>
   </tbody></table></div>
   <p class="fn">A <b>sponsor</b> or <b>portfolio</b> verdict is the strongest single hint that you are looking at a client. A <b>corporate</b> verdict is group D &mdash; deliberately out of scope, so it is <u>not</u> a reason to set Passive.</p>
-  <figure><img src="a6-09-auto-classify-banner.png" alt="Auto-classification line and Activity Logs"/><figcaption><b>A6.3.4</b> &mdash; <b>&#9312;</b> Employment Status &middot; <b>&#9313;</b> the system's own verdict line, printed right below it &middot; <b>&#9314;</b> the <b>Activity Logs</b> tab &middot; <b>&#9315;</b> every status change with who made it and when.</figcaption></figure>
+  <figure><img src="a6-09-auto-classify-banner.png" alt="Auto-classification line and Activity Logs"/><figcaption><b>A6.3.5</b> &mdash; <b>&#9312;</b> Employment Status &middot; <b>&#9313;</b> the system's own verdict line, printed right below it &middot; <b>&#9314;</b> the <b>Activity Logs</b> tab &middot; <b>&#9315;</b> every status change with who made it and when.</figcaption></figure>
 </li>
-<li data-code="A6.3.5"><b>Last resort &mdash; the role part matched <u>nothing at all</u>? Fall back to Employment Status.</b> Nothing means nothing: no exclusion term, no advisory word, no group keyword. A title that hit an exclusion already ended at <b>Active</b> in step 1 and never reaches this table &mdash; an "Investment Banking Senior Analyst" is full-time employed and still <b>Active</b>. About <b>14%</b> of production records are decided here.
-  <div class="tblwrap"><table>
-  <thead><tr><th>Employment Status</th><th>Verdict</th></tr></thead>
-  <tbody>
-  <tr><td><b>Full-time Employee</b> or <b>Part-time Employee</b></td><td>Passive</td></tr>
-  <tr><td>Independent Consultant / Freelancer &middot; Unemployed &middot; Other</td><td>Active</td></tr>
-  </tbody></table></div>
-</li>
-
-<li data-code="A6.3.6"><b>Two overrides that beat everything above.</b>
-  <ul>
-  <li><b>A completed contract with Fintalent &rarr; Active.</b> They have already delivered as talent; that is proof, not inference.</li>
-  <li><b>A status a human set on purpose stays put.</b> Check the <i>Activity Logs</i> tab before overturning anything.</li>
-  </ul>
+<li data-code="A6.3.6"><b>The one override that beats everything above.</b> <b>A status an admin set by hand stays put.</b> Open the <i>Activity Logs</i> tab before overturning anything: an entry naming an admin is a decision and outranks the rule; an entry with no actor, or no entry at all, is a default and the rule applies.
+  <p class="fn"><b>A completed contract is not an override.</b> A full-time employee who delivered a project last year is still unavailable today. Read contract history as context, never as a reason to skip the gate.</p>
 </li>
 </ol>
 
 <h3 id="a6-q1" class="anchor">A6.4 &middot; Queue 1 &mdash; Passive that should be Active</h3>
-<div class="goal adm">These are freelancers and consultants locked out of every project invitation for no good reason. On production this is the larger of the two problems.</div>
+<div class="goal adm">These are freelancers and consultants locked out of every project invitation for no good reason. <b>33 records</b> on production.</div>
 <ol class="steps adm">
 <li data-code="A6.4.1"><b>Filter:</b> Company Background = the six PE/VC boxes, <b>Statuses = Passive</b>. Add <code>-consultant -advisory -advisor</code> in the search box only if you want to see the harder cases first &mdash; leaving it off shows the obvious wins.</li>
 <li data-code="A6.4.2"><b>Read each row against <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3 &#8599;</a>.</b> The frequent patterns that mean "should be Active":
   <ul>
   <li><b>They were never classified by a human at all.</b> This is the single biggest source of this queue. Open <b>Activity Logs</b>: a lone entry saying the status changed, with <b>no reason attached</b>, means the <a href="#ec-6-1" style="font-weight:700;cursor:pointer">automatic rule at approval &#8599;</a> did it &mdash; purely because they held a current job at a flagged company, including a plain <b>corporate</b> one, which is group D and out of scope. Nothing about the buy side was ever checked.</li>
   <li>Title openly says <b>consultant / advisory / freelance</b> &mdash; e.g. <i>"Private Equity Consultant"</i>, <i>"Independent Consultant at Various"</i>, <i>"Freelance in Transaction Services"</i>.</li>
-  <li>Title carries an <b>excluded</b> word &mdash; <i>Associate</i>, <i>Analyst</i>, <i>Intern</i>.</li>
+  <li>Title carries an <b>excluded</b> word &mdash; <i>Associate</i>, <i>Analyst</i>, <i>Intern</i> &mdash; <b>and</b> they passed the gate, i.e. Employment Status is not Full/Part-time. A Full-time Analyst is correctly Passive and does <u>not</u> belong in this queue.</li>
   <li><b>No current role at all</b>, and Employment Status is not Full/Part-time &mdash; students, people between jobs, MBA candidates.</li>
   <li>Current employer is a plain <b>corporate</b> (group D) &mdash; deliberately out of scope.</li>
   </ul>
 </li>
 <li data-code="A6.4.3"><b>Open the talent, confirm, then switch the chip to Active.</b> Click the status chip under the avatar and pick <b>Active</b>. A short confirmation appears; there is no reason field on this direction.
-  <figure><img src="a6-05-status-chip.png" alt="Talent status chip"/><figcaption><b>A6.4.3</b> &mdash; <b>&#9312;</b> current status chip, click to open &middot; <b>&#9313;</b> the only alternative offered &mdash; the chip switches between Active and Passive and nothing else &middot; <b>&#9314;</b> <b>Employment Status</b> printed on the header line, used in <a href="#a6-rule" style="font-weight:700;cursor:pointer">step 4 &#8599;</a>.</figcaption></figure>
+  <figure><img src="a6-05-status-chip.png" alt="Talent status chip"/><figcaption><b>A6.4.3</b> &mdash; <b>&#9312;</b> current status chip, click to open &middot; <b>&#9313;</b> the only alternative offered &mdash; the chip switches between Active and Passive and nothing else &middot; <b>&#9314;</b> <b>Employment Status</b> printed on the header line, this is the <b>gate</b> read in <a href="#a6-rule" style="font-weight:700;cursor:pointer">step 1 &#8599;</a>.</figcaption></figure>
   <figure><img src="a6-08-set-active-modal.png" alt="Set Talent Status to Active dialog"/><figcaption><b>A6.4.3</b> &mdash; <b>&#9312;</b> the dialog names the talent &middot; <b>&#9313;</b> the target status &middot; <b>&#9314;</b> <b>Exit</b> cancels, <b>Yes</b> commits. Note there is <b>no reason field on this direction</b> &mdash; only the Passive direction asks for one.</figcaption></figure>
   <p class="fn">Hovering the chip on a Passive talent shows <i>Passive since &lt;date&gt;</i> plus the reason that was recorded &mdash; read it before you overturn the decision.</p>
 </li>
@@ -980,18 +986,21 @@
 </ol>
 
 <h3 id="a6-q2" class="anchor">A6.5 &middot; Queue 2 &mdash; Active that should be Passive</h3>
-<div class="goal adm">Clients sitting in the talent pool. Fewer in number, but each one is a person Fintalent might accidentally pitch to as supply.</div>
+<div class="goal adm">Clients sitting in the talent pool &mdash; each one is a person Fintalent might accidentally pitch to as supply. <b>60 records</b> on production, the larger of the two queues.</div>
 <ol class="steps adm">
 <li data-code="A6.5.1"><b>Filter:</b> Company Background = the six PE/VC boxes, <b>Statuses = Active</b>.</li>
-<li data-code="A6.5.2"><b>Scan titles for the buy-side vocabulary</b> from <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3.1 &#8599;</a>. Strong signals: <i>Managing Partner at &hellip; Capital</i>, <i>Vice President at &hellip; Partners</i>, <i>Private Equity Investment Manager</i>, <i>Operating Partner</i>, <i>Venture Partner</i>.</li>
-<li data-code="A6.5.3"><b>Open work experience and confirm the employer is a fund.</b> The description settles it &mdash; <i>"Founded an independent private equity sponsor pursuing leveraged buyout transactions"</i> is conclusive; <i>"Management/Strategy Consulting"</i> is the opposite.
+<li data-code="A6.5.2"><b>Sweep the gate conflicts first &mdash; they need no judgement.</b> With the filter above, read the <b>Employment Status</b> column and pull out every row saying <b>Full-time Employee</b> or <b>Part-time Employee</b>. Full-time and Active on the same record contradict each other, so every one of them is wrong without reading the title. Set them Passive, reason: <i>"Employment Status is Full-time &mdash; not available for projects."</i>
+  <p class="fn">On production this yields exactly two: <i>Mehdi Benjelloun</i> (Investment Banking Senior Analyst) and <i>Sahib Maker</i> (Vice President at Apis Partners). Sahib has one completed contract &mdash; that is context, not an exemption; see <a href="#a6-rulebook" style="font-weight:700;cursor:pointer">A6.0 rule 7 &#8599;</a>.</p>
+</li>
+<li data-code="A6.5.3"><b>Scan the remaining titles for buy-side vocabulary</b> from <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3.2 &#8599;</a>. Strong signals: <i>Managing Partner at &hellip; Capital</i>, <i>Vice President at &hellip; Partners</i>, <i>Private Equity Investment Manager</i>, <i>Operating Partner</i>, <i>Venture Partner</i>.</li>
+<li data-code="A6.5.4"><b>Open work experience and confirm the employer is a fund.</b> The description settles it &mdash; <i>"Founded an independent private equity sponsor pursuing leveraged buyout transactions"</i> is conclusive; <i>"Management/Strategy Consulting"</i> is the opposite.
   <p class="fn">Watch for a second concurrent role. Several people describe themselves as an advisor in the title while still holding a fund seat &mdash; the fund seat wins.</p>
 </li>
-<li data-code="A6.5.4"><b>Switch the chip to Passive &mdash; a reason is mandatory.</b>
-  <figure><img src="a6-06-set-passive-modal.png" alt="Set Talent Status to Passive modal"/><figcaption><b>A6.5.4</b> &mdash; <b>&#9312;</b> confirmation line naming the talent &middot; <b>&#9313;</b> four preset reasons, one must be selected &middot; <b>&#9314;</b> <b>Reasons</b> free-text box &mdash; fill this in, it is the only place the real explanation survives &middot; <b>&#9315;</b> <b>Exit</b> cancels, <b>Yes</b> commits.</figcaption></figure>
+<li data-code="A6.5.5"><b>Switch the chip to Passive &mdash; a reason is mandatory.</b>
+  <figure><img src="a6-06-set-passive-modal.png" alt="Set Talent Status to Passive modal"/><figcaption><b>A6.5.5</b> &mdash; <b>&#9312;</b> confirmation line naming the talent &middot; <b>&#9313;</b> four preset reasons, one must be selected &middot; <b>&#9314;</b> <b>Reasons</b> free-text box &mdash; fill this in, it is the only place the real explanation survives &middot; <b>&#9315;</b> <b>Exit</b> cancels, <b>Yes</b> commits.</figcaption></figure>
   <p>The presets are <i>Unable to verify freelance status</i>, <i>Evidence insufficient</i>, <i>Reference unresponsive</i>, <i>Other</i>. None of them says "is a client", so pick the closest and <b>write the real reason in the text box</b> &mdash; for example <i>"Managing Partner at Contour Point Capital, an independent PE sponsor &mdash; group B."</i></p>
 </li>
-<li data-code="A6.5.5"><b>Verify.</b> Reload the profile: the chip reads Passive, and hovering it shows <i>Passive since &lt;today&gt;</i> with the reason you typed. The talent also disappears from the Active queue.</li>
+<li data-code="A6.5.6"><b>Verify.</b> Reload the profile: the chip reads Passive, and hovering it shows <i>Passive since &lt;today&gt;</i> with the reason you typed. The talent also disappears from the Active queue.</li>
 </ol>
 
 <h3 id="a6-edge" class="edgehead anchor">A6.x &middot; Edge cases</h3>
@@ -1007,6 +1016,7 @@
   </tbody></table></div>
   <p class="fn">Verified on six approvals: <i>Skip Review + ongoing role at a flagged company</i> produced Passive twice; the same talent with the flag missing, with no ongoing role at all, or without Skip Review produced Active four times. The trigger is the flag on the linked company &mdash; an ongoing role at a company that was never matched to the Mergermarket list does <b>not</b> fire it.</p>
   <div class="call warn"><span class="t">This is where most wrongly-Passive talents come from</span>Freelancers get set Passive <b>at approval time</b> purely because they hold a current job, whatever that job is &mdash; a corporate role counts, and group D is supposed to be out of scope. Nobody clicked anything, and because the rule writes no reason, the profile gives no explanation afterwards. If you are auditing Passive talents, start here.</div>
+  <p class="fn"><b>Ruled 28 Jul 2026: this is intended behaviour, not a defect &mdash; but it is narrower than the business rule.</b> The system deciding a status at approval is by design. Two gaps remain, and both are for a human to close: it fires on a plain <b>corporate</b> flag, which is group D and out of scope; and it never reads <b>Employment Status</b>, so it cannot enforce the gate in <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3.1 &#8599;</a>. Neither gap is logged as a bug &mdash; they are the reason A6.4 and A6.5 exist.</p>
   <p><b>Two things worth knowing about the queue itself:</b></p>
   <ul style="margin:6px 0 0;padding-left:18px">
   <li>After each decision the drawer <b>advances to the next profile</b> and the counter drops, so the whole queue can be worked without returning to the list.</li>
