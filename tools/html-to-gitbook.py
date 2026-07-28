@@ -7,8 +7,16 @@ The HTML files are the source of truth. Re-run this after editing them:
     python tools/html-to-gitbook.py v4.html
     python tools/html-to-gitbook.py v4.html --only a1,a2     # pilot subset
 
-One <section id="page-XX"> becomes one .md file at the repo root, so image
-links stay relative to the images that already live there.
+The left sidebar in the HTML already carries the exact tree we want in
+GitBook, so the nav drives the split:
+
+    div.grp   -> '## Group' heading in SUMMARY.md   (bold, not clickable)
+    a.flow    -> flow page       (A1)
+    a.st      -> step page       (A1.1, A1.x)       nested under the flow
+    a.st2     -> sub-step page   (A1.x.1)           nested under the step
+
+Every page is written flat at the repo root so image links stay relative to
+the screenshots that already live there.
 """
 import argparse
 import os
@@ -20,12 +28,10 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 
-# Inline tags rendered as markdown emphasis.
 EMPHASIS = {'b': '**', 'strong': '**', 'i': '*', 'em': '*', 'code': '`'}
 
 
 def slugify(text: str) -> str:
-    """'A1 · Create an SDR / KAM account' -> 'a1-create-an-sdr-kam-account'."""
     text = text.lower().replace('&', ' and ')
     text = re.sub(r'[^a-z0-9]+', '-', text)
     return text.strip('-')
@@ -35,8 +41,11 @@ def clean(text: str) -> str:
     return re.sub(r'\s+', ' ', text or '').strip()
 
 
+# --------------------------------------------------------------------------
+# inline / block rendering
+# --------------------------------------------------------------------------
+
 def inline(node, anchors: dict) -> str:
-    """Render an inline subtree to markdown."""
     if isinstance(node, NavigableString):
         return str(node)
     if not isinstance(node, Tag):
@@ -53,7 +62,7 @@ def inline(node, anchors: dict) -> str:
     if node.name == 'a':
         href = node.get('href', '')
         if href.startswith('#'):
-            href = anchors.get(href[1:], href)  # cross-page anchors -> page.md#slug
+            href = anchors.get(href[1:], href)
         return f'[{inner.strip()}]({href})' if href else inner
     if node.name == 'br':
         return '\n'
@@ -70,9 +79,8 @@ def render_table(table: Tag, anchors: dict) -> str:
         return ''
     width = max(len(r) for r in rows)
     rows = [r + [''] * (width - len(r)) for r in rows]
-    head, body = rows[0], rows[1:]
-    out = ['| ' + ' | '.join(head) + ' |', '|' + '---|' * width]
-    out += ['| ' + ' | '.join(r) + ' |' for r in body]
+    out = ['| ' + ' | '.join(rows[0]) + ' |', '|' + '---|' * width]
+    out += ['| ' + ' | '.join(r) + ' |' for r in rows[1:]]
     return '\n'.join(out)
 
 
@@ -80,155 +88,273 @@ def render_figure(fig: Tag, anchors: dict, indent: str = '') -> str:
     img = fig.find('img')
     if not img:
         return ''
-    src = img.get('src', '')
-    alt = clean(img.get('alt', ''))
-    out = [f'{indent}![{alt}]({src})']
+    out = [f'{indent}![{clean(img.get("alt", ""))}]({img.get("src", "")})']
     cap = fig.find('figcaption')
     if cap:
-        # Captions are already italic; drop inner bold so we don't emit '***x***'.
-        text = clean(inline(cap, anchors)).replace('**', '')
+        # Captions are already italic: drop inner bold so we don't emit '***x***',
+        # then escape stray asterisks ('Roles*') that would close the italics early.
+        text = clean(inline(cap, anchors)).replace('**', '').replace('*', r'\*')
         if text:
             out.append(f'{indent}*{text}*')
     return '\n\n'.join(out)
 
 
-def render_list_item(li: Tag, anchors: dict, number: int) -> str:
-    """A step: '1. **A1.1** — text', with figures/tables indented under it."""
+def split_item(el: Tag, anchors: dict) -> tuple[str, list]:
+    """Split a <li> into its own text and the blocks (figures/tables) inside it."""
     blocks, text_parts = [], []
-    for child in li.children:
+    for child in el.children:
         if isinstance(child, Tag) and child.name in ('figure', 'table', 'ol', 'ul'):
             if child.name == 'figure':
-                blocks.append(render_figure(child, anchors, indent='   '))
+                blocks.append(('figure', child))
             elif child.name == 'table':
-                blocks.append('\n'.join('   ' + l for l in render_table(child, anchors).splitlines()))
-            else:  # nested list -> flatten as indented bullets
-                for sub in child.find_all('li', recursive=False):
-                    blocks.append('   - ' + clean(inline(sub, anchors)))
+                blocks.append(('table', child))
+            else:
+                blocks.append(('list', child))
         else:
             text_parts.append(inline(child, anchors))
-
-    text = clean(''.join(text_parts))
-    code = li.get('data-code')
-    line = f'{number}. **{code}** — {text}' if code else f'{number}. {text}'
-    return '\n\n'.join([line] + [b for b in blocks if b])
+    return clean(''.join(text_parts)), blocks
 
 
-def render_section(sec: Tag, anchors: dict) -> tuple[str, str]:
-    """Return (title, markdown body) for one <section id="page-XX">."""
-    h2 = sec.find('h2')
-    who = clean(h2.find(class_='who').get_text()) if h2.find(class_='who') else ''
-    code = clean(h2.find(class_='n').get_text()).rstrip('·').strip() if h2.find(class_='n') else ''
-    note = clean(h2.find(class_='fn').get_text()) if h2.find(class_='fn') else ''
-    for tag in h2.find_all(class_=['who', 'n', 'fn']):
-        tag.decompose()
-    title = clean(h2.get_text())
-    full_title = f'{code} · {title}' if code else title
+def render_blocks(blocks: list, anchors: dict, indent: str = '') -> list:
+    out = []
+    for kind, node in blocks:
+        if kind == 'figure':
+            out.append(render_figure(node, anchors, indent))
+        elif kind == 'table':
+            table = render_table(node, anchors)
+            out.append('\n'.join(indent + l for l in table.splitlines()) if indent else table)
+        else:
+            for sub in node.find_all('li', recursive=False):
+                out.append(f'{indent}- ' + clean(inline(sub, anchors)))
+    return [b for b in out if b]
 
-    goal_el = sec.find(class_='goal')
-    goal = clean(goal_el.get_text()).removeprefix('Goal:').strip() if goal_el else ''
 
-    lines = []
-    if goal:
-        lines += ['---', f'description: {goal}', '---', '']
-    lines.append(f'# {full_title}')
-    meta = ' · '.join(x for x in (who, note.strip('()')) if x)
-    if meta:
-        lines += ['', f'> {meta}']
-
-    for el in sec.find_all(recursive=False):
-        if el is h2 or el is goal_el:
+def render_steps(ol: Tag, anchors: dict, skip_ids: set) -> list:
+    """Numbered steps, skipping items promoted to their own page."""
+    lines, number = [], 0
+    for li in ol.find_all('li', recursive=False):
+        if li.get('id') in skip_ids:
             continue
+        number += 1
+        text, blocks = split_item(li, anchors)
+        code = li.get('data-code')
+        lines.append(f'{number}. **{code}** — {text}' if code else f'{number}. {text}')
+        lines += render_blocks(blocks, anchors, indent='   ')
+    return lines
+
+
+def render_flow_elements(elements: list, anchors: dict, skip_ids: set) -> list:
+    lines = []
+    for el in elements:
         classes = el.get('class') or []
         if el.name == 'nav' or any(c.startswith('pagernav') for c in classes):
-            continue  # prev/next pager belongs to the HTML layout, not the page
-        if el.name == 'h3':
-            lines += ['', f'## {clean(el.get_text())}']
-        elif el.name == 'ol':
-            lines.append('')
-            for i, li in enumerate(el.find_all('li', recursive=False), 1):
-                lines += [render_list_item(li, anchors, i), '']
+            continue  # prev/next pager belongs to the HTML layout
+        if el.name == 'ol':
+            lines += render_steps(el, anchors, skip_ids)
         elif el.name == 'table':
-            lines += ['', render_table(el, anchors)]
+            lines.append(render_table(el, anchors))
         elif el.name == 'figure':
-            lines += ['', render_figure(el, anchors)]
-        elif el.name in ('p', 'div'):
+            lines.append(render_figure(el, anchors))
+        elif el.name in ('p', 'div', 'h4'):
             text = clean(inline(el, anchors))
             if text:
-                lines += ['', text]
-
-    body = '\n'.join(lines)
-    return full_title, re.sub(r'\n{3,}', '\n\n', body).strip() + '\n'
+                lines.append(f'#### {text}' if el.name == 'h4' else text)
+    return lines
 
 
-def build_anchor_map(sections: list, filenames: dict) -> dict:
-    """anchor id -> 'page.md#heading-slug', so in-HTML jump links keep working.
+# --------------------------------------------------------------------------
+# nav -> page tree
+# --------------------------------------------------------------------------
 
-    Only h3 headings survive as markdown anchors. An id on a step (<li id="ea-1-1">)
-    resolves to the heading it sits under, which is the closest honest target.
-    """
+class Page:
+    def __init__(self, title: str, filename: str, anchor: str = '', page_id: str = ''):
+        self.title = title
+        self.filename = filename
+        self.anchor = anchor        # id of the h3 / li this page came from
+        self.page_id = page_id      # 'page-a1'
+        self.children: list[Page] = []
+
+
+def parse_nav(soup: BeautifulSoup) -> list:
+    """Return [(group_title, [flow Page, ...]), ...] mirroring the HTML sidebar."""
+    nav = soup.find('nav')
+    groups, flow, step = [], None, None
+
+    for el in nav.find_all(['div', 'a']):
+        classes = el.get('class') or []
+        if 'grp' in classes:
+            groups.append((clean(el.get_text()), []))
+            flow = step = None
+        elif 'flow' in classes:
+            title = clean(el.get_text())
+            code = clean(el.find(class_='n').get_text()) if el.find(class_='n') else ''
+            if code:
+                title = f'{code} · {clean(title[len(code):])}'
+            flow = Page(title, slugify(title) + '.md', page_id=el.get('data-page', ''))
+            if not groups:
+                groups.append(('Guide', []))
+            groups[-1][1].append(flow)
+            step = None
+        elif 'st2' in classes and step is not None:
+            title = clean(el.get_text())
+            step.children.append(Page(title, slugify(title) + '.md',
+                                      anchor=el.get('href', '#')[1:], page_id=step.page_id))
+        elif 'st' in classes and flow is not None:
+            title = clean(el.get_text())
+            step = Page(title, slugify(title) + '.md',
+                        anchor=el.get('href', '#')[1:], page_id=flow.page_id)
+            flow.children.append(step)
+
+    return groups
+
+
+def build_anchor_map(groups: list) -> dict:
+    """Every HTML anchor id -> the markdown file that now holds it."""
     anchors = {}
-    for sec in sections:
-        page = filenames[sec['id']]
-        current = page
-        for el in sec.find_all(['h3', 'li', 'div'], id=True):
-            if el.name == 'h3':
-                current = f'{page}#{slugify(clean(el.get_text()))}'
-                anchors[el['id']] = current
-            else:
-                anchors[el['id']] = current
+    for _, flows in groups:
+        for flow in flows:
+            for step in flow.children:
+                anchors[step.anchor] = step.filename
+                for sub in step.children:
+                    anchors[sub.anchor] = sub.filename
     return anchors
+
+
+# --------------------------------------------------------------------------
+# page writing
+# --------------------------------------------------------------------------
+
+def elements_until_next_h3(start: Tag) -> list:
+    out = []
+    for sib in start.next_siblings:
+        if isinstance(sib, Tag):
+            if sib.name == 'h3':
+                break
+            out.append(sib)
+    return out
+
+
+def write_page(path: str, title: str, meta: str, description: str, body: list) -> None:
+    lines = []
+    if description:
+        lines += ['---', f'description: {description}', '---', '']
+    lines.append(f'# {title}')
+    if meta:
+        lines += ['', f'> {meta}']
+    for block in body:
+        lines += ['', block]
+    text = re.sub(r'\n{3,}', '\n\n', '\n'.join(lines)).strip() + '\n'
+    with open(path, 'w', encoding='utf-8', newline='\n') as fh:
+        fh.write(text)
+
+
+def convert_flow(flow: Page, soup: BeautifulSoup, anchors: dict, out_dir: str) -> int:
+    section = soup.find(id=flow.page_id)
+    if section is None:
+        print(f'  !! section {flow.page_id} not found', file=sys.stderr)
+        return 0
+
+    h2 = section.find('h2')
+    who = clean(h2.find(class_='who').get_text()) if h2.find(class_='who') else ''
+    note = clean(h2.find(class_='fn').get_text()).strip('()') if h2.find(class_='fn') else ''
+    goal_el = section.find(class_='goal')
+    goal = clean(goal_el.get_text()).removeprefix('Goal:').strip() if goal_el else ''
+
+    # Flow page: whatever sits above the first h3, then links to its steps.
+    intro = []
+    for el in section.find_all(recursive=False):
+        if el.name == 'h3':
+            break
+        if el is h2 or el is goal_el:
+            continue
+        intro += render_flow_elements([el], anchors, skip_ids=set())
+
+    if flow.children:
+        intro.append('### In this flow')
+        intro.append('\n'.join(f'* [{c.title}]({c.filename})' for c in flow.children))
+
+    meta = ' · '.join(x for x in (who, note) if x)
+    write_page(os.path.join(out_dir, flow.filename), flow.title, meta, goal, intro)
+    written = 1
+
+    for step in flow.children:
+        head = section.find(id=step.anchor)
+        if head is None:
+            print(f'  !! anchor #{step.anchor} not found', file=sys.stderr)
+            continue
+        promoted = {sub.anchor for sub in step.children}
+        body = render_flow_elements(elements_until_next_h3(head), anchors, promoted)
+        if step.children:
+            is_edge = any(c.startswith('edge') for c in (head.get('class') or []))
+            body.append('### Edge cases' if is_edge else '### In this step')
+            body.append('\n'.join(f'* [{c.title}]({c.filename})' for c in step.children))
+        write_page(os.path.join(out_dir, step.filename), step.title, flow.title, '', body)
+        written += 1
+
+        for sub in step.children:
+            li = section.find(id=sub.anchor)
+            if li is None:
+                print(f'  !! anchor #{sub.anchor} not found', file=sys.stderr)
+                continue
+            text, blocks = split_item(li, anchors)
+            body = ([text] if text else []) + render_blocks(blocks, anchors)
+            write_page(os.path.join(out_dir, sub.filename), sub.title,
+                       f'{flow.title} → {step.title}', '', body)
+            written += 1
+
+    return written
+
+
+def write_summary(groups: list, out_dir: str) -> None:
+    lines = ['# Table of contents', '', '* [Fintalent OSW — Guides](README.md)']
+    for title, flows in groups:
+        if not flows:
+            continue
+        lines += ['', f'## {title}', '']
+        for flow in flows:
+            lines.append(f'* [{flow.title}]({flow.filename})')
+            for step in flow.children:
+                lines.append(f'  * [{step.title}]({step.filename})')
+                for sub in step.children:
+                    lines.append(f'    * [{sub.title}]({sub.filename})')
+    with open(os.path.join(out_dir, 'SUMMARY.md'), 'w', encoding='utf-8', newline='\n') as fh:
+        fh.write('\n'.join(lines) + '\n')
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument('source', help='HTML guide, e.g. v4.html')
-    ap.add_argument('--only', help='comma-separated page codes, e.g. a1,a2')
+    ap.add_argument('--only', help='comma-separated flow codes, e.g. a1,a2')
     ap.add_argument('--out', default=REPO, help='output directory (default: repo root)')
+    ap.add_argument('--no-summary', action='store_true', help='do not rewrite SUMMARY.md')
     args = ap.parse_args()
 
     path = args.source if os.path.isabs(args.source) else os.path.join(REPO, args.source)
     with open(path, encoding='utf-8') as fh:
         soup = BeautifulSoup(fh.read(), 'html.parser')
 
-    sections = [s for s in soup.find_all('section') if (s.get('id') or '').startswith('page-')]
-    if not sections:
-        print(f'no <section id="page-..."> found in {args.source}', file=sys.stderr)
-        return 1
+    groups = parse_nav(soup)
+    anchors = build_anchor_map(groups)
 
-    wanted = {c.strip().lower() for c in args.only.split(',')} if args.only else None
+    if args.only:
+        wanted = {c.strip().lower() for c in args.only.split(',')}
+        groups = [(t, [f for f in flows if f.page_id.removeprefix('page-').lower() in wanted])
+                  for t, flows in groups]
 
-    # First pass: filenames for every page, so cross-page anchors resolve.
-    filenames = {}
-    for sec in sections:
-        h2 = sec.find('h2')
-        code = clean(h2.find(class_='n').get_text()).rstrip('·').strip() if h2.find(class_='n') else ''
-        for tag in h2.find_all(class_=['who', 'n', 'fn']):
-            tag.extract()  # extract, not decompose — render_section needs a clean copy later
-        filenames[sec['id']] = slugify(f'{code} {clean(h2.get_text())}') + '.md'
-
-    # Re-parse: the first pass mutated the tree while collecting filenames.
-    with open(path, encoding='utf-8') as fh:
-        soup = BeautifulSoup(fh.read(), 'html.parser')
-    sections = [s for s in soup.find_all('section') if (s.get('id') or '').startswith('page-')]
-
-    anchors = build_anchor_map(sections, filenames)
-
-    written = []
-    for sec in sections:
-        page_code = sec['id'].removeprefix('page-').lower()
-        if wanted and page_code not in wanted:
+    total = 0
+    for title, flows in groups:
+        if not flows:
             continue
-        title, body = render_section(sec, anchors)
-        name = filenames[sec['id']]
-        with open(os.path.join(args.out, name), 'w', encoding='utf-8', newline='\n') as fh:
-            fh.write(body)
-        written.append((page_code, title, name))
-        print(f'  {name:<48} {title}')
+        print(f'\n## {title}')
+        for flow in flows:
+            n = convert_flow(flow, soup, anchors, args.out)
+            total += n
+            print(f'  {flow.filename:<46} {n} page(s)')
 
-    print(f'\n{len(written)} page(s) written to {args.out}')
-    print('\nSUMMARY.md entries:')
-    for _, title, name in written:
-        print(f'  * [{title}]({name})')
+    if not args.no_summary:
+        write_summary(groups, args.out)
+        print('\nSUMMARY.md rewritten')
+    print(f'{total} page(s) written to {args.out}')
     return 0
 
 
