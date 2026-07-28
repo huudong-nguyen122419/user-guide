@@ -428,7 +428,7 @@
     <a href="#m7-3-2" class="st2" data-page="page-marketing">7.3.2 · Find the people</a>
     <a href="#m7-3-3" class="st2" data-page="page-marketing">7.3.3 · Select → Add to ME</a>
     <a href="#m7-3-4" class="st2" data-page="page-marketing">7.3.4 · Pick ME + email</a>
-    <a href="#m7-3-5" class="st2" data-page="page-marketing">7.3.5 · Add</a>
+    <a href="#m7-3-6" class="st2" data-page="page-marketing">7.3.5 · Add</a>
     <a href="#me-preview" class="st" data-page="page-marketing">7.4 · Preview &amp; mark reviewed</a>
     <a href="#m7-4-1" class="st2" data-page="page-marketing">7.4.1 · Pick a contact</a>
     <a href="#m7-4-2" class="st2" data-page="page-marketing">7.4.2 · Contact header</a>
@@ -2499,7 +2499,7 @@
 </tbody></table></div>
 
 <h3 id="me-people" class="anchor">7.3 &middot; Add people to the ME</h3>
-<div class="call warn"><span class="t">Verified on UAT, 28 Jul 2026 &mdash; the screens work, the save does not</span>Every screen below is live for the SDR role and behaves exactly as described, right up to the final button. That button then fails: the API rejects the save with <b>403 &mdash; PermissionGuard</b> and <b>the interface shows no error at all</b>. The drawer simply closes and the People tab still reads <b>0</b>. Until this is fixed, <b>ask Admin/Ops to add the recipients</b>, and treat this section as the map of a flow you can walk but not finish. <b>Removing</b> people, by contrast, works &mdash; see <a href="#m7-3-6" style="font-weight:700;cursor:pointer">7.3.6 &#8599;</a>.</div>
+<div class="call warn"><span class="t">Verified on UAT, 28 Jul 2026 &mdash; the screens work, the save does not</span>Every screen below is live for the SDR role and behaves exactly as described, right up to the final button. That button then fails: the API rejects the save with <b>403 &mdash; PermissionGuard</b> and <b>the interface shows no error at all</b>. The drawer simply closes and the People tab still reads <b>0</b>. Until this is fixed, <b>ask Admin/Ops to add the recipients</b>, and treat this section as the map of a flow you can walk but not finish. <b>Removing</b> people, by contrast, works &mdash; see <a href="#m7-3-7" style="font-weight:700;cursor:pointer">7.3.6 &#8599;</a>.</div>
 <p>There are <b>two ways in</b>, and they meet at the same drawer. Which one you use depends on where you are standing:</p>
 <div class="tblwrap"><table>
 <thead><tr><th>Start from</th><th>Use it when</th></tr></thead>
@@ -2547,17 +2547,48 @@
   <figure><img src="me-32-add-drawer.png" alt="The Add to marketing email drawer"/><figcaption><b>7.3.4</b> &mdash; <b>&#9312;</b> the ME, with its owner, status and recipient count &middot; <b>&#9313;</b> the three address tabs and their counts &middot; <b>&#9314;</b> the legend: tick to add, radio to choose the address &middot; <b>&#9315;</b> <b>Remove N from selection</b>. The confirm button sits at the bottom of the drawer, below the fold.</figcaption></figure>
 </li>
 
-<li id="m7-3-5" data-code="7.3.5"><b>Click <i>Add to marketing email</i> &mdash; and check the People tab.</b> It should show the people you picked, each row carrying <b>the address that will be used</b> under the name.
+<li id="m7-3-5" data-code="7.3.5"><b>What the drawer is actually doing &mdash; worth two minutes, because it decides who gets your email.</b>
+  <p><b>It fetches nothing.</b> Opening the drawer fires no request; every tab, count and address on the right comes from the contact list you were already looking at. So the three tabs are not a server verdict, they are a <b>sort of the people you ticked</b>, done in the browser.</p>
+
+  <p><b>What puts a contact in each tab.</b> A contact's addresses come from two different places, and only one of them decides the tab:</p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Tab</th><th>The contact has&hellip;</th></tr></thead>
+  <tbody>
+  <tr><td><b>Valid</b></td><td>at least one address attached to a <b>job</b>, carrying the verdict <code>Valid</code>.</td></tr>
+  <tr><td><b>Missing + Invalid</b></td><td>no job address at all, or one whose verdict is <code>Invalid</code> &mdash; <b>or still <code>Validating</code></b>, which is the one that surprises people.</td></tr>
+  <tr><td><b>Platform Signup</b></td><td>a Fintalent account, i.e. they signed up as a talent. Usually <b>0</b> on a prospecting list.</td></tr>
+  </tbody></table></div>
+  <p>The three counts always add up to your selection, so a contact sits in exactly one tab.</p>
+
+  <div class="call warn"><span class="t">Two verdicts, one person, and they can disagree</span>Addresses are judged twice &mdash; once as part of a job, once in the contact's own validation record &mdash; and the drawer shows both without saying which is which. Seen on production data: a contact whose personal record marks <i>ragnar.geerdts@von-poll.com</i> <b>Invalid</b>, while the same address sits under his job with a <b>green tick</b>. And a contact whose record holds a perfectly valid address, but whose job address is still <code>Validating</code>, so he lands in <b>Missing + Invalid</b> anyway. <b>The tab follows the job address.</b></div>
+
+  <p><b>The three marks next to an address:</b> <span class="fn">&#10004; green = validated &middot; <b style="color:#e11d48">&#9888;</b> red = failed validation &middot; &#9432; grey = never checked</span>. Grey is not a problem, it just means nobody has tested it.</p>
+
+  <div class="call warn"><span class="t">The address it will actually use is often not on screen</span>This is the part to be careful with. The radios let you <b>override</b> the choice &mdash; they are <b>not</b> preselected on the Valid tab, and the address the system falls back to is the <b>job address</b>, which the drawer frequently does not print anywhere. In one production batch a contact showed only a personal gmail in the list, yet the request sent his work address at the fund; another showed three addresses and used a fourth. One row showed <b>no address at all</b> in either column, ticked, in the Valid tab.<br><b>If it matters which address is used, pick one with the radio.</b> Do not read the list and assume the top one wins.</div>
+
+  <figure><img src="me-34-drawer-anatomy.png" alt="The two address columns in the drawer"/><figcaption><b>7.3.5</b> &mdash; <b>&#9312;</b> <b>Work Experiences</b>: addresses tied to a job &mdash; <b>these decide the tab</b> &middot; <b>&#9313;</b> <b>Additional Emails</b>: the person's other addresses &middot; <b>&#9314;</b> green tick on a job address &middot; <b>&#9315;</b> red warning on a personal one that failed validation &middot; <b>&#9316;</b> a contact with <b>nothing shown in either column</b> &mdash; ticked, and in the <b>Valid</b> tab.</figcaption></figure>
+
+  <p><b>Three more behaviours worth knowing:</b></p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Looks like</th><th>Actually</th></tr></thead>
+  <tbody>
+  <tr><td>The ME list on the left has <b>checkboxes</b></td><td><b>Single choice.</b> Tick a second ME and the first quietly clears. One drawer, one ME.</td></tr>
+  <tr><td>Each tab has its own selection</td><td><b>One selection, shared.</b> The counter reads the same on every tab, and switching tabs keeps your ticks.</td></tr>
+  <tr><td>Leaving the Contacts page clears the ME filter</td><td><b>It sticks.</b> Come back later and <i>Marketing Email : 1 excluded</i> is still applied. Handy, but check the chip before you trust a count.</td></tr>
+  </tbody></table></div>
+</li>
+
+<li id="m7-3-6" data-code="7.3.6"><b>Click <i>Add to marketing email</i> &mdash; and check the People tab.</b> It should show the people you picked, each row carrying <b>the address that will be used</b> under the name.
   <div class="call warn"><span class="t">This is where it currently fails</span>The count stays at <b>0</b> and no message appears. The request that was rejected is <code>UpdateMarketingEmailRecipients</code>, and the reply is <b>403 PermissionGuard</b> &mdash; a role permission, not anything you did wrong. Retrying will not help. Hand the list to Admin/Ops instead.</div>
 </li>
 
-<li id="m7-3-6" data-code="7.3.6"><b>Removing people, which does work.</b> On the <b>People</b> tab, tick whoever should not receive the ME &rarr; <b>Remove contacts</b>.
+<li id="m7-3-7" data-code="7.3.7"><b>Removing people, which does work.</b> On the <b>People</b> tab, tick whoever should not receive the ME &rarr; <b>Remove contacts</b>.
   <div class="call warn"><span class="t">No confirmation, no undo</span>The row disappears the moment you click, the count on the tab drops, and nothing asks whether you meant it. Tick carefully &mdash; putting someone back means the add flow above, which is the one that is blocked.</div>
   <p class="fn">The same bar also offers <b>Add to list &middot; Add to campaign &middot; Add to marketing email &middot; More</b>, so a recipient can be pushed into another ME or campaign from here.</p>
-  <figure><img src="me-33-people-actions.png" alt="Remove contacts on the People tab"/><figcaption><b>7.3.6</b> &mdash; <b>&#9312;</b> the People tab with its live recipient count &middot; <b>&#9313;</b> <b>Remove contacts</b>, next to the add actions.</figcaption></figure>
+  <figure><img src="me-33-people-actions.png" alt="Remove contacts on the People tab"/><figcaption><b>7.3.7</b> &mdash; <b>&#9312;</b> the People tab with its live recipient count &middot; <b>&#9313;</b> <b>Remove contacts</b>, next to the add actions.</figcaption></figure>
 </li>
 
-<li id="m7-3-7" data-code="7.3.7"><b>Assigned a ME that already has people?</b> Then none of this applies &mdash; skip to <a href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &#8599;</a> and work the recipients you were given. See <a href="#e-8-13" style="font-weight:700;cursor:pointer">7.x.13 &#8599;</a>.</li>
+<li id="m7-3-8" data-code="7.3.8"><b>Assigned a ME that already has people?</b> Then none of this applies &mdash; skip to <a href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &#8599;</a> and work the recipients you were given. See <a href="#e-8-13" style="font-weight:700;cursor:pointer">7.x.13 &#8599;</a>.</li>
 </ol>
 
 <h3 id="me-preview" class="anchor">7.4 &middot; Preview, personalize &amp; mark as reviewed</h3>
