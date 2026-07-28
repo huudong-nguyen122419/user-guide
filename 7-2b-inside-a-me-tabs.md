@@ -2,13 +2,14 @@
 
 > 7 · Manage a Marketing Email → 7.2 · View your MEs
 
-Open a ME and it splits into tabs. What each one is for:
+**Inside a ME — the tabs.** Open one and it splits: Two tabs are conditional — do not read their absence as a fault**Preview** only exists once the ME has **at least one person**; on an empty ME it is simply not rendered. **Email Queues** only exists once the ME is **past Draft** — a Draft ME has no queue tab at all, because it has no queue. Verified across three MEs: the Running one had Email Queues, the two Drafts did not. You will also see **Inbox V1**, **People V1** and **Preview V1** beside their normal counterparts. These are the old versions, due to be hidden on production — **work in the plain tabs**, not the V1 ones.
 
-| Tab | What it's for |
+| Tab | What it is for |
 |---|---|
-| **Templates** | The **email step(s)** — the actual content that gets sent. Build / edit steps here ([7b ↗](7b-create-edit-a-template.md)). |
-| **People** | The **recipient list** — everyone the ME will go to, with the ME-only **Content Reviewed** / **Personalize** filters ([7.3 ↗](7-3-add-people-to-the-me.md)). |
-| **Preview** | The **review gate** — see & personalize each contact's real email, then mark reviewed ([7.4 ↗](7-4-preview-and-mark-reviewed.md)). Appears once a step exists. |
-| **Inbox** | **Replies** that come back on this ME — the same read/answer flow as [Flow 4 ↗](4-view-replies-and-answer-replies.md). |
-| **Email Queue** | After **Force Send** — the queued emails in three tabs (**In Queue / Delivered / Cancel**). See [7.6 ↗](7-6-email-queue-3-tabs.md). |
-| **Timeline** | The ME's **activity history** — what happened and when (created, edited, sent…). |
+| **Inbox** | replies that came back on this ME — same read/answer flow as [Flow 4 ↗](4-view-replies-and-answer-replies.md). |
+| **Template** (count) | the email step itself — the content that gets sent ([7b ↗](7b-create-edit-a-template.md)). |
+| **People** (count) | the recipient list, with the ME-only **Content Reviewed** / **Personalize** filters ([7.3 ↗](7-3-add-people-to-the-me.md)). |
+| **Preview** | the review gate — see and personalize each contact's real email, then mark reviewed ([7.4 ↗](7-4-preview-and-mark-reviewed.md)). |
+| **Email Queues** (count) | the queued emails ([7.6 ↗](7-6-email-queue-3-tabs.md)). |
+| **Data Health** β | the ME's own data checks ([A5.5 ↗](a5-5-data-health-config.md)). |
+| **Timeline** | what happened and when. |

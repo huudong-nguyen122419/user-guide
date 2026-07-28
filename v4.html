@@ -2945,52 +2945,63 @@
 <figure><img src="sdrx-me-01-template.png" alt="Template tab with Step 1"/><figcaption><b>7b &middot; result</b> &mdash; the <b>Template</b> tab now shows <b>Step 1</b> with your subject + body (merge fields still shown raw here).</figcaption></figure>
 
 <h3 id="me-view" class="anchor">7.2 &middot; View your Marketing Emails</h3>
-<p>Left menu &rarr; <b>Marketing Emails</b> shows every ME you can work on. They come from <b>two sources</b>:</p>
-<ul style="margin:6px 0 0;padding-left:18px">
-<li><b>You created it</b> yourself (7.1).</li>
-<li><b>Admin / Ops created it and assigned you</b> &mdash; already set up, often with people already added. This is the usual case.</li>
-</ul>
-<p>The tabs across the top filter the list by <b>status</b> (each with a count):</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Tab</th><th>What it means</th></tr></thead>
-<tbody>
-<tr><td><b>All</b></td><td>Every ME you can access, whatever its status.</td></tr>
-<tr><td><b>Draft</b></td><td>Created but <b>not sent yet</b> (not activated). Still fully editable &mdash; this is where a ME sits while you build &amp; review it.</td></tr>
-<tr><td><b>Running</b></td><td><b>Active and sending</b> (or scheduled to). Shows a <b>Started on&hellip;</b> chip. Admin flips it here from Draft.</td></tr>
-<tr><td><b>Paused</b></td><td>Was Running but <b>temporarily stopped</b> &mdash; no sends go out until it's resumed.</td></tr>
-<tr><td><b>Finished</b></td><td>The run is <b>complete</b> &mdash; every queued email has gone out.</td></tr>
-</tbody></table></div>
-<figure><img src="sdrx-me-00-list.png" alt="Marketing Emails list"/><figcaption><b>7.2</b> &mdash; the ME list: the <b>All / Draft / Paused / Running / Finished</b> status tabs + the per-ME numbers.</figcaption></figure>
+<ol class="steps">
+<li data-code="7.2.1"><b>Left menu &rarr; Marketing Emails</b> shows every ME you can work on. They arrive two ways:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Where it came from</th><th></th></tr></thead>
+  <tbody>
+  <tr><td><b>You created it</b></td><td>see <a href="#me-create" style="font-weight:700;cursor:pointer">7.1 &#8599;</a>.</td></tr>
+  <tr><td><b>Admin / Ops created it and assigned you</b></td><td>already set up, often with people already added. <b>This is the usual case.</b></td></tr>
+  </tbody></table></div>
+</li>
 
-<h4 id="me-metrics" class="anchor">7.2a &middot; Reading the numbers</h4>
-<p>Every row carries the ME's whole health check. Here's what each one actually counts:</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Column</th><th>What it means</th></tr></thead>
-<tbody>
-<tr><td><b>Name</b></td><td>The ME's name, the <b>From</b> address it sends as, and its <b>status chip</b> &mdash; <b>Draft (created on&hellip;)</b>, <b>Started on&hellip;</b> or <b>Paused</b>.</td></tr>
-<tr><td><b>People</b></td><td>How many contacts are <b>in the ME right now</b> (its recipient list). An old ME can show <b>0</b> if people were removed after it ran.</td></tr>
-<tr><td><b>Delivered</b></td><td>How many emails were <b>actually delivered</b>. It counts <b>emails, not people</b> &mdash; one contact can receive several over time, so you'll see rows like <b>1 person / 12 delivered</b>.</td></tr>
-<tr><td><b>Open Rate</b></td><td><b>% opened</b>, with the raw count in brackets. <b>100% (1)</b> = the one delivered mail was opened. Higher = your subject line is landing.</td></tr>
-<tr><td><b>Reply Rate</b></td><td><b>% that got a reply</b>, with the <b>total number of replies</b> in brackets &mdash; so <b>100% (11)</b> means every delivered mail was answered, and 11 replies came in altogether. This is the number that matters most.</td></tr>
-<tr><td><b>Bounce/Dropped Rate</b></td><td><b>% that failed</b> (bounced or dropped), count in brackets. Anything above <b>0</b> is a to-do: those people never got it &mdash; reach them via <a data-goto="page-send" style="font-weight:700;cursor:pointer">Flow 3 &middot; 1:1 email &#8599;</a>.</td></tr>
-<tr><td><b>Progress</b></td><td>How far the send has got: an <b>empty grey bar + 0%</b> while it's still Draft; a <b>full purple bar + green &#10003;</b> once everything has gone out.</td></tr>
-<tr><td><b>Last run</b></td><td>When the ME <b>last actually sent</b> (&mdash; if it never has).</td></tr>
-</tbody></table></div>
-<p class="fn"><b>Note:</b> the three rates stay <b>blank</b> on a <b>Draft</b> ME &mdash; nothing has been sent yet, so there's nothing to measure.</p>
-<figure><img src="sdrx-me-06-metrics.png" alt="Marketing Email list metrics with real values"/><figcaption><b>7.2a</b> &mdash; one real value <b>circled per column</b>: <b>People</b> (24) &middot; <b>Delivered</b> (12 &mdash; emails, not people) &middot; <b>Open</b> 100% (1) &middot; <b>Reply</b> 100% (11) = <b>% (count)</b> &middot; <b>Bounce/Dropped</b> 0% (0) &middot; <b>Progress</b> (grey 0% on a Draft). Drafts show <b>0%</b> and <b>blank</b> rates; sent MEs fill the bar + <b>&#10003;</b>.</figcaption></figure>
+<li data-code="7.2.2"><b>The tabs across the top filter by status</b>, each with a count:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Tab</th><th>What it means</th></tr></thead>
+  <tbody>
+  <tr><td><b>All</b></td><td>every ME you can access.</td></tr>
+  <tr><td><b>Draft</b></td><td>created but never activated. Fully editable &mdash; where a ME sits while you build and review it.</td></tr>
+  <tr><td><b>Running</b></td><td>active and sending. Shows a <b>Started on&hellip;</b> chip. Admin flips it here from Draft (<a data-goto="page-a3" style="font-weight:700;cursor:pointer">A3.1 &#8599;</a>).</td></tr>
+  <tr><td><b>Paused</b></td><td>was Running, temporarily stopped &mdash; nothing goes out until resumed.</td></tr>
+  <tr><td><b>Finished</b></td><td>the run is complete; every queued email has gone.</td></tr>
+  </tbody></table></div>
+  <p class="fn">The five tabs account for every record &mdash; on UAT, 57 + 11 + 19 + 4 = 91. There is no Archived or Scheduled tab; see <a href="#em-5-1" style="font-weight:700;cursor:pointer">A5.x.1 &#8599;</a>.</p>
+  <figure><img src="sdrx-me-00-list.png" alt="Marketing Emails list"/><figcaption><b>7.2.2</b> &mdash; the status tabs and their counts.</figcaption></figure>
+</li>
 
-<h4 id="me-tabs" class="anchor">7.2b &middot; Inside a ME &mdash; the tabs</h4>
-<p>Open a ME and it splits into tabs. What each one is for:</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Tab</th><th>What it's for</th></tr></thead>
-<tbody>
-<tr><td><b>Templates</b></td><td>The <b>email step(s)</b> &mdash; the actual content that gets sent. Build / edit steps here (<a data-goto="page-marketing" href="#tpl-step" style="font-weight:700;cursor:pointer">7b &#8599;</a>).</td></tr>
-<tr><td><b>People</b></td><td>The <b>recipient list</b> &mdash; everyone the ME will go to, with the ME-only <b>Content Reviewed</b> / <b>Personalize</b> filters (<a data-goto="page-marketing" href="#me-people" style="font-weight:700;cursor:pointer">7.3 &#8599;</a>).</td></tr>
-<tr><td><b>Preview</b></td><td>The <b>review gate</b> &mdash; see &amp; personalize each contact's real email, then mark reviewed (<a data-goto="page-marketing" href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &#8599;</a>). Appears once a step exists.</td></tr>
-<tr><td><b>Inbox</b></td><td><b>Replies</b> that come back on this ME &mdash; the same read/answer flow as <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &#8599;</a>.</td></tr>
-<tr><td><b>Email Queue</b></td><td>After <b>Force Send</b> &mdash; the queued emails in three tabs (<b>In Queue / Delivered / Cancel</b>). See <a data-goto="page-marketing" href="#me-queue" style="font-weight:700;cursor:pointer">7.6 &#8599;</a>.</td></tr>
-<tr><td><b>Timeline</b></td><td>The ME's <b>activity history</b> &mdash; what happened and when (created, edited, sent&hellip;).</td></tr>
-</tbody></table></div>
+<li id="me-metrics" data-code="7.2.3"><b>Reading the numbers on a row.</b> Every row carries the ME's whole health check:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Column</th><th>What it actually counts</th></tr></thead>
+  <tbody>
+  <tr><td><b>Name</b></td><td>the name, the <b>From</b> address it sends as, and the status chip.</td></tr>
+  <tr><td><b>People</b></td><td>who is in it <b>right now</b>. An old ME can read 0 if people were removed after it ran.</td></tr>
+  <tr><td><b>Delivered</b></td><td><b>emails</b>, not people &mdash; one contact can receive several over time, so <i>1 person / 12 delivered</i> is normal.</td></tr>
+  <tr><td><b>Open Rate</b></td><td>% opened, raw count in brackets. <i>100% (1)</i> = the one mail delivered was opened.</td></tr>
+  <tr><td><b>Reply Rate</b></td><td>% that got a reply, total replies in brackets. <b>The number that matters most.</b></td></tr>
+  <tr><td><b>Bounce/Dropped Rate</b></td><td>% that failed. <b>Anything above 0 is a to-do</b> &mdash; those people never got it; reach them via <a data-goto="page-send" style="font-weight:700;cursor:pointer">Flow 3 &#8599;</a>.</td></tr>
+  <tr><td><b>Progress</b></td><td>empty grey bar + 0% while Draft; full purple bar + green &#10003; once everything has gone.</td></tr>
+  <tr><td><b>Last run</b></td><td>when it last actually sent (&mdash; if never).</td></tr>
+  </tbody></table></div>
+  <p><b>The three rates stay blank on a Draft.</b> Nothing has been sent, so there is nothing to measure &mdash; blank is not zero.</p>
+  <figure><img src="sdrx-me-06-metrics.png" alt="Marketing email metrics"/><figcaption><b>7.2.3</b> &mdash; the per-row metrics.</figcaption></figure>
+</li>
+
+<li id="me-tabs" data-code="7.2.4"><b>Inside a ME &mdash; the tabs.</b> Open one and it splits:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Tab</th><th>What it is for</th></tr></thead>
+  <tbody>
+  <tr><td><b>Inbox</b></td><td>replies that came back on this ME &mdash; same read/answer flow as <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &#8599;</a>.</td></tr>
+  <tr><td><b>Template</b> <span class="fn">(count)</span></td><td>the email step itself &mdash; the content that gets sent (<a href="#tpl-step" style="font-weight:700;cursor:pointer">7b &#8599;</a>).</td></tr>
+  <tr><td><b>People</b> <span class="fn">(count)</span></td><td>the recipient list, with the ME-only <b>Content Reviewed</b> / <b>Personalize</b> filters (<a href="#me-people" style="font-weight:700;cursor:pointer">7.3 &#8599;</a>).</td></tr>
+  <tr><td><b>Preview</b></td><td>the review gate &mdash; see and personalize each contact's real email, then mark reviewed (<a href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &#8599;</a>).</td></tr>
+  <tr><td><b>Email Queues</b> <span class="fn">(count)</span></td><td>the queued emails (<a href="#me-queue" style="font-weight:700;cursor:pointer">7.6 &#8599;</a>).</td></tr>
+  <tr><td><b>Data Health</b> <span class="fn">&beta;</span></td><td>the ME's own data checks (<a href="#a5-health" style="font-weight:700;cursor:pointer">A5.5 &#8599;</a>).</td></tr>
+  <tr><td><b>Timeline</b></td><td>what happened and when.</td></tr>
+  </tbody></table></div>
+  <div class="call note"><span class="t">Two tabs are conditional &mdash; do not read their absence as a fault</span><b>Preview</b> only exists once the ME has <b>at least one person</b>; on an empty ME it is simply not rendered. <b>Email Queues</b> only exists once the ME is <b>past Draft</b> &mdash; a Draft ME has no queue tab at all, because it has no queue. Verified across three MEs: the Running one had Email Queues, the two Drafts did not.</div>
+  <p class="fn">You will also see <b>Inbox V1</b>, <b>People V1</b> and <b>Preview V1</b> beside their normal counterparts. These are the old versions, due to be hidden on production &mdash; <b>work in the plain tabs</b>, not the V1 ones.</p>
+</li>
+</ol>
 
 <h3 id="me-people" class="anchor">7.3 &middot; Add people to the ME</h3>
 <div class="call warn"><span class="t">Verified on UAT, 28 Jul 2026 &mdash; the screens work, the save does not</span>Every screen below is live for the SDR role and behaves exactly as described, right up to the final button. That button then fails: the API rejects the save with <b>403 &mdash; PermissionGuard</b> and <b>the interface shows no error at all</b>. The drawer simply closes and the People tab still reads <b>0</b>. Until this is fixed, <b>ask Admin/Ops to add the recipients</b>, and treat this section as the map of a flow you can walk but not finish. <b>Removing</b> people, by contrast, works &mdash; see <a href="#m7-3-7" style="font-weight:700;cursor:pointer">7.3.6 &#8599;</a>.</div>
@@ -3229,10 +3240,12 @@
 </ol>
 
 <h3 id="me-followup" class="anchor">7.8 &middot; Then: replies, bounces &amp; drops</h3>
-<ul style="margin:6px 0 0;padding-left:18px">
-<li><b>Watch for replies</b> &mdash; they land in your <b>Inbox</b>; read and answer them via <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &middot; View &amp; answer replies &#8599;</a>.</li>
-<li><b>Bounce / Dropped?</b> that send failed &mdash; find who and fix it step by step in <a data-goto="page-marketing" href="#me-bounce" style="font-weight:700;cursor:pointer">7.7a &#8599;</a>, then reach the person another way: a <b>1:1 email</b> via <a data-goto="page-send" style="font-weight:700;cursor:pointer">Flow 3 &#8599;</a> or <a data-goto="page-send" href="#e-4-4" style="font-weight:700;cursor:pointer">WhatsApp / LinkedIn (3.x.4) &#8599;</a>.</li>
-</ul>
+<ol class="steps">
+<li data-code="7.8.1"><b>Watch the Inbox.</b> Replies to this ME land in its own <b>Inbox</b> tab as well as your main one. Read and answer them the usual way &mdash; <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &#8599;</a>.</li>
+<li data-code="7.8.2"><b>Treat any Bounce / Dropped as a to-do, not a statistic.</b> That send failed, so the person never saw it. Find out who in <a href="#me-conv" style="font-weight:700;cursor:pointer">7.7a &#8599;</a>, then reach them another way: a 1:1 email (<a data-goto="page-send" style="font-weight:700;cursor:pointer">Flow 3 &#8599;</a>) or WhatsApp / LinkedIn (<a href="#e-4-4" style="font-weight:700;cursor:pointer">3.x.4 &#8599;</a>).</li>
+<li data-code="7.8.3"><b>A rate of 0% is not the same as a blank one.</b> Blank means nothing has been sent yet; <b>0%</b> means mail went out and nobody opened or replied &mdash; that is a content problem, and it is worth saying so before the next send.</li>
+</ol>
+
 <h3 id="me-edge" class="edgehead anchor">7.x &middot; Edge cases</h3>
 <p class="fn">The <b>People / Preview</b> cases first (7.x.1&ndash;5), then the <b>template-editor</b> ones (7.x.6&ndash;12).</p>
 <ol class="steps edge">
