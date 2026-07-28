@@ -196,23 +196,23 @@
     <a href="#em-5-4" class="st2" data-page="page-a5">A5.x.4 · Switch sender safely</a>
     <a href="#em-5-5" class="st2" data-page="page-a5">A5.x.5 · Timeline = A4.6</a>
     <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Talent Active / Passive</a>
-    <a href="#a6-rulebook" class="st" data-page="page-a6">A6.0 &middot; The rulebook</a>
-    <a href="#a6-model" class="st" data-page="page-a6">A6.1 &middot; Three fields</a>
-    <a href="#a6-list" class="st" data-page="page-a6">A6.2 &middot; Build the working list</a>
-    <a href="#a6-rule" class="st" data-page="page-a6">A6.3 &middot; The decision rule</a>
-    <a href="#a6-q1" class="st" data-page="page-a6">A6.4 &middot; Queue 1 — Passive → Active</a>
-    <a href="#a6-q2" class="st" data-page="page-a6">A6.5 &middot; Queue 2 — Active → Passive</a>
+    <a href="#a6-rulebook" class="st" data-page="page-a6">A6.0 &middot; The rules in full</a>
+    <a href="#a6-model" class="st" data-page="page-a6">A6.1 &middot; Three fields people mix up</a>
+    <a href="#a6-list" class="st" data-page="page-a6">A6.2 &middot; Build your working list</a>
+    <a href="#a6-rule" class="st" data-page="page-a6">A6.3 &middot; How to decide</a>
+    <a href="#a6-q1" class="st" data-page="page-a6">A6.4 &middot; Passive who should be Active</a>
+    <a href="#a6-q2" class="st" data-page="page-a6">A6.5 &middot; Active who should be Passive</a>
     <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x &middot; Edge cases</a>
-    <a href="#ec-6-1" class="st2" data-page="page-a6">A6.x.1 · In Review queue</a>
-    <a href="#ec-6-2" class="st2" data-page="page-a6">A6.x.2 · ReviewPassive — resubmit</a>
-    <a href="#ec-6-3" class="st2" data-page="page-a6">A6.x.3 · No bulk status update</a>
-    <a href="#ec-6-4" class="st2" data-page="page-a6">A6.x.4 · Title vs work experience</a>
-    <a href="#ec-6-5" class="st2" data-page="page-a6">A6.x.5 · Employers not linked</a>
-    <a href="#ec-6-6" class="st2" data-page="page-a6">A6.x.6 · Group C unreachable</a>
-    <a href="#ec-6-7" class="st2" data-page="page-a6">A6.x.7 · Where the reason lives</a>
-    <a href="#ec-6-8" class="st2" data-page="page-a6">A6.x.8 · Wrong company flags</a>
-    <a href="#ec-6-9" class="st2" data-page="page-a6">A6.x.9 · No operational impact</a>
-    <a href="#ec-6-10" class="st2" data-page="page-a6">A6.x.10 · Switch back to In Review</a>
+    <a href="#ec-6-1" class="st2" data-page="page-a6">A6.x.1 · New sign-ups to approve</a>
+    <a href="#ec-6-2" class="st2" data-page="page-a6">A6.x.2 · A Passive talent resubmits</a>
+    <a href="#ec-6-3" class="st2" data-page="page-a6">A6.x.3 · Status can’t be changed in bulk</a>
+    <a href="#ec-6-4" class="st2" data-page="page-a6">A6.x.4 · Title says one thing, jobs another</a>
+    <a href="#ec-6-5" class="st2" data-page="page-a6">A6.x.5 · Employer missing from the company list</a>
+    <a href="#ec-6-6" class="st2" data-page="page-a6">A6.x.6 · No filter finds portfolio-company bosses</a>
+    <a href="#ec-6-7" class="st2" data-page="page-a6">A6.x.7 · Where the Passive reason is saved</a>
+    <a href="#ec-6-8" class="st2" data-page="page-a6">A6.x.8 · A company can be tagged wrongly</a>
+    <a href="#ec-6-9" class="st2" data-page="page-a6">A6.x.9 · What Passive does not affect</a>
+    <a href="#ec-6-10" class="st2" data-page="page-a6">A6.x.10 · Send a talent back to In Review</a>
     <a class="flow adm" data-page="page-b1"><span class="n">B1</span> Invite talents to a project</a>
     <a class="flow tal" data-page="page-b2"><span class="n">B2</span> Talent · log &amp; submit timesheet</a>
     <a href="#b2-open" class="st" data-page="page-b2">B2.1 · Open Timesheet</a>
@@ -736,7 +736,7 @@
 <div class="call warn"><span class="t">Production is read-only for this flow</span>Run the filters and read the data on production, but <b>never change a status there</b> while the rule is still being tuned. Do every status change on <b>UAT</b> first and confirm the result before touching live records.</div>
 
 
-<h3 id="a6-rulebook" class="anchor">A6.0 &middot; The rulebook</h3>
+<h3 id="a6-rulebook" class="anchor">A6.0 &middot; The rules in full</h3>
 <div class="goal adm"><b>Read this once before you touch the queues.</b> Everything below is the rule as it was settled by manual review of the <b>276 PE/VC-labelled talents on production</b> on 27 Jul 2026. The steps in A6.3 are this rulebook turned into a click-by-click procedure; when the two ever disagree, this section wins.</div>
 
 <h4 style="margin:18px 0 8px">The question the rule answers</h4>
@@ -827,20 +827,20 @@
 <thead><tr><th>Outcome</th><th>Count</th><th>Meaning</th></tr></thead>
 <tbody>
 <tr><td>Status already correct</td><td><b>178</b></td><td>&mdash;</td></tr>
-<tr><td>Active, should be Passive</td><td><b>60</b></td><td>clients able to receive project invitations &mdash; <a href="#a6-q2" style="font-weight:700;cursor:pointer">Queue 2 &#8599;</a></td></tr>
-<tr><td>Passive, should be Active</td><td><b>33</b></td><td>supply locked out of every invitation &mdash; <a href="#a6-q1" style="font-weight:700;cursor:pointer">Queue 1 &#8599;</a></td></tr>
+<tr><td>Active, should be Passive</td><td><b>60</b></td><td>clients who can still receive project invitations &mdash; fix in <a href="#a6-q2" style="font-weight:700;cursor:pointer">A6.5 &#8599;</a></td></tr>
+<tr><td>Passive, should be Active</td><td><b>33</b></td><td>talent shut out of every invitation &mdash; fix in <a href="#a6-q1" style="font-weight:700;cursor:pointer">A6.4 &#8599;</a></td></tr>
 <tr><td>Exempt under rule 7</td><td><b>5</b></td><td>a named admin set the status by hand</td></tr>
 </tbody></table></div>
 <p class="fn">The rule was validated against the <b>23 records classified by hand</b> on 27 Jul plus the gate ruling of 28 Jul, and reproduces all of them. That is the evidence it rests on &mdash; it is not proof it is right on the other 253, which is why every change still goes through a human read in A6.4 / A6.5.</p>
 
-<h3 id="a6-model" class="anchor">A6.1 &middot; Three fields you must not confuse</h3>
+<h3 id="a6-model" class="anchor">A6.1 &middot; Three fields people mix up</h3>
 <ol class="steps adm">
 <li data-code="A6.1.1"><b>Status</b> &mdash; the talent lifecycle field, 9 possible values: <code>Guest</code>, <code>Incomplete</code>, <code>PaymentRequired</code>, <code>InReview</code>, <code>Rejected</code>, <code>Active</code>, <code>Passive</code>, <code>ReviewPassive</code>, <code>Temp</code>. The status chip on a talent profile only lets you switch between <b>Active</b> and <b>Passive</b>; every other value is set by the system or by the review actions in <a href="#a6-edge" style="font-weight:700;cursor:pointer">A6.x &#8599;</a>. The chip is <b>read-only</b> unless the current status is already Active or Passive.</li>
 <li data-code="A6.1.2"><b>Employment Status</b> &mdash; a different field, shown as a line of text on the profile: <i>Full-time Employee</i>, <i>Part-time Employee</i>, <i>Independent Consultant / Freelancer</i>, <i>Unemployed</i>, <i>Other</i>. This is what the legacy automatic rule reads. It is <b>not</b> the same as Status, and it is not evidence of who someone works for.</li>
 <li data-code="A6.1.3"><b>Company Background</b> &mdash; the filter chip formerly labelled <i>Classification</i>. It describes the <b>type of company a talent has worked at across their whole career</b>, inferred by AI from each employer, with a year count attached. It does <u>not</u> say where they work today. Someone who spent one year at a PE fund a decade ago still carries the <i>Private Equity / Venture Capital</i> label. Treat it as a way to <b>narrow the haystack</b>, never as the answer.</li>
 </ol>
 
-<h3 id="a6-list" class="anchor">A6.2 &middot; Build the working list</h3>
+<h3 id="a6-list" class="anchor">A6.2 &middot; Build your working list</h3>
 <ol class="steps adm">
 <li data-code="A6.2.1"><b>Open <i>User Management &rarr; Talents</i>.</b> Note the four controls you will use:
   <figure><img src="a6-01-filter-bar.png" alt="Talents list controls"/><figcaption><b>A6.2.1</b> &mdash; <b>&#9312;</b> <b>Company Background</b> chip &mdash; the first cluster &middot; <b>&#9313;</b> keyword search box with a <b>Simple / Advanced</b> toggle &middot; <b>&#9314;</b> <b>Add filter</b> &mdash; pins filters that are not on the bar by default &middot; <b>&#9315;</b> <b>N In Review</b> &mdash; the review queue, see <a href="#ec-6-1" style="font-weight:700;cursor:pointer">A6.x.1 &#8599;</a>.</figcaption></figure>
@@ -863,14 +863,14 @@
   <p class="fn"><b>Also tick <i>PE-Backed / Portfolio Company</i></b>, in the <i>Corporate / Industry</i> branch. It is the box that ought to deliver group C, so it belongs in the routine &mdash; but it currently returns <b>nobody</b>, so the total stays at 276. Reach group C through the Work Experience filter instead: <a href="#ec-6-6" style="font-weight:700;cursor:pointer">A6.x.6 &#8599;</a>.</p>
 </li>
 
-<li data-code="A6.2.3"><b>Split into two work queues</b> by adding the <b>Statuses</b> chip:
+<li data-code="A6.2.3"><b>Split it into two working lists</b> by adding the <b>Statuses</b> chip. Each list is fixed in one direction, which is what keeps the work simple:
   <div class="tblwrap"><table>
-  <thead><tr><th>Queue</th><th>Statuses filter</th><th>What you are looking for</th></tr></thead>
+  <thead><tr><th>Set Statuses to</th><th>You are looking for</th><th>Worked in</th></tr></thead>
   <tbody>
-  <tr><td><b>Queue 1</b> &mdash; <a href="#a6-q1" style="font-weight:700;cursor:pointer">A6.3 &#8599;</a></td><td><code>Passive</code></td><td>people wrongly locked out of project invitations</td></tr>
-  <tr><td><b>Queue 2</b> &mdash; <a href="#a6-q2" style="font-weight:700;cursor:pointer">A6.4 &#8599;</a></td><td><code>Active</code></td><td>clients still sitting in the talent pool</td></tr>
+  <tr><td><code>Passive</code></td><td>people wrongly shut out of project invitations</td><td><a href="#a6-q1" style="font-weight:700;cursor:pointer">A6.4 &#8599;</a></td></tr>
+  <tr><td><code>Active</code></td><td>clients still sitting in the talent pool</td><td><a href="#a6-q2" style="font-weight:700;cursor:pointer">A6.5 &#8599;</a></td></tr>
   </tbody></table></div>
-  <p class="fn">Work one queue at a time. Mixing them means you cannot tell which direction a change is going.</p>
+  <p class="fn">Do one list at a time. Mix them and you lose track of which way a change was going.</p>
 </li>
 
 <li data-code="A6.2.4"><b>Narrow further with the keyword search box.</b> Switch it to <b>Advanced</b> and the syntax hints appear right under it:
@@ -901,7 +901,7 @@
 </li>
 </ol>
 
-<h3 id="a6-rule" class="anchor">A6.3 &middot; The decision rule</h3>
+<h3 id="a6-rule" class="anchor">A6.3 &middot; How to decide: Active or Passive</h3>
 <div class="call note"><span class="t">Check Employment Status first. Then the title. Open work experience only when the title is not conclusive.</span></div>
 <ol class="steps adm">
 <li data-code="A6.3.1"><b>Step 1 &mdash; the gate: what is their Employment Status?</b> This runs before you read the title, and it is the end of the line for two of the five values.
@@ -964,8 +964,8 @@
 </li>
 </ol>
 
-<h3 id="a6-q1" class="anchor">A6.4 &middot; Queue 1 &mdash; Passive that should be Active</h3>
-<div class="goal adm">These are freelancers and consultants locked out of every project invitation for no good reason. <b>33 records</b> on production.</div>
+<h3 id="a6-q1" class="anchor">A6.4 &middot; People who are Passive but should be Active</h3>
+<div class="goal adm">Freelancers and consultants shut out of every project invitation for no good reason. <b>33 people</b> on production.</div>
 <ol class="steps adm">
 <li data-code="A6.4.1"><b>Filter:</b> Company Background = the six PE/VC boxes, <b>Statuses = Passive</b>. Add <code>-consultant -advisory -advisor</code> in the search box only if you want to see the harder cases first &mdash; leaving it off shows the obvious wins.</li>
 <li data-code="A6.4.2"><b>Read each row against <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3 &#8599;</a>.</b> The frequent patterns that mean "should be Active":
@@ -986,8 +986,8 @@
 <li data-code="A6.4.4"><b>Work through the list, not the page.</b> Changing a status re-runs the filter, so rows shift under you. This is why <a href="#a6-list" style="font-weight:700;cursor:pointer">A6.2.6 &#8599;</a> tells you to freeze the list first.</li>
 </ol>
 
-<h3 id="a6-q2" class="anchor">A6.5 &middot; Queue 2 &mdash; Active that should be Passive</h3>
-<div class="goal adm">Clients sitting in the talent pool &mdash; each one is a person Fintalent might accidentally pitch to as supply. <b>60 records</b> on production, the larger of the two queues.</div>
+<h3 id="a6-q2" class="anchor">A6.5 &middot; People who are Active but should be Passive</h3>
+<div class="goal adm">Clients sitting in the talent pool &mdash; each one is a person Fintalent might accidentally pitch to as supply. <b>60 people</b> on production &mdash; the bigger of the two lists.</div>
 <ol class="steps adm">
 <li data-code="A6.5.1"><b>Filter:</b> Company Background = the six PE/VC boxes, <b>Statuses = Active</b>.</li>
 <li data-code="A6.5.2"><b>Sweep the gate conflicts first &mdash; they need no judgement.</b> With the filter above, read the <b>Employment Status</b> column and pull out every row saying <b>Full-time Employee</b> or <b>Part-time Employee</b>. Full-time and Active on the same record contradict each other, so every one of them is wrong without reading the title. Set them Passive, reason: <i>"Employment Status is Full-time &mdash; not available for projects."</i>
@@ -1054,22 +1054,22 @@
   <figure><img src="a6-10-review-passive.png" alt="A talent in Review Passive"/><figcaption><b>A6.x.2</b> &mdash; <b>&#9312;</b> the chip reads <b>Review Passive</b> and is not editable &middot; <b>&#9313;</b> the three decision buttons &middot; <b>&#9314;</b> the <b>Talent Resubmit since</b> panel with the supporting fields &middot; <b>&#9315;</b> Employment Status, still worth reading.</figcaption></figure>
   <p>Always read the original Passive reason first &mdash; it is shown on the same screen. Approving without checking whether the resubmission actually addresses it defeats the point of the queue.</p>
 </li>
-<li id="ec-6-3" data-code="A6.x.3"><b>There is no bulk status update &mdash; but two bulk actions still change the outcome.</b> <b>Bulk Actions</b> offers Export PDF Talents, Add to list, Remove from list, Export Talents (CSV), <b>Set Skip Review</b>, <b>Set Require Review</b> &mdash; and nothing else. Every status change is one profile at a time; for a long list, <b>Add to list</b> first and split it between people.
+<li id="ec-6-3" data-code="A6.x.3"><b>You cannot change status for several people at once &mdash; but two bulk actions still affect the result.</b> <b>Bulk Actions</b> offers Export PDF Talents, Add to list, Remove from list, Export Talents (CSV), <b>Set Skip Review</b>, <b>Set Require Review</b> &mdash; and nothing else. Every status change is one profile at a time; for a long list, <b>Add to list</b> first and split it between people.
   <p><b>Set Skip Review is not cosmetic.</b> It flips the talent's internal status to <i>Skip Review</i>, which is one half of the automatic rule in <a href="#ec-6-1" style="font-weight:700;cursor:pointer">A6.x.1 &#8599;</a>. Applying it to someone still In Review changes what <b>Approve</b> will do to them. <b>Set Require Review</b> is the opposite action.</p>
 </li>
-<li id="ec-6-4" data-code="A6.x.4"><b>The title and the work experience disagree.</b> Common and important. Seen in production: a title reading <i>"Freelance, former Private Equity Professional"</i> on a profile whose work experience still shows an <b>ongoing</b> role at a PE fund. The title claims they left; the data says they did not. Open the row and check the end date before deciding.</li>
+<li id="ec-6-4" data-code="A6.x.4"><b>The headline says one thing, the job history says another.</b> Common and important. Seen in production: a title reading <i>"Freelance, former Private Equity Professional"</i> on a profile whose work experience still shows an <b>ongoing</b> role at a PE fund. The title claims they left; the data says they did not. Open the row and check the end date before deciding.</li>
 <li id="ec-6-5" data-code="A6.x.5"><b>Most current employers are not linked, so company flags are missing.</b> Roughly <b>63%</b> of talents have a current role whose employer was never matched to the Mergermarket company list &mdash; no Sponsor / Portfolio / Corporate flag to read. For those people the title and the free-text company description are the only evidence. This is also why the Work Experience filter cannot replace the title check: every one of the strongest buy-side hits found on production sat at an <b>unflagged</b> company.</li>
-<li id="ec-6-6" data-code="A6.x.6"><b>Group C cannot be reached through Company Background.</b> The logically correct box is <i>Corporate / Industry &rarr; PE-Backed / Portfolio Company</i>, but that label is <b>assigned to nobody</b> &mdash; zero people on production and on UAT. The only route to group C is the Work Experience filter with <i>company type = Portfolio</i> + <i>Currently</i>, which returns 156 people.</li>
-<li id="ec-6-7" data-code="A6.x.7"><b>Where the Passive reason actually lives, and what the audit trail shows.</b> The reason you type is written to the <b>activity log</b>, not to a field on the talent record &mdash; the record's own <code>passiveReason</code> field stays empty. It surfaces in the tooltip on the status chip and in the <i>Passive since</i> panel.
+<li id="ec-6-6" data-code="A6.x.6"><b>No filter finds bosses of companies a fund owns.</b> These are the people in <b>group C</b> &mdash; the CEO or CFO of a business a PE fund has bought. The box that ought to find them, <i>Corporate / Industry &rarr; PE-Backed / Portfolio Company</i>, is <b>attached to nobody at all</b>: zero people on production and on UAT. Reach them a different way &mdash; the <b>Work Experience</b> filter with <i>company type = Portfolio</i> and <i>Currently</i>, which returns 156 people.</li>
+<li id="ec-6-7" data-code="A6.x.7"><b>Where the Passive reason is saved &mdash; and why the profile looks empty.</b> The reason you type is written to the <b>activity log</b>, not to a field on the talent record &mdash; the record's own <code>passiveReason</code> field stays empty. It surfaces in the tooltip on the status chip and in the <i>Passive since</i> panel.
   <p>The <b>Activity Logs</b> tab is the audit trail. Each entry reads <i>&ldquo;Admin &lt;name&gt; changed talent status to &lt;status&gt;&rdquo;</i> with a timestamp. Two limits to know:</p>
   <ul style="margin:6px 0 0;padding-left:18px">
   <li>A status set by the <b>automatic rule at approval</b> carries <b>no reason</b> &mdash; the entry only says the status changed.</li>
   <li>The entry for an approval reads <i>&ldquo;approved talent review <b>(moved from Review Passive)</b>&rdquo;</i> even when the talent was in <b>In Review</b>, not Review Passive. The wording is fixed, so do not read the previous status from it.</li>
   </ul>
 </li>
-<li id="ec-6-8" data-code="A6.x.8"><b>Company type flags come from an external source and can be wrong.</b> Production has investment banks flagged as <i>sponsor</i>, and at least one talent linked to an entirely different company than the one named in their title. When a familiar name produces a surprising result, check the company record before concluding the talent is misclassified.</li>
-<li id="ec-6-9" data-code="A6.x.9"><b>Changing status does not touch anything operational.</b> Passive only removes someone from the project-invitation flow. Running contracts, timesheets and invoices are unaffected &mdash; see <a data-goto="page-b3" style="font-weight:700;cursor:pointer">B3 &#8599;</a>.</li>
-<li id="ec-6-10" data-code="A6.x.10"><b>Sending someone back to In Review.</b> <b>More Actions &rarr; Switch to In Review</b> opens a drawer listing the talent's applications, with the rule stated at the top: <i>&ldquo;Can't switch if application status is Connected / In Interview / Draft Agreement / Hired&rdquo;</i>. Confirm with <b>Switch</b> and the status returns to In Review, which brings the Approve / Reject buttons back. The internal status is left untouched.
+<li id="ec-6-8" data-code="A6.x.8"><b>A company can be tagged with the wrong type.</b> The tags come from an outside data source, so they are not always right. Production has investment banks flagged as <i>sponsor</i>, and at least one talent linked to an entirely different company than the one named in their title. When a familiar name produces a surprising result, check the company record before concluding the talent is misclassified.</li>
+<li id="ec-6-9" data-code="A6.x.9"><b>Going Passive does not stop any work already under way.</b> Passive only removes someone from the project-invitation flow. Running contracts, timesheets and invoices are unaffected &mdash; see <a data-goto="page-b3" style="font-weight:700;cursor:pointer">B3 &#8599;</a>.</li>
+<li id="ec-6-10" data-code="A6.x.10"><b>Sending a talent back to In Review.</b> <b>More Actions &rarr; Switch to In Review</b> opens a drawer listing the talent's applications, with the rule stated at the top: <i>&ldquo;Can't switch if application status is Connected / In Interview / Draft Agreement / Hired&rdquo;</i>. Confirm with <b>Switch</b> and the status returns to In Review, which brings the Approve / Reject buttons back. The internal status is left untouched.
   <p class="fn">The rest of that menu: Delete &middot; Delete Permanently &middot; Parse CV &middot; Upload CV &middot; Update gender &middot; Skip Project Invites &middot; Hero from website &middot; Hidden from website.</p>
 </li>
 </ol>
