@@ -174,6 +174,13 @@
     <a href="#e-5-3" class="st2" data-page="page-inbox">4.x.3 · Filters</a>
     <a href="#e-5-4" class="st2" data-page="page-inbox">4.x.4 · "In Queue" tag</a>
     <a href="#e-5-5" class="st2" data-page="page-inbox">4.x.5 · Show / hide columns</a>
+    <a class="flow" data-page="page-meetings"><span class="n">4b</span> Schedule a call</a>
+    <a href="#mt-create" class="st" data-page="page-meetings">4b.1 &middot; Book the call</a>
+    <a href="#mt-manage" class="st" data-page="page-meetings">4b.2 &middot; Manage booked calls</a>
+    <a href="#mt-edge" class="st edge" data-page="page-meetings">4b.x &middot; Edge cases</a>
+    <a href="#mc-1" class="st2" data-page="page-meetings">4b.x.1 · No reschedule</a>
+    <a href="#mc-2" class="st2" data-page="page-meetings">4b.x.2 · Two clocks on every row</a>
+    <a href="#mc-3" class="st2" data-page="page-meetings">4b.x.3 · Which address gets the invite</a>
     <a class="flow" data-page="page-followup"><span class="n">5</span> Follow up on silent prospects</a>
     <a href="#fu-1" class="st" data-page="page-followup">5.1 · Open your list</a>
     <a href="#fu-2" class="st" data-page="page-followup">5.2 · View the contacts</a>
@@ -660,7 +667,84 @@
   <figure><img src="sdrx-92-inbox-columns.png" alt="Inbox Column Settings picker"/><figcaption><b>4.x.5</b> — the gear ⚙ <b>Column Settings</b>: tick / untick columns, expand <b>Account</b> to pick its in-cell fields, or <b>Reset to defaults</b>.</figcaption></figure>
 </li>
 </ol>
-<div class="pagernav"><a data-goto="page-send"><span class="k">← Prev</span><b>Flow 3 · Send a 1:1 email</b></a><a class="next" data-goto="page-followup"><span class="k">Next →</span><b>Flow 5 · Follow up</b></a></div>
+<div class="pagernav"><a data-goto="page-send"><span class="k">← Prev</span><b>Flow 3 · Send a 1:1 email</b></a><a class="next" data-goto="page-meetings"><span class="k">Next →</span><b>Flow 4b · Schedule a call</b></a></div>
+</section>
+
+<!-- ===================== 4b · SCHEDULE A CALL ===================== -->
+<section class="page" id="page-meetings">
+<h2><span class="n">4b &middot;</span> Schedule a call <span class="fn">(book &rarr; send the link &rarr; manage)</span></h2>
+<div class="goal"><b>Goal (core):</b> turn a positive reply into a booked call. Fintalent creates the <b>Zoom link for you</b> the moment you save; your job is to get that link in front of the contact and keep the booking tidy afterwards.</div>
+<div class="call note"><span class="t">Where this sits</span>Right after a reply worth acting on (<a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &#8599;</a>). Booking a call is also what moves a contact to the <b>Call Scheduled</b> lifecycle stage you see on your lists.</div>
+
+<h3 id="mt-create" class="anchor">4b.1 &middot; Book the call</h3>
+<ol class="steps">
+<li data-code="4b.1.1"><b>Open the contact's meetings.</b> Two doors, same place:
+  <div class="tblwrap"><table>
+  <thead><tr><th>From</th><th>How</th></tr></thead>
+  <tbody>
+  <tr><td><b>Any contact row</b> &mdash; a list, the Contacts page, a ME's People tab</td><td>the <b>&#128197; calendar icon</b> in the <b>Action</b> column, labelled <i>&ldquo;View meetings with &lt;name&gt;&rdquo;</i>. It opens the contact with the <b>Meetings</b> tab already showing.</td></tr>
+  <tr><td><b>Meetings</b> in the left menu</td><td><b>+ Create meeting</b>, top right. Use this when you are not looking at the contact.</td></tr>
+  </tbody></table></div>
+  <p class="fn">The calendar icon sits alongside <b>&#9993; Send an email</b>, <b>WhatsApp</b> and <b>LinkedIn</b> &mdash; the same four actions on every contact row in the product.</p>
+</li>
+<li data-code="4b.1.2"><b>Read the Meetings tab before booking.</b> It splits into <b>All &middot; Upcoming &middot; Completed &middot; Cancelled</b> with counts, so a glance tells you whether this person is already booked. Empty reads <i>&ldquo;No calls scheduled with this contact yet.&rdquo;</i></li>
+<li data-code="4b.1.3"><b>Click <i>+ Create meeting</i> and fill the form.</b> Only one field is genuinely required:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Field</th><th>Required</th><th>What to do with it</th></tr></thead>
+  <tbody>
+  <tr><td><b>Participant email</b></td><td>prefilled</td><td>The contact's address. If they have several, the dropdown picks which one gets the invite.</td></tr>
+  <tr><td><b>Date &amp; time</b></td><td><b>yes</b></td><td>The only thing standing between you and a booking &mdash; the form says so: <i>&ldquo;the meeting cannot be created without a start time&rdquo;</i>. Confirm stays disabled until it is set.</td></tr>
+  <tr><td><b>Timezone</b></td><td>prefilled</td><td>Defaults to <b>your own</b>, not theirs. Read it again if you agreed a time in their local clock.</td></tr>
+  <tr><td><b>Duration</b></td><td>defaults to <b>30 minutes</b></td><td>Change only if you agreed otherwise.</td></tr>
+  <tr><td><b>Title</b></td><td>optional</td><td>Prefilled <i>&ldquo;Fintalent call &mdash; &lt;name&gt;&rdquo;</i>. Fine as it is; it is what they will see in their calendar.</td></tr>
+  <tr><td><b>Notes</b></td><td>optional</td><td>Context for you, not for them.</td></tr>
+  </tbody></table></div>
+  <figure><img src="sc-01-create-meeting.png" alt="The Create meeting form"/><figcaption><b>4b.1.3</b> &mdash; <b>&#9312;</b> participant address, with the picker &middot; <b>&#9313;</b> <b>Date &amp; time</b>, the one required field &middot; <b>&#9314;</b> timezone &mdash; <b>yours</b> &middot; <b>&#9315;</b> duration &middot; <b>&#9316;</b> the prefilled title.</figcaption></figure>
+</li>
+<li data-code="4b.1.4"><b>Save &mdash; the Zoom link is created for you.</b> The confirmation is not just an acknowledgement, it is a working screen: it shows the meeting title, the <b>Join link</b> in full, and a <b>Copy join link</b> button.
+  <p><b>Copy it now.</b> This panel is the most convenient place to get the link, and closing it with <b>Done</b> is the point at which most people realise they did not.</p>
+  <figure><img src="sc-02-meeting-created.png" alt="Meeting created, with the Zoom join link"/><figcaption><b>4b.1.4</b> &mdash; <b>&#9312;</b> the meeting &middot; <b>&#9313;</b> the auto-generated <b>Zoom</b> join link &middot; <b>&#9314;</b> <b>Copy join link</b> &middot; <b>&#9315;</b> the booking, now in the list behind, tagged <b>Upcoming</b> and <b>Zoom</b>.</figcaption></figure>
+</li>
+<li data-code="4b.1.5"><b>Send the link to the contact.</b> Nothing has been emailed yet &mdash; saving a meeting does <b>not</b> notify anybody.
+  <div class="call warn"><span class="t">The compose window does not carry the link</span><b>Send email</b> opens a normal message with the participant already in <b>To</b> and your signature in the body &mdash; and <b>nothing else</b>. The join link is <u>not</u> inserted. Paste it in yourself, or the contact gets an invitation with no way to attend.</div>
+  <p>So the order is: <b>Copy join link &rarr; Send email &rarr; paste &rarr; write the time and timezone in words &rarr; Send.</b> Templates and Snippets are available in the compose window, so a reusable &ldquo;here is your call link&rdquo; snippet is worth building once (<a data-goto="page-send" href="#s-edge" style="font-weight:700;cursor:pointer">3.x &#8599;</a>).</p>
+  <figure><img src="sc-04-send-email.png" alt="The compose window opened from a meeting"/><figcaption><b>4b.1.5</b> &mdash; <b>&#9312;</b> the participant, prefilled &middot; <b>&#9313;</b> the subject, empty &middot; <b>&#9314;</b> the body: signature only, <b>no join link</b> &middot; <b>&#9315;</b> Send.</figcaption></figure>
+</li>
+</ol>
+
+<h3 id="mt-manage" class="anchor">4b.2 &middot; Manage booked calls</h3>
+<ol class="steps">
+<li data-code="4b.2.1"><b><i>Meetings</i> in the left menu is the full picture</b> &mdash; every call you host, not one contact's. Same four tabs (<b>All &middot; Upcoming &middot; Completed &middot; Cancelled</b>), plus search and filters by <b>Host Emails</b> and <b>Activity Date</b>.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Column</th><th>What it tells you</th></tr></thead>
+  <tbody>
+  <tr><td><b>Meeting Title</b></td><td>The title, above two chips: the state (<b>Upcoming</b>) and the platform (<b>Zoom</b>).</td></tr>
+  <tr><td><b>Activity Date</b></td><td>The start time <b>twice</b> &mdash; see <a href="#mc-2" style="font-weight:700;cursor:pointer">4b.x.2 &#8599;</a>.</td></tr>
+  <tr><td><b>Host</b> &middot; <b>Participants</b></td><td>Both addresses, each with a copy button.</td></tr>
+  <tr><td><b>Scheduled Duration</b></td><td>e.g. <i>30m</i>.</td></tr>
+  </tbody></table></div>
+  <figure><img src="sc-03-meetings-page.png" alt="The Meetings page"/><figcaption><b>4b.2.1</b> &mdash; <b>&#9312;</b> the four tabs &middot; <b>&#9313;</b> state and platform chips &middot; <b>&#9314;</b> the start time in two timezones &middot; <b>&#9315;</b> the row actions &middot; <b>&#9316;</b> <b>+ Create meeting</b>, also available here.</figcaption></figure>
+</li>
+<li data-code="4b.2.2"><b>Four actions per row, and that is the whole toolkit:</b>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Action</th><th>Does</th></tr></thead>
+  <tbody>
+  <tr><td><b>Join meeting</b></td><td>Opens the Zoom room. This is your own way in on the day.</td></tr>
+  <tr><td><b>Copy join link</b></td><td>The link again, any time after you closed the confirmation panel.</td></tr>
+  <tr><td><b>Send email</b></td><td>Compose to the participant &mdash; still <b>without</b> the link (<a href="#mt-create" style="font-weight:700;cursor:pointer">4b.1.5 &#8599;</a>).</td></tr>
+  <tr><td><b>&#8942; &rarr; Cancel call</b></td><td>The only thing in the row menu. Moves the booking to <b>Cancelled</b>.</td></tr>
+  </tbody></table></div>
+</li>
+<li data-code="4b.2.3"><b>Check a single contact instead.</b> The <b>&#128197;</b> icon on their row reopens the same list scoped to them, next to <b>Conversations</b> &mdash; so the email thread and the booking sit side by side, which is what you want when they ask to move the time.</li>
+</ol>
+
+<h3 id="mt-edge" class="edgehead anchor">4b.x &middot; Edge cases</h3>
+<ol class="steps edge">
+<li id="mc-1" data-code="4b.x.1"><b>There is no reschedule.</b> The row menu offers <b>Cancel call</b> and nothing else &mdash; no edit, no move, no change of duration. A new time means <b>cancel the old booking and create a new one</b>, which produces a <b>new Zoom link</b>. Send the new link; the old one is dead. Say so in the email, or they will join an empty room from their calendar entry.</li>
+<li id="mc-2" data-code="4b.x.2"><b>Every row shows the time twice, and the second one is the safety net.</b> The first line is the start in the meeting's timezone (e.g. <i>31 Jul 2026, 15:00:00 GMT+7</i>); underneath, in orange, the same moment in <b>GMT+0</b> (<i>Fri, 31 Jul 2026 08:00:00 GMT+0</i>). Since the create form defaults to <b>your</b> timezone rather than the contact's, the GMT+0 line is how you check you booked the hour you actually agreed.</li>
+<li id="mc-3" data-code="4b.x.3"><b>A contact with several addresses.</b> The invitation goes to whichever one is selected in <b>Participant email</b> on the create form. If your conversation with them is running on a different address, switch it there &mdash; afterwards the only fix is cancel and rebook.</li>
+</ol>
+<div class="pagernav"><a data-goto="page-inbox"><span class="k">&larr; Prev</span><b>Flow 4 &middot; View &amp; answer replies</b></a><a class="next" data-goto="page-followup"><span class="k">Next &rarr;</span><b>Flow 5 &middot; Follow up</b></a></div>
 </section>
 
 <!-- ===================== FLOW 6 · FOLLOW UP ===================== -->
@@ -697,7 +781,7 @@
 <tr><td><span class="dotc" style="background:#F79009"></span>Yellow + dot</td><td>~2–4 weeks silence</td><td>Plan the nudge</td></tr>
 <tr><td><span class="dotc" style="background:#D92D20"></span>Red + dot</td><td>~A month+ — overdue</td><td>Click &amp; follow up now</td></tr>
 </tbody></table></div>
-<div class="pagernav"><a data-goto="page-inbox"><span class="k">← Prev</span><b>Flow 4 · View &amp; answer replies</b></a><a class="next" data-goto="page-campaign"><span class="k">Next →</span><b>Flow 6 · Manage a campaign</b></a></div>
+<div class="pagernav"><a data-goto="page-meetings"><span class="k">← Prev</span><b>Flow 4b · Schedule a call</b></a><a class="next" data-goto="page-campaign"><span class="k">Next →</span><b>Flow 6 · Manage a campaign</b></a></div>
 </section>
 
 
@@ -971,24 +1055,66 @@
 </tbody></table></div>
 
 <h3 id="me-people" class="anchor">7.3 &middot; Add people to the ME</h3>
-<div class="call warn"><span class="t">Not available yet for SDR</span>This flow <b>isn't available to the SDR role yet</b> &mdash; the contact list has <b>no select + "Add to marketing email"</b> action. For now, your MEs come with people <b>already added by Admin / Ops</b>. The steps below are the intended flow, for when it ships.</div>
-<p class="fn"><b>Assigned an ME that already has people</b> and told not to add more? <b>Skip this section</b> &mdash; just work those contacts (see <a data-goto="page-marketing" href="#e-8-13" style="font-weight:700;cursor:pointer">7.x.13 &#8599;</a>).</p>
-<p>Recipients come from your lists:</p>
+<div class="call warn"><span class="t">Verified on UAT, 28 Jul 2026 &mdash; the screens work, the save does not</span>Every screen below is live for the SDR role and behaves exactly as described, right up to the final button. That button then fails: the API rejects the save with <b>403 &mdash; PermissionGuard</b> and <b>the interface shows no error at all</b>. The drawer simply closes and the People tab still reads <b>0</b>. Until this is fixed, <b>ask Admin/Ops to add the recipients</b>, and treat this section as the map of a flow you can walk but not finish. <b>Removing</b> people, by contrast, works &mdash; see <a href="#m7-3-6" style="font-weight:700;cursor:pointer">7.3.6 &#8599;</a>.</div>
+<p>There are <b>two ways in</b>, and they meet at the same drawer. Which one you use depends on where you are standing:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Start from</th><th>Use it when</th></tr></thead>
+<tbody>
+<tr><td><b>The ME itself</b> &mdash; People tab &rarr; <b>+ Add contacts</b></td><td>You have the ME open and want to fill it. Fastest, and it pre-filters the contact list for you.</td></tr>
+<tr><td><b>A list</b> &mdash; Segments &rarr; select &rarr; <b>Add to marketing email</b></td><td>You are already working a list and spot people who belong in a ME.</td></tr>
+</tbody></table></div>
+
 <ol class="steps">
-<li id="m7-3-1" data-code="7.3.1"><b>Segments (Lists)</b> &rarr; open the list you were given.</li>
-<li id="m7-3-2" data-code="7.3.2">Find the people you want &mdash; same tools as <a data-goto="page-find" style="font-weight:700;cursor:pointer">Flow 2 &middot; Find a target contact &#8599;</a> (filters, search, signals).</li>
-<li id="m7-3-3" data-code="7.3.3"><b>Select</b> the contacts &rarr; <b>Add to marketing email</b>. The <b>Add to marketing email</b> drawer opens.</li>
-<li id="m7-3-4" data-code="7.3.4">In the drawer: <b>choose the ME</b>, then <b>choose each contact and which email address to use</b>. A contact can have several addresses &mdash; a ME sends to <b>one address per contact</b>, so pick deliberately. The addresses are grouped in three tabs:
-  <ul style="margin:6px 0 0;padding-left:18px">
-  <li><b>Valid</b> &mdash; verified addresses; use these.</li>
-  <li><b>Missing + Invalid</b> &mdash; no address, or one that failed validation.</li>
-  <li><b>Platform sign up</b> &mdash; the address they signed up to the platform with.</li>
-  </ul>
+<li id="m7-3-1" data-code="7.3.1"><b>Route 1 &mdash; open the ME and go to the <i>People</i> tab.</b> A new ME opens on four tabs: <b>Inbox &middot; Templates &middot; People &middot; Timeline</b>. People is the recipient list, and while it is empty it says so plainly.
+  <p>The tab carries the <b>same filter bar as your lists</b> (Lifecycles, Has signal, In Conversation, Countries, Cities&hellip;) <b>plus two that exist only here</b>: <b>Content Reviewed</b> and <b>Personalize</b> &mdash; the two states you work through in <a href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &#8599;</a>.</p>
+  <figure><img src="me-30-people-tab-empty.png" alt="The People tab of a new ME"/><figcaption><b>7.3.1</b> &mdash; <b>&#9312;</b> the four tabs &middot; <b>&#9313;</b> <b>+ Add contacts</b> &middot; <b>&#9314;</b> the filter bar, with <b>Content Reviewed</b> and <b>Personalize</b> at the front &middot; <b>&#9315;</b> the empty state.</figcaption></figure>
 </li>
-<li id="m7-3-5" data-code="7.3.5">Click <b>Add to marketing email</b>.</li>
+
+<li id="m7-3-2" data-code="7.3.2"><b>Click <i>+ Add contacts</i> &mdash; and notice where it takes you.</b> It does not open a picker. It <b>navigates to the Contacts page</b> with a filter already applied: <b>Marketing Email : 1 excluded</b>.
+  <p>That chip means &ldquo;<b>hide everyone already in this ME</b>&rdquo;, so whatever you select next is guaranteed to be new. Leave it alone. If you clear it you will be looking at people who are already recipients.</p>
+  <div class="call note"><span class="t">Yes, the SDR has a Contacts page now</span>It is not in the left menu &mdash; you reach it through this button, and through the equivalent buttons on lists. Everything on it obeys the same rules as your lists.</div>
+  <figure><img src="me-31-contacts-prefiltered.png" alt="Contacts page opened with the ME filter applied"/><figcaption><b>7.3.2</b> &mdash; <b>&#9312;</b> the pre-applied <b>Marketing Email : 1 excluded</b> chip &middot; <b>&#9313;</b> the selection counter and <b>Select all N matching</b> &middot; <b>&#9314;</b> the bulk actions &middot; <b>&#9315;</b> <b>More</b>.</figcaption></figure>
+</li>
+
+<li id="m7-3-3" data-code="7.3.3"><b>Route 2 &mdash; start from a list instead.</b> <b>Segments (Lists)</b> &rarr; open the list &rarr; find the people you want with the usual tools (<a data-goto="page-find" style="font-weight:700;cursor:pointer">Flow 2 &#8599;</a>) &rarr; tick them.
+  <p>The action bar here is <b>not identical</b> to the one on Contacts, and the difference matters:</p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>On a list</th><th>On Contacts</th></tr></thead>
+  <tbody>
+  <tr><td><b>Remove from list</b></td><td><b>Add to list</b></td></tr>
+  <tr><td colspan="2" style="text-align:center">Add to campaign &middot; <b>Add to marketing email</b> &middot; More</td></tr>
+  </tbody></table></div>
+  <p class="fn">Same button, same drawer, from either side.</p>
+</li>
+
+<li id="m7-3-4" data-code="7.3.4"><b>The drawer: pick the ME on the left, pick the addresses on the right.</b> It is titled <b>&ldquo;Add N contacts to marketing email&rdquo;</b> and has two halves.
+  <p><b>Left &mdash; Select marketing email.</b> Every ME you can write to, each showing its owner, its <b>status badge</b> (Draft / Active) and its <b>recipient count</b>. Come from route 1 and yours is already selected. There is a search box and a sort toggle, because this list grows.</p>
+  <p><b>Right &mdash; the contacts you ticked, split by address quality.</b> This is the part people misread:</p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Tab</th><th>What is in it</th><th>Ticked by default?</th></tr></thead>
+  <tbody>
+  <tr><td><b>Valid</b></td><td>Verified addresses. These are the ones you actually want.</td><td><b>Yes</b></td></tr>
+  <tr><td><b>Missing + Invalid</b></td><td>No address, or one that failed validation.</td><td><b>No</b> &mdash; shown, but you must tick them on purpose</td></tr>
+  <tr><td><b>Platform Signup</b></td><td>The address they registered on the platform with.</td><td><b>No</b></td></tr>
+  </tbody></table></div>
+  <p>The counts on the tabs are the split of <i>your</i> selection, so they are a quick verdict on the batch: tick 3 people and see <b>Valid 1 &middot; Missing + Invalid 2</b>, and you have just learned that two of them are not reachable.</p>
+  <p><b>Two controls, two different jobs</b>, spelled out in the legend above the table: <b>&#9745; Tick to add</b> decides <i>who</i> joins the ME; <b>&#9673; Email to send</b> decides <i>which address</i> is used, because a contact can carry several and a ME sends to <b>exactly one per person</b>. Changed your mind about someone? <b>Remove N from selection</b> at the top right drops them.</p>
+  <p class="fn">The confirm button stays <b>greyed out while nothing is ticked</b> &mdash; which is what you see if your whole batch landed in Missing + Invalid.</p>
+  <figure><img src="me-32-add-drawer.png" alt="The Add to marketing email drawer"/><figcaption><b>7.3.4</b> &mdash; <b>&#9312;</b> the ME, with its owner, status and recipient count &middot; <b>&#9313;</b> the three address tabs and their counts &middot; <b>&#9314;</b> the legend: tick to add, radio to choose the address &middot; <b>&#9315;</b> <b>Remove N from selection</b>. The confirm button sits at the bottom of the drawer, below the fold.</figcaption></figure>
+</li>
+
+<li id="m7-3-5" data-code="7.3.5"><b>Click <i>Add to marketing email</i> &mdash; and check the People tab.</b> It should show the people you picked, each row carrying <b>the address that will be used</b> under the name.
+  <div class="call warn"><span class="t">This is where it currently fails</span>The count stays at <b>0</b> and no message appears. The request that was rejected is <code>UpdateMarketingEmailRecipients</code>, and the reply is <b>403 PermissionGuard</b> &mdash; a role permission, not anything you did wrong. Retrying will not help. Hand the list to Admin/Ops instead.</div>
+</li>
+
+<li id="m7-3-6" data-code="7.3.6"><b>Removing people, which does work.</b> On the <b>People</b> tab, tick whoever should not receive the ME &rarr; <b>Remove contacts</b>.
+  <div class="call warn"><span class="t">No confirmation, no undo</span>The row disappears the moment you click, the count on the tab drops, and nothing asks whether you meant it. Tick carefully &mdash; putting someone back means the add flow above, which is the one that is blocked.</div>
+  <p class="fn">The same bar also offers <b>Add to list &middot; Add to campaign &middot; Add to marketing email &middot; More</b>, so a recipient can be pushed into another ME or campaign from here.</p>
+  <figure><img src="me-33-people-actions.png" alt="Remove contacts on the People tab"/><figcaption><b>7.3.6</b> &mdash; <b>&#9312;</b> the People tab with its live recipient count &middot; <b>&#9313;</b> <b>Remove contacts</b>, next to the add actions.</figcaption></figure>
+</li>
+
+<li id="m7-3-7" data-code="7.3.7"><b>Assigned a ME that already has people?</b> Then none of this applies &mdash; skip to <a href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &#8599;</a> and work the recipients you were given. See <a href="#e-8-13" style="font-weight:700;cursor:pointer">7.x.13 &#8599;</a>.</li>
 </ol>
-<p>They now appear on the ME's <b>People</b> tab &mdash; the full recipient list. It has the same table &amp; filters as your lists, <b>plus two ME-only filters</b>: <b>Content Reviewed</b> (has this person's mail been checked?) and <b>Personalize</b>.</p>
-<figure><img src="sdrx-me-02-people.png" alt="Marketing Email People tab"/><figcaption><b>7.3</b> &mdash; the <b>People</b> tab: everyone who will receive this ME, plus the <b>Content Reviewed</b> and <b>Personalize</b> filters.</figcaption></figure>
 
 <h3 id="me-preview" class="anchor">7.4 &middot; Preview, personalize &amp; mark as reviewed</h3>
 <p>The <b>Preview</b> tab is the review gate &mdash; nothing should go out unchecked.</p>
