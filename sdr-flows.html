@@ -185,7 +185,9 @@
     <a href="#mc-6" class="st2" data-page="page-meetings">4b.x.3 · The address must be a contact</a>
     <a href="#mc-2" class="st2" data-page="page-meetings">4b.x.4 · Two clocks on every row</a>
     <a href="#mc-3" class="st2" data-page="page-meetings">4b.x.5 · Which address gets the invite</a>
-    <a href="#mc-5" class="st2" data-page="page-meetings">4b.x.6 · Nobody is emailed automatically</a>
+    <a href="#mc-7" class="st2" data-page="page-meetings">4b.x.6 · Contact with several addresses</a>
+    <a href="#mc-8" class="st2" data-page="page-meetings">4b.x.7 · List view vs Calendar view</a>
+    <a href="#mc-5" class="st2" data-page="page-meetings">4b.x.8 · Nobody is emailed automatically</a>
     <a class="flow" data-page="page-followup"><span class="n">5</span> Follow up on silent prospects</a>
     <a href="#fu-1" class="st" data-page="page-followup">5.1 · Open your list</a>
     <a href="#fu-2" class="st" data-page="page-followup">5.2 · View the contacts</a>
@@ -702,6 +704,13 @@
   </tbody></table></div>
   <p><b>Prefer the contact route when you are answering a reply.</b> It carries the right address for you, and it is one click from the conversation you are already in. The Meetings route is for when you have the address in your head and not the contact on screen.</p>
   <p class="fn">Typing the address on the Meetings route still resolves the person: the title comes back as <i>&ldquo;Fintalent call &mdash; &lt;their name&gt;&rdquo;</i>.</p>
+  <p><b>The contact route is two clicks, and the second one catches people out.</b> The calendar icon does <u>not</u> open the booking form &mdash; it opens the <b>contact</b>, on its <b>Meetings</b> tab. The form is behind <b>+ Create meeting</b> in the top right of that panel:</p>
+  <ol style="margin:6px 0 0;padding-left:20px">
+  <li><b>&#128197;</b> on the contact's row &rarr; the contact opens on <b>Meetings</b>.</li>
+  <li><b>+ Create meeting</b>, top right &mdash; or the <b>Create meeting</b> link in the middle when the contact has none yet. Both open the same form.</li>
+  </ol>
+  <figure><img src="sc-10-open-create-drawer.png" alt="Where the Create meeting button sits on a contact"/><figcaption><b>4b.2.1</b> &mdash; what the <b>&#128197;</b> icon actually opens: <b>&#9312;</b> the contact on its <b>Meetings</b> tab, next to Conversations &middot; <b>&#9313;</b> <b>+ Create meeting</b> &mdash; <b>this is the button that opens the form</b> &middot; <b>&#9314;</b> the four sub-tabs &middot; <b>&#9315;</b> the same action offered in the empty state.</figcaption></figure>
+  <p class="fn">On the <b>Meetings</b> route the button is in the same place &mdash; <b>+ Create meeting</b>, top right of the page (<a href="#mt-manage" style="font-weight:700;cursor:pointer">4b.4.1 &#8599;</a>).</p>
   <figure><img src="sc-08-create-from-page.png" alt="Create meeting opened from the Meetings page"/><figcaption><b>4b.2.1</b> &mdash; the <b>Meetings</b> route: <b>&#9312;</b> <b>Participant email</b> empty and marked required &middot; <b>&#9313;</b> <b>Date &amp; time</b> &middot; <b>&#9314;</b> the title, waiting to be resolved from the address.</figcaption></figure>
 </li>
 <li data-code="4b.2.2"><b>Fill the form. Only one field can stop you.</b>
@@ -745,11 +754,9 @@
   <tr><td><b>The Meetings tab in a contact you already have open</b></td><td>it sits next to <b>Conversations</b>, with its own count.</td></tr>
   <tr><td><b>To cancel</b></td><td>the meeting's row &rarr; <b>&#8942;</b> &rarr; <b>Cancel meeting</b>.</td></tr>
   </tbody></table></div>
+  <figure><img src="sc-11-meetings-row-actions.png" alt="The Meetings page"/><figcaption><b>4b.4.1</b> &mdash; <b>&#9312;</b> <b>+ Create meeting</b> &middot; <b>&#9313;</b> the four tabs with their counts &middot; <b>&#9314;</b> <b>Join meeting</b> &middot; <b>&#9315;</b> <b>Start as host</b> &middot; <b>&#9316;</b> <b>Copy join link</b> &middot; <b>&#9317;</b> <b>&#8942;</b> row actions. The row also prints the start time <b>twice</b> &mdash; your timezone, then GMT+0.</figcaption></figure>
 </li>
-<li data-code="4b.4.2"><b>Two ways to read the list.</b> Top right of the Meetings page there is a <b>List view / Calendar view</b> toggle. Calendar view gives <b>Month / Week</b> and a <b>Today</b> button, and is the faster way to answer &ldquo;what does my week look like?&rdquo;. <b>Cancelled bookings appear struck through</b>, which is a quick way to see a slot you gave up.
-  <figure><img src="sc-07-calendar-view.png" alt="Calendar view of the Meetings page"/><figcaption><b>4b.4.2</b> &mdash; <b>&#9312;</b> the List / Calendar toggle &middot; <b>&#9313;</b> <b>Month / Week</b> &middot; <b>&#9314;</b> a <b>cancelled</b> booking, struck through &middot; <b>&#9315;</b> the live one.</figcaption></figure>
-</li>
-<li data-code="4b.4.3"><b>What each control on a row does.</b> Four of them, and the first two are not the same thing:
+<li data-code="4b.4.2"><b>What each control on a row does.</b> Four of them, and the first two are not the same thing:
   <div class="tblwrap"><table>
   <thead><tr><th>Control</th><th>Opens</th><th>Use when</th></tr></thead>
   <tbody>
@@ -759,11 +766,12 @@
   <tr><td><b>&#8942;</b></td><td><b>Send email</b> &middot; <b>Cancel meeting</b></td><td>the only two row actions. There is no edit.</td></tr>
   </tbody></table></div>
   <div class="call note"><span class="t">If you take one thing from this section</span><b>Send the contact the <i>join</i> link. Open the call yourself with <i>Start as host</i>.</b> Handing out a host link would let whoever holds it run your meeting.</div>
+  <figure><img src="sc-11-meetings-row-actions.png" alt="The four controls on a meeting row"/><figcaption><b>4b.4.2</b> &mdash; the four, left to right: <b>&#9314;</b> <b>Join meeting</b> &middot; <b>&#9315;</b> <b>Start as host</b> &middot; <b>&#9316;</b> <b>Copy join link</b> &middot; <b>&#9317;</b> <b>&#8942;</b>, which holds <b>Send email</b> and <b>Cancel meeting</b>.</figcaption></figure>
 </li>
-<li data-code="4b.4.4"><b>Cancelling, and what it destroys.</b> <b>&#8942; &rarr; Cancel meeting</b> asks first, and the dialog is worth reading: <i>&ldquo;This removes the Zoom meeting and its join link <b>for everyone</b>.&rdquo;</i>
+<li data-code="4b.4.3"><b>Cancelling, and what it destroys.</b> <b>&#8942; &rarr; Cancel meeting</b> asks first, and the dialog is worth reading: <i>&ldquo;This removes the Zoom meeting and its join link <b>for everyone</b>.&rdquo;</i>
   <p>Confirm and the booking leaves <b>Upcoming</b> and lands in <b>Cancelled</b> &mdash; it is not deleted, so the history stays. <b>The contact is not told.</b> If a real person was expecting that call, the cancellation email is yours to write.</p>
   <p class="fn">The tab counters do not refresh on the spot &mdash; they still read the old numbers until you reload the page. Do not take that as the cancellation having failed.</p>
-  <figure><img src="sc-06-cancel-dialog.png" alt="The cancel meeting confirmation"/><figcaption><b>4b.4.4</b> &mdash; <b>&#9312;</b> the warning: the link dies for everyone &middot; <b>&#9313;</b> <b>Keep meeting</b> backs out &middot; <b>&#9314;</b> <b>Cancel meeting</b> commits.</figcaption></figure>
+  <figure><img src="sc-06-cancel-dialog.png" alt="The cancel meeting confirmation"/><figcaption><b>4b.4.3</b> &mdash; <b>&#9312;</b> the warning: the link dies for everyone &middot; <b>&#9313;</b> <b>Keep meeting</b> backs out &middot; <b>&#9314;</b> <b>Cancel meeting</b> commits.</figcaption></figure>
 </li>
 </ol>
 
@@ -791,7 +799,17 @@
 </li>
 <li id="mc-2" data-code="4b.x.4"><b>Every row shows the time twice, and the second one is the safety net.</b> First line: the start in the meeting's timezone (<i>31 Jul 2026, 15:00 GMT+7</i>). Underneath, in orange, the same moment in <b>GMT+0</b>. Since the create form defaults to <b>your</b> timezone and not the contact's, the GMT+0 line is how you check you booked the hour you actually agreed.</li>
 <li id="mc-3" data-code="4b.x.5"><b>A contact with several addresses.</b> The invitation follows whichever address is selected in <b>Participant email</b>. If the thread you are replying to runs on a different address, change it on the form &mdash; afterwards the only fix is cancel and rebook.</li>
-<li id="mc-5" data-code="4b.x.6"><b>The booking does not email anybody, at any point.</b> Not on create, not on cancel. Every message the contact receives is one you wrote. It is the single most common way a call goes wrong.</li>
+<li id="mc-7" data-code="4b.x.6"><b>The contact has several addresses &mdash; which one gets the invite.</b> On the contact route the <b>Participant email</b> field is a <b>picker</b>, not a label: it opens with the address on the contact record already chosen, and the chevron on the right lists the others.
+  <p><b>Check it whenever you are answering a thread.</b> A contact can hold a work address, a personal one and a platform sign-up address, and the one the conversation is running on is not always the one the field defaults to. Pick the address they actually wrote from &mdash; the invitation goes to the selected one and nowhere else.</p>
+  <p class="fn">There is no changing it afterwards. Wrong address means <a href="#mc-1" style="font-weight:700;cursor:pointer">cancel and rebook &#8599;</a>, which mints a new link.</p>
+  <figure><img src="sc-12-participant-picker.png" alt="The participant email picker"/><figcaption><b>4b.x.6</b> &mdash; <b>&#9312;</b> <b>Participant email</b>, prefilled from the contact &middot; <b>&#9313;</b> the chevron that lists their other addresses &middot; <b>&#9314;</b> the title, resolved from whoever the address belongs to.</figcaption></figure>
+</li>
+<li id="mc-8" data-code="4b.x.7"><b>Two ways to read the list &mdash; and the calendar shows what the table hides.</b> Top right of the Meetings page sits a <b>List view / Calendar view</b> toggle. Calendar view adds <b>Month / Week</b> and a <b>Today</b> button, and answers &ldquo;what does my week look like?&rdquo; far quicker than the table.
+  <p><b>Cancelled bookings appear struck through</b> rather than hidden, so a slot you gave up is still visible in its place &mdash; useful when a contact asks what happened to the call you had agreed.</p>
+  <p class="fn">The choice sticks: come back to Meetings later and it opens in whichever view you left it in.</p>
+  <figure><img src="sc-07-calendar-view.png" alt="Calendar view of the Meetings page"/><figcaption><b>4b.x.7</b> &mdash; <b>&#9312;</b> the List / Calendar toggle &middot; <b>&#9313;</b> <b>Month / Week</b> &middot; <b>&#9314;</b> a <b>cancelled</b> booking, struck through &middot; <b>&#9315;</b> the live one.</figcaption></figure>
+</li>
+<li id="mc-5" data-code="4b.x.8"><b>The booking does not email anybody, at any point.</b> Not on create, not on cancel. Every message the contact receives is one you wrote. It is the single most common way a call goes wrong.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-inbox"><span class="k">&larr; Prev</span><b>Flow 4 &middot; View &amp; answer replies</b></a><a class="next" data-goto="page-followup"><span class="k">Next &rarr;</span><b>Flow 5 &middot; Follow up</b></a></div>
 </section>
