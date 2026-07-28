@@ -1240,6 +1240,18 @@
   </tbody></table></div>
   <p class="fn"><b>What counts as &ldquo;edited&rdquo;:</b> the two columns on the same row <b>differ</b>. Equal = logged hours kept as-is; different = the talent deliberately set a different billable figure.</p>
   <figure><img src="tsx-03-edit-tobill.png" alt="Hours to bill edited and one day unticked"/><figcaption><b>B2.4.3</b> &mdash; a real example: <b>&#9312;</b> worked <b>02:30:00</b> &middot; <b>&#9313;</b> to bill <b>02:00:00</b> &rarr; <b>different = edited</b>. <b>&#9314;</b> the Jul 10 row unticked (turns white) &middot; <b>&#9315;</b> the counter now reads <b>1 working day selected</b>.</figcaption></figure>
+
+  <div class="call warn"><span class="t">You cannot bill more than you worked &mdash; and it corrects you without saying so</span>Type a figure above the logged hours and the field accepts it <i>while you are typing</i>, then <b>silently snaps back</b> to the logged hours the moment you click away. No error, no red text, no toast. Measured on a 2.5&nbsp;h day:
+  <div class="tblwrap"><table>
+  <thead><tr><th>You type</th><th>While typing</th><th>After you click away</th></tr></thead>
+  <tbody>
+  <tr><td><b>9</b> or <b>2.6</b> &mdash; above the logged hours</td><td>shows what you typed</td><td><b>2.5</b> &mdash; pulled back down</td></tr>
+  <tr><td><b>0</b></td><td>0</td><td><b>0</b> &mdash; allowed, you can bill nothing</td></tr>
+  <tr><td><b>&minus;1</b></td><td>&minus;1</td><td><b>0</b> &mdash; pulled back up</td></tr>
+  </tbody></table></div>
+  <p><b>Why this matters:</b> opening the confirmation counts as clicking away. So if you type <b>9</b> and go straight for <b>Submit</b>, the field is already back to <b>2.5</b> before the dialog appears &mdash; you submit a different number from the one you typed and nothing tells you. <b>Read the figure in the box, not the one you typed</b>, before confirming.</p>
+  </div>
+  <figure><img src="ts-29-bill-clamp.png" alt="Hours to bill reverting to the logged hours"/><figcaption><b>B2.4.3</b> &mdash; a 2.5&nbsp;h day: <b>&#9312;</b> <b>9</b> typed into <b>Hour(s) to bill</b> &middot; <b>&#9313;</b> the same field after clicking away &mdash; back to <b>2.5</b>, with no message in between.</figcaption></figure>
 </li>
 <li data-code="B2.4.4"><b>Decide which days to submit.</b> The button at the bottom <b>rewrites itself to match the ticked rows</b>: both days ticked &rarr; <b>Submit all 2 working days</b>; untick one &rarr; <b>Submit 1 working day</b>. Read that button before clicking &mdash; it is the fastest way to see what you are about to lock in. Details in <a href="#bt-3" style="font-weight:700;cursor:pointer">B2.x.3 &#8599;</a>.</li>
 <li data-code="B2.4.5">The <b>Submit Timesheet</b> confirmation appears &rarr; click <b>Yes</b>. <span class="fn">(Clicking No returns you to the list; skip this dialog and nothing you did takes effect.)</span>
