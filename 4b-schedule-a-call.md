@@ -1,15 +1,17 @@
 ---
-description: "Goal (core): turn a positive reply into a booked call. Fintalent creates the Zoom link for you the moment you save; your job is to get that link in front of the contact and keep the booking tidy afterwards."
+description: "Goal (core): a prospect replies asking for a call. Book it, send them the link in the same email thread, and keep the booking tidy afterwards. Fintalent creates the Zoom meeting and its link for you the moment you save."
 ---
 
 # 4b · Schedule a call
 
-> book → send the link → manage
+> spot it in your replies → book → reply with the link → manage
 
-Where this sitsRight after a reply worth acting on ([Flow 4 ↗](4-view-replies-and-answer-replies.md)). Booking a call is also what moves a contact to the **Call Scheduled** lifecycle stage you see on your lists.
+This flow starts inside Flow 4It is not a separate errand. You are already reading replies ([Flow 4 ↗](4-view-replies-and-answer-replies.md)); one of them wants a call. Everything below happens without leaving that conversation.
 
 ### In this flow
 
-* [4b.1 · Book the call](4b-1-book-the-call.md)
-* [4b.2 · Manage booked calls](4b-2-manage-booked-calls.md)
+* [4b.1 · Spot it in your replies](4b-1-spot-it-in-your-replies.md)
+* [4b.2 · Book the call](4b-2-book-the-call.md)
+* [4b.3 · Reply with the details](4b-3-reply-with-the-details.md)
+* [4b.4 · Manage booked calls](4b-4-manage-booked-calls.md)
 * [4b.x · Edge cases](4b-x-edge-cases.md)
