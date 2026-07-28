@@ -2,7 +2,7 @@
 
 > 7 · Manage a Marketing Email
 
-**A sub-flow inside managing the ME.** Still on the **Templates** tab, you build the actual email a ME sends — a **step** (= one email) with its subject, body, variables and attachments. A brand-new ME opens with **no step yet** — it says *"Please add an email step to start viewing preview email"*. Click **+ Create new step**. **A step = one email.** (The **Preview** tab only appears once at least one step exists.)
+**A sub-flow inside managing the ME.** Still on the **Templates** tab, you build the actual email a ME sends — a **step** (= one email) with its subject, body, variables and attachments. A brand-new ME opens with **no step yet** — it says *"Please add an email step to start viewing preview email"*. Click **+ Create new step**. **A step = one email.** (The **Preview** tab is gated on **people**, not on steps — it appears once the ME has at least one recipient. See [7.2.4 ↗](7-2b-inside-a-me-tabs.md).)
 
 ![Empty ME — Create new step](sdrx-me-08-create-step.png)
 

@@ -735,20 +735,30 @@
 <li data-code="A5.1.1"><b>Sales Management &rarr; Marketing Emails.</b> Again the <b>whole workspace</b>. Tabs: <b>All &middot; Draft &middot; Paused &middot; Running &middot; Finished</b> &mdash; note there is <b>no Archive</b> and <b>no folder pane</b>; MEs are flat.
   <figure><img src="admm-01-list.png" alt="Admin marketing email list"/><figcaption><b>A5.1</b> &mdash; <b>&#9312;</b> every user's MEs &middot; <b>&#9313;</b> status tabs &middot; <b>&#9314;</b> <b>+ Create Marketing Email</b> &middot; <b>&#9315;</b> the rate columns.</figcaption></figure>
 </li>
-<li data-code="A5.1.2"><b>Read a row:</b> name + <b>From</b> address + status pill &middot; <b>People</b> &middot; <b>Delivered</b> &middot; <b>Open Rate</b> &middot; <b>Reply Rate</b> &middot; <b>Bounce/Dropped Rate</b> &middot; <b>Progress</b> (&#10003; when the blast finished). There is <b>no Enabled toggle and no Assignee column</b> here &mdash; an ME is switched on from inside, and its owner shows in the detail header.</li>
+<li data-code="A5.1.2"><b>Read a row:</b> name + <b>From</b> address + status pill &middot; <b>People</b> &middot; <b>Delivered</b> &middot; <b>Open Rate</b> &middot; <b>Reply Rate</b> &middot; <b>Bounce/Dropped Rate</b> &middot; <b>Progress</b> (&#10003; when the blast finished). Then <b>Last run</b> and <b>Assignee</b> &mdash; the Assignee cell carries a <b>role chip</b> above the name (<b>SDR</b>), so you can see at a glance which rep owns which blast. There is <b>no Enabled toggle</b> though: unlike a campaign, an ME is switched on from inside its own header (<a href="#a3-me" style="font-weight:700;cursor:pointer">A3.1.3 &#8599;</a>).</li>
 </ol>
 
-<h3 id="a5-row" class="anchor">A5.2 &middot; Row actions &mdash; deliberately thin</h3>
-<ol class="steps adm">
-<li data-code="A5.2.1"><b>&#8942;</b> gives you <b>Edit/View Details</b> and <b>Manage assignee</b>. That's all &mdash; <b>no Delete, no Archive, no Clone, no Move</b>, unlike a campaign <a data-goto="page-a4" href="#a4-row" style="font-weight:700;cursor:pointer">(A4.2 &#8599;)</a>. A sent blast is a record; it stays.
-  <figure><img src="admm-02-row-menu.png" alt="ME row menu"/><figcaption><b>A5.2.1</b> &mdash; two items only.</figcaption></figure>
+<h3 id="a5-row" class="anchor">A5.2 &middot; Row actions &mdash; and when Delete disappears</h3>
+<ol class="steps">
+<li data-code="A5.2.1"><b>The &#8942; menu changes with status.</b> It is short either way, but the difference matters:
+  <div class="tblwrap"><table>
+  <thead><tr><th>ME status</th><th>&#8942; offers</th></tr></thead>
+  <tbody>
+  <tr><td><b>Draft</b> &middot; <b>Paused</b></td><td>Edit/View Details &middot; <b>Delete</b> &middot; Manage assignee</td></tr>
+  <tr><td><b>Running</b></td><td>Edit/View Details &middot; Manage assignee &mdash; <b>Delete is gone</b></td></tr>
+  </tbody></table></div>
+  <p>So the window to delete closes the moment the ME starts sending. After that it is a record and it stays &mdash; there is no Archive to move it to either, and no Clone and no Move, unlike a campaign (<a href="#a4-row" style="font-weight:700;cursor:pointer">A4.2 &#8599;</a>).</p>
+  <p><b>Delete asks first</b> &mdash; <i>&ldquo;Do you want to delete this Marketing Email&rdquo;</i>, with <b>Exit</b> and <b>Delete</b>. It is a real delete: the list count drops by one <span class="fn">(measured: 92 &rarr; 91)</span>, not an archive.</p>
+  <figure><img src="admm-02-row-menu.png" alt="Row menu on a Draft marketing email"/><figcaption><b>A5.2.1</b> &mdash; a <b>Draft</b>: Delete is there. On a Running ME the same menu has two items.</figcaption></figure>
 </li>
-<li data-code="A5.2.2"><b>Bulk</b> works the same way as campaigns: tick rows &rarr; <b>&ldquo;N marketing emails selected&rdquo;</b> &rarr; <b>Assign assignee</b>.</li>
+<li data-code="A5.2.2"><b>Bulk does one thing only.</b> Tick rows &rarr; <b>&ldquo;N marketing email(s) selected&rdquo;</b> &rarr; <b>Assign assignee</b>. There is no bulk delete and no bulk status change &mdash; reassigning owners is the whole feature.
+  <figure><img src="me-48-list-bulk.png" alt="Bulk bar and Assignee column"/><figcaption><b>A5.2.2</b> &mdash; <b>&#9312;</b> the selection bar with its single action &middot; <b>&#9313;</b> the <b>Assignee</b> column, with the role chip above each name.</figcaption></figure>
+</li>
 </ol>
 
 <h3 id="a5-inside" class="anchor">A5.3 &middot; Inside the ME</h3>
 <ol class="steps adm">
-<li data-code="A5.3.1"><b>Open it.</b> Header: editable <b>name</b> &middot; <b>timezone</b> &middot; <b>description</b> &middot; <b>owner</b> with the <b>&#9881;</b> badge &middot; the <b>Active</b> switch. Tabs: <b>Inbox &middot; Template &middot; People &middot; Preview &middot; Email Queues &middot; Data Health &beta; &middot; Timeline</b>. <span class="fn">(Any &ldquo;V1&rdquo; duplicates you see are legacy screens &mdash; ignore them.)</span>
+<li data-code="A5.3.1"><b>Open it.</b> Header: editable <b>name</b> &middot; <b>timezone</b> &middot; <b>description</b> &middot; <b>owner</b> with the <b>&#9881;</b> badge &middot; the <b>Active</b> switch. Tabs: <b>Inbox &middot; Template &middot; People &middot; Preview &middot; Email Queues &middot; Data Health &beta; &middot; Timeline</b>. <b>Two are conditional</b> &mdash; <b>Preview</b> renders only once the ME has at least one person, <b>Email Queues</b> only once it is past Draft. A fresh Draft legitimately shows neither, so do not read their absence as a fault. <span class="fn">(Any &ldquo;V1&rdquo; duplicates you see are legacy screens &mdash; ignore them.)</span>
   <figure><img src="admm-03-detail.png" alt="ME detail header"/><figcaption><b>A5.3.1</b> &mdash; <b>&#9312;</b> owner + <b>&#9881;</b> + the <b>Active</b> switch &middot; <b>&#9313;</b> the tab row &middot; <b>&#9314;</b> <b>Force Send</b> and the step's delete icon.</figcaption></figure>
 </li>
 <li data-code="A5.3.2"><b>Template</b> holds the single step. It carries the <b>Force Send</b> button from <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">A3.1.3 &#8599;</a> plus a <b>&#128465; delete</b> on the step &mdash; deleting it empties the ME, so only do that on a Draft.</li>
@@ -2925,12 +2935,13 @@
   <li><b>Description</b> &mdash; optional free text (top-right); leave it blank if you don't need it.</li>
   </ul>
 </li>
-<li id="m7-1-3" data-code="7.1.3">Click <b>Next</b> &rarr; you move to step <b>&#9313; Template</b>.</li>
+<li id="m7-1-3" data-code="7.1.3">Click <b>Next</b> &rarr; you move to step <b>&#9313; Template</b>.</li><li data-code="7.1.4"><b>&#9888; Next already creates it.</b> The marketing email is saved the moment you press <b>Next</b> &mdash; before you have written a single line of the email. The address bar picks up an <code>?id=</code> and the list count goes up straight away <span class="fn">(measured: All 91 &rarr; 92, Draft 57 &rarr; 58)</span>.
+  <p>So closing the wizard at step &#9313; does <b>not</b> cancel anything &mdash; it leaves a named, empty <b>Draft</b> behind. If you opened it by accident, go back to the list and delete it (<a href="#a5-row" style="font-weight:700;cursor:pointer">A5.2 &#8599;</a>); a Draft can still be deleted. This is worth knowing before you wonder why the Draft tab keeps growing.</p></li>
 </ol>
 <figure><img src="sdrx-me-04-create.png" alt="Create Marketing Email form"/><figcaption><b>7.1</b> &mdash; <b>&#9312;</b> Name (required, click &#9998;) &middot; <b>&#9313;</b> Timezone (defaults to UTC+01:00) &middot; <b>&#9314;</b> Description (optional) &middot; <b>&#9315;</b> Next &rarr; Template.</figcaption></figure>
 
 <h3 id="tpl-step" class="anchor">7b &middot; Create / edit a template</h3>
-<p><b>A sub-flow inside managing the ME.</b> Still on the <b>Templates</b> tab, you build the actual email a ME sends &mdash; a <b>step</b> (= one email) with its subject, body, variables and attachments. A brand-new ME opens with <b>no step yet</b> &mdash; it says <i>"Please add an email step to start viewing preview email"</i>. Click <b>+ Create new step</b>. <b>A step = one email.</b> <span class="fn">(The <b>Preview</b> tab only appears once at least one step exists.)</span></p>
+<p><b>A sub-flow inside managing the ME.</b> Still on the <b>Templates</b> tab, you build the actual email a ME sends &mdash; a <b>step</b> (= one email) with its subject, body, variables and attachments. A brand-new ME opens with <b>no step yet</b> &mdash; it says <i>"Please add an email step to start viewing preview email"</i>. Click <b>+ Create new step</b>. <b>A step = one email.</b> <span class="fn">(The <b>Preview</b> tab is gated on <b>people</b>, not on steps &mdash; it appears once the ME has at least one recipient. See <a href="#me-tabs" style="font-weight:700;cursor:pointer">7.2.4 &#8599;</a>.)</span></p>
 <figure><img src="sdrx-me-08-create-step.png" alt="Empty ME — Create new step"/><figcaption><b>7b &middot; empty state</b> &mdash; a new ME's <b>Templates</b> tab: no step yet &rarr; <b>+ Create new step</b>.</figcaption></figure>
 <p>The step editor opens &mdash; the core fields:</p>
 <div class="tblwrap"><table>

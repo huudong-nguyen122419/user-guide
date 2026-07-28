@@ -2,7 +2,7 @@
 
 > A5 · Manage a marketing email (Admin)
 
-1. **A5.3.1** — **Open it.** Header: editable **name** · **timezone** · **description** · **owner** with the **⚙** badge · the **Active** switch. Tabs: **Inbox · Template · People · Preview · Email Queues · Data Health β · Timeline**. (Any “V1” duplicates you see are legacy screens — ignore them.)
+1. **A5.3.1** — **Open it.** Header: editable **name** · **timezone** · **description** · **owner** with the **⚙** badge · the **Active** switch. Tabs: **Inbox · Template · People · Preview · Email Queues · Data Health β · Timeline**. **Two are conditional** — **Preview** renders only once the ME has at least one person, **Email Queues** only once it is past Draft. A fresh Draft legitimately shows neither, so do not read their absence as a fault. (Any “V1” duplicates you see are legacy screens — ignore them.)
 
    ![ME detail header](admm-03-detail.png)
 
