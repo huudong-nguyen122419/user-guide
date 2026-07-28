@@ -211,6 +211,7 @@
     <a href="#ec-6-7" class="st2" data-page="page-a6">A6.x.7 · Where the reason lives</a>
     <a href="#ec-6-8" class="st2" data-page="page-a6">A6.x.8 · Wrong company flags</a>
     <a href="#ec-6-9" class="st2" data-page="page-a6">A6.x.9 · No operational impact</a>
+    <a href="#ec-6-10" class="st2" data-page="page-a6">A6.x.10 · Switch back to In Review</a>
     <a class="flow adm" data-page="page-b1"><span class="n">B1</span> Invite talents to a project</a>
     <a class="flow tal" data-page="page-b2"><span class="n">B2</span> Talent · log &amp; submit timesheet</a>
     <a href="#b2-open" class="st" data-page="page-b2">B2.1 · Open Timesheet</a>
@@ -825,7 +826,18 @@
   </tbody></table></div>
 </li>
 
-<li data-code="A6.3.4"><b>Step 4 &mdash; no group match anywhere? Fall back to Employment Status.</b>
+<li data-code="A6.3.4"><b>Shortcut &mdash; the profile often tells you outright.</b> Under the Employment Status line the system prints its own one-line verdict, and it is the same signal the automatic rule uses:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Line on the profile</th><th>What produced it</th></tr></thead>
+  <tbody>
+  <tr><td><i>&ldquo;This talent is a full-time employee&rdquo;</i></td><td>Employment Status = Full-time Employee</td></tr>
+  <tr><td><i>&ldquo;This talent is a freelancer and currently working at a <b>sponsor</b> / <b>portfolio</b> / <b>corporate</b> company&rdquo;</i></td><td>Employment Status = Freelancer <b>and</b> an ongoing role at a company carrying that flag. Priority when several apply: sponsor &rarr; portfolio &rarr; corporate.</td></tr>
+  <tr><td>nothing printed</td><td>neither condition holds &mdash; the automatic rule leaves them Active</td></tr>
+  </tbody></table></div>
+  <p class="fn">A <b>sponsor</b> or <b>portfolio</b> verdict is the strongest single hint that you are looking at a client. A <b>corporate</b> verdict is group D &mdash; deliberately out of scope, so it is <u>not</u> a reason to set Passive.</p>
+  <figure><img src="a6-09-auto-classify-banner.png" alt="Auto-classification line and Activity Logs"/><figcaption><b>A6.3.4</b> &mdash; <b>&#9312;</b> Employment Status &middot; <b>&#9313;</b> the system's own verdict line, printed right below it &middot; <b>&#9314;</b> the <b>Activity Logs</b> tab &middot; <b>&#9315;</b> every status change with who made it and when.</figcaption></figure>
+</li>
+<li data-code="A6.3.5"><b>Last resort &mdash; no group match anywhere? Fall back to Employment Status.</b>
   <div class="tblwrap"><table>
   <thead><tr><th>Employment Status</th><th>Verdict</th></tr></thead>
   <tbody>
@@ -834,7 +846,7 @@
   </tbody></table></div>
 </li>
 
-<li data-code="A6.3.5"><b>Two overrides that beat everything above.</b>
+<li data-code="A6.3.6"><b>Two overrides that beat everything above.</b>
   <ul>
   <li><b>A completed contract with Fintalent &rarr; Active.</b> They have already delivered as talent; that is proof, not inference.</li>
   <li><b>A status a human set on purpose stays put.</b> Check the <i>Activity Logs</i> tab before overturning anything.</li>
@@ -856,6 +868,7 @@
 </li>
 <li data-code="A6.4.3"><b>Open the talent, confirm, then switch the chip to Active.</b> Click the status chip under the avatar and pick <b>Active</b>. A short confirmation appears; there is no reason field on this direction.
   <figure><img src="a6-05-status-chip.png" alt="Talent status chip"/><figcaption><b>A6.4.3</b> &mdash; <b>&#9312;</b> current status chip, click to open &middot; <b>&#9313;</b> the only alternative offered &mdash; the chip switches between Active and Passive and nothing else &middot; <b>&#9314;</b> <b>Employment Status</b> printed on the header line, used in <a href="#a6-rule" style="font-weight:700;cursor:pointer">step 4 &#8599;</a>.</figcaption></figure>
+  <figure><img src="a6-08-set-active-modal.png" alt="Set Talent Status to Active dialog"/><figcaption><b>A6.4.3</b> &mdash; <b>&#9312;</b> the dialog names the talent &middot; <b>&#9313;</b> the target status &middot; <b>&#9314;</b> <b>Exit</b> cancels, <b>Yes</b> commits. Note there is <b>no reason field on this direction</b> &mdash; only the Passive direction asks for one.</figcaption></figure>
   <p class="fn">Hovering the chip on a Passive talent shows <i>Passive since &lt;date&gt;</i> plus the reason that was recorded &mdash; read it before you overturn the decision.</p>
 </li>
 <li data-code="A6.4.4"><b>Work through the list, not the page.</b> Changing a status re-runs the filter, so rows shift under you. This is why <a href="#a6-list" style="font-weight:700;cursor:pointer">A6.2.6 &#8599;</a> tells you to freeze the list first.</li>
@@ -880,7 +893,21 @@
 <ol class="steps edge">
 <li id="ec-6-1" data-code="A6.x.1"><b>The <i>In Review</i> queue &mdash; new sign-ups waiting for approval.</b> The <b>N In Review</b> button at the top right of the talents list opens the queue one profile at a time.
   <figure><img src="a6-07-in-review.png" alt="In Review profile toolbar"/><figcaption><b>A6.x.1</b> &mdash; <b>&#9312;</b> status chip reads <b>In Review</b> and is <b>not editable</b> &middot; <b>&#9313;</b> <b>Reject Talent</b> &rarr; status becomes <i>Rejected</i>; <b>Approve Talent</b> &rarr; confirmation dialog, then the talent enters the normal pool &middot; <b>&#9314;</b> pager &mdash; step through the whole queue without going back to the list &middot; <b>&#9315;</b> Employment Status, visible on the header.</figcaption></figure>
-  <p><b>Approving is where classification should happen, not after.</b> Read the work experience while the profile is open: if the person is a client, approve first and then set Passive per <a href="#a6-q2" style="font-weight:700;cursor:pointer">A6.5 &#8599;</a> &mdash; the chip is locked while the status is In Review.</p>
+  <p><b>Approving does not simply mean &ldquo;Active&rdquo;.</b> The confirmation dialog repeats the name, email and title; on <b>Approve</b> the system then applies an automatic rule and picks the resulting status itself:</p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Condition at the moment of approval</th><th>Resulting status</th></tr></thead>
+  <tbody>
+  <tr><td><b>internal status = Skip Review</b> <u>and</u> an <b>ongoing</b> role at a company flagged <b>sponsor / portfolio / corporate</b></td><td><b>Passive</b> &mdash; <code>passiveDate</code> stamped, <b>no reason recorded</b></td></tr>
+  <tr><td>anything else</td><td><b>Active</b></td></tr>
+  </tbody></table></div>
+  <p class="fn">Verified on six approvals: <i>Skip Review + ongoing role at a flagged company</i> produced Passive twice; the same talent with the flag missing, with no ongoing role at all, or without Skip Review produced Active four times. The trigger is the flag on the linked company &mdash; an ongoing role at a company that was never matched to the Mergermarket list does <b>not</b> fire it.</p>
+  <div class="call warn"><span class="t">This is where most wrongly-Passive talents come from</span>Freelancers get set Passive <b>at approval time</b> purely because they hold a current job, whatever that job is &mdash; a corporate role counts, and group D is supposed to be out of scope. Nobody clicked anything, and because the rule writes no reason, the profile gives no explanation afterwards. If you are auditing Passive talents, start here.</div>
+  <p><b>Two things worth knowing about the queue itself:</b></p>
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li>After each decision the drawer <b>advances to the next profile</b> and the counter drops, so the whole queue can be worked without returning to the list.</li>
+  <li>The queue drawer <b>does not put the talent id in the URL</b>, so a profile being reviewed cannot be linked to. Opening the same person from the list does add <code>?id=&hellip;</code> &mdash; and the Approve / Reject buttons are there too, so use that route when you need to share or come back.</li>
+  </ul>
+  <p class="fn">The chip is locked while the status is In Review, so a client has to be approved first and set Passive afterwards per <a href="#a6-q2" style="font-weight:700;cursor:pointer">A6.5 &#8599;</a>.</p>
 </li>
 <li id="ec-6-2" data-code="A6.x.2"><b><i>ReviewPassive</i> &mdash; a Passive talent resubmitted their profile.</b> The profile shows a <i>Talent Resubmit since &lt;date&gt;</i> panel next to the original Passive reason, and the toolbar offers <b>three</b> buttons instead of two:
   <div class="tblwrap"><table>
@@ -890,15 +917,28 @@
   <tr><td><b>Reject Review Passive</b> <span class="fn">(red)</span></td><td><b>Passive</b></td><td>nothing material changed &mdash; back to where they were</td></tr>
   <tr><td><b>Reject Talent</b> <span class="fn">(red)</span></td><td><b>Rejected</b></td><td>they do not belong on the platform at all</td></tr>
   </tbody></table></div>
+  <p>The Summary tab opens with a <b>Talent Resubmit since</b> panel carrying what the talent supplied to support the request: <b>Reference Email</b>, <b>Reference Linkedin</b> and <b>Additional Context of Request</b>. Those three fields are the evidence you are judging &mdash; an empty panel means they asked for reactivation without supplying anything.</p>
+  <figure><img src="a6-10-review-passive.png" alt="A talent in Review Passive"/><figcaption><b>A6.x.2</b> &mdash; <b>&#9312;</b> the chip reads <b>Review Passive</b> and is not editable &middot; <b>&#9313;</b> the three decision buttons &middot; <b>&#9314;</b> the <b>Talent Resubmit since</b> panel with the supporting fields &middot; <b>&#9315;</b> Employment Status, still worth reading.</figcaption></figure>
   <p>Always read the original Passive reason first &mdash; it is shown on the same screen. Approving without checking whether the resubmission actually addresses it defeats the point of the queue.</p>
 </li>
-<li id="ec-6-3" data-code="A6.x.3"><b>There is no bulk status update.</b> <b>Bulk Actions</b> offers Export PDF Talents, Add to list, Remove from list, Export Talents (CSV), Set Skip Review, Set Require Review &mdash; and nothing else. Every status change is one profile at a time. For a long list, <b>Add to list</b> first and split the list between people.</li>
+<li id="ec-6-3" data-code="A6.x.3"><b>There is no bulk status update &mdash; but two bulk actions still change the outcome.</b> <b>Bulk Actions</b> offers Export PDF Talents, Add to list, Remove from list, Export Talents (CSV), <b>Set Skip Review</b>, <b>Set Require Review</b> &mdash; and nothing else. Every status change is one profile at a time; for a long list, <b>Add to list</b> first and split it between people.
+  <p><b>Set Skip Review is not cosmetic.</b> It flips the talent's internal status to <i>Skip Review</i>, which is one half of the automatic rule in <a href="#ec-6-1" style="font-weight:700;cursor:pointer">A6.x.1 &#8599;</a>. Applying it to someone still In Review changes what <b>Approve</b> will do to them. <b>Set Require Review</b> is the opposite action.</p>
+</li>
 <li id="ec-6-4" data-code="A6.x.4"><b>The title and the work experience disagree.</b> Common and important. Seen in production: a title reading <i>"Freelance, former Private Equity Professional"</i> on a profile whose work experience still shows an <b>ongoing</b> role at a PE fund. The title claims they left; the data says they did not. Open the row and check the end date before deciding.</li>
 <li id="ec-6-5" data-code="A6.x.5"><b>Most current employers are not linked, so company flags are missing.</b> Roughly <b>63%</b> of talents have a current role whose employer was never matched to the Mergermarket company list &mdash; no Sponsor / Portfolio / Corporate flag to read. For those people the title and the free-text company description are the only evidence. This is also why the Work Experience filter cannot replace the title check: every one of the strongest buy-side hits found on production sat at an <b>unflagged</b> company.</li>
 <li id="ec-6-6" data-code="A6.x.6"><b>Group C cannot be reached through Company Background.</b> The logically correct box is <i>Corporate / Industry &rarr; PE-Backed / Portfolio Company</i>, but that label is <b>assigned to nobody</b> &mdash; zero people on production and on UAT. The only route to group C is the Work Experience filter with <i>company type = Portfolio</i> + <i>Currently</i>, which returns 156 people.</li>
-<li id="ec-6-7" data-code="A6.x.7"><b>Where the Passive reason actually lives.</b> The reason you type is written to the <b>activity log</b>, not to a field on the talent record &mdash; the record's own <code>passiveReason</code> field stays empty. It surfaces in two places: the tooltip on the status chip, and the <i>Passive since</i> panel on the profile. If you need an audit trail, the <b>Activity Logs</b> tab is the place to look.</li>
+<li id="ec-6-7" data-code="A6.x.7"><b>Where the Passive reason actually lives, and what the audit trail shows.</b> The reason you type is written to the <b>activity log</b>, not to a field on the talent record &mdash; the record's own <code>passiveReason</code> field stays empty. It surfaces in the tooltip on the status chip and in the <i>Passive since</i> panel.
+  <p>The <b>Activity Logs</b> tab is the audit trail. Each entry reads <i>&ldquo;Admin &lt;name&gt; changed talent status to &lt;status&gt;&rdquo;</i> with a timestamp. Two limits to know:</p>
+  <ul style="margin:6px 0 0;padding-left:18px">
+  <li>A status set by the <b>automatic rule at approval</b> carries <b>no reason</b> &mdash; the entry only says the status changed.</li>
+  <li>The entry for an approval reads <i>&ldquo;approved talent review <b>(moved from Review Passive)</b>&rdquo;</i> even when the talent was in <b>In Review</b>, not Review Passive. The wording is fixed, so do not read the previous status from it.</li>
+  </ul>
+</li>
 <li id="ec-6-8" data-code="A6.x.8"><b>Company type flags come from an external source and can be wrong.</b> Production has investment banks flagged as <i>sponsor</i>, and at least one talent linked to an entirely different company than the one named in their title. When a familiar name produces a surprising result, check the company record before concluding the talent is misclassified.</li>
 <li id="ec-6-9" data-code="A6.x.9"><b>Changing status does not touch anything operational.</b> Passive only removes someone from the project-invitation flow. Running contracts, timesheets and invoices are unaffected &mdash; see <a data-goto="page-b3" style="font-weight:700;cursor:pointer">B3 &#8599;</a>.</li>
+<li id="ec-6-10" data-code="A6.x.10"><b>Sending someone back to In Review.</b> <b>More Actions &rarr; Switch to In Review</b> opens a drawer listing the talent's applications, with the rule stated at the top: <i>&ldquo;Can't switch if application status is Connected / In Interview / Draft Agreement / Hired&rdquo;</i>. Confirm with <b>Switch</b> and the status returns to In Review, which brings the Approve / Reject buttons back. The internal status is left untouched.
+  <p class="fn">The rest of that menu: Delete &middot; Delete Permanently &middot; Parse CV &middot; Upload CV &middot; Update gender &middot; Skip Project Invites &middot; Hero from website &middot; Hidden from website.</p>
+</li>
 </ol>
 <div class="pagernav"><a data-goto="page-a5"><span class="k">&larr; Prev</span><b>A5 &middot; Manage a marketing email</b></a><a class="next" data-goto="page-b1"><span class="k">Next &rarr;</span><b>B1 &middot; Invite talents</b></a></div>
 </section>
