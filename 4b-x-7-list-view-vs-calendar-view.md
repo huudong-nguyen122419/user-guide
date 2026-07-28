@@ -6,4 +6,4 @@
 
 ![Calendar view of the Meetings page](sc-07-calendar-view.png)
 
-*4b.x.7 — ① the List / Calendar toggle · ② Month / Week · ③ a cancelled booking, struck through · ④ the live one.*
+*4b.x.7 — a cancelled booking stays in its slot, struck through, instead of disappearing.*

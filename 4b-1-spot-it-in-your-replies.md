@@ -8,6 +8,6 @@
 
    ![Call Scheduled chip and the meeting count badge](sc-05-chip-and-badge.png)
 
-   *4b.1.2 — ① the Call Scheduled chip in the Lifecycle Stage column · ② the small badge on the calendar icon: how many calls this contact already has · ③ the Action column those icons live in.*
+   *4b.1.2 — ① the Call Scheduled chip, in the Lifecycle Stage column · ② the badge on the calendar icon — how many calls this contact already has.*
 
 3. **4b.1.3** — **Open the reply and read it before you book anything.** Clicking the row opens the contact on **Conversations**, with **Meetings** as the tab next to it — and the tab carries a count, so you can see at a glance whether you have already booked this person.

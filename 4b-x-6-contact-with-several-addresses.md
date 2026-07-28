@@ -6,4 +6,4 @@
 
 ![The participant email picker](sc-12-participant-picker.png)
 
-*4b.x.6 — the picker, opened: ① the chevron that opens it · ② the address already chosen, taken from the contact record · ③ their second address, one click away.*
+*4b.x.6 — the picker, opened on a contact who holds two addresses. The first is already chosen; the second is what you came here for.*

@@ -33,4 +33,4 @@
 
    ![The cancel meeting confirmation](sc-06-cancel-dialog.png)
 
-   *4b.4.3 — ① the warning: the link dies for everyone · ② Keep meeting backs out · ③ Cancel meeting commits.*
+   *4b.4.3 — read the warning, then Cancel meeting commits it. Keep meeting backs out.*

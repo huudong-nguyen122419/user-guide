@@ -8,4 +8,4 @@
 
    ![The compose window opened from a meeting](sc-04-send-email.png)
 
-   *4b.3.2 — ① the participant, prefilled · ② the subject, empty · ③ the body: signature only, no join link · ④ Send.*
+   *4b.3.2 — ① the body arrives with your signature and nothing else — paste the link here · ② then Send.*

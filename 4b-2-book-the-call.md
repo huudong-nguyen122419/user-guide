@@ -15,7 +15,7 @@
 
    ![Where the Create meeting button sits on a contact](sc-10-open-create-drawer.png)
 
-   *4b.2.1 — what the 📅 icon actually opens: ① the contact on its Meetings tab, next to Conversations · ② + Create meeting — this is the button that opens the form · ③ the four sub-tabs · ④ the same action offered in the empty state.*
+   *4b.2.1 — ① what the 📅 icon opens: the contact on its Meetings tab · ② + Create meeting — the button that opens the form.*
 
    ![The Create meeting button on the Meetings page](sc-13-meetings-route.png)
 
@@ -37,10 +37,10 @@
 
    ![The Create meeting form from a contact](sc-01-create-meeting.png)
 
-   *4b.2.2 — the contact route: ① participant, prefilled · ② Date & time · ③ timezone — yours · ④ duration · ⑤ the prefilled title.*
+   *4b.2.2 — ① Date & time, the one field that blocks you · ② the timezone it will be read in — yours, not theirs.*
 
 3. **4b.2.3** — **Save — and copy the link before you close the panel.** The confirmation shows the meeting, the full **Zoom join link**, and a **Copy join link** button. Nothing has been emailed to anyone. Closed it too soon? The link is not lost — **Copy join link** is on the meeting's row for as long as the booking exists ([4b.4 ↗](4b-4-manage-booked-calls.md)).
 
    ![Meeting created, with the Zoom join link](sc-02-meeting-created.png)
 
-   *4b.2.3 — ① the meeting · ② the Zoom join link, generated on save · ③ Copy join link · ④ the booking behind, tagged Upcoming and Zoom.*
+   *4b.2.3 — the link is generated for you; the only thing to do here is Copy join link.*
