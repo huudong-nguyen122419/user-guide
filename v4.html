@@ -757,9 +757,11 @@
   <tr><td>Mid-Market PE</td><td>234</td></tr>
   <tr><td>Venture Capital</td><td>0</td></tr>
   <tr><td>Growth Equity</td><td>4</td></tr>
+  <tr><td><b>PE-Backed / Portfolio Company</b> <span class="fn">(under <i>Corporate / Industry</i>)</span></td><td><b>0</b></td></tr>
   <tr><td><b>Combined</b></td><td><b>276</b></td></tr>
   </tbody></table></div>
   <p class="fn"><b>Tick the parent AND all five children.</b> The parent alone returns 262, the five leaves alone return 276 &mdash; <b>14 people carry only a leaf label and no parent label</b>. Miss either side and you lose them.</p>
+  <p class="fn"><b>Also tick <i>PE-Backed / Portfolio Company</i></b>, in the <i>Corporate / Industry</i> branch. It is the box that ought to deliver group C, so it belongs in the routine &mdash; but it currently returns <b>nobody</b>, so the total stays at 276. Reach group C through the Work Experience filter instead: <a href="#ec-6-6" style="font-weight:700;cursor:pointer">A6.x.6 &#8599;</a>.</p>
 </li>
 
 <li data-code="A6.2.3"><b>Split into two work queues</b> by adding the <b>Statuses</b> chip:
@@ -860,6 +862,7 @@
 <li data-code="A6.4.1"><b>Filter:</b> Company Background = the six PE/VC boxes, <b>Statuses = Passive</b>. Add <code>-consultant -advisory -advisor</code> in the search box only if you want to see the harder cases first &mdash; leaving it off shows the obvious wins.</li>
 <li data-code="A6.4.2"><b>Read each row against <a href="#a6-rule" style="font-weight:700;cursor:pointer">A6.3 &#8599;</a>.</b> The frequent patterns that mean "should be Active":
   <ul>
+  <li><b>They were never classified by a human at all.</b> This is the single biggest source of this queue. Open <b>Activity Logs</b>: a lone entry saying the status changed, with <b>no reason attached</b>, means the <a href="#ec-6-1" style="font-weight:700;cursor:pointer">automatic rule at approval &#8599;</a> did it &mdash; purely because they held a current job at a flagged company, including a plain <b>corporate</b> one, which is group D and out of scope. Nothing about the buy side was ever checked.</li>
   <li>Title openly says <b>consultant / advisory / freelance</b> &mdash; e.g. <i>"Private Equity Consultant"</i>, <i>"Independent Consultant at Various"</i>, <i>"Freelance in Transaction Services"</i>.</li>
   <li>Title carries an <b>excluded</b> word &mdash; <i>Associate</i>, <i>Analyst</i>, <i>Intern</i>.</li>
   <li><b>No current role at all</b>, and Employment Status is not Full/Part-time &mdash; students, people between jobs, MBA candidates.</li>
