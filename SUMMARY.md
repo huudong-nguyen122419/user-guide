@@ -74,6 +74,7 @@
   * [B2.3 · Expense report](b2-3-expense-report.md)
   * [B2.4 · Submit & edit the timesheet](b2-4-submit-and-edit-the-timesheet.md)
   * [B2.5 · Verify after submit](b2-5-verify-after-submit.md)
+  * [B2.6 · After you submit](b2-6-after-you-submit.md)
   * [B2.x · Edge cases](b2-x-edge-cases.md)
     * [B2.x.1 · Daily — Day(s) to bill](b2-x-1-daily-day-s-to-bill.md)
     * [B2.x.2 · Log / submit in batches](b2-x-2-log-submit-in-batches.md)

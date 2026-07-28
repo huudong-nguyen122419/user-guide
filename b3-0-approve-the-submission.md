@@ -2,6 +2,8 @@
 
 > B3 · Timesheet → invoice (Admin)
 
+🐛 Nothing new ever arrives here — submissions approve themselvesWhen a talent submits, the record is created **already Approved**, and `approvedBy` is set to **the talent's own user id** — verified by submitting one and reading it straight back. `approvedDate` stays empty, so it is not going through the approve action either. Platform-wide on UAT: the only **Pending Approval** rows are from **January 2024**, and **Rejected is 0** — nobody has ever rejected anything, because nothing has ever waited to be rejected. **The gate below is real and it works; it just never gets anything to hold.** Logged as **TS-09**. Until that changes, read this section as: *how to pull something back and review it deliberately*, not *your daily queue*.
+
 This screen is not in the menu — you have to type the URL**/timesheet-submissions** (UAT: `https://admin-uat.fintalent.io/timesheet-submissions`). It is a real, guarded admin page with 592 records on UAT, but nothing in the left menu links to it. If you have never seen it, that is why.
 
 1. **B3.0.1** — **What the page holds.** One row per submitted period, titled **Timesheets**. Columns: **Actions** · **Total Hours** · **Project** · **Client** · **Talent** · **Status** · submit date. The panel on the right filters by **Search**, **statuses**, **Projects**, **Talents**, **Clients**. Statuses are **Pending Approval**, **Approved** and **Rejected** — the same three the talent sees, under different names ([B3.x.9 ↗](b3-x-9-talent-sees-different-words.md)).
@@ -10,7 +12,7 @@ This screen is not in the menu — you have to type the URL**/timesheet-submissi
 
    *B3.0.1 — ① the table · ② the filter panel.*
 
-2. **B3.0.2** — **The row menu changes with status**, the same way the Resources one does: **Switch to Pending is your undo.** Approved something by mistake? Put it back to Pending and decide again.
+2. **B3.0.2** — **The row menu changes with status**, the same way the Resources one does: **Switch to Pending is how you get anything into this queue at all.** Because submissions arrive approved, the only way to review one deliberately is to put it back to Pending yourself — then Approve or Reject it. It is also the undo if you approved something by mistake.
 
    | Row is | ⋮ offers |
    |---|---|
