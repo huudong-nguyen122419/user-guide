@@ -255,12 +255,13 @@
 <a href="#er-4-3" class="st2" data-page="page-b4">B4.x.3 &middot; Type is locked after saving</a>
 <a href="#er-4-4" class="st2" data-page="page-b4">B4.x.4 &middot; The link is public</a>
 <a href="#er-4-5" class="st2" data-page="page-b4">B4.x.5 &middot; Errors arrive one at a time</a>
+<a href="#er-4-7" class="st2" data-page="page-b4">B4.x.7 &middot; Kill switch for the whole platform</a>
 <a href="#er-4-6" class="st2" data-page="page-b4">B4.x.6 &middot; No Display Page</a>
 <a class="flow tal" data-page="page-b5"><span class="n">B5</span> Talent &middot; find a resource</a>
 <a href="#b5-gate" class="st" data-page="page-b5">B5.1 &middot; Who can see them</a>
 <a href="#b5-list" class="st" data-page="page-b5">B5.2 &middot; The Resources page</a>
 <a href="#b5-open" class="st" data-page="page-b5">B5.3 &middot; Open one</a>
-<a href="#b5-blocks" class="st" data-page="page-b5">B5.4 &middot; The three placed blocks</a>
+<a href="#b5-blocks" class="st" data-page="page-b5">B5.4 &middot; Where the blocks appear</a>
 <a href="#b5-edge" class="st edge" data-page="page-b5">B5.x &middot; Edge cases</a>
 <a href="#er-5-1" class="st2" data-page="page-b5">B5.x.1 &middot; The misleading empty state</a>
 <a href="#er-5-2" class="st2" data-page="page-b5">B5.x.2 &middot; Video has no download</a>
@@ -1630,6 +1631,9 @@
 <li id="er-4-4" data-code="B4.x.4"><b>Copy Resource Link gives you a public link.</b> It points at the file in S3 and <b>opens for anyone who has it</b> &mdash; no login, no membership, no paid-signup check. Every gate described in <a data-goto="page-b5" style="font-weight:700;cursor:pointer">B5 &#8599;</a> applies to the app, not to that URL. Treat it as publishing to the open web: fine for something you would put on the website, wrong for anything client-confidential.</li>
 <li id="er-4-5" data-code="B4.x.5"><b>Validation does not always show you everything at once.</b> On a <b>Video</b>, an empty form flags <b>Title</b> and <b>Video URL</b> together. On a <b>PDF</b> the file check comes second &mdash; submit an empty form and you only get <i>This field is mandatory!</i> under Title; fill the title in, submit again, and only then does <b>PDF File is required</b> appear. Fix, resubmit, and re-read the form rather than assuming the first pass listed everything.
   <figure><img src="res-07-validation.png" alt="Validation errors on the create form"/><figcaption><b>B4.x.5</b> &mdash; a Video form submitted empty: <b>&#9312;</b> Title &middot; <b>&#9313;</b> Video URL, both flagged in the same pass.</figcaption></figure></li>
+<li id="er-4-7" data-code="B4.x.7"><b>One switch turns Resources off for the whole platform.</b> <b>Config Management &rarr; Payment Config &rarr; Subscription &rarr; Restrict Talent Modules</b> is a multi-select, and <b>Resource</b> is one of the choices. Add it and every talent loses the menu entry and all five blocks at once &mdash; nothing about the resources themselves changes, so the admin list will look perfectly healthy while the talent side is dark.
+  <p>On UAT the field currently holds <b>Deal Intelligence Feed &middot; Network &middot; Team &middot; Subscription</b>, and <b>Resource is not among them</b>. If Resources ever go missing for everyone at once, look here first.</p>
+  <figure><img src="res-17-restrict-modules.png" alt="Restrict Talent Modules with the Resource option"/><figcaption><b>B4.x.7</b> &mdash; <b>&#9312;</b> the four modules currently switched off &middot; <b>&#9313;</b> <b>Resource</b>, the unticked fifth option. Ticking it turns the whole feature off.</figcaption></figure></li>
 <li id="er-4-6" data-code="B4.x.6"><b>No Display Page is a valid answer.</b> The field has no asterisk and saves empty. The resource is then reachable only from the talent <b>Resources</b> page &mdash; which is the right choice for reference material nobody needs pushed at them, and the wrong one for something you want seen.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-b3"><span class="k">&larr; Prev</span><b>B3 &middot; Timesheet &rarr; invoice</b></a><a class="next" data-goto="page-b5"><span class="k">Next &rarr; (Talent)</span><b>B5 &middot; Find a resource</b></a></div>
@@ -1642,9 +1646,17 @@
 
 <h3 id="b5-gate" class="anchor">B5.1 &middot; Who can see them</h3>
 <ol class="steps tal">
-<li data-code="B5.1.1"><b>Resources are behind the signup fee.</b> A talent who has not paid gets nothing &mdash; the request is refused at the server, not filtered in the page. Talents who have paid see the full published set.
-  <div class="call warn"><span class="t">The refusal does not look like a refusal</span>An unpaid talent is shown <b>&ldquo;No resources found &mdash; Try adjusting your search or filter&rdquo;</b>. That reads as an empty search. They will change the filters, find nothing, and conclude the library is empty rather than locked. If a talent reports &ldquo;there are no resources&rdquo;, check whether they have paid before you go looking for a bug.</div></li>
-<li data-code="B5.1.2"><b>Only Published reaches them.</b> The talent side cannot ask for Draft or Archived at all &mdash; the server decides, so there is no filter a talent could set that would expose unfinished material.</li>
+<li data-code="B5.1.1"><b>Three conditions, and all three have to hold.</b> Fail any one and the talent loses the <b>Resources</b> menu entry <i>and</i> every block described in <a href="#b5-blocks" style="font-weight:700;cursor:pointer">B5.4 &#8599;</a> &mdash; it is one switch, not several.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Condition</th><th>What satisfies it</th></tr></thead>
+  <tbody>
+  <tr><td><b>Talent status</b></td><td>one of <b>Active</b> &middot; <b>Passive</b> &middot; <b>In Review</b> &middot; <b>Review Passive</b>. Note what that includes: a <b>Passive</b> talent still gets resources, and so does someone still <b>In Review</b>.</td></tr>
+  <tr><td><b>Module not restricted</b></td><td><b>Resource</b> must not be listed in <b>Restrict Talent Modules</b> &mdash; a platform-wide switch, see <a href="#er-4-7" style="font-weight:700;cursor:pointer">B4.x.7 &#8599;</a>.</td></tr>
+  <tr><td><b>Signup fee paid</b></td><td>the talent has paid the one-time access fee.</td></tr>
+  </tbody></table></div></li>
+<li data-code="B5.1.2"><b>When it fails, the menu entry is simply not there.</b> Nothing is greyed out and nothing explains why &mdash; <b>Resources</b> is absent from the navigation, so most talents will never know the section exists.
+  <div class="call warn"><span class="t">Typing the URL gets a message that lies</span>The route still resolves. A talent who has an old link or a bookmark lands on the page and is told <b>&ldquo;No resources found &mdash; Try adjusting your search or filter&rdquo;</b>. That reads as an empty search, not as a locked door. They will fiddle with the filters, find nothing, and report that the library is empty. If someone says that, <b>check the three conditions above before you go looking for a bug</b>.</div></li>
+<li data-code="B5.1.3"><b>Only Published reaches them.</b> The talent side cannot ask for Draft or Archived at all &mdash; the server decides, so there is no filter a talent could set that would expose unfinished material.</li>
 </ol>
 
 <h3 id="b5-list" class="anchor">B5.2 &middot; The Resources page</h3>
@@ -1668,15 +1680,26 @@
   <figure><img src="res-13-talent-detail.png" alt="Resource detail page for a PDF"/><figcaption><b>B5.3.1</b> &mdash; a PDF: <b>View Document</b> and <b>Download Document</b> side by side.</figcaption></figure></li>
 </ol>
 
-<h3 id="b5-blocks" class="anchor">B5.4 &middot; The three placed blocks</h3>
+<h3 id="b5-blocks" class="anchor">B5.4 &middot; Where the blocks appear</h3>
 <ol class="steps tal">
-<li data-code="B5.4.1"><b>Home</b> &mdash; low in the left column, below the standing FAQ cards, a <b>Resource</b> block split <b>Videos (n) / Documents (n)</b>. Do not confuse it with those FAQ cards above it: those are fixed page content, not resources, and no admin setting moves them.
-  <figure><img src="res-14-home-block.png" alt="Resource block on the talent Home page"/><figcaption><b>B5.4.1</b> &mdash; <b>Display Page = Home</b> lands here.</figcaption></figure></li>
-<li data-code="B5.4.2"><b>Project</b> &mdash; the project list under <b>Work</b>, at the bottom of the filter sidebar, past Preferred Country.
-  <figure><img src="res-15-projectlist-block.png" alt="Resource block on the project list"/><figcaption><b>B5.4.2</b> &mdash; <b>Display Page = Project</b> lands here.</figcaption></figure></li>
-<li data-code="B5.4.3"><b>Project Details</b> &mdash; a single project's page, top of the right column, beside the briefing.
-  <figure><img src="res-16-projectdetail-block.png" alt="Resource tabs on a project detail page"/><figcaption><b>B5.4.3</b> &mdash; <b>Display Page = Project Details</b> lands here.</figcaption></figure></li>
-<li data-code="B5.4.4"><b>The same material, twice over.</b> A placed resource is not removed from the Resources page &mdash; the block is a shortcut to it, sitting where the talent is already looking. Nothing is exclusive to a block.</li>
+<li data-code="B5.4.1"><b>There are exactly five places</b> a <b>Resource</b> block can be rendered, and no others. All five are the same component with a different <b>Display Page</b> passed in, so a resource never appears somewhere its Display Page does not name.
+  <div class="tblwrap"><table>
+  <thead><tr><th>#</th><th>Screen</th><th>Display Page</th><th>Where on the screen</th></tr></thead>
+  <tbody>
+  <tr><td>1</td><td><b>Home</b> &mdash; standard layout</td><td>Home</td><td><b>left</b> column, below the FAQ cards. Heading reads <b>Resource</b>.</td></tr>
+  <tr><td>2</td><td><b>Home</b> &mdash; deal-intelligence layout</td><td>Home</td><td><b>right</b> column, below Recent deal activity / Weekly deal calls / Boutique network. Heading reads <b>Resources</b>.</td></tr>
+  <tr><td>3</td><td><b>Project list</b> (<i>Work</i>)</td><td>Project</td><td>bottom of the filter sidebar, past <i>Preferred Country</i>.</td></tr>
+  <tr><td>4&ndash;5</td><td><b>Project detail</b></td><td>Project Details</td><td>in the apply / CTA panel of the right column. Two layout variants exist in the code; <b>only one renders</b>, so you see a single block.</td></tr>
+  </tbody></table></div>
+  <div class="call note"><span class="t">Two different Home pages, same URL</span><b>/overview</b> renders one of two layouts and the block moves column between them. A talent with <b>Deal Intelligence Feed</b> access gets layout 2 (right column, plural heading); everyone else gets layout 1 (left column, singular heading). Same resource, different place &mdash; so &ldquo;it is not on my Home page&rdquo; may just mean the other layout.</div></li>
+<li data-code="B5.4.2"><b>Home</b> &mdash; the block sits under the standing FAQ cards. Do not confuse it with those: <i>How to write a winning pitch</i> and the rest are fixed page content, not resources, and no admin setting moves them.
+  <figure><img src="res-14-home-block.png" alt="Resource block on the talent Home page"/><figcaption><b>B5.4.2</b> &mdash; <b>Display Page = Home</b>, standard layout.</figcaption></figure></li>
+<li data-code="B5.4.3"><b>Project list</b> &mdash; the bottom of the filter sidebar under <b>Work</b>.
+  <figure><img src="res-15-projectlist-block.png" alt="Resource block on the project list"/><figcaption><b>B5.4.3</b> &mdash; <b>Display Page = Project</b>.</figcaption></figure></li>
+<li data-code="B5.4.4"><b>Project detail</b> &mdash; top of the right column, beside the briefing.
+  <figure><img src="res-16-projectdetail-block.png" alt="Resource tabs on a project detail page"/><figcaption><b>B5.4.4</b> &mdash; <b>Display Page = Project Details</b>.</figcaption></figure></li>
+<li data-code="B5.4.5"><b>Counts are the quickest proof a placement worked.</b> Every block is split <b>Videos (n) / Documents (n)</b>, and the two add up to exactly the number of published resources carrying that Display Page. Measured on UAT: Home <b>7 + 10 = 17</b>, Project <b>1 + 3 = 4</b>, Project Details <b>1 + 4 = 5</b>. If your new resource does not move the count, it did not land.</li>
+<li data-code="B5.4.6"><b>The same material, twice over.</b> A placed resource is not removed from the Resources page &mdash; the block is a shortcut to it, sitting where the talent is already looking. Nothing is exclusive to a block.</li>
 </ol>
 
 <h3 id="b5-edge" class="edgehead anchor">B5.x &middot; Edge cases</h3>

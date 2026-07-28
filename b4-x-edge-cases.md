@@ -9,4 +9,5 @@
 * [B4.x.3 · Type is locked after saving](b4-x-3-type-is-locked-after-saving.md)
 * [B4.x.4 · The link is public](b4-x-4-the-link-is-public.md)
 * [B4.x.5 · Errors arrive one at a time](b4-x-5-errors-arrive-one-at-a-time.md)
+* [B4.x.7 · Kill switch for the whole platform](b4-x-7-kill-switch-for-the-whole-platform.md)
 * [B4.x.6 · No Display Page](b4-x-6-no-display-page.md)

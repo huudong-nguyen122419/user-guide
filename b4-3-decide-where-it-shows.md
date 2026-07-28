@@ -8,7 +8,7 @@
 
    *B4.3.1 — the three values: Home, Project, Project Details.*
 
-2. **B4.3.2** — **What each one does** — all three were checked against live counts on UAT: Every block is split **Videos (n) / Documents (n)** and scrolls as a carousel. See all three in [B5.4 ↗](b5-4-the-three-placed-blocks.md). It is not a filter on the Resources pageDisplay Page does not restrict who finds the resource. A published resource appears on the talent **Resources** page regardless — Display Page only adds the extra placement. Leaving it blank is allowed and simply means “Resources page only”.
+2. **B4.3.2** — **What each one does** — all three were checked against live counts on UAT: Every block is split **Videos (n) / Documents (n)** and scrolls as a carousel. See all three in [B5.4 ↗](b5-4-where-the-blocks-appear.md). It is not a filter on the Resources pageDisplay Page does not restrict who finds the resource. A published resource appears on the talent **Resources** page regardless — Display Page only adds the extra placement. Leaving it blank is allowed and simply means “Resources page only”.
 
    | Display Page | Puts a **Resource** block on |
    |---|---|
