@@ -584,15 +584,35 @@
 <div class="goal adm"><b>Goal:</b> the SDR prepares the ME / campaign (steps, people, review) &mdash; <b>you turn it on and send it</b>. This is the Admin half of the hand-off in SDR <a data-goto="page-marketing" href="#me-send" style="font-weight:700;cursor:pointer">Flow 7.5 &#8599;</a> and <a data-goto="page-campaign" href="#cmp-run" style="font-weight:700;cursor:pointer">Flow 6.6 &#8599;</a>.</div>
 
 <h3 id="a3-me" class="anchor">A3.1 &middot; Run a Marketing Email (activate + Force Send)</h3>
+<div class="call note"><span class="t">This is the handover point</span>The SDR builds the ME and marks people reviewed (<a data-goto="page-marketing" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a>). <b>Only an Admin can make it send.</b> Both controls below are invisible to the SDR login, so if a rep says &ldquo;I finished it and nothing happened&rdquo;, this is the step nobody did.</div>
 <ol class="steps">
-<li data-code="A3.1.1">Open the <b>Marketing Email</b> the SDR prepared.</li>
-<li data-code="A3.1.2"><b>Activate it:</b> flip the header switch <b>Draft &rarr; Active</b> (top-right).</li>
-<li data-code="A3.1.3">Go to the <b>Template</b> tab &rarr; click <b>Force Send</b> (top-right of the step). This button is <b>Admin-only</b> &mdash; the SDR login doesn't see it. Only contacts the SDR marked <b>Content Reviewed</b> are sent.
-  <figure><img src="sdrx-adm-01-run-me.png" alt="Active switch + Force Send"/><figcaption><b>A3.1</b> &mdash; <b>&#9312;</b> header switch <b>Draft &rarr; Active</b> &middot; <b>&#9313;</b> <b>Force Send</b> on the Template tab (Admin-only).</figcaption></figure>
+<li data-code="A3.1.1"><b>Open the ME.</b> Left menu &rarr; <b>Sales Management &rarr; Marketing Emails</b>, then click its name. The list tabs are <b>All &middot; Draft &middot; Paused &middot; Running &middot; Finished</b> &mdash; anything waiting on you is under <b>Draft</b>.</li>
+
+<li data-code="A3.1.2"><b>Check it is actually ready before you touch anything.</b> The tab bar carries the two numbers that decide whether sending is safe:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Tab</th><th>What to look for</th></tr></thead>
+  <tbody>
+  <tr><td><b>Template</b> <span class="fn">(with a count)</span></td><td>a count of <b>0</b> means no email exists yet &mdash; the ME cannot send anything. You get <i>&ldquo;Please add an email step to start viewing preview email&rdquo;</i> and a <b>Create new step</b> button instead.</td></tr>
+  <tr><td><b>People</b> <span class="fn">(with a count)</span></td><td>how many recipients are attached. <b>0</b> means activating does nothing at all.</td></tr>
+  </tbody></table></div>
+  <p>Read the step body too &mdash; it is shown in full on the Template tab, merge fields and all (<code>&#123;&#123;contact.firstName&#125;&#125;</code>). This is the last easy moment to catch a broken link or a wrong name.</p>
 </li>
-<li data-code="A3.1.4"><b>Check the Email Queue</b> tab &mdash; it fills with one row per email: <b>In Queue</b> (waiting) &rarr; <b>Delivered</b> (sent, with Sent Date) or <b>Cancel</b> (pulled &mdash; will not send). The count should match the reviewed contacts.
-  <figure><img src="sdrx-adm-02-queue-data.png" alt="Email Queue with data"/><figcaption><b>A3.1.4</b> &mdash; after Force Send: the queue with per-email <b>status</b> and <b>Sent Date</b>. <span class="fn">(The SDR view of this tab currently shows 0 / &ldquo;Couldn't load&rdquo; &mdash; known display bug; the data is here on the Admin view.)</span></figcaption></figure>
+
+<li data-code="A3.1.3"><b>Activate it</b> &mdash; the switch at the <b>very top right</b> of the drawer, reading <b>Draft</b>. Flip it and the ME becomes <b>Active</b> (the list calls this <b>Running</b>).
+  <div class="call warn"><span class="t">It is easy to miss</span>The switch sits right at the edge of the drawer, above the tab bar and past the description box. On a narrow window it can be off-screen &mdash; widen the browser rather than assuming the ME has no switch.</div>
 </li>
+
+<li data-code="A3.1.4"><b>Force Send</b> &mdash; on the <b>Template</b> tab, top-right of the <b>Step 1</b> panel, beside the red delete-step bin. This is the button that actually pushes the emails into the queue.
+  <p><b>Only contacts the SDR marked <i>Content Reviewed</i> are sent.</b> Anyone left unreviewed stays put &mdash; which is the safety net, and also the usual reason the queue comes out smaller than the People count.</p>
+  <figure><img src="me-45-a31-activate.png" alt="The activate switch and Force Send"/><figcaption><b>A3.1.3&ndash;4</b> &mdash; <b>&#9312;</b> the <b>Draft</b> switch, top right &middot; <b>&#9313;</b> <b>Force Send</b> on the step &middot; <b>&#9314;</b> the tab bar with the Template and People counts.</figcaption></figure>
+</li>
+
+<li data-code="A3.1.5"><b>Check the Email Queue tab.</b> One row per email: <b>In Queue</b> (waiting) &rarr; <b>Delivered</b> (gone, with a Sent Date) or <b>Cancel</b> (pulled, will not send). The count should match the reviewed contacts &mdash; if it does not, that is the number to chase, not the People count.
+  <p class="fn">Full tour of the queue, its four tabs and its row actions in <a href="#me-queue" style="font-weight:700;cursor:pointer">7.6 &#8599;</a>.</p>
+  <figure><img src="sdrx-adm-02-queue-data.png" alt="Email queue after Force Send"/><figcaption><b>A3.1.5</b> &mdash; after Force Send: per-email status and Sent Date. <span class="fn">The SDR view of this tab can show 0 / &ldquo;Couldn't load&rdquo; for a while &mdash; a display lag, not a failed send.</span></figcaption></figure>
+</li>
+
+<li data-code="A3.1.6"><b>Then hand it back.</b> Replies land in the ME's own <b>Inbox</b>, and the SDR works them from there (<a data-goto="page-marketing" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a>). Your part is done once the queue looks right.</li>
 </ol>
 
 <h3 id="a3-camp" class="anchor">A3.2 &middot; Run a campaign (the Enabled toggle)</h3>
@@ -756,7 +776,19 @@
 
 <h3 id="a5-edge" class="edgehead anchor">A5.x &middot; Edge cases</h3>
 <ol class="steps edge">
-<li id="em-5-1" data-code="A5.x.1"><b>An ME cannot be deleted or archived.</b> If a Draft is wrong, edit it or leave it &mdash; there is no cleanup action in the row menu. Plan names accordingly, because the list is long (86 and growing).</li>
+<li id="em-5-1" data-code="A5.x.1"><b>Delete exists, but it disappears the moment the ME starts.</b> The row <b>&#8942;</b> is short and changes with status:
+  <div class="tblwrap"><table>
+  <thead><tr><th>ME status</th><th>Row menu</th></tr></thead>
+  <tbody>
+  <tr><td><b>Draft</b></td><td>Edit/View Details &middot; <b>Delete</b> &middot; Manage assignee</td></tr>
+  <tr><td><b>Paused</b></td><td>Edit/View Details &middot; <b>Delete</b> &middot; Manage assignee</td></tr>
+  <tr><td><b>Running</b> <span class="fn">(&ldquo;Started on&hellip;&rdquo;)</span></td><td>Edit/View Details &middot; Manage assignee &mdash; <b>no Delete</b></td></tr>
+  </tbody></table></div>
+  <p>So the window for deleting is <b>before it has ever run</b>, or while it is paused. Once a ME has started it stays in the list for good &mdash; there is no archive to move it to either.</p>
+  <div class="call note"><span class="t">Two statuses exist in the data that you never see</span><b>Archived</b> and <b>Scheduled</b> are valid marketing-email statuses in the API and both appear in the status filter, but the list has <b>no tab for either</b> and no row action produces one. On UAT the five tabs account for every record (57 + 11 + 19 + 4 = 91). Treat them as not implemented rather than as something you can reach.</div>
+  <figure><img src="me-46-row-delete.png" alt="Row menu on a Draft marketing email"/><figcaption><b>A5.x.1</b> &mdash; a <b>Draft</b> ME: Delete is there.</figcaption></figure>
+  <figure><img src="me-47-row-running.png" alt="Row menu on a Running marketing email"/><figcaption><b>A5.x.1</b> &mdash; the same menu on a <b>Running</b> ME: Delete is gone.</figcaption></figure>
+</li>
 <li id="em-5-2" data-code="A5.x.2"><b>Force Send only reaches reviewed contacts.</b> Same rule as <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">A3.1.3 &#8599;</a>: people the SDR never marked <b>Content Reviewed</b> stay behind. A queue smaller than the People count usually means review, not a bug &mdash; check <b>People</b> before you chase it.</li>
 <li id="em-5-3" data-code="A5.x.3"><b>Cancelled &ne; failed.</b> In the example the queue reads <b>Delivered 1 &middot; Cancelled 2</b> of 3 people. Cancelled rows were pulled before sending (unreviewed, suppressed, or lifecycle-excluded) &mdash; they never hit the provider, so they don't count against the domain.</li>
 <li id="em-5-4" data-code="A5.x.4"><b>Change the sending account before, never during.</b> Switching the <b>&#9881;</b> account on a Running ME splits the thread: what already went out keeps the old From, replies to it land in the old inbox. Pause &rarr; switch &rarr; resume.</li>
@@ -3021,23 +3053,66 @@
 <li data-code="7.5.3"><b>Check the count</b> &mdash; the number of queued emails should match the <b>number of contacts you marked as reviewed</b> (7.4.5). If it doesn't, something's off; flag it &mdash; don't just carry on.</li>
 </ol>
 
-<h3 id="me-queue" class="anchor">7.6 &middot; The Email Queue &mdash; three tabs</h3>
-<p>The queue is your control room. Every email sits in one of three tabs:</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Tab</th><th>What it means</th></tr></thead>
-<tbody>
-<tr><td><b>In Queue</b></td><td><b>Will be sent, but hasn't gone yet</b> &mdash; waiting in the queue.</td></tr>
-<tr><td><b>Delivered</b></td><td><b>Already sent.</b></td></tr>
-<tr><td><b>Cancel</b></td><td><b>Removed from the queue</b> &mdash; these will <b>not</b> be sent.</td></tr>
-</tbody></table></div>
-<figure><img src="sdrx-me-23-email-queue.png" alt="Email Queue tab — In Queue / Delivered / Cancel"/><figcaption><b>7.6</b> &mdash; the <b>Email Queue</b> tab: <b>In Queue &middot; Delivered &middot; Cancel</b> (+ All), with columns <b>Subject &middot; Content &middot; Status &middot; Attachments &middot; Sent Date</b> and <b>Sources / Campaigns / Expected Run Date</b> filters.</figcaption></figure>
-<p class="fn"><b>Heads-up:</b> the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> for a while after a send &mdash; even when the email already went out. If it looks empty, refresh, or just confirm the send in the contact's <a data-goto="page-marketing" href="#me-conv" style="font-weight:700;cursor:pointer">Conversations (7.7) &#8599;</a>.</p>
-<p>Act on a row from the <b>&#8942; three-dot</b> menu (on rows in <b>In Queue</b>):</p>
-<ul style="margin:6px 0 0;padding-left:18px">
-<li><b>Set as delivered</b> &mdash; send that email <b>right now</b>, without waiting for the queue.</li>
-<li><b>Cancel email queue</b> &mdash; pull it out of the queue so it is <b>never</b> sent.</li>
-</ul>
-<div class="call warn"><span class="t">Check before you leave it</span>Anything left in <b>In Queue</b> <b>will</b> go out. If someone shouldn't receive it, <b>cancel</b> them &mdash; don't just ignore the row.</div>
+<h3 id="me-queue" class="anchor">7.6 &middot; The Email Queue &mdash; your control room</h3>
+<ol class="steps">
+<li data-code="7.6.1"><b>Two ways in, and they are not the same view.</b> The <b>Email Queue</b> tab inside a ME is already scoped to that ME. <b>Sales Management &rarr; Email Queues</b> in the left menu is the whole platform &mdash; it mixes three sources:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Source</th><th>Where the email came from</th></tr></thead>
+  <tbody>
+  <tr><td><b>Email Marketing</b></td><td>a marketing email &mdash; this flow.</td></tr>
+  <tr><td><b>Campaign</b></td><td>a campaign step (<a data-goto="page-campaign" style="font-weight:700;cursor:pointer">Flow 6 &#8599;</a>).</td></tr>
+  <tr><td><b>Task</b></td><td>a one-off task email.</td></tr>
+  </tbody></table></div>
+  <p>The <b>Campaign / Marketing Email</b> column tells you which, with a chip for the source and a link to the campaign or ME by name. On the global page, <b>read that column before you act on a row</b> &mdash; it is easy to cancel a campaign email thinking it belongs to your ME.</p>
+</li>
+
+<li data-code="7.6.2"><b>Four tabs, not three.</b> Each carries a live count:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Tab</th><th>What is in it</th></tr></thead>
+  <tbody>
+  <tr><td><b>All</b></td><td>everything, whatever its state &mdash; the tab people forget exists.</td></tr>
+  <tr><td><b>In Queue</b></td><td>will be sent, has not gone yet. <b>The only tab where the row actions do anything.</b></td></tr>
+  <tr><td><b>Delivered</b></td><td>already sent.</td></tr>
+  <tr><td><b>Cancel</b></td><td>pulled out of the queue &mdash; these will never be sent.</td></tr>
+  </tbody></table></div>
+  <p class="fn">Measured on UAT: All 20,168 &middot; In Queue 1,013 &middot; Delivered 18,742 &middot; Cancel 413.</p>
+  <figure><img src="me-40-queue-tabs.png" alt="Email Queues with four tabs"/><figcaption><b>7.6.2</b> &mdash; <b>&#9312;</b> the four tabs with their counts &middot; <b>&#9313;</b> the filter bar &middot; <b>&#9314;</b> rows-per-page and the column settings gear.</figcaption></figure>
+</li>
+
+<li data-code="7.6.3"><b>Narrowing it down.</b> Quick filters are <b>Sources</b>, <b>Campaigns</b> and <b>Expected Run Date</b>, plus <b>Add filter</b> to pin more. The search box has a <b>Simple / Advanced</b> toggle.
+  <div class="call note"><span class="t">The date filter changes meaning with the tab</span>On <b>Delivered</b> you filter by <b>sent date</b>. On <b>In Queue</b> and <b>Cancel</b> there is no sent date yet, so you filter by <b>queued date</b> instead. Same-looking control, different question &mdash; worth knowing before you conclude a date range is empty.</div>
+</li>
+
+<li data-code="7.6.4"><b>Read a row.</b> Beyond Subject and Status: <b>from</b> and <b>to</b> under the subject, a <b>Content</b> preview of the actual body, <b>Attachments</b>, and three dates &mdash; <b>Created</b>, <b>Expected Run</b>, <b>Expected Delivery</b> &mdash; with <b>Sent Date</b> filled in once it has gone.
+  <p>The recipient carries a small <b>coloured dot</b>: green when the contact has an email on file, grey when it does not.</p>
+  <figure><img src="me-42-queue-cols.png" alt="Email queue columns"/><figcaption><b>7.6.4</b> &mdash; scroll the table sideways for the rest: Status, Attachments, Sent Date, Created Date, Expected Run, Expected Delivery.</figcaption></figure>
+</li>
+
+<li data-code="7.6.5"><b>Act on one row</b> &mdash; the <b>&#8942;</b> at the far right of an <b>In Queue</b> row:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Action</th><th>What it does</th></tr></thead>
+  <tbody>
+  <tr><td><b>Set as Delivered</b></td><td>send it <b>now</b>, without waiting for its slot.</td></tr>
+  <tr><td><b>Cancel Email Queue</b></td><td>pull it out &mdash; it will never be sent.</td></tr>
+  </tbody></table></div>
+  <p><b>Both ask first.</b> The confirmation names the email by <b>subject</b>, so you can check you have the right row before committing. <b>Exit</b> backs out; <b>Yes</b> commits &mdash; red on Cancel, because that one cannot be undone from here.</p>
+  <figure><img src="me-43-queue-cancel.png" alt="Cancel Email Queue confirmation"/><figcaption><b>7.6.5</b> &mdash; the confirmation carries the <b>subject</b> of the email you are about to cancel.</figcaption></figure>
+</li>
+
+<li data-code="7.6.6"><b>Act on many rows.</b> Tick the header checkbox and a bar appears: how many are <b>selected</b>, <b>Select all N matching</b> to take the whole filtered set rather than just this page, <b>Clear</b>, and a red <b>Cancel N Email Queues</b>.
+  <p><b>Bulk cancel is the only bulk action</b> &mdash; there is no bulk &ldquo;send now&rdquo;. Filter first, then select, then cancel: that is the fast way to stop a whole batch.</p>
+  <figure><img src="me-41-queue-bulk.png" alt="Bulk selection bar"/><figcaption><b>7.6.6</b> &mdash; <b>&#9312;</b> the count and <b>Select all 1,013 matching</b> &middot; <b>&#9313;</b> the red bulk cancel, naming how many rows it will take.</figcaption></figure>
+</li>
+
+<li data-code="7.6.7"><b>You can still edit the email while it waits.</b> Click the row and it opens in an editor &mdash; subject at the top, the full body in a rich-text field, and <b>Save</b>. Whatever you save is what goes out.
+  <div class="call warn"><span class="t">This is a live email, not a draft</span>It is queued and will send on its own. Fix a typo here and it goes out corrected; leave the editor open and it still sends on schedule. If the email should not go at all, <b>cancel it</b> &mdash; editing does not hold it back.</div>
+  <figure><img src="me-44-queue-edit.png" alt="Editing a queued email"/><figcaption><b>7.6.7</b> &mdash; <b>&#9312;</b> the body, fully editable &middot; <b>&#9313;</b> <b>Save</b>.</figcaption></figure>
+</li>
+
+<li data-code="7.6.8"><b>If the list looks empty or stale, do not panic.</b> The SDR view of Email Queues can be slow or show <b>0</b> / &ldquo;Couldn't load&rdquo; for a while after a send, even when the mail has already gone. Refresh, or confirm the send in the contact's <b>Conversations</b> (<a href="#me-conv" style="font-weight:700;cursor:pointer">7.7 &#8599;</a>) &mdash; that never lies.</li>
+
+<li data-code="7.6.9"><b>Before you walk away:</b> anything still sitting in <b>In Queue</b> <u>will</u> go out. If someone should not receive it, cancel their row. Ignoring it is not the same as stopping it.</li>
+</ol>
 
 <h3 id="me-conv" class="anchor">7.7 &middot; Verify in the contact's Conversations</h3>
 <p>The moment your Admin force-sends, each email is written into that contact's conversation &mdash; even while it's still queued. To check:</p>
