@@ -10,10 +10,10 @@ Production is read-only for this flowRun the filters and read the data on produc
 
 ### In this flow
 
-* [A6.0 · The rulebook](a6-0-the-rulebook.md)
-* [A6.1 · Three fields](a6-1-three-fields.md)
-* [A6.2 · Build the working list](a6-2-build-the-working-list.md)
-* [A6.3 · The decision rule](a6-3-the-decision-rule.md)
-* [A6.4 · Queue 1 — Passive → Active](a6-4-queue-1-passive-active.md)
-* [A6.5 · Queue 2 — Active → Passive](a6-5-queue-2-active-passive.md)
+* [A6.0 · The rules in full](a6-0-the-rules-in-full.md)
+* [A6.1 · Three fields people mix up](a6-1-three-fields-people-mix-up.md)
+* [A6.2 · Build your working list](a6-2-build-your-working-list.md)
+* [A6.3 · How to decide](a6-3-how-to-decide.md)
+* [A6.4 · Passive who should be Active](a6-4-passive-who-should-be-active.md)
+* [A6.5 · Active who should be Passive](a6-5-active-who-should-be-passive.md)
 * [A6.x · Edge cases](a6-x-edge-cases.md)

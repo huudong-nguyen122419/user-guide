@@ -1,4 +1,4 @@
-# A6.x.5 · Employers not linked
+# A6.x.5 · Employer missing from the company list
 
 > A6 · Talent Active / Passive → A6.x · Edge cases
 

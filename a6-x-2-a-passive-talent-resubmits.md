@@ -1,4 +1,4 @@
-# A6.x.2 · ReviewPassive — resubmit
+# A6.x.2 · A Passive talent resubmits
 
 > A6 · Talent Active / Passive → A6.x · Edge cases
 

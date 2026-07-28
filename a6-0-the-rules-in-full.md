@@ -1,4 +1,4 @@
-# A6.0 · The rulebook
+# A6.0 · The rules in full
 
 > A6 · Talent Active / Passive
 
@@ -79,7 +79,7 @@ This net is deliberately wide, and it is **only safe inside the PE/VC-filtered l
 
 Full-time and Active together is always wrongThe two fields contradict each other, so the record is broken by definition — you do not need to read the title to know it. On production there are exactly **two**: *Mehdi Benjelloun* (Investment Banking Senior Analyst) and *Sahib Maker* (Vice President at Apis Partners). Fix these before anything else in the queues.
 
-**Do not confuse this gate with the automatic rule at approval.** They are different mechanisms that happen to agree most of the time. The gate above is the business rule you apply. The automatic rule — [A6.x.1 ↗](a6-x-1-in-review-queue.md) — fires on *Skip Review + an ongoing role at a flagged company* and does not read Employment Status at all; the one-line verdict printed on the profile does read it, but that line is only a display. Treating Full/Part-time as Passive is **settled business policy**, not something the system currently enforces on its own.
+**Do not confuse this gate with the automatic rule at approval.** They are different mechanisms that happen to agree most of the time. The gate above is the business rule you apply. The automatic rule — [A6.x.1 ↗](a6-x-1-new-sign-ups-to-approve.md) — fires on *Skip Review + an ongoing role at a flagged company* and does not read Employment Status at all; the one-line verdict printed on the profile does read it, but that line is only a display. Treating Full/Part-time as Passive is **settled business policy**, not something the system currently enforces on its own.
 
 #### Rule 7 — one override, and only one
 
@@ -106,8 +106,8 @@ Run over the 276 PE/VC-labelled records that currently sit at Active or Passive:
 | Outcome | Count | Meaning |
 |---|---|---|
 | Status already correct | **178** | — |
-| Active, should be Passive | **60** | clients able to receive project invitations — [Queue 2 ↗](a6-5-queue-2-active-passive.md) |
-| Passive, should be Active | **33** | supply locked out of every invitation — [Queue 1 ↗](a6-4-queue-1-passive-active.md) |
+| Active, should be Passive | **60** | clients who can still receive project invitations — fix in [A6.5 ↗](a6-5-active-who-should-be-passive.md) |
+| Passive, should be Active | **33** | talent shut out of every invitation — fix in [A6.4 ↗](a6-4-passive-who-should-be-active.md) |
 | Exempt under rule 7 | **5** | a named admin set the status by hand |
 
 The rule was validated against the **23 records classified by hand** on 27 Jul plus the gate ruling of 28 Jul, and reproduces all of them. That is the evidence it rests on — it is not proof it is right on the other 253, which is why every change still goes through a human read in A6.4 / A6.5.

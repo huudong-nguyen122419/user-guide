@@ -1,4 +1,4 @@
-# A6.2 · Build the working list
+# A6.2 · Build your working list
 
 > A6 · Talent Active / Passive
 
@@ -6,9 +6,9 @@
 
    ![Talents list controls](a6-01-filter-bar.png)
 
-   *A6.2.1 — ① Company Background chip — the first cluster · ② keyword search box with a Simple / Advanced toggle · ③ Add filter — pins filters that are not on the bar by default · ④ N In Review — the review queue, see [A6.x.1 ↗](a6-x-1-in-review-queue.md).*
+   *A6.2.1 — ① Company Background chip — the first cluster · ② keyword search box with a Simple / Advanced toggle · ③ Add filter — pins filters that are not on the bar by default · ④ N In Review — the review queue, see [A6.x.1 ↗](a6-x-1-new-sign-ups-to-approve.md).*
 
-2. **A6.2.2** — **First cluster — Company Background = PE / VC.** Open the chip and tick **all six boxes** in the *Private Equity / Venture Capital* branch: **Tick the parent AND all five children.** The parent alone returns 262, the five leaves alone return 276 — **14 people carry only a leaf label and no parent label**. Miss either side and you lose them. **Also tick *PE-Backed / Portfolio Company***, in the *Corporate / Industry* branch. It is the box that ought to deliver group C, so it belongs in the routine — but it currently returns **nobody**, so the total stays at 276. Reach group C through the Work Experience filter instead: [A6.x.6 ↗](a6-x-6-group-c-unreachable.md).
+2. **A6.2.2** — **First cluster — Company Background = PE / VC.** Open the chip and tick **all six boxes** in the *Private Equity / Venture Capital* branch: **Tick the parent AND all five children.** The parent alone returns 262, the five leaves alone return 276 — **14 people carry only a leaf label and no parent label**. Miss either side and you lose them. **Also tick *PE-Backed / Portfolio Company***, in the *Corporate / Industry* branch. It is the box that ought to deliver group C, so it belongs in the routine — but it currently returns **nobody**, so the total stays at 276. Reach group C through the Work Experience filter instead: [A6.x.6 ↗](a6-x-6-no-filter-finds-portfolio-company-bosses.md).
 
    | Box to tick | People (production) |
    |---|---|
@@ -21,12 +21,12 @@
    | **PE-Backed / Portfolio Company** (under *Corporate / Industry*) | **0** |
    | **Combined** | **276** |
 
-3. **A6.2.3** — **Split into two work queues** by adding the **Statuses** chip: Work one queue at a time. Mixing them means you cannot tell which direction a change is going.
+3. **A6.2.3** — **Split it into two working lists** by adding the **Statuses** chip. Each list is fixed in one direction, which is what keeps the work simple: Do one list at a time. Mix them and you lose track of which way a change was going.
 
-   | Queue | Statuses filter | What you are looking for |
+   | Set Statuses to | You are looking for | Worked in |
    |---|---|---|
-   | **Queue 1** — [A6.3 ↗](a6-4-queue-1-passive-active.md) | `Passive` | people wrongly locked out of project invitations |
-   | **Queue 2** — [A6.4 ↗](a6-5-queue-2-active-passive.md) | `Active` | clients still sitting in the talent pool |
+   | `Passive` | people wrongly shut out of project invitations | [A6.4 ↗](a6-4-passive-who-should-be-active.md) |
+   | `Active` | clients still sitting in the talent pool | [A6.5 ↗](a6-5-active-who-should-be-passive.md) |
 
 4. **A6.2.4** — **Narrow further with the keyword search box.** Switch it to **Advanced** and the syntax hints appear right under it: Useful passes: `-consultant -advisory -advisor` strips out service providers; `"operating partner" "managing partner" principal` surfaces the buy-side titles.
 

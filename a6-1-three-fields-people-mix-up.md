@@ -1,4 +1,4 @@
-# A6.1 · Three fields
+# A6.1 · Three fields people mix up
 
 > A6 · Talent Active / Passive
 
