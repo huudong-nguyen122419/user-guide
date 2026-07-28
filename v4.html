@@ -1561,16 +1561,16 @@
   <div class="tblwrap"><table>
   <thead><tr><th>Control</th><th>What it does</th></tr></thead>
   <tbody>
-  <tr><td><b>Status tabs</b></td><td>the main split &mdash; All / Draft / Published / Archived. Each carries its own count.</td></tr>
-  <tr><td><b>Search resources</b></td><td>free text over title and description. Types as you go and updates the tab counts with it.</td></tr>
-  <tr><td><b>Type</b> &middot; <b>Source</b></td><td>quick filters pinned to the bar. Each opens a checkbox list with an <b>include</b> (&#10003;) and an <b>exclude</b> (&#10007;) toggle per value, plus <b>Paste list</b> for bulk input.</td></tr>
-  <tr><td><b>Add filter</b></td><td><b>not a filter.</b> It opens <b>Customize Quick Filters</b> &mdash; tick which filters get pinned to the bar. Four exist: <b>Type</b>, <b>Source</b> (both pinned by default), <b>Display Page</b>, <b>Published Date</b>.</td></tr>
+  <tr><td><b>Status tabs</b></td><td>the main split &mdash; All / Draft / Published / Archived, each with its own count. Everything below narrows <i>within</i> the tab you are on.</td></tr>
+  <tr><td><b>Search resources</b></td><td>free text over title and description. Filters as you type and moves the tab counts with it.</td></tr>
+  <tr><td><b>Type</b> &middot; <b>Source</b> &middot; <b>Display Page</b> &middot; <b>Published Date</b></td><td>quick filters. Each opens a list of values with a checkbox, plus <b>Paste list</b> and a <b>Search or type custom value</b> box.</td></tr>
+  <tr><td><b>Add filter</b></td><td><b>not a filter.</b> It opens <b>Customize Quick Filters</b> &mdash; tick which of the four get pinned to the bar. <b>Type</b> and <b>Source</b> are pinned by default; add the other two yourself.</td></tr>
   </tbody></table></div>
-  <figure><img src="res-18-filters.png" alt="Filter row with the Source dropdown open"/><figcaption><b>B4.1.3</b> &mdash; <b>&#9312;</b> the quick-filter bar &middot; <b>&#9313;</b> <b>Source</b> opened: three values, each with include / exclude, and <b>Paste list</b> on top.</figcaption></figure>
-  <figure><img src="res-19-addfilter.png" alt="Customize Quick Filters panel"/><figcaption><b>B4.1.3</b> &mdash; <b>Add filter</b> only pins and unpins. <b>Display Page</b> and <b>Published Date</b> are the two you have to add yourself.</figcaption></figure>
-  <div class="call warn"><span class="t">The quick filters are broken right now &mdash; use the tabs and the search box</span>Pick any value in <b>Type</b>, <b>Source</b> or <b>Display Page</b> and the page goes to <b>No data</b>, whatever you chose. The URL gives the fault away: it writes <code>?bResourceTypes=[object Object]</code> instead of the value. Checked on UAT with 4 published <i>Internal</i> videos in the data &mdash; filtering on <b>Source = Internal</b> still returned nothing.
-  <br/>The <b>status tabs</b> and the <b>search box</b> work normally. Use those until this is fixed.</div>
-  <figure><img src="res-20-filter-bug.png" alt="Quick filter returning No data"/><figcaption><b>B4.1.3</b> &mdash; <b>&#9312;</b> a value picked in the quick-filter bar &middot; <b>&#9313;</b> the table empties out; the address bar reads <code>[object Object]</code>.</figcaption></figure>
+  <p><b>Each value has two ways in.</b> Hover a value and two circles appear on the right: <b>&#10003;</b> keeps only that value, <b>&#10007;</b> excludes it. So you can just as easily ask for &ldquo;everything except Internal&rdquo;.</p>
+  <figure><img src="res-20-filter-options.png" alt="Source filter opened"/><figcaption><b>B4.1.3</b> &mdash; <b>Source</b> opened: the three values, the include / exclude circles on each row, and <b>Paste list</b> on top.</figcaption></figure>
+  <p><b>What you picked shows as a chip</b> on the bar &mdash; <i>Type : Video</i>, <i>Source : Youtube</i>. Drop one with its <b>&times;</b>, or wipe the lot with <b>Clear all</b>. Filters stack, so those two together mean Youtube videos only.</p>
+  <figure><img src="res-18-filters.png" alt="Two filters applied, shown as chips"/><figcaption><b>B4.1.3</b> &mdash; <b>&#9312;</b> the two chips, each removable on its own &middot; <b>&#9313;</b> <b>Clear all</b> &middot; <b>&#9314;</b> the result count, down from 27 to 6.</figcaption></figure>
+  <div class="call note"><span class="t">Filters do not survive a refresh, and the link is not shareable</span>They hold while you stay on the page, but reload and the chips are gone and the list comes back unfiltered. The address bar writes <code>?bResourceTypes=[object Object]</code> instead of the value, so <b>sending someone that URL sends them an unfiltered page</b>. If you need to hand over a specific set, say which filters to set rather than pasting a link.</div>
 </li>
 </ol>
 
@@ -1622,7 +1622,7 @@
 
 <li data-code="B4.2.7"><b>Published At</b> &mdash; the publish date carried on the card and in the <b>Information</b> column.
   <p>Leave it blank and <b>publishing fills it in for you</b>, whichever way you publish. Set it yourself only when you want a specific date on the card.</p>
-  <div class="call warn"><span class="t">It does not appear to publish anything on its own</span>A date here does <u>not</u> flip a Draft to Published by itself &mdash; on UAT there are Drafts carrying a <b>past</b> Published At that are still sitting in Draft. Resource status has only <b>Draft / Published / Archived</b>; there is no <i>Scheduled</i>. Treat the switch as manual and do it yourself at <a href="#b4-publish" style="font-weight:700;cursor:pointer">B4.4 &#8599;</a>.
+  <div class="call warn"><span class="t">Known bug &mdash; it does not publish anything on its own</span>A date here does <u>not</u> flip a Draft to Published by itself &mdash; on UAT there are Drafts carrying a <b>past</b> Published At that are still sitting in Draft. Resource status has only <b>Draft / Published / Archived</b>; there is no <i>Scheduled</i>. This is <b>logged as a known bug</b>; until it is fixed, treat the switch as manual and do it yourself at <a href="#b4-publish" style="font-weight:700;cursor:pointer">B4.4 &#8599;</a> &mdash; <b>do not schedule a resource and walk away.</b>
   <br/><b>The date still matters for a different reason:</b> a Published resource with an <b>empty</b> Published At never shows on the talent Resources page &mdash; see <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>.</div>
 </li>
 
@@ -1682,6 +1682,17 @@
 <li data-code="B4.5.2"><b>Swap the file without recreating the resource.</b> The drawer shows the stored filename and a <b>Change PDF File</b> / <b>Change Thumbnail</b> button. Use this to correct a bad upload &mdash; the resource keeps its link, its date and its place.</li>
 <li data-code="B4.5.3"><b>Pull it back</b> &mdash; <b>Set Draft</b> hides it from talents while you fix it; <b>Set Archive</b> retires it for good. Both are reversible, and neither destroys anything.</li>
 <li data-code="B4.5.4"><b>Copy Resource Link</b> puts the file's own URL on your clipboard &mdash; handy for pasting into an email. Read <a href="#er-4-4" style="font-weight:700;cursor:pointer">B4.x.4 &#8599;</a> before you send it anywhere.</li>
+<li data-code="B4.5.5"><b>Change a whole batch at once.</b> Tick the checkbox in the table header (or individual rows) and a bar appears above the table: <b>Bulk Actions</b>, a running <b>N resources selected</b>, and &mdash; when your selection is a full page &mdash; <b>Select all N resources</b> to take the rest of the filtered set with it.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Bulk Actions offers</th><th>Note</th></tr></thead>
+  <tbody>
+  <tr><td><b>Publish N resources</b></td><td>same effect as publishing each one by hand.</td></tr>
+  <tr><td><b>Archive N resources</b></td><td>the batch equivalent of Set Archive.</td></tr>
+  </tbody></table></div>
+  <p><b>There is no bulk Set Draft</b> &mdash; pulling things back out of Published is one row at a time.</p>
+  <p class="fn">Pairs with <a href="#b4-open" style="font-weight:700;cursor:pointer">B4.1.3 &#8599;</a>: filter down to exactly the set you mean, tick the header box, act once.</p>
+  <figure><img src="res-26-bulk.png" alt="Bulk Actions menu"/><figcaption><b>B4.5.5</b> &mdash; <b>&#9312;</b> the selection bar with the running count &middot; <b>&#9313;</b> the two actions, each naming how many rows it will touch.</figcaption></figure>
+</li>
 </ol>
 
 <h3 id="b4-edge" class="edgehead anchor">B4.x &middot; Edge cases</h3>
