@@ -1297,8 +1297,9 @@
 
 <!-- ===================== B3 · ADMIN TIMESHEET → INVOICE ===================== -->
 <section class="page" id="page-b3">
-<h2><span class="who adm">ADMIN</span><span class="n adm">B3 &middot;</span> Manage timesheet &rarr; client invoice &rarr; talent invoice</h2>
-<div class="goal adm"><b>Goal:</b> take the hours the talent submitted (<a data-goto="page-b2" style="font-weight:700;cursor:pointer">B2 &#8599;</a>), reconcile them, then issue the <b>client invoice</b> (what the client pays) and track the <b>talent invoice</b> (what the talent is paid).</div>
+<h2><span class="who adm">ADMIN</span><span class="n adm">B3 &middot;</span> Timesheet &rarr; draft client invoice</h2>
+<div class="goal adm"><b>Goal:</b> take the hours the talent submitted (<a data-goto="page-b2" style="font-weight:700;cursor:pointer">B2 &#8599;</a>), reconcile them against the contract, and turn them into a <b>draft client invoice</b> whose figures you have checked.</div>
+<div class="call note"><span class="t">Where this flow stops</span>At the <b>Draft</b> invoice. Everything after it &mdash; issuing the invoice to the client, marking it paid, and paying the talent &mdash; is handled by <b>separate flows that this guide does not cover yet</b>. Get the draft right and hand over; do not improvise the next step.</div>
 <div class="call note"><span class="t">The one rule about the numbers</span>Money is always calculated from <b>hours to bill</b> (the figure the talent locked in), <b>never</b> from the logged hours. The logged hours stay visible alongside on every screen so the two can be reconciled.</div>
 
 <h3 id="b3-sync" class="anchor">B3.1 &middot; View &amp; sync the timesheet</h3>
@@ -1309,7 +1310,16 @@
   <figure><img src="sdrx-ts-07-admin-row.png" alt="Filtering a talent on the Timesheets page"/><figcaption><b>B3.1.2</b> &mdash; <b>&#9312;</b> the <b>Select talents</b> box with a talent chosen (<b>Active</b> chip + name).</figcaption></figure></li>
 <li data-code="B3.1.3">Click <b>Sync Data</b> on the talent's row &mdash; this pulls in whatever the talent has just submitted.
   <figure><img src="sdrx-ts-23-admin-sync-data.png" alt="Sync Data button"/><figcaption><b>B3.1.3</b> &mdash; <b>&#9312;</b> <b>Sync Data</b> in the <b>Actions</b> column &middot; <b>&#9313;</b> <b>Create Client Invoice</b>.</figcaption></figure></li>
-<li data-code="B3.1.4"><b>Read the talent's row</b> &mdash; three things decide what happens next:
+<li data-code="B3.1.4"><b>Sort the list to find the work, instead of scrolling it.</b> Two buttons sit above the table:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Sort by</th><th>Use it when</th></tr></thead>
+  <tbody>
+  <tr><td><b>Unbilled Hours</b></td><td>you are doing a billing round and want whoever has the most waiting, first.</td></tr>
+  <tr><td><b>Last Issued Date</b></td><td>you are checking who has not been billed for a while.</td></tr>
+  </tbody></table></div>
+  <p class="fn">The list runs to dozens of pages, so pair this with the page-size selector at the top right rather than paging through.</p>
+</li>
+<li data-code="B3.1.5"><b>Read the talent's row</b> &mdash; three things decide what happens next:
   <div class="tblwrap"><table>
   <thead><tr><th>What you see</th><th>What it means</th></tr></thead>
   <tbody>
@@ -1317,7 +1327,7 @@
   <tr><td><b>Unbilled: N h</b></td><td>Hours <b>submitted but not yet invoiced</b> &mdash; exactly what is about to be billed.</td></tr>
   <tr><td><b>&ldquo;X hrs to bill &middot; Y hrs worked&rdquo;</b></td><td>A <b>discrepancy warning</b>: shown only when the two differ. It comes with the <b>date range</b> that will go on the invoice.</td></tr>
   </tbody></table></div>
-  <figure><img src="sdrx-ts-07-admin-row.png" alt="A talent's timesheet row in admin"/><figcaption><b>B3.1.4</b> &mdash; <b>&#9312;</b> talent filter &middot; <b>&#9313;</b> contract (commitment &middot; cycle &middot; rate) &middot; <b>&#9314;</b> View Timesheets &middot; <b>&#9315;</b> Create Client Invoice &middot; <b>&#9316;</b> invoice history (each block shows date range + hours + amount). <span class="fn">This screenshot was taken after everything had been billed, so no <b>Unbilled</b> figure and no warning are visible &mdash; both appear only while hours remain uninvoiced.</span></figcaption></figure>
+  <figure><img src="sdrx-ts-07-admin-row.png" alt="A talent's timesheet row in admin"/><figcaption><b>B3.1.5</b> &mdash; <b>&#9312;</b> talent filter &middot; <b>&#9313;</b> contract (commitment &middot; cycle &middot; rate) &middot; <b>&#9314;</b> View Timesheets &middot; <b>&#9315;</b> Create Client Invoice &middot; <b>&#9316;</b> invoice history (each block shows date range + hours + amount). <span class="fn">This screenshot was taken after everything had been billed, so no <b>Unbilled</b> figure and no warning are visible &mdash; both appear only while hours remain uninvoiced.</span></figcaption></figure>
 </li>
 </ol>
 
@@ -1331,7 +1341,7 @@
   <tbody>
   <tr><td><b>Total hours to bill</b></td><td>the <i>submitted</i> total on the talent portal &mdash; the number the money follows.</td></tr>
   <tr><td><b>Total hours worked</b></td><td>the actual logged hours.</td></tr>
-  <tr><td><b>Total uninvoiced hours</b></td><td>what has not been invoiced yet &mdash; matches <b>Unbilled</b> in <a href="#b3-sync" style="font-weight:700;cursor:pointer">B3.1.4 &#8599;</a>.</td></tr>
+  <tr><td><b>Total uninvoiced hours</b></td><td>what has not been invoiced yet &mdash; matches <b>Unbilled</b> in <a href="#b3-sync" style="font-weight:700;cursor:pointer">B3.1.5 &#8599;</a>.</td></tr>
   </tbody></table></div>
   <figure><img src="sdrx-ts-25-admin-ts-totals.png" alt="The three totals and the day cells"/><figcaption><b>B3.2.2&ndash;B3.2.3</b> &mdash; <b>&#9312;</b> the three totals &middot; <b>&#9313;</b> each day cell reads &ldquo;X hrs to bill &middot; Y hrs worked&rdquo; &middot; <b>&#9314;</b> month navigation.</figcaption></figure></li>
 <li data-code="B3.2.3"><b>Check the day cells.</b> A cell shows <b>&ldquo;X hrs to bill&rdquo;</b>; when that day was adjusted it shows <b>&ldquo;X hrs to bill &middot; Y hrs worked&rdquo;</b>, along with the time range and the Note the talent wrote.
@@ -1343,25 +1353,49 @@
 <h3 id="b3-invoice" class="anchor">B3.3 &middot; Create Client Invoice</h3>
 <ol class="steps">
 <li data-code="B3.3.1">Click <b>Create Client Invoice</b> (on the talent's row in Timesheets, or via <b>Client Invoices &rarr; Create new Client Invoice</b>).
+  <div class="call note"><span class="t">The form opens empty &mdash; that is normal</span>Even though you clicked from a specific talent's row, <b>nothing is filled in</b> and almost every field is <b>greyed out</b>. Only the <b>Contract</b> picker is active. Nothing happens until you choose a contract, so do that first and the rest of the form comes to life.</div>
   <figure><img src="sdrx-ts-07-admin-row.png" alt="Create Client Invoice button"/><figcaption><b>B3.3.1</b> &mdash; <b>&#9315;</b> <b>Create Client Invoice</b>, right on the talent's row.</figcaption></figure></li>
-<li data-code="B3.3.2"><b>The form prefills from the contract</b> &mdash; check every field:
+
+<li data-code="B3.3.2"><b>Pick the Contract &mdash; this is the step that fills the form.</b> Above the picker sit two chips, <b class="fn">Active</b> and <b class="fn">Completed</b>, which decide <b>which contracts are offered</b>. A finished engagement still has hours to bill, so a <b>Completed</b> contract is a legitimate choice &mdash; just make sure it is the one you meant.
+  <p>One talent can hold several contracts at once, and they are listed by <b>commitment + project</b>, e.g. <i>Hourly Project</i> and <i>Daily Project</i> for the same person. Pick the wrong one and the rate, the unit and the currency all come out wrong &mdash; see <a data-goto="page-b2" href="#bt-5" style="font-weight:700;cursor:pointer">B2.x.5 &#8599;</a>.</p>
+  <p><b>The moment you choose, a summary bar appears at the top of the form.</b> Read it before anything else &mdash; it is the fastest sanity check that you are billing the right work:</p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Row</th><th>What to check</th></tr></thead>
+  <tbody>
+  <tr><td><b>PROJECT</b></td><td>the engagement being billed.</td></tr>
+  <tr><td><b>CLIENT</b></td><td>company name, billing address and VAT number. <b>Watch for a red <i>&ldquo;Name is missing&rdquo;</i> chip here</b> &mdash; the client record is incomplete, and that gap will print on the PDF. Fix the client record before creating the invoice.</td></tr>
+  <tr><td><b>EMAIL</b> &middot; <b>TALENT</b></td><td>who the invoice goes to, and whose hours it bills.</td></tr>
+  <tr><td><b>CONTRACT</b></td><td>rate + commitment (<i>100 EUR / Hourly</i>), the bank account (<i>WISE EUR</i>), the <b>payment terms</b> (<i>Net 10</i>), the start date, and where the contract came from (<i>Pandadoc</i>).</td></tr>
+  </tbody></table></div>
+  <p>The same bar carries five links &mdash; <b>View Timesheets &middot; View Contract &middot; View Project &middot; View Talent &middot; View Client</b> &mdash; so every cross-check can be done without abandoning the half-filled form.</p>
+</li>
+<li data-code="B3.3.3"><b>Now check every prefilled field.</b> The figures come from the contract and the uninvoiced timesheet range &mdash; prefilled is not the same as correct:
   <div class="tblwrap"><table>
   <thead><tr><th>Field</th><th>Must be</th></tr></thead>
   <tbody>
   <tr><td><b>Contract / Project / Client</b></td><td>the contract you are actually billing.</td></tr>
-  <tr><td><b>Service period start / end</b></td><td>the uninvoiced date range (<a href="#b3-sync" style="font-weight:700;cursor:pointer">B3.1.4 &#8599;</a>).</td></tr>
+  <tr><td><b>Service period start / end</b></td><td>the uninvoiced date range (<a href="#b3-sync" style="font-weight:700;cursor:pointer">B3.1.5 &#8599;</a>).</td></tr>
   <tr><td><b>Issued Date</b></td><td>defaults to today.</td></tr>
   <tr><td><b>Billing rate</b></td><td>= the <b>billing rate</b> on the contract (what the client pays).</td></tr>
   <tr><td><b>Quantity</b></td><td><b>= hours to bill</b> (Hourly) or <b>= days to bill</b> (Daily) &mdash; <b>not</b> the logged hours.</td></tr>
   <tr><td><b>Amount</b></td><td>calculated as Quantity &times; Billing rate. <b>Multiply it yourself as a check.</b></td></tr>
   <tr><td><b>Currency &middot; Fintalent Bank</b></td><td>as per the contract (e.g. EUR &rarr; WISE EUR).</td></tr>
   <tr><td><b>Client billing address &middot; VAT</b></td><td>as per the contract.</td></tr>
-  <tr><td><b>Description</b></td><td>talent name + period.</td></tr>
+  <tr><td><b>Description</b></td><td>talent name + period, composed for you.</td></tr>
   </tbody></table></div>
-  <p class="fn">The <b>&ldquo;X hrs to bill &middot; Y hrs worked&rdquo;</b> warning is repeated right above <b>Quantity</b> &mdash; read it one last time here.</p>
-  <figure><img src="sdrx-ts-09-admin-invoice-form.png" alt="Create Client Invoice form"/><figcaption><b>B3.3.2</b> &mdash; Service period &middot; Billing rate &middot; <b>Quantity = hours to bill</b> &middot; Amount calculated.</figcaption></figure>
+  <p><b>Four controls on this form that are easy to walk past:</b></p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Control</th><th>What it is for</th></tr></thead>
+  <tbody>
+  <tr><td><b>File invoice (PDF)</b> &rarr; <b>Upload File</b> <span class="fn">(top of the form)</span></td><td>Attach your <b>own</b> PDF for this invoice. Leave it empty and Fintalent generates the PDF itself (<a href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4 &#8599;</a>). Do not confuse it with the <b>expense receipt</b> upload further down &mdash; different field, different document.</td></tr>
+  <tr><td><b>&#8635;</b> next to <b>Quantity</b></td><td>Recalculates Quantity from the timesheets. Use it after changing the service period, instead of doing the arithmetic yourself.</td></tr>
+  <tr><td><b>View created invoices</b> &middot; <b>View timesheets</b> <span class="fn">(links on the Service period labels)</span></td><td>Answer &ldquo;has this range already been billed?&rdquo; and &ldquo;what is actually logged in it?&rdquo; without leaving the form.</td></tr>
+  <tr><td><b>Additional items</b> <span class="fn">(bottom)</span></td><td>Add non-fee lines <b>while creating</b>, not only when editing afterwards. They appear on the invoice as <i>(incl. N additional items)</i>.</td></tr>
+  </tbody></table></div>
+  <p class="fn">The <b>&ldquo;X hrs to bill &middot; Y hrs worked&rdquo;</b> warning is repeated right above <b>Quantity</b>, and the label states the hard limit: <b>up to 2 decimal places</b>. Read both one last time here.</p>
+  <figure><img src="sdrx-ts-09-admin-invoice-form.png" alt="Create Client Invoice form"/><figcaption><b>B3.3.3</b> &mdash; Service period &middot; Billing rate &middot; <b>Quantity = hours to bill</b> &middot; Amount calculated.</figcaption></figure>
 </li>
-<li data-code="B3.3.3"><b>Review the expense reports (if the talent filed any).</b> Expenses do <b>not</b> sit on the fee line &mdash; they land at the bottom of the form, one row each. Check each of them:
+<li data-code="B3.3.4"><b>Review the expense reports (if the talent filed any).</b> Expenses do <b>not</b> sit on the fee line &mdash; they land at the bottom of the form, one row each. Check each of them:
   <div class="tblwrap"><table>
   <thead><tr><th>What to look at</th><th>Check against</th></tr></thead>
   <tbody>
@@ -1371,10 +1405,10 @@
   <tr><td><b>File invoice expense</b></td><td>The receipt. <i>&ldquo;no files yet&rdquo;</i> means <b>the talent attached nothing</b> &mdash; ask for it before billing, or <b>Upload File</b> yourself if you received it another way.</td></tr>
   </tbody></table></div>
   <p>To drop an invalid item from this invoice, click <b>&#8854;</b> at the start of its row; to add something beyond the fee, click <b>&#8853; Additional items</b>.</p>
-  <figure><img src="tsx-18-admin-check-expense.png" alt="Expense block inside the invoice form"/><figcaption><b>B3.3.3</b> &mdash; <b>&#9312;</b> Description &middot; Currency &middot; Quantity &middot; Amount &middot; <b>&#9313;</b> <b>Total EUR</b> joining the invoice &middot; <b>&#9314;</b> the receipt attachment (currently <i>no files yet</i>) &middot; <b>&#9315;</b> drop this item &middot; <b>&#9316;</b> add a new one.</figcaption></figure>
+  <figure><img src="tsx-18-admin-check-expense.png" alt="Expense block inside the invoice form"/><figcaption><b>B3.3.4</b> &mdash; <b>&#9312;</b> Description &middot; Currency &middot; Quantity &middot; Amount &middot; <b>&#9313;</b> <b>Total EUR</b> joining the invoice &middot; <b>&#9314;</b> the receipt attachment (currently <i>no files yet</i>) &middot; <b>&#9315;</b> drop this item &middot; <b>&#9316;</b> add a new one.</figcaption></figure>
   <div class="call note"><span class="t">An expense the talent filed is missing?</span>It falls outside the <b>Service period</b> &mdash; usually because the talent dated it on a day with no billable hours. Widen the date range and it appears: see <a data-goto="page-b2" href="#bt-8" style="font-weight:700;cursor:pointer">B2.x.8 &#8599;</a>.</div>
 </li>
-<li data-code="B3.3.4">When everything checks out, click <b>Create</b>. The invoice is created in <b>Draft</b>, tagged <b>Timesheets (date range)</b> &mdash; review it straight away in <a href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4 &#8599;</a>. If there were expenses, the total already includes them.</li>
+<li data-code="B3.3.5">When everything checks out, click <b>Create</b>. The invoice is created in <b>Draft</b>, tagged <b>Timesheets (date range)</b> &mdash; review it straight away in <a href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4 &#8599;</a>. If there were expenses, the total already includes them.</li>
 </ol>
 
 <h3 id="b3-pdf" class="anchor">B3.4 &middot; Review the new invoice &amp; check the PDF</h3>
@@ -1433,10 +1467,19 @@
   <tr><td><b>Type</b> (Standard Invoice&hellip;)</td><td>Changes the invoice type.</td></tr>
   </tbody></table></div>
   <p class="fn">After editing, <b>download the PDF again</b> (<a href="#b3-pdf" style="font-weight:700;cursor:pointer">B3.4.3 &#8599;</a>) to be sure the file matches the corrected figures &mdash; the PDF is regenerated from the latest data.</p>
-  <div class="call note"><span class="t">Draft only</span>Edit freely while the invoice has not been sent. Once it moves to the next status it belongs to the <b>Issue Client Invoices</b> flow and is no longer freely editable.</div>
+  <div class="call warn"><span class="t">Draft only &mdash; and Draft is where your job ends</span>Edit freely while the invoice is still Draft. The status dropdown does offer <b>Issued</b>, <b>Paid</b> and <b>Archived</b>, but <b>do not touch it</b>: moving an invoice on belongs to a different flow, marking it <b>Paid</b> triggers work further downstream, and once it leaves Draft it is no longer freely editable. Finish your checks, leave it Draft, hand over.</div>
 </li>
 <li id="ba-8" data-code="B3.x.8"><b>&ldquo;Timesheets have changed, please check again&rdquo;.</b> Seeing this on a <b>Draft</b> invoice means the <b>source timesheet changed</b> after the invoice was created &mdash; the talent submitted more days, or an admin pressed <b>Sync Data</b> and newer figures arrived.
   <p><b>Reconcile without leaving the invoice:</b> the link row at the top of the drawer includes <b>View Timesheets</b> &mdash; clicking it <b>opens the talent's timesheet calendar on top</b>, with all three totals (<i>hours to bill / worked / uninvoiced</i>) and every day cell. Closing it with <b>&#10005;</b> returns you to the same invoice.</p>
+  <p><b>Opened this way the calendar gains a colour legend</b>, and it answers the "which days am I actually billing?" question at a glance:</p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Cell colour</th><th>Meaning</th></tr></thead>
+  <tbody>
+  <tr><td><b>Pink</b> &mdash; <i>Current invoice</i></td><td>days this invoice covers</td></tr>
+  <tr><td><b>Orange</b> &mdash; <i>Other invoices</i></td><td>days already billed on a different invoice &mdash; never billed twice, see <a href="#ba-3" style="font-weight:700;cursor:pointer">B3.x.3 &#8599;</a></td></tr>
+  <tr><td><b>White</b></td><td>logged but on no invoice yet &mdash; this is what <i>uninvoiced hours</i> counts</td></tr>
+  </tbody></table></div>
+  <p class="fn">The legend appears <b>only</b> on the calendar opened from an invoice. The one opened with <b>View Timesheets</b> from the talent row in <a href="#b3-view" style="font-weight:700;cursor:pointer">B3.2 &#8599;</a> has no colours, because there is no "current invoice" to colour against.</p>
   <figure><img src="tsx-19-check-timesheet-from-invoice.png" alt="Opening the timesheet calendar from the invoice drawer"/><figcaption><b>B3.x.8</b> &mdash; <b>&#9312;</b> the <b>View Timesheets</b> link inside the invoice drawer &middot; <b>&#9313;</b> the calendar opens on top, three totals ready to check against <b>Service period</b> and <b>Quantity</b>.</figcaption></figure>
   <p>If they differ, correct the invoice and click <b>Update</b>. <b>Never send an invoice while this message is showing</b> &mdash; the figures on it may be stale.</p>
 </li>

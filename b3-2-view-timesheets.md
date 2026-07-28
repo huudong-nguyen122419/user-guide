@@ -14,7 +14,7 @@
    |---|---|
    | **Total hours to bill** | the *submitted* total on the talent portal — the number the money follows. |
    | **Total hours worked** | the actual logged hours. |
-   | **Total uninvoiced hours** | what has not been invoiced yet — matches **Unbilled** in [B3.1.4 ↗](b3-1-view-and-sync-data.md). |
+   | **Total uninvoiced hours** | what has not been invoiced yet — matches **Unbilled** in [B3.1.5 ↗](b3-1-view-and-sync-data.md). |
 
    ![The three totals and the day cells](sdrx-ts-25-admin-ts-totals.png)
 

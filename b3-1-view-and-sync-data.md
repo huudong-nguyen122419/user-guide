@@ -20,7 +20,14 @@
 
    *B3.1.3 — ① Sync Data in the Actions column · ② Create Client Invoice.*
 
-4. **B3.1.4** — **Read the talent's row** — three things decide what happens next:
+4. **B3.1.4** — **Sort the list to find the work, instead of scrolling it.** Two buttons sit above the table: The list runs to dozens of pages, so pair this with the page-size selector at the top right rather than paging through.
+
+   | Sort by | Use it when |
+   |---|---|
+   | **Unbilled Hours** | you are doing a billing round and want whoever has the most waiting, first. |
+   | **Last Issued Date** | you are checking who has not been billed for a while. |
+
+5. **B3.1.5** — **Read the talent's row** — three things decide what happens next:
 
    | What you see | What it means |
    |---|---|
@@ -30,4 +37,4 @@
 
    ![A talent's timesheet row in admin](sdrx-ts-07-admin-row.png)
 
-   *B3.1.4 — ① talent filter · ② contract (commitment · cycle · rate) · ③ View Timesheets · ④ Create Client Invoice · ⑤ invoice history (each block shows date range + hours + amount). This screenshot was taken after everything had been billed, so no Unbilled figure and no warning are visible — both appear only while hours remain uninvoiced.*
+   *B3.1.5 — ① talent filter · ② contract (commitment · cycle · rate) · ③ View Timesheets · ④ Create Client Invoice · ⑤ invoice history (each block shows date range + hours + amount). This screenshot was taken after everything had been billed, so no Unbilled figure and no warning are visible — both appear only while hours remain uninvoiced.*
