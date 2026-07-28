@@ -28,7 +28,3 @@
    ![Resource tabs on a project detail page](res-16-projectdetail-block.png)
 
    *B5.4.4 — Display Page = Project Details.*
-
-5. **B5.4.5** — **Counts are the quickest proof a placement worked.** Every block is split **Videos (n) / Documents (n)**, and the two add up to exactly the number of published resources carrying that Display Page. Measured on UAT: Home **7 + 10 = 17**, Project **1 + 3 = 4**, Project Details **1 + 4 = 5**. If your new resource does not move the count, it did not land.
-
-6. **B5.4.6** — **The same material, twice over.** A placed resource is not removed from the Resources page — the block is a shortcut to it, sitting where the talent is already looking. Nothing is exclusive to a block.

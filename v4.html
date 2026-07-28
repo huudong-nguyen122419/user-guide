@@ -1543,7 +1543,7 @@
 
 <h3 id="b4-open" class="anchor">B4.1 &middot; Open Resources</h3>
 <ol class="steps">
-<li data-code="B4.1.1">Left menu &rarr; <b>Content Management</b> &rarr; <b>Resources</b>. It sits alongside <b>Weekly Calls</b> and <b>Configuration</b> &mdash; not under Project or User Management, which is where people look first.
+<li data-code="B4.1.1">Left menu &rarr; <b>Content Management</b> &rarr; <b>Resources</b>. It sits alongside <b>Weekly Calls</b> and <b>Configuration</b> &mdash; not under Project or User Management, which is where people look first. You can also go straight there with the URL <b>/resources</b> <span class="fn">(on UAT: <code>https://admin-uat.fintalent.io/resources</code>)</span>.
   <figure><img src="res-01-menu.png" alt="Content Management menu with Resources"/><figcaption><b>B4.1.1</b> &mdash; the <b>Resources</b> entry under <b>Content Management</b>.</figcaption></figure></li>
 <li data-code="B4.1.2"><b>The four tabs are the status filter</b>, and each carries its own count. Everything you do to a resource for the rest of this flow moves it between them.
   <div class="tblwrap"><table>
@@ -1557,26 +1557,89 @@
   <p>Below the tabs: a keyword search, quick filters for <b>Type</b> and <b>Source</b>, and <b>Add filter</b> for <b>Display Page</b> and <b>Published Date</b>. The table shows <b>Information</b> (thumbnail, status chip, publish date, title, description), <b>Type</b>, <b>Source</b>, <b>Display Page</b> and <b>Categories</b>.</p>
   <div class="call warn"><span class="t">Categories is a column, not a filter</span>You can read a resource's categories in the table but you cannot filter on them here. Talents can &mdash; their page has a Categories picker. If you need to audit by category, sort it out visually or ask on the talent side.</div>
   <figure><img src="res-02-list.png" alt="Resources list with status tabs"/><figcaption><b>B4.1.2</b> &mdash; <b>&#9312;</b> the four status tabs with their counts &middot; <b>&#9313;</b> how many rows the current tab is showing.</figcaption></figure></li>
+<li data-code="B4.1.3"><b>Narrowing the list.</b> Four things sit above the table, and they do not all do the same job:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Control</th><th>What it does</th></tr></thead>
+  <tbody>
+  <tr><td><b>Status tabs</b></td><td>the main split &mdash; All / Draft / Published / Archived. Each carries its own count.</td></tr>
+  <tr><td><b>Search resources</b></td><td>free text over title and description. Types as you go and updates the tab counts with it.</td></tr>
+  <tr><td><b>Type</b> &middot; <b>Source</b></td><td>quick filters pinned to the bar. Each opens a checkbox list with an <b>include</b> (&#10003;) and an <b>exclude</b> (&#10007;) toggle per value, plus <b>Paste list</b> for bulk input.</td></tr>
+  <tr><td><b>Add filter</b></td><td><b>not a filter.</b> It opens <b>Customize Quick Filters</b> &mdash; tick which filters get pinned to the bar. Four exist: <b>Type</b>, <b>Source</b> (both pinned by default), <b>Display Page</b>, <b>Published Date</b>.</td></tr>
+  </tbody></table></div>
+  <figure><img src="res-18-filters.png" alt="Filter row with the Source dropdown open"/><figcaption><b>B4.1.3</b> &mdash; <b>&#9312;</b> the quick-filter bar &middot; <b>&#9313;</b> <b>Source</b> opened: three values, each with include / exclude, and <b>Paste list</b> on top.</figcaption></figure>
+  <figure><img src="res-19-addfilter.png" alt="Customize Quick Filters panel"/><figcaption><b>B4.1.3</b> &mdash; <b>Add filter</b> only pins and unpins. <b>Display Page</b> and <b>Published Date</b> are the two you have to add yourself.</figcaption></figure>
+  <div class="call warn"><span class="t">The quick filters are broken right now &mdash; use the tabs and the search box</span>Pick any value in <b>Type</b>, <b>Source</b> or <b>Display Page</b> and the page goes to <b>No data</b>, whatever you chose. The URL gives the fault away: it writes <code>?bResourceTypes=[object Object]</code> instead of the value. Checked on UAT with 4 published <i>Internal</i> videos in the data &mdash; filtering on <b>Source = Internal</b> still returned nothing.
+  <br/>The <b>status tabs</b> and the <b>search box</b> work normally. Use those until this is fixed.</div>
+  <figure><img src="res-20-filter-bug.png" alt="Quick filter returning No data"/><figcaption><b>B4.1.3</b> &mdash; <b>&#9312;</b> a value picked in the quick-filter bar &middot; <b>&#9313;</b> the table empties out; the address bar reads <code>[object Object]</code>.</figcaption></figure>
+</li>
 </ol>
 
 <h3 id="b4-create" class="anchor">B4.2 &middot; Create one</h3>
+<p>Click <b>Create New</b>, top right &mdash; a drawer opens over the list. Then work <b>down the form in order</b>, because the second field changes what the rest of it looks like.</p>
+<figure><img src="res-03-create.png" alt="Create New button"/><figcaption><b>B4.2</b> &mdash; <b>Create New</b>.</figcaption></figure>
 <ol class="steps">
-<li data-code="B4.2.1">Click <b>Create New</b>, top right. A drawer opens over the list.
-  <figure><img src="res-03-create.png" alt="Create New button"/><figcaption><b>B4.2.1</b> &mdash; <b>Create New</b>.</figcaption></figure></li>
-<li data-code="B4.2.2"><b>Set <i>Resource Type</i> first</b>, before filling anything else in &mdash; the rest of the form changes underneath you when you touch it.
+<li data-code="B4.2.1"><b>Title</b> &mdash; <b>required</b>. This is what a talent reads on the card, so write it for them, not for the file.</li>
+
+<li data-code="B4.2.2"><b>Resource Type</b> &mdash; <b>Video</b> or <b>PDF</b>. <b>Set this before anything else.</b> It decides which fields exist below, and once the resource is saved you cannot change it (<a href="#er-4-3" style="font-weight:700;cursor:pointer">B4.x.3 &#8599;</a>).
   <div class="tblwrap"><table>
-  <thead><tr><th>Field</th><th>Video</th><th>PDF</th></tr></thead>
+  <thead><tr><th>Type</th><th>What appears</th></tr></thead>
   <tbody>
-  <tr><td><b>Source</b> <span class="fn">(Youtube &middot; Vimeo &middot; Internal)</span></td><td>required</td><td><b>gone</b></td></tr>
-  <tr><td><b>Video URL</b></td><td>required</td><td><b>gone</b></td></tr>
-  <tr><td><b>Upload PDF File</b></td><td>&mdash;</td><td><b>required</b></td></tr>
+  <tr><td><b>Video</b></td><td><b>Source</b> (required) + <b>Video URL</b> (required)</td></tr>
+  <tr><td><b>PDF</b></td><td>Source and Video URL <b>disappear</b>; <b>Upload PDF File</b> takes their place, required</td></tr>
   </tbody></table></div>
-  <p>Everything else is shared: <b>Title</b> (required) &middot; <b>Status</b> &middot; <b>Display Page</b> &middot; <b>Categories</b> &middot; <b>Published At</b> &middot; <b>Description</b> &middot; <b>Thumbnail</b>.</p>
-  <figure><img src="res-04-video.png" alt="Create Resource form, Video type"/><figcaption><b>B4.2.2</b> &mdash; the two fields only <b>Video</b> has: <b>&#9312;</b> <b>Source</b> &middot; <b>&#9313;</b> <b>Video URL</b>.</figcaption></figure></li>
-<li data-code="B4.2.3">Switch to <b>PDF</b> and those two disappear; <b>Upload PDF File</b> takes their place and is mandatory.
-  <figure><img src="res-05-pdf.png" alt="Create Resource form, PDF type"/><figcaption><b>B4.2.3</b> &mdash; <b>Upload PDF File</b>, the field that replaces Source and Video URL.</figcaption></figure></li>
-<li data-code="B4.2.4"><b>Categories</b> offers two values &mdash; <b>Profile Tips</b> and <b>Interview Prep</b> &mdash; and a resource can carry both. This is the only field a talent can filter on, so leaving it empty makes the resource harder to find, not just untidy.</li>
-<li data-code="B4.2.5"><b>Thumbnail is optional but worth doing.</b> Leave it out on a PDF and the system generates one from the file's first page; that renders in the admin table, but talents get a plain placeholder card. Compare the cards in <a data-goto="page-b5" style="font-weight:700;cursor:pointer">B5.2 &#8599;</a> and you can see which resources had a thumbnail uploaded.</li>
+  <figure><img src="res-04-video.png" alt="Create Resource form, Video type"/><figcaption><b>B4.2.2</b> &mdash; the two fields only <b>Video</b> has: <b>&#9312;</b> <b>Source</b> &middot; <b>&#9313;</b> <b>Video URL</b>.</figcaption></figure>
+  <figure><img src="res-05-pdf.png" alt="Create Resource form, PDF type"/><figcaption><b>B4.2.2</b> &mdash; switch to <b>PDF</b> and <b>Upload PDF File</b> replaces them.</figcaption></figure>
+</li>
+
+<li data-code="B4.2.3"><b>Source</b> <span class="fn">(Video only)</span> &mdash; where the video comes from. It changes what you have to supply:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Source</th><th>What you do</th></tr></thead>
+  <tbody>
+  <tr><td><b>Youtube</b></td><td>paste the video link into <b>Video URL</b>.</td></tr>
+  <tr><td><b>Vimeo</b></td><td>same &mdash; paste the link into <b>Video URL</b>.</td></tr>
+  <tr><td><b>Internal</b></td><td><b>upload a video file from your own machine.</b> <b>Play it back in the drawer before you press Create</b> &mdash; that is the only moment you can catch the wrong file, and Resource Type is locked afterwards.</td></tr>
+  </tbody></table></div>
+</li>
+
+<li data-code="B4.2.4"><b>Status</b> &mdash; what happens the instant you press <b>Create</b>. Default is <b>Draft</b>.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Status</th><th>The moment you press Create</th></tr></thead>
+  <tbody>
+  <tr><td><b>Draft</b></td><td><b>Not on the talent portal.</b> Safe: keep editing, publish when you are happy.</td></tr>
+  <tr><td><b>Published</b></td><td><b>Live immediately.</b> Talents can see it as soon as the drawer closes &mdash; so be sure it is right first. You can still edit it or change status afterwards.</td></tr>
+  <tr><td><b>Archived</b></td><td><b>Not on the talent portal.</b> Goes to storage. Still editable, and you can move it back out.</td></tr>
+  </tbody></table></div>
+  <p class="fn">Nothing here is one-way: all three statuses can be swapped later from the row menu (<a href="#b4-manage" style="font-weight:700;cursor:pointer">B4.5 &#8599;</a>).</p>
+</li>
+
+<li data-code="B4.2.5"><b>Display Page</b> &mdash; which talent screen also gets a block with this resource on it. Optional.
+  <p><b>Leave it blank and nothing breaks:</b> the resource still shows up on the talent <b>Resources</b> tab like everything else &mdash; it just does not get an extra placement anywhere. Full breakdown of the three values in <a href="#b4-place" style="font-weight:700;cursor:pointer">B4.3 &#8599;</a>.</p>
+</li>
+
+<li data-code="B4.2.6"><b>Categories</b> &mdash; how the resource is classified. Two values exist: <b>Profile Tips</b> and <b>Interview Prep</b>. You may leave it empty, pick one, or pick both.
+  <p>Worth filling in: <b>this is the only field a talent can filter on</b> in their Resources tab (<a href="#b5-list" style="font-weight:700;cursor:pointer">B5.2 &#8599;</a>). Empty means harder to find, not just untidy.</p>
+</li>
+
+<li data-code="B4.2.7"><b>Published At</b> &mdash; the publish date carried on the card and in the <b>Information</b> column.
+  <p>Leave it blank and <b>publishing fills it in for you</b>, whichever way you publish. Set it yourself only when you want a specific date on the card.</p>
+  <div class="call warn"><span class="t">It does not appear to publish anything on its own</span>A date here does <u>not</u> flip a Draft to Published by itself &mdash; on UAT there are Drafts carrying a <b>past</b> Published At that are still sitting in Draft. Resource status has only <b>Draft / Published / Archived</b>; there is no <i>Scheduled</i>. Treat the switch as manual and do it yourself at <a href="#b4-publish" style="font-weight:700;cursor:pointer">B4.4 &#8599;</a>.
+  <br/><b>The date still matters for a different reason:</b> a Published resource with an <b>empty</b> Published At never shows on the talent Resources page &mdash; see <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>.</div>
+</li>
+
+<li data-code="B4.2.8"><b>Description</b> &mdash; a line or two under the title on the card. Optional; the card renders fine without it.</li>
+
+<li data-code="B4.2.9"><b>Thumbnail</b> &mdash; the picture on the card. Optional, and <b>what you get when you skip it is not the same everywhere</b>:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Left blank on&hellip;</th><th>Admin list</th><th>Talent card</th></tr></thead>
+  <tbody>
+  <tr><td><b>PDF</b></td><td>a red <b>PDF icon</b></td><td>plain grey <b>fintalent.com</b> placeholder</td></tr>
+  <tr><td><b>Video</b> &mdash; any source</td><td>grey box with a <b>&#9654;</b></td><td>plain grey <b>fintalent.com</b> placeholder</td></tr>
+  </tbody></table></div>
+  <div class="call warn"><span class="t">A Youtube or Vimeo link does not bring its own picture</span>Checked on UAT with a published Youtube resource that has no thumbnail: neither the admin table nor the talent card pulls the video's cover image. The card is rendered as an empty placeholder &mdash; there is no <code>&lt;img&gt;</code> on it at all. <b>If you want a picture, upload one.</b></div>
+  <figure><img src="res-22-thumb-pdf.png" alt="PDF row with no thumbnail"/><figcaption><b>B4.2.9</b> &mdash; <b>PDF</b>, no thumbnail: the admin table falls back to a PDF icon.</figcaption></figure>
+  <figure><img src="res-21-thumb-video.png" alt="Video row with no thumbnail"/><figcaption><b>B4.2.9</b> &mdash; <b>Video</b> (Youtube), no thumbnail: a grey box with a play symbol, not the Youtube cover.</figcaption></figure>
+  <figure><img src="res-23-thumb-talent.png" alt="Two talent cards with no thumbnail"/><figcaption><b>B4.2.9</b> &mdash; the same two on the talent side: <b>&#9312;</b> the video &middot; <b>&#9313;</b> the PDF. Identical placeholder; only the badge tells them apart.</figcaption></figure>
+</li>
 </ol>
 
 <h3 id="b4-place" class="anchor">B4.3 &middot; Decide where it shows</h3>
@@ -1663,8 +1726,19 @@
 <ol class="steps tal">
 <li data-code="B5.2.1"><b>Resources</b> in the top navigation (bottom bar on a narrow screen).
   <figure><img src="res-11-talent-list.png" alt="Resources in the talent navigation"/><figcaption><b>B5.2.1</b> &mdash; the <b>Resources</b> entry.</figcaption></figure></li>
-<li data-code="B5.2.2"><b>Three controls and a count</b>: free-text <b>Search</b>, <b>All Types</b> (video / document) and <b>Categories</b> &mdash; the field admins fill in at <a href="#b4-create" style="font-weight:700;cursor:pointer">B4.2.4 &#8599;</a>. The count under them is the honest number of cards, so it is the quickest check that a change has gone live.
-  <figure><img src="res-12-talent-filters.png" alt="Search, type and category filters"/><figcaption><b>B5.2.2</b> &mdash; the filter row and the result count.</figcaption></figure></li>
+<li data-code="B5.2.2"><b>Three controls and a live count.</b> They stack: set two and you get the intersection, and the count under them always tells you how many cards survived.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Control</th><th>How it behaves</th></tr></thead>
+  <tbody>
+  <tr><td><b>Search resources&hellip;</b></td><td>free text, filters as you type &mdash; no button to press. Matches <b>title and description</b>, so a word from the summary finds it too.</td></tr>
+  <tr><td><b>All Types</b></td><td>single choice: <b>Video</b> or <b>Document</b>. &ldquo;All Types&rdquo; is the reset.</td></tr>
+  <tr><td><b>Categories</b></td><td><b>multi-select</b> &mdash; <b>Profile Tips</b> and <b>Interview Prep</b>, the field admins set at <a href="#b4-create" style="font-weight:700;cursor:pointer">B4.2.6 &#8599;</a>. Chosen values sit in the box as chips; click the <b>&times;</b> on a chip to drop just that one.</td></tr>
+  <tr><td><b>N resources found</b></td><td>the honest number of cards below. Quickest check that something you published has gone live.</td></tr>
+  </tbody></table></div>
+  <p class="fn">Unlike the admin side, <b>these actually work</b> &mdash; compare <a href="#b4-open" style="font-weight:700;cursor:pointer">B4.1.3 &#8599;</a>. A resource with no Categories can only be reached by search, never by the Categories filter.</p>
+  <figure><img src="res-24-talent-filters.png" alt="The talent filter row"/><figcaption><b>B5.2.2</b> &mdash; <b>&#9312;</b> Search &middot; <b>&#9313;</b> All Types &middot; <b>&#9314;</b> Categories &middot; <b>&#9315;</b> the count.</figcaption></figure>
+  <figure><img src="res-25-talent-types.png" alt="All Types dropdown open"/><figcaption><b>B5.2.2</b> &mdash; <b>All Types</b> opened: only <b>Video</b> and <b>Document</b>.</figcaption></figure>
+</li>
 <li data-code="B5.2.3"><b>Read a card.</b> Thumbnail with <b>&#9654;</b> for video or <b>&#128065;</b> for document; a <b>&#11015; Document</b> chip on PDFs or a <b>duration badge</b> on videos; then title, description, <b>#category</b> chips and <b>Published at &lt;date&gt;</b>. Cards whose thumbnail is a plain Fintalent placeholder are ones nobody uploaded an image for.</li>
 </ol>
 
@@ -1698,8 +1772,6 @@
   <figure><img src="res-15-projectlist-block.png" alt="Resource block on the project list"/><figcaption><b>B5.4.3</b> &mdash; <b>Display Page = Project</b>.</figcaption></figure></li>
 <li data-code="B5.4.4"><b>Project detail</b> &mdash; top of the right column, beside the briefing.
   <figure><img src="res-16-projectdetail-block.png" alt="Resource tabs on a project detail page"/><figcaption><b>B5.4.4</b> &mdash; <b>Display Page = Project Details</b>.</figcaption></figure></li>
-<li data-code="B5.4.5"><b>Counts are the quickest proof a placement worked.</b> Every block is split <b>Videos (n) / Documents (n)</b>, and the two add up to exactly the number of published resources carrying that Display Page. Measured on UAT: Home <b>7 + 10 = 17</b>, Project <b>1 + 3 = 4</b>, Project Details <b>1 + 4 = 5</b>. If your new resource does not move the count, it did not land.</li>
-<li data-code="B5.4.6"><b>The same material, twice over.</b> A placed resource is not removed from the Resources page &mdash; the block is a shortcut to it, sitting where the talent is already looking. Nothing is exclusive to a block.</li>
 </ol>
 
 <h3 id="b5-edge" class="edgehead anchor">B5.x &middot; Edge cases</h3>
