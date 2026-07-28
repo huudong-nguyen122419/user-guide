@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """Convert the OSW HTML guides into GitBook-ready markdown pages.
 
@@ -63,6 +63,8 @@ def inline(node, anchors: dict) -> str:
         href = node.get('href', '')
         if href.startswith('#'):
             href = anchors.get(href[1:], href)
+        elif not href and node.get('data-goto'):
+            href = anchors.get(node['data-goto'], '')  # cross-flow jump in the HTML
         return f'[{inner.strip()}]({href})' if href else inner
     if node.name == 'br':
         return '\n'
@@ -103,6 +105,9 @@ def split_item(el: Tag, anchors: dict) -> tuple[str, list]:
     """Split a <li> into its own text and the blocks (figures/tables) inside it."""
     blocks, text_parts = [], []
     for child in el.children:
+        # a wrapper div only counts as a block if it actually wraps one
+        if isinstance(child, Tag) and child.name == 'div' and child.find(['table', 'figure']):
+            child = child.find(['table', 'figure'])
         if isinstance(child, Tag) and child.name in ('figure', 'table', 'ol', 'ul'):
             if child.name == 'figure':
                 blocks.append(('figure', child))
@@ -151,10 +156,18 @@ def render_flow_elements(elements: list, anchors: dict, skip_ids: set) -> list:
             continue  # prev/next pager belongs to the HTML layout
         if el.name == 'ol':
             lines += render_steps(el, anchors, skip_ids)
+        elif el.name == 'ul':
+            for li in el.find_all('li', recursive=False):
+                text, blocks = split_item(li, anchors)
+                lines.append(f'* {text}')
+                lines += render_blocks(blocks, anchors, indent='  ')
         elif el.name == 'table':
             lines.append(render_table(el, anchors))
         elif el.name == 'figure':
             lines.append(render_figure(el, anchors))
+        elif el.name == 'div' and el.find(['table', 'figure', 'ol', 'ul']):
+            # wrappers like <div class="tblwrap"><table>…</table></div>
+            lines += render_flow_elements(el.find_all(recursive=False), anchors, skip_ids)
         elif el.name in ('p', 'div', 'h4'):
             text = clean(inline(el, anchors))
             if text:
@@ -213,6 +226,7 @@ def build_anchor_map(groups: list) -> dict:
     anchors = {}
     for _, flows in groups:
         for flow in flows:
+            anchors[flow.page_id] = flow.filename  # data-goto="page-inbox" jumps
             for step in flow.children:
                 anchors[step.anchor] = step.filename
                 for sub in step.children:
@@ -224,11 +238,13 @@ def build_anchor_map(groups: list) -> dict:
 # page writing
 # --------------------------------------------------------------------------
 
-def elements_until_next_h3(start: Tag) -> list:
+def elements_after_heading(start: Tag) -> list:
+    """Everything under a heading, up to the next heading of the same or higher level."""
+    stop = {'h2', 'h3'} if start.name == 'h3' else {'h2', 'h3', 'h4'}
     out = []
     for sib in start.next_siblings:
         if isinstance(sib, Tag):
-            if sib.name == 'h3':
+            if sib.name in stop:
                 break
             out.append(sib)
     return out
@@ -283,7 +299,13 @@ def convert_flow(flow: Page, soup: BeautifulSoup, anchors: dict, out_dir: str) -
             print(f'  !! anchor #{step.anchor} not found', file=sys.stderr)
             continue
         promoted = {sub.anchor for sub in step.children}
-        body = render_flow_elements(elements_until_next_h3(head), anchors, promoted)
+        # Some flows hang their nav entries off an <h3>, others straight off a
+        # step <li>. h3 -> take everything up to the next h3; li -> just that item.
+        if head.name in ('h3', 'h4'):
+            body = render_flow_elements(elements_after_heading(head), anchors, promoted)
+        else:
+            text, blocks = split_item(head, anchors)
+            body = ([text] if text else []) + render_blocks(blocks, anchors)
         if step.children:
             is_edge = any(c.startswith('edge') for c in (head.get('class') or []))
             body.append('### Edge cases' if is_edge else '### In this step')
@@ -296,8 +318,11 @@ def convert_flow(flow: Page, soup: BeautifulSoup, anchors: dict, out_dir: str) -
             if li is None:
                 print(f'  !! anchor #{sub.anchor} not found', file=sys.stderr)
                 continue
-            text, blocks = split_item(li, anchors)
-            body = ([text] if text else []) + render_blocks(blocks, anchors)
+            if li.name in ('h3', 'h4'):
+                body = render_flow_elements(elements_after_heading(li), anchors, set())
+            else:
+                text, blocks = split_item(li, anchors)
+                body = ([text] if text else []) + render_blocks(blocks, anchors)
             write_page(os.path.join(out_dir, sub.filename), sub.title,
                        f'{flow.title} → {step.title}', '', body)
             written += 1
