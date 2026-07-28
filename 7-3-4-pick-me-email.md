@@ -12,4 +12,4 @@
 
 ![The Add to marketing email drawer](me-32-add-drawer.png)
 
-*7.3.4 — ① the ME, with status and recipient count · ② the three address tabs and their counts · ③ the legend: tick to add, radio to choose the address · ④ Remove N from selection · ⑤ confirm.*
+*7.3.4 — ① the ME, with its owner, status and recipient count · ② the three address tabs and their counts · ③ the legend: tick to add, radio to choose the address · ④ Remove N from selection. The confirm button sits at the bottom of the drawer, below the fold.*
