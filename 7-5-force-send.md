@@ -6,8 +6,14 @@ No Force Send on the SDR view**Force Send is an Admin / Ops action** — on the 
 
 Once your Admin has force-sent, your job is to **check the queue**:
 
-1. **7.5.1** — Open the **marketing email detail**.
+## 7.5.1
 
-2. **7.5.2** — Go to the **Email Queue** tab.
+Open the **marketing email detail**.
 
-3. **7.5.3** — **Check the count** — the number of queued emails should match the **number of contacts you marked as reviewed** (7.4.5). If it doesn't, something's off; flag it — don't just carry on.
+## 7.5.2
+
+Go to the **Email Queue** tab.
+
+## 7.5.3 · Check the count
+
+the number of queued emails should match the **number of contacts you marked as reviewed** (7.4.5). If it doesn't, something's off; flag it — don't just carry on.

@@ -6,51 +6,65 @@
 
 This screen is not in the menu — you have to type the URL**/timesheet-submissions** (`https://admin.fintalent.io/timesheet-submissions`). It is a real, guarded admin page — 592 records on UAT — but nothing in the left menu links to it. If you have never seen it, that is why.
 
-1. **B3.0.1** — **What the page holds.** One row per submitted period, titled **Timesheets**. Columns: **Actions** · **Total Hours** · **Project** · **Client** · **Talent** · **Status** · submit date. The panel on the right filters by **Search**, **statuses**, **Projects**, **Talents**, **Clients**. Statuses are **Pending Approval**, **Approved** and **Rejected** — the same three the talent sees, under different names ([B3.x.9 ↗](b3-x-9-talent-sees-different-words.md)).
+## B3.0.1 · What the page holds
 
-   ![The timesheet submissions list](tsa-01-list.png)
+One row per submitted period, titled **Timesheets**. Columns: **Actions** · **Total Hours** · **Project** · **Client** · **Talent** · **Status** · submit date. The panel on the right filters by **Search**, **statuses**, **Projects**, **Talents**, **Clients**. Statuses are **Pending Approval**, **Approved** and **Rejected** — the same three the talent sees, under different names ([B3.x.9 ↗](b3-x-9-talent-sees-different-words.md)).
 
-   *B3.0.1 — ① the table · ② the filter panel.*
+![The timesheet submissions list](tsa-01-list.png)
 
-2. **B3.0.2** — **The row menu changes with status**, the same way the Resources one does: **Switch to Pending is how you get anything into this queue at all.** Because submissions arrive approved, the only way to review one deliberately is to put it back to Pending yourself — then Approve or Reject it. It is also the undo if you approved something by mistake.
+*B3.0.1 — ① the table · ② the filter panel.*
 
-   | Row is | ⋮ offers |
-   |---|---|
-   | **Pending Approval** | Edit/View Details · Switch to Draft · **Approve** · **Reject** |
-   | **Approved** | Edit/View Details · Switch to Draft · **Switch to Pending** |
+## B3.0.2 · The row menu changes with status
 
-   ![Row menu on a pending submission](tsa-02-menu-pending.png)
+, the same way the Resources one does: **Switch to Pending is how you get anything into this queue at all.** Because submissions arrive approved, the only way to review one deliberately is to put it back to Pending yourself — then Approve or Reject it. It is also the undo if you approved something by mistake.
 
-   *B3.0.2 — a Pending Approval row: Approve and Reject only exist here.*
+| Row is | ⋮ offers |
+|---|---|
+| **Pending Approval** | Edit/View Details · Switch to Draft · **Approve** · **Reject** |
+| **Approved** | Edit/View Details · Switch to Draft · **Switch to Pending** |
 
-3. **B3.0.3** — **Approve** → *“Do you want to approve this timesheet?”* → **Yes**. That is the whole thing — no comment, no reason.
+![Row menu on a pending submission](tsa-02-menu-pending.png)
 
-4. **B3.0.4** — **Reject asks for a reason and will not proceed without one.** The modal carries a required **Admin comment** box; the confirm button is red. Write something the talent can act on — this is the only thing they get back.
+*B3.0.2 — a Pending Approval row: Approve and Reject only exist here.*
 
-   ![Reject Timesheet modal](tsa-03-reject.png)
+## B3.0.3 · Approve
 
-   *B3.0.4 — ① Admin comment, mandatory · ② the red Reject.*
+→ *“Do you want to approve this timesheet?”* → **Yes**. That is the whole thing — no comment, no reason.
 
-5. **B3.0.5** — **Check the hours before you decide** — the **👁** in the Actions column opens the submission, and it goes three levels deep:
+## B3.0.4 · Reject asks for a reason and will not proceed without one
 
-   | Level | What you get |
-   |---|---|
-   | **Timesheet** | project, talent, start/end date, total worked, then one row per day with its own status. |
-   | **Tracking timesheet** (👁 on a day) | the individual time entries for that day — start time, end time, time worked, description. |
-   | **Edit time** (✎ on an entry) | **From**, **To** and **Description**, all editable, with **Update**. |
+The modal carries a required **Admin comment** box; the confirm button is red. Write something the talent can act on — this is the only thing they get back.
 
-   ![Submission detail](tsa-04-detail.png)
+![Reject Timesheet modal](tsa-03-reject.png)
 
-   *B3.0.5 — ① the day rows · ② the 👁 that opens one.*
+*B3.0.4 — ① Admin comment, mandatory · ② the red Reject.*
 
-   ![Tracking timesheet](tsa-05-tracking.png)
+## B3.0.5 · Check the hours before you decide
 
-   *B3.0.5 — ① the entries behind that day · ② the ✎ that edits one.*
+the **👁** in the Actions column opens the submission, and it goes three levels deep:
 
-6. **B3.0.6** — **🐛 Edit time opens, but you cannot use it.** The dialog appears **underneath** the *Tracking timesheet* dialog that launched it — only its title and its buttons peek out, and **nothing in it can be clicked**: not the From or To fields, not Description, not even **Cancel** or **Update**. Cause is a stacking order: *Tracking timesheet* renders at `z-index: 1001`, **Edit time** at `999`. Verified by hit-testing every control in the dialog — each one resolves to the dialog in front, not to itself. **What to do instead:** press **Esc** to get out, and **Reject with a comment** ([B3.0.4 ↗](b3-0-approve-the-submission.md)) so the talent fixes and resubmits. **Do not tell a talent their hours have been corrected from this screen** — on this build, they cannot have been. If this is fixed, the reach is wider than you would expectThe control is offered on **Approved** submissions too, not only pending ones — and the talent is told their timesheet cannot be edited after submitting. Once it works, an edit here will be invisible to them, with no notification and no record of who changed what. Worth agreeing a rule before it goes live.
+| Level | What you get |
+|---|---|
+| **Timesheet** | project, talent, start/end date, total worked, then one row per day with its own status. |
+| **Tracking timesheet** (👁 on a day) | the individual time entries for that day — start time, end time, time worked, description. |
+| **Edit time** (✎ on an entry) | **From**, **To** and **Description**, all editable, with **Update**. |
 
-   ![Edit time dialog stuck behind the Tracking timesheet dialog](tsa-06-edit-time.png)
+![Submission detail](tsa-04-detail.png)
 
-   *B3.0.6 — ① the Edit time title, poking out above · ② its Cancel and Update, poking out below. Everything between them is covered, and all of it is unclickable.*
+*B3.0.5 — ① the day rows · ② the 👁 that opens one.*
 
-7. **B3.0.7** — **Only then move on.** Approved hours are what B3.1 onwards works with. Sync Data and Create Client Invoice do not check this screen for you.
+![Tracking timesheet](tsa-05-tracking.png)
+
+*B3.0.5 — ① the entries behind that day · ② the ✎ that edits one.*
+
+## B3.0.6 · 🐛 Edit time opens, but you cannot use it
+
+The dialog appears **underneath** the *Tracking timesheet* dialog that launched it — only its title and its buttons peek out, and **nothing in it can be clicked**: not the From or To fields, not Description, not even **Cancel** or **Update**. Cause is a stacking order: *Tracking timesheet* renders at `z-index: 1001`, **Edit time** at `999`. Verified by hit-testing every control in the dialog — each one resolves to the dialog in front, not to itself. **What to do instead:** press **Esc** to get out, and **Reject with a comment** ([B3.0.4 ↗](b3-0-approve-the-submission.md)) so the talent fixes and resubmits. **Do not tell a talent their hours have been corrected from this screen** — on this build, they cannot have been. If this is fixed, the reach is wider than you would expectThe control is offered on **Approved** submissions too, not only pending ones — and the talent is told their timesheet cannot be edited after submitting. Once it works, an edit here will be invisible to them, with no notification and no record of who changed what. Worth agreeing a rule before it goes live.
+
+![Edit time dialog stuck behind the Tracking timesheet dialog](tsa-06-edit-time.png)
+
+*B3.0.6 — ① the Edit time title, poking out above · ② its Cancel and Update, poking out below. Everything between them is covered, and all of it is unclickable.*
+
+## B3.0.7 · Only then move on
+
+Approved hours are what B3.1 onwards works with. Sync Data and Create Client Invoice do not check this screen for you.

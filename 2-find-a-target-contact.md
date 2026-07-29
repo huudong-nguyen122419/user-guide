@@ -6,7 +6,7 @@ description: "Goal (core): open the list Ops gave you → view the contacts → 
 
 > SDR
 
-### In this flow
+## In this flow
 
 * [2.1 · Open your assigned list](2-1-open-your-assigned-list.md)
 * [2.2 · View the contacts](2-2-view-the-contacts.md)

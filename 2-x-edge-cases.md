@@ -2,7 +2,7 @@
 
 > 2 · Find a target contact
 
-### Edge cases
+## Edge cases
 
 * [2.x.1 · Filter by Lifecycles](2-x-1-filter-by-lifecycles.md)
 * [2.x.2 · Keyword search](2-x-2-keyword-search.md)

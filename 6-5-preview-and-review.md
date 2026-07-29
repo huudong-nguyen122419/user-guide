@@ -4,7 +4,7 @@
 
 Before the campaign runs, **review what every contact will actually get** on the **Preview** tab — the campaign's review gate, exactly like a Marketing Email's.
 
-### In this step
+## In this step
 
 * [6.5.1 · Pick a contact](6-5-1-pick-a-contact.md)
 * [6.5.2 · Read each step](6-5-2-read-each-step.md)

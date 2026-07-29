@@ -4,7 +4,7 @@
 
 Expand the rail (**»** on the left). Its bar filters **companies**, not people — pick a firm and its people show in the table. It carries **Lifecycle** and **Has signal** (+ 🔍 search).
 
-#### Has signal — firms with news
+## Has signal — firms with news
 
 **"I want to find companies that have a fresh signal."** → on the rail, open **Has signal** → **Yes**. These are the best firms to open a conversation with; click one to see its people.
 

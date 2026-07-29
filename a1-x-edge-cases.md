@@ -2,7 +2,7 @@
 
 > A1 · Create an SDR/KAM account
 
-### Edge cases
+## Edge cases
 
 * [A1.x.1 · Generate password](a1-x-1-generate-password.md)
 * [A1.x.2 · Edit](a1-x-2-edit.md)

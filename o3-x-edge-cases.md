@@ -2,7 +2,7 @@
 
 > O3 · Add contacts to list
 
-### Edge cases
+## Edge cases
 
 * [O3.x.1 · Use a filter](o3-x-1-use-a-filter.md)
 * [O3.x.2 · Keyword search](o3-x-2-keyword-search.md)

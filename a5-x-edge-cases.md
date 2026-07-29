@@ -2,7 +2,7 @@
 
 > A5 · Manage a marketing email (Admin)
 
-### Edge cases
+## Edge cases
 
 * [A5.x.1 · No delete / archive](a5-x-1-no-delete-archive.md)
 * [A5.x.2 · Force Send scope](a5-x-2-force-send-scope.md)

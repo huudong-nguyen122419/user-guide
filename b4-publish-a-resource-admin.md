@@ -8,7 +8,7 @@ description: "put a video or a PDF in front of talents — and know which screen
 
 Two switches, not one**Status** decides *whether* talents can see it. **Display Page** decides *where else* it appears besides the Resources page. Setting one without thinking about the other is how resources end up published and unfindable — see [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md).
 
-### In this flow
+## In this flow
 
 * [B4.1 · Open Resources](b4-1-open-resources.md)
 * [B4.2 · Create one](b4-2-create-one.md)

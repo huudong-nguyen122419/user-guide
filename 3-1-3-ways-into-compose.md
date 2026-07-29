@@ -54,7 +54,7 @@
 
 Replying to someone who already wrote to you is a separate job — see [Flow 4 · Answer replies](4-view-replies-and-answer-replies.md).
 
-### In this step
+## In this step
 
 * [3.1.1 · List row ✉](3-1-1-list-row.md)
 * [3.1.2 · Profile Send email](3-1-2-profile-send-email.md)

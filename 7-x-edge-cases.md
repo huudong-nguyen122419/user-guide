@@ -4,7 +4,7 @@
 
 The **People / Preview** cases first (7.x.1–5), then the **template-editor** ones (7.x.6–12).
 
-### Edge cases
+## Edge cases
 
 * [7.x.1 · Filter People / Preview](7-x-1-filter-people-preview.md)
 * [7.x.2 · Not Reviewed / Personalized](7-x-2-not-reviewed-personalized.md)

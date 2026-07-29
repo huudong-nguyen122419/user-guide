@@ -2,7 +2,7 @@
 
 > 6 · Manage a campaign
 
-### Edge cases
+## Edge cases
 
 * [6.x.1 · A/B variants](6-x-1-a-b-variants.md)
 * [6.x.2 · Sidestep (conditional)](6-x-2-sidestep-conditional.md)

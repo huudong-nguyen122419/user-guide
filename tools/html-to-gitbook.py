@@ -139,7 +139,8 @@ def split_lead(text: str) -> tuple[str, str]:
     if text.startswith('**'):
         end = text.find('**', 2)
         if end > 2:
-            return text[2:end].strip(' .:—-'), text[end + 2:].strip(' .:—-')
+            # lstrip only: the rest keeps its own closing punctuation
+            return text[2:end].strip(' .:—-'), text[end + 2:].lstrip(' .:—-')
     return '', text
 
 
@@ -196,7 +197,7 @@ def render_flow_elements(elements: list, anchors: dict, skip_ids: set,
         elif el.name in ('p', 'div', 'h4'):
             text = clean(inline(el, anchors))
             if text:
-                lines.append(f'#### {text}' if el.name == 'h4' else text)
+                lines.append(f'## {text}' if el.name == 'h4' else text)
     return lines
 
 
@@ -313,7 +314,7 @@ def convert_flow(flow: Page, soup: BeautifulSoup, anchors: dict, out_dir: str) -
         intro += render_flow_elements([el], anchors, skip_ids=set())
 
     if flow.children:
-        intro.append('### In this flow')
+        intro.append('## In this flow')
         intro.append('\n'.join(f'* [{c.title}]({c.filename})' for c in flow.children))
 
     meta = ' · '.join(x for x in (who, note) if x)
@@ -329,13 +330,13 @@ def convert_flow(flow: Page, soup: BeautifulSoup, anchors: dict, out_dir: str) -
         # Some flows hang their nav entries off an <h3>, others straight off a
         # step <li>. h3 -> take everything up to the next h3; li -> just that item.
         if head.name in ('h3', 'h4'):
-            body = render_flow_elements(elements_after_heading(head), anchors, promoted)
+            body = render_flow_elements(elements_after_heading(head), anchors, promoted, as_headings=True)
         else:
             text, blocks = split_item(head, anchors)
             body = ([text] if text else []) + render_blocks(blocks, anchors)
         if step.children:
             is_edge = any(c.startswith('edge') for c in (head.get('class') or []))
-            body.append('### Edge cases' if is_edge else '### In this step')
+            body.append('## Edge cases' if is_edge else '## In this step')
             body.append('\n'.join(f'* [{c.title}]({c.filename})' for c in step.children))
         write_page(os.path.join(out_dir, step.filename), step.title, flow.title, '', body)
         written += 1
@@ -346,7 +347,7 @@ def convert_flow(flow: Page, soup: BeautifulSoup, anchors: dict, out_dir: str) -
                 print(f'  !! anchor #{sub.anchor} not found', file=sys.stderr)
                 continue
             if li.name in ('h3', 'h4'):
-                body = render_flow_elements(elements_after_heading(li), anchors, set())
+                body = render_flow_elements(elements_after_heading(li), anchors, set(), as_headings=True)
             else:
                 text, blocks = split_item(li, anchors)
                 body = ([text] if text else []) + render_blocks(blocks, anchors)

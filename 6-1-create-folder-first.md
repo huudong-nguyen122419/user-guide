@@ -4,7 +4,7 @@
 
 **Campaigns live inside folders.** So — unlike a Marketing Email, which you create directly — you **create a folder first**, open it, and only then create the campaign.
 
-### In this step
+## In this step
 
 * [6.1.1 · Open Campaigns](6-1-1-open-campaigns.md)
 * [6.1.2 · Create a folder](6-1-2-create-a-folder.md)

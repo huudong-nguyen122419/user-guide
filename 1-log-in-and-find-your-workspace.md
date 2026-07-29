@@ -6,7 +6,7 @@ description: "Goal (core): get signed in, see your workspace, and know what each
 
 > SDR
 
-### In this flow
+## In this flow
 
 * [1.1 · Log in](1-1-log-in.md)
 * [1.2 · Your workspace](1-2-your-workspace.md)

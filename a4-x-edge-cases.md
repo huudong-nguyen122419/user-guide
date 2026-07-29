@@ -2,7 +2,7 @@
 
 > A4 · Manage a campaign (Admin)
 
-### Edge cases
+## Edge cases
 
 * [A4.x.1 · What a clone copies](a4-x-1-what-a-clone-copies.md)
 * [A4.x.2 · Archive vs Delete](a4-x-2-archive-vs-delete.md)

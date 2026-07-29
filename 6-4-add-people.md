@@ -14,7 +14,7 @@ The **People** tab is then the campaign's recipient list — same filter bar as 
 
 *6.4 — the People tab with the campaign-only Done / Skipped filters.*
 
-### In this step
+## In this step
 
 * [6.4.1 · Open your list](6-4-1-open-your-list.md)
 * [6.4.2 · Find the people](6-4-2-find-the-people.md)

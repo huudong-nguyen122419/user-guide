@@ -2,7 +2,7 @@
 
 > A6 · Talent Active / Passive
 
-### Edge cases
+## Edge cases
 
 * [A6.x.1 · New sign-ups to approve](a6-x-1-new-sign-ups-to-approve.md)
 * [A6.x.2 · A Passive talent resubmits](a6-x-2-a-passive-talent-resubmits.md)

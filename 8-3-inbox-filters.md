@@ -31,7 +31,7 @@ In actionInbox holds **27** replies → **Work Experience → Company type = Spo
 
 *8.3 — chip Work Experience : Sponsor → Showing 20 of 25; rows are all sponsor firms.*
 
-#### Work Experience — the power filter
+## Work Experience — the power filter
 
 **"I want to find people who work at a Sponsor firm as a Managing Director."** This filters people by their **career**, not just the contact record. The top toggle **Match any (OR) / Match all (AND)** decides whether a person must meet *one* or *all* of:
 

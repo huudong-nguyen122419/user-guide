@@ -2,7 +2,7 @@
 
 > B2 · Talent · log & submit timesheet
 
-### Edge cases
+## Edge cases
 
 * [B2.x.1 · Daily — Day(s) to bill](b2-x-1-daily-day-s-to-bill.md)
 * [B2.x.2 · Log / submit in batches](b2-x-2-log-submit-in-batches.md)

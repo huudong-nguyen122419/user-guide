@@ -2,7 +2,7 @@
 
 > O4 · Remove members
 
-### Edge cases
+## Edge cases
 
 * [O4.x.1 · Narrow with a filter](o4-x-1-narrow-with-a-filter.md)
 * [O4.x.2 · Select all matching](o4-x-2-select-all-matching.md)

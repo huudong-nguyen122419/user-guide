@@ -2,7 +2,7 @@
 
 > O3 · Add contacts to list
 
-### In this step
+## In this step
 
 * [O3.2.1 · Open list detail](o3-2-1-open-list-detail.md)
 * [O3.2.2 · + Add members](o3-2-2-add-members.md)

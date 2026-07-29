@@ -2,7 +2,7 @@
 
 > B4 · Publish a resource (Admin)
 
-### Edge cases
+## Edge cases
 
 * [B4.x.1 · Published but nobody sees it](b4-x-1-published-but-nobody-sees-it.md)
 * [B4.x.2 · There is no Delete](b4-x-2-there-is-no-delete.md)

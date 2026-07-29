@@ -8,7 +8,7 @@ description: "run a marketing email (ME) end to end — build or open one, load 
 
 Yours vs your Admin'sYou do everything **except turning the ME on and sending it**. Both **Draft → Active** ("run marketing email") **and Force Send** are **Admin / Ops** actions — you prepare & review, they activate and force-send, then you **monitor the Email Queue** and handle replies.
 
-### In this flow
+## In this flow
 
 * [7.1 · Create a ME](7-1-create-a-me.md)
 * [7b · Create / edit a template](7b-create-edit-a-template.md)

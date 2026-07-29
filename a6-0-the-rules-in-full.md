@@ -4,13 +4,13 @@
 
 **Read this once before you touch the queues.** Everything below is the rule as it was settled by manual review of the **276 PE/VC-labelled talents on production** on 27 Jul 2026. The steps in A6.3 are this rulebook turned into a click-by-click procedure; when the two ever disagree, this section wins.
 
-#### The question the rule answers
+## The question the rule answers
 
 Every talent record is either **supply** or **demand**. Someone who sits on the **buy side today** — they hold a role at a PE fund, or they run a company a fund owns — is a potential **client**, and Fintalent must never invite them into a project as a freelancer. They go **Passive**. Everybody else is **talent** and goes **Active**.
 
 Passive is not a punishment and not a quality judgement. It is a routing decision: Passive records are excluded from project invitations, nothing more. Being wrong in either direction costs money — a wrongly-Passive freelancer is supply you cannot sell, a wrongly-Active fund Partner is an invitation landing in a client's inbox.
 
-#### Rule 1 — the evidence, in strict order
+## Rule 1 — the evidence, in strict order
 
 Always work the four sources **in this order** and stop at the first one that answers. Later sources never overturn earlier ones. **Employment Status sits at the top, not the bottom** — it is a gate, not a tie-breaker.
 
@@ -23,7 +23,7 @@ Always work the four sources **in this order** and stop at the first one that an
 
 Company Background is not evidenceThe *PE / VC* label is a career-history label produced by AI, not a statement about today. Of the 262 people carrying it on production, only **16 (6%)** currently hold a role at a company flagged as a sponsor. Use the chip to **build the list** and never as the answer for an individual.
 
-#### Rule 2 — read the role part only
+## Rule 2 — read the role part only
 
 Split the title at the first `at` / `@` / `chez` / `bei` / `en`. Everything **before** the split is the role; everything after is the employer. **Only the role part is matched**, for both the include and the exclude lists.
 
@@ -33,7 +33,7 @@ Split the title at the first `at` / `@` / `chez` / `bei` / `en`. Everything **be
 | Managing Director and Founder at DZ **Consulting** | `Managing Director and Founder` | The advisory keyword sits in the **company name**, so it does not rescue them. This is a group B match → **Passive**. |
 | **Independent Consultant** at Various | `Independent Consultant` | Here the advisory keyword is in the **role** → **Active**. |
 
-#### Rule 3 — exclusions are a hard stop, and they run first
+## Rule 3 — exclusions are a hard stop, and they run first
 
 If the role part contains an exclusion term, the verdict is **Active** and the rule **ends there**. It does not fall through to the group tables. It is a hard stop *within the title*, so it never overturns the gate that already ran ahead of it.
 
@@ -43,13 +43,13 @@ Two buckets, one reason each: **too junior to hold a budget**, and **back office
 
 Match on **word boundaries**. Plain substring matching turns "M&A **Intern**ational Manager" into an intern and "Head of **Intern**ational Capital Partnerships" into a trainee.
 
-#### Rule 4 — selling advice beats matching a group
+## Rule 4 — selling advice beats matching a group
 
 An M&A advisory practice is exactly the supply Fintalent sells. When the role part contains `consultant`, `consulting`, `consultancy`, `advisory`, `advisor` or `adviser`, the verdict is **Active** even when the same title also matches a group. A "Principal **Consultant**" is a consultant, not a fund Principal; a "Private Equity **Consultant**" advises funds, they do not run one.
 
 The mirror imageThe absence of an advisory word is just as decisive. "Partner and co-founder at EKEM Partners" and "Founding Partner at Scandola | Buy-side M&A" carry no advisory keyword, so the group B match stands and both are **Passive** — even though a human might argue they run advisory shops. If you disagree with a specific record, escalate it; do not bend the rule.
 
-#### Rule 5 — buy-side vocabulary counts as a title match
+## Rule 5 — buy-side vocabulary counts as a title match
 
 This is the part that grew the most during manual review. Inside a list already narrowed to PE/VC backgrounds, a talent who describes themselves with **investing or deal vocabulary** is claiming the buy side, even without a formal job title. All of these were ruled **Passive** by hand:
 
@@ -68,7 +68,7 @@ This is the part that grew the most during manual review. Inside a list already 
 
 This net is deliberately wide, and it is **only safe inside the PE/VC-filtered list**. Applied to the whole talent base it would sweep up every banker and every corporate finance manager. Never run this keyword set without the Company Background chip in place.
 
-#### Rule 6 — Employment Status is the closing gate, and it runs first
+## Rule 6 — Employment Status is the closing gate, and it runs first
 
 **Full-time Employee** and **Part-time Employee** both mean **Passive**, full stop. Somebody else already pays for their week, so they are not available for a Fintalent project — whatever their title says. Freelancer, Unemployed, Other and blank all pass the gate and go on to the title.
 
@@ -81,13 +81,13 @@ Full-time and Active together is always wrongThe two fields contradict each othe
 
 **Do not confuse this gate with the automatic rule at approval.** They are different mechanisms that happen to agree most of the time. The gate above is the business rule you apply. The automatic rule — [A6.x.1 ↗](a6-x-1-new-sign-ups-to-approve.md) — fires on *Skip Review + an ongoing role at a flagged company* and does not read Employment Status at all; the one-line verdict printed on the profile does read it, but that line is only a display. Treating Full/Part-time as Passive is **settled business policy**, not something the system currently enforces on its own.
 
-#### Rule 7 — one override, and only one
+## Rule 7 — one override, and only one
 
 **A status an admin set by hand stays put.** Open *Activity Logs* before overturning anything: an entry with a named admin is a decision, and a decision outranks the rule. An entry with no actor, or no entry at all, is a default — the rule applies.
 
 A completed contract is not an overrideIt used to be treated as proof that someone is talent. It is not: a full-time employee who delivered one project last year is still unavailable today. Contract history is **context for the reviewer**, never a reason to skip the gate.
 
-#### The rule as one flowchart
+## The rule as one flowchart
 
 | # | Test, in order | If it fires |
 |---|---|---|
@@ -99,7 +99,7 @@ A completed contract is not an overrideIt used to be treated as proof that someo
 | **5** | Title ambiguous → company named in the title is an advisory firm | **Active**, stop |
 | **6** | Nothing matched | **Active** |
 
-#### What the rule says about production today
+## What the rule says about production today
 
 Run over the 276 PE/VC-labelled records that currently sit at Active or Passive:
 

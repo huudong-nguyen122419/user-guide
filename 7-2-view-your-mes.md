@@ -2,28 +2,32 @@
 
 > 7 · Manage a Marketing Email
 
-1. **7.2.1** — **Left menu → Marketing Emails** shows every ME you can work on. They arrive two ways:
+## 7.2.1 · Left menu → Marketing Emails
 
-   | Where it came from |  |
-   |---|---|
-   | **You created it** | see [7.1 ↗](7-1-create-a-me.md). |
-   | **Admin / Ops created it and assigned you** | already set up, often with people already added. **This is the usual case.** |
+shows every ME you can work on. They arrive two ways:
 
-2. **7.2.2** — **The tabs across the top filter by status**, each with a count: The five tabs account for every record — on UAT, 57 + 11 + 19 + 4 = 91. There is no Archived or Scheduled tab; see [A5.x.1 ↗](a5-x-1-no-delete-archive.md).
+| Where it came from |  |
+|---|---|
+| **You created it** | see [7.1 ↗](7-1-create-a-me.md). |
+| **Admin / Ops created it and assigned you** | already set up, often with people already added. **This is the usual case.** |
 
-   | Tab | What it means |
-   |---|---|
-   | **All** | every ME you can access. |
-   | **Draft** | created but never activated. Fully editable — where a ME sits while you build and review it. |
-   | **Running** | active and sending. Shows a **Started on…** chip. Admin flips it here from Draft ([A3.1 ↗](a3-run-a-me-campaign.md)). |
-   | **Paused** | was Running, temporarily stopped — nothing goes out until resumed. |
-   | **Finished** | the run is complete; every queued email has gone. |
+## 7.2.2 · The tabs across the top filter by status
 
-   ![Marketing Emails list](sdrx-me-00-list.png)
+, each with a count: The five tabs account for every record — on UAT, 57 + 11 + 19 + 4 = 91. There is no Archived or Scheduled tab; see [A5.x.1 ↗](a5-x-1-no-delete-archive.md).
 
-   *7.2.2 — the status tabs and their counts.*
+| Tab | What it means |
+|---|---|
+| **All** | every ME you can access. |
+| **Draft** | created but never activated. Fully editable — where a ME sits while you build and review it. |
+| **Running** | active and sending. Shows a **Started on…** chip. Admin flips it here from Draft ([A3.1 ↗](a3-run-a-me-campaign.md)). |
+| **Paused** | was Running, temporarily stopped — nothing goes out until resumed. |
+| **Finished** | the run is complete; every queued email has gone. |
 
-### In this step
+![Marketing Emails list](sdrx-me-00-list.png)
+
+*7.2.2 — the status tabs and their counts.*
+
+## In this step
 
 * [7.2a · Reading the numbers](7-2a-reading-the-numbers.md)
 * [7.2b · Inside a ME (tabs)](7-2b-inside-a-me-tabs.md)

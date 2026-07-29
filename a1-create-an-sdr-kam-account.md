@@ -6,7 +6,7 @@ description: "onboard a new sales hire — create their login with the right rol
 
 > ADMIN · ADM.0.1
 
-### In this flow
+## In this flow
 
 * [A1.1 · Open Admins](a1-1-open-admins.md)
 * [A1.2 · Create the account](a1-2-create-the-account.md)

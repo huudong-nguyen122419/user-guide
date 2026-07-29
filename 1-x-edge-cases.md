@@ -2,7 +2,7 @@
 
 > 1 · Log in & find your workspace
 
-### Edge cases
+## Edge cases
 
 * [1.x.1 · Already signed in](1-x-1-already-signed-in.md)
 * [1.x.2 · Forgot password](1-x-2-forgot-password.md)

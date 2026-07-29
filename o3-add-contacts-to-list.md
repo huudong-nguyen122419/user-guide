@@ -6,7 +6,7 @@ description: "put the right people into the list. There are three ways in — fr
 
 > OPS
 
-### In this flow
+## In this flow
 
 * [O3.1 · From the Contacts page](o3-1-from-the-contacts-page.md)
 * [O3.2 · From the list detail](o3-2-from-the-list-detail.md)

@@ -6,7 +6,7 @@ description: "the same feature seen from the other side — who gets in, where t
 
 > TALENT
 
-### In this flow
+## In this flow
 
 * [B5.1 · Who can see them](b5-1-who-can-see-them.md)
 * [B5.2 · The Resources page](b5-2-the-resources-page.md)

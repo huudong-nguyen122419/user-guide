@@ -2,11 +2,13 @@
 
 > 1 · Log in & find your workspace
 
-1. **1.3** — Log In drops you on **Campaigns** — your workspace inside **Sales Management**. Move around with the left menu (**8 items**); your account card is bottom-left. No Contacts/Companies pages — your lists and Inbox are the entry points.
+## 1.3
 
-   ![Workspace right after login](sdrx-23-post-login-landing.png)
+Log In drops you on **Campaigns** — your workspace inside **Sales Management**. Move around with the left menu (**8 items**); your account card is bottom-left. No Contacts/Companies pages — your lists and Inbox are the entry points.
 
-   *1.2 — where Log In lands you: the Campaigns page, with the Sales Management menu on the left.*
+![Workspace right after login](sdrx-23-post-login-landing.png)
+
+*1.2 — where Log In lands you: the Campaigns page, with the Sales Management menu on the left.*
 
 Here's what each menu item is for:
 

@@ -4,7 +4,7 @@
 
 The **Preview** tab is the review gate — nothing should go out unchecked.
 
-### In this step
+## In this step
 
 * [7.4.1 · Pick a contact](7-4-1-pick-a-contact.md)
 * [7.4.2 · Contact header](7-4-2-contact-header.md)

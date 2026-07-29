@@ -10,7 +10,7 @@ Where this flow stopsAt the **Draft** invoice. Everything after it — issuing t
 
 The one rule about the numbersMoney is always calculated from **hours to bill** (the figure the talent locked in), **never** from the logged hours. The logged hours stay visible alongside on every screen so the two can be reconciled.
 
-### In this flow
+## In this flow
 
 * [B3.0 · Approve the submission](b3-0-approve-the-submission.md)
 * [B3.1 · View & Sync Data](b3-1-view-and-sync-data.md)

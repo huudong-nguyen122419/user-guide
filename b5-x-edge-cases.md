@@ -2,7 +2,7 @@
 
 > B5 · Talent · find a resource
 
-### Edge cases
+## Edge cases
 
 * [B5.x.1 · The misleading empty state](b5-x-1-the-misleading-empty-state.md)
 * [B5.x.2 · Video has no download](b5-x-2-video-has-no-download.md)

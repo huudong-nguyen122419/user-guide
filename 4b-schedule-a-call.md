@@ -8,7 +8,7 @@ description: "Goal (core): a prospect replies asking for a call. Book it, send t
 
 This flow starts inside Flow 4It is not a separate errand. You are already reading replies ([Flow 4 ↗](4-view-replies-and-answer-replies.md)); one of them wants a call. Everything below happens without leaving that conversation.
 
-### In this flow
+## In this flow
 
 * [4b.1 · Spot it in your replies](4b-1-spot-it-in-your-replies.md)
 * [4b.2 · Book the call](4b-2-book-the-call.md)

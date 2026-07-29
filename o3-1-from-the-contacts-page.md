@@ -2,7 +2,7 @@
 
 > O3 · Add contacts to list
 
-### In this step
+## In this step
 
 * [O3.1.1 · Open Contacts](o3-1-1-open-contacts.md)
 * [O3.1.2 · Select contact(s)](o3-1-2-select-contact-s.md)

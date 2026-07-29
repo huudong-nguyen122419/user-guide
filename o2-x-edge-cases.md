@@ -2,7 +2,7 @@
 
 > O2 · Create a list
 
-### Edge cases
+## Edge cases
 
 * [O2.x.1 · "SDR list" exclusivity](o2-x-1-sdr-list-exclusivity.md)
 * [O2.x.2 · Edit the name](o2-x-2-edit-the-name.md)

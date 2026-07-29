@@ -8,7 +8,7 @@ description: "run a multi-step outreach sequence (a \"campaign\") — a drip of 
 
 Yours vs your Admin'sYou **build & schedule** the campaign (folder, steps, timing, variants) and can set it **Draft → Scheduled**. Actually **enabling / running** it (the **Enabled** toggle) is an **Admin / Ops** action — then you **monitor** the Email Queue and the campaign **Inbox** and handle replies.
 
-### In this flow
+## In this flow
 
 * [6.1 · Create (folder first)](6-1-create-folder-first.md)
 * [6.2 · Build the sequence](6-2-build-the-sequence.md)

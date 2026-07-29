@@ -2,7 +2,7 @@
 
 > O3 · Add contacts to list
 
-### In this step
+## In this step
 
 * [O3.3.1 · Open a company](o3-3-1-open-a-company.md)
 * [O3.3.2 · Employees tab](o3-3-2-employees-tab.md)

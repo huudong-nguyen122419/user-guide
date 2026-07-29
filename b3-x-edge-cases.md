@@ -2,7 +2,7 @@
 
 > B3 · Timesheet → invoice (Admin)
 
-### Edge cases
+## Edge cases
 
 * [B3.x.1 · Daily = days](b3-x-1-daily-days.md)
 * [B3.x.2 · "Total Hours Worked"](b3-x-2-total-hours-worked.md)

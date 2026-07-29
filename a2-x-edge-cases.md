@@ -2,7 +2,7 @@
 
 > A2 · Create a single contact
 
-### Edge cases
+## Edge cases
 
 * [A2.x.1 · Duplicate found](a2-x-1-duplicate-found.md)
 * [A2.x.2 · Link / relink company](a2-x-2-link-relink-company.md)

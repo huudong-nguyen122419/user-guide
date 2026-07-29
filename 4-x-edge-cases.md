@@ -2,7 +2,7 @@
 
 > 4 · View replies & answer replies
 
-### Edge cases
+## Edge cases
 
 * [4.x.1 · Reply all](4-x-1-reply-all.md)
 * [4.x.2 · Forward](4-x-2-forward.md)

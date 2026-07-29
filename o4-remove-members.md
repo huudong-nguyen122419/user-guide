@@ -6,7 +6,7 @@ description: "take people out of a list, and see the full history. (Adding is it
 
 > OPS
 
-### In this flow
+## In this flow
 
 * [O4.1 · Open Segments](o4-1-open-segments.md)
 * [O4.2 · Select the list](o4-2-select-the-list.md)

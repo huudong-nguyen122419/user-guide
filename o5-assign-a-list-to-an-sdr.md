@@ -6,7 +6,7 @@ description: "hand the ready list to a rep so it shows up in their Segments (Lis
 
 > OPS
 
-### In this flow
+## In this flow
 
 * [O5.1 · Open Segments](o5-1-open-segments.md)
 * [O5.2 · Find the list](o5-2-find-the-list.md)

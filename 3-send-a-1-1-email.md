@@ -6,7 +6,7 @@ description: "send one personal email to one person. There are 4 ways to open th
 
 > SDR
 
-### In this flow
+## In this flow
 
 * [3.1 · 3 ways into compose](3-1-3-ways-into-compose.md)
 * [3.2 · Compose & send](3-2-compose-and-send.md)

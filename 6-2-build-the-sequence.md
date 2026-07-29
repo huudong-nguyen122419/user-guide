@@ -12,7 +12,7 @@ A campaign is a **list of steps**. Each step is **one email** with a **timing** 
 
 Two campaign-only extras — **A/B variants** and **Sidesteps** — are in [Edge cases (6.x) ↗](6-x-edge-cases.md).
 
-### In this step
+## In this step
 
 * [6.2.1 · Create new step](6-2-1-create-new-step.md)
 * [6.2.2 · Write the step (fields)](6-2-2-write-the-step-fields.md)

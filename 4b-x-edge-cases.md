@@ -2,7 +2,7 @@
 
 > 4b · Schedule a call
 
-### Edge cases
+## Edge cases
 
 * [4b.x.1 · They ask to move it](4b-x-1-they-ask-to-move-it.md)
 * [4b.x.2 · No Zoom on your account](4b-x-2-no-zoom-on-your-account.md)

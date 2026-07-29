@@ -6,7 +6,7 @@ description: "Goal (core): go through everyone who replied — read what they wr
 
 > SDR
 
-### In this flow
+## In this flow
 
 * [4.1 · View & answer a reply](4-1-view-and-answer-a-reply.md)
 * [4.x · Edge cases](4-x-edge-cases.md)

@@ -46,7 +46,7 @@ description: "nudge the people who went quiet, in the right order. Start: your l
 | Yellow + dot | ~2–4 weeks silence | Plan the nudge |
 | Red + dot | ~A month+ — overdue | Click & follow up now |
 
-### In this flow
+## In this flow
 
 * [5.1 · Open your list](5-1-open-your-list.md)
 * [5.2 · View the contacts](5-2-view-the-contacts.md)

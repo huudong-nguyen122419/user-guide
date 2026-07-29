@@ -6,7 +6,7 @@ description: "make an empty list (a \"segment\") that will hold a work-set for o
 
 > OPS
 
-### In this flow
+## In this flow
 
 * [O2.1 · Open Segments](o2-1-open-segments.md)
 * [O2.2 · Contact tab](o2-2-contact-tab.md)

@@ -2,14 +2,18 @@
 
 > 4b · Schedule a call
 
-1. **4b.3.1** — **Answer in the same thread.** Go back to the reply that asked for the call and use the **↩ reply arrow** on it, exactly as in [Flow 4 ↗](4-view-replies-and-answer-replies.md). Keeping it in-thread is what makes the booking make sense to them. The compose window does not carry the linkWhether you reply in the thread or use **Send email** from the meeting row, the message opens with the participant filled in, your signature, the quoted original — and **no join link**. Paste it in yourself, or they get a confirmation they cannot act on.
+## 4b.3.1 · Answer in the same thread
 
-   ![Replying inside the original thread](sc-17-reply-inthread.png)
+Go back to the reply that asked for the call and use the **↩ reply arrow** on it, exactly as in [Flow 4 ↗](4-view-replies-and-answer-replies.md). Keeping it in-thread is what makes the booking make sense to them. The compose window does not carry the linkWhether you reply in the thread or use **Send email** from the meeting row, the message opens with the participant filled in, your signature, the quoted original — and **no join link**. Paste it in yourself, or they get a confirmation they cannot act on.
 
-   *4b.3.1 — ① the subject carries RE: and the original wording, which is what keeps it in their thread · ② Send, once the link is in.*
+![Replying inside the original thread](sc-17-reply-inthread.png)
 
-2. **4b.3.2** — **Write the three things they need:** the **date and time with the timezone spelled out**, the **duration**, and the **join link**. Time is the part that goes wrong — *“Friday 31 July, 15:00 CET (08:00 UTC)”* is worth the extra seconds. Doing this often? Build it once as a **Snippet** with the fixed wording and paste the link into it — [3.x ↗](3-x-edge-cases.md).
+*4b.3.1 — ① the subject carries RE: and the original wording, which is what keeps it in their thread · ② Send, once the link is in.*
 
-   ![The compose window opened from a meeting](sc-04-send-email.png)
+## 4b.3.2 · Write the three things they need
 
-   *4b.3.2 — ① the body arrives with your signature and nothing else — paste the link here · ② then Send.*
+the **date and time with the timezone spelled out**, the **duration**, and the **join link**. Time is the part that goes wrong — *“Friday 31 July, 15:00 CET (08:00 UTC)”* is worth the extra seconds. Doing this often? Build it once as a **Snippet** with the fixed wording and paste the link into it — [3.x ↗](3-x-edge-cases.md).
+
+![The compose window opened from a meeting](sc-04-send-email.png)
+
+*4b.3.2 — ① the body arrives with your signature and nothing else — paste the link here · ② then Send.*
