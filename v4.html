@@ -1764,12 +1764,18 @@
   <p>Worth filling in: <b>this is the only field a talent can filter on</b> in their Resources tab (<a href="#b5-list" style="font-weight:700;cursor:pointer">B5.2 &#8599;</a>). Empty means harder to find, not just untidy.</p>
 </li>
 
-<li data-code="B4.2.7"><b>Published At</b> &mdash; the publish date carried on the card and in the <b>Information</b> column.
-  <p>Leave it blank and <b>publishing fills it in for you</b>, whichever way you publish. Set it yourself only when you want a specific date on the card.</p>
-  <div class="call warn"><span class="t">Known bug &mdash; it does not publish anything on its own</span>A date here does <u>not</u> flip a Draft to Published by itself &mdash; on UAT there are Drafts carrying a <b>past</b> Published At that are still sitting in Draft. Resource status has only <b>Draft / Published / Archived</b>; there is no <i>Scheduled</i>. This is <b>logged as a known bug</b>; until it is fixed, treat the switch as manual and do it yourself at <a href="#b4-publish" style="font-weight:700;cursor:pointer">B4.4 &#8599;</a> &mdash; <b>do not schedule a resource and walk away.</b>
-  <br/><b>The date still matters for a different reason:</b> a Published resource with an <b>empty</b> Published At never shows on the talent Resources page &mdash; see <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>.</div>
+<li data-code="B4.2.7"><b>Published At</b> &mdash; the date on the card, and <b>the switch that decides whether a talent can see it at all</b>.
+  <div class="tblwrap"><table>
+  <thead><tr><th>You set&hellip;</th><th>What happens</th></tr></thead>
+  <tbody>
+  <tr><td><b>nothing</b></td><td>publishing fills it in for you, whichever way you publish. Normal case.</td></tr>
+  <tr><td><b>a past date</b></td><td>visible immediately once the status is Published; the card just carries that date.</td></tr>
+  <tr><td><b>a future date</b></td><td><b>held back until that day</b> &mdash; this is how you line a resource up in advance.</td></tr>
+  </tbody></table></div>
+  <p><b>To schedule something, publish it and post-date it</b> &mdash; set <b>Status = Published</b> and <b>Published At</b> to the day you want it to appear. It stays out of sight until then and needs nothing further from you.</p>
+  <div class="call warn"><span class="t">Post-dating a Draft does nothing &mdash; the status never flips on its own</span>A future date on a <b>Draft</b> leaves it a Draft forever; there is no <i>Scheduled</i> status and nothing switches it over when the day comes. UAT has Drafts carrying dates well in the past, still sitting in Draft. <b>The date gates visibility; it does not publish.</b> So schedule with <b>Published + future date</b>, never with Draft + future date.</div>
+  <p class="fn">Full consequences of the date, including the empty case, in <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>.</p>
 </li>
-
 <li data-code="B4.2.8"><b>Description</b> &mdash; a line or two under the title on the card. Optional; the card renders fine without it.</li>
 
 <li data-code="B4.2.9"><b>Thumbnail</b> &mdash; the picture on the card. Optional, and <b>what you get when you skip it is not the same everywhere</b>:
@@ -1841,9 +1847,18 @@
 
 <h3 id="b4-edge" class="edgehead anchor">B4.x &middot; Edge cases</h3>
 <ol class="steps edge">
-<li id="er-4-1" data-code="B4.x.1"><b>Published, and still nobody can find it.</b> The talent <b>Resources</b> page only lists resources that have a <b>Published At</b> date. Status alone is not enough. On UAT this is not hypothetical: <b>26</b> resources are Published, the talent page shows <b>18</b>, and the missing <b>8</b> are exactly the ones whose date is empty.
-  <p>They are not entirely gone &mdash; if they carry a <b>Display Page</b> they still show in that block, because the blocks do not check the date. So the resource lives on the Home page but cannot be found by searching. Counted on UAT: Home block <b>17</b>, Resources page <b>12</b> of those same 17.</p>
-  <p><b>What to do:</b> publishing today stamps the date automatically, so this is legacy or imported data rather than something you will create by accident. Spot them in the <b>Published</b> tab &mdash; a row with a status chip and <b>no date under it</b>. Fix by opening <b>Edit</b> and setting <b>Published At</b>.</p></li>
+<li id="er-4-1" data-code="B4.x.1"><b>Published, and still nobody can see it &mdash; the date is a gate, not a label.</b> The talent Resources page shows a resource only when its <b>Published At is today or earlier</b>. Status alone is not enough, and the comparison is what matters:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Published At</th><th>Talent sees it?</th></tr></thead>
+  <tbody>
+  <tr><td><b>today or earlier</b></td><td><b>Yes.</b></td></tr>
+  <tr><td><b>a future date</b></td><td><b>No</b> &mdash; hidden until that day arrives. This is the scheduling behaviour, and it does work.</td></tr>
+  <tr><td><b>empty</b></td><td><b>No.</b> Nothing to compare against, so it never passes the gate.</td></tr>
+  </tbody></table></div>
+  <p><b>Proved on UAT rather than assumed.</b> 27 Published, talent saw <b>19</b>. Took one visible resource, changed nothing but its Published At to <b>1 December</b>, and the talent count dropped to <b>18</b> with that resource gone from the list. Put the date back and it returned. The other 8 of the 27 have an <b>empty</b> date and are invisible for the same reason.</p>
+  <div class="call note"><span class="t">The quickest way to see what a talent sees</span>On the admin list, pin the <b>Published Date</b> quick filter (<a href="#b4-open" style="font-weight:700;cursor:pointer">B4.1.3 &#8599;</a>) and set its <b>To</b> to <b>today</b>. What comes back is exactly the set on the talent Resources page &mdash; on UAT that is the 19. Anything in the Published tab but not in that filtered list is published and unreachable.</div>
+  <p><b>But the placed blocks do not check the date at all.</b> A resource with a future or empty date still shows in its <b>Home</b> / <b>Project</b> / <b>Project Details</b> block (<a href="#b5-blocks" style="font-weight:700;cursor:pointer">B5.4 &#8599;</a>). Counted on UAT: Home block <b>17</b>, of which only <b>12</b> are on the Resources page. So a talent can watch a video on their Home page and then fail to find it by searching.</p>
+  <p><b>What to do:</b> a future date is a legitimate way to line something up in advance &mdash; publish it and post-date it. An <b>empty</b> date is never deliberate: spot those in the <b>Published</b> tab as a row with a status chip and <b>no date under it</b>, and fix with <b>Edit</b>.</p></li>
 <li id="er-4-2" data-code="B4.x.2"><b>There is no Delete.</b> Not in the row menu, not in the drawer. A resource can only be moved between Draft, Published and Archived. <b>Archive is the delete</b> &mdash; use it, and stop looking for a bin.</li>
 <li id="er-4-3" data-code="B4.x.3"><b>Resource Type is locked once saved.</b> You cannot turn a Video into a PDF later. If you picked wrong, archive it and create the right one &mdash; there is no conversion.</li>
 <li id="er-4-4" data-code="B4.x.4"><b>Copy Resource Link gives you a public link.</b> It points at the file in S3 and <b>opens for anyone who has it</b> &mdash; no login, no membership, no paid-signup check. Every gate described in <a data-goto="page-b5" style="font-weight:700;cursor:pointer">B5 &#8599;</a> applies to the app, not to that URL. Treat it as publishing to the open web: fine for something you would put on the website, wrong for anything client-confidential.</li>
@@ -1933,7 +1948,7 @@
 <ol class="steps edge">
 <li id="er-5-1" data-code="B5.x.1"><b>&ldquo;No resources found&rdquo; usually is not about the filters.</b> The message is the same whether a search genuinely matched nothing or the talent has not paid the signup fee. Check payment first &mdash; see <a href="#b5-gate" style="font-weight:700;cursor:pointer">B5.1 &#8599;</a>.</li>
 <li id="er-5-2" data-code="B5.x.2"><b>Videos cannot be downloaded.</b> Only PDFs get a download button. If a talent needs a video offline, there is nothing in the product for that.</li>
-<li id="er-5-3" data-code="B5.x.3"><b>A block can show more than the Resources page.</b> The blocks list every published resource for their Display Page; the Resources page additionally requires a <b>Published At</b> date. So a talent can watch a video on their Home page and then fail to find it by searching. That is the admin-side gap in <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>, seen from the talent's chair.</li>
+<li id="er-5-3" data-code="B5.x.3"><b>A block can show more than the Resources page.</b> The blocks list every published resource for their Display Page. The Resources page additionally requires <b>Published At to be today or earlier</b>, so anything post-dated or undated is missing from it while still sitting in its block. A talent can watch a video on their Home page and then fail to find it by searching. Admin side of the same gap: <a data-goto="page-b4" href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-b4"><span class="k">&larr; Prev (Admin)</span><b>B4 &middot; Publish a resource</b></a><a class="next" data-goto="page-o1"><span class="k">Next &rarr; (Ops)</span><b>O1 &middot; Your Ops workspace</b></a></div>
 </section>

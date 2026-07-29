@@ -2,4 +2,4 @@
 
 > B5 · Talent · find a resource → B5.x · Edge cases
 
-**A block can show more than the Resources page.** The blocks list every published resource for their Display Page; the Resources page additionally requires a **Published At** date. So a talent can watch a video on their Home page and then fail to find it by searching. That is the admin-side gap in [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md), seen from the talent's chair.
+**A block can show more than the Resources page.** The blocks list every published resource for their Display Page. The Resources page additionally requires **Published At to be today or earlier**, so anything post-dated or undated is missing from it while still sitting in its block. A talent can watch a video on their Home page and then fail to find it by searching. Admin side of the same gap: [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md).
