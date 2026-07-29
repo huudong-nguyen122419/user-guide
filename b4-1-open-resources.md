@@ -2,7 +2,7 @@
 
 > B4 · Publish a resource (Admin)
 
-1. **B4.1.1** — Left menu → **Content Management** → **Resources**. It sits alongside **Weekly Calls** and **Configuration** — not under Project or User Management, which is where people look first. You can also go straight there with the URL **/resources** (on UAT: `https://admin-uat.fintalent.io/resources`).
+1. **B4.1.1** — Left menu → **Content Management** → **Resources**. It sits alongside **Weekly Calls** and **Configuration** — not under Project or User Management, which is where people look first. You can also go straight there with the URL **/resources** (`https://admin.fintalent.io/resources`).
 
    ![Content Management menu with Resources](res-01-menu.png)
 
