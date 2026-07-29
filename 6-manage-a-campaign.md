@@ -19,4 +19,6 @@ Yours vs your Admin'sYou **build & schedule** the campaign (folder, steps, timin
 * [6.7 · Email Queue](6-7-email-queue.md)
 * [6.8 · Verify replies](6-8-verify-replies.md)
 * [6.9 · Bounces · hot replies](6-9-bounces-hot-replies.md)
+* [6.10 · Label the replies](6-10-label-the-replies.md)
+* [6.11 · When it is finished](6-11-when-it-is-finished.md)
 * [6.x · Edge cases](6-x-edge-cases.md)

@@ -134,8 +134,21 @@ def render_blocks(blocks: list, anchors: dict, indent: str = '') -> list:
     return [b for b in out if b]
 
 
-def render_steps(ol: Tag, anchors: dict, skip_ids: set) -> list:
-    """Numbered steps, skipping items promoted to their own page."""
+def split_lead(text: str) -> tuple[str, str]:
+    """'**Click + Create New** (top-right) → …' -> ('Click + Create New', '(top-right) → …')."""
+    if text.startswith('**'):
+        end = text.find('**', 2)
+        if end > 2:
+            return text[2:end].strip(' .:—-'), text[end + 2:].strip(' .:—-')
+    return '', text
+
+
+def render_steps(ol: Tag, anchors: dict, skip_ids: set, as_headings: bool = False) -> list:
+    """Steps of a flow.
+
+    as_headings turns each step into an H2 so it shows up in GitBook's
+    "On this page" outline, which only lists H1 and H2.
+    """
     lines, number = [], 0
     for li in ol.find_all('li', recursive=False):
         if li.get('id') in skip_ids:
@@ -143,19 +156,31 @@ def render_steps(ol: Tag, anchors: dict, skip_ids: set) -> list:
         number += 1
         text, blocks = split_item(li, anchors)
         code = li.get('data-code')
-        lines.append(f'{number}. **{code}** — {text}' if code else f'{number}. {text}')
-        lines += render_blocks(blocks, anchors, indent='   ')
+
+        if as_headings:
+            lead, rest = split_lead(text)
+            heading = ' · '.join(x for x in (code, lead) if x) or f'Step {number}'
+            lines.append(f'## {heading}')
+            if rest:
+                lines.append(rest)
+            elif not lead:
+                lines.append(text)
+            lines += render_blocks(blocks, anchors)
+        else:
+            lines.append(f'{number}. **{code}** — {text}' if code else f'{number}. {text}')
+            lines += render_blocks(blocks, anchors, indent='   ')
     return lines
 
 
-def render_flow_elements(elements: list, anchors: dict, skip_ids: set) -> list:
+def render_flow_elements(elements: list, anchors: dict, skip_ids: set,
+                         as_headings: bool = False) -> list:
     lines = []
     for el in elements:
         classes = el.get('class') or []
         if el.name == 'nav' or any(c.startswith('pagernav') for c in classes):
             continue  # prev/next pager belongs to the HTML layout
         if el.name == 'ol':
-            lines += render_steps(el, anchors, skip_ids)
+            lines += render_steps(el, anchors, skip_ids, as_headings)
         elif el.name == 'ul':
             for li in el.find_all('li', recursive=False):
                 text, blocks = split_item(li, anchors)

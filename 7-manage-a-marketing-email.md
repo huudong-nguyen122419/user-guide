@@ -19,4 +19,6 @@ Yours vs your Admin'sYou do everything **except turning the ME on and sending it
 * [7.6 · Email Queue (3 tabs)](7-6-email-queue-3-tabs.md)
 * [7.7 · Verify in Conversations](7-7-verify-in-conversations.md)
 * [7.8 · Replies · bounce · drop](7-8-replies-bounce-drop.md)
+* [7.9 · Label the replies](7-9-label-the-replies.md)
+* [7.10 · When it is finished](7-10-when-it-is-finished.md)
 * [7.x · Edge cases](7-x-edge-cases.md)

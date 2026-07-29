@@ -432,6 +432,8 @@
     <a href="#cmp-replies" class="st" data-page="page-campaign">6.8 · Verify replies</a>
     <a href="#cmp-bounce" class="st2" data-page="page-campaign">6.8a · Find bounces &amp; drops</a>
     <a href="#cmp-followup" class="st" data-page="page-campaign">6.9 · Bounces · hot replies</a>
+<a href="#cmp-categorize" class="st" data-page="page-campaign">6.10 &middot; Label the replies</a>
+<a href="#cmp-complete" class="st" data-page="page-campaign">6.11 &middot; When it is finished</a>
     <a href="#cmp-edge" class="st edge" data-page="page-campaign">6.x · Edge cases</a>
     <a href="#ce-1" class="st2" data-page="page-campaign">6.x.1 · A/B variants</a>
     <a href="#ce-2" class="st2" data-page="page-campaign">6.x.2 · Sidestep (conditional)</a>
@@ -473,6 +475,8 @@
     <a href="#me-conv" class="st" data-page="page-marketing">7.7 · Verify in Conversations</a>
     <a href="#me-bounce" class="st2" data-page="page-marketing">7.7a · Find bounces &amp; drops</a>
     <a href="#me-followup" class="st" data-page="page-marketing">7.8 · Replies · bounce · drop</a>
+<a href="#me-categorize" class="st" data-page="page-marketing">7.9 &middot; Label the replies</a>
+<a href="#me-complete" class="st" data-page="page-marketing">7.10 &middot; When it is finished</a>
     <a href="#me-edge" class="st edge" data-page="page-marketing">7.x · Edge cases</a>
     <a href="#e-8-1" class="st2" data-page="page-marketing">7.x.1 · Filter People / Preview</a>
     <a href="#e-8-2" class="st2" data-page="page-marketing">7.x.2 · Not Reviewed / Personalized</a>
@@ -2873,6 +2877,68 @@
 <li><b>Hot reply?</b> book the meeting &mdash; the reply is the point of the whole sequence.</li>
 </ul>
 
+<h3 id="cmp-categorize" class="anchor">6.10 &middot; Label the replies &mdash; and know which labels stop the sending</h3>
+<ol class="steps">
+<li data-code="6.10.1"><b>Two different labels, and only one of them stops anything.</b> This trips people up constantly:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Label</th><th>Sits on</th><th>Set by</th></tr></thead>
+  <tbody>
+  <tr><td><b>Category</b> <span class="fn">(the chip on a reply)</span></td><td>a <b>single reply</b>, and on the recipient inside this campaign</td><td>the system reads the message and guesses; <b>you correct it by hand</b></td></tr>
+  <tr><td><b>Lifecycle Stage</b></td><td>the <b>contact</b>, across everything</td><td>always you (<a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &#8599;</a>)</td></tr>
+  </tbody></table></div>
+</li>
+
+<li data-code="6.10.2"><b>The twelve categories &mdash; and the three that matter.</b> Read straight off the API on UAT: a recipient can hold any of <b>12</b>, an individual reply any of <b>11</b> <span class="fn">(the same list minus <b>Unknown</b>)</span>.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Group</th><th>Categories</th><th>Effect on sending</th></tr></thead>
+  <tbody>
+  <tr><td><b>Stops the sending</b></td><td><b>Opted Out</b> &middot; <b>Not Interested</b> &middot; <b>Do Not Contact</b></td><td><b>No further mail goes to this person.</b> Three labels, that is the whole list.</td></tr>
+  <tr><td><b>Reporting only</b></td><td>Call Scheduled &middot; Interested &middot; Not Now &middot; Out Of Office &middot; Left The Company &middot; Email Updated &middot; No Categories &middot; Not Responded &middot; Unknown</td><td><b>Sending continues.</b> They describe what happened; they do not hold anything back.</td></tr>
+  </tbody></table></div>
+  <p class="fn"><b>Where this comes from:</b> the twelve / eleven values are read straight off the API and are certain. <b>Which three stop the sending is taken from Fintalent's internal feature documentation, not from a send test of my own</b> &mdash; proving it would mean mailing a real contact. Treat the split as authoritative but worth one confirmation with the team before you rely on it in anger.</p>
+  <div class="call warn"><span class="t">The three look exactly like the other nine</span>Nothing in the interface marks them out &mdash; same chip, same colour, same list. So the label that quietly keeps mailing someone who asked you to stop is one row away from the one that stops it. <b>Before you label a negative reply, decide which of the two you mean:</b> &ldquo;not now, try later&rdquo; is <b>Not Now</b> and keeps them in rotation; &ldquo;stop emailing me&rdquo; is <b>Opted Out</b> or <b>Do Not Contact</b> and takes them out.</div>
+</li>
+
+<li data-code="6.10.3"><b>Out Of Office is not a rejection.</b> It is the most common auto-reply and it is reporting-only, so the person stays in the run &mdash; which is right, they are just away. Do not upgrade it to Not Interested to clear it off your screen; that is a different meaning and it is permanent.</li>
+
+<li data-code="6.10.4"><b>Nothing reminds you.</b> Categorising is entirely manual: no prompt, no badge, and <b>no count of how many replies are still unlabelled</b>. If you do not work the inbox deliberately, an opt-out can sit there unread while the next send goes out.
+  <p><b>Practical habit:</b> after every send, open the Inbox and clear it to zero before you do anything else. Filter the category rail to <b>No Categories</b> to find what nobody has touched.</p>
+  <p class="fn">There is also no bulk categorise &mdash; thirty auto-replies is thirty separate actions. Sort by the auto chip first so the identical ones are together.</p>
+</li>
+
+<li data-code="6.10.5"><b>Where you do it.</b> Open the <b>Inbox</b> tab of the campaign, pick the category rail on the left to filter, click a reply, set its category. The same reply also appears in your own Inbox (Flow 4) &mdash; labelling in either place is the same record.</li>
+</ol>
+
+<h3 id="cmp-complete" class="anchor">6.11 &middot; When the campaign is finished</h3>
+<ol class="steps">
+<li data-code="6.11.1"><b>The system decides &ldquo;Finished&rdquo;. You decide &ldquo;done&rdquo;.</b> They are not the same moment, and the gap between them is where the work actually is.
+  <div class="tblwrap"><table>
+  <thead><tr><th></th><th>What it means</th></tr></thead>
+  <tbody>
+  <tr><td><b>Finished</b> <span class="fn">(the status)</span></td><td>every queued email has left. Progress shows a full bar and a green &#10003;, the queue has nothing in <b>In Queue</b>. <b>This is about mail, not about outcomes.</b></td></tr>
+  <tr><td><b>Done</b> <span class="fn">(your call)</span></td><td>every reply has been read, answered and labelled; every bounce has been chased another way; every hot lead has been moved on. <b>Nothing in the product marks this &mdash; you do.</b></td></tr>
+  </tbody></table></div>
+</li>
+
+<li data-code="6.11.2"><b>The closing checklist.</b> Run it before you stop looking at the campaign:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Check</th><th>Where</th><th>What you want to see</th></tr></thead>
+  <tbody>
+  <tr><td>Nothing still queued</td><td>Email Queue &rarr; <b>In Queue</b></td><td><b>0</b>. Anything left <u>will</u> still go out.</td></tr>
+  <tr><td>Delivered matches what you sent</td><td>the row's <b>Delivered</b> vs the people you reviewed</td><td>the same number. A gap means someone was skipped &mdash; find out who.</td></tr>
+  <tr><td>Bounce / Dropped cleared</td><td>the row's <b>Bounce/Dropped Rate</b></td><td>either <b>0</b>, or every one of them chased another way (<a href="#cmp-followup" style="font-weight:700;cursor:pointer">6.9 &#8599;</a>).</td></tr>
+  <tr><td>No unlabelled replies</td><td>Inbox &rarr; category rail &rarr; <b>No Categories</b></td><td>empty.</td></tr>
+  <tr><td>Opt-outs actually recorded</td><td>the same rail</td><td>anyone who asked to stop carries <b>Opted Out</b> or <b>Do Not Contact</b>, not a softer label.</td></tr>
+  <tr><td>Hot replies moved on</td><td>Lifecycle Stage on the contact</td><td>Interested / Call Scheduled set, and the meeting booked (<a data-goto="page-meetings" style="font-weight:700;cursor:pointer">Flow 4b &#8599;</a>).</td></tr>
+  </tbody></table></div>
+</li>
+
+<li data-code="6.11.3"><b>Finished does not mean frozen.</b> Replies keep arriving after the last email lands &mdash; often for weeks. The Inbox stays live, so <b>keep checking it after the status has moved on</b>. A blast that reads Finished on Monday can still produce a meeting on Friday.</li>
+
+<li data-code="6.11.4"><b>Read the rates once at the end, and read them honestly.</b> A blank rate means nothing was sent. <b>0%</b> means it went out and nobody opened or replied &mdash; that is a content result, not a delivery one, and it is the number worth raising before the next send. Reply Rate is the one that matters; Open Rate mostly tells you about the subject line.</li>
+</ol>
+<div class="call note"><span class="t">A campaign has more than one step</span>Unlike a marketing email, a campaign keeps sending later steps to anyone who has not been stopped. That makes the three blocking categories <b>more</b> consequential here, not less: mislabel an opt-out on step 1 and they still receive steps 2 and 3.</div>
+
 <h3 id="cmp-edge" class="edgehead anchor">6.x &middot; Edge cases</h3>
 <ol class="steps edge">
 <li id="ce-1" data-code="6.x.1"><b>A/B variants.</b> Under any step, <b>+ Add variant</b> creates an alternative email (<b>A</b>, <b>B</b>, &hellip;) for that step &mdash; each contact gets <b>one variant at random</b> (on the Preview the step reads <i>&ldquo;A random option will be sent&rdquo;</i>), so you can test subject / copy.
@@ -3255,6 +3321,67 @@
 <li data-code="7.8.1"><b>Watch the Inbox.</b> Replies to this ME land in its own <b>Inbox</b> tab as well as your main one. Read and answer them the usual way &mdash; <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &#8599;</a>.</li>
 <li data-code="7.8.2"><b>Treat any Bounce / Dropped as a to-do, not a statistic.</b> That send failed, so the person never saw it. Find out who in <a href="#me-conv" style="font-weight:700;cursor:pointer">7.7a &#8599;</a>, then reach them another way: a 1:1 email (<a data-goto="page-send" style="font-weight:700;cursor:pointer">Flow 3 &#8599;</a>) or WhatsApp / LinkedIn (<a href="#e-4-4" style="font-weight:700;cursor:pointer">3.x.4 &#8599;</a>).</li>
 <li data-code="7.8.3"><b>A rate of 0% is not the same as a blank one.</b> Blank means nothing has been sent yet; <b>0%</b> means mail went out and nobody opened or replied &mdash; that is a content problem, and it is worth saying so before the next send.</li>
+</ol>
+
+<h3 id="me-categorize" class="anchor">7.9 &middot; Label the replies &mdash; and know which labels stop the sending</h3>
+<ol class="steps">
+<li data-code="7.9.1"><b>Two different labels, and only one of them stops anything.</b> This trips people up constantly:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Label</th><th>Sits on</th><th>Set by</th></tr></thead>
+  <tbody>
+  <tr><td><b>Category</b> <span class="fn">(the chip on a reply)</span></td><td>a <b>single reply</b>, and on the recipient inside this marketing email</td><td>the system reads the message and guesses; <b>you correct it by hand</b></td></tr>
+  <tr><td><b>Lifecycle Stage</b></td><td>the <b>contact</b>, across everything</td><td>always you (<a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &#8599;</a>)</td></tr>
+  </tbody></table></div>
+</li>
+
+<li data-code="7.9.2"><b>The twelve categories &mdash; and the three that matter.</b> Read straight off the API on UAT: a recipient can hold any of <b>12</b>, an individual reply any of <b>11</b> <span class="fn">(the same list minus <b>Unknown</b>)</span>.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Group</th><th>Categories</th><th>Effect on sending</th></tr></thead>
+  <tbody>
+  <tr><td><b>Stops the sending</b></td><td><b>Opted Out</b> &middot; <b>Not Interested</b> &middot; <b>Do Not Contact</b></td><td><b>No further mail goes to this person.</b> Three labels, that is the whole list.</td></tr>
+  <tr><td><b>Reporting only</b></td><td>Call Scheduled &middot; Interested &middot; Not Now &middot; Out Of Office &middot; Left The Company &middot; Email Updated &middot; No Categories &middot; Not Responded &middot; Unknown</td><td><b>Sending continues.</b> They describe what happened; they do not hold anything back.</td></tr>
+  </tbody></table></div>
+  <p class="fn"><b>Where this comes from:</b> the twelve / eleven values are read straight off the API and are certain. <b>Which three stop the sending is taken from Fintalent's internal feature documentation, not from a send test of my own</b> &mdash; proving it would mean mailing a real contact. Treat the split as authoritative but worth one confirmation with the team before you rely on it in anger.</p>
+  <div class="call warn"><span class="t">The three look exactly like the other nine</span>Nothing in the interface marks them out &mdash; same chip, same colour, same list. So the label that quietly keeps mailing someone who asked you to stop is one row away from the one that stops it. <b>Before you label a negative reply, decide which of the two you mean:</b> &ldquo;not now, try later&rdquo; is <b>Not Now</b> and keeps them in rotation; &ldquo;stop emailing me&rdquo; is <b>Opted Out</b> or <b>Do Not Contact</b> and takes them out.</div>
+</li>
+
+<li data-code="7.9.3"><b>Out Of Office is not a rejection.</b> It is the most common auto-reply and it is reporting-only, so the person stays in the run &mdash; which is right, they are just away. Do not upgrade it to Not Interested to clear it off your screen; that is a different meaning and it is permanent.</li>
+
+<li data-code="7.9.4"><b>Nothing reminds you.</b> Categorising is entirely manual: no prompt, no badge, and <b>no count of how many replies are still unlabelled</b>. If you do not work the inbox deliberately, an opt-out can sit there unread while the next send goes out.
+  <p><b>Practical habit:</b> after every send, open the Inbox and clear it to zero before you do anything else. Filter the category rail to <b>No Categories</b> to find what nobody has touched.</p>
+  <p class="fn">There is also no bulk categorise &mdash; thirty auto-replies is thirty separate actions. Sort by the auto chip first so the identical ones are together.</p>
+</li>
+
+<li data-code="7.9.5"><b>Where you do it.</b> Open the <b>Inbox</b> tab of the marketing email, pick the category rail on the left to filter, click a reply, set its category. The same reply also appears in your own Inbox (Flow 4) &mdash; labelling in either place is the same record.</li>
+</ol>
+
+<h3 id="me-complete" class="anchor">7.10 &middot; When the marketing email is finished</h3>
+<ol class="steps">
+<li data-code="7.10.1"><b>The system decides &ldquo;Finished&rdquo;. You decide &ldquo;done&rdquo;.</b> They are not the same moment, and the gap between them is where the work actually is.
+  <div class="tblwrap"><table>
+  <thead><tr><th></th><th>What it means</th></tr></thead>
+  <tbody>
+  <tr><td><b>Finished</b> <span class="fn">(the status)</span></td><td>every queued email has left. Progress shows a full bar and a green &#10003;, the queue has nothing in <b>In Queue</b>. <b>This is about mail, not about outcomes.</b></td></tr>
+  <tr><td><b>Done</b> <span class="fn">(your call)</span></td><td>every reply has been read, answered and labelled; every bounce has been chased another way; every hot lead has been moved on. <b>Nothing in the product marks this &mdash; you do.</b></td></tr>
+  </tbody></table></div>
+</li>
+
+<li data-code="7.10.2"><b>The closing checklist.</b> Run it before you stop looking at the marketing email:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Check</th><th>Where</th><th>What you want to see</th></tr></thead>
+  <tbody>
+  <tr><td>Nothing still queued</td><td>Email Queue &rarr; <b>In Queue</b></td><td><b>0</b>. Anything left <u>will</u> still go out.</td></tr>
+  <tr><td>Delivered matches what you sent</td><td>the row's <b>Delivered</b> vs the people you reviewed</td><td>the same number. A gap means someone was skipped &mdash; find out who.</td></tr>
+  <tr><td>Bounce / Dropped cleared</td><td>the row's <b>Bounce/Dropped Rate</b></td><td>either <b>0</b>, or every one of them chased another way (<a href="#me-followup" style="font-weight:700;cursor:pointer">7.8 &#8599;</a>).</td></tr>
+  <tr><td>No unlabelled replies</td><td>Inbox &rarr; category rail &rarr; <b>No Categories</b></td><td>empty.</td></tr>
+  <tr><td>Opt-outs actually recorded</td><td>the same rail</td><td>anyone who asked to stop carries <b>Opted Out</b> or <b>Do Not Contact</b>, not a softer label.</td></tr>
+  <tr><td>Hot replies moved on</td><td>Lifecycle Stage on the contact</td><td>Interested / Call Scheduled set, and the meeting booked (<a data-goto="page-meetings" style="font-weight:700;cursor:pointer">Flow 4b &#8599;</a>).</td></tr>
+  </tbody></table></div>
+</li>
+
+<li data-code="7.10.3"><b>Finished does not mean frozen.</b> Replies keep arriving after the last email lands &mdash; often for weeks. The Inbox stays live, so <b>keep checking it after the status has moved on</b>. A blast that reads Finished on Monday can still produce a meeting on Friday.</li>
+
+<li data-code="7.10.4"><b>Read the rates once at the end, and read them honestly.</b> A blank rate means nothing was sent. <b>0%</b> means it went out and nobody opened or replied &mdash; that is a content result, not a delivery one, and it is the number worth raising before the next send. Reply Rate is the one that matters; Open Rate mostly tells you about the subject line.</li>
 </ol>
 
 <h3 id="me-edge" class="edgehead anchor">7.x &middot; Edge cases</h3>
