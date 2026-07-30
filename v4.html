@@ -3842,6 +3842,13 @@ later. This is the intake decision only.</p>
 </li>
 <li id="s6-2-3" data-code="6.2.3">The step lists as <b>Step 1 - Day 1</b> with its <b>timing</b> ("Right away") and variant <b>A</b>.
   <figure><img src="sdrx-camp-06-sequence.png" alt="Step 1 in the sequence"/><figcaption><b>6.2.3</b> &mdash; <b>Step 1 &middot; Day 1 &middot; Right away &middot; variant A</b>.</figcaption></figure>
+  <p><b>The header carries a running day count, not just the delay.</b> <i>Right away</i> is Day 1; a
+  step set to <i>Wait for 10 days</i> after a Day 2 step reads <b>Step 3 - Day 12</b>. Read the last
+  step&rsquo;s day to see how long the whole sequence runs.</p>
+  <p class="fn"><b>The Steps badge counts every step in every branch.</b> Once the campaign has
+  sidesteps the badge exceeds the main sequence &mdash; 2 main steps plus 4 branches reads
+  <b>Steps 8</b>. That is correct, not a miscount
+  (<a href="#ce-2" style="font-weight:700;cursor:pointer">6.x.2 &#8599;</a>).</p>
 </li>
 <li id="s6-2-4" data-code="6.2.4"><b>Timing.</b> Click the timing pill to set <b>Deliver after a delay</b> (<b>Days</b>). <b>0</b> = right away; <b>N</b> = this step goes out N days after the previous one &mdash; that's the <b>"Day X"</b> label on the step.
   <figure><img src="sdrx-camp-07-timing.png" alt="Deliver after a delay"/><figcaption><b>6.2.4</b> &mdash; <b>Deliver after a delay: Days = N</b> (0 = Right away).</figcaption></figure>
@@ -3994,19 +4001,86 @@ later. This is the intake decision only.</p>
 
 <h3 id="cmp-edge" class="edgehead anchor">6.x &middot; Edge cases</h3>
 <ol class="steps edge">
-<li id="ce-1" data-code="6.x.1"><b>A/B variants.</b> Under any step, <b>+ Add variant</b> creates an alternative email (<b>A</b>, <b>B</b>, &hellip;) for that step &mdash; each contact gets <b>one variant at random</b> (on the Preview the step reads <i>&ldquo;A random option will be sent&rdquo;</i>), so you can test subject / copy.
+<li id="ce-1" data-code="6.x.1"><b>A/B variants.</b> Under any step, <b>+ Add variant</b> creates an alternative email (<b>A</b>, <b>B</b>, &hellip;) for that step, so you can test subject or copy. Each contact receives <b>one</b> of them (on the Preview the step reads <i>&ldquo;A random option will be sent&rdquo;</i>), so you can test subject / copy.
   <figure><img src="sdrx-camp-09-variants.png" alt="A/B variants on a step"/><figcaption><b>6.x.1</b> &mdash; Step 1 with two variants <b>A</b> and <b>B</b>.</figcaption></figure>
+  <p><b>The split is a weighting, not a coin toss.</b> Each variant carries a <b>percentage weight</b>,
+  and the weights on a step always add up to <b>100</b> &mdash; checked across <b>every step on UAT,
+  118 records, all summing to exactly 100</b>. One variant is <code>100</code>; two variants are
+  <code>50</code> / <code>50</code>. So &ldquo;random&rdquo; means <i>drawn against the weights</i>,
+  not <i>even by accident</i>.</p>
+  <div class="call warn"><span class="t">No control for the weight was found in the editor</span>The
+  number exists on the record and is always an even split in the data, so whether it can be changed
+  &mdash; and where &mdash; is <b>unverified</b>. Do not promise a client a 70/30 test until that is
+  answered.</div>
+  <p class="fn"><b>Variants live inside a branch.</b> A sidestep gets its own <b>+ Add variant</b> per
+  step, independent of the main sequence (<a href="#ce-2" style="font-weight:700;cursor:pointer">6.x.2
+  &#8599;</a>).</p>
+  <p><b>Which address it sends from.</b> Every variant stores its own <b>From</b> address and
+  <b>signature</b>, but the editor never shows either. Across <b>36 campaigns on UAT every campaign uses
+  exactly one sender</b> &mdash; the owner&rsquo;s address &mdash; so a variant does not change who the
+  email comes from. <b>The risk sits on the owner:</b> reassign the campaign and the sender changes with
+  it, silently, because nothing on screen names the address in use.</p>
 </li>
-<li id="ce-2" data-code="6.x.2"><b>Sidestep &mdash; a conditional branch.</b> A sidestep is an email that fires <b>automatically when a contact's reply lands in a chosen category</b> &mdash; e.g. an auto-response to an <b>Out Of Office</b>. Build one:
+<li id="ce-2" data-code="6.x.2"><b>Sidestep &mdash; a conditional branch.</b> A sidestep is an email
+that fires <b>automatically when a contact's reply lands in a chosen category</b> &mdash; e.g. an
+auto-response to an <b>Out Of Office</b>. Build one:
   <ol style="margin:6px 0 0;padding-left:18px">
   <li><b>Steps</b> tab &rarr; <b>+ Create sidestep</b>.</li>
-  <li><b>Pick the trigger condition</b> (the chip, top-left of the editor). The list: <b>Call Scheduled &middot; Interested &middot; Not Interested &middot; Do Not Contact &middot; Not Now &middot; Opted Out &middot; Out Of Office &middot; Left The Company</b>.</li>
-  <li><b>Write the email</b> &mdash; same editor as any step (template / variables / snippets all work) &rarr; <b>Create</b>.</li>
-  <li>The Steps tab now shows <b>two blocks</b>: <b>Main Step</b> (the normal drip) and <b>Side Step: &lsaquo;condition&rsaquo;</b> &mdash; a branch of its own, with <b>its own timing and variants</b>.</li>
+  <li><b>Pick the trigger conditions</b> &mdash; the chip control, top-left of the editor. <b>It takes
+  more than one.</b> A new sidestep opens with <b>Out Of Office</b> already selected; each condition
+  sits in a chip with an <b>&times;</b> to remove it. The list offers <b>nine</b>:
+  <b>Call Scheduled &middot; Interested &middot; Not Interested &middot; Do Not Contact &middot;
+  Not Now &middot; Opted Out &middot; Out Of Office &middot; Left The Company &middot;
+  No Categories</b>.</li>
+  <li><b>Write the email</b> &mdash; same editor as any step (template / variables / snippets /
+  attachments all work) &rarr; <b>Create</b>.</li>
   </ol>
-  <figure><img src="sdrx-camp-34-sidestep-conditions.png" alt="Sidestep trigger conditions"/><figcaption><b>6.x.2</b> &mdash; the trigger-condition list: the sidestep fires when the reply is categorized as this.</figcaption></figure>
-  <figure><img src="sdrx-camp-35-sidestep-branch.png" alt="Main Step and Side Step blocks"/><figcaption><b>6.x.2</b> &mdash; after Create: <b>Main Step</b> (the drip) + <b>Side Step: Out Of Office</b> &mdash; its own branch with its own timing/variants.</figcaption></figure>
+  <figure><img src="sdrx-camp-41-sidestep-conditions-multi.png" alt="Sidestep conditions, multi-select"/>
+  <figcaption><b>6.x.2</b> &mdash; the condition control is a <b>multi-select</b>:
+  <code>Out Of Office &times;</code> is already a chip and the tick marks it in the list. Add as many
+  conditions as should fire the same branch.</figcaption></figure>
+  <p><b>What the Steps tab looks like afterwards.</b> <b>Main Step</b> comes first, then <b>one block per
+  branch</b>, each headed <b>Side Step: &lsaquo;conditions&rsaquo;</b>. Several branches can live side by
+  side, and <b>a branch is a sequence of its own</b> &mdash; its own steps, its own day offsets.</p>
+  <figure><img src="sdrx-camp-40-sidestep-branches.png" alt="Main Step and four Side Step branches"/>
+  <figcaption><b>6.x.2</b> &mdash; <code>Campaign 1 1 1 1 2 0 2 5</code> on UAT: Main Step (2 steps) plus
+  <b>four</b> branches. <code>Side Step: Out Of Office</code> runs three steps of its own on Day 2, Day 3
+  and Day 4.</figcaption></figure>
+<pre class="ascii">Main Step
+   Step 1 &ndash; Day 1    Right away
+   Step 2 &ndash; Day 2    Wait for 1 day
+
+Side Step: Do Not Contact - Out Of Office
+   Step 1 &ndash; Day 2
+
+Side Step: Out Of Office
+   Step 1 &ndash; Day 2
+   Step 2 &ndash; Day 3            &#9668; a branch can be a whole sequence
+   Step 3 &ndash; Day 4
+
+Side Step: Left The Company
+   Step 1 &ndash; Day 2
+
+Side Step: Not Now - Out Of Office
+   Step 1 &ndash; Day 2</pre>
+  <p><b>Two conditions in one header are joined by a hyphen</b> &mdash;
+  <code>Side Step: Do Not Contact - Out Of Office</code> is <i>one</i> branch that fires on either
+  category, not two branches.</p>
+  <div class="call"><span class="t">The Steps badge counts every step in every branch</span>The campaign
+  above reads <b>Steps 8</b> &mdash; two main steps plus six across the four branches. A badge higher
+  than the main sequence is not a miscount; open the tab and count the branches.</div>
+  <div class="call warn"><span class="t">The same category can sit in two branches</span>Above,
+  <i>Out Of Office</i> appears in three of the four headers. Nothing warns about the overlap and nothing
+  states which branch wins. <b>Untested &mdash; do not build two branches on one category until this is
+  settled.</b></div>
+  <p><b>What is actually in use.</b> Across the <b>21 sidestep records on UAT</b>:
+  <b>Out Of Office 19</b> &middot; Not Now 3 &middot; Left The Company 2 &middot; Do Not Contact 1. The
+  other five offered conditions are unused &mdash; Out Of Office is what this feature is really for.</p>
+  <p class="fn">Three categories exist in the data model but are <b>not</b> offered in the dropdown:
+  <code>Unknown</code>, <code>EmailUpdated</code> and <code>NotResponded</code>. The last would let a
+  branch fire on <b>silence</b> rather than on a reply. Not available today.</p>
 </li>
+
 <li id="ce-3" data-code="6.x.3"><b>Folders &amp; owner &mdash; and editing your own.</b> Campaigns are organised into <b>folders</b> (right rail, each with a count). A folder has an <b>Owner</b> &mdash; set on create (6.1.2); it decides whose group the campaign shows under. Use folders to keep campaigns per teammate / segment / region. <b>Edit your own folder:</b> hover it in the rail &rarr; the <b>&#8942;</b> menu &rarr; <b>Edit/ View Details</b> &rarr; the <b>Update Folder</b> drawer (Owner &middot; Name &middot; Description) &rarr; <b>Update</b>.
   <figure><img src="sdrx-camp-32-folder-menu.png" alt="Folder three-dot menu"/><figcaption><b>6.x.3</b> &mdash; hover your folder &rarr; <b>&#8942;</b> &rarr; <b>Edit/ View Details</b>.</figcaption></figure>
   <figure><img src="sdrx-camp-33-folder-edit.png" alt="Update Folder drawer"/><figcaption><b>6.x.3</b> &mdash; the <b>Update Folder</b> drawer: change Name / Description &rarr; <b>Update</b>.</figcaption></figure>
