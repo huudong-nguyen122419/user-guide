@@ -66,6 +66,7 @@
     * [A6.x.8 · A company can be tagged wrongly](a6-x-8-a-company-can-be-tagged-wrongly.md)
     * [A6.x.9 · What Passive does not affect](a6-x-9-what-passive-does-not-affect.md)
     * [A6.x.10 · Send a talent back to In Review](a6-x-10-send-a-talent-back-to-in-review.md)
+  * [A6 · audit — The approval decision, audited](a6-audit-the-approval-decision.md)
 * [B1 · Invite talents to a project](b1-invite-talents-to-a-project.md)
 * [B2 · Talent · log & submit timesheet](b2-talent-log-and-submit-timesheet.md)
   * [B2.1 · Open Timesheet](b2-1-open-timesheet.md)

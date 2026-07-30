@@ -134,6 +134,245 @@
   .pagernav .spacer{flex:1}
   .pagernav-top{margin:2px 0 22px;padding:0 0 16px;border-top:none;border-bottom:1px solid var(--n-200)}
   @media(max-width:960px){.layout{grid-template-columns:1fr}aside{display:none}main{padding:22px}}
+
+  /* ============ A6 audit page (page-a6audit) ============
+     Scoped under .auditdoc: this stylesheet carries bare element selectors
+     and would otherwise restyle the whole guide. Light palette only —
+     v4 has no dark mode. */
+.auditdoc{
+    --paper:#FCFBF9;
+    --ink:#1A1A17;
+    --ink-2:#4A473F;
+    --muted:#6E6B62;
+    --rule:#DED9CE;
+    --rule-2:#EDE9E1;
+    --accent:#14524A;
+    --accent-ink:#FCFBF9;
+    --cream:#F6EFDC;
+    --cream-rule:#E4D8B4;
+    --passive:#9C5A06;
+    --passive-bg:#FBF0DF;
+    --active:#1B6B3F;
+    --active-bg:#E9F3EB;
+    --code-bg:#F2F0EA;
+    --shadow:rgba(26,26,23,.07);
+  }
+.auditdoc{
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono","Segoe UI Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    padding:0;
+  }
+.auditdoc .wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:0}
+.auditdoc /* ---------- masthead ---------- */
+  /* Facts run as a full-width band under the deck, .auditdoc not as a side column: two
+     columns of unequal height always leave dead space at the top of the short one. */
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 18px;
+  }
+.auditdoc h1{
+    font-family:var(--serif);font-weight:600;font-size:clamp(32px,4.6vw,48px);
+    line-height:1.08;letter-spacing:-.015em;margin:0 0 14px;text-wrap:pretty;
+  }
+.auditdoc .standfirst{
+    font-size:15.5px;color:var(--ink-2);margin:0;
+  }
+.auditdoc /* Each dt/dd pair is wrapped in its own div, .auditdoc so the grid places the pair as one
+     cell — putting dt and dd straight into a multi-column grid would split them. */
+  .mast-facts{
+    margin:30px 0 0;padding:17px 0 0;border-top:1px solid var(--rule);
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:18px 26px;
+  }
+.auditdoc .mast-facts dt{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);
+  }
+.auditdoc .mast-facts dd{
+    margin:5px 0 0;font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums;
+    line-height:1.4;
+  }
+.auditdoc .standfirst code{font-size:.9em}
+.auditdoc .masthead-rule{border:0;border-top:2px solid var(--ink);margin:34px 0 0;opacity:.85}
+.auditdoc /* ---------- callout ---------- */
+  .callout{
+    display:grid;grid-template-columns:126px 1fr;gap:20px;
+    background:var(--cream);border:1px solid var(--cream-rule);
+    padding:20px 22px;margin:34px 0 0;
+  }
+.auditdoc .callout .tag{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);padding-top:4px;
+  }
+.auditdoc .callout p{margin:0;font-size:15px}
+.auditdoc .callout p + p{margin-top:10px}
+@media (max-width:620px){
+  .auditdoc .callout{grid-template-columns:1fr;gap:8px}
+}
+.auditdoc /* ---------- sections ---------- */
+  section{margin-top:64px}
+.auditdoc .sec-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1px solid var(--rule);padding-bottom:9px;margin-bottom:26px;
+  }
+.auditdoc .sec-num{
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+    font-variant-numeric:tabular-nums;flex:none;
+  }
+.auditdoc .sec-head h2{
+    font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.01em;
+    margin:0;flex:none;
+  }
+.auditdoc .sec-head .spacer{flex:1 1 auto;border-bottom:1px solid var(--rule-2);transform:translateY(-6px)}
+.auditdoc .audience{
+    font-family:var(--mono);font-size:10.5px;color:var(--muted);flex:none;letter-spacing:.04em;
+  }
+@media (max-width:700px){
+  .auditdoc .sec-head{flex-wrap:wrap;gap:8px}
+  .auditdoc .sec-head .spacer{display:none}
+}
+.auditdoc .lede{font-size:15px;color:var(--ink-2);margin:0 0 22px}
+.auditdoc /* ---------- numbered summary ---------- */
+  /* NB: never display:grid on a list item holding mixed inline content — each element
+     child becomes its own grid item and the text runs get orphaned into a column.
+     Counter goes in an absolutely positioned marker instead. */
+  ol.summary{margin:0;padding-left:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:15px}
+.auditdoc ol.summary > li{
+    counter-increment:s;position:relative;padding-left:42px;font-size:15px;
+  }
+.auditdoc ol.summary > li::before{
+    content:counter(s) ".";position:absolute;left:0;top:1px;width:30px;text-align:right;
+    font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;
+  }
+.auditdoc /* ---------- tables ---------- */
+  .tbl{overflow-x:auto;margin:0;border-top:1px solid var(--ink);}
+.auditdoc table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+.auditdoc thead th{
+    font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);text-align:left;vertical-align:bottom;
+    padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);
+  }
+.auditdoc tbody td{padding:13px 14px 13px 0;vertical-align:top;border-bottom:1px solid var(--rule-2)}
+.auditdoc tbody tr:last-child td{border-bottom:1px solid var(--rule)}
+.auditdoc td.num, .auditdoc th.num{text-align:right;padding-right:16px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.auditdoc .tbl code{font-size:11.5px}
+.auditdoc .sub td{border-bottom:none;padding-top:0;padding-bottom:11px;font-size:12.5px;color:var(--ink-2)}
+.auditdoc .sub .lbl{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);white-space:nowrap;
+  }
+.auditdoc .tnote{font-size:12.5px;color:var(--muted);margin:12px 0 0}
+.auditdoc code{
+    font-family:var(--mono);font-size:12.5px;background:var(--code-bg);
+    padding:1px 5px;border-radius:3px;color:var(--ink);
+  }
+.auditdoc /* ---------- badges & verdicts ---------- */
+  .badge{
+    display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;
+    background:var(--accent);color:var(--accent-ink);padding:3px 8px;border-radius:2px;white-space:nowrap;
+  }
+.auditdoc .v{
+    display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;
+    padding:2px 7px;border-radius:2px;white-space:nowrap;
+  }
+.auditdoc .v.passive{background:var(--passive-bg);color:var(--passive);border:1px solid var(--passive)}
+.auditdoc .v.active{background:var(--active-bg);color:var(--active);border:1px solid var(--active)}
+.auditdoc .stop{font-family:var(--mono);font-weight:600;font-size:12.5px;white-space:nowrap}
+.auditdoc /* ---------- journey blocks ---------- */
+  .journey{margin-top:40px;padding-top:4px}
+.auditdoc .j-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.auditdoc .j-head h3{font-family:var(--serif);font-weight:600;font-size:21px;margin:0;letter-spacing:-.005em}
+.auditdoc .meta{
+    display:grid;grid-template-columns:104px 1fr;gap:7px 16px;font-size:13.5px;
+    margin:0 0 20px;color:var(--ink-2);
+  }
+.auditdoc .meta dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.auditdoc .meta dd{margin:0}
+@media (max-width:620px){
+  .auditdoc .meta{grid-template-columns:1fr;gap:2px 0}
+  .auditdoc .meta dd{margin-bottom:8px}
+}
+.auditdoc .states{
+    margin:18px 0 0;background:var(--rule-2);border:1px solid var(--rule);
+    display:grid;grid-template-columns:126px 1fr;gap:2px 20px;padding:18px 22px;font-size:13.5px;
+  }
+.auditdoc .states dt{
+    font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--muted);padding-top:4px;
+  }
+.auditdoc .states dd{margin:0 0 10px}
+.auditdoc .states dd:last-of-type{margin-bottom:0}
+@media (max-width:620px){
+  .auditdoc .states{grid-template-columns:1fr;gap:2px}
+}
+.auditdoc /* ---------- flow ---------- */
+  .flow-label{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);margin:38px 0 0;padding-bottom:9px;border-bottom:1px solid var(--rule);
+  }
+.auditdoc .flow{border:1px solid var(--rule);border-top:0;padding:26px 18px;overflow-x:auto;background:var(--paper)}
+.auditdoc pre.mermaid{margin:0;text-align:center;font-family:var(--mono)}
+.auditdoc pre.ascii{
+    font-family:var(--mono);font-size:12px;line-height:1.55;margin:0;
+    white-space:pre;color:var(--ink);
+  }
+.auditdoc /* ---------- shortlist ---------- */
+  .short{display:flex;flex-direction:column;gap:0}
+.auditdoc .short-item{
+    display:grid;grid-template-columns:94px 1fr;gap:22px;
+    padding:22px 0;border-bottom:1px solid var(--rule-2);
+  }
+.auditdoc .short-item:first-child{border-top:1px solid var(--rule)}
+.auditdoc .short-item:last-child{border-bottom:1px solid var(--rule)}
+.auditdoc .short-id{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.auditdoc .short-score{font-family:var(--mono);font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.auditdoc .short-item h4{font-family:var(--serif);font-weight:600;font-size:18px;margin:0 0 10px;letter-spacing:-.005em}
+.auditdoc .role{font-size:14px;margin:0 0 8px;color:var(--ink-2)}
+.auditdoc .role:last-child{margin-bottom:0}
+.auditdoc .role b.who{
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;
+    color:var(--accent);text-transform:uppercase;
+  }
+@media (max-width:620px){
+  .auditdoc .short-item{grid-template-columns:1fr;gap:12px}
+}
+.auditdoc /* ---------- open questions ---------- */
+  .oq{display:flex;flex-direction:column;gap:0}
+.auditdoc .oq-item{
+    display:grid;grid-template-columns:126px 1fr;gap:20px;
+    padding:18px 0;border-bottom:1px solid var(--rule-2);
+  }
+.auditdoc .oq-item:first-child{border-top:1px solid var(--rule)}
+.auditdoc .oq-item:last-child{border-bottom:1px solid var(--rule)}
+.auditdoc .oq-tag{
+    font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--muted);padding-top:3px;
+  }
+.auditdoc .oq-item p{margin:0;font-size:14.5px}
+.auditdoc .oq-src{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:7px !important}
+@media (max-width:620px){
+  .auditdoc .oq-item{grid-template-columns:1fr;gap:6px}
+}
+.auditdoc /* ---------- decided strip ---------- */
+  .decided{
+    margin-top:26px;border:1px solid var(--rule);border-left:3px solid var(--accent);
+    padding:16px 20px;font-size:14px;color:var(--ink-2);
+  }
+.auditdoc .decided b{color:var(--ink)}
+.auditdoc .decided ul{margin:9px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px}
+.auditdoc strong{font-weight:650;color:var(--ink)}
+.auditdoc s{color:var(--muted)}
+.auditdoc a{color:var(--accent)}
+.auditdoc a:focus-visible, .auditdoc [tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  .auditdoc *{animation:none !important;transition:none !important}
+}
 </style>
 </head>
 <body>
@@ -212,6 +451,7 @@
     <a href="#ec-6-8" class="st2" data-page="page-a6">A6.x.8 · A company can be tagged wrongly</a>
     <a href="#ec-6-9" class="st2" data-page="page-a6">A6.x.9 · What Passive does not affect</a>
     <a href="#ec-6-10" class="st2" data-page="page-a6">A6.x.10 · Send a talent back to In Review</a>
+    <a class="flow adm" data-page="page-a6audit"><span class="n">A6†</span> The approval decision, audited</a>
     <a class="flow adm" data-page="page-b1"><span class="n">B1</span> Invite talents to a project</a>
     <a class="flow tal" data-page="page-b2"><span class="n">B2</span> Talent · log &amp; submit timesheet</a>
     <a href="#b2-open" class="st" data-page="page-b2">B2.1 · Open Timesheet</a>
@@ -820,6 +1060,8 @@
 <div class="goal adm"><b>Goal:</b> keep <b>clients</b> out of the talent supply. A <b>client</b> is someone who sits on the <b>buy side today</b> &mdash; holding a role at a PE fund, or running a company a fund owns. Clients must be <b>Passive</b> so they never enter the project-invitation flow. Everyone else is <b>talent</b> and stays <b>Active</b>.</div>
 <div class="call warn"><span class="t">Production is read-only for this work</span>Run the filters and read the data on production, but <b>never change a status there</b>. Do every status change on <b>UAT</b> first and confirm the result before touching live records.</div>
 
+<div class="call"><span class="t">Looking for the summary, not the procedure?</span><a href="#page-a6audit" data-goto="page-a6audit" style="font-weight:700;cursor:pointer">The approval decision, audited &#8599;</a> is the same rule written for whoever decides what gets fixed: ten findings, a register of <b>12 defects</b> scored by impact and effort, three quick wins, and the questions still open. This page is the operator’s view — what to click, and what the system will do.</div>
+
 <h4 style="margin:18px 0 8px">One flow, and what it deliberately leaves out</h4>
 <p>This section covers <b>the intake decision only</b> &mdash; the moment an admin approves a new sign-up and the system picks a status. The existing population is a different problem with different evidence, and it is <b>not worked by hand</b>.</p>
 <div class="tblwrap"><table>
@@ -1212,6 +1454,748 @@ later. This is the intake decision only.</p>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-a5"><span class="k">&larr; Prev</span><b>A5 &middot; Manage a marketing email</b></a><a class="next" data-goto="page-b1"><span class="k">Next &rarr;</span><b>B1 &middot; Invite talents</b></a></div>
+</section>
+
+
+<!-- ===================== A6-AUDIT · APPROVAL RULE AUDIT ===================== -->
+<section class="page" id="page-a6audit">
+<h2><span class="who adm">ADMIN</span><span class="n">A6 · audit ·</span> The approval decision, audited</h2>
+<p class="fn" style="margin-bottom:22px">A decision-maker’s view of the same rule documented in <a href="#page-a6" data-goto="page-a6" style="font-weight:700;cursor:pointer">A6 &#8599;</a> — what it costs when it is wrong, what to fix first, and what is still undecided. The operator’s view, with the click path, stays on the A6 page.</p>
+<div class="auditdoc">
+<p class="eyebrow">Validated on production &middot; Sections 1&ndash;7</p>
+  <h1>Talent Active / Passive &mdash; the approval decision</h1>
+  <p class="standfirst">Reverse-engineered from live behaviour, not from source. Scope: the admin app,
+  <code>In Review</code> queue &rarr; <strong>Approve Talent</strong> &mdash; the moment the system
+  chooses a status on its own, with no picker and no reason recorded.</p>
+
+  <dl class="mast-facts">
+    <div><dt>Walked</dt><dd>30 Jul 2026</dd></div>
+    <div><dt>Environment</dt><dd>Production, read&#8209;only</dd></div>
+    <div><dt>Validated</dt><dd>7 records &middot; 2 by tooltip</dd></div>
+    <div><dt>Queue</dt><dd>2 prod &middot; 286 UAT</dd></div>
+    <div><dt>Rule</dt><dd>7 steps &middot; 2 reach Passive</dd></div>
+    <div><dt>Register</dt><dd>12 defects &middot; 3 quick wins</dd></div>
+    <div><dt>Decisions</dt><dd>5 settled &middot; 3 open</dd></div>
+  </dl>
+  <hr class="masthead-rule">
+
+  <div class="callout">
+    <div class="tag">Headline finding</div>
+    <div>
+      <p><strong>A job title never makes anybody Passive.</strong> After the employment-status gate,
+      only a <em>Mergermarket flag on the current employer</em> can produce Passive &mdash; and a junior
+      title vetoes even that. <strong>The flag is necessary, not sufficient.</strong></p>
+      <p>Which means the decision rests almost entirely on one lookup that fails quietly:
+      <strong>roughly 63% of talents have a current employer that was never matched to a company
+      record</strong>, and an unmatched company can never raise a flag. Every journey below treats that
+      lookup as the load-bearing step.</p>
+    </div>
+  </div>
+
+  <!-- ============================ 01 ============================ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Executive summary</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / PM / CEO</span>
+    </div>
+
+    <ol class="summary">
+      <li><strong>Quick win 1 &mdash; check seniority before checking the employer.</strong> The rule
+      running today has no seniority test at all, so an <code>Associate</code> holding a job at a
+      flagged company is filed as a client. One live record: a 7-year M&amp;A associate at a boutique
+      investment bank, shut out of every project invitation from his first day, no reason recorded.
+      Worth: the single largest class of wrong verdicts. About a day.</li>
+
+      <li><strong>Quick win 2 &mdash; stop treating a missing answer as an answer.</strong>
+      <strong>27% of the queue</strong> never finished sign-up and has no employment status. Today they
+      are filed Active on the strength of one unread field, without the profile being opened. Worth:
+      removes the largest blind branch in the rule. Under a day to gate; the policy call is the slow
+      part.</li>
+
+      <li><strong>Quick win 3 &mdash; record why.</strong> An automatic Passive stamps
+      <code>passiveDate</code> and writes no reason, so the profile cannot explain itself afterwards
+      and nobody can audit a batch. Worth: makes every future disagreement checkable instead of
+      re-derivable. About a day.</li>
+
+      <li>There is <strong>no rule page and no status picker</strong>. The decision happens on the
+      Approve click, and a tooltip on that button is the only warning &mdash; it names the outcome but
+      never which test produced it.</li>
+
+      <li><strong>Exactly two things make somebody Passive:</strong> the employment status they picked
+      at sign-up, and a flag on the company of a role marked current. Everything else in the walk can
+      only push towards Active.</li>
+
+      <li><strong>Four of the seven validated records turn on that flag step</strong>, and two of those
+      four turn on the company simply not being linked to any record. The verdict for those two is
+      decided by a missing row, not by anything about the person.</li>
+
+      <li><strong>Company matching is the weakest link in the chain.</strong> Three faults in seven
+      records, all at the deciding step: one company held <em>two</em> records carrying different
+      flags and the role linked to the wrong one; one linked to nothing; one linked to a subsidiary
+      acquired in 2016 instead of the parent.</li>
+
+      <li><strong>The timeline reads like a human decision when it is not one.</strong> An automatic
+      change is stamped with the approving admin&rsquo;s name. The only reliable discriminator is the
+      transition recorded inside the entry &mdash; <code>InReview &rarr; Passive</code> is the machine;
+      anything else is a person.</li>
+
+      <li>Two beliefs held earlier are <strong>wrong and have been withdrawn</strong>: that a
+      <code>corporate</code> flag is out of scope, and that the internal <em>Skip Review</em> flag gates
+      the check. A record with no Skip Review was still filed Passive at approval.</li>
+
+      <li>The register below scores <strong>12 defects</strong>. Three are quick wins. The three most
+      valuable things to fix are the missing seniority test, the blank employment status, and the
+      silence of an unmatched company.</li>
+    </ol>
+  </section>
+
+  <!-- ============================ 02 ============================ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>What the rule reads</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: engineering</span>
+    </div>
+    <p class="lede">Five inputs, and a longer list of things that look like inputs and are not. The
+    second list is where the mistakes come from &mdash; on one record every lookalike said
+    <em>portfolio company</em> while the actual flag said nothing at all.</p>
+
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Field</th><th>Where it comes from</th><th>Key states</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Employment status</strong></td>
+            <td><code>talent.employeeStatus</code></td>
+            <td>picked by the talent at sign-up; shown on the profile header line</td>
+            <td><code>FullTimeEmployee</code> &middot; <code>PartTimeEmployee</code> &middot;
+            <code>Freelancer</code> &middot; <code>Unemployed</code> &middot; <code>Other</code> &middot;
+            <strong>blank &mdash; 27% of the In Review queue</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Current roles</strong></td>
+            <td><code>workExperiences[]</code> where <code>ongoing = true</code></td>
+            <td>talent-entered</td>
+            <td>none (6% of the queue) &middot; one &middot; several. <strong><code>ongoing = true</code>
+            can sit on a row whose <code>to</code> date has already passed</strong> &mdash; the UI trusts
+            the flag and prints <em>Until Now</em></td>
+          </tr>
+          <tr>
+            <td><strong>Position</strong></td>
+            <td><code>workExperiences[].position</code></td>
+            <td>talent-entered, one per row</td>
+            <td>free text. <strong>Differs from the profile headline on 49% of records that have a
+            current role</strong> &mdash; headline <em>&ldquo;Investment Manager (Infrastructure Private
+            Equity)&rdquo;</em>, row <code>Investment Leader</code></td>
+          </tr>
+          <tr>
+            <td><strong>Company name</strong></td>
+            <td><code>workExperiences[].company</code></td>
+            <td>talent-entered, free text</td>
+            <td>often a placeholder rather than a company: <code>Freelance</code>,
+            <code>Self-employed</code>, <code>Various</code>, <code>N/A</code>, or the person&rsquo;s own
+            name</td>
+          </tr>
+          <tr>
+            <td><strong>Company flag</strong></td>
+            <td><code>linkedCompany.isSponsor</code> / <code>.isPortfolio</code> /
+            <code>.isCorporate</code></td>
+            <td>set by the Mergermarket match on that work-experience row</td>
+            <td><strong>no linked company at all &mdash; about 63% of current employers</strong> &middot;
+            linked but unflagged &middot; <code>S</code> / <code>P</code> / <code>Corporate</code>. On
+            screen: the badge beside the company name in the Work Experience tab</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="padding-top:20px">
+              <strong>Read by nothing in the rule</strong> &mdash; the profile <code>title</code>, the
+              company <code>description</code>, the Company Background labels,
+              <code>totalApplications</code>, <code>totalAccepted</code>, <code>seniorityLevel</code>,
+              and <code>internalStatus</code> (<em>Skip Review</em> / <em>Require Review</em>).
+              <em>Every one of these has been mistaken for evidence at least once.</em>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">The three most convincing impostors, all seen on one record: a role description
+    reading <em>&ldquo;CFO of VC-backed SaaS&hellip;&rdquo;</em> &mdash; text the talent typed about
+    themselves; a Company Background of <code>PE-Backed (8 yrs)</code> &mdash; an AI label inferred
+    across a whole career, not a fact about today; and the company&rsquo;s own description. The flag on
+    that record: none.</p>
+  </section>
+
+  <!-- ============================ 03 ============================ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>The walk</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: engineering / Product</span>
+    </div>
+    <p class="lede">Seven tests, top to bottom, first match ends the walk. A talent walks between one
+    and seven of them. <strong>Order is load-bearing:</strong> S5 sits in front of S7 because a junior at
+    a flagged employer must come out Active, and testing the flag first makes that impossible.</p>
+
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr><th>Step</th><th>Test</th><th>On yes</th><th>What it costs to evaluate</th><th class="num">UAT queue<br>286 records</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge">S1</span></td>
+            <td>Employment status is Full-time or Part-time employee?</td>
+            <td><span class="v passive">Passive</span></td>
+            <td>one field. The profile is never opened. No escape hatch &mdash; applications and
+            accepted invitations do not save them</td>
+            <td class="num">36 &middot; 13%</td>
+          </tr>
+          <tr>
+            <td><span class="badge">S2</span></td>
+            <td>Employment status is blank?</td>
+            <td><span class="v active">Active</span> <em>&mdash; open, see &sect;07</em></td>
+            <td>one field</td>
+            <td class="num"><strong>76 &middot; 27%</strong></td>
+          </tr>
+          <tr>
+            <td><span class="badge">S3</span></td>
+            <td>No role marked current?</td>
+            <td><span class="v active">Active</span></td>
+            <td>+ a count of rows with <code>ongoing = true</code>. Nothing left to test</td>
+            <td class="num">18 &middot; 6%</td>
+          </tr>
+          <tr>
+            <td><span class="badge">S4</span></td>
+            <td>A current role&rsquo;s <strong>position or company</strong> contains freelance wording?</td>
+            <td><span class="v active">Active</span></td>
+            <td>+ read the position and company of every current row</td>
+            <td class="num">9 &middot; 3%</td>
+          </tr>
+          <tr>
+            <td><span class="badge">S5</span></td>
+            <td>A current role&rsquo;s <strong>position</strong> is junior or back office?</td>
+            <td><span class="v active">Active</span></td>
+            <td>same two fields, matched on word boundaries. <strong>The company is never read</strong></td>
+            <td class="num">&mdash; new</td>
+          </tr>
+          <tr>
+            <td><span class="badge">S6</span></td>
+            <td>A current role&rsquo;s <strong>company</strong> is advisory or sell-side?</td>
+            <td><span class="v active">Active</span></td>
+            <td>+ the company record. <em>In the flow; has never fired</em></td>
+            <td class="num">&mdash; new</td>
+          </tr>
+          <tr>
+            <td><span class="badge">S7</span></td>
+            <td>A current role&rsquo;s company carries a Mergermarket flag?</td>
+            <td><span class="v passive">Passive</span></td>
+            <td>+ the flag lookup on every current company. <code>S</code>, <code>P</code> and
+            <code>Corporate</code> all count</td>
+            <td class="num">35 &middot; 12%</td>
+          </tr>
+          <tr>
+            <td><span class="badge" style="background:var(--muted)">&mdash;</span></td>
+            <td>Fell through everything</td>
+            <td><span class="v active">Active</span></td>
+            <td>the full walk, nothing proved them Passive</td>
+            <td class="num">112 &middot; 39%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote"><strong>Outcome on the UAT queue: Passive 71 (25%) &middot; Active 215 (75%).</strong>
+    Counts are the rule as built today, which has no S5 and no S6 &mdash; those two steps are the
+    rebuild, and they will move records out of the 12% and the 39% rows. <strong>46% of the queue never
+    gets past S2</strong>: the employment-status field decides it alone.</p>
+
+    <p class="flow-label">Flow &mdash; the deciding path</p>
+    <div class="flow">
+<pre class="ascii">Admin clicks Approve
+&#9474;
+&#9500;&#9472; S1  Employment status is Full-time or Part-time?
+&#9474;        YES &rarr; PASSIVE            no escape hatch
+&#9474;  NO &#9660;
+&#9500;&#9472; S2  Employment status is blank?
+&#9474;        YES &rarr; ACTIVE             still an open question
+&#9474;  NO &#9660;
+&#9500;&#9472; S3  Any role marked current?
+&#9474;        NONE &rarr; ACTIVE            nothing to test
+&#9474;  AT LEAST ONE &#9660;
+&#9500;&#9472; S4  Freelance wording in the position or company?
+&#9474;        YES &rarr; ACTIVE
+&#9474;  NO &#9660;
+&#9500;&#9472; S5  Position is junior or back office?
+&#9474;        YES &rarr; ACTIVE             the company is never read
+&#9474;  NO &#9660;
+&#9500;&#9472; S6  Company is advisory or sell-side?
+&#9474;        YES &rarr; ACTIVE             not built yet
+&#9474;  NO &#9660;
+&#9500;&#9472; S7  Company carries a Mergermarket flag?
+&#9474;        YES &rarr; PASSIVE            sponsor, portfolio OR corporate
+&#9474;  NO &#9660;                          no flag, or no linked company
+&#9492;&#9472; ACTIVE                         fallback</pre>
+    </div>
+
+    <!-- truth table -->
+    <div class="journey">
+      <div class="j-head"><span class="badge">Rule</span><h3>The flag is necessary, not sufficient</h3></div>
+      <p class="lede">After S1, a Passive verdict <strong>requires</strong> a flag &mdash; but a flag does
+      not <strong>produce</strong> one. S4, S5 and S6 each hold a veto. <strong>A title can only ever
+      veto; it can never trigger.</strong></p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Title on the current row</th><th>Company flag</th><th>Result</th><th>Live case</th></tr></thead>
+          <tbody>
+            <tr><td>freelance wording <em>(S4)</em></td><td>flagged</td><td><span class="v active">Active</span></td><td class="tnote" style="margin:0">not yet seen</td></tr>
+            <tr><td>junior / back office <em>(S5)</em></td><td>flagged</td><td><span class="v active">Active</span></td><td>Iman Dakhlaoui &middot; Athanasia Panteli</td></tr>
+            <tr><td>advisory / sell-side <em>(S6)</em></td><td>flagged</td><td><span class="v active">Active</span></td><td class="tnote" style="margin:0">not yet seen</td></tr>
+            <tr><td><strong>nothing to veto with</strong></td><td><strong>flagged</strong></td><td><span class="v passive">Passive</span></td><td>Arnaud Leblanc</td></tr>
+            <tr><td>nothing to veto with</td><td>no flag</td><td><span class="v active">Active</span></td><td>Syed Ishaque Hasib &middot; Mark Cox</td></tr>
+            <tr><td>junior / back office</td><td>no flag</td><td><span class="v active">Active</span></td><td class="tnote" style="margin:0">not yet seen</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tnote">The pair that fixes the step order in place: <strong>Iman Dakhlaoui &mdash; flagged
+      employer, still Active</strong>, because <code>Associate</code> vetoed at S5 before S7 ran; and
+      <strong>Mark Cox &mdash; no veto available, still Active</strong>, because S7 found no flag to fire.
+      Same verdict, opposite reasons. Move S5 behind S7 and the first one breaks.</p>
+    </div>
+
+    <!-- J1 -->
+    <div class="journey">
+      <div class="j-head"><span class="badge">J1</span><h3>Approve one talent out of the queue</h3></div>
+      <dl class="meta">
+        <dt>Trigger</dt><dd>The <strong>N In Review</strong> button at the top right of the Talents list</dd>
+        <dt>Goal</dt><dd>Get the record out of the queue with the right status on it.</dd>
+        <dt>Persona</dt><dd>Admin / data operations</dd>
+      </dl>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Stage</th><th>What the admin does</th><th>What the screen gives back</th><th>Expected result</th><th>Defect</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1 Open</strong></td><td>Clicks <strong>N In Review</strong></td><td>The first profile opens in a drawer with a <code>1 / N</code> pager</td><td>Step through the queue without returning to the list</td><td>PP-12</td></tr>
+            <tr><td><strong>2 Read</strong></td><td>Reads the header line and the Work Experience tab</td><td>Employment Status on the header; position, company and flag badge per row</td><td>Enough to answer S1&ndash;S7 by eye</td><td>PP-02</td></tr>
+            <tr><td><strong>3 Predict</strong></td><td>Hovers <strong>Approve Talent</strong></td><td>Tooltip: <em>&ldquo;Talent status will be updated to Active&rdquo;</em>, or a Passive variant naming full-time employment or a flagged company</td><td>The outcome, in advance</td><td>PP-09</td></tr>
+            <tr><td><strong>4 Approve</strong></td><td>Clicks <strong>Approve</strong> in the confirm dialog</td><td>No status picker. The rule runs and writes the status</td><td>Record leaves the queue; Approve / Reject disappear</td><td>PP-03</td></tr>
+            <tr><td><strong>5 Verify</strong></td><td>Reopens the record from the list</td><td>The status chip, now editable</td><td>Chip matches what the tooltip promised</td><td>PP-07</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <dl class="states">
+        <dt>Happy</dt><dd>Tooltip and chip agree with the admin&rsquo;s own reading; one click per record; the pager advances.</dd>
+        <dt>Disagrees</dt><dd>Approve anyway, then flip the chip &mdash; it is read-only while the status is In Review, so correcting is always a second, separate act.</dd>
+        <dt>No evidence</dt><dd>Employment status blank, or no role marked current: the rule answers Active without the profile being read. The admin has only the position text to go on.</dd>
+        <dt>Flag wrong</dt><dd>Verified three times in seven records &mdash; a duplicate company record, an unmatched company, a subsidiary standing in for its parent. The chip is confidently wrong and records no reason.</dd>
+      </dl>
+    </div>
+
+    <!-- J2 -->
+    <div class="journey">
+      <div class="j-head"><span class="badge">J2</span><h3>Correct a verdict the rule got wrong</h3></div>
+      <dl class="meta">
+        <dt>Trigger</dt><dd>The chip does not match what the admin concluded in J1 stage 2</dd>
+        <dt>Goal</dt><dd>Put the right status on the record and leave a trace that survives.</dd>
+        <dt>Persona</dt><dd>Admin / data operations</dd>
+      </dl>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Stage</th><th>What the admin does</th><th>What the screen gives back</th><th>Expected result</th><th>Defect</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1 Unlock</strong></td><td>Waits for approval to finish</td><td>The chip becomes editable only once the status is Active or Passive</td><td>Correction is possible</td><td>PP-12</td></tr>
+            <tr><td><strong>2 Switch</strong></td><td>Clicks the chip, picks the other value</td><td>The dropdown offers exactly one alternative</td><td>Status changes</td><td>&mdash;</td></tr>
+            <tr><td><strong>3 Explain</strong></td><td>On Active &rarr; Passive, picks a reason</td><td>A radio group, with <strong>Other</strong> and a free-text box</td><td>A reason is stored on the record</td><td>PP-03</td></tr>
+            <tr><td><strong>4 Trace</strong></td><td>Opens Timelines</td><td>An entry with the admin&rsquo;s name and the transition</td><td>From now on the record counts as hand-set and a migration will leave it alone</td><td>PP-07</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <dl class="states">
+        <dt>Happy</dt><dd>One profile, two acts: approve, then correct. The timeline shows a transition that is not <code>InReview &rarr; Passive</code>, which is what marks it as a human decision.</dd>
+        <dt>Asymmetry</dt><dd>Passive asks for a reason. Active does not &mdash; so a corrected-to-Active record carries no explanation of why the rule was overruled.</dd>
+        <dt>No trace</dt><dd>The talent audit log only starts around April 2026. On older records a Passive with a stamped <code>passiveDate</code> and no entry at all cannot be told apart from a hand decision.</dd>
+        <dt>Not bulk</dt><dd>Status cannot be changed for several people at once. A batch means opening every profile.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================ 04 ============================ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Validated cases</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / engineering</span>
+    </div>
+    <p class="lede">Seven live production records. Records 1&ndash;2 were predicted first and then checked
+    against the system&rsquo;s own Approve tooltip; 3&ndash;7 were settled by ruling. Every one of them
+    changed or confirmed something in the walk, and <strong>no case failed because a field was read
+    wrongly</strong> &mdash; the misses were all missing steps or undecided policy.</p>
+
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Record</th><th>Current role</th><th>Stops</th><th>Rule</th><th>On the record</th><th>What the case settled</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td><td><strong>Thomas Tawse</strong><br><span class="tnote" style="margin:0">Freelancer &middot; UK</span></td>
+            <td><em>none</em> &mdash; 4 rows, all closed; last ended Jun 2026</td>
+            <td class="stop">S3</td><td><span class="v active">Active</span></td>
+            <td>In Review <span class="tnote" style="margin:0">tooltip agreed</span></td>
+            <td>No current role means nothing to test. The walk stops at three checks.</td>
+          </tr>
+          <tr>
+            <td>2</td><td><strong>Yakob Sarakhman</strong><br><span class="tnote" style="margin:0">Freelancer &middot; Ukraine</span></td>
+            <td><code>Professional Corporate Intelligence Analyst</code> at <code>Independent Consultant</code></td>
+            <td class="stop">S4</td><td><span class="v active">Active</span></td>
+            <td>In Review <span class="tnote" style="margin:0">tooltip agreed</span></td>
+            <td>Freelance wording is matched in the row&rsquo;s <strong>company</strong> field, not only the position.</td>
+          </tr>
+          <tr>
+            <td>3</td><td><strong>Iman Dakhlaoui</strong><br><span class="tnote" style="margin:0">Freelancer &middot; Paris &middot; 7 yrs</span></td>
+            <td><code>M&amp;A and Project Finance Associate</code> at <code>FINERGREEN</code> &mdash; flagged <strong>Corporate</strong></td>
+            <td class="stop">S5</td><td><span class="v active">Active</span></td>
+            <td><span class="v passive">Passive</span> <span class="tnote" style="margin:0">rule disagrees</span></td>
+            <td><strong>S5 must run before S7.</strong> The employer is flagged; only the junior position saves him.</td>
+          </tr>
+          <tr>
+            <td>4</td><td><strong>Athanasia Panteli</strong><br><span class="tnote" style="margin:0">Freelancer &middot; Barcelona &middot; 12 yrs</span></td>
+            <td><code>Senior FP&amp;A Analyst</code> at <code>Criteo</code> &mdash; flagged <strong>Corporate</strong></td>
+            <td class="stop">S5</td><td><span class="v active">Active</span></td>
+            <td><span class="v passive">Passive</span> <span class="tnote" style="margin:0">rule disagrees</span></td>
+            <td><strong>The position beats <code>seniorityLevel</code>.</strong> The record is labelled <code>Manager</code>; the row says <code>Analyst</code>, and the row wins.</td>
+          </tr>
+          <tr>
+            <td>5</td><td><strong>Arnaud Leblanc</strong><br><span class="tnote" style="margin:0">Freelancer &middot; Barcelona &middot; 14 yrs</span></td>
+            <td><code>Head of Real Estate Finance</code> at <code>The Social Hub</code> &mdash; flagged <strong>Corporate</strong></td>
+            <td class="stop">S7</td><td><span class="v passive">Passive</span></td>
+            <td><span class="v passive">Passive</span> <span class="tnote" style="margin:0">agrees</span></td>
+            <td><strong>A <code>corporate</code> flag counts</strong>, the same as sponsor and portfolio. No veto was available, so S7 decided.</td>
+          </tr>
+          <tr>
+            <td>6</td><td><strong>Syed Ishaque Hasib</strong><br><span class="tnote" style="margin:0">Freelancer &middot; London &middot; 16 yrs</span></td>
+            <td><code>Chief Financial Officer</code> at <code>Fin Edge</code> &mdash; <strong>no linked company</strong></td>
+            <td class="stop">S7</td><td><span class="v active">Active</span></td>
+            <td><span class="v passive">Passive</span> <span class="tnote" style="margin:0">hand-set, reason recorded</span></td>
+            <td><strong>An unmatched company can never raise a flag.</strong> The role description says <em>VC-backed</em>; the rule cannot see prose.</td>
+          </tr>
+          <tr>
+            <td>7</td><td><strong>Mark Cox</strong><br><span class="tnote" style="margin:0">Freelancer &middot; US &middot; 31 yrs</span></td>
+            <td><code>Director Board of Directors</code> at <code>Dollar Bank</code> &mdash; linked, <strong>unflagged</strong></td>
+            <td class="stop">S7</td><td><span class="v active">Active</span></td>
+            <td><span class="v passive">Passive</span> <span class="tnote" style="margin:0">predates the audit log</span></td>
+            <td><strong>A title never triggers Passive.</strong> Board seat, ex-investment-banking, 21 years in corporate development &mdash; and Active is the correct answer. No board-seat step was added.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">Scored against 276 existing Active records with hand verdicts, the rule as built today
+    agrees on <strong>169 &mdash; 61%</strong>: 8 wrongly Passive, <strong>99 wrongly Active</strong>. The
+    errors are lopsided, and no word list closes the wrongly-Active side, because the rule never looks for
+    buy-side signal in a position &mdash; it reads the position only to find an exit.</p>
+  </section>
+
+  <!-- ============================ 05 ============================ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>Defect register</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / PM / CEO</span>
+    </div>
+    <p class="lede">Priority = Impact &minus; Effort. A quick win is Impact &ge; 4 with Effort &le; 2.
+    Sorted by priority descending, quick wins first. Each row: symptom &rarr; consequence for the person
+    using it &rarr; cause.</p>
+
+    <div class="tbl">
+      <table style="min-width:820px">
+        <thead>
+          <tr><th>ID &middot; JN</th><th>Symptom</th><th>Consequence</th><th>Cause</th><th class="num">I</th><th class="num">E</th><th class="num">P</th><th>Quick win</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PP-01</strong><br><span class="tnote" style="margin:0">J1</span></td>
+            <td>No seniority test anywhere in the walk. A junior title reaches the flag step and is filed as a client.</td>
+            <td>A 7-year M&amp;A associate at a boutique investment bank is excluded from every project invitation from day one.</td>
+            <td>The rule reads the current position only to look for freelance wording; there is no junior or back-office list.</td>
+            <td class="num">5</td><td class="num">1</td><td class="num">4</td><td><strong>Quick win</strong></td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Insert S5 &mdash; hard-stop A, matched on word boundaries against <code>workExperiences[].position</code> &mdash; <strong>before</strong> the flag step.</td></tr>
+
+          <tr>
+            <td><strong>PP-03</strong><br><span class="tnote" style="margin:0">J1 J2</span></td>
+            <td>An automatic Passive stamps <code>passiveDate</code> and writes no reason.</td>
+            <td>The profile cannot explain itself later; a batch cannot be audited; every disagreement has to be re-derived by hand.</td>
+            <td>Only the manual path collects a reason. The rule writes the status and the date and stops.</td>
+            <td class="num">4</td><td class="num">1</td><td class="num">3</td><td><strong>Quick win</strong></td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Store the step that fired, in the same shape the manual reason uses, and show it beside the chip.</td></tr>
+
+          <tr>
+            <td><strong>PP-02</strong><br><span class="tnote" style="margin:0">J1</span></td>
+            <td>A blank employment status is read as &ldquo;not full-time&rdquo; and waved to Active.</td>
+            <td><strong>27% of the queue</strong> is decided on a field nobody filled in, without the profile being opened.</td>
+            <td>S2 tests for membership of a set; blank fails the test and falls to the Active branch.</td>
+            <td class="num">4</td><td class="num">2</td><td class="num">2</td><td><strong>Quick win</strong></td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Treat blank as <em>unknown</em>, separately from <em>not full-time</em>. Either continue the walk on the position alone, or hold the record for a human.</td></tr>
+
+          <tr>
+            <td><strong>PP-04</strong><br><span class="tnote" style="margin:0">J1</span></td>
+            <td>One company holds two records with different flags, and the role links to the wrong one.</td>
+            <td>The verdict turns on which duplicate got matched, not on any fact about the company. Finergreen: the correct record is unflagged, the linked one is flagged Corporate.</td>
+            <td>No dedupe on the company list; the work-experience match picks one of the two.</td>
+            <td class="num">5</td><td class="num">3</td><td class="num">2</td><td>&mdash;</td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Dedupe by name and website; until then, surface every candidate match on the row so the admin can see the ambiguity.</td></tr>
+
+          <tr>
+            <td><strong>PP-07</strong><br><span class="tnote" style="margin:0">J1 J2</span></td>
+            <td>An automatic status change is stamped with the approving admin&rsquo;s name.</td>
+            <td>Reading the name instead of the transition, an auditor concludes a person weighed the decision, and drops from the queue exactly the records the queue exists to find.</td>
+            <td>The history entry records the actor of the approval, not the author of the status.</td>
+            <td class="num">3</td><td class="num">1</td><td class="num">2</td><td>&mdash;</td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Attribute the change to the rule, and keep the admin as the approver in a separate field. The transition <code>InReview &rarr; Passive</code> already carries the signal &mdash; make it the visible one.</td></tr>
+
+          <tr>
+            <td><strong>PP-08</strong><br><span class="tnote" style="margin:0">J1</span></td>
+            <td><code>ongoing = true</code> on a row whose <code>to</code> date has already passed.</td>
+            <td>A finished job counts as current. On one record the end date is four months in the past and the UI still prints <em>Until Now</em>.</td>
+            <td>Two fields encode the same fact and nothing reconciles them; the UI trusts <code>ongoing</code>.</td>
+            <td class="num">3</td><td class="num">1</td><td class="num">2</td><td>&mdash;</td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Decide which field wins, then make the other one derived. Until then, flag the contradiction on the row.</td></tr>
+
+          <tr>
+            <td><strong>PP-11</strong><br><span class="tnote" style="margin:0">J1</span></td>
+            <td>The freelance word list is not published, and it is incomplete.</td>
+            <td>A record can exit to Active for a reason nobody outside the code can see. <code>remote</code> matches nothing at all; <code>fractional</code> appears in 11 titles and is in no list we hold.</td>
+            <td>The list lives in the implementation. Two examples were named in a flowchart; the rest is unknown.</td>
+            <td class="num">3</td><td class="num">1</td><td class="num">2</td><td>&mdash;</td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Publish the list. Add <code>fractional</code>, <code>sole trader</code>, <code>sole proprietor</code>; drop <code>remote</code>; guard <code>independent</code> so it does not match a company that merely starts with the word.</td></tr>
+
+          <tr>
+            <td><strong>PP-05</strong><br><span class="tnote" style="margin:0">J1</span></td>
+            <td>An unmatched current employer silences the deciding step.</td>
+            <td>About <strong>63%</strong> of current employers are unmatched, so for most records the flag step cannot fire whatever the company actually is.</td>
+            <td>The flag is read from the linked company record. No link, no flag, no Passive.</td>
+            <td class="num">5</td><td class="num">4</td><td class="num">1</td><td>&mdash;</td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Improve matching, and treat <em>unmatched</em> as unknown rather than as unflagged &mdash; the two are not the same answer.</td></tr>
+
+          <tr>
+            <td><strong>PP-10</strong><br><span class="tnote" style="margin:0">J1</span></td>
+            <td><code>seniorityLevel</code> describes the person, not the current role.</td>
+            <td>A 12-year record labelled <code>Manager</code> is actually working as an Analyst. Trusting the label would file her as a client.</td>
+            <td>One enum for a whole career: <code>Analyst</code> &middot; <code>Associate</code> &middot; <code>Manager</code> &middot; <code>Senior</code>.</td>
+            <td class="num">3</td><td class="num">2</td><td class="num">1</td><td>&mdash;</td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Read the row&rsquo;s position. Keep the enum as a corroborating signal only; it must never veto the row.</td></tr>
+
+          <tr>
+            <td><strong>PP-09</strong><br><span class="tnote" style="margin:0">J1</span></td>
+            <td>The tooltip names the outcome but never which test produced it.</td>
+            <td>The admin cannot tell a correct verdict from a coincidence, so a wrong reason survives as long as the right answer comes out.</td>
+            <td>The prediction is computed in the browser and returns a status, not a cause.</td>
+            <td class="num">2</td><td class="num">1</td><td class="num">1</td><td>&mdash;</td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Name the step in the tooltip &mdash; <em>&ldquo;Passive: current employer is a flagged company&rdquo;</em>.</td></tr>
+
+          <tr>
+            <td><strong>PP-06</strong><br><span class="tnote" style="margin:0">J1</span></td>
+            <td>A work-experience row links to a subsidiary instead of the parent.</td>
+            <td><code>Criteo</code> resolved to <em>HookLogic, acquired by Criteo in 2016</em>. Both are flagged Corporate here, so the verdict held &mdash; by luck.</td>
+            <td>Name matching has no notion of a corporate hierarchy or an acquisition.</td>
+            <td class="num">3</td><td class="num">3</td><td class="num">0</td><td>&mdash;</td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Prefer an exact parent-name match over a fuzzy subsidiary hit, and show which entity was chosen.</td></tr>
+
+          <tr>
+            <td><strong>PP-12</strong><br><span class="tnote" style="margin:0">J1 J2</span></td>
+            <td>The status chip is read-only while the status is In Review.</td>
+            <td>A known client must be approved first and corrected second. The wrong status exists, briefly, on every corrected record.</td>
+            <td>The chip only switches between Active and Passive; In Review is set by the review actions.</td>
+            <td class="num">2</td><td class="num">2</td><td class="num">0</td><td>&mdash;</td>
+          </tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="7">Offer the outcome in the approve dialog, so one act sets the intended status.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================ 06 ============================ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2>Quick-win shortlist</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / PM / CEO</span>
+    </div>
+
+    <div class="short">
+      <div class="short-item">
+        <div class="short-id">
+          <span class="badge">PP-01</span>
+          <span class="short-score">I5 &middot; E1 &middot; P4</span>
+        </div>
+        <div>
+          <h4>Check seniority before checking the employer</h4>
+          <p class="role"><b class="who">Product</b> &mdash; A junior analyst is the product, not the
+          customer. Right now holding a job at a recognised company is enough to file one as a client,
+          and nothing on the profile says why. This is the largest class of wrong verdicts and the
+          cheapest to close.</p>
+          <p class="role"><b class="who">Engineering</b> &mdash; Add S5 between the freelance-wording test
+          and the flag lookup, matching hard-stop A on word boundaries against
+          <code>workExperiences[].position</code> for rows with <code>ongoing = true</code>. Order
+          matters: S5 must short-circuit before the flag is read.</p>
+        </div>
+      </div>
+
+      <div class="short-item">
+        <div class="short-id">
+          <span class="badge">PP-03</span>
+          <span class="short-score">I4 &middot; E1 &middot; P3</span>
+        </div>
+        <div>
+          <h4>Record why the rule decided what it decided</h4>
+          <p class="role"><b class="who">Product</b> &mdash; A status with no reason cannot be reviewed,
+          appealed or trusted. Every argument about a verdict currently starts by rebuilding the
+          reasoning from scratch.</p>
+          <p class="role"><b class="who">Engineering</b> &mdash; Persist the step that fired alongside
+          <code>passiveDate</code>, reusing the shape the manual reason already writes, and render it
+          next to the status chip.</p>
+        </div>
+      </div>
+
+      <div class="short-item">
+        <div class="short-id">
+          <span class="badge">PP-02</span>
+          <span class="short-score">I4 &middot; E2 &middot; P2</span>
+        </div>
+        <div>
+          <h4>Stop treating a missing answer as an answer</h4>
+          <p class="role"><b class="who">Product</b> &mdash; More than a quarter of the queue is filed
+          without anyone reading the profile, because an empty field passed a test it should not have
+          been eligible for. Decide the policy once and the largest blind branch closes.</p>
+          <p class="role"><b class="who">Engineering</b> &mdash; Separate <em>blank</em> from <em>not
+          full-time</em> at S2. Then either continue the walk using the position alone, or route the
+          record to a hold state &mdash; the code is small; the decision is the work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 07 ============================ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2>Open questions &amp; unverified</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / engineering</span>
+    </div>
+
+    <div class="oq">
+      <div class="oq-item">
+        <div class="oq-tag">Open question</div>
+        <div>
+          <p>Blank employment status &mdash; Active, or hold for a human? <strong>27% of the queue</strong>
+          rides on this, and it is a policy call, not a technical one.</p>
+          <p class="oq-src">S2 &middot; blocks PP-02</p>
+        </div>
+      </div>
+      <div class="oq-item">
+        <div class="oq-tag">Open question</div>
+        <div>
+          <p>Keep S6, and on what evidence? It has never fired in seven records. The case it exists for
+          is a <em>senior</em> person at a sell-side boutique &mdash; on the one record available, S5 got
+          there first. If it stays: does it read the company <em>name</em>, its <em>description</em>, or
+          a NAICS code?</p>
+          <p class="oq-src">S6 &middot; the Finergreen description is the only worked example</p>
+        </div>
+      </div>
+      <div class="oq-item">
+        <div class="oq-tag">Open question</div>
+        <div>
+          <p>Should S3 trust <code>ongoing</code> or <code>to</code> when they contradict each other? No
+          verdict changed on the record where this surfaced, which is why it is still open.</p>
+          <p class="oq-src">PP-08 &middot; Mark Cox, <code>to = Mar 2026</code>, still marked ongoing</p>
+        </div>
+      </div>
+      <div class="oq-item">
+        <div class="oq-tag">Unverified</div>
+        <div>
+          <p>The full freelance word list. Two examples were named in a flowchart; everything else in
+          there is unknown to us, so S4 has to be read as <em>&ldquo;the rule may exit to Active for a
+          reason you cannot see&rdquo;</em>.</p>
+          <p class="oq-src">Dev &middot; blocks PP-11</p>
+        </div>
+      </div>
+      <div class="oq-item">
+        <div class="oq-tag">Unverified</div>
+        <div>
+          <p>Whether <code>seniorityLevel</code> being <code>Analyst</code> or <code>Associate</code>
+          should fire S5 on its own when the position text does <em>not</em> look junior. No record has
+          produced that combination yet.</p>
+          <p class="oq-src">PP-10 &middot; Athanasia Panteli decided the reverse case only</p>
+        </div>
+      </div>
+      <div class="oq-item">
+        <div class="oq-tag">Unverified</div>
+        <div>
+          <p>Three rows of the truth table have no live case behind them: freelance wording with a flag,
+          advisory employer with a flag, and a junior position with no flag. All three are predicted, none
+          observed.</p>
+          <p class="oq-src">&sect;03 &middot; truth table</p>
+        </div>
+      </div>
+      <div class="oq-item">
+        <div class="oq-tag">Unverified</div>
+        <div>
+          <p>The UAT step distribution is the shape, not the production figures. Production carries
+          <strong>2</strong> In Review records against UAT&rsquo;s 286, and many of the UAT rows are
+          obvious test data.</p>
+          <p class="oq-src">&sect;03 &middot; 286 records, UAT</p>
+        </div>
+      </div>
+      <div class="oq-item">
+        <div class="oq-tag">Unverified</div>
+        <div>
+          <p>Effort scores assume the change stays inside the rule and needs no company-data work, except
+          PP-04, PP-05 and PP-06, which are scored as data work and are the reason none of them is a quick
+          win.</p>
+          <p class="oq-src">Engineering review</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="decided">
+      <b>Settled during this audit &mdash; do not reopen without new evidence.</b>
+      <ul>
+        <li><s>Is a <code>corporate</code> flag out of scope?</s> <strong>No &mdash; it counts, the same
+        as sponsor and portfolio.</strong> S7 asks only whether the company is flagged at all.</li>
+        <li><s>Add a board-seat step?</s> <strong>No.</strong> A title never makes anybody Passive; the
+        flag decides. Mark Cox is Active and that is correct.</li>
+        <li><s>Does <em>Skip Review</em> gate the check?</s> <strong>No.</strong> A record with
+        <code>internalStatus = null</code> was still filed Passive at approval.</li>
+        <li><s>Read the profile headline or the row?</s> <strong>The row.</strong> The two disagree on
+        49% of records that have a current role.</li>
+        <li><s>Does <code>seniorityLevel</code> override the position?</s> <strong>No.</strong> The
+        position wins.</li>
+      </ul>
+    </div>
+
+    <p class="tnote" style="margin-top:28px">Existing Active and Passive records are out of scope for this
+    document &mdash; nobody re-reviews them by hand. They will be handled by a migration, for which the
+    same seven steps are the specification.</p>
+  </section>
+</div>
+<div class="pagernav"><a href="#page-a6" data-goto="page-a6"><span class="k">&larr; Back</span><b>A6 &middot; Talent Active / Passive</b></a></div>
 </section>
 
 <!-- ===================== B1 · INVITE TALENTS ===================== -->
