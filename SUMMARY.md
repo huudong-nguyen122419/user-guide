@@ -49,7 +49,7 @@
     * [A5.x.3 · Cancelled ≠ failed](a5-x-3-cancelled-failed.md)
     * [A5.x.4 · Switch sender safely](a5-x-4-switch-sender-safely.md)
     * [A5.x.5 · Timeline = A4.6](a5-x-5-timeline-a4-6.md)
-* [A6 · Approve a new talent (xác định talent là active hay passive)](a6-talent-active-passive.md)
+* [A6 · Approve a new talent (decides Active or Passive)](a6-talent-active-passive.md)
   * [A6-C · Review the In Review queue](a6-c-review-in-review-queue.md)
     * [A6-C.5 · Fix the status by hand](a6-c-5-fix-the-status-by-hand.md)
     * [A6-C.6 · The rule as built today](a6-c-6-the-automatic-rule.md)
