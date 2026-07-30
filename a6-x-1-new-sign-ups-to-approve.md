@@ -2,16 +2,24 @@
 
 > A6 · Talent Active / Passive → A6.x · Edge cases
 
-**The *In Review* queue — new sign-ups waiting for approval.** The **N In Review** button at the top right of the talents list opens the queue one profile at a time. **Approving does not simply mean “Active”.** The confirmation dialog repeats the name, email and title; on **Approve** the system then applies an automatic rule and picks the resulting status itself: Verified on six approvals: *Skip Review + ongoing role at a flagged company* produced Passive twice; the same talent with the flag missing, with no ongoing role at all, or without Skip Review produced Active four times. The trigger is the flag on the linked company — an ongoing role at a company that was never matched to the Mergermarket list does **not** fire it. This is where most wrongly-Passive talents come fromFreelancers get set Passive **at approval time** purely because they hold a current job, whatever that job is — a corporate role counts, and group D is supposed to be out of scope. Nobody clicked anything, and because the rule writes no reason, the profile gives no explanation afterwards. If you are auditing Passive talents, start here. **Ruled 28 Jul 2026: this is intended behaviour, not a defect — but it is narrower than the business rule.** The system deciding a status at approval is by design. Two gaps remain, and both are for a human to close: it fires on a plain **corporate** flag, which is group D and out of scope; and it never reads **Employment Status**, so it cannot enforce the gate in [A6.3.1 ↗](a6-3-how-to-decide.md). Neither gap is logged as a bug — they are the reason A6.4 and A6.5 exist. **Two things worth knowing about the queue itself:** The chip is locked while the status is In Review, so a client has to be approved first and set Passive afterwards per [A6.5 ↗](a6-5-active-who-should-be-passive.md).
+**The *In Review* queue — new sign-ups waiting for approval.** The **N In Review** button at the top right of the talents list opens the queue one profile at a time. **Approving does not simply mean “Active”.** The confirmation dialog repeats the name, email and title; on **Approve** the system applies an automatic rule and picks the resulting status itself.
+
+**The rule is the five-question spine in [A6-C.6 ↗](a6-c-6-the-automatic-rule.md)** — employment status first, then the **position** and **company** of each **current** work-experience row, then the Mergermarket flag on those companies. It stamps `passiveDate` but records **no reason**, so the profile gives no explanation afterwards.
+
+**Ruled 28 Jul 2026: this is intended behaviour, not a defect.** The system deciding a status at approval is by design. **Two gaps remain**, and both are why the [migration](a6-b-identify-passive-talent.md) exists:
+
+* it has **no seniority check** — an `Analyst` or `Associate` at a flagged company comes out Passive, where our rule makes them Active. On the UAT queue **33 of the 35** records Q5 sent to Passive were flagged `corporate` and **not one** was a sponsor, so in practice the check is a corporate detector. *(A `corporate` flag does count — ruled 30 Jul 2026 — so those verdicts are correct; the missing seniority check is the defect.)*
+* it never looks for **buy-side signal in the position** — it reads the position only to find an exit to Active. A client at a company that was never matched to the Mergermarket list walks straight through.
+
+Neither gap is logged as a bug.
 
 ![In Review profile toolbar](a6-07-in-review.png)
 
 *A6.x.1 — ① status chip reads In Review and is not editable · ② Reject Talent → status becomes \*Rejected\*; Approve Talent → confirmation dialog, then the talent enters the normal pool · ③ pager — step through the whole queue without going back to the list · ④ Employment Status, visible on the header.*
 
-| Condition at the moment of approval | Resulting status |
-|---|---|
-| **internal status = Skip Review** and an **ongoing** role at a company flagged **sponsor / portfolio / corporate** | **Passive** — `passiveDate` stamped, **no reason recorded** |
-| anything else | **Active** |
+> **Skip Review is not part of it — settled 30 Jul 2026.** An earlier note here said the Passive branch needed **Skip Review** set, based on six approvals watched on production. That was a coincidence in the sample. **Iman Dakhlaoui** (`iman.dakhlaoui@gmail.com`) has `internalStatus = null` — no Skip Review — and the system still set **Passive** at approval, transition `InReview → Passive`, on a `corporate` flag. **The five questions are the whole rule; Skip Review does not gate them.**
+
+The chip is **locked while the status is In Review**, so a client has to be approved first and set Passive afterwards ([A6-C.5 ↗](a6-c-review-in-review-queue.md)).
 
 - After each decision the drawer **advances to the next profile** and the counter drops, so the whole queue can be worked without returning to the list.
 

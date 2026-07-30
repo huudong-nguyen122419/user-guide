@@ -1,19 +1,66 @@
 ---
-description: "keep clients out of the talent supply. A client is someone who currently sits on the buy side — holding a role at a PE fund (groups A/B) or running a PE-backed portfolio company (group C). Clients must be Passive so they never enter the project-invitation flow. Everyone else is talent and must be Active."
+description: "when an admin approves a talent out of In Review, the system decides Active or Passive by itself. This flow is how you read that decision before you click, and how to override it when it is wrong."
 ---
 
 # A6 · Talent Active / Passive
 
-> ADMIN · filter → review → update status
+> ADMIN · In Review queue → approve → the system sets the status
 
-Production is read-only for this flowRun the filters and read the data on production, but **never change a status there** while the rule is still being tuned. Do every status change on **UAT** first and confirm the result before touching live records.
+## Scope
 
-## In this flow
+**One live flow: the In Review queue.** A new sign-up sits at `In Review`; an admin opens it, clicks **Approve**, and the system decides **Active** or **Passive** on its own using a fixed rule. Your job is to know what it will decide *before* you click, and to correct it afterwards if the rule got it wrong.
 
-* [A6.0 · The rules in full](a6-0-the-rules-in-full.md)
-* [A6.1 · Three fields people mix up](a6-1-three-fields-people-mix-up.md)
-* [A6.2 · Build your working list](a6-2-build-your-working-list.md)
-* [A6.3 · How to decide](a6-3-how-to-decide.md)
-* [A6.4 · Passive who should be Active](a6-4-passive-who-should-be-active.md)
-* [A6.5 · Active who should be Passive](a6-5-active-who-should-be-passive.md)
-* [A6.x · Edge cases](a6-x-edge-cases.md)
+| | |
+|---|---|
+| ✅ **In scope** | [A6-C · Review the In Review queue](a6-c-review-in-review-queue.md) — the intake decision |
+| ⏸ **Deferred** | [A6-B · Existing Active records](a6-b-identify-passive-talent.md) — **no longer re-reviewed by hand.** Kept for reference; this will run as a **migration** later |
+| ⏸ **On hold** | [A6-A · Existing Passive records](a6-a-identify-active-talent.md) |
+
+## The flow, end to end
+
+```
+In Review queue
+      │
+      ▼
+Admin opens the profile and reads it
+      │
+      ▼
+Hover  Approve Talent   →  tooltip shows the status the system WILL set
+      │
+      ▼
+Click  Approve          →  the rule runs, status becomes Active or Passive
+      │
+      ▼
+                          done
+      │
+      └── edge case: the status is wrong
+                 │
+                 ▼
+          Admin flips it by hand on the status chip
+```
+
+Five things happen and that is all of them. There is no queue to build, no list to work, no batch.
+
+## What the decision rests on
+
+The rule reads **three things and nothing else**:
+
+1. the **employment status** the talent picked at sign-up
+2. the **position** and **company name** of their **current** work-experience rows
+3. whether those companies carry a **Mergermarket flag** — portfolio / sponsor / corporate
+
+It never reads the profile headline, the company description, the contract history, or the applications.
+
+**How many steps a single talent walks through: between one and five.** Most stop early. The full analysis, with how many records stop at each step, is in [A6-C.6 · The automatic rule, in full](a6-c-6-the-automatic-rule.md).
+
+## Where the talents are today
+
+Production, 30 Jul 2026 — **8,878 talent records**. Active **2,680** · Passive **2,820** · Rejected 1,790 · Incomplete 1,533 · **In Review 2** · Guest 27 · PaymentRequired 25.
+
+The queue this flow serves is normally tiny. UAT carries **286** In Review records, which is where the rule was measured.
+
+## Reference
+
+* [A6-C.6 · The automatic rule, in full](a6-c-6-the-automatic-rule.md) — every step, what it decides, what it gets wrong
+* [A6.1 · Three fields people mix up](a6-1-three-fields-people-mix-up.md) — Status vs Employment Status vs Company Background
+* [A6.x · Edge cases](a6-x-edge-cases.md) — 10 behaviours that bite during the work
