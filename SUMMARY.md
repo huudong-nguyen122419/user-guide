@@ -311,6 +311,7 @@
     * [6.x.13 · Skip a step (= not sent)](6-x-13-skip-a-step-not-sent.md)
     * [6.x.14 · Notifications bell](6-x-14-notifications-bell.md)
     * [6.x.15 · The People tab undercounts](6-x-15-people-tab-undercounts.md)
+* [6† · Manage a campaign — audited](6-audit-manage-a-campaign.md)
 * [7 · Manage a Marketing Email](7-manage-a-marketing-email.md)
   * [7.1 · Create a ME](7-1-create-a-me.md)
     * [7.1.1 · Open MEs + Create](7-1-1-open-mes-create.md)
@@ -355,6 +356,7 @@
     * [7.x.12 · Upload · Signature](7-x-12-upload-signature.md)
     * [7.x.13 · Assigned (skip add)](7-x-13-assigned-skip-add.md)
 
+* [7† · Manage a Marketing Email — audited](7-audit-manage-a-marketing-email.md)
 ## SDR — reference
 
 * [8 · Using filters](8-using-filters.md)

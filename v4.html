@@ -688,6 +688,7 @@
     <a href="#ce-12" class="st2" data-page="page-campaign">6.x.12 · Force Update</a>
     <a href="#ce-13" class="st2" data-page="page-campaign">6.x.13 · Skip a step (= not sent)</a>
     <a href="#ce-14" class="st2" data-page="page-campaign">6.x.14 · Notifications bell</a>
+    <a class="flow" data-page="page-campaignaudit"><span class="n">6&#8224;</span> Manage a campaign &mdash; audited</a>
     <a class="flow" data-page="page-marketing"><span class="n">7</span> Manage a Marketing Email</a>
     <a href="#me-create" class="st" data-page="page-marketing">7.1 · Create a ME</a>
     <a href="#m7-1-1" class="st2" data-page="page-marketing">7.1.1 · Open MEs + Create</a>
@@ -731,7 +732,8 @@
     <a href="#te-7" class="st2" data-page="page-marketing">7.x.12 · Upload · Signature</a>
     <a href="#e-8-13" class="st2" data-page="page-marketing">7.x.13 · Assigned (skip add)</a>
 
-    <div class="grp">SDR — reference</div>
+        <a class="flow" data-page="page-marketingaudit"><span class="n">7&#8224;</span> Manage a Marketing Email &mdash; audited</a>
+<div class="grp">SDR — reference</div>
     <a class="flow" data-page="page-filters"><span class="n">8</span> Using filters</a>
     <a href="#flt-list-members" class="st" data-page="page-filters">8.1 · List — members bar</a>
     <a href="#flt-list-rail" class="st" data-page="page-filters">8.2 · List — company rail</a>
@@ -4034,6 +4036,308 @@ later. This is the intake decision only.</p>
 <div class="pagernav"><a data-goto="page-followup"><span class="k">← Prev</span><b>Flow 5 · Follow up</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 7 · Manage a Marketing Email</b></a></div>
 </section>
 
+
+<!-- ===================== PAGE-CAMPAIGNAUDIT ===================== -->
+<section class="page" id="page-campaignaudit">
+<h2><span class="who sdr">SDR</span><span class="n">6&#8224; &middot;</span> Manage a campaign &mdash; audited</h2>
+<p class="fn" style="margin-bottom:22px">A decision-maker&rsquo;s view of <a href="#page-campaign" data-goto="page-campaign" style="font-weight:700;cursor:pointer">Flow 6 &#8599;</a> &mdash; what breaks, how often, and what to fix first. The step-by-step instructions stay on the flow page.</p>
+<div class="auditdoc">
+  <p class="eyebrow">Measured on UAT &middot; Sections 1&ndash;5</p>
+  <h1>Manage a campaign &mdash; audited</h1>
+  <p class="standfirst">Every campaign on UAT read through the API and through its own health snapshot, then compared against what the screen prints. Scope: the campaign list, the People and Preview tabs, Email Queue, and Data Health &beta;.</p>
+
+  <dl class="mast-facts">
+    <div><dt>Measured</dt><dd>30 Jul 2026</dd></div>
+    <div><dt>Environment</dt><dd>UAT, read&#8209;only</dd></div>
+    <div><dt>Campaigns read</dt><dd>49 &middot; 13 with a health snapshot</dd></div>
+    <div><dt>Defects</dt><dd>8 &middot; 3 quick wins</dd></div>
+    <div><dt>Worst</dt><dd>a blocker that double&#8209;counts</dd></div>
+  </dl>
+  <hr class="masthead-rule">
+
+  <div class="callout">
+    <div class="tag">Headline finding</div>
+    <div>
+      <p><strong>The number that blocks the Start button is roughly double the truth.</strong> Data
+      Health counts a cross-campaign overlap once by contact id and again by email address, then adds
+      the two together &mdash; so the same person is counted twice. On
+      <code>Corp Dev outreach &mdash; DD capacity (DACH)</code> the issue reads <strong>15</strong>
+      while its own evidence list holds <strong>8</strong> contact ids: 8 by id + 7 by email = 15.</p>
+      <p><strong>9 of the 10 campaigns</strong> that carry this issue match the formula exactly. The
+      only one that does not is the campaign where the email count is zero &mdash; nothing to double.
+      Every SDR with an overlap is being blocked on an inflated figure.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Executive summary</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / PM / CEO</span>
+    </div>
+
+    <ol class="summary">
+      <li><strong>Quick win 1 &mdash; stop adding the two overlap counts together.</strong> The
+      snapshot already stores <code>duplicatedByContactId</code> and <code>duplicatedByEmail</code>
+      separately, and the issue's own <code>contactIds</code> list is the correct answer. Use the
+      length of that list. Worth: unblocks campaigns that were never really blocked. Hours, not
+      days.</li>
+
+      <li><strong>Quick win 2 &mdash; never print a percentage without checking the denominator.</strong>
+      <strong>24 of 49 campaigns &mdash; 48%</strong> have an empty email queue, and the Cancelled row
+      renders as <code>NaN%</code> with no count beside it. Two of them are real campaigns with 585 and
+      511 people in them.</li>
+
+      <li><strong>Quick win 3 &mdash; make the People tab agree with itself.</strong> One campaign
+      reports 21 contacts through the API, shows 18 to an admin and 17 to an SDR. The tier breakdown
+      inside Data Health explains the 18: contacts with no health tier are dropped. Nothing explains
+      the 17.</li>
+
+      <li><strong>Data Health contradicts itself on the same screen.</strong> The card says
+      <em>0 &mdash; no overlap</em>, the panel says <em>&ldquo;No cross-campaign overlap&rdquo;</em>,
+      and the issue list says <em>&ldquo;In another campaign &mdash; 15&rdquo;</em>. A reader has no way
+      to tell which one to believe.</li>
+
+      <li><strong>A permission error is drawn as a zero.</strong> The Email Queue endpoint returns
+      <strong>403</strong> for an SDR and the screen renders an empty queue rather than an error. The
+      reader concludes there is nothing to send.</li>
+
+      <li><strong>Two pages disagree about whether SDRs may see contacts.</strong> Contacts is hidden
+      from the SDR menu, yet <em>+ Add contacts</em> inside a campaign navigates straight to it, where
+      it loads in full &mdash; filters, twenty rows, and an <strong>Export CSV</strong> button.</li>
+
+      <li><strong>The folder rail leaks other people's numbers.</strong> An SDR with three campaigns
+      still sees <code>tin's (22)</code>, <code>Sang (8)</code>, <code>Sponsors USA (8)</code>. Opening
+      one shows nothing: the data is scoped, the counts are not.</li>
+
+      <li><strong>Four campaigns have no health snapshot at all</strong>, so Data Health has nothing to
+      show and no message explaining why.</li>
+
+      <li>The tier breakdown does not always add up: 118 tiers against 122 contacts on one campaign,
+      15,219 against 15,221 on another. Small, but it is the same class of fault as the People tab.</li>
+
+      <li>The register below scores <strong>8 defects</strong>. Three are quick wins. The most valuable
+      thing to fix is the overlap double-count, because it is the only one that stops work outright.</li>
+    </ol>
+
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>What the screen reads</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: engineering</span>
+    </div>
+
+    <p class="lede">Where each number on the campaign screen comes from. The two that disagree with
+    each other are marked.</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>On screen</th><th>Source</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>People tab count</strong></td>
+              <td>campaign targets joined to contact health</td>
+              <td><strong>Disagrees</strong> with <code>totalTargets</code>. Contacts with no health
+              tier are dropped &mdash; 21 becomes 18, and 17 for an SDR</td></tr>
+          <tr><td><strong>Cross-campaign card</strong></td>
+              <td><code>stats.contact.crossCampaign.duplicatedByContactId</code></td>
+              <td>counts people</td></tr>
+          <tr><td><strong>&ldquo;In another campaign&rdquo; issue</strong></td>
+              <td><code>dataHealth.issues[CROSS_IN_OTHER_CAMPAIGN].metadata.count</code></td>
+              <td><strong>Disagrees</strong> with the card. Equals
+              <code>byContactId + byEmail</code> &mdash; the same person twice</td></tr>
+          <tr><td>Health tiers</td>
+              <td><code>contactStats.countGroupByDataHealthTier</code></td>
+              <td><code>Healthy</code> &middot; <code>Degraded</code> &middot; <code>Critical</code>
+              &middot; <code>Unknown</code>. Does not always sum to <code>totalContacts</code></td></tr>
+          <tr><td>Queue percentages</td>
+              <td><code>emailQueueStatusStatistic</code></td>
+              <td>Empty on <strong>48%</strong> of campaigns &rarr; division by zero</td></tr>
+          <tr><td>Email Queue list</td>
+              <td><code>/email-queues</code></td>
+              <td><strong>403 for an SDR</strong>, rendered as an empty list</td></tr>
+          <tr><td>Status tab label</td>
+              <td><code>status</code></td>
+              <td>Tab prints <code>Finished</code>, the API returns <code>Completed</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">The blocker banner counts issues of severity <code>Critical</code>. Since the
+    overlap issue is Critical and inflated, the banner it feeds is inflated too.</p>
+
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>The overlap double-count, in full</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: engineering / Product</span>
+    </div>
+
+    <p class="lede">The one defect worth reading end to end, because it is the only one that stops an
+    SDR from working.</p>
+    <pre class="ascii">Corp Dev outreach &mdash; DD capacity (DACH)
+
+  stats.contact.crossCampaign.duplicatedByContactId  = 8
+  stats.contact.crossCampaign.duplicatedByEmail      = 7
+  dataHealth.issues[CROSS_IN_OTHER_CAMPAIGN]
+        .metadata.count                              = 15   &#9668; 8 + 7
+        .metadata.contactIds                         = [ 8 ids ]</pre>
+    <p>The same person is matched twice &mdash; once because their contact id appears in another
+    campaign, once because their email address does. The evidence list carries the correct answer and
+    is ignored by the count beside it.</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Campaign</th><th class="num">by id</th><th class="num">by email</th>
+        <th class="num">issue says</th><th class="num">ids listed</th><th>Formula holds</th></tr></thead>
+        <tbody>
+          <tr><td>New Campaign test1</td><td class="num">51</td><td class="num">69</td><td class="num"><strong>120</strong></td><td class="num">51</td><td>yes</td></tr>
+          <tr><td>20 - 08 - 2025</td><td class="num">53</td><td class="num">66</td><td class="num"><strong>119</strong></td><td class="num">53</td><td>yes</td></tr>
+          <tr><td>New Campaign 24/09 CLONE</td><td class="num">36</td><td class="num">34</td><td class="num"><strong>70</strong></td><td class="num">36</td><td>yes</td></tr>
+          <tr><td>Long test 19/08 - 2</td><td class="num">21</td><td class="num">40</td><td class="num"><strong>61</strong></td><td class="num">21</td><td>yes</td></tr>
+          <tr><td>Tin&rsquo;s 26 08 2025</td><td class="num">11</td><td class="num">13</td><td class="num"><strong>24</strong></td><td class="num">11</td><td>yes</td></tr>
+          <tr><td><strong>Corp Dev outreach &mdash; DD capacity</strong></td><td class="num">8</td><td class="num">7</td><td class="num"><strong>15</strong></td><td class="num">8</td><td>yes</td></tr>
+          <tr><td>Campaign 0 5 0 9 2 0 2 5 - side steps</td><td class="num">5</td><td class="num">5</td><td class="num"><strong>10</strong></td><td class="num">5</td><td>yes</td></tr>
+          <tr><td>T - 20250818</td><td class="num">3</td><td class="num">3</td><td class="num"><strong>6</strong></td><td class="num">3</td><td>yes</td></tr>
+          <tr><td>New Campaign 20/09 emailDomain</td><td class="num">1</td><td class="num">1</td><td class="num"><strong>2</strong></td><td class="num">1</td><td>yes</td></tr>
+          <tr><td>addToCampaign2</td><td class="num">2</td><td class="num">0</td><td class="num">2</td><td class="num">2</td><td><em>n/a &mdash; nothing to double</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote"><strong>9 of 10.</strong> The exception is the only campaign whose email count is
+    zero, which is what you would expect if the formula is <code>byId + byEmail</code>.</p>
+
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Defect register</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / PM / CEO</span>
+    </div>
+
+    <p class="lede">Priority = Impact &minus; Effort. A quick win is Impact &ge; 4 with Effort &le; 2.</p>
+    <div class="tbl">
+      <table style="min-width:760px">
+        <thead><tr><th>ID</th><th>Symptom</th><th>Consequence</th><th class="num">I</th>
+        <th class="num">E</th><th class="num">P</th><th>Quick win</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CMP-01</strong></td>
+              <td>The cross-campaign issue count adds the by-id and by-email matches together.</td>
+              <td>The blocker that gates <strong>Start</strong> reads roughly double. SDRs are stopped
+              on campaigns that are not really in conflict. <strong>9 of 10</strong> affected.</td>
+              <td class="num">5</td><td class="num">1</td><td class="num"><strong>4</strong></td>
+              <td><strong>Quick win</strong></td></tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="6">Report
+          <code>metadata.contactIds.length</code>, which the issue already carries, and keep the two
+          raw counts for diagnostics only.</td></tr>
+
+          <tr><td><strong>CMP-02</strong></td>
+              <td>Data Health prints <code>NaN%</code> when the email queue is empty.</td>
+              <td><strong>24 of 49 campaigns (48%)</strong>, including two with 585 and 511 people.
+              The Cancelled row loses its count as well as its percentage.</td>
+              <td class="num">4</td><td class="num">1</td><td class="num"><strong>3</strong></td>
+              <td><strong>Quick win</strong></td></tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="6">Render <code>&mdash;</code> when the
+          denominator is zero, and keep the raw count visible.</td></tr>
+
+          <tr><td><strong>CMP-03</strong></td>
+              <td>The People tab drops contacts that have no health tier: 21 &rarr; 18 &rarr; 17.</td>
+              <td>An SDR works a shorter list than the campaign will actually send to, and nobody is
+              told. Three numbers for one campaign, none of them labelled.</td>
+              <td class="num">4</td><td class="num">2</td><td class="num"><strong>2</strong></td>
+              <td><strong>Quick win</strong></td></tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="6">Left-join the health table instead of
+          inner-joining it, and show untiered contacts as <code>Unknown</code> &mdash; which is already
+          a tier the snapshot uses.</td></tr>
+
+          <tr><td><strong>CMP-04</strong></td>
+              <td><code>/email-queues</code> returns 403 for an SDR and the UI draws an empty queue.</td>
+              <td>The reader concludes nothing is queued. A permission problem is indistinguishable
+              from an empty result.</td>
+              <td class="num">5</td><td class="num">3</td><td class="num">2</td><td>&mdash;</td></tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="6">Surface the status. Decide separately
+          whether SDRs should have the page at all &mdash; see CMP-05, which resolves the opposite
+          way.</td></tr>
+
+          <tr><td><strong>CMP-05</strong></td>
+              <td>Contacts is hidden from the SDR menu but fully reachable from inside a campaign,
+              Export CSV included.</td>
+              <td>Either the menu is wrong or the page is. Right now the product answers both ways
+              depending on the route taken.</td>
+              <td class="num">3</td><td class="num">2</td><td class="num">1</td><td>&mdash;</td></tr>
+
+          <tr><td><strong>CMP-06</strong></td>
+              <td>The Manage assignee drawer lists 38 accounts and their roles to an SDR.</td>
+              <td>Staff directory exposed to a role that has no need for it.</td>
+              <td class="num">3</td><td class="num">2</td><td class="num">1</td><td>&mdash;</td></tr>
+
+          <tr><td><strong>CMP-07</strong></td>
+              <td>The folder rail shows other owners' folders with live campaign counts.</td>
+              <td>An SDR learns how much work everyone else has. Opening a folder correctly shows
+              nothing, so only the count leaks.</td>
+              <td class="num">2</td><td class="num">1</td><td class="num">1</td><td>&mdash;</td></tr>
+
+          <tr><td><strong>CMP-08</strong></td>
+              <td>Four campaigns have no health snapshot; the tab renders with nothing and no
+              explanation. Tier counts also fail to sum on two campaigns.</td>
+              <td>A blank Data Health tab reads as &ldquo;healthy&rdquo; rather than
+              &ldquo;never computed&rdquo;.</td>
+              <td class="num">2</td><td class="num">2</td><td class="num">0</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote"><strong>Also seen, not scored:</strong> the status tab prints
+    <code>Finished</code> while the API returns <code>Completed</code>; the Steps tab writes
+    <em>&ldquo;Side Step&rdquo;</em> and Preview writes <em>&ldquo;Sidestep&rdquo;</em>; and
+    <code>O</code> removes a contact from the campaign with no confirmation, sitting next to
+    <code>E</code> on most keyboards.</p>
+
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>Open questions</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / engineering</span>
+    </div>
+
+    <div class="oq">
+      <div class="oq-item"><div class="oq-tag">Open question</div><div>
+        <p>Should the overlap check dedupe across the two match methods, or report them separately as
+        &ldquo;same person&rdquo; and &ldquo;same address&rdquo;? They are not the same signal &mdash;
+        a shared address across two contact records is itself a data problem.</p>
+        <p class="oq-src">CMP-01</p></div></div>
+      <div class="oq-item"><div class="oq-tag">Open question</div><div>
+        <p>Are SDRs meant to reach Contacts and Email Queue at all? The product currently answers
+        &ldquo;no&rdquo; via the menu, &ldquo;yes&rdquo; via the campaign, and &ldquo;403&rdquo; via the
+        API &mdash; one decision would settle CMP-04 and CMP-05 together.</p>
+        <p class="oq-src">CMP-04 &middot; CMP-05</p></div></div>
+      <div class="oq-item"><div class="oq-tag">Unverified</div><div>
+        <p>Why an SDR sees 17 where an admin sees 18. The untiered-contact theory accounts for
+        21&nbsp;&rarr;&nbsp;18 and nothing else.</p>
+        <p class="oq-src">CMP-03</p></div></div>
+      <div class="oq-item"><div class="oq-tag">Unverified</div><div>
+        <p>Whether the four campaigns without a snapshot were never computed or failed. No message on
+        screen distinguishes the two.</p>
+        <p class="oq-src">CMP-08</p></div></div>
+      <div class="oq-item"><div class="oq-tag">Unverified</div><div>
+        <p>The permission findings (CMP-04, 05, 06, 07) were observed in an earlier pass under an SDR
+        login and were <b>not</b> re-checked in this sweep, which ran as an admin.</p>
+        <p class="oq-src">Method</p></div></div>
+    </div>
+
+  </section>
+
+</div>
+<div class="pagernav"><a href="#page-campaign" data-goto="page-campaign"><span class="k">&larr; Back</span><b>Manage a campaign</b></a></div>
+</section>
+
 <!-- ===================== FLOW 7 · MANAGE ME ===================== -->
 <section class="page" id="page-marketing">
 <h2><span class="who sdr">SDR</span><span class="n">Flow 7 ·</span> Manage a Marketing Email</h2>
@@ -4480,6 +4784,279 @@ later. This is the intake decision only.</p>
 <li id="e-8-13" data-code="7.x.13"><b>Assigned a ready ME &mdash; skip &ldquo;Add people&rdquo;.</b> Often you're handed an ME Admin / Ops has <b>already loaded with people</b>, with instructions <b>not to add more</b> &mdash; just review &amp; personalize those contacts. Then <b>skip</b> <a data-goto="page-marketing" href="#me-people" style="font-weight:700;cursor:pointer">7.3 &middot; Add people</a> and go straight to <a data-goto="page-marketing" href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &middot; Preview</a>.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 6 · Manage campaign</b></a><a class="next" data-goto="page-filters"><span class="k">Next →</span><b>Flow 8 · Using filters</b></a></div>
+</section>
+
+
+<!-- ===================== PAGE-MARKETINGAUDIT ===================== -->
+<section class="page" id="page-marketingaudit">
+<h2><span class="who sdr">SDR</span><span class="n">7&#8224; &middot;</span> Manage a Marketing Email &mdash; audited</h2>
+<p class="fn" style="margin-bottom:22px">A decision-maker&rsquo;s view of <a href="#page-marketing" data-goto="page-marketing" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a> &mdash; what breaks, how often, and what to fix first. The step-by-step instructions stay on the flow page.</p>
+<div class="auditdoc">
+  <p class="eyebrow">Measured on UAT &middot; Sections 1&ndash;5</p>
+  <h1>Manage a Marketing Email &mdash; audited</h1>
+  <p class="standfirst">All 93 marketing emails on UAT read through the API and compared against what the list and the detail header print. Scope: the ME list, People, Preview, Inbox and Email Queues.</p>
+
+  <dl class="mast-facts">
+    <div><dt>Measured</dt><dd>30 Jul 2026</dd></div>
+    <div><dt>Environment</dt><dd>UAT, read&#8209;only</dd></div>
+    <div><dt>Emails read</dt><dd>93 &middot; 20 with an event log</dd></div>
+    <div><dt>Defects</dt><dd>6 &middot; 2 quick wins</dd></div>
+    <div><dt>Worst</dt><dd>every rate on the page</dd></div>
+  </dl>
+  <hr class="masthead-rule">
+
+  <div class="callout">
+    <div class="tag">Headline finding</div>
+    <div>
+      <p><strong>The rates on this page divide one unit by another.</strong> The numerator counts
+      <em>opens</em> &mdash; one person opening three times counts three &mdash; and the denominator
+      counts <em>people</em>. So the Open Rate can exceed 100%, and does:
+      <strong>173.5%</strong> on one live email, <strong>132.1%</strong> on another.</p>
+      <p>Underneath it, <strong>&ldquo;delivered&rdquo; has two counters that do not agree on 13 of the
+      20 emails that have an event log</strong> &mdash; one reads 2,172 where the other reads 0;
+      another reads 0 where the log reads 602. Nothing on the screen says which one you are
+      looking at.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Executive summary</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / PM / CEO</span>
+    </div>
+
+    <ol class="summary">
+      <li><strong>Quick win 1 &mdash; count opens per person before dividing.</strong> Today the
+      numerator is an event count and the denominator is a headcount, so the result is not a rate at
+      all. Fixing the denominator alone will not help: it can still print above 100%. Worth: every
+      percentage on the page becomes meaningful.</li>
+
+      <li><strong>Quick win 2 &mdash; reconcile the two delivered counters, or stop showing one of
+      them.</strong> <code>totalDelivered</code> drives the header and every rate;
+      <code>statusCount.delivered</code> comes from the event log. <strong>13 of 20</strong> disagree,
+      in both directions.</li>
+
+      <li><strong>An email can report replies it never delivered.</strong> Five emails have
+      <code>totalReplied &gt; totalDelivered</code>. The worst reads <strong>34 replies against 0
+      delivered</strong>. The earlier explanation &mdash; one person replying twice &mdash; does not
+      survive contact with the data.</li>
+
+      <li><strong>The send queue can hold people the email does not list.</strong> Five emails have
+      more queue rows than people, and the gaps are not off-by-one: <strong>+472</strong>,
+      <strong>+253</strong>, <strong>+253</strong>. Those people receive the email while appearing
+      nowhere in People or Preview.</li>
+
+      <li>Three of the five worst gaps are named <code>test move &hellip;</code>, which points at
+      moving campaign targets leaving queue rows behind. <strong>Unverified</strong> &mdash; it needs
+      one reproduction on UAT to confirm or drop.</li>
+
+      <li><strong>Inbox and the list disagree about what a reply is.</strong> Inbox counts
+      conversations, Reply Rate counts messages. Same label, two numbers, no explanation on screen.</li>
+
+      <li>Pausing an email marks the whole outstanding queue <code>Cancel</code> &mdash; 69 of 70 rows
+      on the sample. That is correct behaviour, but combined with the rate bug it makes a paused email
+      look like a failed one.</li>
+
+      <li>The guide itself was wrong here and has been corrected: it claimed
+      <em>&ldquo;100% (1) = the one mail delivered was opened&rdquo;</em> when the screen actually
+      shows <strong>1%</strong>.</li>
+
+      <li>The register below scores <strong>6 defects</strong>. Two are quick wins, and both are
+      arithmetic rather than architecture.</li>
+    </ol>
+
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Where each number comes from</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: engineering</span>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead><tr><th>On screen</th><th>Source</th><th>Counts</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Open Rate</strong></td><td><code>statusCount.open</code> &divide;
+              <code>totalTargets</code></td><td>events &divide; people</td>
+              <td><strong>Mixed units.</strong> Prints above 100% on two live emails</td></tr>
+          <tr><td><strong>Reply Rate</strong></td><td><code>totalReplied</code> &divide;
+              <code>totalTargets</code></td><td>messages &divide; people</td>
+              <td>Same problem. Inbox counts conversations instead</td></tr>
+          <tr><td><strong>Delivered (header)</strong></td><td><code>totalDelivered</code></td>
+              <td>&mdash;</td><td><strong>Disagrees</strong> with the event log on 13 of 20</td></tr>
+          <tr><td>Delivered (event log)</td><td><code>statusCount.delivered</code></td><td>events</td>
+              <td>Not shown anywhere on the screen</td></tr>
+          <tr><td>People tab</td><td><code>totalTargets</code></td><td>people</td>
+              <td>Lower than the queue on 5 emails</td></tr>
+          <tr><td>Email Queues tab</td><td><code>emailQueueStatusStatistic</code></td><td>queue rows</td>
+              <td>Holds addresses that are in no other tab</td></tr>
+          <tr><td>Inbox count</td><td>reply threads</td><td>conversations</td>
+              <td>Same <em>Interested</em> label as Reply Rate, different number</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">A worked example, <code>[Prod] US-based Thanksgiving</code>:
+    <code>totalTargets 962</code> &middot; <code>totalDelivered 0</code> &middot;
+    <code>statusCount = {delivered 602, open 1669, bounce 209, dropped 17}</code> &middot;
+    <code>totalReplied 33</code>. The header says nothing was delivered; the log says 602 were; the
+    Open Rate prints <strong>173.5%</strong>.</p>
+
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>The rate arithmetic</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: engineering / Product</span>
+    </div>
+
+    <p class="lede">Why changing the denominator is not enough on its own.</p>
+    <pre class="ascii">Open Rate as built
+      statusCount.open   &divide;  totalTargets
+      = every open event    every person added
+      &rarr; one person opening 3 times moves the rate 3 steps
+
+[Prod] US-based Thanksgiving   1669 opens &divide;  962 people  =  173.5%
+[Prod] M&amp;A Workshop             185 opens &divide;  140 people  =  132.1%
+
+Fixing only the denominator
+      statusCount.open   &divide;  totalDelivered
+      &rarr; still events &divide; people, still able to exceed 100%
+
+What it needs
+      distinct openers   &divide;  people actually delivered to</pre>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Marketing email</th><th class="num">people</th><th class="num">header delivered</th>
+        <th class="num">log delivered</th><th class="num">opens</th><th class="num">replies</th></tr></thead>
+        <tbody>
+          <tr><td>[Prod] US-based Thanksgiving</td><td class="num">962</td><td class="num"><strong>0</strong></td><td class="num">602</td><td class="num">1669</td><td class="num">33</td></tr>
+          <tr><td>[Prod] M&amp;A Workshop &amp; Networking</td><td class="num">140</td><td class="num"><strong>0</strong></td><td class="num">166</td><td class="num">185</td><td class="num">34</td></tr>
+          <tr><td>sang test</td><td class="num">0</td><td class="num"><strong>2172</strong></td><td class="num">0</td><td class="num">1</td><td class="num">&mdash;</td></tr>
+          <tr><td>New Marketing Thanks Giving</td><td class="num">0</td><td class="num"><strong>117</strong></td><td class="num">7</td><td class="num">2</td><td class="num">&mdash;</td></tr>
+          <tr><td>Marketing Email Bounced</td><td class="num">0</td><td class="num"><strong>28</strong></td><td class="num">1</td><td class="num">0</td><td class="num">&mdash;</td></tr>
+          <tr><td>EVENT &middot; Berlin M&amp;A Exec Briefing</td><td class="num">68</td><td class="num">1</td><td class="num">0</td><td class="num">1</td><td class="num">4</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tnote">The Berlin email is the one the guide used as its worked example. One person was
+    delivered to, opened it and replied &mdash; a 100% open rate by any sensible definition. The
+    screen prints <strong>1%</strong>.</p>
+
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Defect register</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / PM / CEO</span>
+    </div>
+
+    <p class="lede">Priority = Impact &minus; Effort. A quick win is Impact &ge; 4 with Effort &le; 2.</p>
+    <div class="tbl">
+      <table style="min-width:760px">
+        <thead><tr><th>ID</th><th>Symptom</th><th>Consequence</th><th class="num">I</th>
+        <th class="num">E</th><th class="num">P</th><th>Quick win</th></tr></thead>
+        <tbody>
+          <tr><td><strong>ME-01</strong></td>
+              <td>Rates divide an event count by a headcount.</td>
+              <td>Open Rate prints <strong>173.5%</strong> and <strong>132.1%</strong> on live emails,
+              and <strong>1%</strong> where the truth is 100%. Every percentage on the page is
+              affected.</td>
+              <td class="num">5</td><td class="num">2</td><td class="num"><strong>3</strong></td>
+              <td><strong>Quick win</strong></td></tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="6">Count distinct openers, divide by
+          people actually delivered to, and clamp nothing &mdash; if it still exceeds 100% the inputs
+          are wrong and should say so.</td></tr>
+
+          <tr><td><strong>ME-02</strong></td>
+              <td>Two counters for &ldquo;delivered&rdquo; disagree on <strong>13 of 20</strong>
+              emails that have an event log.</td>
+              <td>Header says 2,172 where the log says 0; says 0 where the log says 602. Nothing
+              indicates which is shown.</td>
+              <td class="num">4</td><td class="num">2</td><td class="num"><strong>2</strong></td>
+              <td><strong>Quick win</strong></td></tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="6">Pick one source. If
+          <code>totalDelivered</code> stays, backfill it from the event log and reconcile on write.</td></tr>
+
+          <tr><td><strong>ME-03</strong></td>
+              <td><code>totalReplied</code> exceeds <code>totalDelivered</code> on 5 emails.</td>
+              <td>One reads <strong>34 replies against 0 delivered</strong>. Any funnel built on these
+              two fields is unusable.</td>
+              <td class="num">4</td><td class="num">2</td><td class="num">2</td><td>&mdash;</td></tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="6">Falls out of ME-02 &mdash; the
+          replies are real, the delivered counter is not.</td></tr>
+
+          <tr><td><strong>ME-04</strong></td>
+              <td>The send queue holds people who are in neither People nor Preview.</td>
+              <td>5 emails affected, gaps of <strong>+472</strong>, <strong>+253</strong>,
+              <strong>+253</strong>, +2, +1. Those people are sent to while being invisible.</td>
+              <td class="num">5</td><td class="num">4</td><td class="num">1</td><td>&mdash;</td></tr>
+          <tr class="sub"><td class="lbl">Fix</td><td colspan="6">Find the orphans first &mdash; three
+          of the five are named <code>test move &hellip;</code>, so start by moving a campaign target
+          and watching the queue.</td></tr>
+
+          <tr><td><strong>ME-05</strong></td>
+              <td>Inbox counts conversations, Reply Rate counts messages, both labelled
+              <em>Interested</em>.</td>
+              <td>The reader sees 1 in one place and 2 in another with no explanation.</td>
+              <td class="num">3</td><td class="num">2</td><td class="num">1</td><td>&mdash;</td></tr>
+
+          <tr><td><strong>ME-06</strong></td>
+              <td>Pausing marks the outstanding queue <code>Cancel</code> in bulk &mdash; 69 of 70
+              rows.</td>
+              <td>Correct in itself, but undocumented, and together with ME-01 it makes a paused email
+              look like a failed one.</td>
+              <td class="num">2</td><td class="num">1</td><td class="num">1</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>Open questions</h2>
+      <span class="spacer"></span>
+      <span class="audience">Audience: Product / engineering</span>
+    </div>
+
+    <div class="oq">
+      <div class="oq-item"><div class="oq-tag">Open question</div><div>
+        <p>Should Reply Rate count people or messages? Both are defensible; the page currently shows
+        one of each and calls them the same thing.</p>
+        <p class="oq-src">ME-05</p></div></div>
+      <div class="oq-item"><div class="oq-tag">Open question</div><div>
+        <p>Where is <code>totalDelivered</code> written, and why do two production-imported emails
+        carry 0 against hundreds of delivery events? The suspicion is that it only increments on the
+        newer send path.</p>
+        <p class="oq-src">ME-02</p></div></div>
+      <div class="oq-item"><div class="oq-tag">Unverified</div><div>
+        <p>That moving campaign targets leaves queue rows behind. Three of the five affected emails
+        are named <code>test move &hellip;</code>, which is suggestive and not evidence.</p>
+        <p class="oq-src">ME-04</p></div></div>
+      <div class="oq-item"><div class="oq-tag">Unverified</div><div>
+        <p>Whether the same faults appear on production. Everything here was measured on <b>UAT</b>,
+        where a large share of the records are test data.</p>
+        <p class="oq-src">Method</p></div></div>
+      <div class="oq-item"><div class="oq-tag">Unverified</div><div>
+        <p>The <code>Inbox V1</code> and <code>People V1</code> tabs sit beside the current ones and
+        were not audited. If they are being retired they should come out of the guide.</p>
+        <p class="oq-src">Scope</p></div></div>
+    </div>
+
+  </section>
+
+</div>
+<div class="pagernav"><a href="#page-marketing" data-goto="page-marketing"><span class="k">&larr; Back</span><b>Manage a Marketing Email</b></a></div>
 </section>
 
 <!-- ===================== FLOW 8 · USING FILTERS ===================== -->
