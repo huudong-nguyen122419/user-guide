@@ -197,15 +197,8 @@
     <a href="#em-5-4" class="st2" data-page="page-a5">A5.x.4 · Switch sender safely</a>
     <a href="#em-5-5" class="st2" data-page="page-a5">A5.x.5 · Timeline = A4.6</a>
     <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Talent Active / Passive</a>
-    <a href="#a6-flowA" class="st" data-page="page-a6">A6-A &middot; Existing Passive records (on hold)</a>
-    <a href="#a6-flowB" class="st" data-page="page-a6">A6-B &middot; Existing Active records (deferred &mdash; migration)</a>
-    <a href="#a6-rulebook" class="st" data-page="page-a6">A6-B.0 &middot; The rules</a>
-    <a href="#a6-b1" class="st" data-page="page-a6">A6-B.1 &middot; List 1 &mdash; Active + Full Time</a>
-    <a href="#a6-b2" class="st" data-page="page-a6">A6-B.2 &middot; List 2 &mdash; Active + PE/VC</a>
-    <a href="#a6-b3" class="st" data-page="page-a6">A6-B.3 &middot; Sub-rule 2 &mdash; employer check</a>
-    <a href="#a6-b4" class="st" data-page="page-a6">A6-B.4 &middot; Set the status (UAT)</a>
-    <a href="#a6-flowC" class="st" data-page="page-a6">A6-C &middot; Review the In Review queue</a>
-    <a href="#a6-autorule" class="st2" data-page="page-a6">A6-C.6 &middot; The automatic rule (as built)</a>
+    <a href="#a6-flowC" class="st" data-page="page-a6">A6-C &middot; Review the In Review queue &mdash; LIVE</a>
+    <a href="#a6-autorule" class="st2" data-page="page-a6">A6-C.6 &middot; The rule as built today</a>
     <a href="#a6-rulerebuild" class="st2" data-page="page-a6">A6-C.7 &middot; The rule, rebuilt</a>
     <a href="#a6-model" class="st" data-page="page-a6">A6.1 &middot; Three fields people mix up</a>
     <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x &middot; Edge cases</a>
@@ -827,14 +820,13 @@
 <div class="goal adm"><b>Goal:</b> keep <b>clients</b> out of the talent supply. A <b>client</b> is someone who sits on the <b>buy side today</b> &mdash; holding a role at a PE fund, or running a company a fund owns. Clients must be <b>Passive</b> so they never enter the project-invitation flow. Everyone else is <b>talent</b> and stays <b>Active</b>.</div>
 <div class="call warn"><span class="t">Production is read-only for this work</span>Run the filters and read the data on production, but <b>never change a status there</b>. Do every status change on <b>UAT</b> first and confirm the result before touching live records.</div>
 
-<h4 style="margin:18px 0 8px">Three flows, not one</h4>
-<p>The two directions use different evidence, carry opposite risks, and produce separate queues. Keep them apart.</p>
+<h4 style="margin:18px 0 8px">One flow, and what it deliberately leaves out</h4>
+<p>This section covers <b>the intake decision only</b> &mdash; the moment an admin approves a new sign-up and the system picks a status. The existing population is a different problem with different evidence, and it is <b>not worked by hand</b>.</p>
 <div class="tblwrap"><table>
 <thead><tr><th>Flow</th><th>The question it answers</th><th>Cost of getting it wrong</th><th>Status</th></tr></thead>
 <tbody>
-<tr><td><a href="#a6-flowA" style="font-weight:700;cursor:pointer">A6-A &#8599;</a> Identify <b>ACTIVE</b> talent</td><td>Which Passive records are really supply?</td><td>supply you cannot sell</td><td><b>ON HOLD</b></td></tr>
-<tr><td><a href="#a6-flowB" style="font-weight:700;cursor:pointer">A6-B &#8599;</a> Existing <b>Active</b> records</td><td>Which Active records are really clients, or not available?</td><td>a project invitation landing in a client's inbox</td><td><b>DEFERRED</b> &mdash; runs as a <b>migration</b>, not by hand</td></tr>
-<tr><td><a href="#a6-flowC" style="font-weight:700;cursor:pointer">A6-C &#8599;</a> Review the <b>In Review</b> queue</td><td>New sign-up &mdash; Passive or Active?</td><td>the same client, but caught a year later</td><td><b>the only live flow</b></td></tr>
+<tr><td><a href="#a6-flowC" style="font-weight:700;cursor:pointer">A6-C &#8599;</a> Review the <b>In Review</b> queue</td><td>New sign-up &mdash; Passive or Active?</td><td>the same client, but caught a year later</td><td><b>the whole flow</b></td></tr>
+<tr><td><b>Existing Active and Passive records</b></td><td>Which of them are wrong today?</td><td>a project invitation landing in a client&rsquo;s inbox</td><td><b>OUT OF SCOPE</b> &mdash; not re-reviewed by hand. A migration may run the same rule over them later; it may not</td></tr>
 </tbody></table></div>
 <p class="fn">Passive is not a punishment and not a quality judgement. It is a routing decision: Passive records are excluded from project invitations, nothing more.</p>
 
@@ -842,297 +834,6 @@
 <p>Production, 30 Jul 2026 &mdash; <b>8,878 talent records</b>. Active <b>2,680</b> &middot; Passive <b>2,820</b> &middot; Rejected 1,790 &middot; Incomplete 1,533 &middot; Guest 27 &middot; PaymentRequired 25 &middot; <b>InReview 2</b> &middot; ReviewPassive 0 &middot; Temp 0.</p>
 <p class="fn">The queue the live flow serves is normally tiny. <b>UAT carries 286</b> In Review records &mdash; that is where the rule was measured.</p>
 <p class="fn">The 2,680 Active records split by Employment Status: Freelancer 2,343 &middot; Unemployed 206 &middot; Other 102 &middot; Full-time 28 &middot; Part-time 1.</p>
-
-<h3 id="a6-flowA" class="anchor">A6-A &middot; Identify ACTIVE talent <span class="fn">&mdash; ON HOLD</span></h3>
-<div class="call warn"><span class="t">This direction is not being worked</span>Nothing here is a live procedure. It is recorded so the scope is explicit and so nobody assumes the Passive pool has been reviewed.</div>
-<p><b>Why it is parked:</b> the audit trail cannot tell us how those records became Passive. Measured on production over the 811 Passive records that are Freelancer / Unemployed / Other with a non-PE/VC company background: <b>22</b> have a <code>TalentStatus</code> log entry, <b>789</b> have none at all.</p>
-<p>A sample of 105 of those 789, spread across signup years 2020 &rarr; 2026, was pulled with the type filter removed &mdash; the full history, every entry type:</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Check</th><th>Result</th></tr></thead>
-<tbody>
-<tr><td>Talents with <b>zero</b> history of any type</td><td><b>102 / 105</b></td></tr>
-<tr><td>Total entries found</td><td>3, all <code>Login</code></td></tr>
-<tr><td>Earliest entry anywhere</td><td><b>2026-04-26</b></td></tr>
-<tr><td>Entries before 2026-04-06</td><td><b>0</b></td></tr>
-</tbody></table></div>
-<p><b>The talent audit log only starts around April 2026.</b> For a record that went Passive before then, there is no way to tell whether an admin decided it or the automatic rule at approval did it. So for the great majority of the Passive pool, "no log" means <b>unknown</b> &mdash; not "automatic", and not "safe to flip". Until that is settled, <b>leave the Passive pool alone</b>.</p>
-
-<h3 id="a6-flowB" class="anchor">A6-B &middot; Existing Active records &mdash; DEFERRED</h3>
-<div class="call warn"><span class="t">Not worked by hand any more</span>Existing Active records are <b>no longer re-reviewed one at a time</b>. This whole section is kept as the <b>specification for a migration</b> that will run later. The live flow is <a href="#a6-flowC" style="font-weight:700;cursor:pointer">A6-C &#8599;</a>. <b>Two decisions landed after it was written:</b> the Full-time gate has <b>no escape hatch</b> (<code>totalApplications</code> / <code>totalAccepted</code> no longer keep anybody Active), and titles are read from <b><code>workExperiences[].position</code></b> &mdash; the job title on each current row, <b>not</b> the profile headline. The two differ on <b>49%</b> of records with a current role.</div>
-<div class="goal adm">Only the <b>Active &rarr; Passive</b> direction. Find Active records that are really clients, or that are not available for a project, and route them to a review queue. <b>Nothing here changes a status by itself</b> &mdash; every branch ends in a queue a human reads.</div>
-<p>Both branches start from <b>Status = Active</b> and split on Employment Status, so no record is looked at twice and none is missed.</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Branch</th><th>Filter</th><th>Pool</th><th>Output</th></tr></thead>
-<tbody>
-<tr><td><a href="#a6-b1" style="font-weight:700;cursor:pointer">List 1 &#8599;</a></td><td>Statuses = Active &middot; Employment Status = <b>Full Time</b></td><td><b>29</b></td><td><b>13</b> to consider</td></tr>
-<tr><td><a href="#a6-b2" style="font-weight:700;cursor:pointer">List 2 &#8599;</a></td><td>Statuses = Active &middot; Employment Status = <b>the other two</b> &middot; Company Background = <b>PE/VC</b></td><td><b>133</b></td><td><b>8</b> to Passive &middot; 13 to read</td></tr>
-</tbody></table></div>
-<p class="fn"><b>Nothing outside these two lists is in scope.</b> Both start from Statuses = Active and differ only in the second chip, so between them no record is looked at twice.</p>
-<h4 style="margin:18px 0 8px">The order to work in</h4>
-<ol class="steps adm">
-<li data-code="1"><b>Build the list</b> &mdash; 2 or 3 chips on the Talents page</li>
-<li data-code="2"><b>Read each row</b> &mdash; List 1: two numbers &middot; List 2: the title</li>
-<li data-code="3"><b>Check the employer</b> &mdash; List 2 only, and only for generic titles</li>
-<li data-code="4"><b>Open Activity Logs</b> &mdash; an admin decision is left alone</li>
-<li data-code="5"><b>Write the row down</b> &mdash; queue &rarr; Passive, or queue &rarr; needs a read</li>
-<li data-code="6"><b>Do the change on UAT</b> &mdash; one profile at a time, there is no bulk</li>
-</ol>
-
-<h3 id="a6-rulebook" class="anchor">A6-B.0 &middot; The rules</h3>
-<div class="goal adm"><b>Read this once before you touch the queues.</b> The branch sections turn these rules into click-by-click procedures; when the two disagree, this section wins.</div>
-
-<h4 style="margin:18px 0 8px">Rule 1 &mdash; a hand-set status is left alone</h4>
-<p>An admin decision outranks every rule below. Open the <b>Timelines</b> tab and read what is actually there. <b>Three outcomes, not two</b> &mdash; the third is the one that gets forgotten.</p>
-<div class="call warn"><span class="t">Do not use the admin name to decide this</span><b>The automatic approval writes an entry with an admin's name on it too.</b> Verified on UAT &mdash; approving one In Review record produced <i>"<b>Dev Fintalent</b> (Admin) changed talent status <b>(In Review &rarr; Passive)</b> by Dev Fintalent"</i>. Nobody chose Passive there; the system did, and it still stamped the approving admin on the entry. If you read "has an admin name" as "hand-set", you will drop from the queue exactly the records the queue exists to find. <b>The discriminator is the transition inside the parentheses, not the name.</b></div>
-<div class="tblwrap"><table>
-<thead><tr><th>What the timeline shows</th><th>Meaning</th></tr></thead>
-<tbody>
-<tr><td>A status change whose transition is <b>not</b> <code>In Review &rarr; &hellip;</code></td><td><b>hand-set</b> &rarr; drop the record from the queue</td></tr>
-<tr><td><code>In Review &rarr; Passive</code> <b>only</b></td><td>the automatic rule at approval &rarr; <b>keep in the queue</b></td></tr>
-<tr><td><b>No entry at all</b></td><td><b>UNKNOWN</b> &rarr; keep in the queue, but never record it as "automatic"</td></tr>
-</tbody></table></div>
-<p class="fn">Never infer "automatic" from silence. The talent audit log only starts around <b>April 2026</b>; anything older simply is not written down.</p>
-<p><b>Reading the chain.</b> Four shapes occur on production. The second is easy to miss &mdash; a naive "ignore everything on approval day" filter drops it.</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Chain</th><th>Hand-set?</th></tr></thead>
-<tbody>
-<tr><td><code>InReview &rarr; Passive</code>, one event</td><td><b>no</b> &mdash; automatic rule at approval</td></tr>
-<tr><td><code>InReview &rarr; Active</code> then <code>Active &rarr; Passive</code>, <b>~20 seconds apart</b></td><td><b>yes</b> &mdash; the admin overrode the approval result</td></tr>
-<tr><td><code>Active &rarr; Passive</code>, long after signup</td><td><b>yes</b></td></tr>
-<tr><td><code>ReviewPassive &rarr; Passive</code></td><td><b>yes</b> &mdash; a <a href="#ec-6-2" style="font-weight:700;cursor:pointer">resubmit &#8599;</a> reviewed and refused</td></tr>
-</tbody></table></div>
-<figure><img src="a6-09-auto-classify-banner.png" alt="Auto-classification line and Activity Logs"/><figcaption><b>Rule 1</b> &mdash; <b>&#9312;</b> Employment Status &middot; <b>&#9313;</b> the system's own verdict line, printed right below it &middot; <b>&#9314;</b> the <b>Activity Logs</b> tab &middot; <b>&#9315;</b> every status change with who made it and when.</figcaption></figure>
-
-<h4 style="margin:18px 0 8px">Rule 2 &mdash; the Employment Status branch</h4>
-<p><b>Full-time means somebody else already pays for their week.</b> That is the starting position. Two things override it, and only two.</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Step</th><th>Test</th><th>Result</th></tr></thead>
-<tbody>
-<tr><td><b>1</b></td><td><code>totalApplications &gt; 0</code></td><td><b>stays Active</b>, stop</td></tr>
-<tr><td><b>2</b></td><td><code>invitationStats.totalAccepted &gt; 0</code></td><td><b>stays Active</b>, stop</td></tr>
-<tr><td><b>3</b></td><td>everything else</td><td>rule 1 &rarr; <b>QUEUE</b>, consider Passive</td></tr>
-</tbody></table></div>
-<p class="fn">Both escape hatches say the same thing: this person demonstrably engages with projects, so the Full-time label is either stale or they take freelance work anyway. <b>There is no recency window.</b> And <b>no work-experience test subtracts from the queue</b> &mdash; a record with no ongoing work experience still goes to the queue; the missing current role makes the data <i>less</i> trustworthy, not more. Use it to rank what to read first, never to keep someone Active.</p>
-<div class="call warn"><span class="t">This overturns an earlier ruling</span>Application and invitation history now <b>do</b> keep someone Active, where the previous rulebook said a completed contract is "context, never a reason to skip the gate". On production that means <b>Sahib Maker</b> (Vice President at Apis Partners, 21 applications, 6 accepted) stays Active &mdash; the old rulebook named him as one of two records to fix first.</div>
-
-<h4 style="margin:18px 0 8px">Rule 3 &mdash; the title branch</h4>
-<p>Run the steps <b>in this order</b> against the <b>role part</b> of the title &mdash; the text before <code>at</code> / <code>@</code> / <code>chez</code> / <code>bei</code> / <code>en</code>. Only the role part is matched: fund names very often contain the word <i>Partners</i>, and matching the whole string turns "Manager at Fide <b>Partners</b>" into a false hit. <b>Match on word boundaries</b> &mdash; plain substring matching turns "M&amp;A <b>Intern</b>ational Manager" into an intern.</p>
-<p><b>Step 1 &mdash; hard-stop A: too junior, or back office &rarr; not a client.</b><br>
-<code>Associate</code> &middot; <code>Analyst</code> &middot; <code>Junior</code> &middot; <code>Intern</code> &middot; <code>Internship</code> &middot; <code>Trainee</code> &middot; <code>Apprentice</code> &middot; <code>Werkstudent</code> &middot; <code>Working Student</code> &middot; <code>Student</code> &middot; <code>MBA Candidate</code> &middot; <code>Teaching Assistant</code> &middot; <code>Investor Relations</code> &middot; <code>Fundraising</code> &middot; <code>Fund Finance</code> &middot; <code>Capital Formation</code> &middot; <code>Fund Accountant</code> &middot; <code>Fund Controller</code> &middot; <code>Taxation</code> &middot; <code>Business Partner</code></p>
-<p class="fn"><i>Business Partner</i> is on the list because a "Finance Business Partner" is an internal finance role, not a fund Partner.</p>
-<p><b>Step 2 &mdash; hard-stop B: sells advice, or sits sell-side &rarr; not a client.</b><br>
-<code>consultant</code> &middot; <code>consulting</code> &middot; <code>consultancy</code> &middot; <code>advisory</code> &middot; <code>advisor</code> &middot; <code>adviser</code> &middot; <b><code>investment banking</code></b> &middot; <b><code>investment bank</code></b> &middot; <code>corporate finance advisory</code> &middot; <code>transaction services</code> &middot; <code>transaction advisory</code> &middot; <code>due diligence</code> &middot; <code>sell-side</code> &middot; <code>sellside</code> &middot; <code>restructuring advisory</code> &middot; <code>interim manager</code></p>
-<div class="tblwrap"><table>
-<thead><tr><th>Title</th><th>Caught by</th></tr></thead>
-<tbody>
-<tr><td>Vice President Technology &amp; Services <b>Investment Banking</b></td><td><code>investment banking</code></td></tr>
-<tr><td>Vice President, M&amp;A <b>Advisory</b></td><td><code>advisory</code></td></tr>
-<tr><td>Principal <b>Consultant</b> at ADC Innovations</td><td><code>consultant</code></td></tr>
-<tr><td>M&amp;A <b>Advisor</b> &amp; Corporate Development Director</td><td><code>advisor</code></td></tr>
-</tbody></table></div>
-<p class="fn">An M&amp;A advisory practice, and an investment bank, are exactly the supply Fintalent sells. This step is what keeps them out of the client queue.</p>
-<p><b>Step 3 &mdash; match the title, in two tiers.</b> The split matters: a <i>Vice President</i> at a fund is a client, a <i>Vice President</i> at an investment bank is supply. <b>The same word cannot decide both.</b></p>
-<div class="tblwrap"><table>
-<thead><tr><th>Tier</th><th>Group</th><th>Terms</th></tr></thead>
-<tbody>
-<tr><td rowspan="3"><b>TIER 1</b><br><span class="fn">only exists inside a fund &mdash; client, no employer check</span></td><td>Operating / value creation</td><td>Operating Partner &middot; Operating Principal &middot; Operating Director &middot; Operating Executive &middot; Operating Manager &middot; Head of Portfolio Operations &middot; Portfolio Operations &middot; Portfolio Director &middot; Value Creation &middot; Head of Operational Excellence &middot; Head of Transformation</td></tr>
-<tr><td>Talent side</td><td>Talent Partner &middot; Head of Talent &middot; Director of Talent &middot; Chief Talent Officer &middot; Head of Executive Talent</td></tr>
-<tr><td>Deal side, fund-specific</td><td>General Partner &middot; Venture Partner &middot; Investment Partner &middot; Deal Partner &middot; Investment Director &middot; Investment Manager &middot; Investment Principal &middot; Investment Professional &middot; Deal Lead &middot; Head of Investments</td></tr>
-<tr><td rowspan="6"><b>TIER 2</b><br><span class="fn">generic seniority &mdash; must pass <a href="#a6-b3" style="font-weight:700;cursor:pointer">sub-rule 2 &#8599;</a></span></td><td>Partner / Principal</td><td><b>Managing Partner</b> &middot; <b>Founding Partner</b> &middot; <b>Senior Partner</b> &middot; Partner &middot; Principal</td></tr>
-<tr><td>Senior generic</td><td>Managing Director &middot; Vice President &middot; VP &middot; Director &middot; Co-Head</td></tr>
-<tr><td>Board &amp; C-suite</td><td>Chair &middot; Chairman &middot; Executive Chairman &middot; Non-Executive Director &middot; Senior Independent Director &middot; CEO &middot; Chief Executive &middot; President &middot; Gesch&auml;ftsf&uuml;hrer &middot; Directeur G&eacute;n&eacute;ral &middot; CFO &middot; Group CFO &middot; Interim CFO &middot; Finance Director &middot; Head of Finance &middot; VP Finance</td></tr>
-<tr><td>Founders</td><td>Founder &middot; Co-founder &middot; Entrepreneur</td></tr>
-<tr><td>Deal / corp-dev <span class="fn">(manager and above)</span></td><td>Head of M&amp;A &middot; M&amp;A Director &middot; M&amp;A Manager &middot; Corporate Development &middot; Corporate Dev &middot; Head of Strategy &amp; M&amp;A &middot; Head of Transactions</td></tr>
-<tr><td>People</td><td>Head of People &middot; Human Capital</td></tr>
-</tbody></table></div>
-<p class="fn"><b>Managing Partner, Founding Partner and Senior Partner belong in TIER 2, not TIER 1.</b> Boutique advisory firms use those exact titles. On production, <i>Nick Gemenetzidis &mdash; Managing Partner at Vestigos</i> would be flagged a client on the title alone; Vestigos describes itself as an <b>advisor</b>, so the employer check correctly drops him.</p>
-<p><b>Step 4 &mdash; no title match &rarr; not a client.</b></p>
-
-<h4 style="margin:18px 0 8px">Rule 4 &mdash; the title lists only work inside the Company Background filter</h4>
-<p>Every term list on this page assumes the <b>Company Background = PE/VC</b> chip is set. Words like <code>Investor</code>, <code>Private Equity</code>, <code>M&amp;A</code>, and every TIER 2 title are ordinary vocabulary in the wider talent base &mdash; run without the chip they would sweep up most of it. <b>Never run these lists without the chip in place.</b> List 2 is the only place they apply, and List 1 does not use them at all.</p>
-
-<h4 style="margin:18px 0 8px">Rule 5 &mdash; every branch ends in a queue, never in a change</h4>
-<div class="tblwrap"><table>
-<thead><tr><th>Bucket</th><th>Meaning</th></tr></thead>
-<tbody>
-<tr><td><b>Queue &rarr; Passive</b></td><td>evidence is complete and points one way</td></tr>
-<tr><td><b>Needs a human read</b></td><td>a title matched but the evidence is missing or contradictory</td></tr>
-</tbody></table></div>
-<p class="fn">A missing employer, an empty description, or a title with no company in it is <b>never</b> treated as confirmation.</p>
-
-<h4 style="margin:18px 0 8px">What this replaces</h4>
-<p>Three rulings in the previous rulebook are deliberately reversed. Listed so nobody re-applies them from memory.</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Old ruling</th><th>Now</th></tr></thead>
-<tbody>
-<tr><td>"A completed contract is not an override" &mdash; contract / application history is context only</td><td>Application and accepted-invitation history <b>do</b> keep someone Active (rule 2)</td></tr>
-<tr><td>An advisory word in the <b>company name</b> does not rescue a group match &mdash; <i>"Managing Director and Founder at DZ Consulting"</i> stays Passive</td><td>The company name <b>is</b> evidence. <i>Victoria Advisory</i>, <i>N-Squared Advisory</i>, <i>Borromeo Mondino Advisory GmbH</i> all read as service providers</td></tr>
-<tr><td><i>"Partner and co-founder at EKEM Partners"</i> and <i>"Founding Partner at Scandola | Buy-side M&amp;A"</i> stay Passive</td><td>The employer decides. EKEM Partners describes itself as a <b>consulting firm</b> &rarr; not a client</td></tr>
-</tbody></table></div>
-
-<h3 id="a6-b1" class="anchor">A6-B.1 &middot; List 1 &mdash; Active + Full Time</h3>
-<ol class="steps adm">
-<li data-code="A6-B.1.1"><b>Open <i>User Management &rarr; Talents</i> and pin the chip you need.</b> It is <b>not on the bar by default</b> and it is <b>not called "Employment Status"</b> &mdash; click <b>+ Add filter</b>, and in the <b>Customize Quick Filters</b> panel tick <b>Employee Statuses</b> under <i>AVAILABILITY &amp; ENGAGEMENT</i>. Then set Statuses = <b>Active</b> and Employee Statuses = <b>Full-Time Employed</b>. That option pulls <b>Part-time</b> as well &mdash; verified on the wire, the request sends <code>["FullTimeEmployee","PartTimeEmployee"]</code>. That is intended &mdash; both mean somebody else pays for their week, and it is what makes branch 1 and branch 2 cover all five enum values between them with no overlap.
-  <p class="fn">Production, 29 Jul 2026: <b>29 people</b> &mdash; 28 Full-time Employee, 1 Part-time Employee.</p>
-</li>
-<li data-code="A6-B.1.2"><b>Read both numbers straight off the list</b> &mdash; you do not need to open anybody. The <b>Engagement</b> column carries them: <code>APP 14 applied &middot; 6 hired</code> is step 1, <code>INV 1 accepted / 4 invited</code> is step 2, <code>CTR</code> is contracts and is context only. <b>A line is only drawn when its number is above zero</b>, so a cell with no <code>APP</code> line means no applications. Any APP line, or an accepted invitation &rarr; <b>stays Active</b>. Neither &rarr; the row goes to the queue.<figure><img src="a6-b-02-engagement-column.png" alt="The Engagement column"/><figcaption><b>A6-B.1.2</b> &mdash; the Engagement column on the talents list. Sort by it and the queue rows collect at one end.</figcaption></figure></li>
-<li data-code="A6-B.1.3"><b>Run rule 1, then queue.</b> Open <b>Timelines</b> on each survivor and read the <b>transition in the parentheses</b>, not the name. A hand-set status drops the record; <code>(In Review &rarr; Passive)</code> alone, or no entry at all, keeps it in the queue.</li>
-</ol>
-<h4 style="margin:18px 0 8px">The funnel on production</h4>
-<div class="tblwrap"><table>
-<thead><tr><th>Step</th><th>Stays Active</th><th>Remaining</th></tr></thead>
-<tbody>
-<tr><td>Filter &mdash; Active + Full/Part-time</td><td>&mdash;</td><td><b>29</b></td></tr>
-<tr><td><code>totalApplications &gt; 0</code></td><td>16</td><td>13</td></tr>
-<tr><td><code>totalAccepted &gt; 0</code></td><td><b>0</b></td><td>13</td></tr>
-<tr><td>Rule 1 veto</td><td>0</td><td><b>13</b></td></tr>
-</tbody></table></div>
-<p class="fn"><b>Step 2 currently changes nothing.</b> Everybody with an accepted invitation already had an application, so step 1 catches them first. Keep it &mdash; it costs nothing and the data can shift &mdash; but do not expect it to filter anyone today.</p>
-<p><b>Make the change on UAT</b> &mdash; full click path, dialog and traps in <a href="#a6-b4" style="font-weight:700;cursor:pointer">A6-B.4 &#8599;</a>. Reason to type for this list: <code>Employment Status is Full-time &mdash; not available for projects.</code> Pick <b>Other</b> in the radio group.</p>
-<h4 style="margin:18px 0 8px">The 13 to consider</h4>
-<p><b>Priority 1 &mdash; holds a real ongoing role, so the contradiction is plain (7).</b> Mehdi <span class="fn">Senior IB Analyst @ FTI Capital Advisors</span> &middot; Simon <span class="fn">Integrated M&amp;A Lead @ DLA Piper</span> &middot; Teresa <span class="fn">Director, HR @ Action Urgent Care</span> &middot; Ruben <span class="fn">Transformation Manager @ GHD GesundHeits</span> &middot; Gregor <span class="fn">Senior IT &amp; Tech Advisor @ Freelance</span> &middot; Chris <span class="fn">Volunteer Assistant @ Finchley Foodbank</span> &middot; &Ouml;mer F. <span class="fn">Founder @ Fintalent.com</span></p>
-<p><b>Priority 2 &mdash; says Full-time but has no ongoing role, so the record disagrees with itself (6).</b> Maximilian &middot; Dhruv &middot; JEAN &middot; Anil &middot; Zac &middot; Vitaliy. Each has 2&ndash;7 work-experience rows and not one is flagged ongoing. The <code>ongoing</code> flag was checked for reliability across all 13 &mdash; no row has an empty end date without the flag, so the absence is real, not a data artefact.</p>
-<div class="call warn"><span class="t">Two to settle by hand</span><b>&Ouml;mer F.</b> &mdash; "Founder at Fintalent.com" is an internal / test account, not a real talent. <b>Chris</b> &mdash; the only ongoing rows are <i>Volunteer Assistant</i> at a foodbank and a non-profit; the rule counts the <code>ongoing</code> flag and does not read what kind of work it is.</div>
-<p class="fn">Status cannot be changed in bulk &mdash; see <a href="#ec-6-3" style="font-weight:700;cursor:pointer">A6.x.3 &#8599;</a>. Every change is one profile at a time, on <b>UAT</b>. The <a href="#a6-autorule" style="font-weight:700;cursor:pointer">automatic rule at approval &#8599;</a> now enforces this gate on the intake path &mdash; <b>Q1</b> is Full-time / Part-time &rarr; Passive &mdash; but it only runs when a record leaves <b>In Review</b>. It never re-examines a record that is already Active, which is what the migration is for.</p>
-
-<h3 id="a6-b2" class="anchor">A6-B.2 &middot; List 2 &mdash; Active + PE/VC background</h3>
-<ol class="steps adm">
-<li data-code="A6-B.2.1"><b>Open <i>User Management &rarr; Talents</i> and set three chips</b> &mdash; Statuses = <b>Active</b>; Employment Status = the <b>two non-Full-time</b> groups (Freelancer, which pulls Unemployed, and Other); Company Background = <b>Private Equity / Venture Capital</b>, parent <b>and all five children</b>, plus <b>PE-Backed / Portfolio Company</b>.
-  <figure><img src="a6-01-filter-bar.png" alt="Talents list controls"/><figcaption><b>A6-B.2.1</b> &mdash; <b>&#9312;</b> <b>Company Background</b> chip &middot; <b>&#9313;</b> keyword search with a <b>Simple / Advanced</b> toggle &middot; <b>&#9314;</b> <b>Add filter</b> &middot; <b>&#9315;</b> <b>N In Review</b>, see <a href="#ec-6-1" style="font-weight:700;cursor:pointer">A6.x.1 &#8599;</a>.</figcaption></figure>
-  <p class="fn"><b>Tick the parent and the leaves.</b> They are not the same set: on this pool the parent alone returns 129 and the six boxes together return 133 &mdash; four people carry only a leaf label. Tick <i>PE-Backed / Portfolio Company</i> too: it is the box that ought to deliver the portfolio-company bosses, so it belongs in the routine &mdash; but it currently returns <b>nobody at all</b>, so the total stays at 133. See <a href="#ec-6-6" style="font-weight:700;cursor:pointer">A6.x.6 &#8599;</a>. Production, 29 Jul 2026: <b>133 people</b>.</p>
-</li>
-<li data-code="A6-B.2.2"><b>Run the four steps on the role part</b> &mdash; hard-stop A, hard-stop B, then TIER 1 (client) / TIER 2 (&rarr; <a href="#a6-b3" style="font-weight:700;cursor:pointer">sub-rule 2 &#8599;</a>), then no-match. Full term lists in <a href="#a6-rulebook" style="font-weight:700;cursor:pointer">rule 3 &#8599;</a>.</li>
-<li data-code="A6-B.2.3"><b>Run rule 1, then queue.</b></li>
-</ol>
-<h4 style="margin:18px 0 8px">The funnel on production</h4>
-<div class="tblwrap"><table>
-<thead><tr><th>Step</th><th></th><th>Count</th></tr></thead>
-<tbody>
-<tr><td>Filter</td><td></td><td><b>133</b></td></tr>
-<tr><td>1 &middot; hard-stop A</td><td>dropped</td><td>18</td></tr>
-<tr><td>2 &middot; hard-stop B</td><td>dropped</td><td>46</td></tr>
-<tr><td>4 &middot; no title match</td><td>dropped</td><td>39</td></tr>
-<tr><td>3 &middot; <b>TIER 1</b></td><td>client</td><td><b>5</b></td></tr>
-<tr><td>3 &middot; <b>TIER 2</b></td><td>&rarr; sub-rule 2</td><td>25</td></tr>
-<tr><td>&nbsp;&nbsp;&middot; employer is a service provider</td><td>dropped</td><td>9</td></tr>
-<tr><td>&nbsp;&nbsp;&middot; employer confirmed buy-side</td><td>client</td><td><b>3</b></td></tr>
-<tr><td>&nbsp;&nbsp;&middot; evidence missing</td><td><b>needs a read</b></td><td><b>13</b></td></tr>
-<tr><td>Rule 1 veto</td><td></td><td>0</td></tr>
-</tbody></table></div>
-<p><b>&rarr; 8 to the Passive queue &middot; 13 to read by hand.</b> Hard-stop B removes the single largest slice &mdash; 46 of 133. That is expected and it is the point: inside a PE/VC-labelled list, most people who look buy-side on a keyword scan are in fact selling M&amp;A advice, and they are exactly the supply Fintalent sells.</p>
-<p><b>Make the change on UAT</b> &mdash; full click path in <a href="#a6-b4" style="font-weight:700;cursor:pointer">A6-B.4 &#8599;</a>. Reason to type, naming the employer: <code>Buy side &mdash; &lt;title&gt; at &lt;company&gt;. Client, not supply.</code> Pick <b>Other</b> in the radio group.</p>
-<h4 style="margin:18px 0 8px">Queue &rarr; Passive (8)</h4>
-<div class="tblwrap"><table>
-<thead><tr><th>Talent</th><th>Title</th><th>Evidence</th></tr></thead>
-<tbody>
-<tr><td>Florian</td><td>Private Equity Investment Manager</td><td>TIER 1</td></tr>
-<tr><td>Fran&ccedil;ois</td><td>Investment Manager | ex-J.P. Morgan</td><td>TIER 1</td></tr>
-<tr><td>Gleb</td><td>Investment Manager / VP</td><td>TIER 1</td></tr>
-<tr><td>Luisa</td><td>Value Creation / Private investor support / VC&amp;PE</td><td>TIER 1</td></tr>
-<tr><td>Mohamed</td><td>Investment Professional | PE / M&amp;A / Strategy</td><td>TIER 1</td></tr>
-<tr><td>Andrew</td><td>Managing Partner at Contour Point Capital</td><td><code>private equity</code>, <code>buyout</code>, <code>sponsor</code></td></tr>
-<tr><td>Julius</td><td>CFO &amp; Principal at Spring St. Group</td><td><code>family office</code>, <code>portfolio companies</code></td></tr>
-<tr><td>Jes&uacute;s</td><td>Vice President at Arcano Partners</td><td><code>alternative asset</code>, <code>asset manager</code></td></tr>
-</tbody></table></div>
-<h4 style="margin:18px 0 8px">Needs a human read (13)</h4>
-<div class="tblwrap"><table>
-<thead><tr><th>Reason</th><th>Who</th></tr></thead>
-<tbody>
-<tr><td>Title carries no company name</td><td>William &middot; Alpay &middot; Teddy &middot; Pablo &middot; Dana &middot; Simon Petit</td></tr>
-<tr><td>Company only on a <b>closed</b> work-experience row</td><td>Yassir <span class="fn">(Torch Partners)</span> &middot; Valerian <span class="fn">(Cooltra)</span></td></tr>
-<tr><td>Company not in the ongoing work experience at all</td><td>Simon Fedi <span class="fn">(Scandola)</span></td></tr>
-<tr><td>Company has no description</td><td>Mathias <span class="fn">(Sparring)</span> &middot; Hawken <span class="fn">(Edgewater Strategy Group)</span></td></tr>
-<tr><td>Description reads either way</td><td>Peder <span class="fn">(Global PMI Partners)</span> &middot; Renate <span class="fn">(Sapphire Partners)</span></td></tr>
-</tbody></table></div>
-<figure><img src="a6-11-chip-dropdown.png" alt="Talent status chip dropdown"/><figcaption><b>A6-B.2</b> &mdash; the status chip on a talent profile. It only ever switches between <b>Active</b> and <b>Passive</b>. Do this on <b>UAT</b>, never on production.</figcaption></figure>
-<figure><img src="a6-06-set-passive-modal.png" alt="Set Passive modal"/><figcaption><b>A6-B.2</b> &mdash; the confirm dialog. The reason typed here goes to the <b>activity log</b>, not to a field on the record &mdash; see <a href="#ec-6-7" style="font-weight:700;cursor:pointer">A6.x.7 &#8599;</a>.</figcaption></figure>
-
-<h3 id="a6-b3" class="anchor">A6-B.3 &middot; Sub-rule 2 &mdash; the employer check</h3>
-<div class="goal adm">A TIER 2 title cannot settle anything on its own. A <i>Vice President</i> at a fund is a client; a <i>Vice President</i> at an investment bank is supply. <b>The employer decides.</b> Only TIER 2 rows reach this step &mdash; TIER 1 skips it by design.</div>
-<p>Each gate ends the check. The description is only read at step 4 &mdash; and on production only <b>8 of 133</b> people ever get that far.</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Step</th><th>Test</th><th>If it stops here</th><th>On prod</th></tr></thead>
-<tbody>
-<tr><td><b>1</b></td><td>Does the title carry a company name?</td><td>no &rarr; <b>needs a human read</b></td><td>6</td></tr>
-<tr><td><b>2</b></td><td>Find that company among the <b>ONGOING</b> work-experience rows</td><td>not found &rarr; <b>needs a human read</b></td><td>3</td></tr>
-<tr><td><b>3</b></td><td>Does the company <b>NAME</b> contain a service word?</td><td>yes &rarr; <b>not a client</b></td><td>6</td></tr>
-<tr><td><b>4</b></td><td>&#9658;&#9658; <b>READ THE DESCRIPTION</b> &#9668;&#9668;</td><td>service identity &rarr; not a client &middot; buy-side &rarr; <b>CLIENT</b></td><td>8</td></tr>
-<tr><td><b>5</b></td><td>No description &rarr; linkedCompany tags</td><td>otherwise &rarr; <b>needs a human read</b></td><td>2</td></tr>
-</tbody></table></div>
-<p><b>Step 2 &mdash; ongoing rows only.</b> A closed row describes a <b>past</b> employer and cannot settle who somebody works for today. <i>Yassir &mdash; "Managing Director at Torch Partners"</i>: the Torch Partners row is <code>ongoing = false</code>; his current role is <i>Y Advisory &mdash; self-employed corporate finance advisor</i>. Reading the closed row would have made him a client.</p>
-<p><b>Step 3 &mdash; the company name is evidence.</b> Cheaper and more reliable than the description, and it works when there is no description at all. <i>Victoria Advisory</i>, <i>N-Squared Advisory</i>, <i>Borromeo Mondino Advisory GmbH</i>, <i>Array Capital | Software M&amp;A Advisory</i> are all settled by their names.</p>
-<div class="call warn"><span class="t">Step 4 &mdash; service identity is read BEFORE the buy-side words</span>This ordering is the whole point of the step, and it is counter-intuitive. <b>"Private equity" in a description usually names the company's CLIENTS, not the company itself.</b> An advisory firm's description is full of buy-side vocabulary precisely because it serves buy-side firms.</div>
-<div class="tblwrap"><table>
-<thead><tr><th>Company</th><th>Description says</th><th>Correct reading</th></tr></thead>
-<tbody>
-<tr><td>N-Squared Advisory</td><td><i>"Co-founded a <b>boutique advisory firm</b>, focusing on <b>investment banking mandates</b> &hellip; leverage deep investor relationships (from large-cap <b>Private Equity</b> to seed-stage <b>Venture Capital</b>)"</i></td><td>PE/VC are relationships. The firm is an advisory boutique &rarr; <b>not a client</b></td></tr>
-<tr><td>Borromeo Mondino Advisory</td><td><i>"<b>Independent senior advisor</b> &hellip; working with Asset Owners, <b>Asset Managers</b> &hellip; as well as with <b>their</b> portfolio companies"</i></td><td>"their" names the clients &rarr; <b>not a client</b></td></tr>
-<tr><td>CAPX</td><td><i>"an algorithmic corporate financing <b>platform that connects</b> borrowers and <b>private equity sponsors</b> with institutional capital providers"</i></td><td>a fintech marketplace; PE sponsors are users &rarr; <b>not a client</b></td></tr>
-</tbody></table></div>
-<p class="fn">With the buy-side words read first, all three came out as clients. Reading service identity first drops all three correctly.</p>
-<p><b>Service identity</b> &mdash; what the company <i>is</i>: <code>advisory firm</code> &middot; <code>boutique advisory</code> &middot; <code>advisory boutique</code> &middot; <code>advisor</code> &middot; <code>adviser</code> &middot; <code>advising</code> &middot; <code>advises</code> &middot; <code>consultancy</code> &middot; <code>consulting firm</code> &middot; <code>consultant</code> &middot; <code>investment banking mandates</code> &middot; <code>corporate finance advisor</code> &middot; <code>self-employed</code> &middot; <code>freelance</code> &middot; <code>platform that connects</code> &middot; <code>our clients</code> &middot; <code>for clients</code> &middot; <code>client engagements</code> &middot; <code>mandates</code> &middot; <code>interim management</code> &middot; <code>law firm</code> &middot; <code>recruitment</code> &middot; <code>executive search</code></p>
-<p><b>Buy-side</b>: <code>private equity</code> &middot; <code>venture capital</code> &middot; <code>buyout</code> &middot; <code>buy-out</code> &middot; <code>LBO</code> &middot; <code>sponsor</code> &middot; <code>investment firm</code> &middot; <code>alternative asset</code> &middot; <code>asset manager</code> &middot; <code>family office</code> &middot; <code>growth equity</code> &middot; <code>investment fund</code> &middot; <code>fund manager</code> &middot; <code>portfolio companies</code> &middot; <code>principal investing</code></p>
-<div class="call warn"><span class="t"><code>financial services</code> is deliberately absent</span>A PE fund <b>is</b> a financial services firm &mdash; keeping that term in the service list would release exactly the people this branch exists to catch.</div>
-<p><b>Step 5 &mdash; missing evidence is never confirmation.</b> A title with no company, an employer not in the ongoing work experience, an empty description, a description that reads either way &mdash; all go to <b>needs a human read</b>. This matters more than it looks: roughly <b>63%</b> of talents have a current employer that was never matched to the company list (<a href="#ec-6-5" style="font-weight:700;cursor:pointer">A6.x.5 &#8599;</a>), so the no-data path is the common one, not the exception.</p>
-<p class="fn">The <code>linkedCompany.isSponsor</code> / <code>isPortfolio</code> tags are used only as a last resort and flagged low-confidence when they are &mdash; the tags come from an outside source and are wrong often enough to matter (<a href="#ec-6-8" style="font-weight:700;cursor:pointer">A6.x.8 &#8599;</a>).</p>
-
-<h3 id="a6-b4" class="anchor">A6-B.4 &middot; Set the status Active &rarr; Passive</h3>
-<div class="call warn"><span class="t">Do this on UAT, never on production</span>Production is read-only for this work. Build the list and read the data on production, then make the change on <b>UAT</b> and confirm the result there.</div>
-<ol class="steps adm">
-<li data-code="A6-B.4.1"><b>Open the talent.</b> <i>User Management &rarr; Talents</i> on UAT, find the person, click their name. Work from the list you wrote down, <b>not</b> from the page &mdash; changing a status re-runs the filter and the rows shift under you.</li>
-
-<li data-code="A6-B.4.2"><b>Find the status chip</b> under the avatar on the left of the drawer. Hover it first &mdash; the tooltip tells you whether it is live.
-  <div class="tblwrap"><table>
-  <thead><tr><th>Tooltip on hover</th><th>Meaning</th></tr></thead>
-  <tbody>
-  <tr><td><b>"Click to update"</b></td><td>the chip is clickable, go ahead</td></tr>
-  <tr><td><b>"Passive since &lt;date&gt;"</b> plus a reason</td><td>already Passive &mdash; nothing to do here</td></tr>
-  <tr><td>no tooltip, chip does not open</td><td>the status is not Active or Passive, so the chip is <b>read-only</b> &mdash; see <a href="#ec-6-10" style="font-weight:700;cursor:pointer">A6.x.10 &#8599;</a></td></tr>
-  </tbody></table></div>
-  <figure><img src="a6-05-status-chip.png" alt="Talent status chip"/><figcaption><b>A6-B.4.2</b> &mdash; <b>&#9312;</b> the current status chip, click to open &middot; <b>&#9313;</b> the only alternative offered &middot; <b>&#9314;</b> Employment Status on the header line.</figcaption></figure>
-</li>
-
-<li data-code="A6-B.4.3"><b>Click the chip and pick Passive.</b> <b>The dropdown shows one option: the opposite status.</b> On an Active record it offers only Passive; on a Passive record only Active. Verified on UAT.
-  <figure><img src="a6-11-chip-dropdown.png" alt="Status chip dropdown"/><figcaption><b>A6-B.4.3</b> &mdash; the dropdown never offers any other status. Rejected, In Review, ReviewPassive and the rest are set by the system or by the review actions, not here.</figcaption></figure>
-</li>
-
-<li data-code="A6-B.4.4"><b>Fill the confirm dialog &mdash; read this part carefully.</b> The dialog is titled <b>Set Talent Status to Passive</b> and asks <i>"Do you want to set <code>Passive</code> for &lt;name&gt; ?"</i>. It has a radio group and a free-text box.
-  <figure><img src="a6-06-set-passive-modal.png" alt="Set Passive confirm dialog"/><figcaption><b>A6-B.4.4</b> &mdash; the radio group opens with the first option already selected.</figcaption></figure>
-  <div class="tblwrap"><table>
-  <thead><tr><th>Radio option</th><th></th></tr></thead>
-  <tbody>
-  <tr><td><b>Unable to verify freelance status</b></td><td><b>pre-selected when the dialog opens</b></td></tr>
-  <tr><td>Evidence insufficient</td><td></td></tr>
-  <tr><td>Reference unresponsive</td><td></td></tr>
-  <tr><td><b>Other</b></td><td><b>&larr; always pick this one</b></td></tr>
-  </tbody></table></div>
-  <p><b>None of the first three describes what you are doing in this flow.</b> All three belong to the freelance-verification review &mdash; they mean "we could not confirm this person is really freelancing". Neither list here concludes that: <a href="#a6-b1" style="font-weight:700;cursor:pointer">List 1 &#8599;</a> concludes <i>"employed full-time, not available"</i> and <a href="#a6-b2" style="font-weight:700;cursor:pointer">List 2 &#8599;</a> concludes <i>"this is a client, not supply"</i>.</p>
-  <div class="call warn"><span class="t">The trap</span>The dialog opens with <i>Unable to verify freelance status</i> already selected. Click <b>Yes</b> without touching the radio and that is the reason stored against the record &mdash; a wrong reason, recorded permanently, on every row you process.</div>
-  <p>The text area is labelled <b>Reasons</b>. <b>Nothing forces you to fill it in</b> &mdash; on UAT, picking <code>Other</code> and clicking <b>Yes</b> with the box empty saved fine, and the record then showed just the word <i>"Other"</i> with no explanation at all. Typing it is on you.</p>
-  <div class="tblwrap"><table>
-  <thead><tr><th>List</th><th>What to type</th></tr></thead>
-  <tbody>
-  <tr><td>List 1</td><td><code>Employment Status is Full-time &mdash; not available for projects.</code></td></tr>
-  <tr><td>List 2</td><td><code>Buy side &mdash; &lt;title&gt; at &lt;company&gt;. Client, not supply.</code></td></tr>
-  </tbody></table></div>
-  <p class="fn">Name the employer for List 2. Six months from now the title alone will not tell anybody why the call was made.</p>
-</li>
-
-<li data-code="A6-B.4.5"><b>Click Yes.</b> The buttons are <b>Exit</b> (cancel) and <b>Yes</b>. A toast confirms it: <b>"Set passive talent successfully"</b> &mdash; or <b>"Set passive talent failed"</b> if it did not go through.</li>
-
-<li data-code="A6-B.4.6"><b>Verify before moving on.</b> The chip now reads <b>Passive</b> and its tooltip says <b>"Passive since &lt;date&gt; at &lt;time&gt;"</b> followed by the radio value &mdash; on UAT, <i>"Passive since Jul 29, 2026 at 17:12 &middot; Other"</i>. Then open <b>Timelines</b> and <b>reload the page</b>: the tab count does not refresh on its own.
-  <p class="fn">That second check matters beyond this row &mdash; it is the same entry <a href="#a6-rulebook" style="font-weight:700;cursor:pointer">rule 1 &#8599;</a> reads. From now on the record counts as <b>hand-set</b>, and any later pass over the list will leave it alone.</p>
-</li>
-</ol>
-<h4 style="margin:18px 0 8px">Things that will slow you down</h4>
-<div class="tblwrap"><table>
-<tbody>
-<tr><td><b>There is no bulk status change</b></td><td>Bulk Actions offers export, add / remove from list, and Set Skip / Require Review &mdash; no status. One profile at a time (<a href="#ec-6-3" style="font-weight:700;cursor:pointer">A6.x.3 &#8599;</a>)</td></tr>
-<tr><td><b>The chip is locked outside Active / Passive</b></td><td>it only switches between those two. Anything else has to come back to In Review first (<a href="#ec-6-10" style="font-weight:700;cursor:pointer">A6.x.10 &#8599;</a>)</td></tr>
-<tr><td><b>The profile looks empty afterwards</b></td><td>the reason surfaces in the chip tooltip and the activity log, not as a field on the record (<a href="#ec-6-7" style="font-weight:700;cursor:pointer">A6.x.7 &#8599;</a>)</td></tr>
-<tr><td><b>Going Passive stops nothing already running</b></td><td>contracts, timesheets and invoices are unaffected. It only removes them from project invitations (<a href="#ec-6-9" style="font-weight:700;cursor:pointer">A6.x.9 &#8599;</a>)</td></tr>
-</tbody></table></div>
-<p class="fn"><b>If you set one by mistake:</b> the same chip switches back &mdash; click it, pick <b>Active</b>, confirm. That leaves <b>two</b> entries in the activity log, both with your name on them, and rule 1 will treat the record as hand-set from then on.</p>
 
 <h3 id="a6-flowC" class="anchor">A6-C &middot; Review the In Review queue</h3>
 <div class="goal adm">A new sign-up sits at <code>In Review</code>. An admin opens it, clicks <b>Approve</b>, and <b>the system sets Active or Passive by itself</b>. Your job is to know what it will pick <i>before</i> you click, and to flip it afterwards if it picked wrong. <b>The default is Active</b> &mdash; a record only becomes Passive if a rule fires.</div>
@@ -1149,7 +850,7 @@ Click  Approve          &rarr;  the rule runs, status becomes Active or Passive
       &#9492;&#9472; edge case: the status is wrong
                  &#9660;
           Admin flips it by hand on the status chip</pre>
-<p class="fn"><b>Existing records are out of scope.</b> Nobody re-reviews the Active or Passive population by hand any more &mdash; a <a href="#a6-flowB" style="font-weight:700;cursor:pointer">migration &#8599;</a> will do that. This page is the intake path only. Production today: <b>2 records</b> at In Review; UAT has <b>286</b>. Read on production, click on <b>UAT</b>.</p>
+<p class="fn"><b>Existing records are out of scope.</b> Nobody re-reviews the Active or Passive population by hand any more &mdash; a <b>the retired existing-records branch</b> will do that. This page is the intake path only. Production today: <b>2 records</b> at In Review; UAT has <b>286</b>. Read on production, click on <b>UAT</b>.</p>
 <ol class="steps adm">
 <li data-code="A6-C.1"><b>Open the queue.</b> <i>User Management &rarr; Talents</i>, then the <b>N In Review</b> button at the top right. It opens the queue one profile at a time.</li>
 
@@ -1161,12 +862,12 @@ Click  Approve          &rarr;  the rule runs, status becomes Active or Passive
   <tr><td><b>Q1</b></td><td>Employment Status says <b>Full-time or Part-time</b>? <span class="fn">(header line, under the name)</span></td><td><b>PASSIVE</b>, stop</td></tr>
   <tr><td><b>Q2</b></td><td>A current role's <b>position</b> says junior / back office, or advisory / sell-side? <span class="fn"><code>Associate</code> &middot; <code>Analyst</code> &middot; <code>Intern</code> &middot; <code>Investor Relations</code> &middot; <code>Fundraising</code> &hellip; and <code>consultant</code> &middot; <code>advisory</code> &middot; <code>investment banking</code> &middot; <code>due diligence</code> &middot; <code>sell-side</code> &hellip;</span></td><td><b>ACTIVE</b>, stop</td></tr>
   <tr><td><b>Q3</b></td><td>A <b>position</b> that only exists inside a fund? <span class="fn">Operating Partner &middot; Portfolio Operations &middot; Value Creation &middot; Head of Talent &middot; General Partner &middot; Investment Director / Manager / Professional &middot; Deal Lead</span></td><td><b>PASSIVE</b>, stop</td></tr>
-  <tr><td><b>Q4</b></td><td>A senior <b>position</b> that could be anywhere? <span class="fn">Partner &middot; Principal &middot; Managing Director &middot; VP &middot; Director &middot; CEO &middot; CFO &middot; Founder &middot; Head of M&amp;A &middot; Corporate Development</span></td><td>do the <a href="#a6-b3" style="font-weight:700;cursor:pointer">employer check &#8599;</a></td></tr>
+  <tr><td><b>Q4</b></td><td>A senior <b>position</b> that could be anywhere? <span class="fn">Partner &middot; Principal &middot; Managing Director &middot; VP &middot; Director &middot; CEO &middot; CFO &middot; Founder &middot; Head of M&amp;A &middot; Corporate Development</span></td><td>do the <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a></td></tr>
   <tr><td colspan="2"><b>All four No</b></td><td><b>ACTIVE</b></td></tr>
   </tbody></table></div>
   <p class="fn"><b>The employer check on Q4:</b> stay on the same row &mdash; you already have its company &mdash; and read that company's name and description. Advisory / consulting / investment bank &rarr; <b>ACTIVE</b>. Private equity, buyout, LBO, family office, asset manager &rarr; <b>PASSIVE</b>. The row carries no company, no description, or it reads either way &rarr; <b>ACTIVE</b>, and write it down so somebody can look again.</p>
   <p class="fn"><b>Q1 is often unanswerable.</b> On the UAT queue <b>76 of 286 (27%)</b> have <b>no employment status at all</b> &mdash; they reached In Review without finishing sign-up. The system reads that as &ldquo;not Full-time&rdquo; and waves them to <b>Active</b> without opening anything else. If the header line is missing, the position questions are the only evidence you have.</p>
-  <p class="fn"><b>Why missing evidence means Active here</b>, where A6-B would park it as "needs a read": the record cannot stay In Review, it has to leave the queue. Active is the safe default &mdash; a wrongly-Active new sign-up is one record to fix later, a wrongly-Passive one is a freelancer silently shut out from day one. <a href="#a6-rulebook" style="font-weight:700;cursor:pointer">Rule 1 &#8599;</a> does not apply here: a brand-new record has no admin decision behind it yet.</p>
+  <p class="fn"><b>Why missing evidence means Active.</b> The record cannot stay In Review — it has to leave the queue, so there is no "park it and decide later" option. Active is the safe default &mdash; a wrongly-Active new sign-up is one record to fix later, a wrongly-Passive one is a freelancer silently shut out from day one. <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a> does not apply here: a brand-new record has no admin decision behind it yet.</p>
 </li>
 
 <li data-code="A6-C.3"><b>Hover <i>Approve Talent</i> before clicking it.</b> The button tells you in advance what the system is about to do &mdash; there is no status picker in the dialog, so the tooltip is your only warning. <b>Approving does not simply mean "Active".</b>
@@ -1192,10 +893,29 @@ Click  Approve          &rarr;  the rule runs, status becomes Active or Passive
   <thead><tr><th>Situation</th><th>What to do</th></tr></thead>
   <tbody>
   <tr><td>Chip matches your A6-C.2 answer</td><td>done</td></tr>
-  <tr><td>You need <b>Passive</b>, the system set Active</td><td>follow <a href="#a6-b4" style="font-weight:700;cursor:pointer">A6-B.4 &#8599;</a> &mdash; click the chip, pick <b>Passive</b>, choose <b>Other</b>, type the reason</td></tr>
+  <tr><td>You need <b>Passive</b>, the system set Active</td><td>click the chip, pick <b>Passive</b>, then <b>change the radio to Other</b> and type the reason &mdash; see the trap below</td></tr>
   <tr><td>You need <b>Active</b>, the system set Passive</td><td>click the chip and pick <b>Active</b></td></tr>
   </tbody></table></div>
-  <p class="fn">Whichever way you correct it, the change is written to the activity log with your name on it. From then on <a href="#a6-rulebook" style="font-weight:700;cursor:pointer">rule 1 &#8599;</a> treats the record as <b>hand-set</b> and later passes over the A6-B lists will leave it alone. That is the intended outcome &mdash; your decision is the one that sticks.</p>
+  <div class="call warn"><span class="t">The Passive dialog opens on the wrong reason</span>
+<b>Set Talent Status to Passive</b> carries a radio group with <i>Unable to verify freelance status</i>
+<b>already selected</b>, plus a free-text <b>Reasons</b> box. Those first three options belong to the
+freelance-verification review, not to this correction &mdash; overruling the rule concludes something
+else entirely. <b>Always switch to <code>Other</code>.</b> Click <b>Yes</b> without touching the radio
+and the wrong reason is stored permanently, on every record you process. The Reasons box is
+<b>not enforced</b> either: on UAT, <code>Other</code> with an empty box saved fine and the record then
+showed only the word <i>"Other"</i>. One line is enough &mdash;
+<code>S7 &mdash; current role at &lt;company&gt;, flagged &lt;sponsor|portfolio|corporate&gt;. Client,
+not supply.</code></div>
+  <p class="fn">Going the other way is simpler: <b>Set Talent Status to Active</b> has no radio group
+  and no reason field. <b>The asymmetry is worth knowing</b> &mdash; a record corrected <i>to</i> Active
+  carries no record of why the rule was overruled, so put it in Notes if it matters.</p>
+  <p class="fn"><b>Then verify twice.</b> Hover the chip &mdash; on Passive it now reads
+  <i>"Passive since &lt;date&gt; at &lt;time&gt;"</i> followed by the radio value. Then open
+  <b>Timelines</b> and <b>reload the page</b>: the tab count does not refresh on its own. Your entry
+  reads <code>Active &rarr; Passive</code>, which is what distinguishes it from the automatic one
+  &mdash; that reads <code>In Review &rarr; Passive</code> and carries the approving admin&rsquo;s name
+  anyway. Any later migration goes by the transition, not the name, so a corrected record is left
+  alone.</p>
 </li>
 </ol>
 <h4 style="margin:18px 0 8px">Two other things that happen in this queue</h4>
@@ -1205,8 +925,9 @@ Click  Approve          &rarr;  the rule runs, status becomes Active or Passive
 <tr><td><b>The status chip is locked while In Review</b></td><td>you cannot pre-set the outcome. Approve first, correct after</td></tr>
 </tbody></table></div>
 
-<h4 style="margin:22px 0 8px" id="a6-autorule">The automatic rule &mdash; how many steps one talent walks</h4>
-<div class="call"><span class="t">Which rule is this?</span><b>This is the system's rule &mdash; what the code does today, not what we think it should do.</b> It is the <i>current</i> rule, not a legacy one: verified against live production behaviour on three records on 30 Jul 2026, all three matched. <b>It is also known to be wrong, and is being replaced</b> by <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>, which has been validated on 7 live records. Read this section as <i>is</i>, that one as <i>will be</i>.<br><br><b>Our business rule is a different thing</b> &mdash; <a href="#a6-rulebook" style="font-weight:700;cursor:pointer">A6-B.0 &#8599;</a>: hard-stop A (junior / back office), hard-stop B (advisory / sell-side), TIER 1 / TIER 2 titles, and the employer check that reads the company <b>description</b>. <b>The system implements none of that.</b> The two disagree deliberately &mdash; the worked example below is one live record where they split.</div>
+<h3 id="a6-autorule" class="anchor">A6-C.6 &middot; The rule as built today</h3>
+<p class="fn" style="margin-bottom:14px">What the code does <b>right now</b> &mdash; five questions, and how many of them each talent actually walks. This is the behaviour to predict before clicking Approve. The rule that replaces it is <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>.</p>
+<div class="call"><span class="t">Which rule is this?</span><b>This is the system's rule &mdash; what the code does today, not what we think it should do.</b> It is the <i>current</i> rule, not a legacy one: verified against live production behaviour on three records on 30 Jul 2026, all three matched. <b>It is also known to be wrong, and is being replaced</b> by <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>, which has been validated on 7 live records. Read this section as <i>is</i>, that one as <i>will be</i>.<br><br><b>Our business rule is a different thing</b> &mdash; <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>: hard-stop A (junior / back office), hard-stop B (advisory / sell-side), TIER 1 / TIER 2 titles, and the employer check that reads the company <b>description</b>. <b>The system implements none of that.</b> The two disagree deliberately &mdash; the worked example below is one live record where they split.</div>
 <p><b>Five questions, walked top to bottom, first Yes ends the walk.</b> Fall off the bottom and you get the fallback. Only three inputs exist: the <b>employment status</b> picked at sign-up, the <b>position</b> and <b>company name</b> of the <b>current</b> work-experience rows, and whether those companies carry a <b>Mergermarket flag</b>. It never reads the profile headline, the company description, the contract history or the applications.</p>
 <pre class="ascii">Admin approves a talent out of review
 &#9474;
@@ -1256,7 +977,7 @@ Click  Approve          &rarr;  the rule runs, status becomes Active or Passive
 <div class="call warn"><span class="t">A data fault underneath it</span>Production carries <b>two</b> FINERGREEN company records: one typed <code>Public Corporation</code> with <b>no flags</b> and the correct investment-bank description, and one typed <code>Asset Management</code> with <code>isCorporate = true</code> and a vaguer <i>&ldquo;consulting services&rdquo;</i> description. The work-experience row is linked to the second. <b>Had it linked to the first, Q5 would not have fired and the system would have said Active</b> &mdash; so the outcome turned on which duplicate got matched, not on any fact about the company. See <a href="#ec-6-8" style="font-weight:700;cursor:pointer">A6.x.8 &#8599;</a>.</div>
 <div class="call warn"><span class="t">The timeline reads like a human decision and is not one</span>One entry: <i>actorName</i> <b>Bernhard Thalhammer (SuperAdmin)</b>, but <code>prevValues.status = InReview</code> &rarr; <code>nextValues.status = Passive</code>. The transition is <code>InReview &rarr; Passive</code>, so this is the <b>automatic rule</b>, stamped with the approving admin&rsquo;s name. Read the name instead of the transition and you would wrongly conclude somebody weighed this up.</div>
 
-<h4 style="margin:22px 0 8px" id="a6-rulerebuild">A6-C.7 &middot; The rule, rebuilt</h4>
+<h3 id="a6-rulerebuild" class="anchor">A6-C.7 &middot; The rule, rebuilt</h3>
 <div class="goal adm"><b>Validated against 7 live production records on 30 Jul 2026 &mdash; all 7
 agree.</b> This is the rule for the intake decision. The section above stays as the record of what the
 code does <i>today</i>: read that as <i>is</i>, this as <i>will be</i>.</div>
@@ -1397,8 +1118,7 @@ ACTIVE.</b> The enum is a whole-person label (<code>Analyst</code> &middot; <cod
 <br><br><b>Untested:</b> whether <code>seniorityLevel</code> being <code>Analyst</code> or
 <code>Associate</code> should fire S5 on its own when the position text does <i>not</i> look junior. No
 record has produced that combination yet.</div>
-<p class="fn">This is <a href="#a6-rulebook" style="font-weight:700;cursor:pointer">hard-stop A
-&#8599;</a> from our business rule, moved into the intake path &mdash; same list, but it now runs
+<p class="fn">This is <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a> from our business rule, moved into the intake path &mdash; same list, but it now runs
 <b>at approval</b> and <b>before the company check</b>.</p>
 
 <h4 style="margin:18px 0 8px">Still open &mdash; do not build these until they are decided</h4>
@@ -1433,7 +1153,7 @@ company flagged at all</i>.</td></tr>
 no.</b> A title never makes anybody Passive. The flag decides.</td></tr>
 </tbody></table></div>
 <p class="fn"><b>Not in scope here:</b> existing Active and Passive records are not re-reviewed by hand
-&mdash; that runs as a <a href="#a6-flowB" style="font-weight:700;cursor:pointer">migration &#8599;</a>
+&mdash; that runs as a <b>the retired existing-records branch</b>
 later. This is the intake decision only.</p>
 
 <h3 id="a6-model" class="anchor">A6.1 &middot; Three fields people mix up</h3>
@@ -1452,13 +1172,13 @@ later. This is the intake decision only.</p>
   <div class="call"><span class="t">Skip Review is not part of it &mdash; settled 30 Jul 2026</span>An earlier note here said the Passive branch needed <b>Skip Review</b> set, based on six approvals watched on production. That was a coincidence in the sample. <b>Iman Dakhlaoui</b> has <code>internalStatus = null</code> &mdash; no Skip Review &mdash; and the system still set <b>Passive</b> at approval, transition <code>InReview &rarr; Passive</code>, on a <code>corporate</code> flag. <b>The five questions are the whole rule; Skip Review does not gate them.</b></div>
   <p class="fn"><b>An unlinked company can never fire it.</b> The trigger is the flag on the <i>linked</i> company &mdash; an ongoing role at a company that was never matched to the Mergermarket list does <b>not</b> fire Q5, whatever that company actually is. Roughly <b>63%</b> of talents have a current employer in that state (<a href="#ec-6-5" style="font-weight:700;cursor:pointer">A6.x.5 &#8599;</a>).</p>
   <div class="call warn"><span class="t">This is where most wrongly-Passive talents come from</span>Freelancers get set Passive <b>at approval time</b> purely because they hold a current job at a flagged company &mdash; <b>whatever the seniority of that job</b>. An <code>Analyst</code> or <code>Associate</code> is supply, and the rule has no check for it. Nobody clicked anything, and because the rule writes no reason, the profile gives no explanation afterwards. If you are auditing Passive talents, start here.</div>
-  <p class="fn"><b>Ruled 28 Jul 2026: this is intended behaviour, not a defect &mdash; but it is narrower than the business rule.</b> The system deciding a status at approval is by design. Two gaps remain, and both are for a human to close: it fires on a plain <b>corporate</b> flag, which is group D and out of scope; and it never reads <b>Employment Status</b>, so it cannot enforce the gate in <a href="#a6-rulebook" style="font-weight:700;cursor:pointer">A6-B.0 rule 2 &#8599;</a>. Neither gap is logged as a bug &mdash; they are the reason the <a href="#a6-flowB" style="font-weight:700;cursor:pointer">A6-B &#8599;</a> branches exist.</p>
+  <p class="fn"><b>Ruled 28 Jul 2026: this is intended behaviour, not a defect &mdash; but it is narrower than the business rule.</b> The system deciding a status at approval is by design. Two gaps remain, and both are for a human to close: it fires on a plain <b>corporate</b> flag, which is group D and out of scope; and it never reads <b>Employment Status</b>, so it cannot enforce the gate in <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>. Neither gap is logged as a bug &mdash; they are the reason the <b>the retired existing-records branch</b> branches exist.</p>
   <p><b>Two things worth knowing about the queue itself:</b></p>
   <ul style="margin:6px 0 0;padding-left:18px">
   <li>After each decision the drawer <b>advances to the next profile</b> and the counter drops, so the whole queue can be worked without returning to the list.</li>
   <li>The queue drawer <b>does not put the talent id in the URL</b>, so a profile being reviewed cannot be linked to. Opening the same person from the list does add <code>?id=&hellip;</code> &mdash; and the Approve / Reject buttons are there too, so use that route when you need to share or come back.</li>
   </ul>
-  <p class="fn">The chip is locked while the status is In Review, so a client has to be approved first and set Passive afterwards per <a href="#a6-b2" style="font-weight:700;cursor:pointer">A6-B.2 &#8599;</a>.</p>
+  <p class="fn">The chip is locked while the status is In Review, so a client has to be approved first and set Passive afterwards per <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>.</p>
 </li>
 <li id="ec-6-2" data-code="A6.x.2"><b><i>ReviewPassive</i> &mdash; a Passive talent resubmitted their profile.</b> The profile shows a <i>Talent Resubmit since &lt;date&gt;</i> panel next to the original Passive reason, and the toolbar offers <b>three</b> buttons instead of two:
   <div class="tblwrap"><table>

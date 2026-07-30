@@ -18,7 +18,7 @@ A new sign-up sits at `In Review`. An admin opens it, clicks **Approve**, and **
 
 **The default is Active.** A record only becomes Passive if a rule fires.
 
-**Existing records are out of scope.** Nobody re-reviews the Active or Passive population by hand any more — a [migration](a6-b-identify-passive-talent.md) will do that. This page is the intake path only.
+**Existing records are out of scope.** Nobody re-reviews the Active or Passive population by hand any more — a a migration will do that. This page is the intake path only.
 
 Production today: **2 records** sitting at In Review. UAT has **286**, which is where this page was walked end to end and where the rule was measured.
 
@@ -69,7 +69,7 @@ Read the **position** field on each row marked current. No cutting needed — th
 
 *Partner* · *Principal* · *Managing Partner* · *Managing Director* · *Vice President* · *VP* · *Director* · *CEO* · *CFO* · *Chair* · *President* · *Founder* · *Head of M&A* · *Corporate Development*
 
-**Yes → the position cannot settle it. Do the [employer check](a6-b-3-sub-rule-2.md).** Stay on the same row — you already have its company — and read that company's name and description:
+**Yes → the position cannot settle it. Do the employer check.** Stay on the same row — you already have its company — and read that company's name and description:
 
 | | |
 |---|---|
@@ -79,9 +79,9 @@ Read the **position** field on each row marked current. No cutting needed — th
 
 ### All four No → ACTIVE.
 
-> **Why missing evidence means Active here, and "needs a read" in [A6-B](a6-b-2-title-and-background.md).** In A6-B you are re-examining an existing record and can safely park it. Here the record cannot stay In Review — it has to leave the queue. Active is the safe default: a wrongly-Active new sign-up is one record to fix later, a wrongly-Passive one is a freelancer silently shut out from day one. Write these down so somebody can look again.
+> **Why missing evidence means Active.** The record cannot stay In Review — it has to leave the queue, so there is no "park it and decide later" option. **Active is the safe default:** a wrongly-Active new sign-up is one record to fix later, a wrongly-Passive one is a freelancer silently shut out from day one. Write these down so somebody can look again.
 
-Full term lists: [A6-B.0](a6-b-0-the-rules.md). Note that [rule 1](a6-b-0-the-rules.md) does **not** apply here — a brand-new record has no admin decision behind it yet.
+Full term lists: [A6-C.7](a6-c-7-the-rule-being-rebuilt.md). Note that [A6-C.5 ↗](a6-c-5-fix-the-status-by-hand.md) does **not** apply here — a brand-new record has no admin decision behind it yet.
 
 ## A6-C.3 · Hover Approve Talent before clicking it
 
@@ -132,12 +132,12 @@ Open the record again from the Talents list.
 
 1. **Read the status chip.** It now says Active or Passive.
 2. **If it does not match your A6-C.2 answer, change it.** The chip is unlocked now — it was read-only while the status was In Review, which is exactly why this is a two-step job.
-3. **Passive is needed but the system set Active** → follow [A6-B.4](a6-b-4-set-status-on-uat.md): click the chip, pick **Passive**, choose **Other** in the radio group, and type the reason.
+3. **Passive is needed but the system set Active** → follow [A6-C.5](a6-c-5-fix-the-status-by-hand.md): click the chip, pick **Passive**, choose **Other** in the radio group, and type the reason.
 4. **Active is needed but the system set Passive** → click the chip and pick **Active**.
 
-Whichever way you correct it, the change is written to the timeline. From then on [rule 1](a6-b-0-the-rules.md) treats the record as **hand-set**, and later passes over the A6-B lists will leave it alone. That is the intended outcome — your decision is the one that sticks.
+Whichever way you correct it, the change is written to the timeline. From then on [A6-C.5 ↗](a6-c-5-fix-the-status-by-hand.md) treats the record as **hand-set**, and later passes over the A6-B lists will leave it alone. That is the intended outcome — your decision is the one that sticks.
 
-> **What the approval itself leaves behind.** It writes a timeline entry too, and it carries **your** name: *"&lt;you&gt; (Admin) changed talent status (In Review → Passive) by &lt;you&gt;"*, with `PASSIVE DATE`, `REFERRAL CODE` and `REFERRAL STATUS` in the detail block. Do not let that fool you later — the name does not mean a human chose the status. Only the transition does. See [rule 1](a6-b-0-the-rules.md).
+> **What the approval itself leaves behind.** It writes a timeline entry too, and it carries **your** name: *"&lt;you&gt; (Admin) changed talent status (In Review → Passive) by &lt;you&gt;"*, with `PASSIVE DATE`, `REFERRAL CODE` and `REFERRAL STATUS` in the detail block. Do not let that fool you later — the name does not mean a human chose the status. Only the transition does. See [A6-C.5 ↗](a6-c-5-fix-the-status-by-hand.md).
 
 > The **Timelines** tab count does not refresh on its own. Reload the page before reading it.
 

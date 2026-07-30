@@ -141,8 +141,28 @@ into an intern.
 > **Untested:** whether `seniorityLevel ∈ {Analyst, Associate}` should fire S5 on its own when the
 > position text does *not* look junior. No record has produced that combination yet.
 
-This is [hard-stop A](a6-b-0-the-rules.md) from our business rule, moved into the intake path — same
+This is hard-stop A from our business rule, moved into the intake path — same
 list, but it now runs **at approval** and **before the company check**.
+
+## What would count as advisory or sell-side at S6
+
+**Not built yet** — S6 is open question 2. The list is recorded here so the decision has something
+concrete to argue with, and because it is the only part of the retired A6-B rulebook the intake rule
+still needs.
+
+`consultant` · `consulting` · `consultancy` · `advisory` · `advisor` · `adviser` ·
+**`investment banking`** · **`investment bank`** · `corporate finance advisory` ·
+`transaction services` · `transaction advisory` · `due diligence` · `sell-side` · `sellside` ·
+`restructuring advisory` · `interim manager`
+
+An M&A advisory practice and an investment bank are exactly the supply Fintalent sells, so matching
+any of these on the **current employer** should exit to Active.
+
+> **Which field, though?** Iman Dakhlaoui is the worked case and it argues for the **description**:
+> the company is named *Finergreen*, which contains none of these words, while its own description
+> opens *"a boutique investment bank dedicated to the energy transition"*. Matching the name alone
+> would have missed it. Matching descriptions is also how a genuine fund gets wrongly caught, so this
+> needs deciding, not guessing.
 
 ## Still open
 
@@ -151,7 +171,7 @@ Do not build these until they are decided.
 | # | Question | Why it is open |
 |---|---|---|
 | 1 | **S2 — blank employment status.** Active, or hold for a human? | **27%** of the In Review queue on UAT has this field empty. Today they are waved to Active on the strength of one unread field — the largest branch after the fallback. |
-| 2 | **S6 — advisory / sell-side employer.** Keep it, and on what evidence? | It is in the flow but **has never fired** in 7 records. Iman is the case it exists for — Finergreen is a boutique investment bank — but S5 got there first. A **senior** person at a sell-side boutique still needs S6. Open sub-question: does S6 read the company *name*, its *description*, or a NAICS code? |
+| 2 | **S6 — advisory / sell-side employer.** Keep it, and on what evidence? | It is in the flow but **has never fired** in 7 records. Iman is the case it exists for — Finergreen is a boutique investment bank — but S5 got there first. A **senior** person at a sell-side boutique still needs S6. Open sub-question: does S6 read the company *name*, its *description*, or a NAICS code? Word list below. |
 | 3 | **Company matching quality** — the biggest risk in the rule | Three faults in seven records, all at S7, the step that decides most often: Finergreen has **two records with different flags** and the row links to the wrong one; `Fin Edge` links to **nothing**; `Criteo` links to **HookLogic**, a subsidiary acquired in 2016. S7 is only as good as this. |
 | 4 | **`ongoing = true` with a `to` date already in the past** | Mark Cox's current row reads `from 1-1-2025, to 1-3-2026, ongoing = true` — four months past its end date. The UI trusts `ongoing` and shows *Until Now*. **Should S3 trust `ongoing`, or `to`?** No verdict changed here, but it will elsewhere. |
 | 5 | **The S4 word list** | Still not published by dev. `remote` and `independent` are the two named examples; `fractional` was found in the data (11 titles) and is in no list we hold. |
@@ -161,4 +181,4 @@ Do not build these until they are decided.
 ## Not in scope here
 
 Existing Active and Passive records are **not** re-reviewed by hand — that runs as a
-[migration](a6-b-identify-passive-talent.md) later. This page is the intake decision only.
+a migration later. This page is the intake decision only.

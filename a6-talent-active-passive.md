@@ -12,9 +12,8 @@ description: "when an admin approves a talent out of In Review, the system decid
 
 | | |
 |---|---|
-| ✅ **In scope** | [A6-C · Review the In Review queue](a6-c-review-in-review-queue.md) — the intake decision |
-| ⏸ **Deferred** | [A6-B · Existing Active records](a6-b-identify-passive-talent.md) — **no longer re-reviewed by hand.** Kept for reference; this will run as a **migration** later |
-| ⏸ **On hold** | [A6-A · Existing Passive records](a6-a-identify-active-talent.md) |
+| ✅ **In scope** | [A6-C · Review the In Review queue](a6-c-review-in-review-queue.md) — the intake decision, and the only thing this flow covers |
+| ❌ **Out of scope** | **Existing Active and Passive records.** Nobody re-reviews them by hand. A migration may run over them later using the same rule; it may not. Either way it is not this flow, and the pages that used to describe it have been removed. |
 
 ## The flow, end to end
 

@@ -6,7 +6,7 @@
 
 **The rule is the five-question spine in [A6-C.6 ↗](a6-c-6-the-automatic-rule.md)** — employment status first, then the **position** and **company** of each **current** work-experience row, then the Mergermarket flag on those companies. It stamps `passiveDate` but records **no reason**, so the profile gives no explanation afterwards.
 
-**Ruled 28 Jul 2026: this is intended behaviour, not a defect.** The system deciding a status at approval is by design. **Two gaps remain**, and both are why the [migration](a6-b-identify-passive-talent.md) exists:
+**Ruled 28 Jul 2026: this is intended behaviour, not a defect.** The system deciding a status at approval is by design. **Two gaps remain**, and both are what [A6-C.7 ↗](a6-c-7-the-rule-being-rebuilt.md) sets out to close:
 
 * it has **no seniority check** — an `Analyst` or `Associate` at a flagged company comes out Passive, where our rule makes them Active. On the UAT queue **33 of the 35** records Q5 sent to Passive were flagged `corporate` and **not one** was a sponsor, so in practice the check is a corporate detector. *(A `corporate` flag does count — ruled 30 Jul 2026 — so those verdicts are correct; the missing seniority check is the defect.)*
 * it never looks for **buy-side signal in the position** — it reads the position only to find an exit to Active. A client at a company that was never matched to the Mergermarket list walks straight through.

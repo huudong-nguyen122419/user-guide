@@ -17,7 +17,7 @@ The steps in 6.5.1–6.5.4 are the walk-through. This page is everything else on
 | orange **`S`** | the contact works at a **Sponsor** — a PE fund |
 | blue **`P`** | the contact works at a **Portfolio** company — one a fund owns |
 
-**This is the fastest client check you have.** An `S` badge is the same signal that makes somebody a client in [A6-B](a6-b-identify-passive-talent.md) — a person sitting at a fund. Worth a second look before you send them a pitch.
+**This is the fastest client check you have.** An `S` badge is the same signal that decides the talent rule at [A6-C.7 ↗](a6-c-7-the-rule-being-rebuilt.md) — a person sitting at a fund. Worth a second look before you send them a pitch.
 
 Two icons sit at the right of every row: a green **✓** (mark done, keyboard `E`) and a red **🗑** (remove from campaign, keyboard `O`).
 

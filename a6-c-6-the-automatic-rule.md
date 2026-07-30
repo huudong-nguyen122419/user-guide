@@ -11,12 +11,9 @@
 > [A6-C.7 · The rule being rebuilt](a6-c-7-the-rule-being-rebuilt.md). Read this page as *is*,
 > that one as *will be*.
 >
-> **Our business rule is a different document**: [A6-B.0](a6-b-0-the-rules.md) — hard-stop A
-> (junior / back office), hard-stop B (advisory / sell-side), TIER 1 / TIER 2 titles, and the
-> employer check that reads the company **description**. The system implements none of that.
+> **The replacement adds two steps the system does not have**: a **seniority** test on the current position, and an **advisory / sell-side** test on the current employer — both placed *before* the company-flag test. See [A6-C.7](a6-c-7-the-rule-being-rebuilt.md).
 >
-> The two disagree, deliberately. *[Where it disagrees with our rule](#where-it-disagrees-with-our-rule)*
-> below lists the four places, and the section after it measures the cost.
+> *[Where it disagrees with the rebuilt rule](#where-it-disagrees-with-our-rule)* below lists the places, and the section after it measures the cost.
 
 What the system decides for you the moment you click **Approve**. Five questions, walked top to
 bottom, **first Yes ends the walk**. Fall off the bottom and you get the fallback.
@@ -101,7 +98,7 @@ Where the walk ended:
 
 ## The three things worth knowing about each question
 
-> **Different population.** The numbers below, and everything under *What it gets wrong*, come from the **276 existing Active PE/VC records on production** — the set the [migration](a6-b-identify-passive-talent.md) will cover, and the only set with hand verdicts to score against. The In Review queue measured above behaves differently: Q1 is smaller (13% vs 22%) and Q2-blank does not exist on production at all.
+> **Different population.** The numbers below, and everything under *What it gets wrong*, come from **276 existing Active PE/VC records on production** — the only set with hand verdicts to score the rule against. Those records are **out of scope** for this flow; they are used here purely as a measuring stick. The In Review queue measured above behaves differently: Q1 is smaller (13% vs 22%) and Q2-blank does not exist on production at all.
 
 **Q1 is the whole ball game for employees.** It decides **60 of 276** records on production with a single field read, and the profile is never opened. There is no exception: applications, accepted invitations and completed contracts are all invisible here.
 
@@ -118,7 +115,7 @@ The rule uses **substring matching on two fields of every current role**: that r
 
 > **Not the profile headline.** A talent has a profile-level `title` — the sentence they wrote about themselves — and each work-experience row has its own `position`. **Q4 reads the row, not the headline.** On the 172 production records with a current role, **85 (49%)** have a profile title that matches none of their positions: *"Investment Manager (Infrastructure Private Equity)"* on the headline, `Investment Leader` on the row; *"M&A and Corporate Finance Consultant | Interim Management"* on the headline, `Self-employed` on the row.
 >
-> Scored both ways, the rule lands on **exactly the same 169/276** — because Q4 is only an exit to Active, so moving a record between Q4 and the Q6 fallback changes nothing. **It does matter for our own rule**, which reads the title looking for buy-side signal: `Investment Manager` is TIER 1, `Investment Leader` is not.
+> Scored both ways, the rule lands on **exactly the same 169/276** — because Q4 is only an exit to Active, so moving a record between Q4 and the Q6 fallback changes nothing. **But it matters for the seniority test in [A6-C.7](a6-c-7-the-rule-being-rebuilt.md)**, which reads the position looking for a junior or back-office word: the headline *"Senior FP&A Analyst — FP&A Commercial at Criteo"* and the row `Senior FP&A Analyst` happen to agree, while a headline reading *"M&A and Corporate Finance Consultant"* over a row reading `Self-employed` sends the walk down a different branch entirely.
 
 > **The full word list is not published.** `remote` and `independent` are the two the flowchart names, as **examples**. Anything else in there is unknown to us, so treat Q4 as *"the system may exit to Active for a reason you cannot see"*. If a record you expected to reach Q5 came back Active, an unlisted Q4 word is the likeliest explanation.
 
@@ -180,7 +177,7 @@ Every widening step cuts wrongly-Passive and leaves wrongly-Active **completely 
 
 Four places, all deliberate on our side. This is what A6-C.5 exists to correct.
 
-| | The system | [Our rule](a6-b-0-the-rules.md) |
+| | The system, as built | [The rebuilt rule](a6-c-7-the-rule-being-rebuilt.md) |
 |---|---|---|
 | **Q1** | Full/Part-time → Passive, no exception | same starting position, and we now agree: **no escape hatch** |
 | **Q4** | freelance wording only | our hard-stop B is much wider — `consultant` · `advisory` · `advisor` · `investment banking` · `due diligence` · `sell-side` · `transaction services` |
@@ -263,7 +260,7 @@ not on any fact about the company. See [A6.x.8 ↗](a6-x-8-a-company-can-be-tagg
 *actorName* **Bernhard Thalhammer (SuperAdmin)**, but `prevValues.status = InReview` →
 `nextValues.status = Passive`. The transition is `InReview → Passive`, so this is the automatic
 rule, stamped with the approving admin's name. Read the name instead of the transition and you would
-wrongly conclude somebody weighed this up. See [rule 1](a6-b-0-the-rules.md).
+wrongly conclude somebody weighed this up. See [A6-C.5 ↗](a6-c-5-fix-the-status-by-hand.md).
 
 **This also settles Skip Review.** `internalStatus = null` and the system still went Passive, so the
 Passive branch does **not** need Skip Review. The five questions are the whole rule.
