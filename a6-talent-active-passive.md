@@ -2,7 +2,7 @@
 description: "when an admin approves a talent out of In Review, the system decides Active or Passive by itself. This flow is how you read that decision before you click, and how to override it when it is wrong."
 ---
 
-# A6 · Approve a new talent
+# A6 · Approve a new talent (xác định talent là active hay passive)
 
 > ADMIN · In Review queue → approve → the system sets the status
 
