@@ -731,6 +731,8 @@
     <a href="#te-6" class="st2" data-page="page-marketing">7.x.11 · Force Update</a>
     <a href="#te-7" class="st2" data-page="page-marketing">7.x.12 · Upload · Signature</a>
     <a href="#e-8-13" class="st2" data-page="page-marketing">7.x.13 · Assigned (skip add)</a>
+    <a href="#e-8-14" class="st2" data-page="page-marketing">7.x.14 · Personalize drops attachment</a>
+    <a href="#e-8-15" class="st2" data-page="page-marketing">7.x.15 · Email Queue row actions</a>
 
         <a class="flow" data-page="page-marketingaudit"><span class="n">7&#8224;</span> Manage a Marketing Email &mdash; audited</a>
 <div class="grp">SDR — reference</div>
@@ -4590,7 +4592,17 @@ Side Step: Not Now - Out Of Office
 </li>
 
 <li id="m7-3-6" data-code="7.3.6"><b>Click <i>Add to marketing email</i> &mdash; and check the People tab.</b> It should show the people you picked, each row carrying <b>the address that will be used</b> under the name.
-  <div class="call warn"><span class="t">This is where it currently fails</span>The count stays at <b>0</b> and no message appears. The request that was rejected is <code>UpdateMarketingEmailRecipients</code>, and the reply is <b>403 PermissionGuard</b> &mdash; a role permission, not anything you did wrong. Retrying will not help. Hand the list to Admin/Ops instead.</div>
+  <div class="call warn"><span class="t">This is where it currently fails</span>The count stays at <b>0</b> and no message appears. The request that was rejected is <code>UpdateMarketingEmailRecipients</code>, and the reply is <b>403 PermissionGuard</b> &mdash; a role permission, not anything you did wrong. Retrying will not help. Hand the list to Admin/Ops instead.
+<div class="call note"><span class="t">What Admin/Ops sees when they do it</span>The same button opens a
+modal that <b>sorts your contacts by email health</b> before anything is added &mdash; <b>Valid</b>
+(address passed validation) &middot; <b>Missing + Invalid</b> (no address, or one that failed) &middot;
+<b>Platform Signup</b> (the address they signed up with). <b>The invalid group is not ticked by
+default</b>: the footer says so, and the button reads <b>&ldquo;Add 0 of 3 contacts&rdquo;</b> until
+someone opens that tab and ticks them by hand. A bad address <i>can</i> be added, but only deliberately
+&mdash; left alone the modal quietly adds nobody, which reads like a failure if you miss the count in
+the button.</div>
+<figure><img src="sdrx-me-28-add-health-buckets.png" alt="Add to marketing email grouped by email health"/>
+<figcaption><b>7.3.6</b> &mdash; the three groups, the &ldquo;not ticked by default&rdquo; note, and the count baked into the button.</figcaption></figure></div>
 </li>
 
 <li id="m7-3-7" data-code="7.3.7"><b>Removing people, which does work.</b> On the <b>People</b> tab, tick whoever should not receive the ME &rarr; <b>Remove contacts</b>.
@@ -4643,13 +4655,36 @@ Side Step: Not Now - Out Of Office
   <figure><img src="sdrx-me-13-edit.png" alt="Typing a personal line for this contact"/><figcaption><b>7.4.4</b> &mdash; typed a <b>personal line just for this contact</b> (highlighted) &rarr; <b>Save</b>; everyone else keeps the standard copy.</figcaption></figure>
 </li>
 <li id="m7-4-5" data-code="7.4.5">When the batch is done: <b>select the contacts</b> (<b>All</b> at the top selects everyone) &rarr; <b>Bulk Actions</b> &rarr; <b>Mark as reviewed</b>. That sets <b>Content Reviewed</b> on them.
+Bulk Actions holds three items: <i>Mark all as Reviewed</i> &middot; <i>Mark all as Not Reviewed</i>
+&middot; <i>Mark all as Not Personalized</i>.
+<div class="call warn"><span class="t">Nothing is queued until this is done</span>The send queue is
+built <b>only for contacts marked reviewed</b>. Walked on UAT 30 Jul 2026: an ME with 3 recipients was
+set Active and force-sent while <b>0 were reviewed</b> &mdash; the Email Queues tab stayed empty and
+<b>no error or warning appeared anywhere</b>. Marking all 3 reviewed and force-sending again produced
+all 3 rows immediately. If the queue is empty after a force send, check this first.</div>
+<div class="call note"><span class="t">Personalizing is not reviewing</span>Writing a personal version
+for a contact and clicking <b>Save</b> does <b>not</b> tick Content Reviewed. On the same walk one
+contact was personalized and the Run dialog still read <b>0 reviewed</b>, with &ldquo;3 of 3 recipients
+have not been reviewed&rdquo;. The two flags are independent &mdash; come back and mark reviewed
+explicitly.</div>
   <figure><img src="sdrx-me-09-mark-reviewed.png" alt="Select All → Bulk Actions → Mark all as Reviewed"/><figcaption><b>7.4.5</b> &mdash; <b>&#9312;</b> <b>Select All</b> &middot; <b>&#9313;</b> <b>Bulk Actions</b> &middot; <b>&#9314;</b> <b>Mark all as Reviewed</b> (sets Content Reviewed).</figcaption></figure>
 </li>
 </ol>
 
 <h3 id="me-send" class="anchor">7.5 &middot; Force send (Admin) &mdash; then you check</h3>
 <div class="call warn"><span class="t">No Force Send on the SDR view</span><b>Force Send is an Admin / Ops action</b> &mdash; on the SDR login there is <b>no Force Send button</b> (the ME's &#8942; menu only offers <b>Edit / View Details</b>). Your Admin both flips the ME <b>Draft &rarr; Active</b> and clicks <b>Force Send</b> &mdash; the Admin side is <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">Flow A3.1 &#8599;</a>.</div>
-<p>Once your Admin has force-sent, your job is to <b>check the queue</b>:</p>
+<p><p><b>What your Admin sees &mdash; two dialogs, very different.</b> <b>Draft &rarr; Active</b> is the
+status switch at the top right of the ME, and it opens a careful confirm: &ldquo;Sending starts as soon
+as you confirm. This cannot be undone.&rdquo; &middot; <b>3 recipients &middot; 1 email step &middot;
+0 reviewed</b> &middot; a warning that unreviewed recipients &ldquo;will receive the default template
+as-is&rdquo; &middot; a mandatory checkbox that keeps the Run button disabled until it is ticked
+&middot; and a <i>Review them now</i> link straight to Preview.</p>
+<div class="call warn"><span class="t">Force Send is the opposite</span>Its dialog shows the Subject and
+Content and nothing else &mdash; <b>no recipient count, no mention of attachments</b> &mdash; the merge
+tags are still raw (<b>{{contact.firstName}}</b>), and it is titled &ldquo;Force Send Campaign
+Flow&rdquo; on a Marketing Email. Read the Run dialog&rsquo;s numbers before you get here, because Force
+Send will not repeat them.</div>
+<p>Once your Admin has force-sent, your job is to <b>check the queue</b>:</p></p>
 <ol class="steps">
 <li data-code="7.5.1">Open the <b>marketing email detail</b>.</li>
 <li data-code="7.5.2">Go to the <b>Email Queue</b> tab.</li>
@@ -4856,6 +4891,31 @@ Side Step: Not Now - Out Of Office
   <figure><img src="sdrx-me-20-upload.png" alt="Upload files and attachment"/><figcaption><b>7.x.12</b> &mdash; <b>Upload files</b> (bottom-left); each attachment shows with an <b>&#10005;</b> to remove.</figcaption></figure>
 </li>
 <li id="e-8-13" data-code="7.x.13"><b>Assigned a ready ME &mdash; skip &ldquo;Add people&rdquo;.</b> Often you're handed an ME Admin / Ops has <b>already loaded with people</b>, with instructions <b>not to add more</b> &mdash; just review &amp; personalize those contacts. Then <b>skip</b> <a data-goto="page-marketing" href="#me-people" style="font-weight:700;cursor:pointer">7.3 &middot; Add people</a> and go straight to <a data-goto="page-marketing" href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &middot; Preview</a>.</li>
+<li id="e-8-14" data-code="7.x.14"><b>Personalizing drops the attachment.</b> If you personalize a
+contact&rsquo;s email, that contact stops receiving the file &mdash; everyone you did <i>not</i>
+personalize still gets it. Walked on UAT 30 Jul 2026: one ME, one step, one attachment, three
+recipients, only one personalized. The two template rows carried <b>1-1-log-in.md</b>; the personalized
+row&rsquo;s <b>Attachments</b> column was <b>empty</b>. Same subject, same step, same created time
+&mdash; the personalization is the only difference.
+<div class="call warn"><span class="t">You will not see it on screen</span>Preview keeps showing the
+attachment for that contact, because Preview renders the file list from the <b>template</b> rather than
+from the contact&rsquo;s own copy. It shows up only in the <b>Attachments</b> column of Email Queues,
+after the queue is built &mdash; so check that column before a send goes out whenever you have
+personalized anyone on an ME that carries a file. Removing a file deliberately is different: that is the
+<b>&#10005;</b> beside the filename in Preview, and it affects only the contact you are looking at.
+Logged as <b>ME-01</b>.</div>
+<figure><img src="sdrx-me-29-attachment-dropped.png" alt="Queue row for the personalized contact has no attachment"/>
+<figcaption><b>7.x.14</b> &mdash; two rows carry the file, the personalized row does not.</figcaption></figure></li>
+<li id="e-8-15" data-code="7.x.15"><b>Email Queue row actions.</b> Each queue row carries its own menu at
+the far right of the table, with two items and no confirmation on either: <b>Set as Delivered</b> marks
+that one email delivered without waiting for the sender, and <b>Cancel Email Queue</b> drops it from the
+queue &mdash; cancelled is not failed, see <a data-goto="page-adminme" href="#em-5-3" style="font-weight:700;cursor:pointer">A5.x.3</a>.
+<div class="call warn"><span class="t">The button is hard to reach</span>The queue table scrolls sideways
+and the sticky column sits <i>on top of</i> the actions column; on UAT 30 Jul 2026 the button could not
+be clicked with a mouse at all. Widen the window, or scroll the table fully to one side, until the
+actions column clears the sticky cell. Logged as <b>ME-02</b>, together with a second unknown: when the
+menu was forced open and <i>Set as Delivered</i> chosen, nothing happened and no message appeared
+&mdash; whether that is the overlay or the action itself is <b>not yet established</b>.</div></li>
 </ol>
 <div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 6 · Manage campaign</b></a><a class="next" data-goto="page-filters"><span class="k">Next →</span><b>Flow 8 · Using filters</b></a></div>
 </section>
