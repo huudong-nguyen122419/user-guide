@@ -732,7 +732,7 @@
     <a href="#te-7" class="st2" data-page="page-marketing">7.x.12 · Upload · Signature</a>
     <a href="#e-8-13" class="st2" data-page="page-marketing">7.x.13 · Assigned (skip add)</a>
     <a href="#e-8-14" class="st2" data-page="page-marketing">7.x.14 · Personalize drops attachment</a>
-    <a href="#e-8-15" class="st2" data-page="page-marketing">7.x.15 · Email Queue row actions</a>
+    <a href="#e-8-15" class="st2" data-page="page-marketing">7.x.15 · Row-actions button unreachable</a>
 
         <a class="flow" data-page="page-marketingaudit"><span class="n">7&#8224;</span> Manage a Marketing Email &mdash; audited</a>
 <div class="grp">SDR — reference</div>
@@ -848,12 +848,31 @@
   <p>Read the step body too &mdash; it is shown in full on the Template tab, merge fields and all (<code>&#123;&#123;contact.firstName&#125;&#125;</code>). This is the last easy moment to catch a broken link or a wrong name.</p>
 </li>
 
-<li data-code="A3.1.3"><b>Activate it</b> &mdash; the switch at the <b>very top right</b> of the drawer, reading <b>Draft</b>. Flip it and the ME becomes <b>Active</b> (the list calls this <b>Running</b>).
+<li data-code="A3.1.3"><b>Activate it</b> &mdash; the switch at the <b>very top right</b> of the
+drawer, reading <b>Draft</b>. Flip it and a confirm opens, <b>Run marketing email</b>: &ldquo;Sending
+starts as soon as you confirm. This cannot be undone.&rdquo; &middot; <b>3 recipients &middot; 1 email
+step &middot; 0 reviewed</b> &middot; a warning that unreviewed recipients &ldquo;will receive the
+default template as-is&rdquo; &middot; a checkbox <b>I understand N unreviewed emails will be sent</b>
+that keeps the <b>Run</b> button <b>disabled</b> until it is ticked &middot; and a <b>Review them
+now</b> link that closes the dialog and opens Preview.
+<div class="call warn"><span class="t">Read the three numbers before you tick anything</span><b>0
+reviewed</b> means nobody on the SDR side has finished &mdash; that is the moment to send it back
+rather than confirm.</div>
+Confirm and the ME becomes <b>Active</b> (the list calls this <b>Running</b>).
   <div class="call warn"><span class="t">It is easy to miss</span>The switch sits right at the edge of the drawer, above the tab bar and past the description box. On a narrow window it can be off-screen &mdash; widen the browser rather than assuming the ME has no switch.</div>
 </li>
 
 <li data-code="A3.1.4"><b>Force Send</b> &mdash; on the <b>Template</b> tab, top-right of the <b>Step 1</b> panel, beside the red delete-step bin. This is the button that actually pushes the emails into the queue.
-  <p><b>Only contacts the SDR marked <i>Content Reviewed</i> are sent.</b> Anyone left unreviewed stays put &mdash; which is the safety net, and also the usual reason the queue comes out smaller than the People count.</p>
+  <p><b>Only contacts the SDR marked <i>Content Reviewed</i> are sent.</b> Anyone left unreviewed stays put &mdash; which is the safety net, and also the usual reason the queue comes out smaller than the People count.
+<div class="call note"><span class="t">Its confirm is much thinner than the Run one</span>It shows the
+Subject and the Content and nothing else &mdash; <b>no recipient count, no mention of attachments</b>
+&mdash; the merge fields are still raw (<b>{{contact.firstName}}</b>), and it is titled <b>&ldquo;Force
+Send Campaign Flow&rdquo;</b> even on a Marketing Email. Take your numbers from the Run dialog, because
+this one will not repeat them.</div>
+<div class="call warn"><span class="t">At zero reviewed, nothing is queued &mdash; and nothing says
+so</span>Walked on UAT 30 Jul 2026: an ME with 3 recipients, activated and force-sent with <b>0
+reviewed</b>, produced <b>an empty Email Queue tab and no message of any kind</b>. It reads exactly like
+a failed send. Marking all 3 reviewed and force-sending again produced all 3 rows at once.</div></p>
   <figure><img src="me-45-a31-activate.png" alt="The activate switch and Force Send"/><figcaption><b>A3.1.3&ndash;4</b> &mdash; <b>&#9312;</b> the <b>Draft</b> switch, top right &middot; <b>&#9313;</b> <b>Force Send</b> on the step &middot; <b>&#9314;</b> the tab bar with the Template and People counts.</figcaption></figure>
 </li>
 
@@ -1049,7 +1068,10 @@
   <figure><img src="me-46-row-delete.png" alt="Row menu on a Draft marketing email"/><figcaption><b>A5.x.1</b> &mdash; a <b>Draft</b> ME: Delete is there.</figcaption></figure>
   <figure><img src="me-47-row-running.png" alt="Row menu on a Running marketing email"/><figcaption><b>A5.x.1</b> &mdash; the same menu on a <b>Running</b> ME: Delete is gone.</figcaption></figure>
 </li>
-<li id="em-5-2" data-code="A5.x.2"><b>Force Send only reaches reviewed contacts.</b> Same rule as <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">A3.1.3 &#8599;</a>: people the SDR never marked <b>Content Reviewed</b> stay behind. A queue smaller than the People count usually means review, not a bug &mdash; check <b>People</b> before you chase it.</li>
+<li id="em-5-2" data-code="A5.x.2"><b>Force Send only reaches reviewed contacts.</b> Same rule as <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">A3.1.3 &#8599;</a>: people the SDR never marked <b>Content Reviewed</b> stay behind. A queue smaller than the People count usually means review, not a bug &mdash; check <b>People</b>
+before you chase it. <b>At zero reviewed the queue is not built at all</b>, and nothing on screen says
+why &mdash; the tab simply reads &ldquo;No email queues yet&rdquo;. Before treating a force send as
+broken, check the <b>reviewed</b> count in the Run dialog (A3.1.3).</li>
 <li id="em-5-3" data-code="A5.x.3"><b>Cancelled &ne; failed.</b> In the example the queue reads <b>Delivered 1 &middot; Cancelled 2</b> of 3 people. Cancelled rows were pulled before sending (unreviewed, suppressed, or lifecycle-excluded) &mdash; they never hit the provider, so they don't count against the domain.</li>
 <li id="em-5-4" data-code="A5.x.4"><b>Change the sending account before, never during.</b> Switching the <b>&#9881;</b> account on a Running ME splits the thread: what already went out keeps the old From, replies to it land in the old inbox. Pause &rarr; switch &rarr; resume.</li>
 <li id="em-5-5" data-code="A5.x.5"><b>The Timeline tab works exactly as the campaign one</b> &mdash; same actor + before&rarr;after format, same <b>Simple / Advanced</b> search. See <a data-goto="page-a4" href="#a4-audit" style="font-weight:700;cursor:pointer">A4.6 &#8599;</a> rather than repeating it here.</li>
@@ -4673,17 +4695,11 @@ explicitly.</div>
 
 <h3 id="me-send" class="anchor">7.5 &middot; Force send (Admin) &mdash; then you check</h3>
 <div class="call warn"><span class="t">No Force Send on the SDR view</span><b>Force Send is an Admin / Ops action</b> &mdash; on the SDR login there is <b>no Force Send button</b> (the ME's &#8942; menu only offers <b>Edit / View Details</b>). Your Admin both flips the ME <b>Draft &rarr; Active</b> and clicks <b>Force Send</b> &mdash; the Admin side is <a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">Flow A3.1 &#8599;</a>.</div>
-<p><p><b>What your Admin sees &mdash; two dialogs, very different.</b> <b>Draft &rarr; Active</b> is the
-status switch at the top right of the ME, and it opens a careful confirm: &ldquo;Sending starts as soon
-as you confirm. This cannot be undone.&rdquo; &middot; <b>3 recipients &middot; 1 email step &middot;
-0 reviewed</b> &middot; a warning that unreviewed recipients &ldquo;will receive the default template
-as-is&rdquo; &middot; a mandatory checkbox that keeps the Run button disabled until it is ticked
-&middot; and a <i>Review them now</i> link straight to Preview.</p>
-<div class="call warn"><span class="t">Force Send is the opposite</span>Its dialog shows the Subject and
-Content and nothing else &mdash; <b>no recipient count, no mention of attachments</b> &mdash; the merge
-tags are still raw (<b>{{contact.firstName}}</b>), and it is titled &ldquo;Force Send Campaign
-Flow&rdquo; on a Marketing Email. Read the Run dialog&rsquo;s numbers before you get here, because Force
-Send will not repeat them.</div>
+<p><p><b>Your review is what your Admin is waiting on.</b> The confirm they get when they flip the ME on
+counts recipients, email steps and <b>reviewed</b> &mdash; and warns them that anyone unreviewed
+&ldquo;will receive the default template as-is&rdquo;. At <b>0 reviewed</b> the queue is not built at
+all, silently. Their side, dialog by dialog, is
+<a data-goto="page-a3" href="#a3-me" style="font-weight:700;cursor:pointer">A3.1.3 &#8599;</a>.</p>
 <p>Once your Admin has force-sent, your job is to <b>check the queue</b>:</p></p>
 <ol class="steps">
 <li data-code="7.5.1">Open the <b>marketing email detail</b>.</li>
@@ -4906,16 +4922,17 @@ personalized anyone on an ME that carries a file. Removing a file deliberately i
 Logged as <b>ME-01</b>.</div>
 <figure><img src="sdrx-me-29-attachment-dropped.png" alt="Queue row for the personalized contact has no attachment"/>
 <figcaption><b>7.x.14</b> &mdash; two rows carry the file, the personalized row does not.</figcaption></figure></li>
-<li id="e-8-15" data-code="7.x.15"><b>Email Queue row actions.</b> Each queue row carries its own menu at
-the far right of the table, with two items and no confirmation on either: <b>Set as Delivered</b> marks
-that one email delivered without waiting for the sender, and <b>Cancel Email Queue</b> drops it from the
-queue &mdash; cancelled is not failed, see <a data-goto="page-adminme" href="#em-5-3" style="font-weight:700;cursor:pointer">A5.x.3</a>.
-<div class="call warn"><span class="t">The button is hard to reach</span>The queue table scrolls sideways
-and the sticky column sits <i>on top of</i> the actions column; on UAT 30 Jul 2026 the button could not
-be clicked with a mouse at all. Widen the window, or scroll the table fully to one side, until the
-actions column clears the sticky cell. Logged as <b>ME-02</b>, together with a second unknown: when the
-menu was forced open and <i>Set as Delivered</i> chosen, nothing happened and no message appeared
-&mdash; whether that is the overlay or the action itself is <b>not yet established</b>.</div></li>
+<li id="e-8-15" data-code="7.x.15"><b>The row-actions button can be unreachable.</b> The two actions
+themselves &mdash; <b>Set as Delivered</b> and <b>Cancel Email Queue</b> &mdash; are covered in
+<a data-goto="page-marketing" href="#me-queue" style="font-weight:700;cursor:pointer">7.6.5</a>. This is
+only about not being able to reach them: the queue table scrolls sideways and the sticky column can sit
+<i>on top of</i> the actions column. On UAT 30 Jul 2026 the <b>&#8942;</b> at the end of the row could
+not be clicked at all &mdash; the pointer landed on the cell covering it. <b>Widen the window, or scroll
+the table fully to one side</b>, until the actions column clears the sticky cell.
+<div class="call warn"><span class="t">Still open</span>Logged as <b>ME-02</b>. When the menu was forced
+open and <i>Set as Delivered</i> chosen, nothing happened and no confirmation appeared &mdash; while
+7.6.5 says both actions ask first. Whether that is the overlay or the action itself is <b>not
+established</b>; confirm by hand before relying on it.</div></li>
 </ol>
 <div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 6 · Manage campaign</b></a><a class="next" data-goto="page-filters"><span class="k">Next →</span><b>Flow 8 · Using filters</b></a></div>
 </section>

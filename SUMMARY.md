@@ -356,7 +356,7 @@
     * [7.x.12 · Upload · Signature](7-x-12-upload-signature.md)
     * [7.x.13 · Assigned (skip add)](7-x-13-assigned-skip-add.md)
     * [7.x.14 · Personalizing drops the attachment](7-x-14-personalize-drops-attachment.md)
-    * [7.x.15 · Email Queue row actions](7-x-15-email-queue-row-actions.md)
+    * [7.x.15 · Row-actions button unreachable](7-x-15-email-queue-row-actions.md)
 
 * [7† · Manage a Marketing Email — audited](7-audit-manage-a-marketing-email.md)
 ## SDR — reference

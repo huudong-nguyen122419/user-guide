@@ -4,20 +4,10 @@
 
 No Force Send on the SDR view**Force Send is an Admin / Ops action** — on the SDR login there is **no Force Send button** (the ME's ⋮ menu only offers **Edit / View Details**). Your Admin both flips the ME **Draft → Active** and clicks **Force Send** — the Admin side is [Flow A3.1 ↗](a3-1-run-a-marketing-email.md).
 
-## What your Admin sees — two dialogs, very different
-
-**Draft → Active** is the status switch at the top right of the ME. It opens a careful confirm:
-
-> **Run marketing email** — *"Sending starts as soon as you confirm. This cannot be undone."*
-> `3 recipients · 1 email step · 0 reviewed`
-> ⚠ *"3 of 3 recipients have not been reviewed. They will receive the default template as-is."*
-> ☐ **I understand 3 unreviewed emails will be sent** — the Run button stays disabled until this is ticked
-> **Review them now** — closes the dialog and opens Preview
-
-**Force Send** is the opposite. Its dialog shows the Subject and Content and nothing else — **no
-recipient count, no mention of attachments**, and the merge tags are still raw (`{{contact.firstName}}`).
-It is also titled *"Force Send Campaign Flow"* on a Marketing Email. Read the Run dialog's numbers
-before you get here, because Force Send will not repeat them.
+**Your review is what your Admin is waiting on.** The confirm they get when they flip the ME on counts
+recipients, email steps and **reviewed** — and warns them that anyone unreviewed "will receive the
+default template as-is". At **0 reviewed** the queue is not built at all, silently. Their side, dialog
+by dialog, is [A3.1.3 ↗](a3-1-run-a-marketing-email.md).
 
 Once your Admin has force-sent, your job is to **check the queue**:
 
