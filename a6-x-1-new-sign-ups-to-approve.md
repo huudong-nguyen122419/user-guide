@@ -1,6 +1,6 @@
 # A6.x.1 · New sign-ups to approve
 
-> A6 · Talent Active / Passive → A6.x · Edge cases
+> A6 · Approve a new talent → A6.x · Edge cases
 
 **The *In Review* queue — new sign-ups waiting for approval.** The **N In Review** button at the top right of the talents list opens the queue one profile at a time. **Approving does not simply mean “Active”.** The confirmation dialog repeats the name, email and title; on **Approve** the system applies an automatic rule and picks the resulting status itself.
 

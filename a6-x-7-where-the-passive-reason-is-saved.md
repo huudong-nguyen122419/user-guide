@@ -1,6 +1,6 @@
 # A6.x.7 · Where the Passive reason is saved
 
-> A6 · Talent Active / Passive → A6.x · Edge cases
+> A6 · Approve a new talent → A6.x · Edge cases
 
 **Where the Passive reason is saved — and why the profile looks empty.** The reason you type is written to the **activity log**, not to a field on the talent record — the record's own `passiveReason` field stays empty. It surfaces in the tooltip on the status chip and in the *Passive since* panel. The **Activity Logs** tab is the audit trail. Each entry reads *“Admin <name> changed talent status to <status>”* with a timestamp. Two limits to know:
 

@@ -1,6 +1,6 @@
 # A6.x · Edge cases
 
-> A6 · Talent Active / Passive
+> A6 · Approve a new talent
 
 ## Edge cases
 

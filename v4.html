@@ -435,7 +435,7 @@
     <a href="#em-5-3" class="st2" data-page="page-a5">A5.x.3 · Cancelled ≠ failed</a>
     <a href="#em-5-4" class="st2" data-page="page-a5">A5.x.4 · Switch sender safely</a>
     <a href="#em-5-5" class="st2" data-page="page-a5">A5.x.5 · Timeline = A4.6</a>
-    <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Talent Active / Passive</a>
+    <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Approve a new talent</a>
     <a href="#a6-flowC" class="st" data-page="page-a6">A6-C &middot; Review the In Review queue &mdash; LIVE</a>
     <a href="#a6-autorule" class="st2" data-page="page-a6">A6-C.6 &middot; The rule as built today</a>
     <a href="#a6-rulerebuild" class="st2" data-page="page-a6">A6-C.7 &middot; The rule, rebuilt</a>
@@ -451,7 +451,7 @@
     <a href="#ec-6-8" class="st2" data-page="page-a6">A6.x.8 · A company can be tagged wrongly</a>
     <a href="#ec-6-9" class="st2" data-page="page-a6">A6.x.9 · What Passive does not affect</a>
     <a href="#ec-6-10" class="st2" data-page="page-a6">A6.x.10 · Send a talent back to In Review</a>
-    <a class="flow adm" data-page="page-a6audit"><span class="n">A6†</span> The approval decision, audited</a>
+    <a class="flow adm" data-page="page-a6audit"><span class="n">A6†</span> Approve a new talent · audit</a>
     <a class="flow adm" data-page="page-b1"><span class="n">B1</span> Invite talents to a project</a>
     <a class="flow tal" data-page="page-b2"><span class="n">B2</span> Talent · log &amp; submit timesheet</a>
     <a href="#b2-open" class="st" data-page="page-b2">B2.1 · Open Timesheet</a>
@@ -1050,17 +1050,17 @@
 <li id="em-5-4" data-code="A5.x.4"><b>Change the sending account before, never during.</b> Switching the <b>&#9881;</b> account on a Running ME splits the thread: what already went out keeps the old From, replies to it land in the old inbox. Pause &rarr; switch &rarr; resume.</li>
 <li id="em-5-5" data-code="A5.x.5"><b>The Timeline tab works exactly as the campaign one</b> &mdash; same actor + before&rarr;after format, same <b>Simple / Advanced</b> search. See <a data-goto="page-a4" href="#a4-audit" style="font-weight:700;cursor:pointer">A4.6 &#8599;</a> rather than repeating it here.</li>
 </ol>
-<div class="pagernav"><a data-goto="page-a4"><span class="k">&larr; Prev</span><b>A4 &middot; Manage a campaign</b></a><a class="next" data-goto="page-a6"><span class="k">Next &rarr;</span><b>A6 &middot; Talent Active / Passive</b></a></div>
+<div class="pagernav"><a data-goto="page-a4"><span class="k">&larr; Prev</span><b>A4 &middot; Manage a campaign</b></a><a class="next" data-goto="page-a6"><span class="k">Next &rarr;</span><b>A6 &middot; Approve a new talent</b></a></div>
 </section>
 
 
 <!-- ===================== A6 · TALENT ACTIVE / PASSIVE ===================== -->
 <section class="page" id="page-a6">
-<h2><span class="who adm">ADMIN</span><span class="n adm">A6 &middot;</span> Talent Active / Passive <span class="fn">(filter &rarr; review &rarr; queue)</span></h2>
+<h2><span class="who adm">ADMIN</span><span class="n adm">A6 &middot;</span> Approve a new talent <span class="fn">(In Review &rarr; approve &rarr; status)</span></h2>
 <div class="goal adm"><b>Goal:</b> keep <b>clients</b> out of the talent supply. A <b>client</b> is someone who sits on the <b>buy side today</b> &mdash; holding a role at a PE fund, or running a company a fund owns. Clients must be <b>Passive</b> so they never enter the project-invitation flow. Everyone else is <b>talent</b> and stays <b>Active</b>.</div>
 <div class="call warn"><span class="t">Production is read-only for this work</span>Run the filters and read the data on production, but <b>never change a status there</b>. Do every status change on <b>UAT</b> first and confirm the result before touching live records.</div>
 
-<div class="call"><span class="t">Looking for the summary, not the procedure?</span><a href="#page-a6audit" data-goto="page-a6audit" style="font-weight:700;cursor:pointer">The approval decision, audited &#8599;</a> is the same rule written for whoever decides what gets fixed: ten findings, a register of <b>12 defects</b> scored by impact and effort, three quick wins, and the questions still open. This page is the operator’s view — what to click, and what the system will do.</div>
+<div class="call"><span class="t">Looking for the summary, not the procedure?</span><a href="#page-a6audit" data-goto="page-a6audit" style="font-weight:700;cursor:pointer">Approve a new talent · audit &#8599;</a> is the same rule written for whoever decides what gets fixed: ten findings, a register of <b>12 defects</b> scored by impact and effort, three quick wins, and the questions still open. This page is the operator’s view — what to click, and what the system will do.</div>
 
 <h4 style="margin:18px 0 8px">One flow, and what it deliberately leaves out</h4>
 <p>This section covers <b>the intake decision only</b> &mdash; the moment an admin approves a new sign-up and the system picks a status. The existing population is a different problem with different evidence, and it is <b>not worked by hand</b>.</p>
@@ -1459,11 +1459,11 @@ later. This is the intake decision only.</p>
 
 <!-- ===================== A6-AUDIT · APPROVAL RULE AUDIT ===================== -->
 <section class="page" id="page-a6audit">
-<h2><span class="who adm">ADMIN</span><span class="n">A6 · audit ·</span> The approval decision, audited</h2>
+<h2><span class="who adm">ADMIN</span><span class="n">A6† ·</span> Approve a new talent · audit</h2>
 <p class="fn" style="margin-bottom:22px">A decision-maker’s view of the same rule documented in <a href="#page-a6" data-goto="page-a6" style="font-weight:700;cursor:pointer">A6 &#8599;</a> — what it costs when it is wrong, what to fix first, and what is still undecided. The operator’s view, with the click path, stays on the A6 page.</p>
 <div class="auditdoc">
 <p class="eyebrow">Validated on production &middot; Sections 1&ndash;7</p>
-  <h1>Talent Active / Passive &mdash; the approval decision</h1>
+  <h1>Approve a new talent &mdash; the decision, audited</h1>
   <p class="standfirst">Reverse-engineered from live behaviour, not from source. Scope: the admin app,
   <code>In Review</code> queue &rarr; <strong>Approve Talent</strong> &mdash; the moment the system
   chooses a status on its own, with no picker and no reason recorded.</p>
@@ -2195,7 +2195,7 @@ later. This is the intake decision only.</p>
     same seven steps are the specification.</p>
   </section>
 </div>
-<div class="pagernav"><a href="#page-a6" data-goto="page-a6"><span class="k">&larr; Back</span><b>A6 &middot; Talent Active / Passive</b></a></div>
+<div class="pagernav"><a href="#page-a6" data-goto="page-a6"><span class="k">&larr; Back</span><b>A6 &middot; Approve a new talent</b></a></div>
 </section>
 
 <!-- ===================== B1 · INVITE TALENTS ===================== -->
@@ -2214,7 +2214,7 @@ later. This is the intake decision only.</p>
   <figure><img src="sdrx-bil-03-invite-selected.png" alt="Invite Talents button"/><figcaption><b>B1.4</b> &mdash; tick talents &rarr; <b>Invite Talents</b>.</figcaption></figure>
 </li>
 </ol>
-<div class="pagernav"><a data-goto="page-a6"><span class="k">&larr; Prev</span><b>A6 &middot; Talent Active / Passive</b></a><a class="next" data-goto="page-b2"><span class="k">Next &rarr; (Talent)</span><b>B2 &middot; Log &amp; submit timesheet</b></a></div>
+<div class="pagernav"><a data-goto="page-a6"><span class="k">&larr; Prev</span><b>A6 &middot; Approve a new talent</b></a><a class="next" data-goto="page-b2"><span class="k">Next &rarr; (Talent)</span><b>B2 &middot; Log &amp; submit timesheet</b></a></div>
 </section>
 
 <!-- ===================== B2 · TALENT LOG & SUBMIT TIMESHEET ===================== -->

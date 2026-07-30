@@ -1,6 +1,6 @@
 # A6-C · Review the In Review queue
 
-> A6 · Talent Active / Passive — **the only live flow**
+> A6 · Approve a new talent — **the only live flow**
 
 A new sign-up sits at `In Review`. An admin opens it, clicks **Approve**, and **the system sets Active or Passive by itself** using the five-question rule in [A6-C.6](a6-c-6-the-automatic-rule.md). Your job is to know what it will pick *before* you click, and to flip it afterwards if it picked wrong.
 

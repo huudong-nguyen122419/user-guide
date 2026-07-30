@@ -1,6 +1,6 @@
 # A6.1 · Three fields people mix up
 
-> A6 · Talent Active / Passive
+> A6 · Approve a new talent
 
 ## A6.1.1 · Status
 

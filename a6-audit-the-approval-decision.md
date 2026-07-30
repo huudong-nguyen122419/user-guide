@@ -1,9 +1,9 @@
-# A6 · audit — The approval decision, audited
+# A6† · Approve a new talent · audit
 
-> A6 · Talent Active / Passive — **the decision-maker's view**
+> A6 · Approve a new talent — **the decision-maker's view**
 
 The same rule as the rest of A6, written for whoever decides what gets fixed. **The full page with
-every section lives in the guide** — open `v4.html` and pick *A6† · The approval decision, audited*
+every section lives in the guide** — open `v4.html` and pick *A6† · Approve a new talent · audit*
 from the sidebar.
 
 **This page carries only what is not already written elsewhere:** the scored defect register and the
