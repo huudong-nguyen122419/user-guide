@@ -1,4 +1,4 @@
-# 7.3.5 · Read the button first
+# 7.3.8 · Read the button first
 
 > 7 · Manage a Marketing Email → 7.3 · Add people to the ME
 

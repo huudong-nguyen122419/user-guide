@@ -1,4 +1,4 @@
-# 7.3.7 · Check the People tab
+# 7.3.10 · Check the People tab
 
 > 7 · Manage a Marketing Email → 7.3 · Add people to the ME
 

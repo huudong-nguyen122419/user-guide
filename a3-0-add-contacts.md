@@ -40,7 +40,7 @@ It opens titled **Add N contacts to marketing email**. **Read the legend above t
 | Bucket | What is in it | Tick it? |
 |---|---|---|
 | **Valid** | The safe ground. The address is confirmed working, so a send has a high chance of landing rather than being dropped. | **Yes** — pre-ticked for you. |
-| **Missing + Invalid** | **Needs a human look.** The contact has an address, but nothing has ever been sent to it, so its reliability is unknown — unverified rather than proven bad. | **Your call.** Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation. |
+| **Missing + Invalid** | **Needs a human look.** The *work* address is missing or unusable, so the pick falls back to a personal one — unverified rather than proven bad. Most are reachable; nobody has checked. | **Your call.** Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation. |
 | **Platform Signup** | People who **already have a Fintalent account** — talent or client. Nothing to do with whether the address works. | **Depends entirely on the campaign.** See the rule below. |
 
 | The email is aimed at… | Platform Signup | Why |
@@ -52,18 +52,50 @@ It opens titled **Add N contacts to marketing email**. **Read the legend above t
 
 *A3.0.4 — ① pick the ME (status and recipient count on every row) · ② the three buckets · ③ tick-to-add vs email-to-send · ④ the confirm button and the line above it.*
 
-## A3.0.5 · ⚠ Read the button before you click it — it will not add everyone you ticked
+## A3.0.5 · Tab 1 — Valid: everything here is already ticked
+
+Rows are shaded and the header checkbox is on. The address being used sits in the **Work Experiences** column beside the company — the work address, right under the **Sponsor** chip. On UAT, 52 of the 62 picked there and **not one** fell back to a personal address. Whatever is listed under **Additional Emails** is an alternative. It is normal for those to be red — they are not the address being sent to, so a red alternative is not a problem to fix. **Remove N from selection**, top right, unticks the whole tab in one click — useful when you meant to send only to the other buckets. **The icons mean the same thing in all three tabs.** Hover any of them; these are the tooltips, read off UAT:
+
+| Icon | Tooltip | What it means for you |
+|---|---|---|
+| green tick | **Valid** | the address is confirmed working |
+| red triangle | **Invalid** | known bad — sending here costs you sender reputation |
+| grey circle | **Not verified** | never checked. Not proven bad, just unknown |
+| blue arrow | **Replied from this email** | this person has written back from that address before |
+| green person | **Platform Signup** | they hold a Fintalent account |
+
+![Valid tab, everything pre-ticked](me-56-tab-valid.png)
+
+*A3.0.5 — Valid. ① the three counts, adding up to your selection · ② header checkbox on, every row ticked · ③ Remove 62 from selection · ④ the address in use, on the work experience · ⑤ an alternative address · ⑥ an alternative that is Invalid — harmless, it is not the one selected.*
+
+## A3.0.6 · Tab 2 — Missing + Invalid: nothing ticked, and the pick has fallen back
+
+On UAT, 17 of the 22 had no usable work address, so the radio landed on a personal one under **Additional Emails** while the **Work Experiences** column shows the job with no address against it. That is what the tab name means: the *work* address is missing or unusable — not that the person is unreachable. The blue **Replied from this email** arrow is the best reason to tick one of these by hand. Someone who has already written back from an address is a far safer bet than the bucket label suggests. ⚠ One row had no address selected at allNot every row here has a pick. Tick a contact whose radio is empty and you add someone with nowhere to send — check the **radio**, not just the checkbox.
+
+![Missing + Invalid tab, nothing pre-ticked](me-57-tab-missing.png)
+
+*A3.0.6 — Missing + Invalid. ① the tab · ② nothing ticked · ③ the pick fallen back to a personal address · ④ a row with no address picked at all · ⑤ Replied from this email.*
+
+## A3.0.7 · Tab 3 — Platform Signup: people who already hold a Fintalent account
+
+Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row — hover it and it reads *Platform Signup*. **This tab says nothing about address quality.** An address in here can be green **Valid** and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data. ⚠ Skip this tab and you may miss the whole audienceIf the email is aimed at **talents**, these *are* your talents — leaving the tab unopened mails everyone except the people it was written for. Go back to the bucket table in [A3.0.4 ↗](a3-0-add-contacts.md) and decide deliberately. The **N results** count and page numbers along the bottom belong to the **marketing email list on the left**, not to the contacts — 93 results was 93 MEs. The buckets are not paginated; each tab shows all of its rows.
+
+![Platform Signup tab](me-58-tab-platform.png)
+
+*A3.0.7 — Platform Signup. ① the tab · ② the green Platform Signup marker · ③ a personal address, Not verified · ④ a work experience carrying no address · ⑤ the line that names both unticked buckets.*
+
+## A3.0.8 · ⚠ Read the button before you click it — it will not add everyone you ticked
 
 Confirm reads **Add 2 of 6 contacts**, and directly above it: **Not ticked by default: 4 Missing + Invalid**. Only the **Valid** bucket is pre-ticked. Contacts with a missing or unusable address are carried into the drawer but left **unticked on purpose**, so selecting six people and adding two is the expected outcome, not a fault. Measured on UAT: six selected → `Valid 2 · Missing + Invalid 4 · Platform Signup 0` → button `Add 2 of 6 contacts`. **If you want the excluded ones anyway**, open the **Missing + Invalid** tab and tick them yourself — but fix the address first, or they will bounce ([7.7a ↗](7-7-verify-in-conversations.md)).
 
-## A3.0.6 · Confirm, and read the toast
+## A3.0.9 · Confirm, and read the toast
 
 It names both the number and the email: **“Added to marketing email — 2 contacts added to M&A Executive Briefing - Berlin, October 2026.”** That is your receipt — the one moment the system tells you what actually went in.
 
 ![Success toast naming the count and the marketing email](me-54-toast.png)
 
-*A3.0.6 — the toast, bottom left. It clears quickly, so read it as it appears.*
+*A3.0.9 — the toast, bottom left. It clears quickly, so read it as it appears.*
 
-## A3.0.7 · Check the People tab
+## A3.0.10 · Check the People tab
 
 Go back to the ME — the **People** tab badge should carry the new total. If it does not match what the toast said, something was dropped; re-run the add rather than assuming it landed.

@@ -705,9 +705,12 @@
 <a href="#m7-3-2" class="st2" data-page="page-marketing">7.3.2 &middot; It sends you to Contacts</a>
 <a href="#m7-3-3" class="st2" data-page="page-marketing">7.3.3 &middot; Tick &rarr; Add to ME</a>
 <a href="#m7-3-4" class="st2" data-page="page-marketing">7.3.4 &middot; The drawer &mdash; two panes</a>
-<a href="#m7-3-5" class="st2" data-page="page-marketing">7.3.5 &middot; Read the button first</a>
-<a href="#m7-3-6" class="st2" data-page="page-marketing">7.3.6 &middot; Confirm &amp; read the toast</a>
-<a href="#m7-3-7" class="st2" data-page="page-marketing">7.3.7 &middot; Check the People tab</a>
+<a href="#m7-3-5" class="st2" data-page="page-marketing">7.3.5 &middot; Tab 1 &mdash; Valid</a>
+<a href="#m7-3-6" class="st2" data-page="page-marketing">7.3.6 &middot; Tab 2 &mdash; Missing + Invalid</a>
+<a href="#m7-3-7" class="st2" data-page="page-marketing">7.3.7 &middot; Tab 3 &mdash; Platform Signup</a>
+<a href="#m7-3-8" class="st2" data-page="page-marketing">7.3.8 &middot; Read the button first</a>
+<a href="#m7-3-9" class="st2" data-page="page-marketing">7.3.9 &middot; Confirm &amp; read the toast</a>
+<a href="#m7-3-10" class="st2" data-page="page-marketing">7.3.10 &middot; Check the People tab</a>
 <a href="#me-people-remove" class="st" data-page="page-marketing">7.3b &middot; Remove contacts</a>
     <a href="#me-preview" class="st" data-page="page-marketing">7.4 · Preview &amp; mark reviewed</a>
     <a href="#m7-4-1" class="st2" data-page="page-marketing">7.4.1 · Pick a contact</a>
@@ -869,7 +872,7 @@
   <thead><tr><th>Bucket</th><th>What is in it</th><th>Tick it?</th></tr></thead>
   <tbody>
   <tr><td><b>Valid</b></td><td>The safe ground. The address is confirmed working, so a send has a high chance of landing rather than being dropped.</td><td><b>Yes</b> &mdash; pre-ticked for you.</td></tr>
-  <tr><td><b>Missing + Invalid</b></td><td><b>Needs a human look.</b> The contact has an address, but nothing has ever been sent to it, so its reliability is unknown &mdash; unverified rather than proven bad.</td><td><b>Your call.</b> Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation.</td></tr>
+  <tr><td><b>Missing + Invalid</b></td><td><b>Needs a human look.</b> The <i>work</i> address is missing or unusable, so the pick falls back to a personal one &mdash; unverified rather than proven bad. Most are reachable; nobody has checked.</td><td><b>Your call.</b> Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation.</td></tr>
   <tr><td><b>Platform Signup</b></td><td>People who <b>already have a Fintalent account</b> &mdash; talent or client. Nothing to do with whether the address works.</td><td><b>Depends entirely on the campaign.</b> See the rule below.</td></tr>
   </tbody></table></div>
 
@@ -887,16 +890,45 @@
   <figure><img src="me-53-drawer.png" alt="The add-to-marketing-email drawer"/><figcaption><b>A3.0.4</b> &mdash; <b>&#9312;</b> pick the ME (status and recipient count on every row) &middot; <b>&#9313;</b> the three buckets &middot; <b>&#9314;</b> tick-to-add vs email-to-send &middot; <b>&#9315;</b> the confirm button and the line above it.</figcaption></figure>
 </li>
 
-<li data-code="A3.0.5"><b>&#9888; Read the button before you click it &mdash; it will not add everyone you ticked.</b> Confirm reads <b>Add 2 of 6 contacts</b>, and directly above it: <b>Not ticked by default: 4 Missing + Invalid</b>.
+<li data-code="A3.0.5"><b>Tab 1 &mdash; Valid: everything here is already ticked.</b> Rows are shaded and the header checkbox is on. The address being used sits in the <b>Work Experiences</b> column beside the company &mdash; the work address, right under the <b>Sponsor</b> chip. On UAT, 52 of the 62 picked there and <b>not one</b> fell back to a personal address.
+  <p>Whatever is listed under <b>Additional Emails</b> is an alternative. It is normal for those to be red &mdash; they are not the address being sent to, so a red alternative is not a problem to fix.</p>
+  <p><b>Remove N from selection</b>, top right, unticks the whole tab in one click &mdash; useful when you meant to send only to the other buckets.</p>
+  <p><b>The icons mean the same thing in all three tabs.</b> Hover any of them; these are the tooltips, read off UAT:</p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Icon</th><th>Tooltip</th><th>What it means for you</th></tr></thead>
+  <tbody>
+  <tr><td>green tick</td><td><b>Valid</b></td><td>the address is confirmed working</td></tr>
+  <tr><td>red triangle</td><td><b>Invalid</b></td><td>known bad &mdash; sending here costs you sender reputation</td></tr>
+  <tr><td>grey circle</td><td><b>Not verified</b></td><td>never checked. Not proven bad, just unknown</td></tr>
+  <tr><td>blue arrow</td><td><b>Replied from this email</b></td><td>this person has written back from that address before</td></tr>
+  <tr><td>green person</td><td><b>Platform Signup</b></td><td>they hold a Fintalent account</td></tr>
+  </tbody></table></div>
+  <figure><img src="me-56-tab-valid.png" alt="Valid tab, everything pre-ticked"/><figcaption><b>A3.0.5</b> &mdash; <b>Valid</b>. <b>&#9312;</b> the three counts, adding up to your selection &middot; <b>&#9313;</b> header checkbox on, every row ticked &middot; <b>&#9314;</b> <b>Remove 62 from selection</b> &middot; <b>&#9315;</b> the address in use, on the work experience &middot; <b>&#9316;</b> an alternative address &middot; <b>&#9317;</b> an alternative that is <b>Invalid</b> &mdash; harmless, it is not the one selected.</figcaption></figure>
+</li>
+
+<li data-code="A3.0.6"><b>Tab 2 &mdash; Missing + Invalid: nothing ticked, and the pick has fallen back.</b> On UAT, 17 of the 22 had no usable work address, so the radio landed on a personal one under <b>Additional Emails</b> while the <b>Work Experiences</b> column shows the job with no address against it. That is what the tab name means: the <i>work</i> address is missing or unusable &mdash; not that the person is unreachable.
+  <p>The blue <b>Replied from this email</b> arrow is the best reason to tick one of these by hand. Someone who has already written back from an address is a far safer bet than the bucket label suggests.</p>
+  <div class="call warn"><span class="t">&#9888; One row had no address selected at all</span>Not every row here has a pick. Tick a contact whose radio is empty and you add someone with nowhere to send &mdash; check the <b>radio</b>, not just the checkbox.</div>
+  <figure><img src="me-57-tab-missing.png" alt="Missing + Invalid tab, nothing pre-ticked"/><figcaption><b>A3.0.6</b> &mdash; <b>Missing + Invalid</b>. <b>&#9312;</b> the tab &middot; <b>&#9313;</b> nothing ticked &middot; <b>&#9314;</b> the pick fallen back to a personal address &middot; <b>&#9315;</b> a row with <b>no address picked at all</b> &middot; <b>&#9316;</b> <b>Replied from this email</b>.</figcaption></figure>
+</li>
+
+<li data-code="A3.0.7"><b>Tab 3 &mdash; Platform Signup: people who already hold a Fintalent account.</b> Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row &mdash; hover it and it reads <i>Platform Signup</i>.
+  <p><b>This tab says nothing about address quality.</b> An address in here can be green <b>Valid</b> and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data.</p>
+  <div class="call warn"><span class="t">&#9888; Skip this tab and you may miss the whole audience</span>If the email is aimed at <b>talents</b>, these <i>are</i> your talents &mdash; leaving the tab unopened mails everyone except the people it was written for. Go back to the bucket table in <a href="#a3-people" style="font-weight:700;cursor:pointer">A3.0.4 &#8599;</a> and decide deliberately.</div>
+  <figure><img src="me-58-tab-platform.png" alt="Platform Signup tab"/><figcaption><b>A3.0.7</b> &mdash; <b>Platform Signup</b>. <b>&#9312;</b> the tab &middot; <b>&#9313;</b> the green <b>Platform Signup</b> marker &middot; <b>&#9314;</b> a personal address, <b>Not verified</b> &middot; <b>&#9315;</b> a work experience carrying no address &middot; <b>&#9316;</b> the line that names both unticked buckets.</figcaption></figure>
+  <p class="fn">The <b>N results</b> count and page numbers along the bottom belong to the <b>marketing email list on the left</b>, not to the contacts &mdash; 93 results was 93 MEs. The buckets are not paginated; each tab shows all of its rows.</p>
+</li>
+
+<li data-code="A3.0.8"><b>&#9888; Read the button before you click it &mdash; it will not add everyone you ticked.</b> Confirm reads <b>Add 2 of 6 contacts</b>, and directly above it: <b>Not ticked by default: 4 Missing + Invalid</b>.
   <p>Only the <b>Valid</b> bucket is pre-ticked. Contacts with a missing or unusable address are carried into the drawer but left <b>unticked on purpose</b>, so selecting six people and adding two is the expected outcome, not a fault. Measured on UAT: six selected &rarr; <code>Valid 2 &middot; Missing + Invalid 4 &middot; Platform Signup 0</code> &rarr; button <code>Add 2 of 6 contacts</code>.</p>
   <p><b>If you want the excluded ones anyway</b>, open the <b>Missing + Invalid</b> tab and tick them yourself &mdash; but fix the address first, or they will bounce (<a href="#me-conv" style="font-weight:700;cursor:pointer">7.7a &#8599;</a>).</p>
 </li>
 
-<li data-code="A3.0.6"><b>Confirm, and read the toast.</b> It names both the number and the email: <b>&ldquo;Added to marketing email &mdash; 2 contacts added to M&amp;A Executive Briefing - Berlin, October 2026.&rdquo;</b> That is your receipt &mdash; the one moment the system tells you what actually went in.
-  <figure><img src="me-54-toast.png" alt="Success toast naming the count and the marketing email"/><figcaption><b>A3.0.6</b> &mdash; the toast, bottom left. It clears quickly, so read it as it appears.</figcaption></figure>
+<li data-code="A3.0.9"><b>Confirm, and read the toast.</b> It names both the number and the email: <b>&ldquo;Added to marketing email &mdash; 2 contacts added to M&amp;A Executive Briefing - Berlin, October 2026.&rdquo;</b> That is your receipt &mdash; the one moment the system tells you what actually went in.
+  <figure><img src="me-54-toast.png" alt="Success toast naming the count and the marketing email"/><figcaption><b>A3.0.9</b> &mdash; the toast, bottom left. It clears quickly, so read it as it appears.</figcaption></figure>
 </li>
 
-<li data-code="A3.0.7"><b>Check the People tab.</b> Go back to the ME &mdash; the <b>People</b> tab badge should carry the new total. If it does not match what the toast said, something was dropped; re-run the add rather than assuming it landed.</li>
+<li data-code="A3.0.10"><b>Check the People tab.</b> Go back to the ME &mdash; the <b>People</b> tab badge should carry the new total. If it does not match what the toast said, something was dropped; re-run the add rather than assuming it landed.</li>
 </ol>
 
 <h3 id="a3-people-remove" class="anchor">A3.0b &middot; Remove contacts from the marketing email</h3>
@@ -4656,7 +4688,7 @@ Side Step: Not Now - Out Of Office
   <thead><tr><th>Bucket</th><th>What is in it</th><th>Tick it?</th></tr></thead>
   <tbody>
   <tr><td><b>Valid</b></td><td>The safe ground. The address is confirmed working, so a send has a high chance of landing rather than being dropped.</td><td><b>Yes</b> &mdash; pre-ticked for you.</td></tr>
-  <tr><td><b>Missing + Invalid</b></td><td><b>Needs a human look.</b> The contact has an address, but nothing has ever been sent to it, so its reliability is unknown &mdash; unverified rather than proven bad.</td><td><b>Your call.</b> Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation.</td></tr>
+  <tr><td><b>Missing + Invalid</b></td><td><b>Needs a human look.</b> The <i>work</i> address is missing or unusable, so the pick falls back to a personal one &mdash; unverified rather than proven bad. Most are reachable; nobody has checked.</td><td><b>Your call.</b> Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation.</td></tr>
   <tr><td><b>Platform Signup</b></td><td>People who <b>already have a Fintalent account</b> &mdash; talent or client. Nothing to do with whether the address works.</td><td><b>Depends entirely on the campaign.</b> See the rule below.</td></tr>
   </tbody></table></div>
 
@@ -4674,16 +4706,45 @@ Side Step: Not Now - Out Of Office
   <figure><img src="me-53-drawer.png" alt="The add-to-marketing-email drawer"/><figcaption><b>7.3.4</b> &mdash; <b>&#9312;</b> pick the ME (status and recipient count on every row) &middot; <b>&#9313;</b> the three buckets &middot; <b>&#9314;</b> tick-to-add vs email-to-send &middot; <b>&#9315;</b> the confirm button and the line above it.</figcaption></figure>
 </li>
 
-<li id="m7-3-5" data-code="7.3.5"><b>&#9888; Read the button before you click it &mdash; it will not add everyone you ticked.</b> Confirm reads <b>Add 2 of 6 contacts</b>, and directly above it: <b>Not ticked by default: 4 Missing + Invalid</b>.
+<li id="m7-3-5" data-code="7.3.5"><b>Tab 1 &mdash; Valid: everything here is already ticked.</b> Rows are shaded and the header checkbox is on. The address being used sits in the <b>Work Experiences</b> column beside the company &mdash; the work address, right under the <b>Sponsor</b> chip. On UAT, 52 of the 62 picked there and <b>not one</b> fell back to a personal address.
+  <p>Whatever is listed under <b>Additional Emails</b> is an alternative. It is normal for those to be red &mdash; they are not the address being sent to, so a red alternative is not a problem to fix.</p>
+  <p><b>Remove N from selection</b>, top right, unticks the whole tab in one click &mdash; useful when you meant to send only to the other buckets.</p>
+  <p><b>The icons mean the same thing in all three tabs.</b> Hover any of them; these are the tooltips, read off UAT:</p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Icon</th><th>Tooltip</th><th>What it means for you</th></tr></thead>
+  <tbody>
+  <tr><td>green tick</td><td><b>Valid</b></td><td>the address is confirmed working</td></tr>
+  <tr><td>red triangle</td><td><b>Invalid</b></td><td>known bad &mdash; sending here costs you sender reputation</td></tr>
+  <tr><td>grey circle</td><td><b>Not verified</b></td><td>never checked. Not proven bad, just unknown</td></tr>
+  <tr><td>blue arrow</td><td><b>Replied from this email</b></td><td>this person has written back from that address before</td></tr>
+  <tr><td>green person</td><td><b>Platform Signup</b></td><td>they hold a Fintalent account</td></tr>
+  </tbody></table></div>
+  <figure><img src="me-56-tab-valid.png" alt="Valid tab, everything pre-ticked"/><figcaption><b>7.3.5</b> &mdash; <b>Valid</b>. <b>&#9312;</b> the three counts, adding up to your selection &middot; <b>&#9313;</b> header checkbox on, every row ticked &middot; <b>&#9314;</b> <b>Remove 62 from selection</b> &middot; <b>&#9315;</b> the address in use, on the work experience &middot; <b>&#9316;</b> an alternative address &middot; <b>&#9317;</b> an alternative that is <b>Invalid</b> &mdash; harmless, it is not the one selected.</figcaption></figure>
+</li>
+
+<li id="m7-3-6" data-code="7.3.6"><b>Tab 2 &mdash; Missing + Invalid: nothing ticked, and the pick has fallen back.</b> On UAT, 17 of the 22 had no usable work address, so the radio landed on a personal one under <b>Additional Emails</b> while the <b>Work Experiences</b> column shows the job with no address against it. That is what the tab name means: the <i>work</i> address is missing or unusable &mdash; not that the person is unreachable.
+  <p>The blue <b>Replied from this email</b> arrow is the best reason to tick one of these by hand. Someone who has already written back from an address is a far safer bet than the bucket label suggests.</p>
+  <div class="call warn"><span class="t">&#9888; One row had no address selected at all</span>Not every row here has a pick. Tick a contact whose radio is empty and you add someone with nowhere to send &mdash; check the <b>radio</b>, not just the checkbox.</div>
+  <figure><img src="me-57-tab-missing.png" alt="Missing + Invalid tab, nothing pre-ticked"/><figcaption><b>7.3.6</b> &mdash; <b>Missing + Invalid</b>. <b>&#9312;</b> the tab &middot; <b>&#9313;</b> nothing ticked &middot; <b>&#9314;</b> the pick fallen back to a personal address &middot; <b>&#9315;</b> a row with <b>no address picked at all</b> &middot; <b>&#9316;</b> <b>Replied from this email</b>.</figcaption></figure>
+</li>
+
+<li id="m7-3-7" data-code="7.3.7"><b>Tab 3 &mdash; Platform Signup: people who already hold a Fintalent account.</b> Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row &mdash; hover it and it reads <i>Platform Signup</i>.
+  <p><b>This tab says nothing about address quality.</b> An address in here can be green <b>Valid</b> and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data.</p>
+  <div class="call warn"><span class="t">&#9888; Skip this tab and you may miss the whole audience</span>If the email is aimed at <b>talents</b>, these <i>are</i> your talents &mdash; leaving the tab unopened mails everyone except the people it was written for. Go back to the bucket table in <a href="#m7-3-4" style="font-weight:700;cursor:pointer">7.3.4 &#8599;</a> and decide deliberately.</div>
+  <figure><img src="me-58-tab-platform.png" alt="Platform Signup tab"/><figcaption><b>7.3.7</b> &mdash; <b>Platform Signup</b>. <b>&#9312;</b> the tab &middot; <b>&#9313;</b> the green <b>Platform Signup</b> marker &middot; <b>&#9314;</b> a personal address, <b>Not verified</b> &middot; <b>&#9315;</b> a work experience carrying no address &middot; <b>&#9316;</b> the line that names both unticked buckets.</figcaption></figure>
+  <p class="fn">The <b>N results</b> count and page numbers along the bottom belong to the <b>marketing email list on the left</b>, not to the contacts &mdash; 93 results was 93 MEs. The buckets are not paginated; each tab shows all of its rows.</p>
+</li>
+
+<li id="m7-3-8" data-code="7.3.8"><b>&#9888; Read the button before you click it &mdash; it will not add everyone you ticked.</b> Confirm reads <b>Add 2 of 6 contacts</b>, and directly above it: <b>Not ticked by default: 4 Missing + Invalid</b>.
   <p>Only the <b>Valid</b> bucket is pre-ticked. Contacts with a missing or unusable address are carried into the drawer but left <b>unticked on purpose</b>, so selecting six people and adding two is the expected outcome, not a fault. Measured on UAT: six selected &rarr; <code>Valid 2 &middot; Missing + Invalid 4 &middot; Platform Signup 0</code> &rarr; button <code>Add 2 of 6 contacts</code>.</p>
   <p><b>If you want the excluded ones anyway</b>, open the <b>Missing + Invalid</b> tab and tick them yourself &mdash; but fix the address first, or they will bounce (<a href="#me-conv" style="font-weight:700;cursor:pointer">7.7a &#8599;</a>).</p>
 </li>
 
-<li id="m7-3-6" data-code="7.3.6"><b>Confirm, and read the toast.</b> It names both the number and the email: <b>&ldquo;Added to marketing email &mdash; 2 contacts added to M&amp;A Executive Briefing - Berlin, October 2026.&rdquo;</b> That is your receipt &mdash; the one moment the system tells you what actually went in.
-  <figure><img src="me-54-toast.png" alt="Success toast naming the count and the marketing email"/><figcaption><b>7.3.6</b> &mdash; the toast, bottom left. It clears quickly, so read it as it appears.</figcaption></figure>
+<li id="m7-3-9" data-code="7.3.9"><b>Confirm, and read the toast.</b> It names both the number and the email: <b>&ldquo;Added to marketing email &mdash; 2 contacts added to M&amp;A Executive Briefing - Berlin, October 2026.&rdquo;</b> That is your receipt &mdash; the one moment the system tells you what actually went in.
+  <figure><img src="me-54-toast.png" alt="Success toast naming the count and the marketing email"/><figcaption><b>7.3.9</b> &mdash; the toast, bottom left. It clears quickly, so read it as it appears.</figcaption></figure>
 </li>
 
-<li id="m7-3-7" data-code="7.3.7"><b>Check the People tab.</b> Go back to the ME &mdash; the <b>People</b> tab badge should carry the new total. If it does not match what the toast said, something was dropped; re-run the add rather than assuming it landed.</li>
+<li id="m7-3-10" data-code="7.3.10"><b>Check the People tab.</b> Go back to the ME &mdash; the <b>People</b> tab badge should carry the new total. If it does not match what the toast said, something was dropped; re-run the add rather than assuming it landed.</li>
 </ol>
 
 <h3 id="me-people-remove" class="anchor">7.3b &middot; Remove contacts from the ME</h3>

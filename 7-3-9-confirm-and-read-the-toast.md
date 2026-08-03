@@ -1,4 +1,4 @@
-# 7.3.6 · Confirm & read the toast
+# 7.3.9 · Confirm & read the toast
 
 > 7 · Manage a Marketing Email → 7.3 · Add people to the ME
 
@@ -6,4 +6,4 @@
 
 ![Success toast naming the count and the marketing email](me-54-toast.png)
 
-*7.3.6 — the toast, bottom left. It clears quickly, so read it as it appears.*
+*7.3.9 — the toast, bottom left. It clears quickly, so read it as it appears.*
