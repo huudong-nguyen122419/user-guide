@@ -30,12 +30,23 @@ A selection bar appears with the count, **Select all N matching** for the whole 
 
 ## A3.0.4 · The drawer is two panes, and both matter
 
-It opens titled **Add N contacts to marketing email**. **Read the legend above the table** — *“☑ Tick to add · ◉ Email to send”*. Two different controls: the checkbox decides **whether** the contact goes in, the radio beside each address decides **which address** gets used. A contact with a second address shows it under **Additional Emails**, and you can switch the send-to address right here.
+It opens titled **Add N contacts to marketing email**. **Read the legend above the table** — *“☑ Tick to add · ◉ Email to send”*. Two different controls: the checkbox decides **whether** the contact goes in, the radio beside each address decides **which address** gets used. **What each bucket actually means — and when to tick it:** **When a contact has more than one address, the system has already chosen one.** It picks by priority — a **valid** address first, then one belonging to a **sponsor company**, and so on down. The chosen address carries the filled radio; any others sit under **Additional Emails**. **You can overrule it right here.** Click the radio next to a different address and that is where the email goes. Worth a look whenever someone has a work address and a personal one — the automatic pick is a sensible default, not a decision about which inbox this particular message belongs in.
 
 | Pane | What it does |
 |---|---|
 | **Left — Select marketing email** | every ME you can reach, searchable and sortable. Each row shows **name · owner · status chip · N recipients**, so you can tell a Draft from something already sending before you pick it. |
-| **Right — the contacts** | split into three buckets: **Valid** · **Missing + Invalid** · **Platform Signup**, each with its own count. |
+| **Right — the contacts** | split into three buckets: **Valid** · **Missing + Invalid** · **Platform Signup**, each with its own count. **They are not a quality ranking** — which ones you tick depends on what the email is for. See below. |
+
+| Bucket | What is in it | Tick it? |
+|---|---|---|
+| **Valid** | The safe ground. The address is confirmed working, so a send has a high chance of landing rather than being dropped. | **Yes** — pre-ticked for you. |
+| **Missing + Invalid** | **Needs a human look.** The contact has an address, but nothing has ever been sent to it, so its reliability is unknown — unverified rather than proven bad. | **Your call.** Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation. |
+| **Platform Signup** | People who **already have a Fintalent account** — talent or client. Nothing to do with whether the address works. | **Depends entirely on the campaign.** See the rule below. |
+
+| The email is aimed at… | Platform Signup | Why |
+|---|---|---|
+| **Talents** | **Tick all of them** | These are your talents. Leaving them out means mailing everyone except the audience. |
+| **Prospective clients** | **Judgement call** | Having an account already suggests they may be a client. Whether that makes them a target or means you should leave them alone depends on the campaign — decide deliberately, do not let the default decide for you. |
 
 ![The add-to-marketing-email drawer](me-53-drawer.png)
 
@@ -56,16 +67,3 @@ It names both the number and the email: **“Added to marketing email — 2 cont
 ## A3.0.7 · Check the People tab
 
 Go back to the ME — the **People** tab badge should carry the new total. If it does not match what the toast said, something was dropped; re-run the add rather than assuming it landed.
-
-## A3.0.8 · Taking someone back out
-
-Same tab: tick them, then **Remove contacts** in the selection bar. You get told twice, in two different places, and they do not say the same thing: **Undo really does restore them** — verified on UAT: removed one of two, People went 2 → 1, clicked **Undo**, People went back to **2** with the contact returned. The banner stays until you dismiss it, so you have a moment to change your mind rather than a two-second toast. 🐛 After Undo the table lies until you reloadThe **People** badge corrects itself, but the list underneath keeps the post-removal total — it read **People 2** and *Showing 1 of 1* at the same time. Refresh before you trust the table, and count off the badge, not the footer.
-
-| Where | What it says |
-|---|---|
-| **Banner**, above the table | *Removed 1 contact* — with an **Undo** beside it. |
-| **Toast**, bottom left | *Removed 1 contact from M&A Executive Briefing - Berlin, October 2026* — the only one that names the email. |
-
-![Remove banner with Undo, and the toast naming the email](me-55-remove-undo.png)
-
-*A3.0.8 — ① the banner and its Undo · ② the toast, the only place the email is named.*

@@ -408,6 +408,7 @@
     <a href="#ea-2-4" class="st2" data-page="page-a2">A2.x.4 · Supplement info (edit)</a>
     <a class="flow adm" data-page="page-a3"><span class="n">A3</span> Run a ME / campaign</a>
 <a href="#a3-people" class="st" data-page="page-a3">A3.0 &middot; Add contacts</a>
+<a href="#a3-people-remove" class="st" data-page="page-a3">A3.0b &middot; Remove contacts</a>
     <a href="#a3-me" class="st" data-page="page-a3">A3.1 · Run a Marketing Email</a>
     <a href="#a3-camp" class="st" data-page="page-a3">A3.2 · Run a campaign (Enabled)</a>
     <a class="flow adm" data-page="page-a4"><span class="n">A4</span> Manage a campaign (Admin)</a>
@@ -707,7 +708,7 @@
 <a href="#m7-3-5" class="st2" data-page="page-marketing">7.3.5 &middot; Read the button first</a>
 <a href="#m7-3-6" class="st2" data-page="page-marketing">7.3.6 &middot; Confirm &amp; read the toast</a>
 <a href="#m7-3-7" class="st2" data-page="page-marketing">7.3.7 &middot; Check the People tab</a>
-<a href="#m7-3-8" class="st2" data-page="page-marketing">7.3.8 &middot; Remove &amp; Undo</a>
+<a href="#me-people-remove" class="st" data-page="page-marketing">7.3b &middot; Remove contacts</a>
     <a href="#me-preview" class="st" data-page="page-marketing">7.4 · Preview &amp; mark reviewed</a>
     <a href="#m7-4-1" class="st2" data-page="page-marketing">7.4.1 · Pick a contact</a>
     <a href="#m7-4-2" class="st2" data-page="page-marketing">7.4.2 · Contact header</a>
@@ -859,9 +860,30 @@
   <thead><tr><th>Pane</th><th>What it does</th></tr></thead>
   <tbody>
   <tr><td><b>Left &mdash; Select marketing email</b></td><td>every ME you can reach, searchable and sortable. Each row shows <b>name &middot; owner &middot; status chip &middot; N recipients</b>, so you can tell a Draft from something already sending before you pick it.</td></tr>
-  <tr><td><b>Right &mdash; the contacts</b></td><td>split into three buckets: <b>Valid</b> &middot; <b>Missing + Invalid</b> &middot; <b>Platform Signup</b>, each with its own count.</td></tr>
+  <tr><td><b>Right &mdash; the contacts</b></td><td>split into three buckets: <b>Valid</b> &middot; <b>Missing + Invalid</b> &middot; <b>Platform Signup</b>, each with its own count. <b>They are not a quality ranking</b> &mdash; which ones you tick depends on what the email is for. See below.</td></tr>
   </tbody></table></div>
-  <p><b>Read the legend above the table</b> &mdash; <i>&ldquo;&#9745; Tick to add &middot; &#9673; Email to send&rdquo;</i>. Two different controls: the checkbox decides <b>whether</b> the contact goes in, the radio beside each address decides <b>which address</b> gets used. A contact with a second address shows it under <b>Additional Emails</b>, and you can switch the send-to address right here.</p>
+  <p><b>Read the legend above the table</b> &mdash; <i>&ldquo;&#9745; Tick to add &middot; &#9673; Email to send&rdquo;</i>. Two different controls: the checkbox decides <b>whether</b> the contact goes in, the radio beside each address decides <b>which address</b> gets used.</p>
+
+  <p><b>What each bucket actually means &mdash; and when to tick it:</b></p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Bucket</th><th>What is in it</th><th>Tick it?</th></tr></thead>
+  <tbody>
+  <tr><td><b>Valid</b></td><td>The safe ground. The address is confirmed working, so a send has a high chance of landing rather than being dropped.</td><td><b>Yes</b> &mdash; pre-ticked for you.</td></tr>
+  <tr><td><b>Missing + Invalid</b></td><td><b>Needs a human look.</b> The contact has an address, but nothing has ever been sent to it, so its reliability is unknown &mdash; unverified rather than proven bad.</td><td><b>Your call.</b> Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation.</td></tr>
+  <tr><td><b>Platform Signup</b></td><td>People who <b>already have a Fintalent account</b> &mdash; talent or client. Nothing to do with whether the address works.</td><td><b>Depends entirely on the campaign.</b> See the rule below.</td></tr>
+  </tbody></table></div>
+
+  <div class="call note"><span class="t">Platform Signup is a business decision, not a data-quality one</span>Ask what the email is <i>for</i>:
+  <div class="tblwrap"><table>
+  <thead><tr><th>The email is aimed at&hellip;</th><th>Platform Signup</th><th>Why</th></tr></thead>
+  <tbody>
+  <tr><td><b>Talents</b></td><td><b>Tick all of them</b></td><td>These are your talents. Leaving them out means mailing everyone except the audience.</td></tr>
+  <tr><td><b>Prospective clients</b></td><td><b>Judgement call</b></td><td>Having an account already suggests they may be a client. Whether that makes them a target or means you should leave them alone depends on the campaign &mdash; decide deliberately, do not let the default decide for you.</td></tr>
+  </tbody></table></div>
+  </div>
+
+  <p><b>When a contact has more than one address, the system has already chosen one.</b> It picks by priority &mdash; a <b>valid</b> address first, then one belonging to a <b>sponsor company</b>, and so on down. The chosen address carries the filled radio; any others sit under <b>Additional Emails</b>.</p>
+  <p><b>You can overrule it right here.</b> Click the radio next to a different address and that is where the email goes. Worth a look whenever someone has a work address and a personal one &mdash; the automatic pick is a sensible default, not a decision about which inbox this particular message belongs in.</p>
   <figure><img src="me-53-drawer.png" alt="The add-to-marketing-email drawer"/><figcaption><b>A3.0.4</b> &mdash; <b>&#9312;</b> pick the ME (status and recipient count on every row) &middot; <b>&#9313;</b> the three buckets &middot; <b>&#9314;</b> tick-to-add vs email-to-send &middot; <b>&#9315;</b> the confirm button and the line above it.</figcaption></figure>
 </li>
 
@@ -875,17 +897,31 @@
 </li>
 
 <li data-code="A3.0.7"><b>Check the People tab.</b> Go back to the ME &mdash; the <b>People</b> tab badge should carry the new total. If it does not match what the toast said, something was dropped; re-run the add rather than assuming it landed.</li>
-<li data-code="A3.0.8"><b>Taking someone back out.</b> Same tab: tick them, then <b>Remove contacts</b> in the selection bar. You get told twice, in two different places, and they do not say the same thing:
+</ol>
+
+<h3 id="a3-people-remove" class="anchor">A3.0b &middot; Remove contacts from the marketing email</h3>
+<div class="call note"><span class="t">The other half of the list</span>Adding is <a href="#a3-people" style="font-weight:700;cursor:pointer">A3.0 &#8599;</a>; this is how people come back out. Same tab, same selection bar &mdash; but the confirmation behaves differently enough to be worth its own read.</div>
+<ol class="steps adm">
+<li data-code="A3.0b.1"><b>Open the ME &rarr; People tab and tick whoever should not receive it.</b> The selection bar is the same one you used to add: the count, <b>Select all N matching</b>, <b>Clear</b>. The action you want is <b>Remove contacts</b>.
+  <p class="fn">Removing takes them off <i>this</i> marketing email only. The contact record itself is untouched &mdash; this is not <b>Delete contacts</b>, which lives on the Contacts page and is a different thing entirely.</p>
+</li>
+
+<li data-code="A3.0b.2"><b>You get told twice, in two places, and they do not say the same thing.</b>
   <div class="tblwrap"><table>
   <thead><tr><th>Where</th><th>What it says</th></tr></thead>
   <tbody>
-  <tr><td><b>Banner</b>, above the table</td><td><i>Removed 1 contact</i> &mdash; with an <b>Undo</b> beside it.</td></tr>
-  <tr><td><b>Toast</b>, bottom left</td><td><i>Removed 1 contact from M&amp;A Executive Briefing - Berlin, October 2026</i> &mdash; the only one that names the email.</td></tr>
+  <tr><td><b>Banner</b>, above the table</td><td><i>Removed 1 contact</i> &mdash; with an <b>Undo</b> beside it. Stays until you dismiss it.</td></tr>
+  <tr><td><b>Toast</b>, bottom left</td><td><i>Removed 1 contact from M&amp;A Executive Briefing - Berlin, October 2026</i> &mdash; <b>the only one that names the email</b>. Clears on its own.</td></tr>
   </tbody></table></div>
-  <p><b>Undo really does restore them</b> &mdash; verified on UAT: removed one of two, People went 2 &rarr; 1, clicked <b>Undo</b>, People went back to <b>2</b> with the contact returned. The banner stays until you dismiss it, so you have a moment to change your mind rather than a two-second toast.</p>
-  <div class="call warn"><span class="t">&#128027; After Undo the table lies until you reload</span>The <b>People</b> badge corrects itself, but the list underneath keeps the post-removal total &mdash; it read <b>People 2</b> and <i>Showing 1 of 1</i> at the same time. Refresh before you trust the table, and count off the badge, not the footer.</div>
-  <figure><img src="me-55-remove-undo.png" alt="Remove banner with Undo, and the toast naming the email"/><figcaption><b>A3.0.8</b> &mdash; <b>&#9312;</b> the banner and its <b>Undo</b> &middot; <b>&#9313;</b> the toast, the only place the email is named.</figcaption></figure>
+  <p>If you work several MEs at once, the toast is the one that tells you which list you just cut into.</p>
+  <figure><img src="me-55-remove-undo.png" alt="Remove banner with Undo, and the toast naming the email"/><figcaption><b>A3.0b.2</b> &mdash; <b>&#9312;</b> the banner and its <b>Undo</b> &middot; <b>&#9313;</b> the toast, the only place the email is named.</figcaption></figure>
 </li>
+
+<li data-code="A3.0b.3"><b>Undo really does put them back.</b> Verified on UAT: two recipients, removed one, <b>People</b> went 2 &rarr; 1; clicked <b>Undo</b> and it went back to <b>2</b> with the contact returned. Because the banner waits for you rather than fading, a wrong bulk remove is recoverable &mdash; as long as you notice before you navigate away.
+  <div class="call warn"><span class="t">&#128027; After Undo the table lies until you reload</span>The <b>People</b> badge corrects itself, but the list underneath keeps the post-removal total &mdash; it read <b>People 2</b> and <i>Showing 1 of 1</i> at the same time. <b>Refresh before you trust the table</b>, and count off the badge, not the footer.</div>
+</li>
+
+<li data-code="A3.0b.4"><b>Once you leave the page, Undo is gone.</b> There is no removal history and no bin to fish them out of &mdash; the only way back is to add them again from scratch (<a href="#a3-people" style="font-weight:700;cursor:pointer">A3.0 &#8599;</a>). On a <b>Select all N matching</b> removal that is a real cost, so read the count in the bar before you confirm, not after.</li>
 </ol>
 
 <h3 id="a3-me" class="anchor">A3.1 &middot; Run a Marketing Email (activate + Force Send)</h3>
@@ -4611,9 +4647,30 @@ Side Step: Not Now - Out Of Office
   <thead><tr><th>Pane</th><th>What it does</th></tr></thead>
   <tbody>
   <tr><td><b>Left &mdash; Select marketing email</b></td><td>every ME you can reach, searchable and sortable. Each row shows <b>name &middot; owner &middot; status chip &middot; N recipients</b>, so you can tell a Draft from something already sending before you pick it.</td></tr>
-  <tr><td><b>Right &mdash; the contacts</b></td><td>split into three buckets: <b>Valid</b> &middot; <b>Missing + Invalid</b> &middot; <b>Platform Signup</b>, each with its own count.</td></tr>
+  <tr><td><b>Right &mdash; the contacts</b></td><td>split into three buckets: <b>Valid</b> &middot; <b>Missing + Invalid</b> &middot; <b>Platform Signup</b>, each with its own count. <b>They are not a quality ranking</b> &mdash; which ones you tick depends on what the email is for. See below.</td></tr>
   </tbody></table></div>
-  <p><b>Read the legend above the table</b> &mdash; <i>&ldquo;&#9745; Tick to add &middot; &#9673; Email to send&rdquo;</i>. Two different controls: the checkbox decides <b>whether</b> the contact goes in, the radio beside each address decides <b>which address</b> gets used. A contact with a second address shows it under <b>Additional Emails</b>, and you can switch the send-to address right here.</p>
+  <p><b>Read the legend above the table</b> &mdash; <i>&ldquo;&#9745; Tick to add &middot; &#9673; Email to send&rdquo;</i>. Two different controls: the checkbox decides <b>whether</b> the contact goes in, the radio beside each address decides <b>which address</b> gets used.</p>
+
+  <p><b>What each bucket actually means &mdash; and when to tick it:</b></p>
+  <div class="tblwrap"><table>
+  <thead><tr><th>Bucket</th><th>What is in it</th><th>Tick it?</th></tr></thead>
+  <tbody>
+  <tr><td><b>Valid</b></td><td>The safe ground. The address is confirmed working, so a send has a high chance of landing rather than being dropped.</td><td><b>Yes</b> &mdash; pre-ticked for you.</td></tr>
+  <tr><td><b>Missing + Invalid</b></td><td><b>Needs a human look.</b> The contact has an address, but nothing has ever been sent to it, so its reliability is unknown &mdash; unverified rather than proven bad.</td><td><b>Your call.</b> Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation.</td></tr>
+  <tr><td><b>Platform Signup</b></td><td>People who <b>already have a Fintalent account</b> &mdash; talent or client. Nothing to do with whether the address works.</td><td><b>Depends entirely on the campaign.</b> See the rule below.</td></tr>
+  </tbody></table></div>
+
+  <div class="call note"><span class="t">Platform Signup is a business decision, not a data-quality one</span>Ask what the email is <i>for</i>:
+  <div class="tblwrap"><table>
+  <thead><tr><th>The email is aimed at&hellip;</th><th>Platform Signup</th><th>Why</th></tr></thead>
+  <tbody>
+  <tr><td><b>Talents</b></td><td><b>Tick all of them</b></td><td>These are your talents. Leaving them out means mailing everyone except the audience.</td></tr>
+  <tr><td><b>Prospective clients</b></td><td><b>Judgement call</b></td><td>Having an account already suggests they may be a client. Whether that makes them a target or means you should leave them alone depends on the campaign &mdash; decide deliberately, do not let the default decide for you.</td></tr>
+  </tbody></table></div>
+  </div>
+
+  <p><b>When a contact has more than one address, the system has already chosen one.</b> It picks by priority &mdash; a <b>valid</b> address first, then one belonging to a <b>sponsor company</b>, and so on down. The chosen address carries the filled radio; any others sit under <b>Additional Emails</b>.</p>
+  <p><b>You can overrule it right here.</b> Click the radio next to a different address and that is where the email goes. Worth a look whenever someone has a work address and a personal one &mdash; the automatic pick is a sensible default, not a decision about which inbox this particular message belongs in.</p>
   <figure><img src="me-53-drawer.png" alt="The add-to-marketing-email drawer"/><figcaption><b>7.3.4</b> &mdash; <b>&#9312;</b> pick the ME (status and recipient count on every row) &middot; <b>&#9313;</b> the three buckets &middot; <b>&#9314;</b> tick-to-add vs email-to-send &middot; <b>&#9315;</b> the confirm button and the line above it.</figcaption></figure>
 </li>
 
@@ -4627,17 +4684,31 @@ Side Step: Not Now - Out Of Office
 </li>
 
 <li id="m7-3-7" data-code="7.3.7"><b>Check the People tab.</b> Go back to the ME &mdash; the <b>People</b> tab badge should carry the new total. If it does not match what the toast said, something was dropped; re-run the add rather than assuming it landed.</li>
-<li id="m7-3-8" data-code="7.3.8"><b>Taking someone back out.</b> Same tab: tick them, then <b>Remove contacts</b> in the selection bar. You get told twice, in two different places, and they do not say the same thing:
+</ol>
+
+<h3 id="me-people-remove" class="anchor">7.3b &middot; Remove contacts from the ME</h3>
+<div class="call note"><span class="t">The other half of the list</span>Adding is <a href="#me-people" style="font-weight:700;cursor:pointer">7.3 &#8599;</a>; this is how people come back out. Same tab, same selection bar &mdash; but the confirmation behaves differently enough to be worth its own read.</div>
+<ol class="steps">
+<li data-code="7.3b.1"><b>Open the ME &rarr; People tab and tick whoever should not receive it.</b> The selection bar is the same one you used to add: the count, <b>Select all N matching</b>, <b>Clear</b>. The action you want is <b>Remove contacts</b>.
+  <p class="fn">Removing takes them off <i>this</i> marketing email only. The contact record itself is untouched &mdash; this is not <b>Delete contacts</b>, which lives on the Contacts page and is a different thing entirely.</p>
+</li>
+
+<li data-code="7.3b.2"><b>You get told twice, in two places, and they do not say the same thing.</b>
   <div class="tblwrap"><table>
   <thead><tr><th>Where</th><th>What it says</th></tr></thead>
   <tbody>
-  <tr><td><b>Banner</b>, above the table</td><td><i>Removed 1 contact</i> &mdash; with an <b>Undo</b> beside it.</td></tr>
-  <tr><td><b>Toast</b>, bottom left</td><td><i>Removed 1 contact from M&amp;A Executive Briefing - Berlin, October 2026</i> &mdash; the only one that names the email.</td></tr>
+  <tr><td><b>Banner</b>, above the table</td><td><i>Removed 1 contact</i> &mdash; with an <b>Undo</b> beside it. Stays until you dismiss it.</td></tr>
+  <tr><td><b>Toast</b>, bottom left</td><td><i>Removed 1 contact from M&amp;A Executive Briefing - Berlin, October 2026</i> &mdash; <b>the only one that names the email</b>. Clears on its own.</td></tr>
   </tbody></table></div>
-  <p><b>Undo really does restore them</b> &mdash; verified on UAT: removed one of two, People went 2 &rarr; 1, clicked <b>Undo</b>, People went back to <b>2</b> with the contact returned. The banner stays until you dismiss it, so you have a moment to change your mind rather than a two-second toast.</p>
-  <div class="call warn"><span class="t">&#128027; After Undo the table lies until you reload</span>The <b>People</b> badge corrects itself, but the list underneath keeps the post-removal total &mdash; it read <b>People 2</b> and <i>Showing 1 of 1</i> at the same time. Refresh before you trust the table, and count off the badge, not the footer.</div>
-  <figure><img src="me-55-remove-undo.png" alt="Remove banner with Undo, and the toast naming the email"/><figcaption><b>7.3.8</b> &mdash; <b>&#9312;</b> the banner and its <b>Undo</b> &middot; <b>&#9313;</b> the toast, the only place the email is named.</figcaption></figure>
+  <p>If you work several MEs at once, the toast is the one that tells you which list you just cut into.</p>
+  <figure><img src="me-55-remove-undo.png" alt="Remove banner with Undo, and the toast naming the email"/><figcaption><b>7.3b.2</b> &mdash; <b>&#9312;</b> the banner and its <b>Undo</b> &middot; <b>&#9313;</b> the toast, the only place the email is named.</figcaption></figure>
 </li>
+
+<li data-code="7.3b.3"><b>Undo really does put them back.</b> Verified on UAT: two recipients, removed one, <b>People</b> went 2 &rarr; 1; clicked <b>Undo</b> and it went back to <b>2</b> with the contact returned. Because the banner waits for you rather than fading, a wrong bulk remove is recoverable &mdash; as long as you notice before you navigate away.
+  <div class="call warn"><span class="t">&#128027; After Undo the table lies until you reload</span>The <b>People</b> badge corrects itself, but the list underneath keeps the post-removal total &mdash; it read <b>People 2</b> and <i>Showing 1 of 1</i> at the same time. <b>Refresh before you trust the table</b>, and count off the badge, not the footer.</div>
+</li>
+
+<li data-code="7.3b.4"><b>Once you leave the page, Undo is gone.</b> There is no removal history and no bin to fish them out of &mdash; the only way back is to add them again from scratch (<a href="#me-people" style="font-weight:700;cursor:pointer">7.3 &#8599;</a>). On a <b>Select all N matching</b> removal that is a real cost, so read the count in the bar before you confirm, not after.</li>
 </ol>
 
 <h3 id="me-preview" class="anchor">7.4 &middot; Preview, personalize &amp; mark as reviewed</h3>

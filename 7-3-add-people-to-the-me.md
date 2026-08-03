@@ -15,4 +15,3 @@ Most of the time you will not need this at allAn ME assigned to you usually arri
 * [7.3.5 · Read the button first](7-3-5-read-the-button-first.md)
 * [7.3.6 · Confirm & read the toast](7-3-6-confirm-and-read-the-toast.md)
 * [7.3.7 · Check the People tab](7-3-7-check-the-people-tab.md)
-* [7.3.8 · Remove & Undo](7-3-8-remove-and-undo.md)

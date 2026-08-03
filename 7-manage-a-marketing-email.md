@@ -14,6 +14,7 @@ Yours vs your Admin'sYou do everything **except turning the ME on and sending it
 * [7b · Create / edit a template](7b-create-edit-a-template.md)
 * [7.2 · View your MEs](7-2-view-your-mes.md)
 * [7.3 · Add people to the ME](7-3-add-people-to-the-me.md)
+* [7.3b · Remove contacts](7-3b-remove-contacts.md)
 * [7.4 · Preview & mark reviewed](7-4-preview-and-mark-reviewed.md)
 * [7.5 · Force send](7-5-force-send.md)
 * [7.6 · Email Queue (3 tabs)](7-6-email-queue-3-tabs.md)
