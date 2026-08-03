@@ -19,5 +19,5 @@ The **People / Preview** cases first (7.x.1–5), then the **template-editor** o
 * [7.x.11 · Force Update](7-x-11-force-update.md)
 * [7.x.12 · Upload · Signature](7-x-12-upload-signature.md)
 * [7.x.13 · Assigned (skip add)](7-x-13-assigned-skip-add.md)
-* [7.x.14 · Personalizing drops the attachment](7-x-14-personalize-drops-attachment.md)
-* [7.x.15 · The row-actions button can be unreachable](7-x-15-email-queue-row-actions.md)
+* [7.x.14 · Personalize drops attachment](7-x-14-personalize-drops-attachment.md)
+* [7.x.15 · Row-actions button unreachable](7-x-15-row-actions-button-unreachable.md)

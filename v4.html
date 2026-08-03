@@ -407,6 +407,7 @@
     <a href="#ea-2-3" class="st2" data-page="page-a2">A2.x.3 · Neither field</a>
     <a href="#ea-2-4" class="st2" data-page="page-a2">A2.x.4 · Supplement info (edit)</a>
     <a class="flow adm" data-page="page-a3"><span class="n">A3</span> Run a ME / campaign</a>
+<a href="#a3-people" class="st" data-page="page-a3">A3.0 &middot; Add contacts</a>
     <a href="#a3-me" class="st" data-page="page-a3">A3.1 · Run a Marketing Email</a>
     <a href="#a3-camp" class="st" data-page="page-a3">A3.2 · Run a campaign (Enabled)</a>
     <a class="flow adm" data-page="page-a4"><span class="n">A4</span> Manage a campaign (Admin)</a>
@@ -699,11 +700,14 @@
     <a href="#me-metrics" class="st2" data-page="page-marketing">7.2a · Reading the numbers</a>
     <a href="#me-tabs" class="st2" data-page="page-marketing">7.2b · Inside a ME (tabs)</a>
     <a href="#me-people" class="st" data-page="page-marketing">7.3 · Add people to the ME</a>
-    <a href="#m7-3-1" class="st2" data-page="page-marketing">7.3.1 · Open your list</a>
-    <a href="#m7-3-2" class="st2" data-page="page-marketing">7.3.2 · Find the people</a>
-    <a href="#m7-3-3" class="st2" data-page="page-marketing">7.3.3 · Select → Add to ME</a>
-    <a href="#m7-3-4" class="st2" data-page="page-marketing">7.3.4 · Pick ME + email</a>
-    <a href="#m7-3-6" class="st2" data-page="page-marketing">7.3.5 · Add</a>
+<a href="#m7-3-1" class="st2" data-page="page-marketing">7.3.1 &middot; Start from the ME</a>
+<a href="#m7-3-2" class="st2" data-page="page-marketing">7.3.2 &middot; It sends you to Contacts</a>
+<a href="#m7-3-3" class="st2" data-page="page-marketing">7.3.3 &middot; Tick &rarr; Add to ME</a>
+<a href="#m7-3-4" class="st2" data-page="page-marketing">7.3.4 &middot; The drawer &mdash; two panes</a>
+<a href="#m7-3-5" class="st2" data-page="page-marketing">7.3.5 &middot; Read the button first</a>
+<a href="#m7-3-6" class="st2" data-page="page-marketing">7.3.6 &middot; Confirm &amp; read the toast</a>
+<a href="#m7-3-7" class="st2" data-page="page-marketing">7.3.7 &middot; Check the People tab</a>
+<a href="#m7-3-8" class="st2" data-page="page-marketing">7.3.8 &middot; Remove &amp; Undo</a>
     <a href="#me-preview" class="st" data-page="page-marketing">7.4 · Preview &amp; mark reviewed</a>
     <a href="#m7-4-1" class="st2" data-page="page-marketing">7.4.1 · Pick a contact</a>
     <a href="#m7-4-2" class="st2" data-page="page-marketing">7.4.2 · Contact header</a>
@@ -832,6 +836,57 @@
 <section class="page" id="page-a3">
 <h2><span class="who adm">ADMIN</span><span class="n adm">A3 ·</span> Run a Marketing Email / campaign <span class="fn">(Admin/Ops only &mdash; the SDR view has no Force Send / Enabled control)</span></h2>
 <div class="goal adm"><b>Goal:</b> the SDR prepares the ME / campaign (steps, people, review) &mdash; <b>you turn it on and send it</b>. This is the Admin half of the hand-off in SDR <a data-goto="page-marketing" href="#me-send" style="font-weight:700;cursor:pointer">Flow 7.5 &#8599;</a> and <a data-goto="page-campaign" href="#cmp-run" style="font-weight:700;cursor:pointer">Flow 6.6 &#8599;</a>.</div>
+
+<h3 id="a3-people" class="anchor">A3.0 &middot; Add contacts to the marketing email</h3>
+<div class="call note"><span class="t">Do this before anything in A3.1</span>A marketing email with no recipients cannot be run, and the People count is one of the two numbers the run check looks at (<a href="#a3-me" style="font-weight:700;cursor:pointer">A3.1.2 &#8599;</a>). Verified end to end on UAT, 3 August.</div>
+<ol class="steps adm">
+<li data-code="A3.0.1"><b>Start from the marketing email, not from Contacts.</b> Open the ME &rarr; <b>People</b> tab. An empty one says so plainly, and tells you the only way in:
+  <p class="fn"><i>&ldquo;No people yet &mdash; Contacts added to this marketing email via the Contacts V2 bulk flow will appear here.&rdquo;</i></p>
+  <figure><img src="me-50-people-empty.png" alt="Empty People tab with the Add contacts button"/><figcaption><b>A3.0.1</b> &mdash; <b>&#9312;</b> <b>+ Add contacts</b>, top right of the tab &middot; <b>&#9313;</b> the empty state naming the bulk flow.</figcaption></figure>
+</li>
+
+<li data-code="A3.0.2"><b>&#43; Add contacts does not open a picker &mdash; it takes you to Contacts.</b> You land on the full <b>Contacts</b> list with a filter already applied: a chip reading <b>Marketing Email : 1 excluded</b>. That chip is doing real work &mdash; it hides everyone already in this ME, so whatever you tick next is genuinely new.
+  <div class="call note"><span class="t">You have left the marketing email</span>This is a normal Contacts page now. The full filter bar is yours &mdash; Lifecycles, Has signal, Countries, Work Experience, keyword search. Narrow the list here rather than ticking your way down 15,000 rows.</div>
+  <figure><img src="me-51-prefiltered.png" alt="Contacts pre-filtered to exclude this ME"/><figcaption><b>A3.0.2</b> &mdash; <b>&#9312;</b> the <b>Marketing Email : 1 excluded</b> chip &middot; <b>&#9313;</b> the row count you are working against.</figcaption></figure>
+</li>
+
+<li data-code="A3.0.3"><b>Tick the contacts you want.</b> A selection bar appears with the count, <b>Select all N matching</b> for the whole filtered set, and <b>Clear</b>. Of the actions on the right, the one you want is <b>Add to marketing email</b> &mdash; the neighbours add to a list or a campaign instead, and <b>Delete contacts</b> sits two buttons away.
+  <figure><img src="me-52-bulkbar.png" alt="Selection bar with Add to marketing email"/><figcaption><b>A3.0.3</b> &mdash; <b>&#9312;</b> the count and <b>Select all N matching</b> &middot; <b>&#9313;</b> <b>Add to marketing email</b>.</figcaption></figure>
+</li>
+
+<li data-code="A3.0.4"><b>The drawer is two panes, and both matter.</b> It opens titled <b>Add N contacts to marketing email</b>.
+  <div class="tblwrap"><table>
+  <thead><tr><th>Pane</th><th>What it does</th></tr></thead>
+  <tbody>
+  <tr><td><b>Left &mdash; Select marketing email</b></td><td>every ME you can reach, searchable and sortable. Each row shows <b>name &middot; owner &middot; status chip &middot; N recipients</b>, so you can tell a Draft from something already sending before you pick it.</td></tr>
+  <tr><td><b>Right &mdash; the contacts</b></td><td>split into three buckets: <b>Valid</b> &middot; <b>Missing + Invalid</b> &middot; <b>Platform Signup</b>, each with its own count.</td></tr>
+  </tbody></table></div>
+  <p><b>Read the legend above the table</b> &mdash; <i>&ldquo;&#9745; Tick to add &middot; &#9673; Email to send&rdquo;</i>. Two different controls: the checkbox decides <b>whether</b> the contact goes in, the radio beside each address decides <b>which address</b> gets used. A contact with a second address shows it under <b>Additional Emails</b>, and you can switch the send-to address right here.</p>
+  <figure><img src="me-53-drawer.png" alt="The add-to-marketing-email drawer"/><figcaption><b>A3.0.4</b> &mdash; <b>&#9312;</b> pick the ME (status and recipient count on every row) &middot; <b>&#9313;</b> the three buckets &middot; <b>&#9314;</b> tick-to-add vs email-to-send &middot; <b>&#9315;</b> the confirm button and the line above it.</figcaption></figure>
+</li>
+
+<li data-code="A3.0.5"><b>&#9888; Read the button before you click it &mdash; it will not add everyone you ticked.</b> Confirm reads <b>Add 2 of 6 contacts</b>, and directly above it: <b>Not ticked by default: 4 Missing + Invalid</b>.
+  <p>Only the <b>Valid</b> bucket is pre-ticked. Contacts with a missing or unusable address are carried into the drawer but left <b>unticked on purpose</b>, so selecting six people and adding two is the expected outcome, not a fault. Measured on UAT: six selected &rarr; <code>Valid 2 &middot; Missing + Invalid 4 &middot; Platform Signup 0</code> &rarr; button <code>Add 2 of 6 contacts</code>.</p>
+  <p><b>If you want the excluded ones anyway</b>, open the <b>Missing + Invalid</b> tab and tick them yourself &mdash; but fix the address first, or they will bounce (<a href="#me-conv" style="font-weight:700;cursor:pointer">7.7a &#8599;</a>).</p>
+</li>
+
+<li data-code="A3.0.6"><b>Confirm, and read the toast.</b> It names both the number and the email: <b>&ldquo;Added to marketing email &mdash; 2 contacts added to M&amp;A Executive Briefing - Berlin, October 2026.&rdquo;</b> That is your receipt &mdash; the one moment the system tells you what actually went in.
+  <figure><img src="me-54-toast.png" alt="Success toast naming the count and the marketing email"/><figcaption><b>A3.0.6</b> &mdash; the toast, bottom left. It clears quickly, so read it as it appears.</figcaption></figure>
+</li>
+
+<li data-code="A3.0.7"><b>Check the People tab.</b> Go back to the ME &mdash; the <b>People</b> tab badge should carry the new total. If it does not match what the toast said, something was dropped; re-run the add rather than assuming it landed.</li>
+<li data-code="A3.0.8"><b>Taking someone back out.</b> Same tab: tick them, then <b>Remove contacts</b> in the selection bar. You get told twice, in two different places, and they do not say the same thing:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Where</th><th>What it says</th></tr></thead>
+  <tbody>
+  <tr><td><b>Banner</b>, above the table</td><td><i>Removed 1 contact</i> &mdash; with an <b>Undo</b> beside it.</td></tr>
+  <tr><td><b>Toast</b>, bottom left</td><td><i>Removed 1 contact from M&amp;A Executive Briefing - Berlin, October 2026</i> &mdash; the only one that names the email.</td></tr>
+  </tbody></table></div>
+  <p><b>Undo really does restore them</b> &mdash; verified on UAT: removed one of two, People went 2 &rarr; 1, clicked <b>Undo</b>, People went back to <b>2</b> with the contact returned. The banner stays until you dismiss it, so you have a moment to change your mind rather than a two-second toast.</p>
+  <div class="call warn"><span class="t">&#128027; After Undo the table lies until you reload</span>The <b>People</b> badge corrects itself, but the list underneath keeps the post-removal total &mdash; it read <b>People 2</b> and <i>Showing 1 of 1</i> at the same time. Refresh before you trust the table, and count off the badge, not the footer.</div>
+  <figure><img src="me-55-remove-undo.png" alt="Remove banner with Undo, and the toast naming the email"/><figcaption><b>A3.0.8</b> &mdash; <b>&#9312;</b> the banner and its <b>Undo</b> &middot; <b>&#9313;</b> the toast, the only place the email is named.</figcaption></figure>
+</li>
+</ol>
 
 <h3 id="a3-me" class="anchor">A3.1 &middot; Run a Marketing Email (activate + Force Send)</h3>
 <div class="call note"><span class="t">This is the handover point</span>The SDR builds the ME and marks people reviewed (<a data-goto="page-marketing" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a>). <b>Only an Admin can make it send.</b> Both controls below are invisible to the SDR login, so if a rep says &ldquo;I finished it and nothing happened&rdquo;, this is the step nobody did.</div>
@@ -4534,106 +4589,55 @@ Side Step: Not Now - Out Of Office
 </ol>
 
 <h3 id="me-people" class="anchor">7.3 &middot; Add people to the ME</h3>
-<div class="call warn"><span class="t">Verified on UAT, 28 Jul 2026 &mdash; the screens work, the save does not</span>Every screen below is live for the SDR role and behaves exactly as described, right up to the final button. That button then fails: the API rejects the save with <b>403 &mdash; PermissionGuard</b> and <b>the interface shows no error at all</b>. The drawer simply closes and the People tab still reads <b>0</b>. Until this is fixed, <b>ask Admin/Ops to add the recipients</b>, and treat this section as the map of a flow you can walk but not finish. <b>Removing</b> people, by contrast, works &mdash; see <a href="#m7-3-7" style="font-weight:700;cursor:pointer">7.3.6 &#8599;</a>.</div>
-<p>There are <b>two ways in</b>, and they meet at the same drawer. Which one you use depends on where you are standing:</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Start from</th><th>Use it when</th></tr></thead>
-<tbody>
-<tr><td><b>The ME itself</b> &mdash; People tab &rarr; <b>+ Add contacts</b></td><td>You have the ME open and want to fill it. Fastest, and it pre-filters the contact list for you.</td></tr>
-<tr><td><b>A list</b> &mdash; Segments &rarr; select &rarr; <b>Add to marketing email</b></td><td>You are already working a list and spot people who belong in a ME.</td></tr>
-</tbody></table></div>
-
+<div class="call warn"><span class="t">&#128274; Not yours to do yet &mdash; ask an Admin</span>On the SDR login the save is refused: the add returns a <b>403 permission error</b>, so the contacts never attach. The steps and screenshots below are the <b>Admin</b> run of the same flow (<a data-goto="page-a3" href="#a3-people" style="font-weight:700;cursor:pointer">A3.0 &#8599;</a>) &mdash; identical screens, identical drawer. <b>Read them so you can say exactly what you need</b>, then hand the list to whoever has the rights. When the permission is opened up this becomes yours with nothing else to learn.</div>
+<div class="call note"><span class="t">Most of the time you will not need this at all</span>An ME assigned to you usually arrives with its people already added. Check the <b>People</b> count first &mdash; if it is already populated, skip straight to <a href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &#8599;</a>.</div>
 <ol class="steps">
-<li id="m7-3-1" data-code="7.3.1"><b>Route 1 &mdash; open the ME and go to the <i>People</i> tab.</b> A new ME opens on four tabs: <b>Inbox &middot; Templates &middot; People &middot; Timeline</b>. People is the recipient list, and while it is empty it says so plainly.
-  <p>The tab carries the <b>same filter bar as your lists</b> (Lifecycles, Has signal, In Conversation, Countries, Cities&hellip;) <b>plus two that exist only here</b>: <b>Content Reviewed</b> and <b>Personalize</b> &mdash; the two states you work through in <a href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &#8599;</a>.</p>
-  <figure><img src="me-30-people-tab-empty.png" alt="The People tab of a new ME"/><figcaption><b>7.3.1</b> &mdash; <b>&#9312;</b> the four tabs &middot; <b>&#9313;</b> <b>+ Add contacts</b> &middot; <b>&#9314;</b> the filter bar, with <b>Content Reviewed</b> and <b>Personalize</b> at the front &middot; <b>&#9315;</b> the empty state.</figcaption></figure>
+<li id="m7-3-1" data-code="7.3.1"><b>Start from the marketing email, not from Contacts.</b> Open the ME &rarr; <b>People</b> tab. An empty one says so plainly, and tells you the only way in:
+  <p class="fn"><i>&ldquo;No people yet &mdash; Contacts added to this marketing email via the Contacts V2 bulk flow will appear here.&rdquo;</i></p>
+  <figure><img src="me-50-people-empty.png" alt="Empty People tab with the Add contacts button"/><figcaption><b>7.3.1</b> &mdash; <b>&#9312;</b> <b>+ Add contacts</b>, top right of the tab &middot; <b>&#9313;</b> the empty state naming the bulk flow.</figcaption></figure>
 </li>
 
-<li id="m7-3-2" data-code="7.3.2"><b>Click <i>+ Add contacts</i> &mdash; and notice where it takes you.</b> It does not open a picker. It <b>navigates to the Contacts page</b> with a filter already applied: <b>Marketing Email : 1 excluded</b>.
-  <p>That chip means &ldquo;<b>hide everyone already in this ME</b>&rdquo;, so whatever you select next is guaranteed to be new. Leave it alone. If you clear it you will be looking at people who are already recipients.</p>
-  <div class="call note"><span class="t">Yes, the SDR has a Contacts page now</span>It is not in the left menu &mdash; you reach it through this button, and through the equivalent buttons on lists. Everything on it obeys the same rules as your lists.</div>
-  <figure><img src="me-31-contacts-prefiltered.png" alt="Contacts page opened with the ME filter applied"/><figcaption><b>7.3.2</b> &mdash; <b>&#9312;</b> the pre-applied <b>Marketing Email : 1 excluded</b> chip &middot; <b>&#9313;</b> the selection counter and <b>Select all N matching</b> &middot; <b>&#9314;</b> the bulk actions &middot; <b>&#9315;</b> <b>More</b>.</figcaption></figure>
+<li id="m7-3-2" data-code="7.3.2"><b>&#43; Add contacts does not open a picker &mdash; it takes you to Contacts.</b> You land on the full <b>Contacts</b> list with a filter already applied: a chip reading <b>Marketing Email : 1 excluded</b>. That chip is doing real work &mdash; it hides everyone already in this ME, so whatever you tick next is genuinely new.
+  <div class="call note"><span class="t">You have left the marketing email</span>This is a normal Contacts page now. The full filter bar is yours &mdash; Lifecycles, Has signal, Countries, Work Experience, keyword search. Narrow the list here rather than ticking your way down 15,000 rows.</div>
+  <figure><img src="me-51-prefiltered.png" alt="Contacts pre-filtered to exclude this ME"/><figcaption><b>7.3.2</b> &mdash; <b>&#9312;</b> the <b>Marketing Email : 1 excluded</b> chip &middot; <b>&#9313;</b> the row count you are working against.</figcaption></figure>
 </li>
 
-<li id="m7-3-3" data-code="7.3.3"><b>Route 2 &mdash; start from a list instead.</b> <b>Segments (Lists)</b> &rarr; open the list &rarr; find the people you want with the usual tools (<a data-goto="page-find" style="font-weight:700;cursor:pointer">Flow 2 &#8599;</a>) &rarr; tick them.
-  <p>The action bar here is <b>not identical</b> to the one on Contacts, and the difference matters:</p>
+<li id="m7-3-3" data-code="7.3.3"><b>Tick the contacts you want.</b> A selection bar appears with the count, <b>Select all N matching</b> for the whole filtered set, and <b>Clear</b>. Of the actions on the right, the one you want is <b>Add to marketing email</b> &mdash; the neighbours add to a list or a campaign instead, and <b>Delete contacts</b> sits two buttons away.
+  <figure><img src="me-52-bulkbar.png" alt="Selection bar with Add to marketing email"/><figcaption><b>7.3.3</b> &mdash; <b>&#9312;</b> the count and <b>Select all N matching</b> &middot; <b>&#9313;</b> <b>Add to marketing email</b>.</figcaption></figure>
+</li>
+
+<li id="m7-3-4" data-code="7.3.4"><b>The drawer is two panes, and both matter.</b> It opens titled <b>Add N contacts to marketing email</b>.
   <div class="tblwrap"><table>
-  <thead><tr><th>On a list</th><th>On Contacts</th></tr></thead>
+  <thead><tr><th>Pane</th><th>What it does</th></tr></thead>
   <tbody>
-  <tr><td><b>Remove from list</b></td><td><b>Add to list</b></td></tr>
-  <tr><td colspan="2" style="text-align:center">Add to campaign &middot; <b>Add to marketing email</b> &middot; More</td></tr>
+  <tr><td><b>Left &mdash; Select marketing email</b></td><td>every ME you can reach, searchable and sortable. Each row shows <b>name &middot; owner &middot; status chip &middot; N recipients</b>, so you can tell a Draft from something already sending before you pick it.</td></tr>
+  <tr><td><b>Right &mdash; the contacts</b></td><td>split into three buckets: <b>Valid</b> &middot; <b>Missing + Invalid</b> &middot; <b>Platform Signup</b>, each with its own count.</td></tr>
   </tbody></table></div>
-  <p class="fn">Same button, same drawer, from either side.</p>
+  <p><b>Read the legend above the table</b> &mdash; <i>&ldquo;&#9745; Tick to add &middot; &#9673; Email to send&rdquo;</i>. Two different controls: the checkbox decides <b>whether</b> the contact goes in, the radio beside each address decides <b>which address</b> gets used. A contact with a second address shows it under <b>Additional Emails</b>, and you can switch the send-to address right here.</p>
+  <figure><img src="me-53-drawer.png" alt="The add-to-marketing-email drawer"/><figcaption><b>7.3.4</b> &mdash; <b>&#9312;</b> pick the ME (status and recipient count on every row) &middot; <b>&#9313;</b> the three buckets &middot; <b>&#9314;</b> tick-to-add vs email-to-send &middot; <b>&#9315;</b> the confirm button and the line above it.</figcaption></figure>
 </li>
 
-<li id="m7-3-4" data-code="7.3.4"><b>The drawer: pick the ME on the left, pick the addresses on the right.</b> It is titled <b>&ldquo;Add N contacts to marketing email&rdquo;</b> and has two halves.
-  <p><b>Left &mdash; Select marketing email.</b> Every ME you can write to, each showing its owner, its <b>status badge</b> (Draft / Active) and its <b>recipient count</b>. Come from route 1 and yours is already selected. There is a search box and a sort toggle, because this list grows.</p>
-  <p><b>Right &mdash; the contacts you ticked, split by address quality.</b> This is the part people misread:</p>
+<li id="m7-3-5" data-code="7.3.5"><b>&#9888; Read the button before you click it &mdash; it will not add everyone you ticked.</b> Confirm reads <b>Add 2 of 6 contacts</b>, and directly above it: <b>Not ticked by default: 4 Missing + Invalid</b>.
+  <p>Only the <b>Valid</b> bucket is pre-ticked. Contacts with a missing or unusable address are carried into the drawer but left <b>unticked on purpose</b>, so selecting six people and adding two is the expected outcome, not a fault. Measured on UAT: six selected &rarr; <code>Valid 2 &middot; Missing + Invalid 4 &middot; Platform Signup 0</code> &rarr; button <code>Add 2 of 6 contacts</code>.</p>
+  <p><b>If you want the excluded ones anyway</b>, open the <b>Missing + Invalid</b> tab and tick them yourself &mdash; but fix the address first, or they will bounce (<a href="#me-conv" style="font-weight:700;cursor:pointer">7.7a &#8599;</a>).</p>
+</li>
+
+<li id="m7-3-6" data-code="7.3.6"><b>Confirm, and read the toast.</b> It names both the number and the email: <b>&ldquo;Added to marketing email &mdash; 2 contacts added to M&amp;A Executive Briefing - Berlin, October 2026.&rdquo;</b> That is your receipt &mdash; the one moment the system tells you what actually went in.
+  <figure><img src="me-54-toast.png" alt="Success toast naming the count and the marketing email"/><figcaption><b>7.3.6</b> &mdash; the toast, bottom left. It clears quickly, so read it as it appears.</figcaption></figure>
+</li>
+
+<li id="m7-3-7" data-code="7.3.7"><b>Check the People tab.</b> Go back to the ME &mdash; the <b>People</b> tab badge should carry the new total. If it does not match what the toast said, something was dropped; re-run the add rather than assuming it landed.</li>
+<li id="m7-3-8" data-code="7.3.8"><b>Taking someone back out.</b> Same tab: tick them, then <b>Remove contacts</b> in the selection bar. You get told twice, in two different places, and they do not say the same thing:
   <div class="tblwrap"><table>
-  <thead><tr><th>Tab</th><th>What is in it</th><th>Ticked by default?</th></tr></thead>
+  <thead><tr><th>Where</th><th>What it says</th></tr></thead>
   <tbody>
-  <tr><td><b>Valid</b></td><td>Verified addresses. These are the ones you actually want.</td><td><b>Yes</b></td></tr>
-  <tr><td><b>Missing + Invalid</b></td><td>No address, or one that failed validation.</td><td><b>No</b> &mdash; shown, but you must tick them on purpose</td></tr>
-  <tr><td><b>Platform Signup</b></td><td>The address they registered on the platform with.</td><td><b>No</b></td></tr>
+  <tr><td><b>Banner</b>, above the table</td><td><i>Removed 1 contact</i> &mdash; with an <b>Undo</b> beside it.</td></tr>
+  <tr><td><b>Toast</b>, bottom left</td><td><i>Removed 1 contact from M&amp;A Executive Briefing - Berlin, October 2026</i> &mdash; the only one that names the email.</td></tr>
   </tbody></table></div>
-  <p>The counts on the tabs are the split of <i>your</i> selection, so they are a quick verdict on the batch: tick 3 people and see <b>Valid 1 &middot; Missing + Invalid 2</b>, and you have just learned that two of them are not reachable.</p>
-  <p><b>Two controls, two different jobs</b>, spelled out in the legend above the table: <b>&#9745; Tick to add</b> decides <i>who</i> joins the ME; <b>&#9673; Email to send</b> decides <i>which address</i> is used, because a contact can carry several and a ME sends to <b>exactly one per person</b>. Changed your mind about someone? <b>Remove N from selection</b> at the top right drops them.</p>
-  <p class="fn">The confirm button stays <b>greyed out while nothing is ticked</b> &mdash; which is what you see if your whole batch landed in Missing + Invalid.</p>
-  <figure><img src="me-32-add-drawer.png" alt="The Add to marketing email drawer"/><figcaption><b>7.3.4</b> &mdash; <b>&#9312;</b> the ME, with its owner, status and recipient count &middot; <b>&#9313;</b> the three address tabs and their counts &middot; <b>&#9314;</b> the legend: tick to add, radio to choose the address &middot; <b>&#9315;</b> <b>Remove N from selection</b>. The confirm button sits at the bottom of the drawer, below the fold.</figcaption></figure>
+  <p><b>Undo really does restore them</b> &mdash; verified on UAT: removed one of two, People went 2 &rarr; 1, clicked <b>Undo</b>, People went back to <b>2</b> with the contact returned. The banner stays until you dismiss it, so you have a moment to change your mind rather than a two-second toast.</p>
+  <div class="call warn"><span class="t">&#128027; After Undo the table lies until you reload</span>The <b>People</b> badge corrects itself, but the list underneath keeps the post-removal total &mdash; it read <b>People 2</b> and <i>Showing 1 of 1</i> at the same time. Refresh before you trust the table, and count off the badge, not the footer.</div>
+  <figure><img src="me-55-remove-undo.png" alt="Remove banner with Undo, and the toast naming the email"/><figcaption><b>7.3.8</b> &mdash; <b>&#9312;</b> the banner and its <b>Undo</b> &middot; <b>&#9313;</b> the toast, the only place the email is named.</figcaption></figure>
 </li>
-
-<li id="m7-3-5" data-code="7.3.5"><b>What the drawer is actually doing &mdash; worth two minutes, because it decides who gets your email.</b>
-  <p><b>It fetches nothing.</b> Opening the drawer fires no request; every tab, count and address on the right comes from the contact list you were already looking at. So the three tabs are not a server verdict, they are a <b>sort of the people you ticked</b>, done in the browser.</p>
-
-  <p><b>What puts a contact in each tab.</b> A contact's addresses come from two different places, and only one of them decides the tab:</p>
-  <div class="tblwrap"><table>
-  <thead><tr><th>Tab</th><th>The contact has&hellip;</th></tr></thead>
-  <tbody>
-  <tr><td><b>Valid</b></td><td>at least one address attached to a <b>job</b>, carrying the verdict <code>Valid</code>.</td></tr>
-  <tr><td><b>Missing + Invalid</b></td><td>no job address at all, or one whose verdict is <code>Invalid</code> &mdash; <b>or still <code>Validating</code></b>, which is the one that surprises people.</td></tr>
-  <tr><td><b>Platform Signup</b></td><td>a Fintalent account, i.e. they signed up as a talent. Usually <b>0</b> on a prospecting list.</td></tr>
-  </tbody></table></div>
-  <p>The three counts always add up to your selection, so a contact sits in exactly one tab.</p>
-
-  <div class="call warn"><span class="t">Two verdicts, one person, and they can disagree</span>Addresses are judged twice &mdash; once as part of a job, once in the contact's own validation record &mdash; and the drawer shows both without saying which is which. Seen on production data: a contact whose personal record marks <i>ragnar.geerdts@von-poll.com</i> <b>Invalid</b>, while the same address sits under his job with a <b>green tick</b>. And a contact whose record holds a perfectly valid address, but whose job address is still <code>Validating</code>, so he lands in <b>Missing + Invalid</b> anyway. <b>The tab follows the job address.</b></div>
-
-  <p><b>The three marks next to an address:</b> <span class="fn">&#10004; green = validated &middot; <b style="color:#e11d48">&#9888;</b> red = failed validation &middot; &#9432; grey = never checked</span>. Grey is not a problem, it just means nobody has tested it.</p>
-
-  <div class="call warn"><span class="t">The address it will actually use is often not on screen</span>This is the part to be careful with. The radios let you <b>override</b> the choice &mdash; they are <b>not</b> preselected on the Valid tab, and the address the system falls back to is the <b>job address</b>, which the drawer frequently does not print anywhere. In one production batch a contact showed only a personal gmail in the list, yet the request sent his work address at the fund; another showed three addresses and used a fourth. One row showed <b>no address at all</b> in either column, ticked, in the Valid tab.<br><b>If it matters which address is used, pick one with the radio.</b> Do not read the list and assume the top one wins.</div>
-
-  <figure><img src="me-34-drawer-anatomy.png" alt="The two address columns in the drawer"/><figcaption><b>7.3.5</b> &mdash; <b>&#9312;</b> <b>Work Experiences</b>: addresses tied to a job &mdash; <b>these decide the tab</b> &middot; <b>&#9313;</b> <b>Additional Emails</b>: the person's other addresses &middot; <b>&#9314;</b> green tick on a job address &middot; <b>&#9315;</b> red warning on a personal one that failed validation &middot; <b>&#9316;</b> a contact with <b>nothing shown in either column</b> &mdash; ticked, and in the <b>Valid</b> tab.</figcaption></figure>
-
-  <p><b>Three more behaviours worth knowing:</b></p>
-  <div class="tblwrap"><table>
-  <thead><tr><th>Looks like</th><th>Actually</th></tr></thead>
-  <tbody>
-  <tr><td>The ME list on the left has <b>checkboxes</b></td><td><b>Single choice.</b> Tick a second ME and the first quietly clears. One drawer, one ME.</td></tr>
-  <tr><td>Each tab has its own selection</td><td><b>One selection, shared.</b> The counter reads the same on every tab, and switching tabs keeps your ticks.</td></tr>
-  <tr><td>Leaving the Contacts page clears the ME filter</td><td><b>It sticks.</b> Come back later and <i>Marketing Email : 1 excluded</i> is still applied. Handy, but check the chip before you trust a count.</td></tr>
-  </tbody></table></div>
-</li>
-
-<li id="m7-3-6" data-code="7.3.6"><b>Click <i>Add to marketing email</i> &mdash; and check the People tab.</b> It should show the people you picked, each row carrying <b>the address that will be used</b> under the name.
-  <div class="call warn"><span class="t">This is where it currently fails</span>The count stays at <b>0</b> and no message appears. The request that was rejected is <code>UpdateMarketingEmailRecipients</code>, and the reply is <b>403 PermissionGuard</b> &mdash; a role permission, not anything you did wrong. Retrying will not help. Hand the list to Admin/Ops instead.
-<div class="call note"><span class="t">What Admin/Ops sees when they do it</span>The same button opens a
-modal that <b>sorts your contacts by email health</b> before anything is added &mdash; <b>Valid</b>
-(address passed validation) &middot; <b>Missing + Invalid</b> (no address, or one that failed) &middot;
-<b>Platform Signup</b> (the address they signed up with). <b>The invalid group is not ticked by
-default</b>: the footer says so, and the button reads <b>&ldquo;Add 0 of 3 contacts&rdquo;</b> until
-someone opens that tab and ticks them by hand. A bad address <i>can</i> be added, but only deliberately
-&mdash; left alone the modal quietly adds nobody, which reads like a failure if you miss the count in
-the button.</div>
-<figure><img src="sdrx-me-28-add-health-buckets.png" alt="Add to marketing email grouped by email health"/>
-<figcaption><b>7.3.6</b> &mdash; the three groups, the &ldquo;not ticked by default&rdquo; note, and the count baked into the button.</figcaption></figure></div>
-</li>
-
-<li id="m7-3-7" data-code="7.3.7"><b>Removing people, which does work.</b> On the <b>People</b> tab, tick whoever should not receive the ME &rarr; <b>Remove contacts</b>.
-  <div class="call warn"><span class="t">No confirmation, no undo</span>The row disappears the moment you click, the count on the tab drops, and nothing asks whether you meant it. Tick carefully &mdash; putting someone back means the add flow above, which is the one that is blocked.</div>
-  <p class="fn">The same bar also offers <b>Add to list &middot; Add to campaign &middot; Add to marketing email &middot; More</b>, so a recipient can be pushed into another ME or campaign from here.</p>
-  <figure><img src="me-33-people-actions.png" alt="Remove contacts on the People tab"/><figcaption><b>7.3.7</b> &mdash; <b>&#9312;</b> the People tab with its live recipient count &middot; <b>&#9313;</b> <b>Remove contacts</b>, next to the add actions.</figcaption></figure>
-</li>
-
-<li id="m7-3-8" data-code="7.3.8"><b>Assigned a ME that already has people?</b> Then none of this applies &mdash; skip to <a href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &#8599;</a> and work the recipients you were given. See <a href="#e-8-13" style="font-weight:700;cursor:pointer">7.x.13 &#8599;</a>.</li>
 </ol>
 
 <h3 id="me-preview" class="anchor">7.4 &middot; Preview, personalize &amp; mark as reviewed</h3>

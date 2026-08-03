@@ -8,5 +8,6 @@ description: "the SDR prepares the ME / campaign (steps, people, review) — you
 
 ## In this flow
 
+* [A3.0 · Add contacts](a3-0-add-contacts.md)
 * [A3.1 · Run a Marketing Email](a3-1-run-a-marketing-email.md)
 * [A3.2 · Run a campaign (Enabled)](a3-2-run-a-campaign-enabled.md)

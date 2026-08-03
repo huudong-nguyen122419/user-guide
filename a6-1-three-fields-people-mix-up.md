@@ -1,6 +1,6 @@
 # A6.1 · Three fields people mix up
 
-> A6 · Approve a new talent
+> A6 · Approve a new talent (decides Active or Passive)
 
 ## A6.1.1 · Status
 
@@ -8,7 +8,7 @@ the talent lifecycle field, 9 possible values: `Guest`, `Incomplete`, `PaymentRe
 
 ## A6.1.2 · Employment Status
 
-a different field, shown as a line of text on the profile: *Full-time Employee*, *Part-time Employee*, *Independent Consultant / Freelancer*, *Unemployed*, *Other*. This is what **Q1** of the [automatic rule](a6-c-6-the-automatic-rule.md) reads, and it is **blank on 27%** of the In Review queue. It is **not** the same as Status, and it is not evidence of who someone works for.
+a different field, shown as a line of text on the profile: *Full-time Employee*, *Part-time Employee*, *Independent Consultant / Freelancer*, *Unemployed*, *Other*. This is what **Q1** of the automatic rule reads, and it is blank on **27%** of the In Review queue. It is **not** the same as Status, and it is not evidence of who someone works for.
 
 ## A6.1.3 · Company Background
 
