@@ -3992,8 +3992,10 @@ or earlier</b>. Setting the status to <b>Published</b> by hand does not get arou
 <!-- ===================== FLOW 6 · MANAGE CAMPAIGN ===================== -->
 <section class="page" id="page-campaign">
 <h2><span class="who sdr">SDR</span><span class="n">Flow 6 ·</span> Manage a campaign</h2>
-<div class="goal"><b>Goal:</b> run a <b>multi-step outreach sequence</b> (a "campaign"), a drip of emails with <b>delays</b> between them and optional <b>A/B variants</b>, sent to a list and tracked per contact. Where a <b>Marketing Email</b> (Flow 7) is <b>one</b> send, a <b>campaign</b> is a <b>sequence</b>: Step 1 &rarr; wait &rarr; Step 2 &rarr; &hellip;</div>
-<div class="call note"><span class="t">Yours vs your Admin's</span>You <b>build &amp; schedule</b> the campaign (folder, steps, timing, variants) and can set it <b>Draft &rarr; Scheduled</b>. Actually <b>enabling / running</b> it (the <b>Enabled</b> toggle) is an <b>Admin / Ops</b> action, then you <b>monitor</b> the Email Queue and the campaign <b>Inbox</b> and handle replies.</div>
+<div class="goal"><b>Goal:</b> reach the same people <b>several times over several days</b> instead of
+once. You write each email, say how long to wait before the next one, and the campaign sends them in
+order and keeps a record of what every contact did. A <b>Marketing Email</b> (Flow 7) is a single send.
+A campaign is a <b>sequence</b>: first email, wait, second email, wait, third.</div>
 
 <h3 id="cmp-create" class="anchor">6.1 &middot; Create a campaign (folder first)</h3>
 <p><b>Campaigns live inside folders.</b> So, unlike a Marketing Email, which you create directly, you <b>create a folder first</b>, open it, and only then create the campaign.</p>
@@ -4005,7 +4007,9 @@ or earlier</b>. Setting the status to <b>Published</b> by hand does not get arou
 <li id="s6-1-3" data-code="6.1.3"><b>Open your folder.</b> You land inside the new folder: it's highlighted in the right-hand <b>folder rail</b>. (Come back to it any time by clicking it in the rail; rename it later via its <b>&#8942;</b> menu, <a data-goto="page-campaign" href="#ce-3" style="font-weight:700;cursor:pointer">6.x.3 &#8599;</a>.)
  <figure><img src="sdrx-camp-02-infolder.png" alt="Inside a folder, Create Campaign appears"/><figcaption><b>6.1.3</b>: inside your folder: <b>&#9313;</b> the folder is selected in the rail &middot; <b>&#9312;</b> the <b>+ Create Campaign</b> button appears.</figcaption></figure>
 </li>
-<li id="s6-1-4" data-code="6.1.4"><b>Create the campaign.</b> Click <b>+ Create Campaign</b>: the button <b>only shows inside a folder</b>; that's why the folder comes first.</li>
+<li id="s6-1-4" data-code="6.1.4"><b>Create the campaign.</b> Click the <b>+ Create Campaign</b>
+ button, top right. It <b>only appears once you are inside a folder</b>, which is why the folder came
+ first.</li>
 <li id="s6-1-5" data-code="6.1.5"><b>Name it and pick the timezone.</b> A single form opens
  with three things on it and nothing else: the <b>name</b> (it arrives pre-filled with
  <i>New Campaign</i>, so type over it), the <b>timezone</b> the sending clock runs on, and

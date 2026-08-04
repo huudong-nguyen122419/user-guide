@@ -1,14 +1,10 @@
 ---
-description: "run a multi-step outreach sequence (a \"campaign\"), a drip of emails with delays between them and optional A/B variants, sent to a list and tracked per contact. Where a Marketing Email (Flow 7) is one send, a campaign is a sequence: Step 1 → wait → Step 2 → …"
+description: "reach the same people several times over several days instead of once. You write each email, say how long to wait before the next one, and the campaign sends them in order and keeps a record of what every contact did. A Marketing Email (Flow 7) is a single send. A campaign is a sequence: first email, wait, second email, wait, third."
 ---
 
 # 6 · Manage a campaign
 
 > SDR
-
-> **Yours vs your Admin's**
->
-> You **build & schedule** the campaign (folder, steps, timing, variants) and can set it **Draft → Scheduled**. Actually **enabling / running** it (the **Enabled** toggle) is an **Admin / Ops** action, then you **monitor** the Email Queue and the campaign **Inbox** and handle replies.
 
 ## In this flow
 
