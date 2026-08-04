@@ -32,7 +32,7 @@ On **Talents**, set **Statuses = Active**. Then **+ Add filter** → under **Ava
 
 ## A6-D.2b · Open one and read it before you touch the chip
 
-Same three fields as [A6-C.4 ↗](a6-c-review-the-in-review-queue-live.md): Employment Status, the current title and company, and whether that company is flagged. **Leaving it alone is a valid outcome**, the rule is often pointing at a record that a human already judged correctly.
+Same three fields as [A6-C.4 ↗](a6-c-review-the-in-review-queue.md): Employment Status, the current title and company, and whether that company is flagged. **Leaving it alone is a valid outcome**, the rule is often pointing at a record that a human already judged correctly.
 
 ## A6-D.2c · Change it from the status chip
 
@@ -58,3 +58,9 @@ Set **Statuses = Passive** and **Recommend Status = Active**, open a record, rea
 ![Set Talent Status to Active](a6q-07-active-modal.png)
 
 *A6-D.3: the whole dialog. Nothing to fill in.*
+
+## In this step
+
+* [A6-D.1 · Read what the system thinks](a6-d-1-read-what-the-system-thinks.md)
+* [A6-D.2 · Active → Passive](a6-d-2-active-passive.md)
+* [A6-D.3 · Passive → Active](a6-d-3-passive-active.md)

@@ -435,11 +435,18 @@
  <a href="#em-5-4" class="st2" data-page="page-a5">A5.x.4 · Switch sender safely</a>
  <a href="#em-5-5" class="st2" data-page="page-a5">A5.x.5 · Timeline = A4.5</a>
  <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Approve a new talent <span class="fn">(decides Active or Passive)</span></a>
- <a href="#a6-flowC" class="st" data-page="page-a6">A6-C &middot; Review the In Review queue, LIVE</a>
+ <a href="#a6-flowC" class="st" data-page="page-a6">A6-C &middot; Review the In Review queue</a>
+ <a href="#a6c-1" class="st2" data-page="page-a6">A6-C.1 &middot; Open the queue</a>
+ <a href="#a6c-2" class="st2" data-page="page-a6">A6-C.2 &middot; Move between profiles</a>
+ <a href="#a6c-3" class="st2" data-page="page-a6">A6-C.3 &middot; Read the recommendation</a>
+ <a href="#a6c-4" class="st2" data-page="page-a6">A6-C.4 &middot; Check it against the profile</a>
+ <a href="#a6c-5" class="st2" data-page="page-a6">A6-C.5 &middot; Reject, or approve</a>
  <a href="#a6-autorule" class="st2" data-page="page-a6">A6-C.6 &middot; The rule that runs today</a>
  <a href="#a6-rulerebuild" class="st2" data-page="page-a6">A6-C.7 &middot; The rule as proposed</a>
  <a href="#a6-recheck" class="st" data-page="page-a6">A6-D &middot; Re-check an existing status</a>
- <a href="#a6-model" class="st" data-page="page-a6">A6.1 &middot; Three fields people mix up</a>
+ <a href="#a6d-1" class="st2" data-page="page-a6">A6-D.1 &middot; Read what the system thinks</a>
+ <a href="#a6d-2" class="st2" data-page="page-a6">A6-D.2 &middot; Active &rarr; Passive</a>
+ <a href="#a6d-3" class="st2" data-page="page-a6">A6-D.3 &middot; Passive &rarr; Active</a>
  <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x &middot; Edge cases</a>
  <a href="#ec-6-1" class="st2" data-page="page-a6">A6.x.1 · New sign-ups to approve</a>
  <a href="#ec-6-2" class="st2" data-page="page-a6">A6.x.2 · A Passive talent resubmits</a>
@@ -837,10 +844,6 @@
 <div class="pagernav"><a data-goto="page-a1"><span class="k">← Prev</span><b>A1 · Create account</b></a><a class="next" data-goto="page-a4"><span class="k">Next →</span><b>A4 · Manage a campaign</b></a></div>
 </section>
 
-
-
-
-
 <!-- ===================== A4 · MANAGE A CAMPAIGN ===================== -->
 <section class="page" id="page-a4">
 <h2><span class="who adm">ADMIN</span><span class="n adm">A4 &middot;</span> Manage a campaign <span class="fn">(Admin/Ops, every campaign in the workspace, not just your own)</span></h2>
@@ -1188,7 +1191,6 @@ broken, check the <b>reviewed</b> count in the Run dialog (A5.7.3).</li>
 <div class="pagernav"><a data-goto="page-a4"><span class="k">&larr; Prev</span><b>A4 &middot; Manage a campaign</b></a><a class="next" data-goto="page-a6"><span class="k">Next &rarr;</span><b>A6 &middot; Approve a new talent</b></a></div>
 </section>
 
-
 <!-- ===================== A6 · TALENT ACTIVE / PASSIVE ===================== -->
 <section class="page" id="page-a6">
 <h2><span class="who adm">ADMIN</span><span class="n adm">A6 &middot;</span> Approve a new talent <span class="fn">(decides Active or Passive)</span></h2>
@@ -1224,7 +1226,7 @@ or hides someone who could.</div>
 
 <ol class="steps adm">
 
-<li data-code="A6-C.1"><b>Open the queue.</b> <b>User Management &rarr; Talents</b>, then the
+<li id="a6c-1" data-code="A6-C.1"><b>Open the queue.</b> <b>User Management &rarr; Talents</b>, then the
 <b>N In Review</b> button at the top right. It is the only way in; there is no In Review tab on the list.
 Clicking it opens a drawer showing <b>one profile at a time</b> rather than filtering the table.
   <p class="fn">For scale: <b>280 waiting</b> against <b>9,036 talents</b> on the day this was walked. The queue is
@@ -1232,14 +1234,14 @@ Clicking it opens a drawer showing <b>one profile at a time</b> rather than filt
   <figure><img src="a6q-01-queue-entry.png" alt="The In Review button on the Talents list"/><figcaption><b>A6-C.1</b>: <b>&#9312;</b> the <b>N In Review</b> button, top right, the only door into the queue &middot; <b>&#9313;</b> the full talent count beside it.</figcaption></figure>
 </li>
 
-<li data-code="A6-C.2"><b>Move between profiles without going back to the list.</b> Top right of the drawer sits a
+<li id="a6c-2" data-code="A6-C.2"><b>Move between profiles without going back to the list.</b> Top right of the drawer sits a
 pager, <b>&#8249; N/280 &#8250;</b>. The <b>&larr;</b> and <b>&rarr;</b> keys do the same thing.
   <div class="call note"><span class="t">On a narrow window, use the keyboard</span>The pager sits at the far right
   edge of the drawer and is the first thing to fall off screen. The arrow keys keep working when the buttons are not
   visible, so a queue can be walked end to end without ever seeing the pager.</div>
 </li>
 
-<li data-code="A6-C.3"><b>Read the recommendation.</b> The status chip reads <b>In Review</b> and carries a
+<li id="a6c-3" data-code="A6-C.3"><b>Read the recommendation.</b> The status chip reads <b>In Review</b> and carries a
 <b>&#9888; warning icon</b> beside it. Hover the icon and you get two lines:
   <div class="tblwrap"><table>
   <thead><tr><th>Line</th><th>What it is</th><th>Example</th></tr></thead>
@@ -1252,7 +1254,7 @@ pager, <b>&#8249; N/280 &#8250;</b>. The <b>&larr;</b> and <b>&rarr;</b> keys do
   <figure class="crop"><img src="a6q-03-recommendation.png" alt="The recommendation tooltip on an In Review profile"/><figcaption><b>A6-C.3</b>: hover the warning icon. Status on top, the reason underneath.</figcaption></figure>
 </li>
 
-<li data-code="A6-C.4"><b>Check it against the profile yourself.</b> The recommendation is a reading of three fields,
+<li id="a6c-4" data-code="A6-C.4"><b>Check it against the profile yourself.</b> The recommendation is a reading of three fields,
 nothing more. Read the same three before you accept it:
   <div class="tblwrap"><table>
   <thead><tr><th>What to read</th><th>Where it is</th><th>Why it matters</th></tr></thead>
@@ -1266,7 +1268,7 @@ nothing more. Read the same three before you accept it:
   be about to leave. That is exactly why there are two approve buttons instead of one.</div>
 </li>
 
-<li data-code="A6-C.5"><b>Take one of the three routes, then check it landed.</b> The toolbar at the top of the drawer
+<li id="a6c-5" data-code="A6-C.5"><b>Take one of the three routes, then check it landed.</b> The toolbar at the top of the drawer
 carries all three:
   <div class="tblwrap"><table>
   <thead><tr><th>Button</th><th>Resulting status</th><th>When</th></tr></thead>
@@ -1464,7 +1466,7 @@ the strongest last.</div>
 still right. It applies to <b>Active</b> and <b>Passive</b> records, not to the queue. Nothing here is automatic: the
 system points, you decide.</div>
 
-<h4 style="margin:18px 0 8px">A6-D.1 &middot; Read what the system thinks</h4>
+<h4 id="a6d-1" class="anchor" style="margin:18px 0 8px">A6-D.1 &middot; Read what the system thinks</h4>
 <ol class="steps adm">
 <li data-code="A6-D.1"><b>The icon beside the status chip tells you whether the two agree.</b> It is on the
 <b>Talents list</b> and on the profile drawer, in both places, in the same shape:
@@ -1480,7 +1482,7 @@ system points, you decide.</div>
 </li>
 </ol>
 
-<h4 style="margin:18px 0 8px">A6-D.2 &middot; Active &rarr; Passive</h4>
+<h4 id="a6d-2" class="anchor" style="margin:18px 0 8px">A6-D.2 &middot; Active &rarr; Passive</h4>
 <ol class="steps adm">
 <li data-code="A6-D.2a"><b>Build the list of candidates.</b> On <b>Talents</b>, set <b>Statuses = Active</b>. Then
 <b>+ Add filter</b> &rarr; under <b>Availability &amp; Engagement</b> tick <b>Recommend Status</b>, which pins it to the
@@ -1517,7 +1519,7 @@ reason:
 </li>
 </ol>
 
-<h4 style="margin:18px 0 8px">A6-D.3 &middot; Passive &rarr; Active</h4>
+<h4 id="a6d-3" class="anchor" style="margin:18px 0 8px">A6-D.3 &middot; Passive &rarr; Active</h4>
 <ol class="steps adm">
 <li data-code="A6-D.3"><b>The same walk, with the filters the other way round and no reason to give.</b> Set
 <b>Statuses = Passive</b> and <b>Recommend Status = Active</b>, open a record, read it, then click the chip and pick
@@ -1531,14 +1533,6 @@ reason:
   <figure class="crop"><img src="a6q-07-active-modal.png" alt="Set Talent Status to Active"/><figcaption><b>A6-D.3</b>: the whole dialog. Nothing to fill in.</figcaption></figure>
 </li>
 </ol>
-
-<h3 id="a6-model" class="anchor">A6.1 &middot; Three fields people mix up</h3>
-<ol class="steps adm">
-<li data-code="A6.1.1"><b>Status</b>, the talent lifecycle field, 9 possible values: <code>Guest</code>, <code>Incomplete</code>, <code>PaymentRequired</code>, <code>InReview</code>, <code>Rejected</code>, <code>Active</code>, <code>Passive</code>, <code>ReviewPassive</code>, <code>Temp</code>. The status chip on a talent profile only lets you switch between <b>Active</b> and <b>Passive</b>; every other value is set by the system or by the review actions in <a href="#a6-edge" style="font-weight:700;cursor:pointer">A6.x &#8599;</a>. The chip is <b>read-only</b> unless the current status is already Active or Passive.</li>
-<li data-code="A6.1.2"><b>Employment Status</b>: a different field, shown as a line of text on the profile: <i>Full-time Employee</i>, <i>Part-time Employee</i>, <i>Independent Consultant / Freelancer</i>, <i>Unemployed</i>, <i>Other</i>. This is what <b>Q1</b> of the automatic rule reads, and it is blank on <b>27%</b> of the In Review queue. It is <b>not</b> the same as Status, and it is not evidence of who someone works for.</li>
-<li data-code="A6.1.3"><b>Company Background</b>: the filter chip formerly labelled <i>Classification</i>. It describes the <b>type of company a talent has worked at across their whole career</b>, inferred by AI from each employer, with a year count attached. It does <u>not</u> say where they work today. Someone who spent one year at a PE fund a decade ago still carries the <i>Private Equity / Venture Capital</i> label. Treat it as a way to <b>narrow the haystack</b>, never as the answer.</li>
-</ol>
-
 
 <h3 id="a6-edge" class="edgehead anchor">A6.x &middot; Edge cases</h3>
 <ol class="steps edge">
@@ -1589,7 +1583,6 @@ reason:
 </ol>
 <div class="pagernav"><a data-goto="page-a5"><span class="k">&larr; Prev</span><b>A5 &middot; Manage a marketing email</b></a><a class="next" data-goto="page-b1"><span class="k">Next &rarr;</span><b>B1 &middot; Invite talents</b></a></div>
 </section>
-
 
 <!-- ===================== A6-AUDIT · APPROVAL RULE AUDIT ===================== -->
 <section class="page" id="page-a6audit">
@@ -3758,7 +3751,6 @@ reason:
 <div class="pagernav"><a data-goto="page-send"><span class="k">← Prev</span><b>Flow 3 · Send a 1:1 email</b></a><a class="next" data-goto="page-meetings"><span class="k">Next →</span><b>Flow 4b · Schedule a call</b></a></div>
 </section>
 
-
 <!-- ===================== 4b · SCHEDULE A CALL ===================== -->
 <section class="page" id="page-meetings">
 <h2><span class="n">4b &middot;</span> Schedule a call <span class="fn">(spot it in your replies &rarr; book &rarr; reply with the link &rarr; manage)</span></h2>
@@ -3970,8 +3962,6 @@ reason:
 </tbody></table></div>
 <div class="pagernav"><a data-goto="page-meetings"><span class="k">← Prev</span><b>Flow 4b · Schedule a call</b></a><a class="next" data-goto="page-campaign"><span class="k">Next →</span><b>Flow 6 · Manage a campaign</b></a></div>
 </section>
-
-
 
 <!-- ===================== FLOW 6 · MANAGE CAMPAIGN ===================== -->
 <section class="page" id="page-campaign">
@@ -4289,7 +4279,6 @@ Side Step: Not Now - Out Of Office
 </ol>
 <div class="pagernav"><a data-goto="page-followup"><span class="k">← Prev</span><b>Flow 5 · Follow up</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 7 · Manage a Marketing Email</b></a></div>
 </section>
-
 
 <!-- ===================== PAGE-CAMPAIGNAUDIT ===================== -->
 <section class="page" id="page-campaignaudit">
@@ -5145,7 +5134,6 @@ established</b>; confirm by hand before relying on it.</div></li>
 </ol>
 <div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 6 · Manage campaign</b></a><a class="next" data-goto="page-filters"><span class="k">Next →</span><b>Flow 8 · Using filters</b></a></div>
 </section>
-
 
 <!-- ===================== PAGE-MARKETINGAUDIT ===================== -->
 <section class="page" id="page-marketingaudit">

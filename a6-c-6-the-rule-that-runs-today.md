@@ -1,6 +1,6 @@
 # A6-C.6 · The rule that runs today
 
-> A6 · Approve a new talent (decides Active or Passive) → A6-C · Review the In Review queue, LIVE
+> A6 · Approve a new talent (decides Active or Passive) → A6-C · Review the In Review queue
 
 **What this is:** the rule behind every recommendation, read off the engine's own output rather than guessed at. It never changes anybody's status. It feeds the warning icon in the queue, the icon beside the status chip on the list, and the **Recommend Status** filter.
 

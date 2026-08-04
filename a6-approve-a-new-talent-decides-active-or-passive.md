@@ -16,7 +16,7 @@ This section covers **the intake decision only**, the moment an admin approves a
 
 | Flow | The question it answers | Cost of getting it wrong | Status |
 |---|---|---|---|
-| [A6-C ↗](a6-c-review-the-in-review-queue-live.md) Review the **In Review** queue | New sign-up, Passive or Active? | the same client, but caught a year later | **the whole flow** |
+| [A6-C ↗](a6-c-review-the-in-review-queue.md) Review the **In Review** queue | New sign-up, Passive or Active? | the same client, but caught a year later | **the whole flow** |
 | **Existing Active and Passive records** | Which of them are wrong today? | a project invitation landing in a client’s inbox | **OUT OF SCOPE**, not re-reviewed by hand. A migration may run the same rule over them later; it may not |
 
 Passive is not a punishment and not a quality judgement. It is a routing decision: Passive records are excluded from project invitations, nothing more.
@@ -31,7 +31,6 @@ The 2,680 Active records split by Employment Status: Freelancer 2,343, Unemploye
 
 ## In this flow
 
-* [A6-C · Review the In Review queue, LIVE](a6-c-review-the-in-review-queue-live.md)
+* [A6-C · Review the In Review queue](a6-c-review-the-in-review-queue.md)
 * [A6-D · Re-check an existing status](a6-d-re-check-an-existing-status.md)
-* [A6.1 · Three fields people mix up](a6-1-three-fields-people-mix-up.md)
 * [A6.x · Edge cases](a6-x-edge-cases.md)

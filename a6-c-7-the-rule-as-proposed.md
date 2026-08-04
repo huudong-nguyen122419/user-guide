@@ -1,6 +1,6 @@
 # A6-C.7 · The rule as proposed
 
-> A6 · Approve a new talent (decides Active or Passive) → A6-C · Review the In Review queue, LIVE
+> A6 · Approve a new talent (decides Active or Passive) → A6-C · Review the In Review queue
 
 Not built. This is a proposalNothing in this section runs anywhere. The rule in use is [A6-C.6 ↗](a6-c-6-the-rule-that-runs-today.md). Read this as the change being asked for, and as the reasoning behind it.
 
