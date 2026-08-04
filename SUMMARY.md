@@ -272,8 +272,6 @@
     * [6.1.2 · Create a folder](6-1-2-create-a-folder.md)
     * [6.1.3 · Open your folder](6-1-3-open-your-folder.md)
     * [6.1.4 · Create the campaign](6-1-4-create-the-campaign.md)
-    * [6.1.5 · Name + timezone](6-1-5-name-timezone.md)
-    * [6.1.6 · Create → you land in it](6-1-6-create-you-land-in-it.md)
   * [6.2 · Build the sequence](6-2-build-the-sequence.md)
     * [6.2.1 · Create new step](6-2-1-create-new-step.md)
     * [6.2.2 · Write the step (fields)](6-2-2-write-the-step-fields.md)
