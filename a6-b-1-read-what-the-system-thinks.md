@@ -1,8 +1,8 @@
-# A6-D.1 · Read what the system thinks
+# A6-B.1 · Read what the system thinks
 
-> A6 · Approve a new talent (decides Active or Passive) → A6-D · Re-check an existing status
+> A6 · Approve a new talent (decides Active or Passive) → A6-B · Re-check an existing status
 
-## A6-D.1 · The icon beside the status chip tells you whether the two agree
+## A6-B.1 · The icon beside the status chip tells you whether the two agree
 
 It is on the **Talents list** and on the profile drawer, in both places, in the same shape: Hover either icon for the same two lines as in the queue: the recommended status, then the reason.
 
@@ -14,4 +14,4 @@ It is on the **Talents list** and on the profile drawer, in both places, in the 
 
 ![Warning and info icons on the talents list](a6q-04-list-icons.png)
 
-*A6-D.1: ① warning, status and recommendation disagree · ② info, they agree.*
+*A6-B.1: ① warning, status and recommendation disagree · ② info, they agree.*

@@ -1,4 +1,4 @@
-# A6-C · Review the In Review queue
+# A6-A · Review the In Review queue
 
 > A6 · Approve a new talent (decides Active or Passive)
 
@@ -10,10 +10,10 @@
 
 ## In this step
 
-* [A6-C.1 · Open the queue](a6-c-1-open-the-queue.md)
-* [A6-C.2 · Move between profiles](a6-c-2-move-between-profiles.md)
-* [A6-C.3 · Read the recommendation](a6-c-3-read-the-recommendation.md)
-* [A6-C.4 · Check it against the profile](a6-c-4-check-it-against-the-profile.md)
-* [A6-C.5 · Reject, or approve](a6-c-5-reject-or-approve.md)
-* [A6-C.6 · The rule that runs today](a6-c-6-the-rule-that-runs-today.md)
-* [A6-C.7 · The rule as proposed](a6-c-7-the-rule-as-proposed.md)
+* [A6-A.1 · Open the queue](a6-a-1-open-the-queue.md)
+* [A6-A.2 · Move between profiles](a6-a-2-move-between-profiles.md)
+* [A6-A.3 · Read the recommendation](a6-a-3-read-the-recommendation.md)
+* [A6-A.4 · Check it against the profile](a6-a-4-check-it-against-the-profile.md)
+* [A6-A.5 · Reject, or approve](a6-a-5-reject-or-approve.md)
+* [A6-A.6 · The rule that runs today](a6-a-6-the-rule-that-runs-today.md)
+* [A6-A.7 · The rule as proposed](a6-a-7-the-rule-as-proposed.md)

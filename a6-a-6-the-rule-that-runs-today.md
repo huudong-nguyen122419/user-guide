@@ -1,6 +1,6 @@
-# A6-C.6 · The rule that runs today
+# A6-A.6 · The rule that runs today
 
-> A6 · Approve a new talent (decides Active or Passive) → A6-C · Review the In Review queue
+> A6 · Approve a new talent (decides Active or Passive) → A6-A · Review the In Review queue
 
 **What this is:** the rule behind every recommendation, read off the engine's own output rather than guessed at. It never changes anybody's status. It feeds the warning icon in the queue, the icon beside the status chip on the list, and the **Recommend Status** filter.
 
@@ -70,4 +70,4 @@ Matched against the **current job title** and the **current employer name**. The
 
 Match **whole words**. Matching on part of a word turns *“M&A International Manager”* into an intern.
 
-This is [A6-C.7 ↗](a6-c-7-the-rule-as-proposed.md) from our business rule, moved into the intake path, same list, but it now runs **at approval** and **before the company check**.
+This is [A6-A.7 ↗](a6-a-7-the-rule-as-proposed.md) from our business rule, moved into the intake path, same list, but it now runs **at approval** and **before the company check**.

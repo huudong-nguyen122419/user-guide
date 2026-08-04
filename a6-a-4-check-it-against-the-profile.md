@@ -1,6 +1,6 @@
-# A6-C.4 · Check it against the profile
+# A6-A.4 · Check it against the profile
 
-> A6 · Approve a new talent (decides Active or Passive) → A6-C · Review the In Review queue
+> A6 · Approve a new talent (decides Active or Passive) → A6-A · Review the In Review queue
 
 **Check it against the profile yourself.** The recommendation is a reading of three fields, nothing more. Read the same three before you accept it:
 
@@ -16,4 +16,4 @@
 
 ![The two fields to read on the profile](a6q-10-read-the-profile.png)
 
-*A6-C.4: ① Employment Status on the header line, the first field the rule reads · ② the roles with no end date, the only ones that count. The company flag is not on this tab.*
+*A6-A.4: ① Employment Status on the header line, the first field the rule reads · ② the roles with no end date, the only ones that count. The company flag is not on this tab.*

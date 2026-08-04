@@ -435,18 +435,18 @@
  <a href="#em-5-4" class="st2" data-page="page-a5">A5.x.4 · Switch sender safely</a>
  <a href="#em-5-5" class="st2" data-page="page-a5">A5.x.5 · Timeline = A4.5</a>
  <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Approve a new talent <span class="fn">(decides Active or Passive)</span></a>
- <a href="#a6-flowC" class="st" data-page="page-a6">A6-C &middot; Review the In Review queue</a>
- <a href="#a6c-1" class="st2" data-page="page-a6">A6-C.1 &middot; Open the queue</a>
- <a href="#a6c-2" class="st2" data-page="page-a6">A6-C.2 &middot; Move between profiles</a>
- <a href="#a6c-3" class="st2" data-page="page-a6">A6-C.3 &middot; Read the recommendation</a>
- <a href="#a6c-4" class="st2" data-page="page-a6">A6-C.4 &middot; Check it against the profile</a>
- <a href="#a6c-5" class="st2" data-page="page-a6">A6-C.5 &middot; Reject, or approve</a>
- <a href="#a6-autorule" class="st2" data-page="page-a6">A6-C.6 &middot; The rule that runs today</a>
- <a href="#a6-rulerebuild" class="st2" data-page="page-a6">A6-C.7 &middot; The rule as proposed</a>
- <a href="#a6-recheck" class="st" data-page="page-a6">A6-D &middot; Re-check an existing status</a>
- <a href="#a6d-1" class="st2" data-page="page-a6">A6-D.1 &middot; Read what the system thinks</a>
- <a href="#a6d-2" class="st2" data-page="page-a6">A6-D.2 &middot; Active &rarr; Passive</a>
- <a href="#a6d-3" class="st2" data-page="page-a6">A6-D.3 &middot; Passive &rarr; Active</a>
+ <a href="#a6-flowC" class="st" data-page="page-a6">A6-A &middot; Review the In Review queue</a>
+ <a href="#a6a-1" class="st2" data-page="page-a6">A6-A.1 &middot; Open the queue</a>
+ <a href="#a6a-2" class="st2" data-page="page-a6">A6-A.2 &middot; Move between profiles</a>
+ <a href="#a6a-3" class="st2" data-page="page-a6">A6-A.3 &middot; Read the recommendation</a>
+ <a href="#a6a-4" class="st2" data-page="page-a6">A6-A.4 &middot; Check it against the profile</a>
+ <a href="#a6a-5" class="st2" data-page="page-a6">A6-A.5 &middot; Reject, or approve</a>
+ <a href="#a6-autorule" class="st2" data-page="page-a6">A6-A.6 &middot; The rule that runs today</a>
+ <a href="#a6-rulerebuild" class="st2" data-page="page-a6">A6-A.7 &middot; The rule as proposed</a>
+ <a href="#a6-recheck" class="st" data-page="page-a6">A6-B &middot; Re-check an existing status</a>
+ <a href="#a6b-1" class="st2" data-page="page-a6">A6-B.1 &middot; Read what the system thinks</a>
+ <a href="#a6b-2" class="st2" data-page="page-a6">A6-B.2 &middot; Active &rarr; Passive</a>
+ <a href="#a6b-3" class="st2" data-page="page-a6">A6-B.3 &middot; Passive &rarr; Active</a>
  <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x &middot; Edge cases</a>
  <a href="#ec-6-1" class="st2" data-page="page-a6">A6.x.1 · New sign-ups to approve</a>
  <a href="#ec-6-2" class="st2" data-page="page-a6">A6.x.2 · A Passive talent resubmits</a>
@@ -1204,14 +1204,14 @@ broken, check the <b>reviewed</b> count in the Run dialog (A5.7.3).</li>
 <thead><tr><th>Flow</th><th>What you do in it</th><th>When you use it</th></tr></thead>
 <tbody>
 <tr>
-  <td><a href="#a6-flowC" style="font-weight:700;cursor:pointer">A6-C &middot; Review the In Review queue &#8599;</a></td>
+  <td><a href="#a6-flowC" style="font-weight:700;cursor:pointer">A6-A &middot; Review the In Review queue &#8599;</a></td>
   <td>Work through the new sign-ups one profile at a time. Read what the system recommends, check it against the
       profile, then <b>reject</b> the person or <b>approve</b> them to Active or Passive.</td>
   <td><b>Somebody new signed up.</b> They sit at <code>In Review</code> and cannot be invited to anything until you
       decide.</td>
 </tr>
 <tr>
-  <td><a href="#a6-recheck" style="font-weight:700;cursor:pointer">A6-D &middot; Re-check an existing status &#8599;</a></td>
+  <td><a href="#a6-recheck" style="font-weight:700;cursor:pointer">A6-B &middot; Re-check an existing status &#8599;</a></td>
   <td>Go back over talents already marked Active or Passive. Filter for the ones where the system disagrees with the
       status on file, read them, and either change the status or leave it.</td>
   <td><b>You want to know whether the statuses you already have are still right.</b> Profiles change after they are
@@ -1219,9 +1219,9 @@ broken, check the <b>reviewed</b> count in the Run dialog (A5.7.3).</li>
 </tr>
 </tbody></table></div>
 <p class="fn">Both lean on the same recommendation, and the rule behind it is written out in
-<a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>. It is advice on every screen it appears, never an action.</p>
+<a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-A.6 &#8599;</a>. It is advice on every screen it appears, never an action.</p>
 
-<h3 id="a6-flowC" class="anchor">A6-C &middot; Review the In Review queue</h3>
+<h3 id="a6-flowC" class="anchor">A6-A &middot; Review the In Review queue</h3>
 <div class="goal adm"><b>Goal:</b> a new sign-up lands at <code>In Review</code> and waits for someone to look at it.
 You have three ways out: <b>reject</b> the person, <b>approve them to Active</b>, or <b>approve them to Passive</b>.
 The system offers a recommendation on every profile, but <b>the button you press is the decision</b>.</div>
@@ -1234,21 +1234,21 @@ could.</div>
 
 <ol class="steps adm">
 
-<li id="a6c-1" data-code="A6-C.1"><b>Open the queue.</b> <b>User Management &rarr; Talents</b>, then the
+<li id="a6a-1" data-code="A6-A.1"><b>Open the queue.</b> <b>User Management &rarr; Talents</b>, then the
 <b>N In Review</b> button at the top right. It is the only way in; there is no In Review tab on the list.
 Clicking it opens a drawer showing <b>one profile at a time</b> rather than filtering the table.
-  <figure><img src="a6q-01-queue-entry.png" alt="The In Review button on the Talents list"/><figcaption><b>A6-C.1</b>: <b>&#9312;</b> the <b>N In Review</b> button, top right, the only door into the queue &middot; <b>&#9313;</b> the full talent count beside it.</figcaption></figure>
+  <figure><img src="a6q-01-queue-entry.png" alt="The In Review button on the Talents list"/><figcaption><b>A6-A.1</b>: <b>&#9312;</b> the <b>N In Review</b> button, top right, the only door into the queue &middot; <b>&#9313;</b> the full talent count beside it.</figcaption></figure>
 </li>
 
-<li id="a6c-2" data-code="A6-C.2"><b>Move between profiles without going back to the list.</b> Top right of the drawer sits a
+<li id="a6a-2" data-code="A6-A.2"><b>Move between profiles without going back to the list.</b> Top right of the drawer sits a
 pager, <b>&#8249; N/280 &#8250;</b>. The <b>&larr;</b> and <b>&rarr;</b> keys do the same thing.
   <div class="call note"><span class="t">On a narrow window, use the keyboard</span>The pager sits at the far right
   edge of the drawer and is the first thing to fall off screen. The arrow keys keep working when the buttons are not
   visible, so a queue can be walked end to end without ever seeing the pager.</div>
-  <figure><img src="a6q-09-pager.png" alt="The pager at the top right of the drawer"/><figcaption><b>A6-C.2</b>: <b>&#9312;</b> previous profile &middot; <b>&#9313;</b> where you are in the queue &middot; <b>&#9314;</b> next profile. Underneath, the same corner on a narrower window: the pager is gone, and the arrow keys are all you have.</figcaption></figure>
+  <figure><img src="a6q-09-pager.png" alt="The pager at the top right of the drawer"/><figcaption><b>A6-A.2</b>: <b>&#9312;</b> previous profile &middot; <b>&#9313;</b> where you are in the queue &middot; <b>&#9314;</b> next profile. Underneath, the same corner on a narrower window: the pager is gone, and the arrow keys are all you have.</figcaption></figure>
 </li>
 
-<li id="a6c-3" data-code="A6-C.3"><b>Read the recommendation.</b> The status chip reads <b>In Review</b> and carries a
+<li id="a6a-3" data-code="A6-A.3"><b>Read the recommendation.</b> The status chip reads <b>In Review</b> and carries a
 <b>&#9888; warning icon</b> beside it. Hover the icon and you get two lines:
   <div class="tblwrap"><table>
   <thead><tr><th>Line</th><th>What it is</th><th>Example</th></tr></thead>
@@ -1257,11 +1257,11 @@ pager, <b>&#8249; N/280 &#8250;</b>. The <b>&larr;</b> and <b>&rarr;</b> keys do
   <tr><td>the sentence under it</td><td>which of the five questions produced that answer</td><td><i>Active, self-directed, and nothing ties them to a client company.</i></td></tr>
   </tbody></table></div>
   <p>The full rule, all five questions and every sentence it can print, is in
-  <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>.</p>
-  <figure class="crop"><img src="a6q-03-recommendation.png" alt="The recommendation tooltip on an In Review profile"/><figcaption><b>A6-C.3</b>: hover the warning icon. Status on top, the reason underneath.</figcaption></figure>
+  <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-A.6 &#8599;</a>.</p>
+  <figure class="crop"><img src="a6q-03-recommendation.png" alt="The recommendation tooltip on an In Review profile"/><figcaption><b>A6-A.3</b>: hover the warning icon. Status on top, the reason underneath.</figcaption></figure>
 </li>
 
-<li id="a6c-4" data-code="A6-C.4"><b>Check it against the profile yourself.</b> The recommendation is a reading of three fields,
+<li id="a6a-4" data-code="A6-A.4"><b>Check it against the profile yourself.</b> The recommendation is a reading of three fields,
 nothing more. Read the same three before you accept it:
   <div class="tblwrap"><table>
   <thead><tr><th>What to read</th><th>Where it is</th><th>Why it matters</th></tr></thead>
@@ -1273,12 +1273,12 @@ nothing more. Read the same three before you accept it:
   <div class="call warn"><span class="t">The recommendation is advice, not an instruction</span>It reads fields; it
   does not read judgement. A profile can be technically self-employed and still be unavailable, or say Full-time and
   be about to leave. That is exactly why there are two approve buttons instead of one.</div>
-  <figure><img src="a6q-10-read-the-profile.png" alt="The two fields to read on the profile"/><figcaption><b>A6-C.4</b>: <b>&#9312;</b> <b>Employment Status</b> on the header line, the first field the rule reads &middot; <b>&#9313;</b> the roles with no end date, the only ones that count. The company flag is not on this tab.</figcaption></figure>
+  <figure><img src="a6q-10-read-the-profile.png" alt="The two fields to read on the profile"/><figcaption><b>A6-A.4</b>: <b>&#9312;</b> <b>Employment Status</b> on the header line, the first field the rule reads &middot; <b>&#9313;</b> the roles with no end date, the only ones that count. The company flag is not on this tab.</figcaption></figure>
 </li>
 
-<li id="a6c-5" data-code="A6-C.5"><b>Take one of the three routes, then check it landed.</b> The toolbar at the top of the drawer
+<li id="a6a-5" data-code="A6-A.5"><b>Take one of the three routes, then check it landed.</b> The toolbar at the top of the drawer
 carries all three:
-  <figure><img src="a6q-02-queue-drawer.png" alt="The In Review drawer with its three action buttons"/><figcaption><b>A6-C.5</b>: the toolbar, with the three ways out: <b>&#9312;</b> the three ways out &middot; <b>&#9313;</b> the <b>In Review</b> chip and the warning icon holding the recommendation &middot; <b>&#9314;</b> <b>Employment Status</b>, the first field the rule reads.</figcaption></figure>
+  <figure><img src="a6q-02-queue-drawer.png" alt="The In Review drawer with its three action buttons"/><figcaption><b>A6-A.5</b>: the toolbar, with the three ways out: <b>&#9312;</b> the three ways out &middot; <b>&#9313;</b> the <b>In Review</b> chip and the warning icon holding the recommendation &middot; <b>&#9314;</b> <b>Employment Status</b>, the first field the rule reads.</figcaption></figure>
   <div class="tblwrap"><table>
   <thead><tr><th>Button</th><th>Resulting status</th><th>When</th></tr></thead>
   <tbody>
@@ -1294,12 +1294,12 @@ carries all three:
   <p><b>What happens next:</b> the record leaves the queue and the count drops by one. The drawer stays open on the
   next profile, so a queue can be worked straight through. To confirm the status really changed, search the talent by
   <b>name or email</b> on the Talents list and read the chip.</p>
-  <figure><img src="a6q-08-approve-confirm.png" alt="The approve confirmation dialog"/><figcaption><b>A6-C.5</b>: the confirm names the record but not the status.</figcaption></figure>
+  <figure><img src="a6q-08-approve-confirm.png" alt="The approve confirmation dialog"/><figcaption><b>A6-A.5</b>: the confirm names the record but not the status.</figcaption></figure>
 </li>
 
 </ol>
 
-<h3 id="a6-autorule" class="anchor">A6-C.6 &middot; The rule that runs today</h3>
+<h3 id="a6-autorule" class="anchor">A6-A.6 &middot; The rule that runs today</h3>
 <div class="goal adm"><b>What this is:</b> the rule behind every recommendation, read off the engine's own output
 rather than guessed at. It never changes anybody's status. It feeds the warning icon in the queue, the icon beside the
 status chip on the list, and the <b>Recommend Status</b> filter.</div>
@@ -1394,12 +1394,12 @@ the rule, that is a decision to take, not a reading to assume.</div>
 <code>Taxation</code> and <code>Business Partner</code></p>
 <p>Match <b>whole words</b>. Matching on part of a word turns <i>&ldquo;M&amp;A International Manager&rdquo;</i> into an intern.</p>
 
-<p class="fn">This is <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a> from our business rule, moved into the intake path, same list, but it now runs
+<p class="fn">This is <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-A.7 &#8599;</a> from our business rule, moved into the intake path, same list, but it now runs
 <b>at approval</b> and <b>before the company check</b>.</p>
 
-<h3 id="a6-rulerebuild" class="anchor">A6-C.7 &middot; The rule as proposed</h3>
+<h3 id="a6-rulerebuild" class="anchor">A6-A.7 &middot; The rule as proposed</h3>
 <div class="call warn"><span class="t">Not built. This is a proposal</span>Nothing in this section runs anywhere. The
-rule in use is <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>. Read this as the
+rule in use is <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-A.6 &#8599;</a>. Read this as the
 change being asked for, and as the reasoning behind it.</div>
 
 <h4 style="margin:18px 0 8px">The proposed order</h4>
@@ -1456,14 +1456,14 @@ the strongest last.</div>
 <tr><td><b>5</b></td><td>Company matching quality</td><td>The biggest risk either way. Roughly <b>63%</b> of talents have a current employer never matched to a company record, so the flag question cannot fire at all for them. Putting it first makes that gap matter more, not less. See <a href="#ec-6-5" style="font-weight:700;cursor:pointer">A6.x.5 &#8599;</a></td></tr>
 </tbody></table></div>
 
-<h3 id="a6-recheck" class="anchor">A6-D &middot; Re-check the status of a talent you already have</h3>
+<h3 id="a6-recheck" class="anchor">A6-B &middot; Re-check the status of a talent you already have</h3>
 <div class="goal adm"><b>When to run this:</b> when you want to know whether the statuses already on the platform are
 still right. It applies to <b>Active</b> and <b>Passive</b> records, not to the queue. Nothing here is automatic: the
 system points, you decide.</div>
 
-<h4 id="a6d-1" class="anchor" style="margin:18px 0 8px">A6-D.1 &middot; Read what the system thinks</h4>
+<h4 id="a6b-1" class="anchor" style="margin:18px 0 8px">A6-B.1 &middot; Read what the system thinks</h4>
 <ol class="steps adm">
-<li data-code="A6-D.1"><b>The icon beside the status chip tells you whether the two agree.</b> It is on the
+<li data-code="A6-B.1"><b>The icon beside the status chip tells you whether the two agree.</b> It is on the
 <b>Talents list</b> and on the profile drawer, in both places, in the same shape:
   <div class="tblwrap"><table>
   <thead><tr><th>Icon</th><th>Meaning</th><th>What to do</th></tr></thead>
@@ -1473,26 +1473,26 @@ system points, you decide.</div>
   <tr><td>no icon</td><td>the rule has no opinion on this record</td><td>judge it by hand or leave it</td></tr>
   </tbody></table></div>
   <p>Hover either icon for the same two lines as in the queue: the recommended status, then the reason.</p>
-  <figure class="crop"><img src="a6q-04-list-icons.png" alt="Warning and info icons on the talents list"/><figcaption><b>A6-D.1</b>: <b>&#9312;</b> warning, status and recommendation disagree &middot; <b>&#9313;</b> info, they agree.</figcaption></figure>
+  <figure class="crop"><img src="a6q-04-list-icons.png" alt="Warning and info icons on the talents list"/><figcaption><b>A6-B.1</b>: <b>&#9312;</b> warning, status and recommendation disagree &middot; <b>&#9313;</b> info, they agree.</figcaption></figure>
 </li>
 </ol>
 
-<h4 id="a6d-2" class="anchor" style="margin:18px 0 8px">A6-D.2 &middot; Active &rarr; Passive</h4>
+<h4 id="a6b-2" class="anchor" style="margin:18px 0 8px">A6-B.2 &middot; Active &rarr; Passive</h4>
 <ol class="steps adm">
-<li data-code="A6-D.2a"><b>Build the list of candidates.</b> On <b>Talents</b>, set <b>Statuses = Active</b>. Then
+<li data-code="A6-B.2a"><b>Build the list of candidates.</b> On <b>Talents</b>, set <b>Statuses = Active</b>. Then
 <b>+ Add filter</b> &rarr; under <b>Availability &amp; Engagement</b> tick <b>Recommend Status</b>, which pins it to the
 filter bar. Open it and pick <b>Passive</b>. The dropdown offers only <b>Active</b> and <b>Passive</b>.
   <p>What comes back is every Active talent the rule would have made Passive. <b>737 of them</b> when this was walked,
   so treat it as a working queue rather than a list to clear in one sitting.</p>
-  <figure><img src="a6q-05-recommend-filter.png" alt="Statuses Active plus Recommend Status Passive"/><figcaption><b>A6-D.2a</b>: <b>&#9312;</b> Statuses = Active &middot; <b>&#9313;</b> Recommend Status = Passive &middot; <b>&#9314;</b> what falls out.</figcaption></figure>
+  <figure><img src="a6q-05-recommend-filter.png" alt="Statuses Active plus Recommend Status Passive"/><figcaption><b>A6-B.2a</b>: <b>&#9312;</b> Statuses = Active &middot; <b>&#9313;</b> Recommend Status = Passive &middot; <b>&#9314;</b> what falls out.</figcaption></figure>
 </li>
 
-<li data-code="A6-D.2b"><b>Open one and read it before you touch the chip.</b> Same three fields as
-<a href="#a6-flowC" style="font-weight:700;cursor:pointer">A6-C.4 &#8599;</a>: Employment Status, the current title and
+<li data-code="A6-B.2b"><b>Open one and read it before you touch the chip.</b> Same three fields as
+<a href="#a6-flowC" style="font-weight:700;cursor:pointer">A6-A.4 &#8599;</a>: Employment Status, the current title and
 company, and whether that company is flagged. <b>Leaving it alone is a valid outcome</b>, the rule is often pointing at
 a record that a human already judged correctly.</li>
 
-<li data-code="A6-D.2c"><b>Change it from the status chip.</b> The chip on the profile carries a caret. Click it and
+<li data-code="A6-B.2c"><b>Change it from the status chip.</b> The chip on the profile carries a caret. Click it and
 you get exactly one alternative, <b>Passive</b>. Picking it opens <b>Set Talent Status to Passive</b>, which asks for a
 reason:
   <div class="tblwrap"><table>
@@ -1510,13 +1510,13 @@ reason:
   status&rdquo; on a record where that may be untrue.<br><br><b>&#128027; And <i>Other</i> does not actually enforce
   anything.</b> Picking Other and leaving the Reasons box empty saves without complaint, no error, no disabled button.
   The reason is meant to be required and is not.</div>
-  <figure class="crop"><img src="a6q-06-passive-modal.png" alt="Set Talent Status to Passive"/><figcaption><b>A6-D.2c</b>: <b>&#9312;</b> pre-selected reason &middot; <b>&#9313;</b> Other &middot; <b>&#9314;</b> the Reasons box, on screen whichever reason is picked.</figcaption></figure>
+  <figure class="crop"><img src="a6q-06-passive-modal.png" alt="Set Talent Status to Passive"/><figcaption><b>A6-B.2c</b>: <b>&#9312;</b> pre-selected reason &middot; <b>&#9313;</b> Other &middot; <b>&#9314;</b> the Reasons box, on screen whichever reason is picked.</figcaption></figure>
 </li>
 </ol>
 
-<h4 id="a6d-3" class="anchor" style="margin:18px 0 8px">A6-D.3 &middot; Passive &rarr; Active</h4>
+<h4 id="a6b-3" class="anchor" style="margin:18px 0 8px">A6-B.3 &middot; Passive &rarr; Active</h4>
 <ol class="steps adm">
-<li data-code="A6-D.3"><b>The same walk, with the filters the other way round and no reason to give.</b> Set
+<li data-code="A6-B.3"><b>The same walk, with the filters the other way round and no reason to give.</b> Set
 <b>Statuses = Passive</b> and <b>Recommend Status = Active</b>, open a record, read it, then click the chip and pick
 <b>Active</b>.
   <p><b>Set Talent Status to Active</b> asks one question, <i>&ldquo;Do you want to set Active for &lt;name&gt;?&rdquo;</i>,
@@ -1525,7 +1525,7 @@ reason:
   takes them out of the invitation flow, so the system asks why. Putting them back does not, which means a record can
   go Active with nothing on file about who decided or why. If you want that written down, put it in <b>Notes</b>
   yourself.</div>
-  <figure class="crop"><img src="a6q-07-active-modal.png" alt="Set Talent Status to Active"/><figcaption><b>A6-D.3</b>: the whole dialog. Nothing to fill in.</figcaption></figure>
+  <figure class="crop"><img src="a6q-07-active-modal.png" alt="Set Talent Status to Active"/><figcaption><b>A6-B.3</b>: the whole dialog. Nothing to fill in.</figcaption></figure>
 </li>
 </ol>
 
@@ -1533,17 +1533,17 @@ reason:
 <ol class="steps edge">
 <li id="ec-6-1" data-code="A6.x.1"><b>The <i>In Review</i> queue, new sign-ups waiting for approval.</b> The <b>N In Review</b> button at the top right of the talents list opens the queue one profile at a time.
  <figure><img src="a6-07-in-review.png" alt="In Review profile toolbar"/><figcaption><b>A6.x.1</b>: <b>&#9312;</b> status chip reads <b>In Review</b> and is <b>not editable</b> &middot; <b>&#9313;</b> <b>Reject Talent</b> &rarr; status becomes <i>Rejected</i>; <b>Approve Talent</b> &rarr; confirmation dialog, then the talent enters the normal pool &middot; <b>&#9314;</b> pager, step through the whole queue without going back to the list &middot; <b>&#9315;</b> Employment Status, visible on the header.</figcaption></figure>
- <p><b>Approving does not simply mean &ldquo;Active&rdquo;.</b> The confirmation dialog repeats the name, email and title; on <b>Approve</b> the system then applies an automatic rule and picks the resulting status itself. <b>The rule is the five-question spine in <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C &#8599;</a></b>, employment status, then the position and company of each current role, then the flag on those companies. It records <b>when</b> the status changed but not <b>why</b>, so the profile gives no explanation afterwards.</p>
+ <p><b>Approving does not simply mean &ldquo;Active&rdquo;.</b> The confirmation dialog repeats the name, email and title; on <b>Approve</b> the system then applies an automatic rule and picks the resulting status itself. <b>The rule is the five-question spine in <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-A &#8599;</a></b>, employment status, then the position and company of each current role, then the flag on those companies. It records <b>when</b> the status changed but not <b>why</b>, so the profile gives no explanation afterwards.</p>
  
  <p class="fn"><b>An unlinked company can never fire it.</b> The trigger is the flag on the <i>linked</i> company, an ongoing role at a company that was never matched to the Mergermarket list does <b>not</b> fire Q5, whatever that company actually is. Roughly <b>63%</b> of talents have a current employer in that state (<a href="#ec-6-5" style="font-weight:700;cursor:pointer">A6.x.5 &#8599;</a>).</p>
  <div class="call warn"><span class="t">This is where most wrongly-Passive talents come from</span>Freelancers get set Passive <b>at approval time</b> purely because they hold a current job at a flagged company, <b>whatever the seniority of that job</b>. An <code>Analyst</code> or <code>Associate</code> is supply, and the rule has no check for it. Nobody clicked anything, and because the rule writes no reason, the profile gives no explanation afterwards. If you are auditing Passive talents, start here.</div>
- <p class="fn"><b>Ruled 28 Jul 2026: this is intended behaviour, not a defect, but it is narrower than the business rule.</b> The system deciding a status at approval is by design. Two gaps remain, and both are for a human to close: it fires on a plain <b>corporate</b> flag, which is group D and out of scope; and it never reads <b>Employment Status</b>, so it cannot enforce the gate in <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>. Neither gap is logged as a bug. They are the reason the <b>the retired existing-records branch</b> branches exist.</p>
+ <p class="fn"><b>Ruled 28 Jul 2026: this is intended behaviour, not a defect, but it is narrower than the business rule.</b> The system deciding a status at approval is by design. Two gaps remain, and both are for a human to close: it fires on a plain <b>corporate</b> flag, which is group D and out of scope; and it never reads <b>Employment Status</b>, so it cannot enforce the gate in <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-A.7 &#8599;</a>. Neither gap is logged as a bug. They are the reason the <b>the retired existing-records branch</b> branches exist.</p>
  <p><b>Two things worth knowing about the queue itself:</b></p>
  <ul style="margin:6px 0 0;padding-left:18px">
  <li>After each decision the drawer <b>advances to the next profile</b> and the counter drops, so the whole queue can be worked without returning to the list.</li>
  <li>The queue drawer <b>does not put the talent id in the URL</b>, so a profile being reviewed cannot be linked to. Opening the same person from the list <b>does</b> give you an address you can copy, and the Approve / Reject buttons are there too, so use that route when you need to share or come back.</li>
  </ul>
- <p class="fn">The chip is locked while the status is In Review, so a client has to be approved first and set Passive afterwards per <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>.</p>
+ <p class="fn">The chip is locked while the status is In Review, so a client has to be approved first and set Passive afterwards per <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-A.7 &#8599;</a>.</p>
 </li>
 <li id="ec-6-2" data-code="A6.x.2"><b><i>ReviewPassive</i>: a Passive talent resubmitted their profile.</b> The profile shows a <i>Talent Resubmit since &lt;date&gt;</i> panel next to the original Passive reason, and the toolbar offers <b>three</b> buttons instead of two:
  <div class="tblwrap"><table>
