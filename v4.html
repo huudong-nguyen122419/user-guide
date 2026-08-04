@@ -674,7 +674,6 @@
  <a href="#s6-5-2" class="st2" data-page="page-campaign">6.5.2 · Read each step</a>
  <a href="#s6-5-3" class="st2" data-page="page-campaign">6.5.3 · Personalize + Save</a>
  <a href="#s6-5-4" class="st2" data-page="page-campaign">6.5.4 &middot; Mark done &#10003;</a>
- <a href="#s6-5-5" class="st2" data-page="page-campaign">6.5.5 &middot; Bulk Actions</a>
  <a href="#cmp-run" class="st" data-page="page-campaign">6.6 · Schedule &amp; run</a>
  <a href="#cmp-queue" class="st" data-page="page-campaign">6.7 · Email Queue</a>
  <a href="#cmp-replies" class="st" data-page="page-campaign">6.8 · Verify replies</a>
@@ -4218,32 +4217,30 @@ rewritten by hand, <a data-goto="page-campaign" href="#s6-5-3" style="font-weigh
  <figure><img src="sdrx-camp-28-personalize.png" alt="Typing a personal line, then Save"/><figcaption><b>6.5.3</b>: <b>&#9312;</b> the line typed just for this contact, highlighted here so you can see it against the standard copy &middot; <b>&#9313;</b> <b>Save</b>, which only appears once you have changed something.</figcaption></figure>
  <figure><img src="sdrx-camp-29-personalized-icon.png" alt="Personalized icon on the row and variant"/><figcaption><b>6.5.3</b>: after <b>Save</b>: the contact's row gets the <b>&#10024;</b> icon and the variant is tagged <b>&#10024; Personalized</b>.</figcaption></figure>
 </li>
-<li id="s6-5-4" data-code="6.5.4"><b>Mark the contact done.</b> When you have read their steps and
- written anything you wanted to write, click the <b>green &#10003;</b> on their row. It asks
- <i>Done this contact?</i>, and the row then carries a <b>(Done)</b> tag with the tick replaced by an
- <b>&#8634;</b> undo icon. Clicking the undo asks <i>Undone this contact?</i> and clears it.
- <figure><img src="sdrx-camp-23-done-dialog.png" alt="Done this contact? dialog"/><figcaption><b>6.5.4</b>: the <b>&#10003;</b> asks <b>Done this contact?</b>.</figcaption></figure>
- <p><b>Done is a note to yourself.</b> It does not send anything, hold anything back, or change what the
- contact receives. It is how you keep track of who you have already been through, which matters on a list
- you cannot finish in one sitting. The <b>Done</b> filter at the top then splits the list into reviewed
- and not.</p>
-</li>
-<li id="s6-5-5" data-code="6.5.5"><b>Or mark the whole list at once.</b> Reviewing twelve people one tick
- at a time is fine. Reviewing two hundred is not, so tick <b>All</b> at the top of the contact list and a
- <b>Bulk Actions</b> button appears beside the count.
- <figure><img src="sdrx-camp-49-bulk-actions.png" alt="Bulk Actions menu on the Preview tab"/><figcaption><b>6.5.5</b>: <b>&#9312;</b> how many you have selected &middot; <b>&#9313;</b> <b>Bulk Actions</b> &middot; <b>&#9314;</b> the five things it can do.</figcaption></figure>
+<li id="s6-5-4" data-code="6.5.4"><b>Mark the contacts done.</b> Once you have been through them,
+tick <b>All</b> at the top of the contact list. A <b>Bulk Actions</b> button appears beside the count.
+Open it and choose <b>Mark all as Done</b>.
+ <figure><img src="sdrx-camp-49-bulk-actions.png" alt="Bulk Actions menu on the Preview tab"/><figcaption><b>6.5.4</b>: <b>&#9312;</b> how many you have selected &middot; <b>&#9313;</b> <b>Bulk Actions</b> &middot; <b>&#9314;</b> the five things it can do.</figcaption></figure>
+ <p><b>Every row then carries a (Done) tag</b>, and the green tick on the row is replaced by an
+ <b>&#8634;</b> undo arrow. That is the whole signal: the <b>Done</b> filter at the top now splits the
+ list into reviewed and not.</p>
+ <figure><img src="sdrx-camp-50-done-markers.png" alt="Rows carrying the Done tag"/><figcaption><b>6.5.4</b>: after <b>Mark all as Done</b>: <b>&#9312;</b> the <b>(Done)</b> tag &middot; <b>&#9313;</b> the undo arrow that replaced the tick.</figcaption></figure>
+ <p><b>What Done means:</b> these contacts have been read and their emails are ready to go out. It is a
+ record of your review, not an instruction to the campaign. Marking someone Done does not send anything,
+ hold anything back, or change a single word they receive. What it buys you is knowing where you stopped
+ on a list you cannot get through in one sitting.</p>
+ <p class="fn"><b>One at a time works too.</b> The green <b>&#10003;</b> on a single row asks
+ <i>Done this contact?</i> and tags just that person; the undo arrow asks <i>Undone this contact?</i>.
+ Worth it for one or two, not for a list.</p>
  <div class="tblwrap"><table>
- <thead><tr><th>Menu item</th><th>What it does to everyone selected</th></tr></thead>
+ <thead><tr><th>Menu item</th><th>When you reach for it</th></tr></thead>
  <tbody>
- <tr><td><b>Mark all as Done</b></td><td>the same tick as above, applied to the lot.</td></tr>
- <tr><td><b>Mark all as Undone</b></td><td>clears it again.</td></tr>
- <tr><td><b>Mark all as Unpersonalized</b></td><td>throws away the per-contact copy and puts everyone back on the standard step.</td></tr>
- <tr><td><b>Bulk update steps</b></td><td>edit the step itself and push it to all of them (<a data-goto="page-campaign" href="#ce-19" style="font-weight:700;cursor:pointer">6.x.19 &#8599;</a>).</td></tr>
- <tr><td><b>Remove all from campaign</b></td><td>takes them out of the campaign entirely.</td></tr>
+ <tr><td><b>Mark all as Done</b></td><td>you have read everyone&rsquo;s steps and they are ready to go out. This is the one you use at the end of a review pass.</td></tr>
+ <tr><td><b>Mark all as Undone</b></td><td>something changed after you reviewed, so the review no longer counts. Puts them back to unreviewed and clears the tags.</td></tr>
+ <tr><td><b>Mark all as Unpersonalized</b></td><td>you rewrote the step, so the personal lines were written against an email that no longer exists. Drops the per-contact copy and puts everyone back on the standard step (<a data-goto="page-campaign" href="#ce-18" style="font-weight:700;cursor:pointer">6.x.18 &#8599;</a>).</td></tr>
+ <tr><td><b>Bulk update steps</b></td><td>the email needs a change and you do not want to open two hundred contacts to make it. Edit it once, push it to all of them (<a data-goto="page-campaign" href="#ce-19" style="font-weight:700;cursor:pointer">6.x.19 &#8599;</a>).</td></tr>
+ <tr><td><b>Remove all from campaign</b></td><td>they should not be in this campaign at all. They stop receiving anything, and each of them is free to join another campaign.</td></tr>
  </tbody></table></div>
- <p><b>What Done looks like afterwards:</b> every row picks up the <b>(Done)</b> tag and the green tick
- becomes the undo arrow, exactly as if you had ticked each one.</p>
- <figure><img src="sdrx-camp-50-done-markers.png" alt="Rows carrying the Done tag"/><figcaption><b>6.5.5</b>: after <b>Mark all as Done</b>: <b>&#9312;</b> the <b>(Done)</b> tag &middot; <b>&#9313;</b> the undo arrow that replaced the tick.</figcaption></figure>
  <div class="call warn"><span class="t">None of the five asks you to confirm</span>The single-row tick
  pops a dialog. <b>The bulk versions do not.</b> Click the menu item and it has already happened to
  everyone selected, including <b>Remove all from campaign</b>, which sits one row below
@@ -4496,7 +4493,7 @@ to a different campaign in one action, instead of removing them here and adding 
  sequence have not been walked through, so treat this as a pointer rather than an instruction.</p>
 </li>
 <li id="ce-18" data-code="6.x.18"><b>Mark all as Unpersonalized.</b> In <b>Bulk Actions</b>
-(<a data-goto="page-campaign" href="#s6-5-5" style="font-weight:700;cursor:pointer">6.5.5 &#8599;</a>), it
+(<a data-goto="page-campaign" href="#s6-5-4" style="font-weight:700;cursor:pointer">6.5.4 &#8599;</a>), it
 strips the per-contact copy off everyone selected and puts them back on the standard step. Useful after a
 rewrite, when the personal lines were written against the old email and no longer make sense.
  <p><b>It runs without asking, and there is no undo.</b> Anything anyone typed for a specific contact is

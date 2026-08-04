@@ -292,7 +292,6 @@
     * [6.5.2 · Read each step](6-5-2-read-each-step.md)
     * [6.5.3 · Personalize + Save](6-5-3-personalize-save.md)
     * [6.5.4 · Mark done ✓](6-5-4-mark-done.md)
-    * [6.5.5 · Bulk Actions](6-5-5-bulk-actions.md)
   * [6.6 · Schedule & run](6-6-schedule-and-run.md)
   * [6.7 · Email Queue](6-7-email-queue.md)
   * [6.8 · Verify replies](6-8-verify-replies.md)
