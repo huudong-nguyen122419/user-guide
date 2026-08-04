@@ -19,7 +19,3 @@ all three were checked against live counts: Every block is split **Videos (n) / 
 | **Home** | the talent's **Home** page, low in the left column, under the standing FAQ cards. |
 | **Project** | the **project list** (*Work*), at the bottom of the filter sidebar. |
 | **Project Details** | a **single project's** page, top of the right column. |
-
-> **It is not a filter on the Resources page**
->
-> Display Page does not restrict who finds the resource. A published resource appears on the talent **Resources** page regardless, Display Page only adds the extra placement. Leaving it blank is allowed and simply means “Resources page only”.

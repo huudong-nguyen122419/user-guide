@@ -2929,17 +2929,18 @@ and optional together, so you can see what each field does before you decide whe
  <p>Worth filling in: <b>this is the only field a talent can filter on</b> in their Resources tab (<a href="#b5-list" style="font-weight:700;cursor:pointer">B5.2 &#8599;</a>). Empty means harder to find, not just untidy.</p>
 </li>
 
-<li data-code="B4.2.7"><b>Published At</b>: the date on the card, and <b>the switch that decides whether a talent can see it at all</b>.
- <div class="tblwrap"><table>
- <thead><tr><th>You set&hellip;</th><th>What happens</th></tr></thead>
- <tbody>
- <tr><td><b>nothing</b></td><td>publishing fills it in for you, whichever way you publish. Normal case.</td></tr>
- <tr><td><b>a past date</b></td><td>visible immediately once the status is Published; the card just carries that date.</td></tr>
- <tr><td><b>a future date</b></td><td><b>held back until that day</b>. This is how you line a resource up in advance.</td></tr>
- </tbody></table></div>
- <p><b>To schedule something, publish it and post-date it</b>, set <b>Status = Published</b> and <b>Published At</b> to the day you want it to appear. It stays out of sight until then and needs nothing further from you.</p>
- <div class="call warn"><span class="t">Post-dating a Draft does nothing: the status never flips on its own</span>A future date on a <b>Draft</b> leaves it a Draft forever; there is no <i>Scheduled</i> status and nothing switches it over when the day comes. There are Drafts carrying dates well in the past, still sitting in Draft. <b>The date gates visibility; it does not publish.</b> So schedule with <b>Published + future date</b>, never with Draft + future date.</div>
- <p class="fn">Full consequences of the date, including the empty case, in <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>.</p>
+<li data-code="B4.2.7"><b>Published At</b>: the day the resource is meant to go live <b>on its own</b>, so you
+ can line something up in advance instead of coming back to publish it by hand.
+ <div class="call warn"><span class="t">It does not do that at the moment, so skip the field</span>A
+ <b>Draft</b> with a future date stays a Draft. There is no <i>Scheduled</i> status and nothing flips it
+ over when the day arrives, and there are Drafts carrying dates well in the past that are still Drafts.
+ <b>Leave Published At empty and publish by hand when you want it live.</b> Either set <b>Status</b> to
+ <b>Published</b> on this form (<b>B4.2.4</b> above), or change the status from the resource list
+ (<a href="#b4-manage" style="font-weight:700;cursor:pointer">B4.5 &#8599;</a>). Publishing fills the
+ date in for you.</div>
+ <p class="fn">The date does still hold back something that is <b>already Published</b>: put a future
+ date on a published resource and talents cannot see it until that day. Worth knowing if a resource
+ reads Published but nobody can find it, see <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>.</p>
 </li>
 <li data-code="B4.2.8"><b>Description</b>: a line or two under the title on the card. Optional; the card renders fine without it.</li>
 
@@ -2950,7 +2951,7 @@ and optional together, so you can see what each field does before you decide whe
  <tr><td><b>PDF</b></td><td>a red <b>PDF icon</b></td><td>plain grey <b>fintalent.com</b> placeholder</td></tr>
  <tr><td><b>Video</b>, any source</td><td>grey box with a <b>&#9654;</b></td><td>plain grey <b>fintalent.com</b> placeholder</td></tr>
  </tbody></table></div>
- <div class="call warn"><span class="t">A Youtube or Vimeo link does not bring its own picture</span>Checked with a published Youtube resource that has no thumbnail: neither the admin table nor the talent card pulls the video's cover image. The card is rendered as an empty placeholder. There is no <code>&lt;img&gt;</code> on it at all. <b>If you want a picture, upload one.</b></div>
+ <div class="call warn"><span class="t">A Youtube or Vimeo link does not bring its own picture</span>The video's own cover image is never pulled in, so the card shows a placeholder instead. <b>Upload a thumbnail yourself.</b></div>
  <figure><img src="res-22-thumb-pdf.png" alt="PDF row with no thumbnail"/><figcaption><b>B4.2.9</b>: <b>PDF</b>, no thumbnail: the admin table falls back to a PDF icon.</figcaption></figure>
  <figure><img src="res-21-thumb-video.png" alt="Video row with no thumbnail"/><figcaption><b>B4.2.9</b>: <b>Video</b> (Youtube), no thumbnail: a grey box with a play symbol, not the Youtube cover.</figcaption></figure>
  <figure><img src="res-23-thumb-talent.png" alt="Two talent cards with no thumbnail"/><figcaption><b>B4.2.9</b>: the same two on the talent side: <b>&#9312;</b> the video &middot; <b>&#9313;</b> the PDF. Identical placeholder; only the badge tells them apart.</figcaption></figure>
@@ -2970,7 +2971,7 @@ and optional together, so you can see what each field does before you decide whe
  <tr><td><b>Project Details</b></td><td>a <b>single project's</b> page, top of the right column.</td></tr>
  </tbody></table></div>
  <p>Every block is split <b>Videos (n) / Documents (n)</b> and scrolls as a carousel. See all three in <a href="#b5-blocks" style="font-weight:700;cursor:pointer">B5.4 &#8599;</a>.</p>
- <div class="call note"><span class="t">It is not a filter on the Resources page</span>Display Page does not restrict who finds the resource. A published resource appears on the talent <b>Resources</b> page regardless, Display Page only adds the extra placement. Leaving it blank is allowed and simply means &ldquo;Resources page only&rdquo;.</div></li>
+</li>
 </ol>
 
 <h3 id="b4-publish" class="anchor">B4.4 &middot; Publish it</h3>

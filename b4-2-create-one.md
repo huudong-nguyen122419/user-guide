@@ -63,17 +63,11 @@ how the resource is classified. Two values exist: **Profile Tips** and **Intervi
 
 ## B4.2.7 · Published At
 
-the date on the card, and **the switch that decides whether a talent can see it at all**. **To schedule something, publish it and post-date it**, set **Status = Published** and **Published At** to the day you want it to appear. It stays out of sight until then and needs nothing further from you. Full consequences of the date, including the empty case, in [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md).
+the day the resource is meant to go live **on its own**, so you can line something up in advance instead of coming back to publish it by hand. The date does still hold back something that is **already Published**: put a future date on a published resource and talents cannot see it until that day. Worth knowing if a resource reads Published but nobody can find it, see [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md).
 
-| You set… | What happens |
-|---|---|
-| **nothing** | publishing fills it in for you, whichever way you publish. Normal case. |
-| **a past date** | visible immediately once the status is Published; the card just carries that date. |
-| **a future date** | **held back until that day**. This is how you line a resource up in advance. |
-
-> **Post-dating a Draft does nothing: the status never flips on its own**
+> **It does not do that at the moment, so skip the field**
 >
-> A future date on a **Draft** leaves it a Draft forever; there is no *Scheduled* status and nothing switches it over when the day comes. There are Drafts carrying dates well in the past, still sitting in Draft. **The date gates visibility; it does not publish.** So schedule with **Published + future date**, never with Draft + future date.
+> A **Draft** with a future date stays a Draft. There is no *Scheduled* status and nothing flips it over when the day arrives, and there are Drafts carrying dates well in the past that are still Drafts. **Leave Published At empty and publish by hand when you want it live.** Either set **Status** to **Published** on this form (**B4.2.4** above), or change the status from the resource list ([B4.5 ↗](b4-5-edit-draft-archive.md)). Publishing fills the date in for you.
 
 ## B4.2.8 · Description
 
@@ -90,7 +84,7 @@ the picture on the card. Optional, and **what you get when you skip it is not th
 
 > **A Youtube or Vimeo link does not bring its own picture**
 >
-> Checked with a published Youtube resource that has no thumbnail: neither the admin table nor the talent card pulls the video's cover image. The card is rendered as an empty placeholder. There is no `<img>` on it at all. **If you want a picture, upload one.**
+> The video's own cover image is never pulled in, so the card shows a placeholder instead. **Upload a thumbnail yourself.**
 
 ![PDF row with no thumbnail](res-22-thumb-pdf.png)
 
