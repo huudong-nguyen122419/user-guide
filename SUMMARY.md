@@ -215,7 +215,7 @@
     * [2.x.9 · Still loading (0 of N)](2-x-9-still-loading-0-of-n.md)
     * [2.x.10 · "+N" more roles](2-x-10-n-more-roles.md)
 * [3 · Send a 1:1 email](3-send-a-1-1-email.md)
-  * [3.1 · 3 ways into compose](3-1-3-ways-into-compose.md)
+  * [3.1 · Four ways into compose](3-1-four-ways-into-compose.md)
     * [3.1.1 · List row ✉](3-1-1-list-row.md)
     * [3.1.2 · Profile Send email](3-1-2-profile-send-email.md)
     * [3.1.3 · Conversations → New Email](3-1-3-conversations-new-email.md)

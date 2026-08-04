@@ -1,6 +1,6 @@
 # 3.1.4 · From a signal
 
-> 3 · Send a 1:1 email → 3.1 · 3 ways into compose
+> 3 · Send a 1:1 email → 3.1 · Four ways into compose
 
 3.1.4Way 4: From a signal (the draft is written before you arrive) What this way is forA signal is a piece of news, a raise, a carve-out, an appointment. Fintalent turns it into a **ready-written email about that news**, so instead of starting from a blank window you start from a draft that already references what happened. Your job is to pick who it goes to and make it sound like you. **Not yet covered:** the same trick starting from **Job Search**, not walked, so nothing is claimed about it here.
 

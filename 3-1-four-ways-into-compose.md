@@ -1,8 +1,8 @@
-# 3.1 · 3 ways into compose
+# 3.1 · Four ways into compose
 
 > 3 · Send a 1:1 email
 
-4.1.1Way 1, From the list row (fastest)
+3.1.1Way 1: From the list row (fastest)
 
 1. **1a** — **Segments (Lists)** → open your list → find the contact's row.
 
@@ -12,7 +12,7 @@
 
    *Way 1: click the ✉ icon in the row's Action column (far right, circled) → compose opens for that contact.*
 
-4.1.2Way 2: From the contact's profile
+3.1.2Way 2: From the contact's profile
 
 1. **2a** — **Open the contact** (click the name/title) → the profile drawer opens.
 
@@ -22,7 +22,7 @@
 
    *Way 2: the Send email button in the profile action bar (top-left of the drawer).*
 
-4.1.3Way 3: From the Conversations rail (see history first)
+3.1.3Way 3: From the Conversations rail (see history first)
 
 1. **3a** — **Open the contact** → on the right edge click the vertical **CONVERSATIONS** tab to expand the rail.
 

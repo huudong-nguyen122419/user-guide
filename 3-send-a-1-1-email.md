@@ -8,6 +8,6 @@ description: "send one personal email to one person. There are 4 ways to open th
 
 ## In this flow
 
-* [3.1 · 3 ways into compose](3-1-3-ways-into-compose.md)
+* [3.1 · Four ways into compose](3-1-four-ways-into-compose.md)
 * [3.2 · Compose & send](3-2-compose-and-send.md)
 * [3.x · Edge cases](3-x-edge-cases.md)
