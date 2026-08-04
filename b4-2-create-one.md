@@ -8,9 +8,9 @@ Click **Create New**, top right. A drawer opens over the list. Then work **down 
 
 *B4.2: Create New.*
 
-**You only have to fill in the required fields.** Those are the ones carrying a ***** next to the label, and the form will not let you create the resource until each of them has something in it. Leave one empty and it turns red with *This field is mandatory* under it.
-
-**Everything else is optional and you can skip it.** The list below walks the whole form, required and optional together, so you can see what each field does before you decide whether you need it.
+> **You only have to fill in the required fields**
+>
+> Those are the ones carrying a ***** next to the label, and the form will not let you create the resource until each of them has something in it. Leave one empty and it turns red with *This field is mandatory* under it. **Everything else is optional and you can skip it.** The list below walks the whole form, required and optional together, so you can see what each field does before you decide whether you need it.
 
 ## B4.2.1 · Title
 
