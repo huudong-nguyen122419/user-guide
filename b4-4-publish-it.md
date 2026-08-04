@@ -32,6 +32,6 @@ The dialog names the resource, shows the status change as chips, and tells you w
 
 *B4.4.3: ① what publishing does · ② Confirm.*
 
-## B4.4.4 · You do not have to come through here at all
+## B4.4.4 · You can also publish on the way in, and you do not have to
 
-If you already know the resource should be live, set **Status** to **Published** and **Published At** to **today** while you are creating it ([B4.2.4 ↗](b4-2-create-one.md)), and it is live the moment you press **Create**. **Both fields**, a status with no date publishes nothing anyone can see. The route above is for anything that was saved as a **Draft**.
+Leaving **Status** on its default **Draft** is perfectly normal: write the resource now, publish it later from the row menu above whenever it is ready. Nothing is lost by waiting. If you already know it should be live, set **Status** to **Published** on the create form ([B4.2.4 ↗](b4-2-create-one.md)) and skip the row menu entirely. Either way **Published At still needs a date**, or the resource is published and invisible ([B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md)).
