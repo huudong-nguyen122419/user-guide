@@ -1320,19 +1320,19 @@ the field was never answered.<br><br>
 The second one is the uncomfortable case. <b>A blank field produces Active</b>, so a talent who never finished sign-up
 is treated as available, and no current role, no employer and no company flag is ever looked at.</div>
 
-<h4 style="margin:18px 0 8px">Every outcome the rule can produce</h4>
-<p>Seven, no more. The code is what tells you which step fired:</p>
+<h4 style="margin:18px 0 8px">Every sentence the rule can print</h4>
+<p>Seven, no more. Whichever one you see on the tooltip, this is the step behind it:</p>
 
 <div class="tblwrap"><table>
-<thead><tr><th>Code</th><th>Recommends</th><th>The sentence you see</th><th>Step</th></tr></thead>
+<thead><tr><th>The sentence you see</th><th>It recommends</th><th>Decided at step</th></tr></thead>
 <tbody>
-<tr><td><code>EmployedFullTime</code></td><td><b>Passive</b></td><td>employed full-time</td><td><b>1</b></td></tr>
-<tr><td><code>EmployedPartTime</code></td><td><b>Passive</b></td><td>employed part-time</td><td><b>1</b></td></tr>
-<tr><td><code>NoEmployeeStatus</code></td><td><b>Active</b></td><td>employment status was never answered, so availability is assumed</td><td><b>1</b></td></tr>
-<tr><td><code>NoCurrentRole</code></td><td><b>Active</b></td><td>no current role on the profile, so nothing marks them passive</td><td><b>2</b></td></tr>
-<tr><td><code>FreelanceKeywordMatched</code></td><td><b>Active</b></td><td>the current role reads as freelance or independent</td><td><b>3</b></td></tr>
-<tr><td><code>ClientCompanyMatched</code></td><td><b>Passive</b></td><td>currently works at a client company (portfolio, sponsor or corporate)</td><td><b>4</b></td></tr>
-<tr><td><code>NoPassiveSignal</code></td><td><b>Active</b></td><td>self-directed, and nothing ties them to a client company</td><td><b>5</b></td></tr>
+<tr><td>employed full-time</td><td><b>Passive</b></td><td><b>1</b></td></tr>
+<tr><td>employed part-time</td><td><b>Passive</b></td><td><b>1</b></td></tr>
+<tr><td>employment status was never answered, so availability is assumed</td><td><b>Active</b></td><td><b>1</b></td></tr>
+<tr><td>no current role on the profile, so nothing marks them passive</td><td><b>Active</b></td><td><b>2</b></td></tr>
+<tr><td>the current role reads as freelance or independent</td><td><b>Active</b></td><td><b>3</b></td></tr>
+<tr><td>currently works at a client company (portfolio, sponsor or corporate)</td><td><b>Passive</b></td><td><b>4</b></td></tr>
+<tr><td>self-directed, and nothing ties them to a client company</td><td><b>Active</b></td><td><b>5</b></td></tr>
 </tbody></table></div>
 
 <p class="fn">Not every talent carries a recommendation. Where the icon is missing the rule has no opinion on that record, which is <b>not</b> the same as agreeing with the status it already has.</p>
@@ -1359,10 +1359,7 @@ reaches the screen.</b> The tooltip prints the one-line summary and stops, so a 
 engine already did and wrote down.</div>
 
 <h4 style="margin:18px 0 8px">How to read a company flag, and how not to</h4>
-<p><b>The flag is <code>workExperiences[].linkedCompany.isSponsor</code> /
-<code>.isPortfolio</code> / <code>.isCorporate</code>, on a row with <code>ongoing = true</code>.
-Nothing else is a flag.</b> On screen: the <b>S / P / Corporate badge next to the company name in the
-Work Experience tab</b>. No badge means no flag.</p>
+<p><b>The flag is the S / P / Corporate badge sitting next to the company name</b>, on a role with no end date. You see it on the talents list and in the <b>Work Experience</b> tab. <b>No badge means no flag</b>, and nothing else on the profile counts as one.</p>
 <div class="call warn"><span class="t">These are NOT flags: do not read them as one</span>
 <b>&#9312; <i>&ldquo;CFO of VC-backed SaaS&hellip;&rdquo;</i> in the role description</b>. That is
 text the talent typed about themselves. Syed Ishaque Hasib&rsquo;s current employer reads exactly like
@@ -1373,7 +1370,7 @@ AI label inferred across the <b>whole career</b>, not a fact about today&rsquo;s
 <b>&#9314; the company&rsquo;s own description</b>: only S6 reads a description, and S6 is still
 open.<br><br>
 Getting this wrong is easy: on Syed&rsquo;s record all three lookalikes say <i>portfolio company</i>,
-and the flag says nothing. <b>Check <code>linkedCompany</code> before concluding.</b></div>
+and the flag says nothing. <b>Check the linked company before concluding.</b></div>
 <p class="fn"><b>A shortcut that has held on 4 of 4 records checked:</b> the header line next to the
 status chip shows a green <b>Corporate</b> badge exactly when the current employer carries the flag.
 Arnaud and Athanasia have it; Syed and Mark do not, and neither of their current employers is flagged.
@@ -1391,15 +1388,8 @@ the rule, that is a decision to take, not a reading to assume.</div>
 <code>Teaching Assistant</code>, <code>Investor Relations</code>,
 <code>Fundraising</code>, <code>Fund Finance</code>, <code>Capital Formation</code>, <code>Fund Accountant</code>, <code>Fund Controller</code>,
 <code>Taxation</code> and <code>Business Partner</code></p>
-<p>Match on <b>word boundaries</b>, not substring. Plain substring turns <i>&ldquo;M&amp;A
-International Manager&rdquo;</i> into an intern.</p>
-<div class="call"><span class="t"><code>seniorityLevel</code> cannot veto the position: settled
-on Athanasia Panteli</span>Her record carries <code>seniorityLevel: "Manager"</code> while the current
-row reads <code>Senior FP&amp;A Analyst</code>. <b>The position wins: <code>Analyst</code> fires, she is
-ACTIVE.</b> The enum is a whole-person label (<code>Analyst</code>, <code>Associate</code>, <code>Manager</code> and <code>Senior</code>) and it is demonstrably out of step here, 12 years&rsquo; experience labelled <code>Manager</code>, actually working as an Analyst.
-<br><br><b>Untested:</b> whether <code>seniorityLevel</code> being <code>Analyst</code> or
-<code>Associate</code> should fire S5 on its own when the position text does <i>not</i> look junior. No
-record has produced that combination yet.</div>
+<p>Match <b>whole words</b>. Matching on part of a word turns <i>&ldquo;M&amp;A International Manager&rdquo;</i> into an intern.</p>
+
 <p class="fn">This is <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a> from our business rule, moved into the intake path, same list, but it now runs
 <b>at approval</b> and <b>before the company check</b>.</p>
 
@@ -1539,15 +1529,15 @@ reason:
 <ol class="steps edge">
 <li id="ec-6-1" data-code="A6.x.1"><b>The <i>In Review</i> queue, new sign-ups waiting for approval.</b> The <b>N In Review</b> button at the top right of the talents list opens the queue one profile at a time.
  <figure><img src="a6-07-in-review.png" alt="In Review profile toolbar"/><figcaption><b>A6.x.1</b>: <b>&#9312;</b> status chip reads <b>In Review</b> and is <b>not editable</b> &middot; <b>&#9313;</b> <b>Reject Talent</b> &rarr; status becomes <i>Rejected</i>; <b>Approve Talent</b> &rarr; confirmation dialog, then the talent enters the normal pool &middot; <b>&#9314;</b> pager, step through the whole queue without going back to the list &middot; <b>&#9315;</b> Employment Status, visible on the header.</figcaption></figure>
- <p><b>Approving does not simply mean &ldquo;Active&rdquo;.</b> The confirmation dialog repeats the name, email and title; on <b>Approve</b> the system then applies an automatic rule and picks the resulting status itself. <b>The rule is the five-question spine in <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C &#8599;</a></b>, employment status, then the position and company of each current role, then the Mergermarket flag on those companies. It writes <code>passiveDate</code> but <b>no reason</b>, so the profile gives no explanation afterwards.</p>
- <div class="call"><span class="t">Skip Review is not part of it, settled 30 Jul 2026</span>An earlier note here said the Passive branch needed <b>Skip Review</b> set, based on six approvals watched. That was a coincidence in the sample. <b>Iman Dakhlaoui</b> has <code>internalStatus = null</code>, no Skip Review, and the system still set <b>Passive</b> at approval, transition <code>InReview &rarr; Passive</code>, on a <code>corporate</code> flag. <b>The five questions are the whole rule; Skip Review does not gate them.</b></div>
+ <p><b>Approving does not simply mean &ldquo;Active&rdquo;.</b> The confirmation dialog repeats the name, email and title; on <b>Approve</b> the system then applies an automatic rule and picks the resulting status itself. <b>The rule is the five-question spine in <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C &#8599;</a></b>, employment status, then the position and company of each current role, then the flag on those companies. It records <b>when</b> the status changed but not <b>why</b>, so the profile gives no explanation afterwards.</p>
+ 
  <p class="fn"><b>An unlinked company can never fire it.</b> The trigger is the flag on the <i>linked</i> company, an ongoing role at a company that was never matched to the Mergermarket list does <b>not</b> fire Q5, whatever that company actually is. Roughly <b>63%</b> of talents have a current employer in that state (<a href="#ec-6-5" style="font-weight:700;cursor:pointer">A6.x.5 &#8599;</a>).</p>
  <div class="call warn"><span class="t">This is where most wrongly-Passive talents come from</span>Freelancers get set Passive <b>at approval time</b> purely because they hold a current job at a flagged company, <b>whatever the seniority of that job</b>. An <code>Analyst</code> or <code>Associate</code> is supply, and the rule has no check for it. Nobody clicked anything, and because the rule writes no reason, the profile gives no explanation afterwards. If you are auditing Passive talents, start here.</div>
  <p class="fn"><b>Ruled 28 Jul 2026: this is intended behaviour, not a defect, but it is narrower than the business rule.</b> The system deciding a status at approval is by design. Two gaps remain, and both are for a human to close: it fires on a plain <b>corporate</b> flag, which is group D and out of scope; and it never reads <b>Employment Status</b>, so it cannot enforce the gate in <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>. Neither gap is logged as a bug. They are the reason the <b>the retired existing-records branch</b> branches exist.</p>
  <p><b>Two things worth knowing about the queue itself:</b></p>
  <ul style="margin:6px 0 0;padding-left:18px">
  <li>After each decision the drawer <b>advances to the next profile</b> and the counter drops, so the whole queue can be worked without returning to the list.</li>
- <li>The queue drawer <b>does not put the talent id in the URL</b>, so a profile being reviewed cannot be linked to. Opening the same person from the list does add <code>?id=&hellip;</code>, and the Approve / Reject buttons are there too, so use that route when you need to share or come back.</li>
+ <li>The queue drawer <b>does not put the talent id in the URL</b>, so a profile being reviewed cannot be linked to. Opening the same person from the list <b>does</b> give you an address you can copy, and the Approve / Reject buttons are there too, so use that route when you need to share or come back.</li>
  </ul>
  <p class="fn">The chip is locked while the status is In Review, so a client has to be approved first and set Passive afterwards per <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>.</p>
 </li>
@@ -1569,7 +1559,7 @@ reason:
 <li id="ec-6-4" data-code="A6.x.4"><b>The headline says one thing, the job history says another.</b> Common and important. Seen in practice: a title reading <i>"Freelance, former Private Equity Professional"</i> on a profile whose work experience still shows an <b>ongoing</b> role at a PE fund. The title claims they left; the data says they did not. Open the row and check the end date before deciding.</li>
 <li id="ec-6-5" data-code="A6.x.5"><b>Most current employers are not linked, so company flags are missing.</b> Roughly <b>63%</b> of talents have a current role whose employer was never matched to the Mergermarket company list, no Sponsor / Portfolio / Corporate flag to read. For those people the title and the free-text company description are the only evidence. This is also why the Work Experience filter cannot replace the title check: every one of the strongest buy-side hits found sat at an <b>unflagged</b> company.</li>
 <li id="ec-6-6" data-code="A6.x.6"><b>No filter finds bosses of companies a fund owns.</b> These are the people in <b>group C</b>, the CEO or CFO of a business a PE fund has bought. The box that ought to find them, <i>Corporate / Industry &rarr; PE-Backed / Portfolio Company</i>, is <b>attached to nobody at all</b>: zero people, everywhere. Reach them a different way: the <b>Work Experience</b> filter with <i>company type = Portfolio</i> and <i>Currently</i>, which returns 156 people.</li>
-<li id="ec-6-7" data-code="A6.x.7"><b>Where the Passive reason is saved, and why the profile looks empty.</b> The reason you type is written to the <b>activity log</b>, not to a field on the talent record, the record's own <code>passiveReason</code> field stays empty. It surfaces in the tooltip on the status chip and in the <i>Passive since</i> panel.
+<li id="ec-6-7" data-code="A6.x.7"><b>Where the Passive reason is saved, and why the profile looks empty.</b> The reason you type is written to the <b>activity log</b>, not to the talent record, which has no field of its own holding it. It surfaces in the tooltip on the status chip and in the <i>Passive since</i> panel.
  <p>The <b>Activity Logs</b> tab is the audit trail. Each entry reads <i>&ldquo;Admin &lt;name&gt; changed talent status to &lt;status&gt;&rdquo;</i> with a timestamp. Two limits to know:</p>
  <ul style="margin:6px 0 0;padding-left:18px">
  <li>A status set by the <b>automatic rule at approval</b> carries <b>no reason</b>, the entry only says the status changed.</li>
