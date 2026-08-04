@@ -656,7 +656,7 @@
  <a href="#s6-1-3" class="st2" data-page="page-campaign">6.1.3 · Open your folder</a>
  <a href="#s6-1-4" class="st2" data-page="page-campaign">6.1.4 · Create the campaign</a>
  <a href="#s6-1-5" class="st2" data-page="page-campaign">6.1.5 · Name + timezone</a>
- <a href="#s6-1-6" class="st2" data-page="page-campaign">6.1.6 · Contacts → Skip</a>
+ <a href="#s6-1-6" class="st2" data-page="page-campaign">6.1.6 &middot; Create &rarr; you land in it</a>
  <a href="#cmp-steps" class="st" data-page="page-campaign">6.2 · Build the sequence</a>
  <a href="#s6-2-1" class="st2" data-page="page-campaign">6.2.1 · Create new step</a>
  <a href="#s6-2-2" class="st2" data-page="page-campaign">6.2.2 · Write the step (fields)</a>
@@ -664,12 +664,15 @@
  <a href="#s6-2-4" class="st2" data-page="page-campaign">6.2.4 · Timing (delay)</a>
  <a href="#s6-2-5" class="st2" data-page="page-campaign">6.2.5 · Add follow-ups</a>
  <a href="#cmp-view" class="st" data-page="page-campaign">6.3 · View campaigns</a>
- <a href="#cmp-people" class="st" data-page="page-campaign">6.4 · Add people</a>
- <a href="#s6-4-1" class="st2" data-page="page-campaign">6.4.1 · Open your list</a>
- <a href="#s6-4-2" class="st2" data-page="page-campaign">6.4.2 · Find the people</a>
- <a href="#s6-4-3" class="st2" data-page="page-campaign">6.4.3 · Select → Add to campaign</a>
- <a href="#s6-4-4" class="st2" data-page="page-campaign">6.4.4 · Pick campaign + email</a>
- <a href="#s6-4-5" class="st2" data-page="page-campaign">6.4.5 · Add</a>
+ <a href="#cmp-people" class="st" data-page="page-campaign">6.4 &middot; Add and remove people</a>
+ <a href="#s6-4-1" class="st2" data-page="page-campaign">6.4.1 &middot; + Add contacts</a>
+ <a href="#s6-4-2" class="st2" data-page="page-campaign">6.4.2 &middot; The pre-filtered list</a>
+ <a href="#s6-4-3" class="st2" data-page="page-campaign">6.4.3 &middot; Tick your people</a>
+ <a href="#s6-4-4" class="st2" data-page="page-campaign">6.4.4 &middot; The drawer: 4 groups</a>
+ <a href="#s6-4-5" class="st2" data-page="page-campaign">6.4.5 &middot; Add to campaign</a>
+ <a href="#s6-4-6" class="st2" data-page="page-campaign">6.4.6 &middot; The action bar</a>
+ <a href="#s6-4-7" class="st2" data-page="page-campaign">6.4.7 &middot; Remove (no undo)</a>
+ <a href="#s6-4-8" class="st2" data-page="page-campaign">6.4.8 &middot; Move instead</a>
  <a href="#cmp-preview" class="st" data-page="page-campaign">6.5 · Preview &amp; review</a>
  <a href="#s6-5-1" class="st2" data-page="page-campaign">6.5.1 · Pick a contact</a>
  <a href="#s6-5-2" class="st2" data-page="page-campaign">6.5.2 · Read each step</a>
@@ -696,7 +699,9 @@
  <a href="#ce-11" class="st2" data-page="page-campaign">6.x.11 · Language (EN/DE)</a>
  <a href="#ce-12" class="st2" data-page="page-campaign">6.x.12 · Force Update</a>
  <a href="#ce-13" class="st2" data-page="page-campaign">6.x.13 · Skip a step (= not sent)</a>
- <a href="#ce-14" class="st2" data-page="page-campaign">6.x.14 · Notifications bell</a>
+ <a href="#ce-15" class="st2" data-page="page-campaign">6.x.15 &middot; Rename &middot; description</a>
+ <a href="#ce-16" class="st2" data-page="page-campaign">6.x.16 &middot; Edit a step</a>
+ <a href="#ce-14" class="st2" data-page="page-campaign">6.x.14 &middot; Notifications bell</a>
  <a class="flow" data-page="page-campaignaudit"><span class="n">6&#8224;</span> Manage a campaign, audited</a>
  <a class="flow" data-page="page-marketing"><span class="n">7</span> Manage a Marketing Email</a>
  <a href="#me-create" class="st" data-page="page-marketing">7.1 · Create a ME</a>
@@ -3971,10 +3976,23 @@ reason:
  <figure><img src="sdrx-camp-02-infolder.png" alt="Inside a folder, Create Campaign appears"/><figcaption><b>6.1.3</b>: inside your folder: <b>&#9313;</b> the folder is selected in the rail &middot; <b>&#9312;</b> the <b>+ Create Campaign</b> button appears.</figcaption></figure>
 </li>
 <li id="s6-1-4" data-code="6.1.4"><b>Create the campaign.</b> Click <b>+ Create Campaign</b>: the button <b>only shows inside a folder</b>; that's why the folder comes first.</li>
-<li id="s6-1-5" data-code="6.1.5"><b>Name it.</b> The <b>create wizard</b> opens: click the <b>&#9998;</b> to name the campaign, pick a <b>timezone</b>, then work through the two wizard steps: <b>1 Contacts &rarr; 2 Steps</b>.
- <figure><img src="sdrx-camp-03-create-wizard.png" alt="Create campaign wizard"/><figcaption><b>6.1.5</b>: the wizard: <b>name</b> (click the pencil) &middot; timezone &middot; <b>1 Contacts &rarr; 2 Steps</b>.</figcaption></figure>
+<li id="s6-1-5" data-code="6.1.5"><b>Name it and pick the timezone.</b> A single form opens
+ with three things on it and nothing else: the <b>name</b> (it arrives pre-filled with
+ <i>New Campaign</i>, so type over it), the <b>timezone</b> the sending clock runs on, and
+ <b>Create</b>. The <b>&#9998;</b> next to the name just puts your cursor in the field.
+ <figure><img src="sdrx-camp-03-create-wizard.png" alt="Create campaign form: name, timezone, Create"/><figcaption><b>6.1.5</b>: the whole form: <b>&#9312;</b> name (pre-filled <i>New Campaign</i>) &middot; <b>&#9313;</b> timezone &middot; <b>&#9314; Create</b>.</figcaption></figure>
+ <p class="fn">Neither one is locked in. You can rename the campaign later from its header
+ (<a data-goto="page-campaign" href="#ce-15" style="font-weight:700;cursor:pointer">6.x.15 &#8599;</a>).</p>
 </li>
-<li id="s6-1-6" data-code="6.1.6"><b>Contacts &rarr; Skip.</b> Wizard step <b>1 Contacts</b> is where recipients would be loaded. On the <b>SDR login it's empty</b>: click <b>Skip</b> to go straight to <b>Steps</b>; you add people later (<a data-goto="page-campaign" href="#cmp-people" style="font-weight:700;cursor:pointer">6.4</a>) or Admin/Ops loads them. <span class="fn">(Same limitation as Marketing Emails.)</span></li>
+<li id="s6-1-6" data-code="6.1.6"><b>Create, and you land in the campaign.</b> There is no second
+ wizard page and nothing to skip. <b>Create</b> drops you straight into the new campaign, on the
+ <b>Steps</b> tab, with the tab bar reading <b>Steps &middot; People &middot; Data Health &middot; Timeline</b>.
+ The campaign is a <b>Draft</b> with no steps and nobody in it, so the two jobs waiting for you are
+ <a data-goto="page-campaign" href="#cmp-steps" style="font-weight:700;cursor:pointer">6.2 &middot; the sequence</a>
+ and <a data-goto="page-campaign" href="#cmp-people" style="font-weight:700;cursor:pointer">6.4 &middot; the people</a>.
+ <p class="fn"><b>Two tabs are missing at this point and that is normal.</b> <b>Inbox</b> and
+ <b>Preview</b> only appear once the campaign has a step and some people in it.</p>
+</li>
 </ol>
 
 <h3 id="cmp-steps" class="anchor">6.2 &middot; Build the sequence (steps)</h3>
@@ -4028,25 +4046,84 @@ reason:
 <p>Left menu &rarr; <b>Campaigns</b> lists every campaign, grouped into <b>folders</b> (right rail). The top tabs filter by <b>status</b>: <b>All, Scheduled, Draft, Running, Finished, Paused and Archive</b>. Each row shows the <b>Enabled</b> toggle, <b>Total Steps</b>, <b>People</b>, <b>Open / Reply / Bounce rates</b>, <b>Progress</b>, <b>Delivered</b> and <b>Last run</b>.</p>
 <figure><img src="sdrx-camp-00-list.png" alt="Campaigns list"/><figcaption><b>6.3</b>: the campaign list: status tabs, the <b>folder rail</b>, the <b>Enabled</b> toggle and per-campaign metrics.</figcaption></figure>
 
-<h3 id="cmp-people" class="anchor">6.4 &middot; Add people to the campaign</h3>
-<div class="call warn"><span class="t">Not available yet for SDR</span>Just like Marketing Emails, this flow <b>isn't available to the SDR role yet</b>. The contact list has <b>no select + &ldquo;Add to campaign&rdquo;</b> action. For now, campaigns come with people <b>already loaded by Admin / Ops</b>. The steps below are the <b>intended flow</b>, for when it ships.</div>
-<p class="fn"><b>Assigned a campaign that already has people</b> and told not to add more? <b>Skip this section</b>: just work those contacts (see <a data-goto="page-campaign" href="#ce-6" style="font-weight:700;cursor:pointer">6.x.6 &#8599;</a>).</p>
-<p>Recipients come from your lists:</p>
+<h3 id="cmp-people" class="anchor">6.4 &middot; Add and remove people</h3>
+<p>The <b>People</b> tab is the campaign's recipient list. It carries the same filter bar as your
+lists plus <b>two filters only campaigns have</b>: <b>Done</b> (finished the whole sequence) and
+<b>Skipped</b>.</p>
+<p class="fn"><b>Handed a campaign that already has people</b> and told not to add more? <b>Skip
+straight to</b> <a data-goto="page-campaign" href="#cmp-preview" style="font-weight:700;cursor:pointer">6.5 &middot; Preview</a>
+and just work the contacts you were given (<a data-goto="page-campaign" href="#ce-6" style="font-weight:700;cursor:pointer">6.x.6 &#8599;</a>).</p>
+
+<h4 style="margin:18px 0 8px">Adding people</h4>
 <ol class="steps">
-<li id="s6-4-1" data-code="6.4.1"><b>Segments (Lists)</b> &rarr; open the list you were given.</li>
-<li id="s6-4-2" data-code="6.4.2">Find the people you want: same tools as <a data-goto="page-find" style="font-weight:700;cursor:pointer">Flow 2 &middot; Find a target contact &#8599;</a> (filters, search, signals).</li>
-<li id="s6-4-3" data-code="6.4.3"><b>Select</b> the contacts &rarr; <b>Add to campaign</b>. The <b>Add to campaign</b> drawer opens.</li>
-<li id="s6-4-4" data-code="6.4.4">In the drawer: <b>choose the campaign</b>, then <b>choose each contact and which email address to use</b>. A contact can have several addresses: a campaign sends to <b>one address per contact</b>, so pick deliberately. The addresses are grouped in three tabs:
- <ul style="margin:6px 0 0;padding-left:18px">
- <li><b>Valid</b>: verified addresses; use these.</li>
- <li><b>Missing + Invalid</b>: no address, or one that failed validation.</li>
- <li><b>Platform sign up</b>: the address they signed up to the platform with.</li>
- </ul>
+<li id="s6-4-1" data-code="6.4.1"><b>People</b> tab &rarr; <b>+ Add contacts</b> (top-right).</li>
+<li id="s6-4-2" data-code="6.4.2"><b>You get taken to the contact list, already filtered.</b> This is
+ the part people do not expect: the button does not open a picker, it navigates you to
+ <b>Contacts</b> and switches on a filter chip for you, <b>Campaign : No</b>. So what you are looking at
+ is <b>only people who are not in any campaign yet</b>.
+ <p><b>Why it does that:</b> a contact can sit in <b>one campaign at a time</b>. Filtering them out
+ up front means you cannot pick someone who is already committed elsewhere.</p>
+ <p class="fn">Any filter chips left over from your last visit to Contacts are still there. Read the
+ chip row before you trust the count.</p>
 </li>
-<li id="s6-4-5" data-code="6.4.5">Click <b>Add to campaign</b>. They now appear on the <b>People</b> tab.</li>
+<li id="s6-4-3" data-code="6.4.3"><b>Find your people and tick them.</b> Same tools as
+ <a data-goto="page-find" style="font-weight:700;cursor:pointer">Flow 2 &middot; Find a target contact &#8599;</a>.
+ Tick the rows, or tick the header box to take the whole page, then click <b>Add to campaign</b> on the
+ action bar.</li>
+<li id="s6-4-4" data-code="6.4.4"><b>The drawer: pick the campaign, then pick who actually gets mailed.</b>
+ It opens headed <i>Add N contacts to campaign</i> and splits in two.
+ <p><b>Left: Choose campaign.</b> Your campaigns, each showing owner, status and how many people it
+ already holds, with a search box and a <b>Status</b> filter. There is an <b>&#128065;</b> on each row to
+ look at one before you commit. <b>Tick exactly one.</b></p>
+ <p><b>Right: the people, sorted into four groups.</b> A contact can hold several addresses and a
+ campaign sends to <b>one address per contact</b>, so the drawer sorts them by how good that address is:</p>
+ <div class="tblwrap"><table>
+ <thead><tr><th>Group</th><th>What is in it</th><th>Ticked for you?</th></tr></thead>
+ <tbody>
+ <tr><td><b>Valid</b></td><td>a verified address. These are the ones you want.</td><td><b>Yes</b></td></tr>
+ <tr><td><b>Missing + Invalid</b></td><td>no address at all, or one that failed validation.</td><td>No</td></tr>
+ <tr><td><b>In campaign</b></td><td><b>already in another campaign</b>, so they cannot join this one.</td><td>No</td></tr>
+ <tr><td><b>Platform Signup</b></td><td>only the address they signed up to the platform with.</td><td>No</td></tr>
+ </tbody></table></div>
+ <p>The line along the bottom spells out what it left alone, for example <i>Not ticked by default:
+ 5 Missing + Invalid &middot; 15 Platform Signup</i>. Nothing stops you ticking those groups by hand;
+ just know you are choosing to mail an address the system is not confident about.</p>
+ <figure><img src="sdrx-camp-42-add-drawer.png" alt="Add to campaign drawer with four groups"/><figcaption><b>6.4.4</b>: <b>&#9312;</b> Choose campaign, tick one &middot; <b>&#9313;</b> the four groups &middot; <b>&#9314;</b> the tick adds them, the dot picks which address &middot; <b>&#9315;</b> what was left unticked &middot; <b>&#9316; Add to campaign</b>.</figcaption></figure>
+ <div class="call"><span class="t">In campaign is usually empty, and that is the filter's doing</span>Because
+ step 6.4.2 already filtered out everyone who is in a campaign, this group normally reads <b>0</b>. It
+ fills up when you clear that chip, or when you reach the contact list some other way. Either way the
+ rule is the same: <b>they cannot be added</b>. To move one of them, use <b>Move to other campaign</b> from
+ their current campaign instead (<a data-goto="page-campaign" href="#s6-4-6" style="font-weight:700;cursor:pointer">6.4.6</a>).</div>
+</li>
+<li id="s6-4-5" data-code="6.4.5"><b>Click Add to campaign.</b> They appear on the <b>People</b> tab and
+ the campaign's <b>People</b> count on the list goes up to match.
+ <div class="call warn"><span class="t">The button stays greyed out until <u>both</u> halves are answered</span>You
+ need <b>a campaign ticked on the left</b> <i>and</i> <b>at least one person ticked on the right</b>. Miss
+ either and the button simply does not respond, with no message telling you which half is missing. If it
+ looks dead, check the left panel first: that is the half people forget.</div>
+</li>
 </ol>
-<p>The <b>People</b> tab is then the campaign's recipient list, same filter bar as your lists, <b>plus campaign-only filters</b>: <b>Done</b> (finished the whole sequence) and <b>Skipped</b>.</p>
+
+<h4 style="margin:18px 0 8px">Removing people</h4>
+<ol class="steps">
+<li id="s6-4-6" data-code="6.4.6"><b>Tick them on the People tab.</b> An action bar appears above the table:
+ the count and <b>Select all N matching</b> / <b>Clear</b> on the left, and on the right
+ <b>Add to marketing email</b>, <b>More</b>, <b>Remove from campaign</b> and <b>Move to other campaign</b>.
+ <figure><img src="sdrx-camp-43-people-actions.png" alt="People tab action bar"/><figcaption><b>6.4.6</b>: <b>&#9312;</b> what you have ticked &middot; <b>&#9313; Remove from campaign</b> &middot; <b>&#9314; Move to other campaign</b>.</figcaption></figure>
+</li>
+<li id="s6-4-7" data-code="6.4.7"><b>Remove from campaign takes them out on the spot.</b> There is <b>no
+ confirmation dialog and no message afterwards</b>. The only thing that tells you it worked is the
+ count: <i>Showing 15 of 15</i> becomes <i>Showing 12 of 12</i> and the <b>People</b> badge follows.
+ <div class="call warn"><span class="t">Nothing asks you twice</span>One click removes everyone ticked, and
+ there is no undo. <b>Read the count on the action bar before you click</b>, especially after using
+ <b>Select all N matching</b>, which reaches past the rows you can see.</div>
+</li>
+<li id="s6-4-8" data-code="6.4.8"><b>Moving instead of removing.</b> <b>Move to other campaign</b> is the
+ one-step way to hand someone to a different campaign. Removing them here and adding them there gets to
+ the same place, but only after they stop counting as <i>in a campaign</i>.</li>
+</ol>
 <figure><img src="sdrx-camp-12-people.png" alt="Campaign People tab"/><figcaption><b>6.4</b>: the <b>People</b> tab with the campaign-only <b>Done</b> / <b>Skipped</b> filters.</figcaption></figure>
+
 
 <h3 id="cmp-preview" class="anchor">6.5 &middot; Preview, personalize &amp; review</h3>
 <p>Before the campaign runs, <b>review what every contact will actually get</b> on the <b>Preview</b> tab, the campaign's review gate, exactly like a Marketing Email's.</p>
@@ -4263,6 +4340,26 @@ Side Step: Not Now - Out Of Office
 <li id="ce-12" data-code="6.x.12"><b>Force Update.</b> When you <b>edit a step later</b> (after per-contact previews were generated), tick <b>Force Update</b> before <b>Save</b> to push the new copy onto those existing previews. <div class="call warn"><span class="t">Use with caution</span>It <b>overwrites existing content</b>, per-contact personalization and saved versions on this step are replaced by the new template. Leave it <b>unticked</b> on a fresh step.</div></li>
 <li id="ce-13" data-code="6.x.13"><b>Skip a step: what does it actually do?</b> <b>Skip = that email is NOT sent to that contact.</b> On the Preview, <b>Skip</b> on a step row skips <b>just that step for just that contact</b>. The step is tagged <b>Skipped</b> immediately (no confirm dialog) and the campaign simply moves on to their next step. <b>Skip All</b> (top-right) skips <b>every</b> step, i.e. this contact gets <b>nothing at all</b> from the campaign. Changed your mind? Click <b>Rollback Skip</b> on the step to undo. Skipped contacts are the ones the <b>Skipped</b> filter (and the People tab's Skipped filter) surfaces.
  <figure><img src="sdrx-camp-30-skip.png" alt="Skipped step with Rollback Skip"/><figcaption><b>6.x.13</b>: after <b>Skip</b>: the step is tagged <b>Skipped</b> (it will <b>not</b> be sent to this contact); <b>Rollback Skip</b> undoes it.</figcaption></figure>
+</li>
+<li id="ce-15" data-code="6.x.15"><b>Rename a campaign, or give it a description.</b> Both
+sit in the <b>header of the campaign</b>, and both are live text boxes rather than a form you open. Click
+the name (or the <b>&#9998;</b> beside it, which only moves the cursor there), type, then <b>click away</b>.
+The description box sits next to it reading <i>Enter description</i> until you fill it in.
+ <figure><img src="sdrx-camp-44-header-edit.png" alt="Campaign header: name and description"/><figcaption><b>6.x.15</b>: <b>&#9312;</b> the name, always editable &middot; <b>&#9313;</b> the description.</figcaption></figure>
+ <div class="call"><span class="t">There is no Save button, and no message either</span>The change is
+ written the moment the box loses focus. Nothing flashes to confirm it, so if you want to be sure, reload
+ the page and read it back. Equally, <b>a stray keystroke in the name field is already saved</b> by the
+ time you notice.</div>
+ <p class="fn">The description is for you and your team; it is never sent to anyone.</p>
+</li>
+<li id="ce-16" data-code="6.x.16"><b>Edit a step you already created.</b> On the <b>Steps</b> tab, click the
+<b>variant row</b> under the step (the row marked <b>A</b>). The same editor opens with your subject and
+body loaded, and two things change: the button now reads <b>Save</b> instead of <b>Create</b>, and a
+<b>Force Update</b> control appears next to it.
+ <p><b>Force Update decides whether the edit reaches previews that already exist.</b> Leave it alone and
+ your change applies from here on; tick it and it overwrites the per-contact copies already generated,
+ <b>including personalization someone typed by hand</b>. Full warning at
+ <a data-goto="page-campaign" href="#ce-12" style="font-weight:700;cursor:pointer">6.x.12 &#8599;</a>.</p>
 </li>
 <li id="ce-14" data-code="6.x.14"><b>The &#128276; bell: Campaign Notifications.</b> The bell (top-right, next to Create Folder) opens <b>Campaign Notifications</b>, a feed of every reply your campaigns pulled in: the <b>campaign name</b>, the <b>reply-category chip</b>, the contact, a snippet of the reply and how long ago. A <b>purple dot</b> = unread; <b>See More</b> loads older ones. Use it as your morning sweep: spot fresh replies without opening each campaign.
  <figure><img src="sdrx-camp-31-notifications.png" alt="Campaign Notifications panel"/><figcaption><b>6.x.14</b>: the bell opens <b>Campaign Notifications</b>: campaign + category chip + reply snippet.</figcaption></figure>

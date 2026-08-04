@@ -11,4 +11,4 @@
 * [6.1.3 · Open your folder](6-1-3-open-your-folder.md)
 * [6.1.4 · Create the campaign](6-1-4-create-the-campaign.md)
 * [6.1.5 · Name + timezone](6-1-5-name-timezone.md)
-* [6.1.6 · Contacts → Skip](6-1-6-contacts-skip.md)
+* [6.1.6 · Create → you land in it](6-1-6-create-you-land-in-it.md)

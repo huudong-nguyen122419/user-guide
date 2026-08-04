@@ -13,7 +13,7 @@ Yours vs your Admin'sYou **build & schedule** the campaign (folder, steps, timin
 * [6.1 · Create (folder first)](6-1-create-folder-first.md)
 * [6.2 · Build the sequence](6-2-build-the-sequence.md)
 * [6.3 · View campaigns](6-3-view-campaigns.md)
-* [6.4 · Add people](6-4-add-people.md)
+* [6.4 · Add and remove people](6-4-add-and-remove-people.md)
 * [6.5 · Preview & review](6-5-preview-and-review.md)
 * [6.6 · Schedule & run](6-6-schedule-and-run.md)
 * [6.7 · Email Queue](6-7-email-queue.md)
