@@ -1,6 +1,6 @@
 # 6.4.4 · The drawer: 4 groups
 
-> 6 · Manage a campaign → 6.4 · Add and remove people
+> 6 · Manage a campaign → 6.4 · Add people
 
 **The drawer: pick the campaign, then pick who actually gets mailed.** It opens headed *Add N contacts to campaign* and splits in two. **Left: Choose campaign.** Your campaigns, each showing owner, status and how many people it already holds, with a search box and a **Status** filter. There is an **👁** on each row to look at one before you commit. **Tick exactly one.** **Right: the people, sorted into four groups.** A contact can hold several addresses and a campaign sends to **one address per contact**, so the drawer sorts them by how good that address is: The line along the bottom spells out what it left alone, for example *Not ticked by default: 5 Missing + Invalid · 15 Platform Signup*. Nothing stops you ticking those groups by hand; just know you are choosing to mail an address the system is not confident about.
 

@@ -1,6 +1,6 @@
 # 6.4.7 · Remove (no undo)
 
-> 6 · Manage a campaign → 6.4 · Add and remove people
+> 6 · Manage a campaign → 6.4b · Remove people
 
 **Click it, and they are out straight away.** Nothing asks you to confirm and no message appears afterwards. The only sign it worked is the count: *Showing 15 of 15* becomes *Showing 12 of 12*, and the number on the **People** tab follows.
 

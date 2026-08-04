@@ -661,12 +661,13 @@
  <a href="#s6-2-4" class="st2" data-page="page-campaign">6.2.4 · Timing (delay)</a>
  <a href="#s6-2-5" class="st2" data-page="page-campaign">6.2.5 · Add follow-ups</a>
  <a href="#cmp-view" class="st" data-page="page-campaign">6.3 · View campaigns</a>
- <a href="#cmp-people" class="st" data-page="page-campaign">6.4 &middot; Add and remove people</a>
+ <a href="#cmp-people" class="st" data-page="page-campaign">6.4 &middot; Add people</a>
  <a href="#s6-4-1" class="st2" data-page="page-campaign">6.4.1 &middot; + Add contacts</a>
  <a href="#s6-4-2" class="st2" data-page="page-campaign">6.4.2 &middot; The pre-filtered list</a>
  <a href="#s6-4-3" class="st2" data-page="page-campaign">6.4.3 &middot; Tick your people</a>
  <a href="#s6-4-4" class="st2" data-page="page-campaign">6.4.4 &middot; The drawer: 4 groups</a>
  <a href="#s6-4-5" class="st2" data-page="page-campaign">6.4.5 &middot; Add to campaign</a>
+ <a href="#cmp-people-remove" class="st" data-page="page-campaign">6.4b &middot; Remove people</a>
  <a href="#s6-4-6" class="st2" data-page="page-campaign">6.4.6 &middot; Tick who to remove</a>
  <a href="#s6-4-7" class="st2" data-page="page-campaign">6.4.7 &middot; Remove (no undo)</a>
  <a href="#cmp-preview" class="st" data-page="page-campaign">6.5 · Preview &amp; review</a>
@@ -4060,15 +4061,25 @@ or earlier</b>. Setting the status to <b>Published</b> by hand does not get arou
 <p>Left menu &rarr; <b>Campaigns</b> lists every campaign, grouped into <b>folders</b> (right rail). The top tabs filter by <b>status</b>: <b>All, Scheduled, Draft, Running, Finished, Paused and Archive</b>. Each row shows the <b>Enabled</b> toggle, <b>Total Steps</b>, <b>People</b>, <b>Open / Reply / Bounce rates</b>, <b>Progress</b>, <b>Delivered</b> and <b>Last run</b>.</p>
 <figure><img src="sdrx-camp-00-list.png" alt="Campaigns list"/><figcaption><b>6.3</b>: the campaign list: status tabs, the <b>folder rail</b>, the <b>Enabled</b> toggle and per-campaign metrics.</figcaption></figure>
 
-<h3 id="cmp-people" class="anchor">6.4 &middot; Add and remove people</h3>
-<p>The <b>People</b> tab is the campaign's recipient list. It carries the same filter bar as your
-lists plus <b>two filters only campaigns have</b>: <b>Done</b> (finished the whole sequence) and
-<b>Skipped</b>.</p>
-<p class="fn"><b>Handed a campaign that already has people</b> and told not to add more? <b>Skip
-straight to</b> <a data-goto="page-campaign" href="#cmp-preview" style="font-weight:700;cursor:pointer">6.5 &middot; Preview</a>
-and just work the contacts you were given (<a data-goto="page-campaign" href="#ce-6" style="font-weight:700;cursor:pointer">6.x.6 &#8599;</a>).</p>
+<p><b>The numbers on the row are the campaign's report card, and you can read the whole thing without
+opening it.</b> Every figure has a tooltip, so hover anything you are unsure of.</p>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Column</th><th>What it is telling you</th></tr></thead>
+<tbody>
+<tr><td><b>1</b></td><td><b>Total Steps</b></td><td>how many emails the sequence holds. It counts <b>every branch too</b>, so a campaign with sidesteps reads higher than the main sequence (<a href="#ce-2" style="font-weight:700;cursor:pointer">6.x.2 &#8599;</a>).</td></tr>
+<tr><td><b>2</b></td><td><b>People</b></td><td>how many contacts are in the campaign right now.</td></tr>
+<tr><td><b>3</b></td><td><b>Open Rate</b></td><td>opens measured against <b>what was actually sent</b>, not against the whole list. The bracketed figure is the raw count.</td></tr>
+<tr><td><b>4</b></td><td><b>Reply Rate</b></td><td>the one that matters. A reply is a person, not a statistic, so go and read it.</td></tr>
+<tr><td><b>5</b></td><td><b>Bounce / Dropped Rate</b></td><td>addresses that refused it. Treat it as a to-do list rather than a number (<a href="#cmp-bounce" style="font-weight:700;cursor:pointer">6.8a &#8599;</a>).</td></tr>
+<tr><td><b>6</b></td><td><b>Progress</b></td><td>how far through the sequence the campaign is. The bar fills as steps go out, and a green tick means every queued email has left.</td></tr>
+<tr><td><b>7</b></td><td><b>Delivered</b></td><td>how many emails have actually gone out.</td></tr>
+<tr><td><b>8</b></td><td><b>Last run</b></td><td>when it last sent anything. A dash means it has never run.</td></tr>
+</tbody></table></div>
+<figure><img src="sdrx-camp-47-list-metrics.png" alt="The metric columns on a campaign row"/><figcaption><b>6.3</b>: one row read across, <i>DACH PE &middot; DD Capacity Q3</i>: <b>&#9312;</b> 2 steps &middot; <b>&#9313;</b> 0 people &middot; <b>&#9314;</b> Open 50% (1) &middot; <b>&#9315;</b> Reply 100% (2) &middot; <b>&#9316;</b> Bounce 0% (0) &middot; <b>&#9317;</b> Progress full, with the green tick &middot; <b>&#9318;</b> Delivered 2 &middot; <b>&#9319;</b> Last run Jul 29. The rows above it have never run, which is why their bars are empty and their Last run is a dash.</figcaption></figure>
+<p class="fn"><b>A blank rate and 0% are not the same thing.</b> Blank means nothing was sent yet. <b>0%</b>
+means it went out and nobody opened or replied, which is a result about the writing, not the sending.</p>
 
-<h4 style="margin:18px 0 8px">Adding people</h4>
+<h3 id="cmp-people" class="anchor">6.4 &middot; Add people to the campaign</h3>
 <ol class="steps">
 <li id="s6-4-1" data-code="6.4.1"><b>Open the campaign and move to the People tab.</b> The tabs run
  along the top of the campaign, and <b>People</b> is the third one, between <b>Steps</b> and <b>Preview</b>.
@@ -4085,7 +4096,6 @@ and just work the contacts you were given (<a data-goto="page-campaign" href="#c
  <p>That chip is the whole point of the screen. Everything you can see is <b>somebody who is not in a
  campaign yet</b>, because a contact belongs to <b>one campaign at a time</b>. The count at the top,
  next to the word <i>Contacts</i>, is counting only those people.</p>
- <figure><img src="sdrx-camp-46-campaign-no-chip.png" alt="Contacts page with the Campaign : No filter chip"/><figcaption><b>6.4.2</b>: the <b>Campaign : No</b> chip is already on when you arrive, and the count at the top reflects it.</figcaption></figure>
  <div class="call warn"><span class="t">Do not clear that chip</span>Clearing it, or clicking <b>Clear
  all</b>, puts back the people who <b>cannot be added anyway</b>. All you get is a longer list and a
  better chance of picking the wrong person.
@@ -4095,11 +4105,14 @@ and just work the contacts you were given (<a data-goto="page-campaign" href="#c
  <a data-goto="page-filters" style="font-weight:700;cursor:pointer">Flow 8 &middot; Using filters &#8599;</a>.</p></div>
  <p class="fn">Filters you set on your last visit to Contacts are still on. Read the whole chip row
  before you trust the count.</p>
+ <figure><img src="sdrx-camp-46-campaign-no-chip.png" alt="Contacts page with the Campaign : No filter chip"/><figcaption><b>6.4.2</b>: the <b>Campaign : No</b> chip is already on when you arrive, and the count at the top reflects it.</figcaption></figure>
 </li>
 <li id="s6-4-3" data-code="6.4.3"><b>Find your people and tick them.</b> Same tools as
  <a data-goto="page-find" style="font-weight:700;cursor:pointer">Flow 2 &middot; Find a target contact &#8599;</a>.
  Tick the rows, or tick the header box to take the whole page, then click <b>Add to campaign</b> on the
- action bar.</li>
+ action bar.
+ <figure><img src="sdrx-camp-48-add-to-campaign-bar.png" alt="Contacts with rows ticked and the Add to campaign button"/><figcaption><b>6.4.3</b>: ticking anything brings up the action bar, with <b>Add to campaign</b> on it. <b>Select all N matching</b> beside the count reaches past the page you can see.</figcaption></figure>
+</li>
 <li id="s6-4-4" data-code="6.4.4"><b>The drawer: pick the campaign, then pick who actually gets mailed.</b>
  It opens headed <i>Add N contacts to campaign</i> and splits in two.
  <p><b>Left: Choose campaign.</b> Your campaigns, each showing owner, status and how many people it
@@ -4134,7 +4147,11 @@ and just work the contacts you were given (<a data-goto="page-campaign" href="#c
 </li>
 </ol>
 
-<h4 style="margin:18px 0 8px">Removing people</h4>
+<p class="fn">The <b>People</b> tab carries two filters the contact list does not: <b>Done</b>
+(finished the whole sequence) and <b>Skipped</b>.</p>
+<figure><img src="sdrx-camp-12-people.png" alt="Campaign People tab"/><figcaption><b>6.4</b>: the <b>People</b> tab with the campaign-only <b>Done</b> / <b>Skipped</b> filters.</figcaption></figure>
+
+<h3 id="cmp-people-remove" class="anchor">6.4b &middot; Remove people from the campaign</h3>
 <ol class="steps">
 <li id="s6-4-6" data-code="6.4.6"><b>Go to the People tab and tick the people you want out.</b>
  As soon as anything is ticked, an action bar appears above the table. It shows what you have selected on
@@ -4149,7 +4166,7 @@ and just work the contacts you were given (<a data-goto="page-campaign" href="#c
  after using <b>Select all N matching</b>, which reaches past the rows you can see.</div>
 </li>
 </ol>
-<figure><img src="sdrx-camp-12-people.png" alt="Campaign People tab"/><figcaption><b>6.4</b>: the <b>People</b> tab with the campaign-only <b>Done</b> / <b>Skipped</b> filters.</figcaption></figure>
+
 
 
 <h3 id="cmp-preview" class="anchor">6.5 &middot; Preview, personalize &amp; review</h3>

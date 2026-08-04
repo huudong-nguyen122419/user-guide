@@ -1,6 +1,6 @@
 # 6.4.5 · Add to campaign
 
-> 6 · Manage a campaign → 6.4 · Add and remove people
+> 6 · Manage a campaign → 6.4 · Add people
 
 **Click Add to campaign.** They appear on the **People** tab and the campaign's **People** count on the list goes up to match.
 

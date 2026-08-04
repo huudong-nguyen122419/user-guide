@@ -14,7 +14,7 @@ A single form opens with three things on it and nothing else: the **name** (it a
 
 ## 6.1.6 · Create, and you land in the campaign
 
-There is no second wizard page and nothing to skip. **Create** drops you straight into the new campaign, on the **Steps** tab, with the tab bar reading **Steps · People · Data Health · Timeline**. The campaign is a **Draft** with no steps and nobody in it, so the two jobs waiting for you are [6.2 · the sequence](6-2-build-the-sequence.md) and [6.4 · the people](6-4-add-and-remove-people.md). **Two tabs are missing at this point and that is normal.** **Inbox** and **Preview** only appear once the campaign has a step and some people in it.
+There is no second wizard page and nothing to skip. **Create** drops you straight into the new campaign, on the **Steps** tab, with the tab bar reading **Steps · People · Data Health · Timeline**. The campaign is a **Draft** with no steps and nobody in it, so the two jobs waiting for you are [6.2 · the sequence](6-2-build-the-sequence.md) and [6.4 · the people](6-4-add-people.md). **Two tabs are missing at this point and that is normal.** **Inbox** and **Preview** only appear once the campaign has a step and some people in it.
 
 ## In this step
 
