@@ -461,6 +461,22 @@
  <a href="#ec-6-10" class="st2" data-page="page-a6">A6.x.10 · Send a talent back to In Review</a>
  <a class="flow adm" data-page="page-a6audit"><span class="n">A6†</span> Approve a new talent · audit</a>
  <a class="flow adm" data-page="page-b1"><span class="n">B1</span> Invite talents to a project</a>
+ <a class="flow adm" data-page="page-c1"><span class="n">C1</span> Approve a new project</a>
+ <a href="#c1-queue" class="st" data-page="page-c1">C1.1 &middot; The In Review queue</a>
+ <a href="#c1-read" class="st" data-page="page-c1">C1.2 &middot; Read the brief</a>
+ <a href="#c1-decide" class="st" data-page="page-c1">C1.3 &middot; Approve or archive</a>
+ <a class="flow adm" data-page="page-c2"><span class="n">C2</span> Source and invite talents</a>
+ <a href="#c2-open" class="st" data-page="page-c2">C2.1 &middot; Start from the project</a>
+ <a href="#c2-pick" class="st" data-page="page-c2">C2.2 &middot; Narrow, then invite</a>
+ <a class="flow adm" data-page="page-c3"><span class="n">C3</span> Work the applications</a>
+ <a href="#c3-stages" class="st" data-page="page-c3">C3.1 &middot; The six stages</a>
+ <a href="#c3-score" class="st" data-page="page-c3">C3.2 &middot; Fit score and evidence</a>
+ <a href="#c3-move" class="st" data-page="page-c3">C3.3 &middot; Move them along</a>
+ <a class="flow adm" data-page="page-c4"><span class="n">C4</span> Keep the pipeline moving</a>
+ <a href="#c4-open" class="st" data-page="page-c4">C4.1 &middot; Live work</a>
+ <a href="#c4-aging" class="st" data-page="page-c4">C4.2 &middot; Stale work</a>
+ <a href="#c4-engagement" class="st" data-page="page-c4">C4.3 &middot; Interviews</a>
+ <a href="#c4-close" class="st" data-page="page-c4">C4.4 &middot; Finished work</a>
  <a class="flow tal" data-page="page-b2"><span class="n">B2</span> Talent · log &amp; submit timesheet</a>
  <a href="#b2-open" class="st" data-page="page-b2">B2.1 · Open Timesheet</a>
  <a href="#b2-log" class="st" data-page="page-b2">B2.2 · Log work</a>
@@ -2400,6 +2416,211 @@ a new sign-up gets, and each one says where it lands if you hover it.
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-a6"><span class="k">&larr; Prev</span><b>A6 &middot; Approve a new talent</b></a><a class="next" data-goto="page-b2"><span class="k">Next &rarr; (Talent)</span><b>B2 &middot; Log &amp; submit timesheet</b></a></div>
+</section>
+
+
+<!-- ===================== PAGE-C1 . PROJECT INTAKE ===================== -->
+<section class="page" id="page-c1">
+<h2><span class="who adm">ADMIN</span><span class="n">C1 &middot;</span> Approve a new project</h2>
+<div class="goal"><b>Goal:</b> decide whether a project a client just sent in is ready to go out to
+talents. Everything waiting on that decision sits in one place, and until somebody makes it, nobody can
+be invited.</div>
+
+<h3 id="c1-queue" class="anchor">C1.1 &middot; Open the In Review queue</h3>
+<p><b>Project Management &rarr; Projects.</b> The tabs across the top are the whole lifecycle, and each
+carries a live count.</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Tab</th><th>What is in it</th></tr></thead>
+<tbody>
+<tr><td><b>Draft</b></td><td>the client started writing and has not sent it.</td></tr>
+<tr><td><b>In Review</b></td><td><b>your queue.</b> Sent in, waiting on a decision.</td></tr>
+<tr><td><b>Open</b></td><td>approved and live. Talents can see it and apply.</td></tr>
+<tr><td><b>Paused</b></td><td>stopped for now, not finished.</td></tr>
+<tr><td><b>Closed</b></td><td>finished.</td></tr>
+<tr><td><b>Archived</b></td><td>put away. By far the biggest tab.</td></tr>
+</tbody></table></div>
+<figure><img src="pjx-01-projects-inreview.png" alt="Projects list on the In Review tab"/><figcaption><b>C1.1</b>: <b>&#9312;</b> the <b>In Review</b> tab, your queue &middot; <b>&#9313;</b> <b>Send Invitations</b>, which jumps straight to sourcing &middot; <b>&#9314;</b> what the client asked for, at a glance &middot; <b>&#9315;</b> the <b>&#8942;</b> row menu.</figcaption></figure>
+<p>Every row already tells you the shape of the job without opening it: <b>seniority</b>, <b>rate
+type</b>, <b>currency</b> and <b>timezone</b>, with the client and their signup date beside it.</p>
+
+<h3 id="c1-read" class="anchor">C1.2 &middot; Open it and read what the client wrote</h3>
+<p>Click the project name, or use the <b>&#8942;</b> menu and pick <b>Tab General Settings</b>. A drawer
+opens over the list.</p>
+<figure><img src="pjx-02-project-approve.png" alt="Project drawer header with Approve and Archive"/><figcaption><b>C1.2</b>: <b>&#9312;</b> the three decisions &middot; <b>&#9313;</b> the project code and its status &middot; <b>&#9314;</b> the tabs, where the rest of the brief lives.</figcaption></figure>
+<div class="tblwrap"><table>
+<thead><tr><th>Tab</th><th>What to check</th></tr></thead>
+<tbody>
+<tr><td><b>General Settings</b></td><td>the brief itself: <b>Summary</b>, <b>Client looking for</b>, <b>Work Location</b>, <b>Experience</b>, <b>Budget</b>, <b>Duration</b> and <b>Commitment</b>.</td></tr>
+<tr><td><b>Commission</b></td><td>what Fintalent earns on it.</td></tr>
+<tr><td><b>Pillars</b></td><td>the skills the match will be scored against. This is what drives the fit score later (<a data-goto="page-c3" href="#c3-score" style="font-weight:700;cursor:pointer">C3.2 &#8599;</a>).</td></tr>
+<tr><td><b>Screening Questions</b></td><td>what every applicant will be asked.</td></tr>
+<tr><td><b>Invited Talents</b></td><td>empty at this stage, and it should be.</td></tr>
+<tr><td><b>Timeline</b></td><td>what has happened to the project so far.</td></tr>
+</tbody></table></div>
+<div class="call"><span class="t">The Summary is the part that decides it</span>It is the text a talent
+reads before applying. A vague summary produces vague applicants, and you pay for that two steps later
+when you are reading a shortlist that does not fit. There is a <b>Generate</b> button beside it, and an
+<b>Original Summary</b> link if you want to see what the client actually typed before anyone tidied it.</div>
+<p class="fn">The <b>Project URL</b> at the top is the talent-facing page. Open it if you want to see the
+brief the way an applicant will.</p>
+
+<h3 id="c1-decide" class="anchor">C1.3 &middot; Approve, archive, or hand it over</h3>
+<div class="tblwrap"><table>
+<thead><tr><th>Button</th><th>What happens</th><th>When</th></tr></thead>
+<tbody>
+<tr><td><b>Approve</b></td><td>the project moves to <b>Open</b> and becomes visible to talents.</td><td>the brief is clear enough to source against.</td></tr>
+<tr><td><b>Archive</b></td><td>it leaves the queue without going live.</td><td>duplicate, abandoned, or never a real project.</td></tr>
+<tr><td><b>Change Owner</b></td><td>reassigns it, no status change.</td><td>somebody else should be running this one.</td></tr>
+</tbody></table></div>
+<div class="call warn"><span class="t">Approve is what unblocks everybody else</span>Nothing downstream
+can start until it happens. No invitations, no applications, no interviews. A brief sitting in
+<b>In Review</b> is not waiting on the client, it is waiting on you.</div>
+<p class="fn"><b>Not sure yet?</b> Leave it. There is no <i>needs more information</i> status, so the
+honest move is to message the client and let the project sit in the queue until they answer.</p>
+<div class="pagernav"><a data-goto="page-b1"><span class="k">&larr; Prev</span><b>B1 &middot; Invite talents</b></a><a class="next" data-goto="page-c2"><span class="k">Next &rarr;</span><b>C2 &middot; Source and invite</b></a></div>
+</section>
+
+<!-- ===================== PAGE-C2 . SOURCING ===================== -->
+<section class="page" id="page-c2">
+<h2><span class="who adm">ADMIN</span><span class="n">C2 &middot;</span> Source and invite talents</h2>
+<div class="goal"><b>Goal:</b> put the right people in front of an approved project. The system does the
+first cut for you, and the work is deciding who from that cut is worth an invitation.</div>
+
+<h3 id="c2-open" class="anchor">C2.1 &middot; Start from the project, not from the talent list</h3>
+<p><b>On the Projects list, every row has a Send Invitations link</b> above the project name. Use it. It
+opens <b>Invite Talents</b> already filtered for that project, and the filters it sets are not obvious
+from anywhere else:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Filter it sets</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td><b>Statuses = Active</b></td><td>Passive talents are not looking for work (<a data-goto="page-a6" href="#a6-autorule" style="font-weight:700;cursor:pointer">A6 &#8599;</a>).</td></tr>
+<tr><td><b>Invited Status = Not Invited</b></td><td>so you cannot invite the same person twice.</td></tr>
+<tr><td><b>Seniority Levels</b></td><td>taken from the project brief. A Manager-level mandate arrives filtered to <b>Manager</b> and <b>Senior</b>.</td></tr>
+</tbody></table></div>
+<div class="call warn"><span class="t">Opening Invite Talents from the left menu is not the same thing</span>Go
+in that way and you get the talent database with <b>no project attached and none of those filters</b>.
+Everything still looks normal, so the mistake is quiet. <b>Always start from the project row.</b></div>
+
+<h3 id="c2-pick" class="anchor">C2.2 &middot; Narrow it further, then invite</h3>
+<p>The pre-set filters get you to the right population, not to the right people. Add what the brief
+actually needs on top: <b>Functional Expertise</b>, <b>Industry &amp; Sector</b>, <b>Company
+Background</b>, <b>Years of Experience</b>, <b>Countries</b>, <b>Cities</b>, <b>Timezone Offsets</b>,
+<b>Languages</b>, <b>Has Contract</b>.</p>
+<p class="fn"><b>Timezone matters more than it looks</b> on a project that says it wants overlap with the
+client's working day. It is one of the few filters that rules people out for a reason nobody can fix.</p>
+<p>Invited people then show up on the project's <b>Invited Talents</b> tab, and anyone who accepts turns
+into an application (<a data-goto="page-c3" style="font-weight:700;cursor:pointer">C3 &#8599;</a>).</p>
+<p class="fn">Inviting talents one project at a time from the talent side is
+<a data-goto="page-b1" style="font-weight:700;cursor:pointer">B1 &#8599;</a>. Same destination, different door.</p>
+<div class="pagernav"><a data-goto="page-c1"><span class="k">&larr; Prev</span><b>C1 &middot; Approve a project</b></a><a class="next" data-goto="page-c3"><span class="k">Next &rarr;</span><b>C3 &middot; Work the applications</b></a></div>
+</section>
+
+<!-- ===================== PAGE-C3 . APPLICATIONS ===================== -->
+<section class="page" id="page-c3">
+<h2><span class="who adm">ADMIN</span><span class="n">C3 &middot;</span> Work the applications</h2>
+<div class="goal"><b>Goal:</b> move applicants from <i>they applied</i> to <i>the client has seen them</i>,
+and keep everybody informed on the way. This is where a project either produces a hire or stalls.</div>
+
+<h3 id="c3-stages" class="anchor">C3.1 &middot; The six stages, and the seventh tab</h3>
+<p><b>Project Management &rarr; Project Applications.</b> The tabs are the pipeline, in order.</p>
+<figure><img src="pjx-03-applications.png" alt="Project Applications list"/><figcaption><b>C3.1</b>: <b>&#9312;</b> the pipeline tabs &middot; <b>&#9313;</b> the fit filter &middot; <b>&#9314;</b> the actions on a row &middot; <b>&#9315;</b> the score, with <b>Show evidence</b> opened.</figcaption></figure>
+<div class="tblwrap"><table>
+<thead><tr><th>Stage</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><b>Applied</b></td><td>they put themselves forward. Nobody has read it yet.</td></tr>
+<tr><td><b>Shortlisted</b></td><td>you have read it and it is worth the client's time.</td></tr>
+<tr><td><b>Presented</b></td><td>the client has seen them.</td></tr>
+<tr><td><b>Hired / Draft Agreement</b></td><td>the client wants them; contracting starts.</td></tr>
+<tr><td><b>Rejected</b></td><td>a decision was made and it was no.</td></tr>
+<tr><td><b>Archived</b></td><td>filed away without a decision.</td></tr>
+</tbody></table></div>
+<div class="call warn"><span class="t">Analysis Failed is not a stage, and it is the biggest tab</span>Counted
+in one snapshot: <b>9,131 of 10,071 applications</b> sit in <b>Analysis Failed</b>, against <b>940</b>
+spread across all six real stages. That is <b>91%</b> of everything ever submitted, and it means the
+scoring never ran on them.
+<p><b>They are not rejected and nobody has looked at them.</b> If you only ever read the pipeline tabs,
+you are reading the smaller half of the story. Check this tab before telling anybody a project had no
+suitable applicants.</p></div>
+
+<h3 id="c3-score" class="anchor">C3.2 &middot; Read the fit score, then read the evidence</h3>
+<p>Each application carries a score out of 10 and a band: <b>Strong Fit</b>, <b>Good Fit</b>,
+<b>Partial Fit</b> or <b>Weak Fit</b>. The chips above the table filter by band, so you can open a project
+and see only the strong ones.</p>
+<p><b>The number on its own is not the point. Show evidence is.</b> Open it and the score breaks into the
+criteria it was built from, each with its own mark and a weight that says how much it counted, for
+example <b>35%</b>, <b>25%</b>, <b>20%</b>, <b>20%</b>. Those criteria come from the project's
+<b>Pillars</b> (<a data-goto="page-c1" href="#c1-read" style="font-weight:700;cursor:pointer">C1.2 &#8599;</a>).</p>
+<div class="call"><span class="t">A Partial Fit can be the right person</span>The bands average across
+every pillar, so somebody who is outstanding on the pillar that actually matters and weak on a pillar
+nobody cares about lands mid-table. <b>Read the breakdown before you trust the band</b>, above all on a
+project where one requirement is the whole job.</div>
+<p>Beside the score sits what you need to judge it: the talent's <b>requested gross rate</b>, their
+status, location, headline, and their expertise counts.</p>
+
+<h3 id="c3-move" class="anchor">C3.3 &middot; Move them along</h3>
+<p>The <b>Actions</b> column carries the stage changes, and they read as plain sentences rather than a
+dropdown: <b>Switch to Applied</b>, <b>Move back to Shortlisted</b>. What is offered depends on where the
+application already is, so you cannot skip a stage by accident.</p>
+<p><b>View Application</b> opens what they actually submitted, including their answers to the screening
+questions. The <b>Connected</b> chip tells you a conversation with this person already exists.</p>
+<div class="call warn"><span class="t">Moving the stage is not telling the person</span>The stage is a
+record, not a message. <b>Rejected</b> does not write to anybody, and neither does <b>Presented</b>.
+Somebody who applied three weeks ago and has heard nothing is the most common complaint in this flow, and
+the fix is a message, not a stage change (<a data-goto="page-send" style="font-weight:700;cursor:pointer">Flow 3 &#8599;</a>).</div>
+<div class="pagernav"><a data-goto="page-c2"><span class="k">&larr; Prev</span><b>C2 &middot; Source and invite</b></a><a class="next" data-goto="page-c4"><span class="k">Next &rarr;</span><b>C4 &middot; Keep the pipeline moving</b></a></div>
+</section>
+
+<!-- ===================== PAGE-C4 . PIPELINE ===================== -->
+<section class="page" id="page-c4">
+<h2><span class="who adm">ADMIN</span><span class="n">C4 &middot;</span> Keep the pipeline moving</h2>
+<div class="goal"><b>Goal:</b> notice a project that has stopped moving before the client does. There is
+no dashboard for this. It is the same Projects list you already know, read four different ways.</div>
+
+<div class="call note"><span class="t">Four jobs, one screen</span>Watching live work, chasing stale
+projects, checking on engagements and closing finished ones are four separate things on paper. In the
+product they are all <b>Project Management &rarr; Projects</b> with a different tab or a different sort,
+which is why they are one flow here rather than four.</div>
+
+<h3 id="c4-open" class="anchor">C4.1 &middot; Live work: the Open tab</h3>
+<p>Everything approved and running. The columns are the health check, and you can read them without
+opening anything:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Column</th><th>What a blank means</th></tr></thead>
+<tbody>
+<tr><td><b>Interviews</b></td><td>nobody has met the client yet. Early, or stuck.</td></tr>
+<tr><td><b>Contracts</b></td><td>nobody has been hired yet.</td></tr>
+<tr><td><b>Client booked a call</b></td><td>the client has not engaged since it went live.</td></tr>
+<tr><td><b>Channels</b> / <b>Emails</b></td><td>no conversation is running on it at all.</td></tr>
+</tbody></table></div>
+<p><b>A project that is Open with all of those empty is the one to look at first.</b> It is live, so the
+client believes something is happening, and nothing is.</p>
+
+<h3 id="c4-aging" class="anchor">C4.2 &middot; Stale work: sort by Modified Date</h3>
+<p>There is no <i>aging</i> filter. Sort the <b>Open</b> tab by <b>Modified Date</b>, oldest first, and
+the top of the list is your problem list. <b>Paused</b> deserves the same treatment: a paused project is
+one somebody meant to come back to.</p>
+<p class="fn">Compare <b>Created Date</b> with <b>Modified Date</b> on the same row. A project created
+months ago and modified months ago has been quietly abandoned; created months ago but modified this week
+is simply a long engagement.</p>
+
+<h3 id="c4-engagement" class="anchor">C4.3 &middot; Engagements: Interviews</h3>
+<p><b>Project Management &rarr; Interviews</b> lists every meeting between a client and a talent, with
+<b>All</b>, <b>Upcoming</b>, <b>Past</b>, <b>Cancelled</b> and <b>Concluded</b>.</p>
+<div class="call warn"><span class="t">Cancelled is worth counting</span>In one snapshot,
+<b>100 of 253 interviews were Cancelled</b>, against 101 Concluded and 52 Past. <b>Roughly two in five
+never happened.</b> A cancelled interview is a project that lost a week, and it does not show up anywhere
+on the Projects list.</div>
+<p>Read the tab as a queue rather than a report: an <b>Upcoming</b> count of zero on a project that is
+supposed to be interviewing means nothing is booked.</p>
+
+<h3 id="c4-close" class="anchor">C4.4 &middot; Finished work: Closed</h3>
+<p>Move a project to <b>Closed</b> when the work is done, and use <b>Archived</b> for everything that
+ended without a hire. The two say different things later: <b>Closed</b> is a project that worked, and the
+tab is small enough to read at any time.</p>
+<p class="fn"><b>Closing is a decision somebody has to make.</b> Nothing closes a project on its own, so
+the Open tab grows until a person tidies it, and every stale row makes the tab less useful for
+<a data-goto="page-c4" href="#c4-open" style="font-weight:700;cursor:pointer">C4.1</a>.</p>
+<div class="pagernav"><a data-goto="page-c3"><span class="k">&larr; Prev</span><b>C3 &middot; Work the applications</b></a><a class="next" data-goto="page-b2"><span class="k">Next &rarr;</span><b>B2 &middot; Timesheet</b></a></div>
 </section>
 
 <!-- ===================== B2 · TALENT LOG & SUBMIT TIMESHEET ===================== -->
