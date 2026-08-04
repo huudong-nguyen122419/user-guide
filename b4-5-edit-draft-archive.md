@@ -20,7 +20,7 @@ The drawer shows the stored filename and a **Change PDF File** / **Change Thumbn
 
 ## B4.5.4 · Copy Resource Link
 
-puts the file's own URL on your clipboard, handy for pasting into an email. Read [B4.x.4 ↗](b4-x-4-the-link-is-public.md) before you send it anywhere.
+puts the file's own URL on your clipboard, handy for pasting into an email.
 
 ## B4.5.5 · Change a whole batch at once
 

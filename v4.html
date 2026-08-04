@@ -502,7 +502,6 @@
 <a href="#er-4-1" class="st2" data-page="page-b4">B4.x.1 &middot; Published but nobody sees it</a>
 <a href="#er-4-2" class="st2" data-page="page-b4">B4.x.2 &middot; There is no Delete</a>
 <a href="#er-4-3" class="st2" data-page="page-b4">B4.x.3 &middot; Type is locked after saving</a>
-<a href="#er-4-4" class="st2" data-page="page-b4">B4.x.4 &middot; The link is public</a>
 <a href="#er-4-5" class="st2" data-page="page-b4">B4.x.5 &middot; Errors arrive one at a time</a>
 <a href="#er-4-7" class="st2" data-page="page-b4">B4.x.7 &middot; Kill switch for the whole platform</a>
 <a href="#er-4-6" class="st2" data-page="page-b4">B4.x.6 &middot; No Display Page</a>
@@ -3004,7 +3003,7 @@ moment you press <b>Create</b>. The route above is for anything that was saved a
  <figure><img src="res-10-edit.png" alt="Update Resource drawer"/><figcaption><b>B4.5.1</b>: <b>&#9312;</b> <b>Resource Type</b>, locked &middot; <b>&#9313;</b> <b>Published At</b>, stamped at publish.</figcaption></figure></li>
 <li data-code="B4.5.2"><b>Swap the file without recreating the resource.</b> The drawer shows the stored filename and a <b>Change PDF File</b> / <b>Change Thumbnail</b> button. Use this to correct a bad upload. The resource keeps its link, its date and its place.</li>
 <li data-code="B4.5.3"><b>Pull it back</b>: <b>Set Draft</b> hides it from talents while you fix it; <b>Set Archive</b> retires it for good. Both are reversible, and neither destroys anything.</li>
-<li data-code="B4.5.4"><b>Copy Resource Link</b> puts the file's own URL on your clipboard, handy for pasting into an email. Read <a href="#er-4-4" style="font-weight:700;cursor:pointer">B4.x.4 &#8599;</a> before you send it anywhere.</li>
+<li data-code="B4.5.4"><b>Copy Resource Link</b> puts the file's own URL on your clipboard, handy for pasting into an email.</li>
 <li data-code="B4.5.5"><b>Change a whole batch at once.</b> Tick the checkbox in the table header (or individual rows) and a bar appears above the table: <b>Bulk Actions</b>, a running <b>N resources selected</b>, and, when your selection is a full page, <b>Select all N resources</b> to take the rest of the filtered set with it.
  <div class="tblwrap"><table>
  <thead><tr><th>Bulk Actions offers</th><th>Note</th></tr></thead>
@@ -3020,21 +3019,24 @@ moment you press <b>Create</b>. The route above is for anything that was saved a
 
 <h3 id="b4-edge" class="edgehead anchor">B4.x &middot; Edge cases</h3>
 <ol class="steps edge">
-<li id="er-4-1" data-code="B4.x.1"><b>Published, and still nobody can see it. The date is a gate, not a label.</b> The talent Resources page shows a resource only when its <b>Published At is today or earlier</b>. Status alone is not enough, and the comparison is what matters:
+<li id="er-4-1" data-code="B4.x.1"><b>Published, but the talent still cannot see it? Check
+Published At.</b> A resource only reaches the talent <b>Resources</b> page once <b>Published At is today
+or earlier</b>. Setting the status to <b>Published</b> by hand does not get around that.
  <div class="tblwrap"><table>
  <thead><tr><th>Published At</th><th>Talent sees it?</th></tr></thead>
  <tbody>
  <tr><td><b>today or earlier</b></td><td><b>Yes.</b></td></tr>
- <tr><td><b>a future date</b></td><td><b>No</b>: hidden until that day arrives. This is the scheduling behaviour, and it does work.</td></tr>
- <tr><td><b>empty</b></td><td><b>No.</b> Nothing to compare against, so it never passes the gate.</td></tr>
+ <tr><td><b>a future date</b></td><td><b>No.</b> It waits until that day, however you published it.</td></tr>
+ <tr><td><b>empty</b></td><td><b>No.</b> There is nothing to compare against, so it never appears at all.</td></tr>
  </tbody></table></div>
- <p><b>Proved rather than assumed.</b> 27 Published, talent saw <b>19</b>. Took one visible resource, changed nothing but its Published At to <b>1 December</b>, and the talent count dropped to <b>18</b> with that resource gone from the list. Put the date back and it returned. The other 8 of the 27 have an <b>empty</b> date and are invisible for the same reason.</p>
- <div class="call note"><span class="t">The quickest way to see what a talent sees</span>On the admin list, pin the <b>Published Date</b> quick filter (<a href="#b4-open" style="font-weight:700;cursor:pointer">B4.1.3 &#8599;</a>) and set its <b>To</b> to <b>today</b>. What comes back is exactly the set on the talent Resources page, in the example above, that is the 19. Anything in the Published tab but not in that filtered list is published and unreachable.</div>
- <p><b>But the placed blocks do not check the date at all.</b> A resource with a future or empty date still shows in its <b>Home</b> / <b>Project</b> / <b>Project Details</b> block (<a href="#b5-blocks" style="font-weight:700;cursor:pointer">B5.4 &#8599;</a>). Counted in one example: Home block <b>17</b>, of which only <b>12</b> are on the Resources page. So a talent can watch a video on their Home page and then fail to find it by searching.</p>
- <p><b>What to do:</b> a future date is a legitimate way to line something up in advance, publish it and post-date it. An <b>empty</b> date is never deliberate: spot those in the <b>Published</b> tab as a row with a status chip and <b>no date under it</b>, and fix with <b>Edit</b>.</p></li>
+ <p>So nothing is broken and there is nothing to chase. Open the resource, look at <b>Published At</b>,
+ and either bring the future date back to today or fill in the empty one.</p>
+ <p class="fn"><b>The placed blocks ignore the date.</b> A resource with a future or empty date still
+ shows in its <b>Home</b> / <b>Project</b> / <b>Project Details</b> block
+ (<a href="#b5-blocks" style="font-weight:700;cursor:pointer">B5.4 &#8599;</a>), which is how a talent
+ can watch a video on their Home page and then fail to find it by searching.</p></li>
 <li id="er-4-2" data-code="B4.x.2"><b>There is no Delete.</b> Not in the row menu, not in the drawer. A resource can only be moved between Draft, Published and Archived. <b>Archive is the delete</b>: use it, and stop looking for a bin.</li>
 <li id="er-4-3" data-code="B4.x.3"><b>Resource Type is locked once saved.</b> You cannot turn a Video into a PDF later. If you picked wrong, archive it and create the right one. There is no conversion.</li>
-<li id="er-4-4" data-code="B4.x.4"><b>Copy Resource Link gives you a public link.</b> It points at the file in S3 and <b>opens for anyone who has it</b>, no login, no membership, no paid-signup check. Every gate described in <a data-goto="page-b5" style="font-weight:700;cursor:pointer">B5 &#8599;</a> applies to the app, not to that URL. Treat it as publishing to the open web: fine for something you would put on the website, wrong for anything client-confidential.</li>
 <li id="er-4-5" data-code="B4.x.5"><b>Validation does not always show you everything at once.</b> On a <b>Video</b>, an empty form flags <b>Title</b> and <b>Video URL</b> together. On a <b>PDF</b> the file check comes second, submit an empty form and you only get <i>This field is mandatory!</i> under Title; fill the title in, submit again, and only then does <b>PDF File is required</b> appear. Fix, resubmit, and re-read the form rather than assuming the first pass listed everything.
  <figure><img src="res-07-validation.png" alt="Validation errors on the create form"/><figcaption><b>B4.x.5</b>: a Video form submitted empty: <b>&#9312;</b> Title &middot; <b>&#9313;</b> Video URL, both flagged in the same pass.</figcaption></figure></li>
 <li id="er-4-7" data-code="B4.x.7"><b>One switch turns Resources off for the whole platform.</b> <b>Config Management &rarr; Payment Config &rarr; Subscription &rarr; Restrict Talent Modules</b> is a multi-select, and <b>Resource</b> is one of the choices. Add it and every talent loses the menu entry and all five blocks at once, nothing about the resources themselves changes, so the admin list will look perfectly healthy while the talent side is dark.
