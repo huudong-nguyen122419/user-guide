@@ -6,7 +6,7 @@
 
 ![Typing a personal line, then Save](sdrx-camp-28-personalize.png)
 
-*6.5.3: type a personal line just for this contact (highlighted) → click Save.*
+*6.5.3: ① the line typed just for this contact, highlighted here so you can see it against the standard copy · ② Save, which only appears once you have changed something.*
 
 ![Personalized icon on the row and variant](sdrx-camp-29-personalized-icon.png)
 

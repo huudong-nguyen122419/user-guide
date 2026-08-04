@@ -2,11 +2,11 @@
 
 > 6 · Manage a campaign
 
-The **People** tab carries two filters the contact list does not: **Done** (finished the whole sequence) and **Skipped**.
+The **People** tab carries three filters the contact list does not: **Done** (finished the whole sequence), **Skipped**, and **Personalize** (whose copy you have rewritten by hand, [6.5.3 ↗](6-5-3-personalize-save.md)).
 
 ![Campaign People tab](sdrx-camp-12-people.png)
 
-*6.4: the People tab with the campaign-only Done / Skipped filters.*
+*6.4: ① the People tab · ② the three filters only a campaign has: Done, Skipped, Personalize.*
 
 ## In this step
 

@@ -2,11 +2,11 @@
 
 > 6 · Manage a campaign
 
-Left menu → **Campaigns** lists every campaign, grouped into **folders** (right rail). The top tabs filter by **status**: **All, Scheduled, Draft, Running, Finished, Paused and Archive**. Each row shows the **Enabled** toggle, **Total Steps**, **People**, **Open / Reply / Bounce rates**, **Progress**, **Delivered** and **Last run**.
+Left menu → **Campaigns** lists every campaign, grouped into **folders** (right rail). The top tabs filter by **status**: **All, Scheduled, Draft, Running, Finished, Paused and Archive**. Each row shows the campaign’s **name** and **assignees**, then its numbers: **Total Steps**, **People**, **Open / Reply / Bounce rates**, **Progress**, **Delivered** and **Last run**.
 
 ![Campaigns list](sdrx-camp-00-list.png)
 
-*6.3: the campaign list: status tabs, the folder rail, the Enabled toggle and per-campaign metrics.*
+*6.3: ① the status tabs, which filter the list · ② the folder rail, which groups the campaigns. Everything between them is one row per campaign.*
 
 **The numbers on the row are the campaign's report card, and you can read the whole thing without opening it.** Every figure has a tooltip, so hover anything you are unsure of.
 

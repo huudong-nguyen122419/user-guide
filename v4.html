@@ -4032,8 +4032,10 @@ A campaign is a <b>sequence</b>: first email, wait, second email, wait, third.</
 <h3 id="cmp-steps" class="anchor">6.2 &middot; Build the sequence (steps)</h3>
 <p>A campaign is a <b>list of steps</b>. Each step is <b>one email</b> with a <b>timing</b> (send right away, or wait N days) and one or more <b>variants</b> (A/B). The step editor is <b>identical to a Marketing Email step</b>.</p>
 <ol class="steps">
-<li id="s6-2-1" data-code="6.2.1"><b>Steps</b> tab &rarr; <b>+ Create new step</b>.
- <figure><img src="sdrx-camp-04-steps-empty.png" alt="Empty Steps tab"/><figcaption><b>6.2.1</b>: empty <b>Steps</b> tab &rarr; <b>+ Create new step</b>.</figcaption></figure>
+<li id="s6-2-1" data-code="6.2.1"><b>Open the Steps tab and click + Create new step.</b> A new
+ campaign lands here with nothing in it, so the button sits in the middle of the empty pane rather than
+ in a corner.
+ <figure><img src="sdrx-camp-04-steps-empty.png" alt="Empty Steps tab with the Create new step button"/><figcaption><b>6.2.1</b>: the <b>Steps</b> tab on a campaign with no steps yet, and the <b>+ Create new step</b> button.</figcaption></figure>
 </li>
 <li id="s6-2-2" data-code="6.2.2"><b>Write the step.</b> Every field of the editor, and what goes in it:
  <div class="tblwrap"><table>
@@ -4084,8 +4086,8 @@ A campaign is a <b>sequence</b>: first email, wait, second email, wait, third.</
 <p class="fn">Two campaign-only extras: <b>A/B variants</b> and <b>Sidesteps</b>, are in <a data-goto="page-campaign" href="#cmp-edge" style="font-weight:700;cursor:pointer">Edge cases (6.x) &#8599;</a>.</p>
 
 <h3 id="cmp-view" class="anchor">6.3 &middot; View campaigns (the list)</h3>
-<p>Left menu &rarr; <b>Campaigns</b> lists every campaign, grouped into <b>folders</b> (right rail). The top tabs filter by <b>status</b>: <b>All, Scheduled, Draft, Running, Finished, Paused and Archive</b>. Each row shows the <b>Enabled</b> toggle, <b>Total Steps</b>, <b>People</b>, <b>Open / Reply / Bounce rates</b>, <b>Progress</b>, <b>Delivered</b> and <b>Last run</b>.</p>
-<figure><img src="sdrx-camp-00-list.png" alt="Campaigns list"/><figcaption><b>6.3</b>: the campaign list: status tabs, the <b>folder rail</b>, the <b>Enabled</b> toggle and per-campaign metrics.</figcaption></figure>
+<p>Left menu &rarr; <b>Campaigns</b> lists every campaign, grouped into <b>folders</b> (right rail). The top tabs filter by <b>status</b>: <b>All, Scheduled, Draft, Running, Finished, Paused and Archive</b>. Each row shows the campaign&rsquo;s <b>name</b> and <b>assignees</b>, then its numbers: <b>Total Steps</b>, <b>People</b>, <b>Open / Reply / Bounce rates</b>, <b>Progress</b>, <b>Delivered</b> and <b>Last run</b>.</p>
+<figure><img src="sdrx-camp-00-list.png" alt="Campaigns list"/><figcaption><b>6.3</b>: <b>&#9312;</b> the status tabs, which filter the list &middot; <b>&#9313;</b> the <b>folder rail</b>, which groups the campaigns. Everything between them is one row per campaign.</figcaption></figure>
 
 <p><b>The numbers on the row are the campaign's report card, and you can read the whole thing without
 opening it.</b> Every figure has a tooltip, so hover anything you are unsure of.</p>
@@ -4173,9 +4175,10 @@ means it went out and nobody opened or replied, which is a result about the writ
 </li>
 </ol>
 
-<p class="fn">The <b>People</b> tab carries two filters the contact list does not: <b>Done</b>
-(finished the whole sequence) and <b>Skipped</b>.</p>
-<figure><img src="sdrx-camp-12-people.png" alt="Campaign People tab"/><figcaption><b>6.4</b>: the <b>People</b> tab with the campaign-only <b>Done</b> / <b>Skipped</b> filters.</figcaption></figure>
+<p class="fn">The <b>People</b> tab carries three filters the contact list does not:
+<b>Done</b> (finished the whole sequence), <b>Skipped</b>, and <b>Personalize</b> (whose copy you have
+rewritten by hand, <a data-goto="page-campaign" href="#s6-5-3" style="font-weight:700;cursor:pointer">6.5.3 &#8599;</a>).</p>
+<figure><img src="sdrx-camp-12-people.png" alt="Campaign People tab"/><figcaption><b>6.4</b>: <b>&#9312;</b> the <b>People</b> tab &middot; <b>&#9313;</b> the three filters only a campaign has: <b>Done</b>, <b>Skipped</b>, <b>Personalize</b>.</figcaption></figure>
 
 <h3 id="cmp-people-remove" class="anchor">6.4b &middot; Remove people from the campaign</h3>
 <ol class="steps">
@@ -4209,7 +4212,7 @@ means it went out and nobody opened or replied, which is a result about the writ
  <figure><img src="sdrx-camp-24-expand-step.png" alt="Expanded step: resolved email"/><figcaption><b>6.5.2</b>: an expanded step: the resolved email in a full editor.</figcaption></figure>
 </li>
 <li id="s6-5-3" data-code="6.5.3"><b>Personalize</b> a step for <b>this one contact</b> if it needs it. The expanded step is a full editor, so type your personal line straight in, then click <b>Save</b> (top-right). A <b>&#10024; Personalized</b> icon appears on their row and the variant is tagged <b>&#10024; Personalized</b>; everyone else keeps the standard copy. <span class="fn">(Editing works while the campaign is Draft / Scheduled / Running, a <b>Finished</b> campaign's preview is read-only.)</span>
- <figure><img src="sdrx-camp-28-personalize.png" alt="Typing a personal line, then Save"/><figcaption><b>6.5.3</b>: type a <b>personal line just for this contact</b> (highlighted) &rarr; click <b>Save</b>.</figcaption></figure>
+ <figure><img src="sdrx-camp-28-personalize.png" alt="Typing a personal line, then Save"/><figcaption><b>6.5.3</b>: <b>&#9312;</b> the line typed just for this contact, highlighted here so you can see it against the standard copy &middot; <b>&#9313;</b> <b>Save</b>, which only appears once you have changed something.</figcaption></figure>
  <figure><img src="sdrx-camp-29-personalized-icon.png" alt="Personalized icon on the row and variant"/><figcaption><b>6.5.3</b>: after <b>Save</b>: the contact's row gets the <b>&#10024;</b> icon and the variant is tagged <b>&#10024; Personalized</b>.</figcaption></figure>
 </li>
 <li id="s6-5-4" data-code="6.5.4"><b>Mark the contact done, or skip.</b> Don't want a step (or the whole sequence) to go to this contact? Each step row has a <b>Skip</b> button, and <b>Skip All</b> (top-right) skips every step, skipped contacts show under the <b>Skipped</b> filter (what Skip actually does &rarr; <a data-goto="page-campaign" href="#ce-13" style="font-weight:700;cursor:pointer">6.x.13 &#8599;</a>). When their steps are reviewed, click the <b>green &#10003;</b> on their row &rarr; confirm <b>&ldquo;Done this contact?&rdquo;</b> &rarr; the row shows a <b>(Done)</b> tag. Made a mistake? The <b>&#8634; undo</b> icon asks <b>&ldquo;Undone this contact?&rdquo;</b> and clears it. Track progress with the <b>Personalize / Done / Skipped</b> filters (top-left). Once a contact replies, each step also carries their <b>reply-category</b> chip (e.g. <b>Not Interested</b>).
