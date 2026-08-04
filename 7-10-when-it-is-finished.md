@@ -2,7 +2,9 @@
 
 > 7 · Manage a Marketing Email
 
-Closing it is an Admin action, you watch it happenYou do not mark a ME finished. **Admin/Ops does**, the same people who ran it in [7.5 ↗](7-5-force-send-run-admin.md). Your side of the ending is **monitoring**: keep reading the numbers ([7.6b ↗](7-6b-monitor-the-me.md)) until the queue has drained and the replies have stopped arriving, answer what is still open, and tell Admin it is done from your end. The checklist below is still yours: it is what you work through **before** handing it back, not something you tick after somebody flips a status.
+> **Closing it is an Admin action, you watch it happen**
+>
+> You do not mark a ME finished. **Admin/Ops does**, the same people who ran it in [7.5 ↗](7-5-force-send-run-admin.md). Your side of the ending is **monitoring**: keep reading the numbers ([7.6b ↗](7-6b-monitor-the-me.md)) until the queue has drained and the replies have stopped arriving, answer what is still open, and tell Admin it is done from your end. The checklist below is still yours: it is what you work through **before** handing it back, not something you tick after somebody flips a status.
 
 ## 7.10.1 · The system decides “Finished”. You decide “done”
 

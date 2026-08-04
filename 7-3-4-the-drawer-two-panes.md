@@ -15,10 +15,9 @@
 | **Missing + Invalid** | **Needs a human look.** The *work* address is missing or unusable, so the pick falls back to a personal one, unverified rather than proven bad. Most are reachable; nobody has checked. | **Your call.** Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation. |
 | **Platform Signup** | People who **already have a Fintalent account**, talent or client. Nothing to do with whether the address works. | **Depends entirely on the campaign.** See the rule below. |
 
-| The email is aimed at… | Platform Signup | Why |
-|---|---|---|
-| **Talents** | **Tick all of them** | These are your talents. Leaving them out means mailing everyone except the audience. |
-| **Prospective clients** | **Judgement call** | Having an account already suggests they may be a client. Whether that makes them a target or means you should leave them alone depends on the campaign. Decide deliberately, do not let the default decide for you. |
+> **Platform Signup is a business decision, not a data-quality one**
+>
+> Ask what the email is *for*: The email is aimed at…Platform SignupWhy **Talents****Tick all of them**These are your talents. Leaving them out means mailing everyone except the audience. **Prospective clients****Judgement call**Having an account already suggests they may be a client. Whether that makes them a target or means you should leave them alone depends on the campaign. Decide deliberately, do not let the default decide for you.
 
 ![The add-to-marketing-email drawer](me-53-drawer.png)
 

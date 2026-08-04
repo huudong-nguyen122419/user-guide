@@ -2,7 +2,9 @@
 
 > 7 · Manage a Marketing Email
 
-This is the habit, not a one-off checkOnce Admin has run it ([7.5 ↗](7-5-force-send-run-admin.md)), your job stops being *setting up* and becomes *watching*. Everything you need is on the **Marketing Emails list row**, the same figures introduced in [7.2 ↗](7-2-view-your-mes.md). You do not have to open the ME to know whether it needs you.
+> **This is the habit, not a one-off check**
+>
+> Once Admin has run it ([7.5 ↗](7-5-force-send-run-admin.md)), your job stops being *setting up* and becomes *watching*. Everything you need is on the **Marketing Emails list row**, the same figures introduced in [7.2 ↗](7-2-view-your-mes.md). You do not have to open the ME to know whether it needs you.
 
 ## 7.6b.1 · Read the row, and hover anything you are unsure of
 

@@ -670,9 +670,8 @@
  <a href="#s6-4-3" class="st2" data-page="page-campaign">6.4.3 &middot; Tick your people</a>
  <a href="#s6-4-4" class="st2" data-page="page-campaign">6.4.4 &middot; The drawer: 4 groups</a>
  <a href="#s6-4-5" class="st2" data-page="page-campaign">6.4.5 &middot; Add to campaign</a>
- <a href="#s6-4-6" class="st2" data-page="page-campaign">6.4.6 &middot; The action bar</a>
+ <a href="#s6-4-6" class="st2" data-page="page-campaign">6.4.6 &middot; Tick who to remove</a>
  <a href="#s6-4-7" class="st2" data-page="page-campaign">6.4.7 &middot; Remove (no undo)</a>
- <a href="#s6-4-8" class="st2" data-page="page-campaign">6.4.8 &middot; Move instead</a>
  <a href="#cmp-preview" class="st" data-page="page-campaign">6.5 · Preview &amp; review</a>
  <a href="#s6-5-1" class="st2" data-page="page-campaign">6.5.1 · Pick a contact</a>
  <a href="#s6-5-2" class="st2" data-page="page-campaign">6.5.2 · Read each step</a>
@@ -701,6 +700,7 @@
  <a href="#ce-13" class="st2" data-page="page-campaign">6.x.13 · Skip a step (= not sent)</a>
  <a href="#ce-15" class="st2" data-page="page-campaign">6.x.15 &middot; Rename &middot; description</a>
  <a href="#ce-16" class="st2" data-page="page-campaign">6.x.16 &middot; Edit a step</a>
+ <a href="#ce-17" class="st2" data-page="page-campaign">6.x.17 &middot; Move to other campaign</a>
  <a href="#ce-14" class="st2" data-page="page-campaign">6.x.14 &middot; Notifications bell</a>
  <a class="flow" data-page="page-campaignaudit"><span class="n">6&#8224;</span> Manage a campaign, audited</a>
  <a class="flow" data-page="page-marketing"><span class="n">7</span> Manage a Marketing Email</a>
@@ -4064,14 +4064,23 @@ and just work the contacts you were given (<a data-goto="page-campaign" href="#c
  level with the search box</b>. It is the only purple button on the screen.</p>
  <figure><img src="sdrx-camp-45-people-tab.png" alt="Where the People tab and the Add contacts button are"/><figcaption><b>6.4.1</b>: the <b>People</b> tab in the tab bar, and <b>+ Add contacts</b> on the right.</figcaption></figure>
 </li>
-<li id="s6-4-2" data-code="6.4.2"><b>You get taken to the contact list, already filtered.</b> This is
- the part people do not expect: the button does not open a picker, it navigates you to
- <b>Contacts</b> and switches on a filter chip for you, <b>Campaign : No</b>. So what you are looking at
- is <b>only people who are not in any campaign yet</b>.
- <p><b>Why it does that:</b> a contact can sit in <b>one campaign at a time</b>. Filtering them out
- up front means you cannot pick someone who is already committed elsewhere.</p>
- <p class="fn">Any filter chips left over from your last visit to Contacts are still there. Read the
- chip row before you trust the count.</p>
+<li id="s6-4-2" data-code="6.4.2"><b>You land on the Contacts page, and it arrives already
+ filtered.</b> The button does not open a picker inside the campaign. It moves you to <b>Contacts</b>,
+ which is every contact across the lists you have been assigned, and on the way it switches on one
+ filter chip for you: <b>Campaign : No</b>.
+ <p>That chip is the whole point of the screen. Everything you can see is <b>somebody who is not in a
+ campaign yet</b>, because a contact belongs to <b>one campaign at a time</b>. The count at the top,
+ next to the word <i>Contacts</i>, is counting only those people.</p>
+ <figure><img src="sdrx-camp-46-campaign-no-chip.png" alt="Contacts page with the Campaign : No filter chip"/><figcaption><b>6.4.2</b>: the <b>Campaign : No</b> chip is already on when you arrive, and the count at the top reflects it.</figcaption></figure>
+ <div class="call warn"><span class="t">Do not clear that chip</span>Clearing it, or clicking <b>Clear
+ all</b>, puts back the people who <b>cannot be added anyway</b>. All you get is a longer list and a
+ better chance of picking the wrong person.
+ <p><b>Add filters on top of it instead.</b> That is how you narrow 229 contacts down to the group you
+ actually want in this campaign: country, seniority, work experience, whatever the campaign is aimed at.
+ The chip row stacks, so <b>Campaign : No</b> stays on while you filter. See
+ <a data-goto="page-filters" style="font-weight:700;cursor:pointer">Flow 8 &middot; Using filters &#8599;</a>.</p></div>
+ <p class="fn">Filters you set on your last visit to Contacts are still on. Read the whole chip row
+ before you trust the count.</p>
 </li>
 <li id="s6-4-3" data-code="6.4.3"><b>Find your people and tick them.</b> Same tools as
  <a data-goto="page-find" style="font-weight:700;cursor:pointer">Flow 2 &middot; Find a target contact &#8599;</a>.
@@ -4100,7 +4109,7 @@ and just work the contacts you were given (<a data-goto="page-campaign" href="#c
  step 6.4.2 already filtered out everyone who is in a campaign, this group normally reads <b>0</b>. It
  fills up when you clear that chip, or when you reach the contact list some other way. Either way the
  rule is the same: <b>they cannot be added</b>. To move one of them, use <b>Move to other campaign</b> from
- their current campaign instead (<a data-goto="page-campaign" href="#s6-4-6" style="font-weight:700;cursor:pointer">6.4.6</a>).</div>
+ their current campaign instead (<a data-goto="page-campaign" href="#ce-17" style="font-weight:700;cursor:pointer">6.x.17 &#8599;</a>).</div>
 </li>
 <li id="s6-4-5" data-code="6.4.5"><b>Click Add to campaign.</b> They appear on the <b>People</b> tab and
  the campaign's <b>People</b> count on the list goes up to match.
@@ -4113,21 +4122,18 @@ and just work the contacts you were given (<a data-goto="page-campaign" href="#c
 
 <h4 style="margin:18px 0 8px">Removing people</h4>
 <ol class="steps">
-<li id="s6-4-6" data-code="6.4.6"><b>Tick them on the People tab.</b> An action bar appears above the table:
- the count and <b>Select all N matching</b> / <b>Clear</b> on the left, and on the right
- <b>Add to marketing email</b>, <b>More</b>, <b>Remove from campaign</b> and <b>Move to other campaign</b>.
- <figure><img src="sdrx-camp-43-people-actions.png" alt="People tab action bar"/><figcaption><b>6.4.6</b>: <b>&#9312;</b> what you have ticked &middot; <b>&#9313; Remove from campaign</b> &middot; <b>&#9314; Move to other campaign</b>.</figcaption></figure>
+<li id="s6-4-6" data-code="6.4.6"><b>Go to the People tab and tick the people you want out.</b>
+ As soon as anything is ticked, an action bar appears above the table. It shows what you have selected on
+ the left, and what you can do with them on the right. The one you want is <b>Remove from campaign</b>.
+ <figure><img src="sdrx-camp-43-people-actions.png" alt="People tab with Remove from campaign on the action bar"/><figcaption><b>6.4.6</b>: tick the rows on the <b>People</b> tab, then <b>Remove from campaign</b>.</figcaption></figure>
 </li>
-<li id="s6-4-7" data-code="6.4.7"><b>Remove from campaign takes them out on the spot.</b> There is <b>no
- confirmation dialog and no message afterwards</b>. The only thing that tells you it worked is the
- count: <i>Showing 15 of 15</i> becomes <i>Showing 12 of 12</i> and the <b>People</b> badge follows.
- <div class="call warn"><span class="t">Nothing asks you twice</span>One click removes everyone ticked, and
- there is no undo. <b>Read the count on the action bar before you click</b>, especially after using
- <b>Select all N matching</b>, which reaches past the rows you can see.</div>
+<li id="s6-4-7" data-code="6.4.7"><b>Click it, and they are out straight away.</b> Nothing asks you to
+ confirm and no message appears afterwards. The only sign it worked is the count: <i>Showing 15 of 15</i>
+ becomes <i>Showing 12 of 12</i>, and the number on the <b>People</b> tab follows.
+ <div class="call warn"><span class="t">One click, no undo</span>It removes everyone ticked, and there is
+ no way back except adding them again. <b>Read the count on the action bar before you click</b>, above all
+ after using <b>Select all N matching</b>, which reaches past the rows you can see.</div>
 </li>
-<li id="s6-4-8" data-code="6.4.8"><b>Moving instead of removing.</b> <b>Move to other campaign</b> is the
- one-step way to hand someone to a different campaign. Removing them here and adding them there gets to
- the same place, but only after they stop counting as <i>in a campaign</i>.</li>
 </ol>
 <figure><img src="sdrx-camp-12-people.png" alt="Campaign People tab"/><figcaption><b>6.4</b>: the <b>People</b> tab with the campaign-only <b>Done</b> / <b>Skipped</b> filters.</figcaption></figure>
 
@@ -4367,6 +4373,12 @@ body loaded, and two things change: the button now reads <b>Save</b> instead of 
  your change applies from here on; tick it and it overwrites the per-contact copies already generated,
  <b>including personalization someone typed by hand</b>. Full warning at
  <a data-goto="page-campaign" href="#ce-12" style="font-weight:700;cursor:pointer">6.x.12 &#8599;</a>.</p>
+</li>
+<li id="ce-17" data-code="6.x.17"><b>Move to other campaign.</b> The same action bar on the
+<b>People</b> tab carries <b>Move to other campaign</b> next to Remove. It hands the people you ticked
+to a different campaign in one action, instead of removing them here and adding them there.
+ <p class="fn"><b>Noted, not yet written up.</b> The steps and what it does to their place in the
+ sequence have not been walked through, so treat this as a pointer rather than an instruction.</p>
 </li>
 <li id="ce-14" data-code="6.x.14"><b>The &#128276; bell: Campaign Notifications.</b> The bell (top-right, next to Create Folder) opens <b>Campaign Notifications</b>, a feed of every reply your campaigns pulled in: the <b>campaign name</b>, the <b>reply-category chip</b>, the contact, a snippet of the reply and how long ago. A <b>purple dot</b> = unread; <b>See More</b> loads older ones. Use it as your morning sweep: spot fresh replies without opening each campaign.
  <figure><img src="sdrx-camp-31-notifications.png" alt="Campaign Notifications panel"/><figcaption><b>6.x.14</b>: the bell opens <b>Campaign Notifications</b>: campaign + category chip + reply snippet.</figcaption></figure>

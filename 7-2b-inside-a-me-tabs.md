@@ -2,7 +2,7 @@
 
 > 7 · Manage a Marketing Email → 7.2 · View your MEs
 
-**Inside a ME: the tabs.** Open one and it splits: Two tabs are conditional: do not read their absence as a fault**Preview** only exists once the ME has **at least one person**; on an empty ME it is simply not rendered. **Email Queues** only exists once the ME is **past Draft**. A Draft ME has no queue tab at all, because it has no queue. Verified across three MEs: the Running one had Email Queues, the two Drafts did not.
+**Inside a ME: the tabs.** Open one and it splits:
 
 | Tab | What it is for |
 |---|---|
@@ -12,3 +12,7 @@
 | **Preview** | the review gate: see and personalize each contact's real email, then mark reviewed ([7.4 ↗](7-4-preview-and-mark-reviewed.md)). |
 | **Email Queues** (count) | the queued emails ([7.6 ↗](7-6-email-queue-3-tabs.md)). |
 | **Timeline** | what happened and when. |
+
+> **Two tabs are conditional: do not read their absence as a fault**
+>
+> **Preview** only exists once the ME has **at least one person**; on an empty ME it is simply not rendered. **Email Queues** only exists once the ME is **past Draft**. A Draft ME has no queue tab at all, because it has no queue. Verified across three MEs: the Running one had Email Queues, the two Drafts did not.

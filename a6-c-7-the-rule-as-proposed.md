@@ -2,7 +2,9 @@
 
 > A6 · Approve a new talent (decides Active or Passive) → A6-C · Review the In Review queue
 
-Not built. This is a proposalNothing in this section runs anywhere. The rule in use is [A6-C.6 ↗](a6-c-6-the-rule-that-runs-today.md). Read this as the change being asked for, and as the reasoning behind it.
+> **Not built. This is a proposal**
+>
+> Nothing in this section runs anywhere. The rule in use is [A6-C.6 ↗](a6-c-6-the-rule-that-runs-today.md). Read this as the change being asked for, and as the reasoning behind it.
 
 ## The proposed order
 
@@ -35,7 +37,9 @@ The questions are nearly the same. **The order is reversed**, and since the rule
 | **Freelance wording** in the title, current role at a sponsor | **Active** — the keyword fires before the flag is read | **Passive** — the flag fires first |
 | **Employment status blank**, current role at a sponsor | **Active** — decided on one empty field | **Passive** — the flag is read first |
 
-The argument for the change, in one line**Where somebody works outranks what they call themselves.** A current role inside a client's organisation is a conflict before it is a scheduling problem, and it is a fact we hold in our own company data. Employment Status is the weakest evidence in the profile: self-reported, often stale, and blank on a large share of records. Today the weakest field is asked first and the strongest last.
+> **The argument for the change, in one line**
+>
+> **Where somebody works outranks what they call themselves.** A current role inside a client's organisation is a conflict before it is a scheduling problem, and it is a fact we hold in our own company data. Employment Status is the weakest evidence in the profile: self-reported, often stale, and blank on a large share of records. Today the weakest field is asked first and the strongest last.
 
 ## Decide these before it is built
 

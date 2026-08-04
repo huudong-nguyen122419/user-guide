@@ -106,6 +106,9 @@ def split_item(el: Tag, anchors: dict) -> tuple[str, list]:
     blocks, text_parts = [], []
     for child in el.children:
         # a wrapper div only counts as a block if it actually wraps one
+        if isinstance(child, Tag) and child.name == 'div' and 'call' in (child.get('class') or []):
+            blocks.append(('callout', child))
+            continue
         if isinstance(child, Tag) and child.name == 'div' and child.find(['table', 'figure']):
             child = child.find(['table', 'figure'])
         if isinstance(child, Tag) and child.name in ('figure', 'table', 'ol', 'ul'):
@@ -120,11 +123,29 @@ def split_item(el: Tag, anchors: dict) -> tuple[str, list]:
     return clean(''.join(text_parts)), blocks
 
 
+def render_callout(div: Tag, anchors: dict, indent: str = '') -> str:
+    """A .call box becomes a blockquote, so its title stops running into its body."""
+    title_el = div.find('span', class_='t')
+    title = clean(inline(title_el, anchors)) if title_el else ''
+    # rebuild the body without the title, rather than extracting it from the soup
+    body = clean(''.join(inline(c, anchors) for c in div.children if c is not title_el))
+    lines = []
+    if title:
+        lines.append(f'**{title}**')
+        if body:
+            lines.append('')
+    if body:
+        lines.append(body)
+    return '\n'.join(f'{indent}> {l}'.rstrip() for l in lines)
+
+
 def render_blocks(blocks: list, anchors: dict, indent: str = '') -> list:
     out = []
     for kind, node in blocks:
         if kind == 'figure':
             out.append(render_figure(node, anchors, indent))
+        elif kind == 'callout':
+            out.append(render_callout(node, anchors, indent))
         elif kind == 'table':
             table = render_table(node, anchors)
             out.append('\n'.join(indent + l for l in table.splitlines()) if indent else table)
@@ -191,6 +212,8 @@ def render_flow_elements(elements: list, anchors: dict, skip_ids: set,
             lines.append(render_table(el, anchors))
         elif el.name == 'figure':
             lines.append(render_figure(el, anchors))
+        elif el.name == 'div' and 'call' in classes:
+            lines.append(render_callout(el, anchors))
         elif el.name == 'div' and el.find(['table', 'figure', 'ol', 'ul']):
             # wrappers like <div class="tblwrap"><table>…</table></div>
             lines += render_flow_elements(el.find_all(recursive=False), anchors, skip_ids)

@@ -2,13 +2,17 @@
 
 > A5 · Manage a marketing email (Admin) → A5.x · Edge cases
 
-**Delete exists, but it disappears the moment the ME starts.** The row **⋮** is short and changes with status: So the window for deleting is **before it has ever run**, or while it is paused. Once a ME has started it stays in the list for good. There is no archive to move it to either. Two statuses exist in the data that you never see**Archived** and **Scheduled** are valid marketing-email statuses in the API and both appear in the status filter, but the list has **no tab for either** and no row action produces one. In one snapshot the five tabs accounted for every record (57 + 11 + 19 + 4 = 91). Treat them as not implemented rather than as something you can reach.
+**Delete exists, but it disappears the moment the ME starts.** The row **⋮** is short and changes with status: So the window for deleting is **before it has ever run**, or while it is paused. Once a ME has started it stays in the list for good. There is no archive to move it to either.
 
 | ME status | Row menu |
 |---|---|
 | **Draft** | Edit/View Details · **Delete** · Manage assignee |
 | **Paused** | Edit/View Details · **Delete** · Manage assignee |
 | **Running** (“Started on…”) | Edit/View Details · Manage assignee, **no Delete** |
+
+> **Two statuses exist in the data that you never see**
+>
+> **Archived** and **Scheduled** are valid marketing-email statuses in the API and both appear in the status filter, but the list has **no tab for either** and no row action produces one. In one snapshot the five tabs accounted for every record (57 + 11 + 19 + 4 = 91). Treat them as not implemented rather than as something you can reach.
 
 ![Row menu on a Draft marketing email](me-46-row-delete.png)
 

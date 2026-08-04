@@ -4,7 +4,11 @@
 
 ## B2.6.1 · It is approved the instant you submit
 
-There is no waiting, no review queue, nobody to chase. The submission is created already **Approved**, and the account recorded as approving it is **your own**. The label does not say “Approved” thoughYour side shows **Submitted**. Admin's side shows **Approved**. Same record, two words, so “has it been approved yet?” has no answer you can read off the screen, because the answer is always yes. See [B3.0 ↗](b3-timesheet-invoice-admin.md) for the admin view of this.
+There is no waiting, no review queue, nobody to chase. The submission is created already **Approved**, and the account recorded as approving it is **your own**.
+
+> **The label does not say “Approved” though**
+>
+> Your side shows **Submitted**. Admin's side shows **Approved**. Same record, two words, so “has it been approved yet?” has no answer you can read off the screen, because the answer is always yes. See [B3.0 ↗](b3-timesheet-invoice-admin.md) for the admin view of this.
 
 ## B2.6.2 · Open the summary of everything you have submitted
 

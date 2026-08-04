@@ -21,6 +21,5 @@ The **People** tab is the campaign's recipient list. It carries the same filter 
 * [6.4.3 · Tick your people](6-4-3-tick-your-people.md)
 * [6.4.4 · The drawer: 4 groups](6-4-4-the-drawer-4-groups.md)
 * [6.4.5 · Add to campaign](6-4-5-add-to-campaign.md)
-* [6.4.6 · The action bar](6-4-6-the-action-bar.md)
+* [6.4.6 · Tick who to remove](6-4-6-tick-who-to-remove.md)
 * [6.4.7 · Remove (no undo)](6-4-7-remove-no-undo.md)
-* [6.4.8 · Move instead](6-4-8-move-instead.md)

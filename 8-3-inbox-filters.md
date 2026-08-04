@@ -25,7 +25,9 @@ The Inbox bar carries the fullest set, combine them to zero in (e.g. only DACH s
 
 *8.3 · + Add filter: Customize Quick Filters: 6 pinned by default (Lifecycles · Contact Classification · Owner · Work Experience · Countries · Cities); tick to pin Has signal · New signal since follow-up · Talent · Bucket · Labels.*
 
-In actionInbox holds **27** replies → **Work Experience → Company type = Sponsor** (✓) → **27 → 25**; every remaining row is a PE sponsor firm (Ardian, General Atlantic and Carlyle).
+> **In action**
+>
+> Inbox holds **27** replies → **Work Experience → Company type = Sponsor** (✓) → **27 → 25**; every remaining row is a PE sponsor firm (Ardian, General Atlantic and Carlyle).
 
 ![Inbox Work Experience Sponsor result](sdrx-flt-inbox-we-demo.png)
 

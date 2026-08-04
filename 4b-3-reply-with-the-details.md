@@ -4,7 +4,11 @@
 
 ## 4b.3.1 · Answer in the same thread
 
-Go back to the reply that asked for the call and use the **↩ reply arrow** on it, exactly as in [Flow 4 ↗](4-view-replies-and-answer-replies.md). Keeping it in-thread is what makes the booking make sense to them. The compose window does not carry the linkWhether you reply in the thread or use **Send email** from the meeting row, the message opens with the participant filled in, your signature, the quoted original, and **no join link**. Paste it in yourself, or they get a confirmation they cannot act on.
+Go back to the reply that asked for the call and use the **↩ reply arrow** on it, exactly as in [Flow 4 ↗](4-view-replies-and-answer-replies.md). Keeping it in-thread is what makes the booking make sense to them.
+
+> **The compose window does not carry the link**
+>
+> Whether you reply in the thread or use **Send email** from the meeting row, the message opens with the participant filled in, your signature, the quoted original, and **no join link**. Paste it in yourself, or they get a confirmation they cannot act on.
 
 ![Replying inside the original thread](sc-17-reply-inthread.png)
 

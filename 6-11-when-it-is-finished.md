@@ -32,4 +32,6 @@ Replies keep arriving after the last email lands, often for weeks. The Inbox sta
 
 A blank rate means nothing was sent. **0%** means it went out and nobody opened or replied. That is a content result, not a delivery one, and it is the number worth raising before the next send. Reply Rate is the one that matters; Open Rate mostly tells you about the subject line.
 
-A campaign has more than one stepUnlike a marketing email, a campaign keeps sending later steps to anyone who has not been stopped. That makes the three blocking categories **more** consequential here, not less: mislabel an opt-out on step 1 and they still receive steps 2 and 3.
+> **A campaign has more than one step**
+>
+> Unlike a marketing email, a campaign keeps sending later steps to anyone who has not been stopped. That makes the three blocking categories **more** consequential here, not less: mislabel an opt-out on step 1 and they still receive steps 2 and 3.

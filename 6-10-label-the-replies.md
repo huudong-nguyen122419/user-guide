@@ -13,12 +13,16 @@ This trips people up constantly:
 
 ## 6.10.2 · The twelve categories, and the three that matter
 
-Read straight off the API: a recipient can hold any of **12**, an individual reply any of **11** (the same list minus **Unknown**). **Where this comes from:** the twelve / eleven values are read straight off the API. The three that block are named in the code as a constant, `MarketingEmailRecipientBlocklistEnforcementOptions = [OptedOut, NotInterested, DoNotContact]`, and the same three appear in Fintalent's own feature documentation. Not proven by a send test of my own; proving it would mean mailing a real contact. The three look exactly like the other nineNothing in the interface marks them out, same chip, same colour, same list. So the label that quietly keeps mailing someone who asked you to stop is one row away from the one that stops it. **Before you label a negative reply, decide which of the two you mean:** “not now, try later” is **Not Now** and keeps them in rotation; “stop emailing me” is **Opted Out** or **Do Not Contact** and takes them out.
+Read straight off the API: a recipient can hold any of **12**, an individual reply any of **11** (the same list minus **Unknown**). **Where this comes from:** the twelve / eleven values are read straight off the API. The three that block are named in the code as a constant, `MarketingEmailRecipientBlocklistEnforcementOptions = [OptedOut, NotInterested, DoNotContact]`, and the same three appear in Fintalent's own feature documentation. Not proven by a send test of my own; proving it would mean mailing a real contact.
 
 | Group | Categories | Effect on sending |
 |---|---|---|
 | **Stops the sending** | **Opted Out** · **Not Interested** · **Do Not Contact** | **No further mail goes to this person.** Three labels, that is the whole list. |
 | **Reporting only** | Call Scheduled · Interested · Not Now · Out Of Office · Left The Company · Email Updated · No Categories · Not Responded · Unknown | **Sending continues.** They describe what happened; they do not hold anything back. |
+
+> **The three look exactly like the other nine**
+>
+> Nothing in the interface marks them out, same chip, same colour, same list. So the label that quietly keeps mailing someone who asked you to stop is one row away from the one that stops it. **Before you label a negative reply, decide which of the two you mean:** “not now, try later” is **Not Now** and keeps them in rotation; “stop emailing me” is **Opted Out** or **Do Not Contact** and takes them out.
 
 ## 6.10.3 · Out Of Office is not a rejection
 

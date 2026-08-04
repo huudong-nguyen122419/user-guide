@@ -57,10 +57,9 @@ A greyed-out day cannot be logged: **four** reasons:
 | Day **in the future** | Only work already done can be logged. |
 | Day **already on an invoice** | Submitted and then billed by Admin, locked permanently. |
 
-| Side | Jul 9 (a gap inside the invoiced range Jul 8–10) |
-|---|---|
-| **Talent** | Day cell is white → drag creates an entry → Create works → **submit works** |
-| **Admin** | *Create Client Invoice* does **not prefill** the service period, **Quantity = 0**; opening the picker shows **Jul 8, 9, 10 all disabled** → unselectable |
+> **A gap day inside an invoiced range, loggable but NOT billable**
+>
+> The day cell is **not greyed out**, the talent can **log and submit normally**, but Admin **cannot invoice it**. Those hours are stranded for good. SideJul 9 (a gap inside the invoiced range Jul 8–10) **Talent**Day cell is white → drag creates an entry → Create works → **submit works** **Admin***Create Client Invoice* does **not prefill** the service period, **Quantity = 0**; opening the picker shows **Jul 8, 9, 10 all disabled** → unselectable **What to do:** if a day inside an already-invoiced period was missed, **do not log it retroactively**. Those hours will sit there unbillable. **Tell Admin/Ops first**.
 
 ![Days that cannot be logged](sdrx-ts-21-talent-disabled-days.png)
 

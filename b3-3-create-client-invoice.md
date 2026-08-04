@@ -4,7 +4,11 @@
 
 ## B3.3.1
 
-Click **Create Client Invoice** (on the talent's row in Timesheets, or via **Client Invoices → Create new Client Invoice**). The form opens empty: that is normalEven though you clicked from a specific talent's row, **nothing is filled in** and almost every field is **greyed out**. Only the **Contract** picker is active. Nothing happens until you choose a contract, so do that first and the rest of the form comes to life.
+Click **Create Client Invoice** (on the talent's row in Timesheets, or via **Client Invoices → Create new Client Invoice**).
+
+> **The form opens empty: that is normal**
+>
+> Even though you clicked from a specific talent's row, **nothing is filled in** and almost every field is **greyed out**. Only the **Contract** picker is active. Nothing happens until you choose a contract, so do that first and the rest of the form comes to life.
 
 ![Create Client Invoice button](sdrx-ts-07-admin-row.png)
 
@@ -50,7 +54,7 @@ The figures come from the contract and the uninvoiced timesheet range. Prefilled
 
 ## B3.3.4 · Review the expense reports (if the talent filed any)
 
-Expenses do **not** sit on the fee line, they land at the bottom of the form, one row each. Check each of them: To drop an invalid item from this invoice, click **⊖** at the start of its row; to add something beyond the fee, click **⊕ Additional items**. An expense the talent filed is missing?It falls outside the **Service period**: usually because the talent dated it on a day with no billable hours. Widen the date range and it appears: see [B2.x.8 ↗](b2-x-8-expense-on-a-non-worked-day.md).
+Expenses do **not** sit on the fee line, they land at the bottom of the form, one row each. Check each of them: To drop an invalid item from this invoice, click **⊖** at the start of its row; to add something beyond the fee, click **⊕ Additional items**.
 
 | What to look at | Check against |
 |---|---|
@@ -62,6 +66,10 @@ Expenses do **not** sit on the fee line, they land at the bottom of the form, on
 ![Expense block inside the invoice form](tsx-18-admin-check-expense.png)
 
 *B3.3.4: ① Description · Currency · Quantity · Amount · ② Total EUR joining the invoice · ③ the receipt attachment (currently \*no files yet\*) · ④ drop this item · ⑤ add a new one.*
+
+> **An expense the talent filed is missing?**
+>
+> It falls outside the **Service period**: usually because the talent dated it on a day with no billable hours. Widen the date range and it appears: see [B2.x.8 ↗](b2-x-8-expense-on-a-non-worked-day.md).
 
 ## B3.3.5
 

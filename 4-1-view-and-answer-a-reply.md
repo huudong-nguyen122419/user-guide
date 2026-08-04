@@ -40,7 +40,7 @@ The clearest signal is the **direction arrow** next to the sender in the thread:
 
 ## 4.3 · Read the email, and know where it came from
 
-Click any row → the contact opens on **Conversations**: the **thread list** is on the left, the **selected message** on the right. **Expand all** unfolds the whole exchange. Read what they actually wrote: the chip is only a hint. **What a "thread" is:** one **conversation** = every email exchanged with that contact under one subject, grouped together. Each item in the left list is a thread; a small **count badge** (e.g. **2, 3 and 12**) shows how many messages it holds. Click to open it, then use the **›** / **Expand** chevron to unfold every message in order. **Anatomy of a thread row** (left list): **Where a sent email came from**: **Campaign** and **Marketing Email** use the **same small ✉ badge**, so you **hover it** to tell them apart (the tooltip spells out which). A **Direct** 1:1 send has **no badge** at all: Reply vs no replyA thread with an **inbound** message means the prospect **wrote back**, answer it (4.4 / 4.5). A thread that's only your own **↗ sends** has **no reply yet**, that's a follow-up candidate ([Flow 5 ↗](5-follow-up-on-silent-prospects.md)).
+Click any row → the contact opens on **Conversations**: the **thread list** is on the left, the **selected message** on the right. **Expand all** unfolds the whole exchange. Read what they actually wrote: the chip is only a hint. **What a "thread" is:** one **conversation** = every email exchanged with that contact under one subject, grouped together. Each item in the left list is a thread; a small **count badge** (e.g. **2, 3 and 12**) shows how many messages it holds. Click to open it, then use the **›** / **Expand** chevron to unfold every message in order. **Anatomy of a thread row** (left list): **Where a sent email came from**: **Campaign** and **Marketing Email** use the **same small ✉ badge**, so you **hover it** to tell them apart (the tooltip spells out which). A **Direct** 1:1 send has **no badge** at all:
 
 - **Avatar + name**: who the latest message is from.
 
@@ -61,6 +61,10 @@ Click any row → the contact opens on **Conversations**: the **thread list** is
 ![Hover the source icon: tooltip names the email's source](sdrx-88-source-marketing.png)
 
 *4.3: hover the ✉ source icon on a sent email → the tooltip names where it came from (here Marketing Email: V1 …). Direct 1:1 sends show no source icon; campaign sends read "Campaign: …".*
+
+> **Reply vs no reply**
+>
+> A thread with an **inbound** message means the prospect **wrote back**, answer it (4.4 / 4.5). A thread that's only your own **↗ sends** has **no reply yet**, that's a follow-up candidate ([Flow 5 ↗](5-follow-up-on-silent-prospects.md)).
 
 ![Conversation thread](sdrx-42b-reply-arrows-annot.png)
 

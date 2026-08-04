@@ -6,7 +6,9 @@ description: "run a marketing email (ME) end to end, build or open one, load the
 
 > SDR
 
-Yours vs your Admin'sYou do everything **except turning the ME on and sending it**. Both **Draft → Active** ("run marketing email") **and Force Send** are **Admin / Ops** actions, you prepare & review, they activate and force-send, then you **monitor the Email Queue** and handle replies.
+> **Yours vs your Admin's**
+>
+> You do everything **except turning the ME on and sending it**. Both **Draft → Active** ("run marketing email") **and Force Send** are **Admin / Ops** actions, you prepare & review, they activate and force-send, then you **monitor the Email Queue** and handle replies.
 
 ## In this flow
 

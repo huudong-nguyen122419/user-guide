@@ -14,7 +14,7 @@ The **Email Queue** tab inside a ME is already scoped to that ME. **Sales Manage
 
 ## 7.6.2 · Three states, plus an *All* that holds them
 
-Every row sits in exactly one of **In Queue, Delivered and Cancel**, and **All** is simply the three added together. Each carries a live count: When the In Queue rows actually go outYou do not send them one by one. Everything sitting in **In Queue** is released **automatically at the end of the day**, read in the **timezone set on the ME when it was created**, not your timezone, and not the contact’s. So “In Queue” means *not sent yet, but it will be*, and the clock that decides when belongs to the ME. **Cancel is only reachable from In Queue.** Once a row has moved to **Delivered** the email is gone and there is nothing left to stop, so anything you want pulled has to be pulled **before** that daily release. Two worked examples. A large ME: All 20,168 and In Queue 1,013 and Delivered 18,742 and Cancel 413. And *Talent Handbook Launch — Aug 2026*: All 5,197 and In Queue 1,451 and Delivered 3,741 and Cancel 5, and 1,451 + 3,741 + 5 = 5,197 exactly, so the three do add up to All.
+Every row sits in exactly one of **In Queue, Delivered and Cancel**, and **All** is simply the three added together. Each carries a live count: Two worked examples. A large ME: All 20,168 and In Queue 1,013 and Delivered 18,742 and Cancel 413. And *Talent Handbook Launch — Aug 2026*: All 5,197 and In Queue 1,451 and Delivered 3,741 and Cancel 5, and 1,451 + 3,741 + 5 = 5,197 exactly, so the three do add up to All.
 
 | Tab | What is in it |
 |---|---|
@@ -22,6 +22,10 @@ Every row sits in exactly one of **In Queue, Delivered and Cancel**, and **All**
 | **In Queue** | will be sent, has not gone yet. **The only tab where the row actions do anything.** |
 | **Delivered** | already sent. |
 | **Cancel** | pulled out of the queue: these will never be sent. |
+
+> **When the In Queue rows actually go out**
+>
+> You do not send them one by one. Everything sitting in **In Queue** is released **automatically at the end of the day**, read in the **timezone set on the ME when it was created**, not your timezone, and not the contact’s. So “In Queue” means *not sent yet, but it will be*, and the clock that decides when belongs to the ME. **Cancel is only reachable from In Queue.** Once a row has moved to **Delivered** the email is gone and there is nothing left to stop, so anything you want pulled has to be pulled **before** that daily release.
 
 ![The three Email Queue states](me-62-queue-three-tabs.png)
 
@@ -33,7 +37,11 @@ Every row sits in exactly one of **In Queue, Delivered and Cancel**, and **All**
 
 ## 7.6.3 · Narrowing it down
 
-Quick filters are **Sources**, **Campaigns** and **Expected Run Date**, plus **Add filter** to pin more. The search box has a **Simple / Advanced** toggle. The date filter changes meaning with the tabOn **Delivered** you filter by **sent date**. On **In Queue** and **Cancel** there is no sent date yet, so you filter by **queued date** instead. Same-looking control, different question: worth knowing before you conclude a date range is empty.
+Quick filters are **Sources**, **Campaigns** and **Expected Run Date**, plus **Add filter** to pin more. The search box has a **Simple / Advanced** toggle.
+
+> **The date filter changes meaning with the tab**
+>
+> On **Delivered** you filter by **sent date**. On **In Queue** and **Cancel** there is no sent date yet, so you filter by **queued date** instead. Same-looking control, different question: worth knowing before you conclude a date range is empty.
 
 ## 7.6.4 · Read a row
 
@@ -66,7 +74,11 @@ Tick the header checkbox and a bar appears: how many are **selected**, **Select 
 
 ## 7.6.7 · You can still edit the email while it waits
 
-Click the row and it opens in an editor, subject at the top, the full body in a rich-text field, and **Save**. Whatever you save is what goes out. This is a live email, not a draftIt is queued and will send on its own. Fix a typo here and it goes out corrected; leave the editor open and it still sends on schedule. If the email should not go at all, **cancel it**. Editing does not hold it back.
+Click the row and it opens in an editor, subject at the top, the full body in a rich-text field, and **Save**. Whatever you save is what goes out.
+
+> **This is a live email, not a draft**
+>
+> It is queued and will send on its own. Fix a typo here and it goes out corrected; leave the editor open and it still sends on schedule. If the email should not go at all, **cancel it**. Editing does not hold it back.
 
 ![Editing a queued email](me-44-queue-edit.png)
 

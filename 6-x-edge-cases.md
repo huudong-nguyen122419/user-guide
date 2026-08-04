@@ -19,4 +19,5 @@
 * [6.x.13 · Skip a step (= not sent)](6-x-13-skip-a-step-not-sent.md)
 * [6.x.15 · Rename · description](6-x-15-rename-description.md)
 * [6.x.16 · Edit a step](6-x-16-edit-a-step.md)
+* [6.x.17 · Move to other campaign](6-x-17-move-to-other-campaign.md)
 * [6.x.14 · Notifications bell](6-x-14-notifications-bell.md)

@@ -36,7 +36,11 @@ Cross-check: invoice number, client address + VAT, **HOUR(S)** (or **DAY(S)** on
 
 ## B3.4.5 · Page 2: the timesheet appendix
 
-Lists **every day** the talent logged, with time ranges and Notes. This is what shows the client the **actual work**. Two numbers, two purposesThis appendix prints the **hours the talent logged**, so the client can see the real work. The **hours the money is calculated from are still *hours to bill*** on page 1. If the talent reduced the hours at submit time, the two pages will differ, and that is **by design**, see [B3.x.4 ↗](b3-x-4-the-two-pdf-pages-differ.md).
+Lists **every day** the talent logged, with time ranges and Notes. This is what shows the client the **actual work**.
+
+> **Two numbers, two purposes**
+>
+> This appendix prints the **hours the talent logged**, so the client can see the real work. The **hours the money is calculated from are still *hours to bill*** on page 1. If the talent reduced the hours at submit time, the two pages will differ, and that is **by design**, see [B3.x.4 ↗](b3-x-4-the-two-pdf-pages-differ.md).
 
 ![PDF page 2](sdrx-ts-15-pdf-page2.png)
 

@@ -4,7 +4,9 @@
 
 **Goal:** a new sign-up lands at `In Review` and waits for someone to look at it. You have three ways out: **reject** the person, **approve them to Active**, or **approve them to Passive**. The system offers a recommendation on every profile, but **the button you press is the decision**.
 
-Active and Passive, in one line**Active** means the person can be invited to projects. **Passive** means they stay on the platform but out of the invitation flow, normally because somebody already pays for their week. It is a routing decision, **not a punishment and not a judgement on quality**. Getting it wrong sends a project invitation to a person who cannot take it, or hides someone who could.
+> **Active and Passive, in one line**
+>
+> **Active** means the person can be invited to projects. **Passive** means they stay on the platform but out of the invitation flow, normally because somebody already pays for their week. It is a routing decision, **not a punishment and not a judgement on quality**. Getting it wrong sends a project invitation to a person who cannot take it, or hides someone who could.
 
 ## In this step
 

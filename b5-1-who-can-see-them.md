@@ -14,7 +14,11 @@ Fail any one and the talent loses the **Resources** menu entry *and* every block
 
 ## B5.1.2 · When it fails, the menu entry is simply not there
 
-Nothing is greyed out and nothing explains why, **Resources** is absent from the navigation, so most talents will never know the section exists. Typing the URL gets a message that liesThe route still resolves. A talent who has an old link or a bookmark lands on the page and is told **“No resources found — Try adjusting your search or filter”**. That reads as an empty search, not as a locked door. They will fiddle with the filters, find nothing, and report that the library is empty. If someone says that, **check the three conditions above before you go looking for a bug**.
+Nothing is greyed out and nothing explains why, **Resources** is absent from the navigation, so most talents will never know the section exists.
+
+> **Typing the URL gets a message that lies**
+>
+> The route still resolves. A talent who has an old link or a bookmark lands on the page and is told **“No resources found — Try adjusting your search or filter”**. That reads as an empty search, not as a locked door. They will fiddle with the filters, find nothing, and report that the library is empty. If someone says that, **check the three conditions above before you go looking for a bug**.
 
 ## B5.1.3 · Only Published reaches them
 

@@ -59,7 +59,7 @@ how the resource is classified. Two values exist: **Profile Tips** and **Intervi
 
 ## B4.2.7 · Published At
 
-the date on the card, and **the switch that decides whether a talent can see it at all**. **To schedule something, publish it and post-date it**, set **Status = Published** and **Published At** to the day you want it to appear. It stays out of sight until then and needs nothing further from you. Post-dating a Draft does nothing: the status never flips on its ownA future date on a **Draft** leaves it a Draft forever; there is no *Scheduled* status and nothing switches it over when the day comes. There are Drafts carrying dates well in the past, still sitting in Draft. **The date gates visibility; it does not publish.** So schedule with **Published + future date**, never with Draft + future date. Full consequences of the date, including the empty case, in [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md).
+the date on the card, and **the switch that decides whether a talent can see it at all**. **To schedule something, publish it and post-date it**, set **Status = Published** and **Published At** to the day you want it to appear. It stays out of sight until then and needs nothing further from you. Full consequences of the date, including the empty case, in [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md).
 
 | You set… | What happens |
 |---|---|
@@ -67,18 +67,26 @@ the date on the card, and **the switch that decides whether a talent can see it 
 | **a past date** | visible immediately once the status is Published; the card just carries that date. |
 | **a future date** | **held back until that day**. This is how you line a resource up in advance. |
 
+> **Post-dating a Draft does nothing: the status never flips on its own**
+>
+> A future date on a **Draft** leaves it a Draft forever; there is no *Scheduled* status and nothing switches it over when the day comes. There are Drafts carrying dates well in the past, still sitting in Draft. **The date gates visibility; it does not publish.** So schedule with **Published + future date**, never with Draft + future date.
+
 ## B4.2.8 · Description
 
 a line or two under the title on the card. Optional; the card renders fine without it.
 
 ## B4.2.9 · Thumbnail
 
-the picture on the card. Optional, and **what you get when you skip it is not the same everywhere**: A Youtube or Vimeo link does not bring its own pictureChecked with a published Youtube resource that has no thumbnail: neither the admin table nor the talent card pulls the video's cover image. The card is rendered as an empty placeholder. There is no `<img>` on it at all. **If you want a picture, upload one.**
+the picture on the card. Optional, and **what you get when you skip it is not the same everywhere**:
 
 | Left blank on… | Admin list | Talent card |
 |---|---|---|
 | **PDF** | a red **PDF icon** | plain grey **fintalent.com** placeholder |
 | **Video**, any source | grey box with a **▶** | plain grey **fintalent.com** placeholder |
+
+> **A Youtube or Vimeo link does not bring its own picture**
+>
+> Checked with a published Youtube resource that has no thumbnail: neither the admin table nor the talent card pulls the video's cover image. The card is rendered as an empty placeholder. There is no `<img>` on it at all. **If you want a picture, upload one.**
 
 ![PDF row with no thumbnail](res-22-thumb-pdf.png)
 

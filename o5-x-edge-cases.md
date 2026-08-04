@@ -2,7 +2,9 @@
 
 > O5 · Assign a list to an SDR
 
-Hand-off done → SDR takes overOnce assigned, the rep opens the list in **Segments (Lists)** and works it day-to-day. That's the SDR side of this guide, starting at **Flow 1**.
+> **Hand-off done → SDR takes over**
+>
+> Once assigned, the rep opens the list in **Segments (Lists)** and works it day-to-day. That's the SDR side of this guide, starting at **Flow 1**.
 
 ## Edge cases
 

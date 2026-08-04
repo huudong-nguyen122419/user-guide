@@ -14,7 +14,9 @@
 | **4** | Is a **current role** at a company flagged **portfolio**, **sponsor** or **corporate**? | **Passive**, stop |
 | **5** | Nothing matched | **Active**, the fallback |
 
-Step 1 decides most records without opening the profileThree of the seven outcomes are settled on that one field, and the engine says so in its own words: *“Profile was not examined — employment status alone decides this”* for a Full-time or Part-time employee, and *“Profile was not examined — this path skips every profile check”* when the field was never answered. The second one is the uncomfortable case. **A blank field produces Active**, so a talent who never finished sign-up is treated as available, and no current role, no employer and no company flag is ever looked at.
+> **Step 1 decides most records without opening the profile**
+>
+> Three of the seven outcomes are settled on that one field, and the engine says so in its own words: *“Profile was not examined — employment status alone decides this”* for a Full-time or Part-time employee, and *“Profile was not examined — this path skips every profile check”* when the field was never answered. The second one is the uncomfortable case. **A blank field produces Active**, so a talent who never finished sign-up is treated as available, and no current role, no employer and no company flag is ever looked at.
 
 ## Every sentence the rule can print
 
@@ -38,21 +40,29 @@ Matched against the **current job title** and the **current employer name**. The
 
 `independent` `freelan` `self-employed` `self employed` `remote` `contractor`
 
-🐛 The match is loose, and it produces wrong answers **It matches inside words and inside company names.** `freelan` is a stem, so it catches freelance, freelancer and freelancing. `independent` matches on its own rather than only in *independent consultant*, which is how a talent whose employer is **“Independent Record Label”** comes out **Active**. An independent record label is a company, not a way of working. **And two of the keywords have nothing to do with being self-employed.** `remote` describes where somebody sits, not who pays them; a full-time employee working from home matches it. `contractor` is closer but still catches people on long contracts to a single client.
+> **🐛 The match is loose, and it produces wrong answers**
+>
+> **It matches inside words and inside company names.** `freelan` is a stem, so it catches freelance, freelancer and freelancing. `independent` matches on its own rather than only in *independent consultant*, which is how a talent whose employer is **“Independent Record Label”** comes out **Active**. An independent record label is a company, not a way of working. **And two of the keywords have nothing to do with being self-employed.** `remote` describes where somebody sits, not who pays them; a full-time employee working from home matches it. `contractor` is closer but still catches people on long contracts to a single client.
 
-The reasoning is recorded, but never shownBehind each recommendation the engine keeps an **evidence list**, three or four lines naming what it actually read: the employment status, how many current roles, whether any keyword matched, which company was checked and what flag it carries. **None of it reaches the screen.** The tooltip prints the one-line summary and stops, so a reviewer re-does by hand the work the engine already did and wrote down.
+> **The reasoning is recorded, but never shown**
+>
+> Behind each recommendation the engine keeps an **evidence list**, three or four lines naming what it actually read: the employment status, how many current roles, whether any keyword matched, which company was checked and what flag it carries. **None of it reaches the screen.** The tooltip prints the one-line summary and stops, so a reviewer re-does by hand the work the engine already did and wrote down.
 
 ## How to read a company flag, and how not to
 
 **The flag is the S / P / Corporate badge sitting next to the company name**, on a role with no end date. You see it on the talents list and in the **Work Experience** tab. **No badge means no flag**, and nothing else on the profile counts as one.
 
-These are NOT flags: do not read them as one **① *“CFO of VC-backed SaaS…”* in the role description**. That is text the talent typed about themselves. Syed Ishaque Hasib’s current employer reads exactly like a portfolio company and carries **no flag at all**. **② Company Background = `PE-Backed` / `Portfolio Company`**, an AI label inferred across the **whole career**, not a fact about today’s employer. Syed carries `PE-Backed (8 yrs)` from past roles. **③ the company’s own description**: only S6 reads a description, and S6 is still open. Getting this wrong is easy: on Syed’s record all three lookalikes say *portfolio company*, and the flag says nothing. **Check the linked company before concluding.**
+> **These are NOT flags: do not read them as one**
+>
+> **① *“CFO of VC-backed SaaS…”* in the role description**. That is text the talent typed about themselves. Syed Ishaque Hasib’s current employer reads exactly like a portfolio company and carries **no flag at all**. **② Company Background = `PE-Backed` / `Portfolio Company`**, an AI label inferred across the **whole career**, not a fact about today’s employer. Syed carries `PE-Backed (8 yrs)` from past roles. **③ the company’s own description**: only S6 reads a description, and S6 is still open. Getting this wrong is easy: on Syed’s record all three lookalikes say *portfolio company*, and the flag says nothing. **Check the linked company before concluding.**
 
 **A shortcut that has held on 4 of 4 records checked:** the header line next to the status chip shows a green **Corporate** badge exactly when the current employer carries the flag. Arnaud and Athanasia have it; Syed and Mark do not, and neither of their current employers is flagged. Useful for a fast eye check, but confirm on the Work Experience row before acting on it.
 
 ## What counts as junior or back office
 
-A judgement cue, not a step**The rule does not read seniority at all.** An Analyst at a flagged company is recommended Passive like anybody else. The list below is here because a reviewer can still weigh it by hand, and because it is the exception most often argued for. If it should be part of the rule, that is a decision to take, not a reading to assume.
+> **A judgement cue, not a step**
+>
+> **The rule does not read seniority at all.** An Analyst at a flagged company is recommended Passive like anybody else. The list below is here because a reviewer can still weigh it by hand, and because it is the exception most often argued for. If it should be part of the rule, that is a decision to take, not a reading to assume.
 
 **Read the POSITION on the current row. It is authoritative.**
 

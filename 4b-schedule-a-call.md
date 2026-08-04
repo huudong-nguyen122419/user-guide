@@ -6,7 +6,9 @@ description: "Goal (core): a prospect replies asking for a call. Book it, send t
 
 > spot it in your replies → book → reply with the link → manage
 
-This flow starts inside Flow 4It is not a separate errand. You are already reading replies ([Flow 4 ↗](4-view-replies-and-answer-replies.md)); one of them wants a call. Everything below happens without leaving that conversation.
+> **This flow starts inside Flow 4**
+>
+> It is not a separate errand. You are already reading replies ([Flow 4 ↗](4-view-replies-and-answer-replies.md)); one of them wants a call. Everything below happens without leaving that conversation.
 
 ## In this flow
 

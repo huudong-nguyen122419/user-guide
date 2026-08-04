@@ -2,7 +2,9 @@
 
 > B2 · Talent · log & submit timesheet
 
-OptionalThe talent **may or may not** file one. Once filed, the amount is **added to the same client invoice**, separately from the fee, and it does not touch the hours.
+> **Optional**
+>
+> The talent **may or may not** file one. Once filed, the amount is **added to the same client invoice**, separately from the fee, and it does not touch the hours.
 
 ## B2.3.1
 

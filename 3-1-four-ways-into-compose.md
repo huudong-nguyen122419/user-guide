@@ -34,14 +34,20 @@
 
 3.1.4Way 4: From a signal (the draft is written before you arrive)
 
-What this way is forA signal is a piece of news, a raise, a carve-out, an appointment. Fintalent turns it into a **ready-written email about that news**, so instead of starting from a blank window you start from a draft that already references what happened. Your job is to pick who it goes to and make it sound like you.
+> **What this way is for**
+>
+> A signal is a piece of news, a raise, a carve-out, an appointment. Fintalent turns it into a **ready-written email about that news**, so instead of starting from a blank window you start from a draft that already references what happened. Your job is to pick who it goes to and make it sound like you.
 
-1. **3.1.4a** — **Two ways to reach a signal.** The Signals column is off until you switch it onOut of the box the contact list shows **7 of 10** available columns and **Signals is not one of them**, Title, Account, Country, City, Lifecycle Stage, Last Contact and Action. Add it from the **⚙ Column settings** gear at the right of the filter bar, where **Signals** sits in the list. **🐛 Do not use the search box in that panel to find it.** Typing *signal* returns an **empty list** even though the column is there, scroll the list instead. Reproduced every time. **Simple / Full are two different presets**, each with its own column set. **Full** does *not* include Signals either (it swaps in Owner, Work Experiences, Additional Emails, Campaign, Marketing Email), so switching preset is not a shortcut to getting the column.
+1. **3.1.4a** — **Two ways to reach a signal.**
 
    | From | How |
    |---|---|
    | **A contact you are working** | **Contacts** → the **Signals** column on their row → click the signal. Best when you already have a person in mind. |
    | **The news itself** | **Signals** in the left menu → click any row. Best when you are hunting for a reason to reach out. |
+
+   > **The Signals column is off until you switch it on**
+   >
+   > Out of the box the contact list shows **7 of 10** available columns and **Signals is not one of them**, Title, Account, Country, City, Lifecycle Stage, Last Contact and Action. Add it from the **⚙ Column settings** gear at the right of the filter bar, where **Signals** sits in the list. **🐛 Do not use the search box in that panel to find it.** Typing *signal* returns an **empty list** even though the column is there, scroll the list instead. Reproduced every time. **Simple / Full are two different presets**, each with its own column set. **Full** does *not* include Signals either (it swaps in Owner, Work Experiences, Additional Emails, Campaign, Marketing Email), so switching preset is not a shortcut to getting the column.
 
 2. **3.1.4b** — **Read the signal before you use it.** The detail opens as a panel: on the left the **story** and its facts, **Subcategory, Published, Modified, Country and AI topic**, then **TOPICS**, **BIDDERS** (with a **Sponsor** chip where it applies) and **TARGETS**. On the right, two tabs: **Article** and **Email Template**. **Article** is the source story in full, ending in a **Link to original source**. Read it: the draft on the other tab is only as good as your grasp of what actually happened. The **1 / 20** pager top-right walks you through the other signals without closing the panel.
 
@@ -61,7 +67,11 @@ What this way is forA signal is a piece of news, a raise, a carve-out, an appoin
 
    *3.1.4c: ① English / German · ② Regenerate · ③ Copy email · ④ New Email · ⑤ the draft, already written, with the merge variable intact.*
 
-4. **3.1.4d** — **New Email → compose opens carrying the draft.** The window arrives with **From** set to your mailbox, the **subject** filled in from the signal (*Fundraising Plans*), the **body** written out in full and **your signature** appended. The bottom bar has the usual **📎 attach, Snippets, Template and </>** and **Send**. ⚠ To is empty: that is the one thing it cannot guessComing in from the **Signals** page there is no contact attached, so **To** arrives blank and you add the person yourself. Coming in from a contact's **Signals** column the person is already known, but **check the field before you send either way**: a draft this complete makes it easy to hit Send on an email addressed to nobody, or to the wrong person. From here it is the ordinary compose window, finish at [3.2 ↗](3-2-compose-and-send.md). **Edit it before you send.** The draft names the deal correctly but it is written by a machine; a sentence in your own words is what stops it reading like a circular.
+4. **3.1.4d** — **New Email → compose opens carrying the draft.** The window arrives with **From** set to your mailbox, the **subject** filled in from the signal (*Fundraising Plans*), the **body** written out in full and **your signature** appended. The bottom bar has the usual **📎 attach, Snippets, Template and </>** and **Send**. From here it is the ordinary compose window, finish at [3.2 ↗](3-2-compose-and-send.md). **Edit it before you send.** The draft names the deal correctly but it is written by a machine; a sentence in your own words is what stops it reading like a circular.
+
+   > **⚠ To is empty: that is the one thing it cannot guess**
+   >
+   > Coming in from the **Signals** page there is no contact attached, so **To** arrives blank and you add the person yourself. Coming in from a contact's **Signals** column the person is already known, but **check the field before you send either way**: a draft this complete makes it easy to hit Send on an email addressed to nobody, or to the wrong person.
 
    ![Compose prefilled from a signal](sig-12-compose-prefilled.png)
 

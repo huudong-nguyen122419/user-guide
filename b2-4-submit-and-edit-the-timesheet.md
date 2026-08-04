@@ -2,7 +2,9 @@
 
 > B2 · Talent · log & submit timesheet
 
-Submitting is one-wayThe confirmation dialog says it outright: **“Once submitted, it cannot be edited”**. Check the hours carefully before clicking Yes.
+> **Submitting is one-way**
+>
+> The confirmation dialog says it outright: **“Once submitted, it cannot be edited”**. Check the hours carefully before clicking Yes.
 
 ## B2.4.1
 
@@ -33,11 +35,9 @@ The **Select Timesheet for Submission** dialog lists **one row per pending day**
 
 *B2.4.3: a real example: ① worked 02:30:00 · ② to bill 02:00:00 → different = edited. ③ the Jul 10 row unticked (turns white) · ④ the counter now reads 1 working day selected.*
 
-| You type | While typing | After you click away |
-|---|---|---|
-| **9** or **2.6**, above the logged hours | shows what you typed | **2.5**, pulled back down |
-| **0** | 0 | **0**. Allowed, you can bill nothing |
-| **−1** | −1 | **0**, pulled back up |
+> **You cannot bill more than you worked, and it corrects you without saying so**
+>
+> Type a figure above the logged hours and the field accepts it *while you are typing*, then **silently snaps back** to the logged hours the moment you click away. No error, no red text, no toast. Measured on a 2.5 h day: You typeWhile typingAfter you click away **9** or **2.6**, above the logged hoursshows what you typed**2.5**, pulled back down **0**0**0**. Allowed, you can bill nothing **−1**−1**0**, pulled back up **Why this matters:** opening the confirmation counts as clicking away. So if you type **9** and go straight for **Submit**, the field is already back to **2.5** before the dialog appears, you submit a different number from the one you typed and nothing tells you. **Read the figure in the box, not the one you typed**, before confirming.
 
 ![Hours to bill reverting to the logged hours](ts-29-bill-clamp.png)
 

@@ -2,9 +2,13 @@
 
 > B3 · Timesheet → invoice (Admin)
 
-🐛 Nothing new ever arrives here, submissions approve themselvesWhen a talent submits, the record is created **already Approved**, and `approvedBy` is set to **the talent's own user id**, verified by submitting one and reading it straight back. `approvedDate` stays empty, so it is not going through the approve action either. Platform-wide: the only **Pending Approval** rows are from **January 2024**, and **Rejected is 0**. Nobody has ever rejected anything, because nothing has ever waited to be rejected. **The gate below is real and it works; it just never gets anything to hold.** Logged as **TS-09**. Until that changes, read this section as: *how to pull something back and review it deliberately*, not *your daily queue*.
+> **🐛 Nothing new ever arrives here, submissions approve themselves**
+>
+> When a talent submits, the record is created **already Approved**, and `approvedBy` is set to **the talent's own user id**, verified by submitting one and reading it straight back. `approvedDate` stays empty, so it is not going through the approve action either. Platform-wide: the only **Pending Approval** rows are from **January 2024**, and **Rejected is 0**. Nobody has ever rejected anything, because nothing has ever waited to be rejected. **The gate below is real and it works; it just never gets anything to hold.** Logged as **TS-09**. Until that changes, read this section as: *how to pull something back and review it deliberately*, not *your daily queue*.
 
-This screen is not in the menu. You have to type the URL**/timesheet-submissions** (`https://admin.fintalent.io/timesheet-submissions`). It is a real, guarded admin page, 592 records, but nothing in the left menu links to it. If you have never seen it, that is why.
+> **This screen is not in the menu. You have to type the URL**
+>
+> **/timesheet-submissions** (`https://admin.fintalent.io/timesheet-submissions`). It is a real, guarded admin page, 592 records, but nothing in the left menu links to it. If you have never seen it, that is why.
 
 ## B3.0.1 · What the page holds
 
@@ -59,7 +63,11 @@ the **👁** in the Actions column opens the submission, and it goes three level
 
 ## B3.0.6 · 🐛 Edit time opens, but you cannot use it
 
-The dialog appears **underneath** the *Tracking timesheet* dialog that launched it, only its title and its buttons peek out, and **nothing in it can be clicked**: not the From or To fields, not Description, not even **Cancel** or **Update**. The two dialogs are stacked the wrong way round, *Tracking timesheet* sits in front of the **Edit time** box it just opened. Every click aimed at **Edit time** lands on the dialog covering it instead, which is why nothing responds. There is no way round it from the screen: close both and edit the entry from the timesheet row. **What to do instead:** press **Esc** to get out, and **Reject with a comment** ([B3.0.4 ↗](b3-0-approve-the-submission.md)) so the talent fixes and resubmits. **Do not tell a talent their hours have been corrected from this screen**, on this build, they cannot have been. If this is fixed, the reach is wider than you would expectThe control is offered on **Approved** submissions too, not only pending ones, and the talent is told their timesheet cannot be edited after submitting. Once it works, an edit here will be invisible to them, with no notification and no record of who changed what. Worth agreeing a rule before it goes live.
+The dialog appears **underneath** the *Tracking timesheet* dialog that launched it, only its title and its buttons peek out, and **nothing in it can be clicked**: not the From or To fields, not Description, not even **Cancel** or **Update**. The two dialogs are stacked the wrong way round, *Tracking timesheet* sits in front of the **Edit time** box it just opened. Every click aimed at **Edit time** lands on the dialog covering it instead, which is why nothing responds. There is no way round it from the screen: close both and edit the entry from the timesheet row. **What to do instead:** press **Esc** to get out, and **Reject with a comment** ([B3.0.4 ↗](b3-0-approve-the-submission.md)) so the talent fixes and resubmits. **Do not tell a talent their hours have been corrected from this screen**, on this build, they cannot have been.
+
+> **If this is fixed, the reach is wider than you would expect**
+>
+> The control is offered on **Approved** submissions too, not only pending ones, and the talent is told their timesheet cannot be edited after submitting. Once it works, an edit here will be invisible to them, with no notification and no record of who changed what. Worth agreeing a rule before it goes live.
 
 ![Edit time dialog stuck behind the Tracking timesheet dialog](tsa-06-edit-time.png)
 

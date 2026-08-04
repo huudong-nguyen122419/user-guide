@@ -2,9 +2,13 @@
 
 > 7 · Manage a Marketing Email
 
-🔒 Not yours to do yet, ask an AdminOn the SDR login the save is refused: the add returns a **403 permission error**, so the contacts never attach. The steps and screenshots below are the **Admin** run of the same flow ([A5.5 ↗](a5-5-add-contacts.md)), identical screens, identical drawer. **Read them so you can say exactly what you need**, then hand the list to whoever has the rights. When the permission is opened up this becomes yours with nothing else to learn.
+> **🔒 Not yours to do yet, ask an Admin**
+>
+> On the SDR login the save is refused: the add returns a **403 permission error**, so the contacts never attach. The steps and screenshots below are the **Admin** run of the same flow ([A5.5 ↗](a5-5-add-contacts.md)), identical screens, identical drawer. **Read them so you can say exactly what you need**, then hand the list to whoever has the rights. When the permission is opened up this becomes yours with nothing else to learn.
 
-Most of the time you will not need this at allAn ME assigned to you usually arrives with its people already added. Check the **People** count first: if it is already populated, skip straight to [7.4 ↗](7-4-preview-and-mark-reviewed.md).
+> **Most of the time you will not need this at all**
+>
+> An ME assigned to you usually arrives with its people already added. Check the **People** count first: if it is already populated, skip straight to [7.4 ↗](7-4-preview-and-mark-reviewed.md).
 
 ## In this step
 

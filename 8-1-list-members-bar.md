@@ -14,7 +14,9 @@ The bar over the table filters the **people** in your list. **Which filters show
 
 **"I want to find contacts whose lifecycle is Prospect."** → open **Lifecycles** → click the green **✓** on **Prospect**. ✓ include keeps only that stage; ✕ exclude hides it; several ✓ = OR; the **Has / No lifecycle** radios and **Paste list** are here too. Add **✕ Opted Out and ✕ Not Interested** to also drop the dead ones.
 
-In actionThe list opens at **359** contacts (all stages). ✓ **Prospect** → **359 → 107**, and every remaining row shows "Prospect" in the Lifecycle Stage column. **Why:** ✓ include keeps only that stage, so the 252 at other stages are hidden.
+> **In action**
+>
+> The list opens at **359** contacts (all stages). ✓ **Prospect** → **359 → 107**, and every remaining row shows "Prospect" in the Lifecycle Stage column. **Why:** ✓ include keeps only that stage, so the 252 at other stages are hidden.
 
 ![Lifecycles filter result](sdrx-flt-lifecycle-demo.png)
 
@@ -28,7 +30,9 @@ In actionThe list opens at **359** contacts (all stages). ✓ **Prospect** → *
 
 **"I want to find contacts who personally have a signal."** → open **Has signal** → tick **Yes** / **No**. Keeps people who have a ⚡ news / 💼 job signal, shown in the **Signals** column, the warmest people to reach out to. (This one lives on the **Simple**-view bar; switch to **Full** for Campaign, Work Experience, Years of Experience, Countries and Cities instead.)
 
-In action359 → **246**: every remaining row has a value in the Signals column.
+> **In action**
+>
+> 359 → **246**: every remaining row has a value in the Signals column.
 
 ![Members Has signal result](sdrx-flt-members-hassignal-demo.png)
 

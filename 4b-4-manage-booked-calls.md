@@ -19,7 +19,7 @@
 
 ## 4b.4.2 · What each control on a row does
 
-Four of them, and the first two are not the same thing: If you take one thing from this section**Send the contact the *join* link. Open the call yourself with *Start as host*.** Handing out a host link would let whoever holds it run your meeting.
+Four of them, and the first two are not the same thing:
 
 | Control | Opens | Use when |
 |---|---|---|
@@ -27,6 +27,10 @@ Four of them, and the first two are not the same thing: If you take one thing fr
 | **Start as host** | the **host start** link, carrying a host token | **this is the one to use on the day.** It opens the room with host rights, admitting people, recording, ending the call. The token is short-lived, so start it near the time, not hours before. |
 | **Copy join link** | : | sending or resending the link to the contact. |
 | **⋮** | **Send email** · **Cancel meeting** | the only two row actions. There is no edit. |
+
+> **If you take one thing from this section**
+>
+> **Send the contact the *join* link. Open the call yourself with *Start as host*.** Handing out a host link would let whoever holds it run your meeting.
 
 ![The four controls on a meeting row](sc-14-row-actions.png)
 

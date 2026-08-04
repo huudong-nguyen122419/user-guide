@@ -6,7 +6,9 @@ description: "the SDR builds one campaign at a time (SDR Flow 6 ↗). You run th
 
 > ADMIN · Admin/Ops, every campaign in the workspace, not just your own
 
-What you can do that an SDR cannotEverything in the **SDR** flow is available to you as well, same screens, same buttons, nothing removed. What Admin/Ops adds on top is the **authority to send**: flipping a campaign from **Draft** to live, and **Force Send**. That is the whole difference in permissions, and it is why the SDR hands the campaign back to you at the end of their flow rather than finishing it themselves.
+> **What you can do that an SDR cannot**
+>
+> Everything in the **SDR** flow is available to you as well, same screens, same buttons, nothing removed. What Admin/Ops adds on top is the **authority to send**: flipping a campaign from **Draft** to live, and **Force Send**. That is the whole difference in permissions, and it is why the SDR hands the campaign back to you at the end of their flow rather than finishing it themselves.
 
 ## In this flow
 

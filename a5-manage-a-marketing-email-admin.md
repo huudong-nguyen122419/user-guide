@@ -6,7 +6,9 @@ description: "an ME is a one-shot blast, not a sequence, so managing it is about
 
 > ADMIN · Admin/Ops, every ME in the workspace
 
-What you can do that an SDR cannotEverything in the **SDR** flow is available to you as well, same screens, same buttons, nothing removed. What Admin/Ops adds on top is the **authority to send**: flipping a marketing email from **Draft** to live, and **Force Send**. That is the whole difference in permissions, and it is why the SDR hands the marketing email back to you at the end of their flow rather than finishing it themselves.
+> **What you can do that an SDR cannot**
+>
+> Everything in the **SDR** flow is available to you as well, same screens, same buttons, nothing removed. What Admin/Ops adds on top is the **authority to send**: flipping a marketing email from **Draft** to live, and **Force Send**. That is the whole difference in permissions, and it is why the SDR hands the marketing email back to you at the end of their flow rather than finishing it themselves.
 
 ## In this flow
 

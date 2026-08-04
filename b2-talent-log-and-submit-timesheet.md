@@ -6,7 +6,9 @@ description: "the talent records the hours worked on a running contract, then su
 
 > TALENT · the talent does this, on the talent portal
 
-Before you startThere must be a contract in **Active** status. The talent can only log against that contract's project, and **only from the contract Start date onwards**. Fill in the **billing address** and **payment info** early, without them logging still works, but **submitting is blocked**: [B2.x.7 ↗](b2-x-7-billing-payment-info.md).
+> **Before you start**
+>
+> There must be a contract in **Active** status. The talent can only log against that contract's project, and **only from the contract Start date onwards**. Fill in the **billing address** and **payment info** early, without them logging still works, but **submitting is blocked**: [B2.x.7 ↗](b2-x-7-billing-payment-info.md).
 
 ## In this flow
 

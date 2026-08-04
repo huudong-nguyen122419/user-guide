@@ -2,7 +2,9 @@
 
 > A5 · Manage a marketing email (Admin)
 
-Do this before anything in A5.7A marketing email with no recipients cannot be run, and the People count is one of the two numbers the run check looks at ([A5.7.2 ↗](a5-7-run-force-send.md)).
+> **Do this before anything in A5.7**
+>
+> A marketing email with no recipients cannot be run, and the People count is one of the two numbers the run check looks at ([A5.7.2 ↗](a5-7-run-force-send.md)).
 
 ## A5.5.1 · Start from the marketing email, not from Contacts
 
@@ -14,7 +16,11 @@ Open the ME → **People** tab. An empty one says so plainly, and tells you the 
 
 ## A5.5.2 · + Add contacts does not open a picker. It takes you to Contacts
 
-You land on the full **Contacts** list with a filter already applied: a chip reading **Marketing Email: 1 excluded**. That chip is doing real work: it hides everyone already in this ME, so whatever you tick next is genuinely new. You have left the marketing emailThis is a normal Contacts page now. The full filter bar is yours: Lifecycles, Has signal, Countries, Work Experience, keyword search. Narrow the list here rather than ticking your way down 15,000 rows.
+You land on the full **Contacts** list with a filter already applied: a chip reading **Marketing Email: 1 excluded**. That chip is doing real work: it hides everyone already in this ME, so whatever you tick next is genuinely new.
+
+> **You have left the marketing email**
+>
+> This is a normal Contacts page now. The full filter bar is yours: Lifecycles, Has signal, Countries, Work Experience, keyword search. Narrow the list here rather than ticking your way down 15,000 rows.
 
 ![Contacts pre-filtered to exclude this ME](me-51-prefiltered.png)
 
@@ -43,10 +49,9 @@ It opens titled **Add N contacts to marketing email**. **Read the legend above t
 | **Missing + Invalid** | **Needs a human look.** The *work* address is missing or unusable, so the pick falls back to a personal one, unverified rather than proven bad. Most are reachable; nobody has checked. | **Your call.** Tick individually if you are willing to risk a bounce on that name; leave it if you would rather not spend the sender reputation. |
 | **Platform Signup** | People who **already have a Fintalent account**, talent or client. Nothing to do with whether the address works. | **Depends entirely on the campaign.** See the rule below. |
 
-| The email is aimed at… | Platform Signup | Why |
-|---|---|---|
-| **Talents** | **Tick all of them** | These are your talents. Leaving them out means mailing everyone except the audience. |
-| **Prospective clients** | **Judgement call** | Having an account already suggests they may be a client. Whether that makes them a target or means you should leave them alone depends on the campaign. Decide deliberately, do not let the default decide for you. |
+> **Platform Signup is a business decision, not a data-quality one**
+>
+> Ask what the email is *for*: The email is aimed at…Platform SignupWhy **Talents****Tick all of them**These are your talents. Leaving them out means mailing everyone except the audience. **Prospective clients****Judgement call**Having an account already suggests they may be a client. Whether that makes them a target or means you should leave them alone depends on the campaign. Decide deliberately, do not let the default decide for you.
 
 ![The add-to-marketing-email drawer](me-53-drawer.png)
 
@@ -70,7 +75,11 @@ Rows are shaded and the header checkbox is on. The address being used sits in th
 
 ## A5.5.6 · Tab 2: Missing + Invalid: nothing ticked, and the pick has fallen back
 
-In one example, 17 of the 22 had no usable work address, so the radio landed on a personal one under **Additional Emails** while the **Work Experiences** column shows the job with no address against it. That is what the tab name means: the *work* address is missing or unusable, not that the person is unreachable. The blue **Replied from this email** arrow is the best reason to tick one of these by hand. Someone who has already written back from an address is a far safer bet than the bucket label suggests. ⚠ One row had no address selected at allNot every row here has a pick. Tick a contact whose radio is empty and you add someone with nowhere to send, check the **radio**, not just the checkbox.
+In one example, 17 of the 22 had no usable work address, so the radio landed on a personal one under **Additional Emails** while the **Work Experiences** column shows the job with no address against it. That is what the tab name means: the *work* address is missing or unusable, not that the person is unreachable. The blue **Replied from this email** arrow is the best reason to tick one of these by hand. Someone who has already written back from an address is a far safer bet than the bucket label suggests.
+
+> **⚠ One row had no address selected at all**
+>
+> Not every row here has a pick. Tick a contact whose radio is empty and you add someone with nowhere to send, check the **radio**, not just the checkbox.
 
 ![Missing + Invalid tab, nothing pre-ticked](me-57-tab-missing.png)
 
@@ -78,7 +87,11 @@ In one example, 17 of the 22 had no usable work address, so the radio landed on 
 
 ## A5.5.7 · Tab 3: Platform Signup: people who already hold a Fintalent account
 
-Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row, hover it and it reads *Platform Signup*. **This tab says nothing about address quality.** An address in here can be green **Valid** and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data. ⚠ Skip this tab and you may miss the whole audienceIf the email is aimed at **talents**, these *are* your talents, leaving the tab unopened mails everyone except the people it was written for. Go back to the bucket table in [A5.5.4 ↗](a5-5-add-contacts.md) and decide deliberately. The **N results** count and page numbers along the bottom belong to the **marketing email list on the left**, not to the contacts, 93 results was 93 MEs. The buckets are not paginated; each tab shows all of its rows.
+Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row, hover it and it reads *Platform Signup*. **This tab says nothing about address quality.** An address in here can be green **Valid** and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data. The **N results** count and page numbers along the bottom belong to the **marketing email list on the left**, not to the contacts, 93 results was 93 MEs. The buckets are not paginated; each tab shows all of its rows.
+
+> **⚠ Skip this tab and you may miss the whole audience**
+>
+> If the email is aimed at **talents**, these *are* your talents, leaving the tab unopened mails everyone except the people it was written for. Go back to the bucket table in [A5.5.4 ↗](a5-5-add-contacts.md) and decide deliberately.
 
 ![Platform Signup tab](me-58-tab-platform.png)
 

@@ -2,7 +2,9 @@
 
 > A5 · Manage a marketing email (Admin)
 
-⚠ Changed. This tab is no longer “replies only”The **Inbox** tab on a ME (and on a campaign) now lists **every conversation that went out**, i.e. everything delivered, not just the ones that came back. Because of that the left rail carries a **Not Response** chip: conversations that were **sent and never answered**. A worked example, *Talent Handbook Launch — Aug 2026*: **All 3,733** = Interested 2 + Not Now 1 + Out Of Office 1 + No Categories 2 + **Not Response 3,723** + Opted Out 4. The categories and **Not Response** add up to **All**, so **Not Response is the bulk of the tab** on any healthy send. Silence is the normal outcome, and the few categorised rows are the work. **Opted Out sits apart**, under its own *Stops sending* group with a 🚫 mark, not a reply category but a hard stop ([7.9 ↗](7-9-label-the-replies.md)).
+> **⚠ Changed. This tab is no longer “replies only”**
+>
+> The **Inbox** tab on a ME (and on a campaign) now lists **every conversation that went out**, i.e. everything delivered, not just the ones that came back. Because of that the left rail carries a **Not Response** chip: conversations that were **sent and never answered**. A worked example, *Talent Handbook Launch — Aug 2026*: **All 3,733** = Interested 2 + Not Now 1 + Out Of Office 1 + No Categories 2 + **Not Response 3,723** + Opted Out 4. The categories and **Not Response** add up to **All**, so **Not Response is the bulk of the tab** on any healthy send. Silence is the normal outcome, and the few categorised rows are the work. **Opted Out sits apart**, under its own *Stops sending* group with a 🚫 mark, not a reply category but a hard stop ([7.9 ↗](7-9-label-the-replies.md)).
 
 ![The Inbox left rail on a marketing email](me-61-inbox-not-response.png)
 

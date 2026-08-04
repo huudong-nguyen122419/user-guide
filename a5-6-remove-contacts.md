@@ -2,7 +2,9 @@
 
 > A5 · Manage a marketing email (Admin)
 
-The other half of the listAdding is [A5.5 ↗](a5-5-add-contacts.md); this is how people come back out. Same tab, same selection bar, but the confirmation behaves differently enough to be worth its own read.
+> **The other half of the list**
+>
+> Adding is [A5.5 ↗](a5-5-add-contacts.md); this is how people come back out. Same tab, same selection bar, but the confirmation behaves differently enough to be worth its own read.
 
 ## A5.6.1 · Open the ME → People tab and tick whoever should not receive it
 
@@ -23,7 +25,11 @@ If you work several MEs at once, the toast is the one that tells you which list 
 
 ## A5.6.3 · Undo really does put them back
 
-Worked example: two recipients, removed one, **People** went 2 → 1; clicked **Undo** and it went back to **2** with the contact returned. Because the banner waits for you rather than fading, a wrong bulk remove is recoverable, as long as you notice before you navigate away. 🐛 After Undo the table lies until you reloadThe **People** badge corrects itself, but the list underneath keeps the post-removal total, it read **People 2** and *Showing 1 of 1* at the same time. **Refresh before you trust the table**, and count off the badge, not the footer.
+Worked example: two recipients, removed one, **People** went 2 → 1; clicked **Undo** and it went back to **2** with the contact returned. Because the banner waits for you rather than fading, a wrong bulk remove is recoverable, as long as you notice before you navigate away.
+
+> **🐛 After Undo the table lies until you reload**
+>
+> The **People** badge corrects itself, but the list underneath keeps the post-removal total, it read **People 2** and *Showing 1 of 1* at the same time. **Refresh before you trust the table**, and count off the badge, not the footer.
 
 ## A5.6.4 · Once you leave the page, Undo is gone
 

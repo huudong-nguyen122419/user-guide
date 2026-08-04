@@ -2,7 +2,11 @@
 
 > 3 · Send a 1:1 email → 3.1 · Four ways into compose
 
-3.1.4Way 4: From a signal (the draft is written before you arrive) What this way is forA signal is a piece of news, a raise, a carve-out, an appointment. Fintalent turns it into a **ready-written email about that news**, so instead of starting from a blank window you start from a draft that already references what happened. Your job is to pick who it goes to and make it sound like you. **Not yet covered:** the same trick starting from **Job Search**, not walked, so nothing is claimed about it here.
+3.1.4Way 4: From a signal (the draft is written before you arrive) **Not yet covered:** the same trick starting from **Job Search**, not walked, so nothing is claimed about it here.
+
+> **What this way is for**
+>
+> A signal is a piece of news, a raise, a carve-out, an appointment. Fintalent turns it into a **ready-written email about that news**, so instead of starting from a blank window you start from a draft that already references what happened. Your job is to pick who it goes to and make it sound like you.
 
 - **Two ways to reach a signal.** FromHow **A contact you are working****Contacts** → the **Signals** column on their row → click the signal. Best when you already have a person in mind. **The news itself****Signals** in the left menu → click any row. Best when you are hunting for a reason to reach out. The Signals column is off until you switch it onOut of the box the contact list shows **7 of 10** available columns and **Signals is not one of them**, Title, Account, Country, City, Lifecycle Stage, Last Contact and Action. Add it from the **⚙ Column settings** gear at the right of the filter bar, where **Signals** sits in the list. **🐛 Do not use the search box in that panel to find it.** Typing *signal* returns an **empty list** even though the column is there, scroll the list instead. Reproduced every time. **Simple / Full are two different presets**, each with its own column set. **Full** does *not* include Signals either (it swaps in Owner, Work Experiences, Additional Emails, Campaign, Marketing Email), so switching preset is not a shortcut to getting the column.
 
