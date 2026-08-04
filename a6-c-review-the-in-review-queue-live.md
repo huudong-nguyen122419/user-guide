@@ -20,7 +20,7 @@ Top right of the drawer sits a pager, **‹ N/280 ›**. The **←** and **→**
 
 ## A6-C.3 · Read the recommendation
 
-The status chip reads **In Review** and carries a **⚠ warning icon** beside it. Hover the icon and you get two lines: The full rule, all five questions and every sentence it can print, is in [A6-C.6 ↗](a6-c-6-how-the-recommendation-works.md).
+The status chip reads **In Review** and carries a **⚠ warning icon** beside it. Hover the icon and you get two lines: The full rule, all five questions and every sentence it can print, is in [A6-C.6 ↗](a6-c-6-the-rule-that-runs-today.md).
 
 | Line | What it is | Example |
 |---|---|---|
@@ -61,5 +61,5 @@ The toolbar at the top of the drawer carries all three: A confirm opens repeatin
 
 ## In this step
 
-* [A6-C.6 · How the recommendation works](a6-c-6-how-the-recommendation-works.md)
-* [A6-C.7 · The business rule behind it](a6-c-7-the-business-rule-behind-it.md)
+* [A6-C.6 · The rule that runs today](a6-c-6-the-rule-that-runs-today.md)
+* [A6-C.7 · The rule as proposed](a6-c-7-the-rule-as-proposed.md)

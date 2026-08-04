@@ -436,8 +436,8 @@
  <a href="#em-5-5" class="st2" data-page="page-a5">A5.x.5 · Timeline = A4.5</a>
  <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Approve a new talent <span class="fn">(decides Active or Passive)</span></a>
  <a href="#a6-flowC" class="st" data-page="page-a6">A6-C &middot; Review the In Review queue, LIVE</a>
- <a href="#a6-autorule" class="st2" data-page="page-a6">A6-C.6 &middot; How the recommendation works</a>
- <a href="#a6-rulerebuild" class="st2" data-page="page-a6">A6-C.7 &middot; The business rule behind it</a>
+ <a href="#a6-autorule" class="st2" data-page="page-a6">A6-C.6 &middot; The rule that runs today</a>
+ <a href="#a6-rulerebuild" class="st2" data-page="page-a6">A6-C.7 &middot; The rule as proposed</a>
  <a href="#a6-recheck" class="st" data-page="page-a6">A6-D &middot; Re-check an existing status</a>
  <a href="#a6-model" class="st" data-page="page-a6">A6.1 &middot; Three fields people mix up</a>
  <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x &middot; Edge cases</a>
@@ -1290,126 +1290,70 @@ carries all three:
 
 <figure><img src="a6q-02-queue-drawer.png" alt="The In Review drawer with its three action buttons"/><figcaption><b>A6-C</b>: the drawer, all on one screen: <b>&#9312;</b> the three ways out &middot; <b>&#9313;</b> the <b>In Review</b> chip and the warning icon holding the recommendation &middot; <b>&#9314;</b> <b>Employment Status</b>, the first field the rule reads.</figcaption></figure>
 
-<h3 id="a6-autorule" class="anchor">A6-C.6 &middot; How the recommendation is worked out</h3>
-<div class="goal adm"><b>What this is:</b> a rule that runs in the background on every talent and produces one
-recommended status plus one sentence saying why. It never changes anybody's status by itself. It appears in three
-places: the warning icon in the queue, the icon beside the status chip on the Talents list, and the
-<b>Recommend Status</b> filter.</div>
+<h3 id="a6-autorule" class="anchor">A6-C.6 &middot; The rule that runs today</h3>
+<div class="goal adm"><b>What this is:</b> the rule behind every recommendation, read off the engine's own output
+rather than guessed at. It never changes anybody's status. It feeds the warning icon in the queue, the icon beside the
+status chip on the list, and the <b>Recommend Status</b> filter.</div>
 
-<h4 style="margin:18px 0 8px">Five questions, in order, first Yes wins</h4>
-<p>The rule stops at the first question that answers Yes. Nothing after that point is read, which is why a profile can
-carry a flagged employer and a Full-time status and still be explained only by the first one.</p>
+<h4 style="margin:18px 0 8px">Five steps, in order, and it stops at the first answer</h4>
 
 <div class="tblwrap"><table>
-<thead><tr><th>#</th><th>Question</th><th>Yes &rarr;</th><th>No &rarr;</th></tr></thead>
+<thead><tr><th>#</th><th>What it reads</th><th>Outcome</th></tr></thead>
 <tbody>
-<tr><td><b>Q1</b></td><td>Is any <b>current</b> role linked to a company in our database flagged as <b>Portfolio</b>, <b>Sponsor</b> or <b>Corporate</b>?</td><td><b>PASSIVE</b>, stop</td><td>Q2</td></tr>
-<tr><td><b>Q2</b></td><td>Does a <b>current role title or company name</b> read as independent work? <span class="fn">(keyword list below)</span></td><td><b>ACTIVE</b>, stop</td><td>Q3</td></tr>
-<tr><td><b>Q3</b></td><td>Is <b>any</b> role on the profile marked as current?</td><td>Q4</td><td><b>ACTIVE</b>, stop</td></tr>
-<tr><td><b>Q4</b></td><td>Is Employment Status <b>Freelancer</b>, <b>Unemployed</b> or <b>Other</b>?</td><td><b>ACTIVE</b>, stop</td><td>Q5</td></tr>
-<tr><td><b>Q5</b></td><td>Is Employment Status <b>Full-time</b> or <b>Part-time</b> employee?</td><td><b>PASSIVE</b>, stop</td><td><b>ACTIVE</b> &mdash; the fallback</td></tr>
+<tr><td><b>1</b></td><td><b>Employment Status, and nothing else.</b> <b>Full-time</b> or <b>Part-time</b> employee &rarr; <b>Passive</b>. <b>Never answered</b> &rarr; <b>Active</b>. Anything else (Freelancer, Other&hellip;) &rarr; carry on</td><td><b>decided here in most cases</b></td></tr>
+<tr><td><b>2</b></td><td>Is any role marked <b>current</b>? No &rarr; there is nothing that could hold them</td><td><b>Active</b>, stop</td></tr>
+<tr><td><b>3</b></td><td>Does a <b>current job title or employer</b> contain a freelance keyword?</td><td><b>Active</b>, stop</td></tr>
+<tr><td><b>4</b></td><td>Is a <b>current role</b> at a company flagged <b>portfolio</b>, <b>sponsor</b> or <b>corporate</b>?</td><td><b>Passive</b>, stop</td></tr>
+<tr><td><b>5</b></td><td>Nothing matched</td><td><b>Active</b>, the fallback</td></tr>
 </tbody></table></div>
 
-<div class="call note"><span class="t">Read the order, not just the answers</span><b>Q1 outranks everything.</b> A
-freelancer sitting in a current role at a sponsor is recommended Passive, because Q1 fires before the freelance
-wording at Q2 is ever read. And <b>Q3 is a gate, not a test</b>: no current role at all means nothing can mark the
-person passive, so the rule stops and says Active.</div>
+<div class="call warn"><span class="t">Step 1 decides most records without opening the profile</span>Three of the
+seven outcomes are settled on that one field, and the engine says so in its own words:
+<i>&ldquo;Profile was not examined &mdash; employment status alone decides this&rdquo;</i> for a Full-time or
+Part-time employee, and <i>&ldquo;Profile was not examined &mdash; this path skips every profile check&rdquo;</i> when
+the field was never answered.<br><br>
+The second one is the uncomfortable case. <b>A blank field produces Active</b>, so a talent who never finished sign-up
+is treated as available, and no current role, no employer and no company flag is ever looked at.</div>
 
-<h4 style="margin:18px 0 8px">The independent-work keywords at Q2</h4>
-<p>Matched against the <b>current role title</b> and the <b>company name</b>:</p>
-<p><code>freelance</code>, <code>freelancer</code>, <code>fractional</code>, <code>independent consultant</code>,
-<code>independent advisor</code>, <code>self-employed</code>, <code>interim</code></p>
-
-<h4 style="margin:18px 0 8px">Every sentence the rule can print</h4>
-<p>Seven outcomes, no more. Each carries a code, and the code is what tells you which question fired:</p>
+<h4 style="margin:18px 0 8px">Every outcome the rule can produce</h4>
+<p>Seven, no more. The code is what tells you which step fired:</p>
 
 <div class="tblwrap"><table>
-<thead><tr><th>Code</th><th>Recommends</th><th>The sentence you see</th><th>Fired at</th></tr></thead>
+<thead><tr><th>Code</th><th>Recommends</th><th>The sentence you see</th><th>Step</th></tr></thead>
 <tbody>
-<tr><td><code>ClientCompanyMatched</code></td><td><b>Passive</b></td><td>currently works at a client company (portfolio, sponsor or corporate)</td><td><b>Q1</b> Yes</td></tr>
-<tr><td><code>FreelanceKeywordMatched</code></td><td><b>Active</b></td><td>the current role reads as freelance or independent</td><td><b>Q2</b> Yes</td></tr>
-<tr><td><code>NoCurrentRole</code></td><td><b>Active</b></td><td>no current role on the profile, so nothing marks them passive</td><td><b>Q3</b> No</td></tr>
-<tr><td><code>NoEmployeeStatus</code></td><td><b>Active</b></td><td>employment status was never answered, so availability is assumed</td><td><b>Q4/Q5</b> blank</td></tr>
-<tr><td><code>EmployedFullTime</code></td><td><b>Passive</b></td><td>employed full-time</td><td><b>Q5</b> Yes</td></tr>
-<tr><td><code>EmployedPartTime</code></td><td><b>Passive</b></td><td>employed part-time</td><td><b>Q5</b> Yes</td></tr>
-<tr><td><code>NoPassiveSignal</code></td><td><b>Active</b></td><td>self-directed, and nothing ties them to a client company</td><td>fallback, all five No</td></tr>
+<tr><td><code>EmployedFullTime</code></td><td><b>Passive</b></td><td>employed full-time</td><td><b>1</b></td></tr>
+<tr><td><code>EmployedPartTime</code></td><td><b>Passive</b></td><td>employed part-time</td><td><b>1</b></td></tr>
+<tr><td><code>NoEmployeeStatus</code></td><td><b>Active</b></td><td>employment status was never answered, so availability is assumed</td><td><b>1</b></td></tr>
+<tr><td><code>NoCurrentRole</code></td><td><b>Active</b></td><td>no current role on the profile, so nothing marks them passive</td><td><b>2</b></td></tr>
+<tr><td><code>FreelanceKeywordMatched</code></td><td><b>Active</b></td><td>the current role reads as freelance or independent</td><td><b>3</b></td></tr>
+<tr><td><code>ClientCompanyMatched</code></td><td><b>Passive</b></td><td>currently works at a client company (portfolio, sponsor or corporate)</td><td><b>4</b></td></tr>
+<tr><td><code>NoPassiveSignal</code></td><td><b>Active</b></td><td>self-directed, and nothing ties them to a client company</td><td><b>5</b></td></tr>
 </tbody></table></div>
 
-<div class="call warn"><span class="t">&#128027; The reasoning is recorded but never shown</span>Behind each
-recommendation the system stores an <b>evidence list</b>, the actual facts it read, three or four lines long. A
-profile recommended Active carries lines like <i>&ldquo;Employment status is Freelancer&rdquo;</i>,
-<i>&ldquo;1 current role on the profile&rdquo;</i>, <i>&ldquo;No freelance wording in any current job title or
-employer&rdquo;</i>, <i>&ldquo;No current role at a portfolio, sponsor or corporate company&rdquo;</i>.
-<b>None of it reaches the screen.</b> The tooltip prints the one-line summary and stops, so the reviewer has to go and
-check by hand what the rule already checked. Worth asking for, since the work is already done.</div>
+<p class="fn">Across 418 live records carrying a recommendation: <b>Active 75%, Passive 25%</b>. The largest single
+outcome is the fallback at step 5. A further <b>382 of the 800 sampled had no recommendation at all</b>, so an absent
+icon means <i>no opinion</i>, not <i>agrees with the status</i>.</p>
 
-<div class="call note"><span class="t">Not every talent carries a recommendation</span>Sampled 800 records: <b>598
-had no recommendation at all</b>, the field simply empty. Those are records the rule has not run against. An absent
-icon means <i>no opinion</i>, not <i>agrees with the current status</i>.</div>
+<h4 style="margin:18px 0 8px">The freelance keywords at step 3</h4>
+<p>Matched against the <b>current job title</b> and the <b>current employer name</b>. These are the ones seen firing,
+taken from the engine's own record of what it matched:</p>
+<p><code>independent</code> &nbsp; <code>freelan</code> &nbsp; <code>self-employed</code> &nbsp;
+<code>self employed</code> &nbsp; <code>remote</code> &nbsp; <code>contractor</code></p>
 
-<h3 id="a6-rulerebuild" class="anchor">A6-C.7 &middot; The business rule behind it</h3>
-<div class="goal adm"><b>What this is:</b> the same five questions as
-<a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>, written as business reasoning rather
-than as a list of field reads. Use A6-C.6 to know <i>what the system will say</i>; use this to know <i>why the answer
-is the right one</i> when you are deciding a record by hand.</div>
+<div class="call warn"><span class="t">&#128027; The match is loose, and it produces wrong answers</span>
+<b>It matches inside words and inside company names.</b> <code>freelan</code> is a stem, so it catches freelance,
+freelancer and freelancing. <code>independent</code> matches on its own rather than only in
+<i>independent consultant</i>, which is how a talent whose employer is <b>&ldquo;Independent Record Label&rdquo;</b>
+comes out <b>Active</b>. An independent record label is a company, not a way of working.<br><br>
+<b>And two of the keywords have nothing to do with being self-employed.</b> <code>remote</code> describes where
+somebody sits, not who pays them; a full-time employee working from home matches it. <code>contractor</code> is closer
+but still catches people on long contracts to a single client.</div>
 
-<h4 style="margin:18px 0 8px">The shape of it: somebody is Passive when their week already belongs to someone else</h4>
-<p>Everything reduces to one question. <b>Is there already a claim on this person's working time?</b> Two things count
-as a claim, and they are read in this order:</p>
-
-<div class="tblwrap"><table>
-<thead><tr><th>The claim</th><th>Read at</th><th>Why it counts</th></tr></thead>
-<tbody>
-<tr><td><b>A current role at a company we work with</b> <span class="fn">(Portfolio, Sponsor or Corporate)</span></td><td><b>first</b></td><td>the strongest claim there is. They are inside a client's organisation right now, so putting them on a project is a conflict before it is a scheduling problem</td></tr>
-<tr><td><b>An employment contract</b> <span class="fn">(Full-time or Part-time)</span></td><td><b>last</b></td><td>somebody else buys their week. Nothing about the work is wrong, there is simply no time to sell</td></tr>
-</tbody></table></div>
-
-<p>Everything else is a reason to say <b>Active</b>: independent wording on the current role, no current role at all,
-a self-directed employment status, or nothing to go on.</p>
-
-<div class="call warn"><span class="t">The company flag decides, and nothing overrides it</span>This is the rule as it
-now stands, and it is a reversal. An earlier version of this section held that the flag was <i>necessary but not
-sufficient</i>, with junior titles and advisory employers able to veto it. <b>They no longer can.</b> A current role at
-a flagged company produces <b>Passive</b>, whatever the title says and whatever the person calls themselves.<br><br>
-Read the consequence plainly: an <b>Analyst or Associate at a sponsor firm is now Passive</b>. Two records that were
-ruled Active by hand, <i>Iman Dakhlaoui</i> (Associate at a flagged employer) and <i>Athanasia Panteli</i> (Analyst),
-come out the other way under this rule. If that is wrong for the business, the fix is to change the rule, not to
-re-decide the records one at a time.</div>
-
-<h4 style="margin:18px 0 8px">The walk, in business terms</h4>
-<div class="tblwrap"><table>
-<thead><tr><th>#</th><th>What you are really asking</th><th>Answer</th></tr></thead>
-<tbody>
-<tr><td><b>1</b></td><td>Are they sitting inside a client's organisation today?</td><td>Yes &rarr; <b>Passive</b>. Stop; nothing else matters</td></tr>
-<tr><td><b>2</b></td><td>Does the current role describe itself as independent work?</td><td>Yes &rarr; <b>Active</b>. They sell their own time</td></tr>
-<tr><td><b>3</b></td><td>Is there any current role at all?</td><td>No &rarr; <b>Active</b>. Nothing can hold a claim on them</td></tr>
-<tr><td><b>4</b></td><td>Do they describe themselves as freelance, between roles, or something else?</td><td>Yes &rarr; <b>Active</b></td></tr>
-<tr><td><b>5</b></td><td>Are they employed full-time or part-time?</td><td>Yes &rarr; <b>Passive</b>. Otherwise <b>Active</b></td></tr>
-</tbody></table></div>
-
-<div class="call note"><span class="t">Why the order is the whole design</span>The rule stops at the first Yes, so the
-order <i>is</i> the business decision. Putting the company flag first says: <b>where they work outranks what they call
-themselves</b>. Putting employment status last says: it is the weakest evidence, a self-reported field that is often
-stale or never filled in.</div>
-
-<h4 style="margin:18px 0 8px">The two vetoes that were dropped</h4>
-<p>The earlier design carried two exceptions that let a flagged employer be overruled. Neither is in the rule any
-more. They are still worth knowing, because <b>a reviewer deciding by hand can still apply them</b> and the
-recommendation will simply disagree:</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Dropped veto</th><th>What it used to say</th><th>Where it stands now</th></tr></thead>
-<tbody>
-<tr><td><b>Junior / back office</b></td><td>an Analyst, Associate or intern at a flagged company is not a client contact, so keep them Active</td><td>no longer read. The flag wins. Definitions kept below as a judgement cue</td></tr>
-<tr><td><b>Advisory / sell-side employer</b></td><td>somebody at a boutique advisory or investment bank is a peer, not a client</td><td>no longer read. It never fired in the seven validated records either</td></tr>
-</tbody></table></div>
-
-<div class="call warn"><span class="t">The seven validated records need re-scoring</span>The table of seven live
-records that used to sit here was scored against the previous rule, and its step numbers no longer exist. <b>It has
-been taken out rather than left to mislead.</b> Two of the seven are known to flip to Passive under the current rule,
-<i>Iman Dakhlaoui</i> and <i>Athanasia Panteli</i>. The rest need re-running before anybody quotes them.<br><br>
-<b>Re-running them is not a five-minute job:</b> the live system answers a different shape of this field from the one
-described in <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>, which means it is on a
-different build of the engine. The re-score has to be done where the business actually runs.</div>
+<div class="call note"><span class="t">The reasoning is recorded, but never shown</span>Behind each recommendation the
+engine keeps an <b>evidence list</b>, three or four lines naming what it actually read: the employment status, how
+many current roles, whether any keyword matched, which company was checked and what flag it carries. <b>None of it
+reaches the screen.</b> The tooltip prints the one-line summary and stops, so a reviewer re-does by hand the work the
+engine already did and wrote down.</div>
 
 <h4 style="margin:18px 0 8px">How to read a company flag, and how not to</h4>
 <p><b>The flag is <code>workExperiences[].linkedCompany.isSponsor</code> /
@@ -1433,6 +1377,10 @@ Arnaud and Athanasia have it; Syed and Mark do not, and neither of their current
 Useful for a fast eye check, but confirm on the Work Experience row before acting on it.</p>
 
 <h4 style="margin:18px 0 8px">What counts as junior or back office</h4>
+<div class="call note"><span class="t">A judgement cue, not a step</span><b>The rule does not read seniority at
+all.</b> An Analyst at a flagged company is recommended Passive like anybody else. The list below is here because a
+reviewer can still weigh it by hand, and because it is the exception most often argued for. If it should be part of
+the rule, that is a decision to take, not a reading to assume.</div>
 <p><b>Read the POSITION on the current row. It is authoritative.</b></p>
 <p><code>Analyst</code>, <code>Associate</code>, <code>Junior</code>,
 <code>Intern</code>, <code>Internship</code>, <code>Trainee</code>,
@@ -1452,15 +1400,63 @@ record has produced that combination yet.</div>
 <p class="fn">This is <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a> from our business rule, moved into the intake path, same list, but it now runs
 <b>at approval</b> and <b>before the company check</b>.</p>
 
-<h4 style="margin:18px 0 8px">Still open</h4>
+<h3 id="a6-rulerebuild" class="anchor">A6-C.7 &middot; The rule as proposed</h3>
+<div class="call warn"><span class="t">Not built. This is a proposal</span>Nothing in this section runs anywhere. The
+rule in use is <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>. Read this as the
+change being asked for, and as the reasoning behind it.</div>
+
+<h4 style="margin:18px 0 8px">The proposed order</h4>
 <div class="tblwrap"><table>
-<thead><tr><th>#</th><th>Question</th><th>Why it is open</th></tr></thead>
+<thead><tr><th>#</th><th>Question</th><th>Yes &rarr;</th><th>No &rarr;</th></tr></thead>
 <tbody>
-<tr><td><b>1</b></td><td>Is a junior at a flagged company really Passive?</td><td>The rule now says yes. Two hand rulings said no. Somebody has to pick one, because the two cannot both stand</td></tr>
-<tr><td><b>2</b></td><td>Should an advisory or sell-side employer still be an exception?</td><td>It was in the old design and never fired. Either write it into the rule or drop the idea</td></tr>
-<tr><td><b>3</b></td><td>Company matching quality</td><td>Still the biggest risk. Roughly <b>63%</b> of talents have a current employer that was never matched to a company record, so question 1 cannot fire at all and they fall through to the weakest evidence. See <a href="#ec-6-5" style="font-weight:700;cursor:pointer">A6.x.5 &#8599;</a></td></tr>
-<tr><td><b>4</b></td><td>Which build is the truth?</td><td>The five questions were read off one build. The live system answers a different shape of the same field, so the rule running against live records has not been confirmed to be this one</td></tr>
-<tr><td><b>5</b></td><td>Blank employment status</td><td>No longer an early exit, it now falls to the Active fallback after the flag and the keywords have been read. Better than before, but it still means <i>assume available</i> on a field nobody filled in</td></tr>
+<tr><td><b>Q1</b></td><td>Is any <b>current</b> role at a company flagged <b>Portfolio</b>, <b>Sponsor</b> or <b>Corporate</b>?</td><td><b>Passive</b></td><td>Q2</td></tr>
+<tr><td><b>Q2</b></td><td>Does a current role title or employer name indicate <b>independent work</b>?</td><td><b>Active</b></td><td>Q3</td></tr>
+<tr><td><b>Q3</b></td><td>Is any role marked as <b>current</b>?</td><td>Q4</td><td><b>Active</b></td></tr>
+<tr><td><b>Q4</b></td><td>Is Employment Status <b>Freelancer</b>, <b>Unemployed</b> or <b>Other</b>?</td><td><b>Active</b></td><td>Q5</td></tr>
+<tr><td><b>Q5</b></td><td>Is Employment Status <b>Full-time</b> or <b>Part-time</b>?</td><td><b>Passive</b></td><td><b>Active</b>, fallback</td></tr>
+</tbody></table></div>
+
+<p><b>Proposed keyword list for Q2:</b> <code>freelance</code>, <code>freelancer</code>, <code>fractional</code>,
+<code>independent consultant</code>, <code>independent advisor</code>, <code>self-employed</code>,
+<code>interim</code>. Note what is <i>not</i> in it: <code>remote</code> and <code>contractor</code>, both of which
+fire today, and bare <code>independent</code>, which is the source of the record-label false positive.</p>
+
+<h4 style="margin:18px 0 8px">What actually changes</h4>
+<p>The questions are nearly the same. <b>The order is reversed</b>, and since the rule stops at the first answer, the
+order is the decision:</p>
+<div class="tblwrap"><table>
+<thead><tr><th></th><th>Runs today</th><th>Proposed</th></tr></thead>
+<tbody>
+<tr><td><b>Asked first</b></td><td>Employment Status</td><td>Company flag</td></tr>
+<tr><td><b>Asked last</b></td><td>Company flag</td><td>Employment Status</td></tr>
+<tr><td><b>Blank status</b></td><td>early exit &rarr; <b>Active</b>, profile never opened</td><td>falls to the fallback, after the flag and the keywords have been read</td></tr>
+</tbody></table></div>
+
+<h4 style="margin:18px 0 8px">The profiles that come out differently</h4>
+<div class="tblwrap"><table>
+<thead><tr><th>Profile</th><th>Today</th><th>Proposed</th></tr></thead>
+<tbody>
+<tr><td><b>Full-time employee</b>, no flagged employer</td><td><b>Passive</b> at step 1</td><td><b>Passive</b> at Q5 &mdash; same answer, more work</td></tr>
+<tr><td><b>Full-time employee</b> at a flagged company</td><td><b>Passive</b> at step 1</td><td><b>Passive</b> at Q1 &mdash; same answer, better reason</td></tr>
+<tr><td><b>Freelance wording</b> in the title, current role at a sponsor</td><td><b>Active</b> &mdash; the keyword fires before the flag is read</td><td><b>Passive</b> &mdash; the flag fires first</td></tr>
+<tr><td><b>Employment status blank</b>, current role at a sponsor</td><td><b>Active</b> &mdash; decided on one empty field</td><td><b>Passive</b> &mdash; the flag is read first</td></tr>
+</tbody></table></div>
+
+<div class="call note"><span class="t">The argument for the change, in one line</span><b>Where somebody works
+outranks what they call themselves.</b> A current role inside a client's organisation is a conflict before it is a
+scheduling problem, and it is a fact we hold in our own company data. Employment Status is the weakest evidence in the
+profile: self-reported, often stale, and blank on a large share of records. Today the weakest field is asked first and
+the strongest last.</div>
+
+<h4 style="margin:18px 0 8px">Decide these before it is built</h4>
+<div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Question</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr><td><b>1</b></td><td>Is a junior at a flagged company really Passive?</td><td>Under the proposal, an <b>Analyst or Associate at a sponsor firm becomes Passive</b>, because nothing overrides Q1. Two records were once ruled Active by hand for exactly this reason. The rule and those rulings cannot both stand</td></tr>
+<tr><td><b>2</b></td><td>Should an advisory or sell-side employer be an exception?</td><td>Somebody at a boutique advisory is arguably a peer rather than a client. It has never been written into either rule</td></tr>
+<tr><td><b>3</b></td><td>Do the loose keywords get fixed at the same time?</td><td><code>remote</code> and <code>contractor</code> firing today, and bare <code>independent</code> matching company names, are wrong regardless of which order wins. Worth fixing whether or not the reorder happens</td></tr>
+<tr><td><b>4</b></td><td>Blank employment status</td><td>The proposal stops treating it as an early exit, which is an improvement. It still ends at <i>assume available</i> on a field nobody filled in</td></tr>
+<tr><td><b>5</b></td><td>Company matching quality</td><td>The biggest risk either way. Roughly <b>63%</b> of talents have a current employer never matched to a company record, so the flag question cannot fire at all for them. Putting it first makes that gap matter more, not less. See <a href="#ec-6-5" style="font-weight:700;cursor:pointer">A6.x.5 &#8599;</a></td></tr>
 </tbody></table></div>
 
 <h3 id="a6-recheck" class="anchor">A6-D &middot; Re-check the status of a talent you already have</h3>
