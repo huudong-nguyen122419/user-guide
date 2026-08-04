@@ -2,7 +2,7 @@
 
 > 6 · Manage a campaign → 6.x · Edge cases
 
-**Skip: three buttons, and they do not cover the same ground.** **Skip means that email is not sent to that contact.** Nothing asks you to confirm, and the step is tagged **Skipped** straight away with the button becoming **Rollback Skip**.
+**Skip: three buttons, and they do not cover the same ground.** **Skip means that email is not sent to that contact.** Nothing asks you to confirm, and the step is tagged **Skipped** straight away with the button becoming **Rollback Skip**. **Changed your mind? Rollback Skip puts it back.** A skipped step turns green and the **Skip** button is replaced by **Rollback Skip**, sitting in the same place. Click it and the step is back in the sequence for that contact, with the **Skipped** tag gone. It asks nothing, the same as skipping did, and you can go back and forth as often as you like while the campaign has not sent that step yet. Skipped contacts are what the **Skipped** filter at the top of the list surfaces, so that is where you find everyone you have taken out of a step without leaving the campaign.
 
 | Button | Where it is | What it skips |
 |---|---|---|
@@ -14,9 +14,9 @@
 
 *6.x.13: ① a main step still to go · ② the branch, listed separately · ③ its own Skip, which \*Skip all main step\* never reaches.*
 
-![Skipped step with Rollback Skip](sdrx-camp-30-skip.png)
+![A skipped step showing Rollback Skip](sdrx-camp-30-skip.png)
 
-*6.x.13: a skipped step: tagged Skipped, with Rollback Skip to undo it.*
+*6.x.13: a step after Skip: ① Rollback Skip, where the Skip button was · ② the Skipped tag. The whole row goes green.*
 
 > **Skip one step by hand and you lose the bulk button**
 >
