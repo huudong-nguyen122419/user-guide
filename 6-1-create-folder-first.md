@@ -2,7 +2,7 @@
 
 > 6 · Manage a campaign
 
-**Campaigns live inside folders.** So — unlike a Marketing Email, which you create directly — you **create a folder first**, open it, and only then create the campaign.
+**Campaigns live inside folders.** So, unlike a Marketing Email, which you create directly, you **create a folder first**, open it, and only then create the campaign.
 
 ## In this step
 

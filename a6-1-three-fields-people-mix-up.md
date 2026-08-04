@@ -4,7 +4,7 @@
 
 ## A6.1.1 · Status
 
-the talent lifecycle field, 9 possible values: `Guest`, `Incomplete`, `PaymentRequired`, `InReview`, `Rejected`, `Active`, `Passive`, `ReviewPassive`, `Temp`. The status chip on a talent profile only lets you switch between **Active** and **Passive**; every other value is set by the system or by the review actions in [A6.x ↗](a6-x-edge-cases.md). The chip is **read-only** unless the current status is already Active or Passive.
+, the talent lifecycle field, 9 possible values: `Guest`, `Incomplete`, `PaymentRequired`, `InReview`, `Rejected`, `Active`, `Passive`, `ReviewPassive`, `Temp`. The status chip on a talent profile only lets you switch between **Active** and **Passive**; every other value is set by the system or by the review actions in [A6.x ↗](a6-x-edge-cases.md). The chip is **read-only** unless the current status is already Active or Passive.
 
 ## A6.1.2 · Employment Status
 

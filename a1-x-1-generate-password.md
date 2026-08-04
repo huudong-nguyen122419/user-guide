@@ -6,4 +6,4 @@
 
 ![Password field](adminx-02b-password-row.png)
 
-*A1.x.1 — the Password field: masked value · 👁 show/hide · copy · Generate again.*
+*A1.x.1: the Password field: masked value · 👁 show/hide · copy · Generate again.*

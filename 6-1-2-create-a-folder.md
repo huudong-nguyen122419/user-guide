@@ -6,4 +6,4 @@
 
 ![Create Folder form](sdrx-camp-01-folder.png)
 
-*6.1.2 — the Create Folder form: ① Owner (here: you) · ② Name (required) · ③ Description · ④ Create.*
+*6.1.2: the Create Folder form: ① Owner (here: you) · ② Name (required) · ③ Description · ④ Create.*

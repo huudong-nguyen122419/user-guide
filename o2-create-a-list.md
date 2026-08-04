@@ -1,5 +1,5 @@
 ---
-description: "make an empty list (a \"segment\") that will hold a work-set for one SDR. SDRs can't create lists — this is Ops-only."
+description: "make an empty list (a \"segment\") that will hold a work-set for one SDR. SDRs can't create lists: this is Ops-only."
 ---
 
 # O2 · Create a list

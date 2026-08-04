@@ -8,11 +8,11 @@
 
 ## A1.3 · Fill in the details
 
-**First name · Last name · Email** (= their login username; use the company email) · **Phone** (optional) · **Roles*** (pick **SDR** or **KAM** — tick both if they cover both) · **Password** (auto-generated). Regenerate / copy the password → [A1.x.1 ↗](a1-x-1-generate-password.md).
+**First name, Last name and Email** (= their login username; use the company email), **Phone** (optional) and **Roles*** (pick **SDR** or **KAM**, tick both if they cover both) and **Password** (auto-generated). Regenerate / copy the password → [A1.x.1 ↗](a1-x-1-generate-password.md).
 
 ![Create new Admin form](adminx-02-create-admin.png)
 
-*A1.3 — Create new Admin form: Name · Email · Roles\* · auto-generated Password · Avatar.*
+*A1.3: Create new Admin form: Name · Email · Roles\* · auto-generated Password · Avatar.*
 
 ## A1.4 · Click Create
 

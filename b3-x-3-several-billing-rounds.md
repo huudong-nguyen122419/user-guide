@@ -6,4 +6,4 @@
 
 ![Several billing rounds on one talent row](tsx-16-multiple-billing-rounds.png)
 
-*B3.x.3 — three billing rounds on the same contract, stacked in order: ① Jul 1–2 · ② Jul 3–4 · ③ Jul 8–10 (this one also carries an expense).*
+*B3.x.3: three billing rounds on the same contract, stacked in order: ① Jul 1–2 · ② Jul 3–4 · ③ Jul 8–10 (this one also carries an expense).*

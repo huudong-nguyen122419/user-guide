@@ -18,15 +18,15 @@ From the list: row **⋮** → **Set Publish**. The menu always offers the **two
 
 ![Row menu on a Published resource](res-08-rowmenu.png)
 
-*B4.4.2 — the row menu on a Published row: the two moves offered are Set Draft and Set Archive.*
+*B4.4.2: the row menu on a Published row: the two moves offered are Set Draft and Set Archive.*
 
 ## B4.4.3 · Confirm
 
-The dialog names the resource, shows the status change as chips, and tells you what publishing means — *“It will be visible to users on the selected display page.”* If you left Display Page empty, read that as the Resources page.
+The dialog names the resource, shows the status change as chips, and tells you what publishing means, *“It will be visible to users on the selected display page.”* If you left Display Page empty, read that as the Resources page.
 
 ![Publish Resource confirmation](res-09-publish.png)
 
-*B4.4.3 — ① what publishing does · ② Confirm.*
+*B4.4.3: ① what publishing does · ② Confirm.*
 
 ## B4.4.4 · Publishing stamps *Published At* for you
 

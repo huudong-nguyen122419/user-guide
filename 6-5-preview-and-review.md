@@ -2,7 +2,7 @@
 
 > 6 · Manage a campaign
 
-Before the campaign runs, **review what every contact will actually get** on the **Preview** tab — the campaign's review gate, exactly like a Marketing Email's.
+Before the campaign runs, **review what every contact will actually get** on the **Preview** tab, the campaign's review gate, exactly like a Marketing Email's.
 
 ## In this step
 

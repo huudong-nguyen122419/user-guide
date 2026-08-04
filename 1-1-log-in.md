@@ -4,11 +4,11 @@
 
 ## 1.1
 
-Open `admin.fintalent.io`. If you're not signed in, the login screen appears — **Email · Password · Log In**.
+Open `admin.fintalent.io`. If you're not signed in, the login screen appears, **Email, Password and Log In**.
 
 ![SDR login page](sdrx-01-login.png)
 
-*1.1 — the login screen: just Email, Password, Log In.*
+*1.1: the login screen: just Email, Password, Log In.*
 
 ## 1.2
 

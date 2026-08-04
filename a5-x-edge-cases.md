@@ -8,4 +8,4 @@
 * [A5.x.2 · Force Send scope](a5-x-2-force-send-scope.md)
 * [A5.x.3 · Cancelled ≠ failed](a5-x-3-cancelled-failed.md)
 * [A5.x.4 · Switch sender safely](a5-x-4-switch-sender-safely.md)
-* [A5.x.5 · Timeline = A4.6](a5-x-5-timeline-a4-6.md)
+* [A5.x.5 · Timeline = A4.5](a5-x-5-timeline-a4-5.md)

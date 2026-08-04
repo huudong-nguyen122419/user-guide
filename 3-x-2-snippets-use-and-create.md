@@ -8,12 +8,12 @@ click **Snippets** → search → click = inserted at the cursor (EN | DE toggle
 
 ![Snippets picker](v3s-22-snippets.png)
 
-*Use — Snippets: search + EN/DE, insert at cursor.*
+*Use: Snippets: search + EN/DE, insert at cursor.*
 
 ## make · Build your own
 
-**Snippets** (left menu) → **+ Create New** → **Private** toggle (**ON = only you**; OFF = shared) · **Name*** · **Type** · **Content English*** / **Content German** → **Create**. Edit/delete by hovering the row.
+**Snippets** (left menu) → **+ Create New** → **Private** toggle (**ON = only you**; OFF = shared), **Name***, **Type** and **Content English*** / **Content German** → **Create**. Edit/delete by hovering the row.
 
 ![Snippet create form](v3s-111-sdr-snippet-form.png)
 
-*Create — Private toggle · Name\* · Type · Content EN\*/DE.*
+*Create: Private toggle · Name\* · Type · Content EN\*/DE.*

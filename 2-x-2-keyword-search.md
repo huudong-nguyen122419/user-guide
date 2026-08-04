@@ -6,4 +6,4 @@
 
 ![Keyword search](v3s-96-sdr-list-search.png)
 
-*2.x.2 — keyword search with Recent searches memory.*
+*2.x.2: keyword search with Recent searches memory.*

@@ -6,4 +6,4 @@
 
 ![Bulk assign modes](opsx-18-bulk-assign.png)
 
-*O5.x.2 — bulk Assign assignee across N lists, with Add new / Overwrite (replace owners) mode.*
+*O5.x.2: bulk Assign assignee across N lists, with Add new / Overwrite (replace owners) mode.*

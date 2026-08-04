@@ -4,11 +4,11 @@
 
 ## A2.1 · Sales Management → Contacts
 
-→ the contacts table. Top-right sits **+ Create Contact** (Admin/Ops only — the SDR view has no such button).
+→ the contacts table. Top-right sits **+ Create Contact** (Admin/Ops only. The SDR view has no such button).
 
 ![Create Contact button location](adminx-06-create-contact-circled.png)
 
-*A2.1 — + Create Contact (circled) at the top-right of the Contacts page.*
+*A2.1: + Create Contact (circled) at the top-right of the Contacts page.*
 
 ## A2.2 · Click + Create Contact
 
@@ -16,4 +16,4 @@
 
 ![Create Contact drawer](adminx-03-create-contact.png)
 
-*A2.2 — the empty drawer: LinkedIn URL OR Email, plus optional First/Last name.*
+*A2.2: the empty drawer: LinkedIn URL OR Email, plus optional First/Last name.*

@@ -6,4 +6,4 @@
 
 ![Upload files and attachment](sdrx-me-20-upload.png)
 
-*7.x.12 — Upload files (bottom-left); each attachment shows with an ✕ to remove.*
+*7.x.12: Upload files (bottom-left); each attachment shows with an ✕ to remove.*

@@ -6,4 +6,4 @@
 
 ![Company Employees tab](opsx-12-company-detail.png)
 
-*O3.3 — a company's Employees tab: tick employees → Add to list.*
+*O3.3: a company's Employees tab: tick employees → Add to list.*

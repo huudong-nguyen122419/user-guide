@@ -1,5 +1,5 @@
 ---
-description: "know the Ops workspace — the tools SDRs don't have (Contacts, Companies, and the full Segments (Lists) controls). You log in the same way everyone does (see SDR Flow 1); this flow is about what you get once you're in."
+description: "know the Ops workspace: the tools SDRs don't have (Contacts, Companies, and the full Segments (Lists) controls). You log in the same way everyone does (see SDR Flow 1); this flow is about what you get once you're in."
 ---
 
 # O1 · Your Ops workspace

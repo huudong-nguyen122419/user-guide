@@ -2,7 +2,7 @@
 
 * [Fintalent OSW — Guides](README.md)
 
-## Admin — setup
+## Admin: setup
 
 * [A1 · Create an SDR/KAM account](a1-create-an-sdr-kam-account.md)
   * [A1.1 · Open Admins](a1-1-open-admins.md)
@@ -20,18 +20,13 @@
     * [A2.x.2 · Link / relink company](a2-x-2-link-relink-company.md)
     * [A2.x.3 · Neither field](a2-x-3-neither-field.md)
     * [A2.x.4 · Supplement info (edit)](a2-x-4-supplement-info-edit.md)
-* [A3 · Run a ME / campaign](a3-run-a-me-campaign.md)
-  * [A3.0 · Add contacts](a3-0-add-contacts.md)
-  * [A3.0b · Remove contacts](a3-0b-remove-contacts.md)
-  * [A3.1 · Run a Marketing Email](a3-1-run-a-marketing-email.md)
-  * [A3.2 · Run a campaign (Enabled)](a3-2-run-a-campaign-enabled.md)
 * [A4 · Manage a campaign (Admin)](a4-manage-a-campaign-admin.md)
   * [A4.1 · The list](a4-1-the-list.md)
   * [A4.2 · Row actions (⋮)](a4-2-row-actions.md)
   * [A4.3 · Reassign](a4-3-reassign.md)
   * [A4.4 · Inside the campaign](a4-4-inside-the-campaign.md)
-  * [A4.5 · Data Health](a4-5-data-health.md)
-  * [A4.6 · Timeline / audit](a4-6-timeline-audit.md)
+  * [A4.5 · Timeline / audit](a4-5-timeline-audit.md)
+  * [A4.6 · Run the campaign (Enabled)](a4-6-run-the-campaign-enabled.md)
   * [A4.x · Edge cases](a4-x-edge-cases.md)
     * [A4.x.1 · What a clone copies](a4-x-1-what-a-clone-copies.md)
     * [A4.x.2 · Archive vs Delete](a4-x-2-archive-vs-delete.md)
@@ -44,15 +39,17 @@
   * [A5.2 · Row actions](a5-2-row-actions.md)
   * [A5.3 · Inside the ME](a5-3-inside-the-me.md)
   * [A5.4 · The ME's own Inbox](a5-4-the-me-s-own-inbox.md)
-  * [A5.5 · Data Health + Config](a5-5-data-health-config.md)
+  * [A5.5 · Add contacts](a5-5-add-contacts.md)
+  * [A5.6 · Remove contacts](a5-6-remove-contacts.md)
+  * [A5.7 · Run + Force Send](a5-7-run-force-send.md)
   * [A5.x · Edge cases](a5-x-edge-cases.md)
     * [A5.x.1 · No delete / archive](a5-x-1-no-delete-archive.md)
     * [A5.x.2 · Force Send scope](a5-x-2-force-send-scope.md)
     * [A5.x.3 · Cancelled ≠ failed](a5-x-3-cancelled-failed.md)
     * [A5.x.4 · Switch sender safely](a5-x-4-switch-sender-safely.md)
-    * [A5.x.5 · Timeline = A4.6](a5-x-5-timeline-a4-6.md)
+    * [A5.x.5 · Timeline = A4.5](a5-x-5-timeline-a4-5.md)
 * [A6 · Approve a new talent (decides Active or Passive)](a6-approve-a-new-talent-decides-active-or-passive.md)
-  * [A6-C · Review the In Review queue — LIVE](a6-c-review-the-in-review-queue-live.md)
+  * [A6-C · Review the In Review queue, LIVE](a6-c-review-the-in-review-queue-live.md)
     * [A6-C.6 · The rule as built today](a6-c-6-the-rule-as-built-today.md)
     * [A6-C.7 · The rule, rebuilt](a6-c-7-the-rule-rebuilt.md)
   * [A6.1 · Three fields people mix up](a6-1-three-fields-people-mix-up.md)
@@ -77,7 +74,7 @@
   * [B2.5 · Verify after submit](b2-5-verify-after-submit.md)
   * [B2.6 · After you submit](b2-6-after-you-submit.md)
   * [B2.x · Edge cases](b2-x-edge-cases.md)
-    * [B2.x.1 · Daily — Day(s) to bill](b2-x-1-daily-day-s-to-bill.md)
+    * [B2.x.1 · Daily: Day(s) to bill](b2-x-1-daily-day-s-to-bill.md)
     * [B2.x.2 · Log / submit in batches](b2-x-2-log-submit-in-batches.md)
     * [B2.x.3 · Partial submit](b2-x-3-partial-submit.md)
     * [B2.x.4 · Fixing a mistake](b2-x-4-fixing-a-mistake.md)
@@ -125,7 +122,7 @@
     * [B5.x.2 · Video has no download](b5-x-2-video-has-no-download.md)
     * [B5.x.3 · Blocks and page disagree](b5-x-3-blocks-and-page-disagree.md)
 
-## Ops — preparing the work
+## Ops: preparing the work
 
 * [O1 · Your Ops workspace](o1-your-ops-workspace.md)
   * [O1.1 · Your Ops menu](o1-1-your-ops-menu.md)
@@ -187,7 +184,7 @@
     * [O5.x.2 · Bulk assign](o5-x-2-bulk-assign.md)
     * [O5.x.3 · Clear the owner](o5-x-3-clear-the-owner.md)
 
-## SDR — getting started
+## SDR: getting started
 
 * [1 · Log in & find your workspace](1-log-in-and-find-your-workspace.md)
   * [1.1 · Log in](1-1-log-in.md)
@@ -200,7 +197,7 @@
     * [1.x.5 · Email signature](1-x-5-email-signature.md)
     * [1.x.6 · Log out](1-x-6-log-out.md)
 
-## SDR — the daily loop
+## SDR: the daily loop
 
 * [2 · Find a target contact](2-find-a-target-contact.md)
   * [2.1 · Open your assigned list](2-1-open-your-assigned-list.md)
@@ -251,6 +248,8 @@
     * [4b.x.6 · Contact with several addresses](4b-x-6-contact-with-several-addresses.md)
     * [4b.x.7 · List view vs Calendar view](4b-x-7-list-view-vs-calendar-view.md)
     * [4b.x.8 · Nobody is emailed automatically](4b-x-8-nobody-is-emailed-automatically.md)
+    * [4b.x.9 · Create switches on with no time](4b-x-9-create-switches-on-with-no-time.md)
+    * [4b.x.10 · “Not found” on a real contact](4b-x-10-not-found-on-a-real-contact.md)
 * [5 · Follow up on silent prospects](5-follow-up-on-silent-prospects.md)
   * [5.1 · Open your list](5-1-open-your-list.md)
   * [5.2 · View the contacts](5-2-view-the-contacts.md)
@@ -258,7 +257,7 @@
   * [5.4 · Read the context](5-4-read-the-context.md)
   * [5.5 · Reply or new mail](5-5-reply-or-new-mail.md)
 
-## SDR — bulk outreach
+## SDR: bulk outreach
 
 * [6 · Manage a campaign](6-manage-a-campaign.md)
   * [6.1 · Create (folder first)](6-1-create-folder-first.md)
@@ -308,7 +307,7 @@
     * [6.x.12 · Force Update](6-x-12-force-update.md)
     * [6.x.13 · Skip a step (= not sent)](6-x-13-skip-a-step-not-sent.md)
     * [6.x.14 · Notifications bell](6-x-14-notifications-bell.md)
-* [6† · Manage a campaign — audited](6-manage-a-campaign-audited.md)
+* [6† · Manage a campaign, audited](6-manage-a-campaign-audited.md)
 * [7 · Manage a Marketing Email](7-manage-a-marketing-email.md)
   * [7.1 · Create a ME](7-1-create-a-me.md)
     * [7.1.1 · Open MEs + Create](7-1-1-open-mes-create.md)
@@ -318,14 +317,14 @@
   * [7.2 · View your MEs](7-2-view-your-mes.md)
     * [7.2a · Reading the numbers](7-2a-reading-the-numbers.md)
     * [7.2b · Inside a ME (tabs)](7-2b-inside-a-me-tabs.md)
-  * [7.3 · Add people to the ME](7-3-add-people-to-the-me.md)
+  * [7.3 · Add contacts to the ME](7-3-add-contacts-to-the-me.md)
     * [7.3.1 · Start from the ME](7-3-1-start-from-the-me.md)
     * [7.3.2 · It sends you to Contacts](7-3-2-it-sends-you-to-contacts.md)
     * [7.3.3 · Tick → Add to ME](7-3-3-tick-add-to-me.md)
-    * [7.3.4 · The drawer — two panes](7-3-4-the-drawer-two-panes.md)
-    * [7.3.5 · Tab 1 — Valid](7-3-5-tab-1-valid.md)
-    * [7.3.6 · Tab 2 — Missing + Invalid](7-3-6-tab-2-missing-invalid.md)
-    * [7.3.7 · Tab 3 — Platform Signup](7-3-7-tab-3-platform-signup.md)
+    * [7.3.4 · The drawer, two panes](7-3-4-the-drawer-two-panes.md)
+    * [7.3.5 · Tab 1, Valid](7-3-5-tab-1-valid.md)
+    * [7.3.6 · Tab 2, Missing + Invalid](7-3-6-tab-2-missing-invalid.md)
+    * [7.3.7 · Tab 3, Platform Signup](7-3-7-tab-3-platform-signup.md)
     * [7.3.8 · Read the button first](7-3-8-read-the-button-first.md)
     * [7.3.9 · Confirm & read the toast](7-3-9-confirm-and-read-the-toast.md)
     * [7.3.10 · Check the People tab](7-3-10-check-the-people-tab.md)
@@ -336,12 +335,13 @@
     * [7.4.3 · Read the email](7-4-3-read-the-email.md)
     * [7.4.4 · Personalize + Save](7-4-4-personalize-save.md)
     * [7.4.5 · Mark reviewed](7-4-5-mark-reviewed.md)
-  * [7.5 · Force send](7-5-force-send.md)
+  * [7.5 · Force Send + Run (Admin)](7-5-force-send-run-admin.md)
   * [7.6 · Email Queue (3 tabs)](7-6-email-queue-3-tabs.md)
+  * [7.6b · Monitor the ME](7-6b-monitor-the-me.md)
   * [7.7 · Verify in Conversations](7-7-verify-in-conversations.md)
     * [7.7a · Find bounces & drops](7-7a-find-bounces-and-drops.md)
-  * [7.8 · Replies · bounce · drop](7-8-replies-bounce-drop.md)
   * [7.9 · Label the replies](7-9-label-the-replies.md)
+  * [7.8 · Replies · bounce · drop](7-8-replies-bounce-drop.md)
   * [7.10 · When it is finished](7-10-when-it-is-finished.md)
   * [7.x · Edge cases](7-x-edge-cases.md)
     * [7.x.1 · Filter People / Preview](7-x-1-filter-people-preview.md)
@@ -359,12 +359,12 @@
     * [7.x.13 · Assigned (skip add)](7-x-13-assigned-skip-add.md)
     * [7.x.14 · Personalize drops attachment](7-x-14-personalize-drops-attachment.md)
     * [7.x.15 · Row-actions button unreachable](7-x-15-row-actions-button-unreachable.md)
-* [7† · Manage a Marketing Email — audited](7-manage-a-marketing-email-audited.md)
+* [7† · Manage a Marketing Email, audited](7-manage-a-marketing-email-audited.md)
 
-## SDR — reference
+## SDR: reference
 
 * [8 · Using filters](8-using-filters.md)
-  * [8.1 · List — members bar](8-1-list-members-bar.md)
-  * [8.2 · List — company rail](8-2-list-company-rail.md)
+  * [8.1 · List: members bar](8-1-list-members-bar.md)
+  * [8.2 · List: company rail](8-2-list-company-rail.md)
   * [8.3 · Inbox filters](8-3-inbox-filters.md)
 * [9 · FAQ & edge-case index](9-faq-and-edge-case-index.md)

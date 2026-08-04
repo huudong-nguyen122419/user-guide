@@ -1,12 +1,12 @@
 ---
-description: "put a video or a PDF in front of talents — and know which screen it will land on, because that is a separate decision from publishing it."
+description: "put a video or a PDF in front of talents, and know which screen it will land on, because that is a separate decision from publishing it."
 ---
 
 # B4 · Publish a resource (Admin)
 
 > ADMIN
 
-Two switches, not one**Status** decides *whether* talents can see it. **Display Page** decides *where else* it appears besides the Resources page. Setting one without thinking about the other is how resources end up published and unfindable — see [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md).
+Two switches, not one**Status** decides *whether* talents can see it. **Display Page** decides *where else* it appears besides the Resources page. Setting one without thinking about the other is how resources end up published and unfindable, see [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md).
 
 ## In this flow
 

@@ -6,4 +6,4 @@
 
 ![Empty Steps tab](sdrx-camp-04-steps-empty.png)
 
-*6.2.1 — empty Steps tab → + Create new step.*
+*6.2.1: empty Steps tab → + Create new step.*

@@ -6,4 +6,4 @@
 
 ![Inline rename a list](opsx-08-assign.png)
 
-*O2.x.2 — click the list name to rename it inline (✓ save · ✕ cancel).*
+*O2.x.2: click the list name to rename it inline (✓ save · ✕ cancel).*

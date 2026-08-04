@@ -6,4 +6,4 @@
 
 ![Segments list](opsx-01-segments.png)
 
-*O4.1 — Segments (Lists), Contact tab: every list, with Members / Assignee / Category columns.*
+*O4.1: Segments (Lists), Contact tab: every list, with Members / Assignee / Category columns.*

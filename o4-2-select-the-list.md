@@ -2,4 +2,4 @@
 
 > O4 · Remove members
 
-**Select the list** — click its name to open it.
+**Select the list**: click its name to open it.

@@ -6,4 +6,4 @@
 
 ![Add to list picker from employees](opsx-30-employees-add-list.png)
 
-*O3.3.4 — from Employees you still pick a list (testing-sdr-list-v3 ticked) → Add to 1 list(s).*
+*O3.3.4: from Employees you still pick a list (testing-sdr-list-v3 ticked) → Add to 1 list(s).*

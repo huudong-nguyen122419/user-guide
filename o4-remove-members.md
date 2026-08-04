@@ -1,5 +1,5 @@
 ---
-description: "take people out of a list, and see the full history. (Adding is its own flow — O3.) Start: Segments → open the list."
+description: "take people out of a list, and see the full history. (Adding is its own flow: O3.) Start: Segments → open the list."
 ---
 
 # O4 · Remove members

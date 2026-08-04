@@ -12,3 +12,5 @@
 * [4b.x.6 · Contact with several addresses](4b-x-6-contact-with-several-addresses.md)
 * [4b.x.7 · List view vs Calendar view](4b-x-7-list-view-vs-calendar-view.md)
 * [4b.x.8 · Nobody is emailed automatically](4b-x-8-nobody-is-emailed-automatically.md)
+* [4b.x.9 · Create switches on with no time](4b-x-9-create-switches-on-with-no-time.md)
+* [4b.x.10 · “Not found” on a real contact](4b-x-10-not-found-on-a-real-contact.md)

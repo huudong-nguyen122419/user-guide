@@ -6,4 +6,4 @@
 
 ![Select an email template](sdrx-camp-25-template-picker.png)
 
-*6.x.7 — Select an email template opens the saved-template list; picking one prefills the step.*
+*6.x.7: Select an email template opens the saved-template list; picking one prefills the step.*

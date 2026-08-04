@@ -6,4 +6,4 @@
 
 ![The step editor open for editing](sdrx-me-16-editstep.png)
 
-*7.x.6 — click a step to open the full editor: subject, body, toolbar and all controls.*
+*7.x.6: click a step to open the full editor: subject, body, toolbar and all controls.*

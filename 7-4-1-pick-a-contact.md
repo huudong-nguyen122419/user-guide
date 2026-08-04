@@ -4,6 +4,6 @@
 
 Open the **Preview** tab → **click a contact** on the left.
 
-![Preview tab — pick a contact](sdrx-me-03-preview.png)
+![Preview tab: pick a contact](sdrx-me-03-preview.png)
 
-*7.4.1 — ① open the Preview tab · ② click a contact in the left list.*
+*7.4.1: ① open the Preview tab · ② click a contact in the left list.*

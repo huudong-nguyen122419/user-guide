@@ -4,73 +4,77 @@
 
 ## 7.6.1 · Two ways in, and they are not the same view
 
-The **Email Queue** tab inside a ME is already scoped to that ME. **Sales Management → Email Queues** in the left menu is the whole platform — it mixes three sources: The **Campaign / Marketing Email** column tells you which, with a chip for the source and a link to the campaign or ME by name. On the global page, **read that column before you act on a row** — it is easy to cancel a campaign email thinking it belongs to your ME.
+The **Email Queue** tab inside a ME is already scoped to that ME. **Sales Management → Email Queues** in the left menu is the whole platform, it mixes three sources: The **Campaign / Marketing Email** column tells you which, with a chip for the source and a link to the campaign or ME by name. On the global page, **read that column before you act on a row**. It is easy to cancel a campaign email thinking it belongs to your ME.
 
 | Source | Where the email came from |
 |---|---|
-| **Email Marketing** | a marketing email — this flow. |
+| **Email Marketing** | a marketing email, this flow. |
 | **Campaign** | a campaign step ([Flow 6 ↗](6-manage-a-campaign.md)). |
 | **Task** | a one-off task email. |
 
-## 7.6.2 · Four tabs, not three
+## 7.6.2 · Three states, plus an *All* that holds them
 
-Each carries a live count: Measured on UAT: All 20,168 · In Queue 1,013 · Delivered 18,742 · Cancel 413.
+Every row sits in exactly one of **In Queue, Delivered and Cancel**, and **All** is simply the three added together. Each carries a live count: When the In Queue rows actually go outYou do not send them one by one. Everything sitting in **In Queue** is released **automatically at the end of the day**, read in the **timezone set on the ME when it was created**, not your timezone, and not the contact’s. So “In Queue” means *not sent yet, but it will be*, and the clock that decides when belongs to the ME. **Cancel is only reachable from In Queue.** Once a row has moved to **Delivered** the email is gone and there is nothing left to stop, so anything you want pulled has to be pulled **before** that daily release. Two worked examples. A large ME: All 20,168 and In Queue 1,013 and Delivered 18,742 and Cancel 413. And *Talent Handbook Launch — Aug 2026*: All 5,197 and In Queue 1,451 and Delivered 3,741 and Cancel 5, and 1,451 + 3,741 + 5 = 5,197 exactly, so the three do add up to All.
 
 | Tab | What is in it |
 |---|---|
-| **All** | everything, whatever its state — the tab people forget exists. |
+| **All** | everything, whatever its state, the tab people forget exists. |
 | **In Queue** | will be sent, has not gone yet. **The only tab where the row actions do anything.** |
 | **Delivered** | already sent. |
-| **Cancel** | pulled out of the queue — these will never be sent. |
+| **Cancel** | pulled out of the queue: these will never be sent. |
+
+![The three Email Queue states](me-62-queue-three-tabs.png)
+
+*7.6.2: ① All 5,197 · ② In Queue 1,246 · ③ Delivered 3,946 · ④ Cancel 5, and 1,246 + 3,946 + 5 lands exactly on 5,197.*
 
 ![Email Queues with four tabs](me-40-queue-tabs.png)
 
-*7.6.2 — ① the four tabs with their counts · ② the filter bar · ③ rows-per-page and the column settings gear.*
+*7.6.2: ① the four tabs with their counts · ② the filter bar · ③ rows-per-page and the column settings gear.*
 
 ## 7.6.3 · Narrowing it down
 
-Quick filters are **Sources**, **Campaigns** and **Expected Run Date**, plus **Add filter** to pin more. The search box has a **Simple / Advanced** toggle. The date filter changes meaning with the tabOn **Delivered** you filter by **sent date**. On **In Queue** and **Cancel** there is no sent date yet, so you filter by **queued date** instead. Same-looking control, different question — worth knowing before you conclude a date range is empty.
+Quick filters are **Sources**, **Campaigns** and **Expected Run Date**, plus **Add filter** to pin more. The search box has a **Simple / Advanced** toggle. The date filter changes meaning with the tabOn **Delivered** you filter by **sent date**. On **In Queue** and **Cancel** there is no sent date yet, so you filter by **queued date** instead. Same-looking control, different question: worth knowing before you conclude a date range is empty.
 
 ## 7.6.4 · Read a row
 
-Beyond Subject and Status: **from** and **to** under the subject, a **Content** preview of the actual body, **Attachments**, and three dates — **Created**, **Expected Run**, **Expected Delivery** — with **Sent Date** filled in once it has gone. The recipient carries a small **coloured dot**: green when the contact has an email on file, grey when it does not.
+Beyond Subject and Status: **from** and **to** under the subject, a **Content** preview of the actual body, **Attachments**, and three dates, **Created**, **Expected Run**, **Expected Delivery**, with **Sent Date** filled in once it has gone. The recipient carries a small **coloured dot**: green when the contact has an email on file, grey when it does not.
 
 ![Email queue columns](me-42-queue-cols.png)
 
-*7.6.4 — scroll the table sideways for the rest: Status, Attachments, Sent Date, Created Date, Expected Run, Expected Delivery.*
+*7.6.4: scroll the table sideways for the rest: Status, Attachments, Sent Date, Created Date, Expected Run, Expected Delivery.*
 
 ## 7.6.5 · Act on one row
 
-the **⋮** at the far right of an **In Queue** row: **Both ask first.** The confirmation names the email by **subject**, so you can check you have the right row before committing. **Exit** backs out; **Yes** commits — red on Cancel, because that one cannot be undone from here.
+the **⋮** at the far right of an **In Queue** row: **Both ask first.** The confirmation names the email by **subject**, so you can check you have the right row before committing. **Exit** backs out; **Yes** commits: red on Cancel, because that one cannot be undone from here.
 
 | Action | What it does |
 |---|---|
 | **Set as Delivered** | send it **now**, without waiting for its slot. |
-| **Cancel Email Queue** | pull it out — it will never be sent. |
+| **Cancel Email Queue** | pull it out: it will never be sent. |
 
 ![Cancel Email Queue confirmation](me-43-queue-cancel.png)
 
-*7.6.5 — the confirmation carries the subject of the email you are about to cancel.*
+*7.6.5: the confirmation carries the subject of the email you are about to cancel.*
 
 ## 7.6.6 · Act on many rows
 
-Tick the header checkbox and a bar appears: how many are **selected**, **Select all N matching** to take the whole filtered set rather than just this page, **Clear**, and a red **Cancel N Email Queues**. **Bulk cancel is the only bulk action** — there is no bulk “send now”. Filter first, then select, then cancel: that is the fast way to stop a whole batch.
+Tick the header checkbox and a bar appears: how many are **selected**, **Select all N matching** to take the whole filtered set rather than just this page, **Clear**, and a red **Cancel N Email Queues**. **Bulk cancel is the only bulk action**. There is no bulk “send now”. Filter first, then select, then cancel: that is the fast way to stop a whole batch.
 
 ![Bulk selection bar](me-41-queue-bulk.png)
 
-*7.6.6 — ① the count and Select all 1,013 matching · ② the red bulk cancel, naming how many rows it will take.*
+*7.6.6: ① the count and Select all 1,013 matching · ② the red bulk cancel, naming how many rows it will take.*
 
 ## 7.6.7 · You can still edit the email while it waits
 
-Click the row and it opens in an editor — subject at the top, the full body in a rich-text field, and **Save**. Whatever you save is what goes out. This is a live email, not a draftIt is queued and will send on its own. Fix a typo here and it goes out corrected; leave the editor open and it still sends on schedule. If the email should not go at all, **cancel it** — editing does not hold it back.
+Click the row and it opens in an editor, subject at the top, the full body in a rich-text field, and **Save**. Whatever you save is what goes out. This is a live email, not a draftIt is queued and will send on its own. Fix a typo here and it goes out corrected; leave the editor open and it still sends on schedule. If the email should not go at all, **cancel it**. Editing does not hold it back.
 
 ![Editing a queued email](me-44-queue-edit.png)
 
-*7.6.7 — ① the body, fully editable · ② Save.*
+*7.6.7: ① the body, fully editable · ② Save.*
 
 ## 7.6.8 · If the list looks empty or stale, do not panic
 
-The SDR view of Email Queues can be slow or show **0** / “Couldn't load” for a while after a send, even when the mail has already gone. Refresh, or confirm the send in the contact's **Conversations** ([7.7 ↗](7-7-verify-in-conversations.md)) — that never lies.
+The SDR view of Email Queues can be slow or show **0** / “Couldn't load” for a while after a send, even when the mail has already gone. Refresh, or confirm the send in the contact's **Conversations** ([7.7 ↗](7-7-verify-in-conversations.md)), that never lies.
 
 ## 7.6.9 · Before you walk away
 

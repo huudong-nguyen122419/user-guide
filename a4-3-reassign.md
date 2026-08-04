@@ -8,12 +8,12 @@ opens **Assign assignee**: search by name/email, filter by **Roles**, **+ Add fi
 
 ![Assign assignee drawer](admc-03-assignee.png)
 
-*A4.3.1 — ① search · ② Roles filter · ③ the person currently assigned.*
+*A4.3.1: ① search · ② Roles filter · ③ the person currently assigned.*
 
 ## A4.3.2 · In bulk
 
-tick several rows → the bar shows **“N campaigns selected”** + **Assign assignee**. That is the **only** bulk action on this page — there is no bulk delete/move, so a mis-click can't wipe a book.
+tick several rows → the bar shows **“N campaigns selected”** + **Assign assignee**. That is the **only** bulk action on this page. There is no bulk delete/move, so a mis-click can't wipe a book.
 
 ![Bulk assign](admc-04-bulk.png)
 
-*A4.3.2 — ① selection count · ② the single bulk action.*
+*A4.3.2: ① selection count · ② the single bulk action.*

@@ -6,4 +6,4 @@
 
 ![Select an email template dropdown](sdrx-me-17-selecttemplate.png)
 
-*7.x.7 — Select an email template (top of the editor) prefills the whole step.*
+*7.x.7: Select an email template (top of the editor) prefills the whole step.*

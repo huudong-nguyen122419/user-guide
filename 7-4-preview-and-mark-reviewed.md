@@ -2,7 +2,7 @@
 
 > 7 · Manage a Marketing Email
 
-The **Preview** tab is the review gate — nothing should go out unchecked.
+The **Preview** tab is the review gate. Nothing should go out unchecked.
 
 ## In this step
 

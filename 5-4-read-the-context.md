@@ -6,4 +6,4 @@
 
 ![Conversation-first drawer](v3s-131-chaticon-opened.png)
 
-*5.4 — 💬 clicked: the last thread on screen (New Email · ↩ reply · 1/N pager).*
+*5.4: 💬 clicked: the last thread on screen (New Email · ↩ reply · 1/N pager).*

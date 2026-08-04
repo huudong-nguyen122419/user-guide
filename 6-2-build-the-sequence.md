@@ -4,13 +4,13 @@
 
 A campaign is a **list of steps**. Each step is **one email** with a **timing** (send right away, or wait N days) and one or more **variants** (A/B). The step editor is **identical to a Marketing Email step**.
 
-**Where to click** once the sequence exists — everything lives on the Steps tab:
+**Where to click** once the sequence exists, everything lives on the Steps tab:
 
 ![Where to click to build the sequence](sdrx-camp-16-build-clicks.png)
 
-*6.2 — building the sequence: ① + Create new step (next email) · ② + Create sidestep (conditional) · ③ timing pill · ④ + Add variant (A/B) · ⑤ click a variant row to edit it · right icons: duplicate / delete.*
+*6.2: building the sequence: ① + Create new step (next email) · ② + Create sidestep (conditional) · ③ timing pill · ④ + Add variant (A/B) · ⑤ click a variant row to edit it · right icons: duplicate / delete.*
 
-Two campaign-only extras — **A/B variants** and **Sidesteps** — are in [Edge cases (6.x) ↗](6-x-edge-cases.md).
+Two campaign-only extras: **A/B variants** and **Sidesteps**, are in [Edge cases (6.x) ↗](6-x-edge-cases.md).
 
 ## In this step
 

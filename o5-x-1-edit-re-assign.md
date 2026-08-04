@@ -6,4 +6,4 @@
 
 ![Re-assign drawer with current owner pre-ticked](opsx-35-reassign.png)
 
-*O5.x.1 — re-assigning 17072026v3: the current owner (SDR Internal Fintalent) is pre-ticked → tick a different person → Save.*
+*O5.x.1: re-assigning 17072026v3: the current owner (SDR Internal Fintalent) is pre-ticked → tick a different person → Save.*

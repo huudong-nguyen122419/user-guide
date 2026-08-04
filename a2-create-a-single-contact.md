@@ -4,7 +4,7 @@ description: "add one person to the database. Bulk data is preloaded, so this is
 
 # A2 · Create a single contact
 
-> ADMIN · ADM.0.3 · Admin/Ops only — the SDR view has no Create Contact button
+> ADMIN · ADM.0.3 · Admin/Ops only: the SDR view has no Create Contact button
 
 ## In this flow
 

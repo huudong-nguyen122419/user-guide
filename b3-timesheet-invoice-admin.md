@@ -6,7 +6,7 @@ description: "take the hours the talent submitted (B2 ↗), reconcile them again
 
 > ADMIN
 
-Where this flow stopsAt the **Draft** invoice. Everything after it — issuing the invoice to the client, marking it paid, and paying the talent — is handled by **separate flows that this guide does not cover yet**. Get the draft right and hand over; do not improvise the next step.
+Where this flow stopsAt the **Draft** invoice. Everything after it: issuing the invoice to the client, marking it paid, and paying the talent, is handled by **separate flows that this guide does not cover yet**. Get the draft right and hand over; do not improvise the next step.
 
 The one rule about the numbersMoney is always calculated from **hours to bill** (the figure the talent locked in), **never** from the logged hours. The logged hours stay visible alongside on every screen so the two can be reconciled.
 

@@ -8,11 +8,11 @@ click the title, or **⋮** → **Edit/View Details**. Same drawer, retitled **U
 
 ![Update Resource drawer](res-10-edit.png)
 
-*B4.5.1 — ① Resource Type, locked · ② Published At, stamped at publish.*
+*B4.5.1: ① Resource Type, locked · ② Published At, stamped at publish.*
 
 ## B4.5.2 · Swap the file without recreating the resource
 
-The drawer shows the stored filename and a **Change PDF File** / **Change Thumbnail** button. Use this to correct a bad upload — the resource keeps its link, its date and its place.
+The drawer shows the stored filename and a **Change PDF File** / **Change Thumbnail** button. Use this to correct a bad upload. The resource keeps its link, its date and its place.
 
 ## B4.5.3 · Pull it back
 
@@ -20,11 +20,11 @@ The drawer shows the stored filename and a **Change PDF File** / **Change Thumbn
 
 ## B4.5.4 · Copy Resource Link
 
-puts the file's own URL on your clipboard — handy for pasting into an email. Read [B4.x.4 ↗](b4-x-4-the-link-is-public.md) before you send it anywhere.
+puts the file's own URL on your clipboard, handy for pasting into an email. Read [B4.x.4 ↗](b4-x-4-the-link-is-public.md) before you send it anywhere.
 
 ## B4.5.5 · Change a whole batch at once
 
-Tick the checkbox in the table header (or individual rows) and a bar appears above the table: **Bulk Actions**, a running **N resources selected**, and — when your selection is a full page — **Select all N resources** to take the rest of the filtered set with it. **There is no bulk Set Draft** — pulling things back out of Published is one row at a time. Pairs with [B4.1.3 ↗](b4-1-open-resources.md): filter down to exactly the set you mean, tick the header box, act once.
+Tick the checkbox in the table header (or individual rows) and a bar appears above the table: **Bulk Actions**, a running **N resources selected**, and, when your selection is a full page, **Select all N resources** to take the rest of the filtered set with it. **There is no bulk Set Draft**: pulling things back out of Published is one row at a time. Pairs with [B4.1.3 ↗](b4-1-open-resources.md): filter down to exactly the set you mean, tick the header box, act once.
 
 | Bulk Actions offers | Note |
 |---|---|
@@ -33,4 +33,4 @@ Tick the checkbox in the table header (or individual rows) and a bar appears abo
 
 ![Bulk Actions menu](res-26-bulk.png)
 
-*B4.5.5 — ① the selection bar with the running count · ② the two actions, each naming how many rows it will touch.*
+*B4.5.5: ① the selection bar with the running count · ② the two actions, each naming how many rows it will touch.*

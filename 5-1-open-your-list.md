@@ -6,4 +6,4 @@
 
 ![Assigned lists](sdrx-30-lists-assigned.png)
 
-*5.1 — your assigned lists; click one to open it.*
+*5.1: your assigned lists; click one to open it.*

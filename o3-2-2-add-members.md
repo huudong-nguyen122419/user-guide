@@ -6,4 +6,4 @@
 
 ![Add members picker](opsx-21-add-members.png)
 
-*O3.2.2 — the picker: the Custom List chip auto-excludes current members; tick contacts on the left.*
+*O3.2.2: the picker: the Custom List chip auto-excludes current members; tick contacts on the left.*

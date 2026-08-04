@@ -4,7 +4,7 @@
 
 ## Edge cases
 
-* [B2.x.1 · Daily — Day(s) to bill](b2-x-1-daily-day-s-to-bill.md)
+* [B2.x.1 · Daily: Day(s) to bill](b2-x-1-daily-day-s-to-bill.md)
 * [B2.x.2 · Log / submit in batches](b2-x-2-log-submit-in-batches.md)
 * [B2.x.3 · Partial submit](b2-x-3-partial-submit.md)
 * [B2.x.4 · Fixing a mistake](b2-x-4-fixing-a-mistake.md)

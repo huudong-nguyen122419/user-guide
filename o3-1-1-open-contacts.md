@@ -6,4 +6,4 @@
 
 ![Contacts table](opsx-03-contacts.png)
 
-*O3.1.1 — Contacts: the table + filter bar + search.*
+*O3.1.1: Contacts: the table + filter bar + search.*

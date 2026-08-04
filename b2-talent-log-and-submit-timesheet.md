@@ -1,12 +1,12 @@
 ---
-description: "the talent records the hours worked on a running contract, then submits them so Fintalent can invoice the client. The key point: submitting locks in Hour(s) to bill — that is the number the money is calculated from, while the logged hours are kept alongside it for reference."
+description: "the talent records the hours worked on a running contract, then submits them so Fintalent can invoice the client. The key point: submitting locks in Hour(s) to bill: that is the number the money is calculated from, while the logged hours are kept alongside it for reference."
 ---
 
 # B2 · Talent · log & submit timesheet
 
 > TALENT · the talent does this, on the talent portal
 
-Before you startThere must be a contract in **Active** status. The talent can only log against that contract's project, and **only from the contract Start date onwards**. Fill in the **billing address** and **payment info** early — without them logging still works, but **submitting is blocked**: [B2.x.7 ↗](b2-x-7-billing-payment-info.md).
+Before you startThere must be a contract in **Active** status. The talent can only log against that contract's project, and **only from the contract Start date onwards**. Fill in the **billing address** and **payment info** early, without them logging still works, but **submitting is blocked**: [B2.x.7 ↗](b2-x-7-billing-payment-info.md).
 
 ## In this flow
 

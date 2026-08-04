@@ -1,5 +1,5 @@
 ---
-description: "the same feature seen from the other side — who gets in, where the material turns up, and what a talent can actually do with it."
+description: "the same feature seen from the other side. Who gets in, where the material turns up, and what a talent can actually do with it."
 ---
 
 # B5 · Talent · find a resource

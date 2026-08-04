@@ -1,5 +1,5 @@
 ---
-description: "onboard a new sales hire — create their login with the right role, so they can sign in and see only their own scope."
+description: "onboard a new sales hire: create their login with the right role, so they can sign in and see only their own scope."
 ---
 
 # A1 · Create an SDR/KAM account
