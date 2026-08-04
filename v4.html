@@ -656,10 +656,9 @@
  <a href="#s6-1-4" class="st2" data-page="page-campaign">6.1.4 · Create the campaign</a>
  <a href="#cmp-steps" class="st" data-page="page-campaign">6.2 · Build the sequence</a>
  <a href="#s6-2-1" class="st2" data-page="page-campaign">6.2.1 · Create new step</a>
- <a href="#s6-2-2" class="st2" data-page="page-campaign">6.2.2 · Write the step (fields)</a>
- <a href="#s6-2-3" class="st2" data-page="page-campaign">6.2.3 · Step 1 appears</a>
  <a href="#s6-2-4" class="st2" data-page="page-campaign">6.2.4 · Timing (delay)</a>
- <a href="#s6-2-5" class="st2" data-page="page-campaign">6.2.5 · Add follow-ups</a>
+ <a href="#s6-2-5" class="st2" data-page="page-campaign">6.2.5 &middot; Add follow-ups</a>
+ <a href="#ce-2" class="st2 xref" data-page="page-campaign">&#8627; edge case &middot; Add a sidestep</a>
  <a href="#cmp-view" class="st" data-page="page-campaign">6.3 · View campaigns</a>
  <a href="#cmp-people" class="st" data-page="page-campaign">6.4 &middot; Add people</a>
  <a href="#s6-4-1" class="st2" data-page="page-campaign">6.4.1 &middot; + Add contacts</a>
@@ -4049,8 +4048,15 @@ or earlier</b>. Setting the status to <b>Published</b> by hand does not get arou
 <li id="s6-2-4" data-code="6.2.4"><b>Timing.</b> Click the timing pill to set <b>Deliver after a delay</b> (<b>Days</b>). <b>0</b> = right away; <b>N</b> = this step goes out N days after the previous one, that's the <b>"Day X"</b> label on the step.
  <figure><img src="sdrx-camp-07-timing.png" alt="Deliver after a delay"/><figcaption><b>6.2.4</b>: <b>Deliver after a delay: Days = N</b> (0 = Right away).</figcaption></figure>
 </li>
-<li id="s6-2-5" data-code="6.2.5">Add follow-ups with <b>+ Create new step</b>. A follow-up usually waits a day or two, e.g. <b>Step 2 - Day 2 and Wait for 1 day</b>. Build the whole sequence this way.
+<li id="s6-2-5" data-code="6.2.5"><b>Add follow-ups with + Create new step.</b> A follow-up usually
+ waits a day or two, for example <b>Step 2 - Day 2</b> and <i>Wait for 1 day</i>. Build the whole sequence
+ this way.
  <figure><img src="sdrx-camp-08-sequence-2steps.png" alt="Two-step sequence"/><figcaption><b>6.2.5</b>: a 2-step sequence: <b>Step 1</b> Right away, <b>Step 2</b> Wait 1 day.</figcaption></figure>
+ <p><b>There is a second button beside it, and it does something different.</b> <b>+ Create new step</b>
+ adds the next email <b>everyone</b> gets. <b>+ Create sidestep</b> adds a branch that only fires when a
+ contact&rsquo;s reply lands in a category you choose, an automatic answer to an <b>Out Of Office</b> being
+ the usual case. Building one is an edge case rather than part of the main sequence, so it lives at
+ <a data-goto="page-campaign" href="#ce-2" style="font-weight:700;cursor:pointer">6.x.2 &middot; Sidestep &#8599;</a>.</p>
 </li>
 </ol>
 <p><b>Where to click</b> once the sequence exists, everything lives on the Steps tab:</p>

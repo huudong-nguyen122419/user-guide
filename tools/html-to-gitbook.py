@@ -235,12 +235,32 @@ class Page:
         self.anchor = anchor        # id of the h3 / li this page came from
         self.page_id = page_id      # 'page-a1'
         self.children: list[Page] = []
+        # A nav entry pointing at an anchor another entry already owns. It stays
+        # in the sidebar as a cross-reference and links to that page instead of
+        # getting a duplicate of its own.
+        self.alias = False
 
 
 def parse_nav(soup: BeautifulSoup) -> list:
     """Return [(group_title, [flow Page, ...]), ...] mirroring the HTML sidebar."""
     nav = soup.find('nav')
     groups, flow, step = [], None, None
+    seen = {}                       # anchor -> the file that owns it
+
+    aliases = []                    # resolved after the walk, the owner may come later
+
+    def make(title, el, page_id):
+        anchor = el.get('href', '#')[1:]
+        # class="xref" marks a sidebar entry that only points at another entry's
+        # section. It never owns a page, whichever order the two appear in.
+        if 'xref' in (el.get('class') or []) or anchor in seen:
+            p = Page(title, '', anchor=anchor, page_id=page_id)
+            p.alias = True
+            aliases.append(p)
+            return p
+        p = Page(title, slugify(title) + '.md', anchor=anchor, page_id=page_id)
+        seen[anchor] = p.filename
+        return p
 
     for el in nav.find_all(['div', 'a']):
         classes = el.get('class') or []
@@ -258,14 +278,15 @@ def parse_nav(soup: BeautifulSoup) -> list:
             groups[-1][1].append(flow)
             step = None
         elif 'st2' in classes and step is not None:
-            title = clean(el.get_text())
-            step.children.append(Page(title, slugify(title) + '.md',
-                                      anchor=el.get('href', '#')[1:], page_id=step.page_id))
+            step.children.append(make(clean(el.get_text()), el, step.page_id))
         elif 'st' in classes and flow is not None:
-            title = clean(el.get_text())
-            step = Page(title, slugify(title) + '.md',
-                        anchor=el.get('href', '#')[1:], page_id=flow.page_id)
+            step = make(clean(el.get_text()), el, flow.page_id)
             flow.children.append(step)
+
+    for p in aliases:
+        p.filename = seen.get(p.anchor, '')
+        if not p.filename:
+            print(f'  !! cross-reference #{p.anchor} has no page', file=sys.stderr)
 
     return groups
 
@@ -277,9 +298,9 @@ def build_anchor_map(groups: list) -> dict:
         for flow in flows:
             anchors[flow.page_id] = flow.filename  # data-goto="page-inbox" jumps
             for step in flow.children:
-                anchors[step.anchor] = step.filename
+                anchors.setdefault(step.anchor, step.filename)
                 for sub in step.children:
-                    anchors[sub.anchor] = sub.filename
+                    anchors.setdefault(sub.anchor, sub.filename)
     return anchors
 
 
@@ -345,6 +366,8 @@ def convert_flow(flow: Page, soup: BeautifulSoup, anchors: dict, out_dir: str) -
     written = 1
 
     for step in flow.children:
+        if step.alias:              # cross-reference in the sidebar, page already exists
+            continue
         head = section.find(id=step.anchor)
         if head is None:
             print(f'  !! anchor #{step.anchor} not found', file=sys.stderr)
@@ -365,6 +388,8 @@ def convert_flow(flow: Page, soup: BeautifulSoup, anchors: dict, out_dir: str) -
         written += 1
 
         for sub in step.children:
+            if sub.alias:
+                continue
             li = section.find(id=sub.anchor)
             if li is None:
                 print(f'  !! anchor #{sub.anchor} not found', file=sys.stderr)
