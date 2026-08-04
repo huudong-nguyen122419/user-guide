@@ -2,7 +2,7 @@
 
 > 7 · Manage a Marketing Email → 7.3 · Add contacts to the ME
 
-**+ Add contacts does not open a picker. It takes you to Contacts.** You land on the full **Contacts** list with a filter already applied: a chip reading **Marketing Email: 1 excluded**. That chip is doing real work: it hides everyone already in this ME, so whatever you tick next is genuinely new.
+**+ Add contacts does not open a picker. It takes you to Contacts.** You land on the full **Contacts** list with a filter already applied, a chip reading **Marketing Email: 1 excluded**. That chip is doing real work, because it hides everyone already in this ME, so whatever you tick next is genuinely new.
 
 > **You have left the marketing email**
 >

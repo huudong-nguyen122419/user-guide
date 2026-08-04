@@ -16,7 +16,7 @@ Open the ME → **People** tab. An empty one says so plainly, and tells you the 
 
 ## A5.5.2 · + Add contacts does not open a picker. It takes you to Contacts
 
-You land on the full **Contacts** list with a filter already applied: a chip reading **Marketing Email: 1 excluded**. That chip is doing real work: it hides everyone already in this ME, so whatever you tick next is genuinely new.
+You land on the full **Contacts** list with a filter already applied, a chip reading **Marketing Email: 1 excluded**. That chip is doing real work, because it hides everyone already in this ME, so whatever you tick next is genuinely new.
 
 > **You have left the marketing email**
 >
@@ -57,9 +57,9 @@ It opens titled **Add N contacts to marketing email**. **Read the legend above t
 
 *A5.5.4: ① pick the ME (status and recipient count on every row) · ② the three buckets · ③ tick-to-add vs email-to-send · ④ the confirm button and the line above it.*
 
-## A5.5.5 · Tab 1: Valid: everything here is already ticked
+## A5.5.5 · Tab 1, Valid
 
-Rows are shaded and the header checkbox is on. The address being used sits in the **Work Experiences** column beside the company, the work address, right under the **Sponsor** chip. In one example, 52 of the 62 picked there and **not one** fell back to a personal address. Whatever is listed under **Additional Emails** is an alternative. It is normal for those to be red. They are not the address being sent to, so a red alternative is not a problem to fix. **Remove N from selection**, top right, unticks the whole tab in one click. Useful when you meant to send only to the other buckets. **The icons mean the same thing in all three tabs.** Hover any of them; these are the tooltips:
+Everything here is already ticked: rows are shaded and the header checkbox is on. The address being used sits in the **Work Experiences** column beside the company, the work address, right under the **Sponsor** chip. In one example, 52 of the 62 picked there and **not one** fell back to a personal address. Whatever is listed under **Additional Emails** is an alternative. It is normal for those to be red. They are not the address being sent to, so a red alternative is not a problem to fix. **Remove N from selection**, top right, unticks the whole tab in one click. Useful when you meant to send only to the other buckets. **The icons mean the same thing in all three tabs.** Hover any of them; these are the tooltips:
 
 | Icon | Tooltip | What it means for you |
 |---|---|---|
@@ -73,9 +73,9 @@ Rows are shaded and the header checkbox is on. The address being used sits in th
 
 *A5.5.5: Valid. ① the three counts, adding up to your selection · ② header checkbox on, every row ticked · ③ Remove 62 from selection · ④ the address in use, on the work experience · ⑤ an alternative address · ⑥ an alternative that is Invalid. Harmless, it is not the one selected.*
 
-## A5.5.6 · Tab 2: Missing + Invalid: nothing ticked, and the pick has fallen back
+## A5.5.6 · Tab 2, Missing + Invalid
 
-In one example, 17 of the 22 had no usable work address, so the radio landed on a personal one under **Additional Emails** while the **Work Experiences** column shows the job with no address against it. That is what the tab name means: the *work* address is missing or unusable, not that the person is unreachable. The blue **Replied from this email** arrow is the best reason to tick one of these by hand. Someone who has already written back from an address is a far safer bet than the bucket label suggests.
+Nothing is ticked, and the pick has fallen back. In one example, 17 of the 22 had no usable work address, so the radio landed on a personal one under **Additional Emails** while the **Work Experiences** column shows the job with no address against it. That is what the tab name means: the *work* address is missing or unusable, not that the person is unreachable. The blue **Replied from this email** arrow is the best reason to tick one of these by hand. Someone who has already written back from an address is a far safer bet than the bucket label suggests.
 
 > **⚠ One row had no address selected at all**
 >
@@ -85,9 +85,9 @@ In one example, 17 of the 22 had no usable work address, so the radio landed on 
 
 *A5.5.6: Missing + Invalid. ① the tab · ② nothing ticked · ③ the pick fallen back to a personal address · ④ a row with no address picked at all · ⑤ Replied from this email.*
 
-## A5.5.7 · Tab 3: Platform Signup: people who already hold a Fintalent account
+## A5.5.7 · Tab 3, Platform Signup
 
-Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row, hover it and it reads *Platform Signup*. **This tab says nothing about address quality.** An address in here can be green **Valid** and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data. The **N results** count and page numbers along the bottom belong to the **marketing email list on the left**, not to the contacts, 93 results was 93 MEs. The buckets are not paginated; each tab shows all of its rows.
+These people already hold a Fintalent account. Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row, hover it and it reads *Platform Signup*. **This tab says nothing about address quality.** An address in here can be green **Valid** and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data. The **N results** count and page numbers along the bottom belong to the **marketing email list on the left**, not to the contacts, 93 results was 93 MEs. The buckets are not paginated; each tab shows all of its rows.
 
 > **⚠ Skip this tab and you may miss the whole audience**
 >
@@ -103,7 +103,7 @@ Confirm reads **Add 2 of 6 contacts**, and directly above it: **Not ticked by de
 
 ## A5.5.9 · Confirm, and read the toast
 
-It names both the number and the email: **“Added to marketing email — 2 contacts added to M&A Executive Briefing - Berlin, October 2026.”** That is your receipt: the one moment the system tells you what actually went in.
+It names both the number and the email: **“Added to marketing email — 2 contacts added to M&A Executive Briefing - Berlin, October 2026.”** That is your receipt, and the only moment the system tells you what actually went in.
 
 ![Success toast naming the count and the marketing email](me-54-toast.png)
 

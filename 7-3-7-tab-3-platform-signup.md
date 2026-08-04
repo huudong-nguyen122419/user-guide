@@ -2,7 +2,7 @@
 
 > 7 · Manage a Marketing Email → 7.3 · Add contacts to the ME
 
-**Tab 3: Platform Signup: people who already hold a Fintalent account.** Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row, hover it and it reads *Platform Signup*. **This tab says nothing about address quality.** An address in here can be green **Valid** and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data. The **N results** count and page numbers along the bottom belong to the **marketing email list on the left**, not to the contacts, 93 results was 93 MEs. The buckets are not paginated; each tab shows all of its rows.
+**Tab 3, Platform Signup.** These people already hold a Fintalent account. Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row, hover it and it reads *Platform Signup*. **This tab says nothing about address quality.** An address in here can be green **Valid** and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data. The **N results** count and page numbers along the bottom belong to the **marketing email list on the left**, not to the contacts, 93 results was 93 MEs. The buckets are not paginated; each tab shows all of its rows.
 
 > **⚠ Skip this tab and you may miss the whole audience**
 >

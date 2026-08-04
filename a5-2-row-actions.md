@@ -4,7 +4,7 @@
 
 ## A5.2.1 · The ⋮ menu changes with status
 
-It is short either way, but the difference matters: Whatever its status, a ME has **no Archive** to move to, and **no Clone and no Move**, unlike a campaign ([A4.2 ↗](a4-2-row-actions.md)). **Delete asks first**: *“Do you want to delete this Marketing Email”*, with **Exit** and **Delete**. It is a real delete: the list count drops by one (measured: 92 → 91), not an archive.
+It is short either way, but the difference matters: Whatever its status, a ME has **no Archive** to move to, and **no Clone and no Move**, unlike a campaign ([A4.2 ↗](a4-2-row-actions.md)). **Delete asks first**: *“Do you want to delete this Marketing Email”*, with **Exit** and **Delete**. It is a real delete, not an archive: the list count drops by one (92 → 91 in one example).
 
 | ME status | ⋮ offers |
 |---|---|

@@ -4,7 +4,7 @@
 
 ## A5.1.1 · Sales Management → Marketing Emails
 
-Again the **whole workspace**. Tabs: **All, Draft, Paused, Running and Finished**: note there is **no Archive** and **no folder pane**; MEs are flat.
+Again the **whole workspace**. Tabs: **All, Draft, Paused, Running and Finished**. There is **no Archive** here and **no folder pane**, so marketing emails sit in one flat list.
 
 ![Admin marketing email list](admm-01-list.png)
 

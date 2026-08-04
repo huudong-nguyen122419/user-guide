@@ -944,7 +944,7 @@
 
 <h3 id="a5-list" class="anchor">A5.1 &middot; The list</h3>
 <ol class="steps adm">
-<li data-code="A5.1.1"><b>Sales Management &rarr; Marketing Emails.</b> Again the <b>whole workspace</b>. Tabs: <b>All, Draft, Paused, Running and Finished</b>: note there is <b>no Archive</b> and <b>no folder pane</b>; MEs are flat.
+<li data-code="A5.1.1"><b>Sales Management &rarr; Marketing Emails.</b> Again the <b>whole workspace</b>. Tabs: <b>All, Draft, Paused, Running and Finished</b>. There is <b>no Archive</b> here and <b>no folder pane</b>, so marketing emails sit in one flat list.
  <figure><img src="admm-01-list.png" alt="Admin marketing email list"/><figcaption><b>A5.1</b>: <b>&#9312;</b> every user's MEs &middot; <b>&#9313;</b> status tabs &middot; <b>&#9314;</b> <b>+ Create Marketing Email</b> &middot; <b>&#9315;</b> the rate columns.</figcaption></figure>
 </li>
 <li data-code="A5.1.2"><b>Read a row:</b> name + <b>From</b> address + status pill, <b>People</b>, <b>Delivered</b>, <b>Open Rate</b>, <b>Reply Rate</b>, <b>Bounce/Dropped Rate</b> and <b>Progress</b> (&#10003; when the blast finished). Then <b>Last run</b> and <b>Assignee</b>: the Assignee cell carries a <b>role chip</b> above the name (<b>SDR</b>), so you can see at a glance which rep owns which blast. There is <b>no Enabled toggle</b> though: unlike a campaign, an ME is switched on from inside its own header (<a href="#a3-me" style="font-weight:700;cursor:pointer">A5.7.3 &#8599;</a>).</li>
@@ -961,7 +961,7 @@
  </tbody></table></div>
  <div class="call warn"><span class="t">&#9888; Corrected, Delete does <i>not</i> disappear once it runs</span>This guide used to say the Delete option vanishes the moment a ME starts sending. <b>Re-checked since: it does not.</b> The menu offers the same three items on a Draft, a Paused and a Running ME.<p style="margin-top:8px"><b>What is still unverified</b> is what happens if you actually confirm Delete on a <i>running</i> send, whether the server refuses it or deletes a live blast. Nobody has pressed it. <b>Until somebody does, treat Delete on a Running ME as unsafe</b>: pause it first, then delete.</p></div>
  <p>Whatever its status, a ME has <b>no Archive</b> to move to, and <b>no Clone and no Move</b>, unlike a campaign (<a href="#a4-row" style="font-weight:700;cursor:pointer">A4.2 &#8599;</a>).</p>
- <p><b>Delete asks first</b>: <i>&ldquo;Do you want to delete this Marketing Email&rdquo;</i>, with <b>Exit</b> and <b>Delete</b>. It is a real delete: the list count drops by one <span class="fn">(measured: 92 &rarr; 91)</span>, not an archive.</p>
+ <p><b>Delete asks first</b>: <i>&ldquo;Do you want to delete this Marketing Email&rdquo;</i>, with <b>Exit</b> and <b>Delete</b>. It is a real delete, not an archive: the list count drops by one <span class="fn">(92 &rarr; 91 in one example)</span>.</p>
  <figure><img src="admm-02-kebab-delete.png" alt="Row menu on a Draft marketing email"/><figcaption><b>A5.2.1</b>: the &#8942; menu on a <b>Draft</b>: <b>Edit/View Details</b>, <b>Delete</b> and <b>Manage assignee</b>. A Running ME shows the same three.</figcaption></figure>
 </li>
 <li data-code="A5.2.2"><b>Bulk does one thing only.</b> Tick rows &rarr; <b>&ldquo;N marketing email(s) selected&rdquo;</b> &rarr; <b>Assign assignee</b>. There is no bulk delete and no bulk status change. Reassigning owners is the whole feature.
@@ -1003,7 +1003,7 @@
  <figure><img src="me-50-people-empty.png" alt="Empty People tab with the Add contacts button"/><figcaption><b>A5.5.1</b>: <b>&#9312;</b> <b>+ Add contacts</b>, top right of the tab &middot; <b>&#9313;</b> the empty state naming the bulk flow.</figcaption></figure>
 </li>
 
-<li data-code="A5.5.2"><b>&#43; Add contacts does not open a picker. It takes you to Contacts.</b> You land on the full <b>Contacts</b> list with a filter already applied: a chip reading <b>Marketing Email: 1 excluded</b>. That chip is doing real work: it hides everyone already in this ME, so whatever you tick next is genuinely new.
+<li data-code="A5.5.2"><b>&#43; Add contacts does not open a picker. It takes you to Contacts.</b> You land on the full <b>Contacts</b> list with a filter already applied, a chip reading <b>Marketing Email: 1 excluded</b>. That chip is doing real work, because it hides everyone already in this ME, so whatever you tick next is genuinely new.
  <div class="call note"><span class="t">You have left the marketing email</span>This is a normal Contacts page now. The full filter bar is yours: Lifecycles, Has signal, Countries, Work Experience, keyword search. Narrow the list here rather than ticking your way down 15,000 rows.</div>
  <figure><img src="me-51-prefiltered.png" alt="Contacts pre-filtered to exclude this ME"/><figcaption><b>A5.5.2</b>: <b>&#9312;</b> the <b>Marketing Email: 1 excluded</b> chip &middot; <b>&#9313;</b> the row count you are working against.</figcaption></figure>
 </li>
@@ -1044,7 +1044,7 @@
  <figure><img src="me-53-drawer.png" alt="The add-to-marketing-email drawer"/><figcaption><b>A5.5.4</b>: <b>&#9312;</b> pick the ME (status and recipient count on every row) &middot; <b>&#9313;</b> the three buckets &middot; <b>&#9314;</b> tick-to-add vs email-to-send &middot; <b>&#9315;</b> the confirm button and the line above it.</figcaption></figure>
 </li>
 
-<li data-code="A5.5.5"><b>Tab 1: Valid: everything here is already ticked.</b> Rows are shaded and the header checkbox is on. The address being used sits in the <b>Work Experiences</b> column beside the company, the work address, right under the <b>Sponsor</b> chip. In one example, 52 of the 62 picked there and <b>not one</b> fell back to a personal address.
+<li data-code="A5.5.5"><b>Tab 1, Valid.</b> Everything here is already ticked: rows are shaded and the header checkbox is on. The address being used sits in the <b>Work Experiences</b> column beside the company, the work address, right under the <b>Sponsor</b> chip. In one example, 52 of the 62 picked there and <b>not one</b> fell back to a personal address.
  <p>Whatever is listed under <b>Additional Emails</b> is an alternative. It is normal for those to be red. They are not the address being sent to, so a red alternative is not a problem to fix.</p>
  <p><b>Remove N from selection</b>, top right, unticks the whole tab in one click. Useful when you meant to send only to the other buckets.</p>
  <p><b>The icons mean the same thing in all three tabs.</b> Hover any of them; these are the tooltips:</p>
@@ -1060,13 +1060,13 @@
  <figure><img src="me-56-tab-valid.png" alt="Valid tab, everything pre-ticked"/><figcaption><b>A5.5.5</b>: <b>Valid</b>. <b>&#9312;</b> the three counts, adding up to your selection &middot; <b>&#9313;</b> header checkbox on, every row ticked &middot; <b>&#9314;</b> <b>Remove 62 from selection</b> &middot; <b>&#9315;</b> the address in use, on the work experience &middot; <b>&#9316;</b> an alternative address &middot; <b>&#9317;</b> an alternative that is <b>Invalid</b>. Harmless, it is not the one selected.</figcaption></figure>
 </li>
 
-<li data-code="A5.5.6"><b>Tab 2: Missing + Invalid: nothing ticked, and the pick has fallen back.</b> In one example, 17 of the 22 had no usable work address, so the radio landed on a personal one under <b>Additional Emails</b> while the <b>Work Experiences</b> column shows the job with no address against it. That is what the tab name means: the <i>work</i> address is missing or unusable, not that the person is unreachable.
+<li data-code="A5.5.6"><b>Tab 2, Missing + Invalid.</b> Nothing is ticked, and the pick has fallen back. In one example, 17 of the 22 had no usable work address, so the radio landed on a personal one under <b>Additional Emails</b> while the <b>Work Experiences</b> column shows the job with no address against it. That is what the tab name means: the <i>work</i> address is missing or unusable, not that the person is unreachable.
  <p>The blue <b>Replied from this email</b> arrow is the best reason to tick one of these by hand. Someone who has already written back from an address is a far safer bet than the bucket label suggests.</p>
  <div class="call warn"><span class="t">&#9888; One row had no address selected at all</span>Not every row here has a pick. Tick a contact whose radio is empty and you add someone with nowhere to send, check the <b>radio</b>, not just the checkbox.</div>
  <figure><img src="me-57-tab-missing.png" alt="Missing + Invalid tab, nothing pre-ticked"/><figcaption><b>A5.5.6</b>: <b>Missing + Invalid</b>. <b>&#9312;</b> the tab &middot; <b>&#9313;</b> nothing ticked &middot; <b>&#9314;</b> the pick fallen back to a personal address &middot; <b>&#9315;</b> a row with <b>no address picked at all</b> &middot; <b>&#9316;</b> <b>Replied from this email</b>.</figcaption></figure>
 </li>
 
-<li data-code="A5.5.7"><b>Tab 3: Platform Signup: people who already hold a Fintalent account.</b> Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row, hover it and it reads <i>Platform Signup</i>.
+<li data-code="A5.5.7"><b>Tab 3, Platform Signup.</b> These people already hold a Fintalent account. Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row, hover it and it reads <i>Platform Signup</i>.
  <p><b>This tab says nothing about address quality.</b> An address in here can be green <b>Valid</b> and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data.</p>
  <div class="call warn"><span class="t">&#9888; Skip this tab and you may miss the whole audience</span>If the email is aimed at <b>talents</b>, these <i>are</i> your talents, leaving the tab unopened mails everyone except the people it was written for. Go back to the bucket table in <a href="#a3-people" style="font-weight:700;cursor:pointer">A5.5.4 &#8599;</a> and decide deliberately.</div>
  <figure><img src="me-58-tab-platform.png" alt="Platform Signup tab"/><figcaption><b>A5.5.7</b>: <b>Platform Signup</b>. <b>&#9312;</b> the tab &middot; <b>&#9313;</b> the green <b>Platform Signup</b> marker &middot; <b>&#9314;</b> a personal address, <b>Not verified</b> &middot; <b>&#9315;</b> a work experience carrying no address &middot; <b>&#9316;</b> the line that names both unticked buckets.</figcaption></figure>
@@ -1078,7 +1078,7 @@
  <p><b>If you want the excluded ones anyway</b>, open the <b>Missing + Invalid</b> tab and tick them yourself, but fix the address first, or they will bounce (<a href="#me-conv" style="font-weight:700;cursor:pointer">7.7a &#8599;</a>).</p>
 </li>
 
-<li data-code="A5.5.9"><b>Confirm, and read the toast.</b> It names both the number and the email: <b>&ldquo;Added to marketing email &mdash; 2 contacts added to M&amp;A Executive Briefing - Berlin, October 2026.&rdquo;</b> That is your receipt: the one moment the system tells you what actually went in.
+<li data-code="A5.5.9"><b>Confirm, and read the toast.</b> It names both the number and the email: <b>&ldquo;Added to marketing email &mdash; 2 contacts added to M&amp;A Executive Briefing - Berlin, October 2026.&rdquo;</b> That is your receipt, and the only moment the system tells you what actually went in.
  <figure><img src="me-54-toast.png" alt="Success toast naming the count and the marketing email"/><figcaption><b>A5.5.9</b>: <b>&#9312;</b> the toast, bottom left over the sidebar. It names both numbers that matter: <b>how many contacts went in</b> and <b>which marketing email</b> they went into, and it clears on its own after a few seconds, so read it as it appears. A count lower than what you selected is the dialog holding back contacts with a missing or invalid email.</figcaption></figure>
 </li>
 
@@ -4995,7 +4995,7 @@ can change the copy once and push it to everyone selected rather than opening th
  <figure><img src="me-50-people-empty.png" alt="Empty People tab with the Add contacts button"/><figcaption><b>7.3.1</b>: <b>&#9312;</b> <b>+ Add contacts</b>, top right of the tab &middot; <b>&#9313;</b> the empty state naming the bulk flow.</figcaption></figure>
 </li>
 
-<li id="m7-3-2" data-code="7.3.2"><b>&#43; Add contacts does not open a picker. It takes you to Contacts.</b> You land on the full <b>Contacts</b> list with a filter already applied: a chip reading <b>Marketing Email: 1 excluded</b>. That chip is doing real work: it hides everyone already in this ME, so whatever you tick next is genuinely new.
+<li id="m7-3-2" data-code="7.3.2"><b>&#43; Add contacts does not open a picker. It takes you to Contacts.</b> You land on the full <b>Contacts</b> list with a filter already applied, a chip reading <b>Marketing Email: 1 excluded</b>. That chip is doing real work, because it hides everyone already in this ME, so whatever you tick next is genuinely new.
  <div class="call note"><span class="t">You have left the marketing email</span>This is a normal Contacts page now. The full filter bar is yours: Lifecycles, Has signal, Countries, Work Experience, keyword search. Narrow the list here rather than ticking your way down 15,000 rows.</div>
  <figure><img src="me-51-prefiltered.png" alt="Contacts pre-filtered to exclude this ME"/><figcaption><b>7.3.2</b>: <b>&#9312;</b> the <b>Marketing Email: 1 excluded</b> chip &middot; <b>&#9313;</b> the row count you are working against.</figcaption></figure>
 </li>
@@ -5036,7 +5036,7 @@ can change the copy once and push it to everyone selected rather than opening th
  <figure><img src="me-53-drawer.png" alt="The add-to-marketing-email drawer"/><figcaption><b>7.3.4</b>: <b>&#9312;</b> pick the ME (status and recipient count on every row) &middot; <b>&#9313;</b> the three buckets &middot; <b>&#9314;</b> tick-to-add vs email-to-send &middot; <b>&#9315;</b> the confirm button and the line above it.</figcaption></figure>
 </li>
 
-<li id="m7-3-5" data-code="7.3.5"><b>Tab 1: Valid: everything here is already ticked.</b> Rows are shaded and the header checkbox is on. The address being used sits in the <b>Work Experiences</b> column beside the company, the work address, right under the <b>Sponsor</b> chip. In one example, 52 of the 62 picked there and <b>not one</b> fell back to a personal address.
+<li id="m7-3-5" data-code="7.3.5"><b>Tab 1, Valid.</b> Everything here is already ticked: rows are shaded and the header checkbox is on. The address being used sits in the <b>Work Experiences</b> column beside the company, the work address, right under the <b>Sponsor</b> chip. In one example, 52 of the 62 picked there and <b>not one</b> fell back to a personal address.
  <p>Whatever is listed under <b>Additional Emails</b> is an alternative. It is normal for those to be red. They are not the address being sent to, so a red alternative is not a problem to fix.</p>
  <p><b>Remove N from selection</b>, top right, unticks the whole tab in one click. Useful when you meant to send only to the other buckets.</p>
  <p><b>The icons mean the same thing in all three tabs.</b> Hover any of them; these are the tooltips:</p>
@@ -5052,13 +5052,13 @@ can change the copy once and push it to everyone selected rather than opening th
  <figure><img src="me-56-tab-valid.png" alt="Valid tab, everything pre-ticked"/><figcaption><b>7.3.5</b>: <b>Valid</b>. <b>&#9312;</b> the three counts, adding up to your selection &middot; <b>&#9313;</b> header checkbox on, every row ticked &middot; <b>&#9314;</b> <b>Remove 62 from selection</b> &middot; <b>&#9315;</b> the address in use, on the work experience &middot; <b>&#9316;</b> an alternative address &middot; <b>&#9317;</b> an alternative that is <b>Invalid</b>. Harmless, it is not the one selected.</figcaption></figure>
 </li>
 
-<li id="m7-3-6" data-code="7.3.6"><b>Tab 2: Missing + Invalid: nothing ticked, and the pick has fallen back.</b> In one example, 17 of the 22 had no usable work address, so the radio landed on a personal one under <b>Additional Emails</b> while the <b>Work Experiences</b> column shows the job with no address against it. That is what the tab name means: the <i>work</i> address is missing or unusable, not that the person is unreachable.
+<li id="m7-3-6" data-code="7.3.6"><b>Tab 2, Missing + Invalid.</b> Nothing is ticked, and the pick has fallen back. In one example, 17 of the 22 had no usable work address, so the radio landed on a personal one under <b>Additional Emails</b> while the <b>Work Experiences</b> column shows the job with no address against it. That is what the tab name means: the <i>work</i> address is missing or unusable, not that the person is unreachable.
  <p>The blue <b>Replied from this email</b> arrow is the best reason to tick one of these by hand. Someone who has already written back from an address is a far safer bet than the bucket label suggests.</p>
  <div class="call warn"><span class="t">&#9888; One row had no address selected at all</span>Not every row here has a pick. Tick a contact whose radio is empty and you add someone with nowhere to send, check the <b>radio</b>, not just the checkbox.</div>
  <figure><img src="me-57-tab-missing.png" alt="Missing + Invalid tab, nothing pre-ticked"/><figcaption><b>7.3.6</b>: <b>Missing + Invalid</b>. <b>&#9312;</b> the tab &middot; <b>&#9313;</b> nothing ticked &middot; <b>&#9314;</b> the pick fallen back to a personal address &middot; <b>&#9315;</b> a row with <b>no address picked at all</b> &middot; <b>&#9316;</b> <b>Replied from this email</b>.</figcaption></figure>
 </li>
 
-<li id="m7-3-7" data-code="7.3.7"><b>Tab 3: Platform Signup: people who already hold a Fintalent account.</b> Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row, hover it and it reads <i>Platform Signup</i>.
+<li id="m7-3-7" data-code="7.3.7"><b>Tab 3, Platform Signup.</b> These people already hold a Fintalent account. Nothing is pre-ticked. All 16 rows picked a personal address; none had a work one. The marker is the green person icon at the end of the row, hover it and it reads <i>Platform Signup</i>.
  <p><b>This tab says nothing about address quality.</b> An address in here can be green <b>Valid</b> and still sit outside the Valid tab, because holding an account is what put it here. Judge it on who the email is for, not on the data.</p>
  <div class="call warn"><span class="t">&#9888; Skip this tab and you may miss the whole audience</span>If the email is aimed at <b>talents</b>, these <i>are</i> your talents, leaving the tab unopened mails everyone except the people it was written for. Go back to the bucket table in <a href="#m7-3-4" style="font-weight:700;cursor:pointer">7.3.4 &#8599;</a> and decide deliberately.</div>
  <figure><img src="me-58-tab-platform.png" alt="Platform Signup tab"/><figcaption><b>7.3.7</b>: <b>Platform Signup</b>. <b>&#9312;</b> the tab &middot; <b>&#9313;</b> the green <b>Platform Signup</b> marker &middot; <b>&#9314;</b> a personal address, <b>Not verified</b> &middot; <b>&#9315;</b> a work experience carrying no address &middot; <b>&#9316;</b> the line that names both unticked buckets.</figcaption></figure>
@@ -5070,7 +5070,7 @@ can change the copy once and push it to everyone selected rather than opening th
  <p><b>If you want the excluded ones anyway</b>, open the <b>Missing + Invalid</b> tab and tick them yourself, but fix the address first, or they will bounce (<a href="#me-conv" style="font-weight:700;cursor:pointer">7.7a &#8599;</a>).</p>
 </li>
 
-<li id="m7-3-9" data-code="7.3.9"><b>Confirm, and read the toast.</b> It names both the number and the email: <b>&ldquo;Added to marketing email &mdash; 2 contacts added to M&amp;A Executive Briefing - Berlin, October 2026.&rdquo;</b> That is your receipt: the one moment the system tells you what actually went in.
+<li id="m7-3-9" data-code="7.3.9"><b>Confirm, and read the toast.</b> It names both the number and the email: <b>&ldquo;Added to marketing email &mdash; 2 contacts added to M&amp;A Executive Briefing - Berlin, October 2026.&rdquo;</b> That is your receipt, and the only moment the system tells you what actually went in.
  <figure><img src="me-54-toast.png" alt="Success toast naming the count and the marketing email"/><figcaption><b>7.3.9</b>: <b>&#9312;</b> the toast, bottom left over the sidebar. It names both numbers that matter: <b>how many contacts went in</b> and <b>which marketing email</b> they went into, and it clears on its own after a few seconds, so read it as it appears. A count lower than what you selected is the dialog holding back contacts with a missing or invalid email.</figcaption></figure>
 </li>
 
