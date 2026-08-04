@@ -32,5 +32,6 @@ The 2,680 Active records split by Employment Status: Freelancer 2,343, Unemploye
 ## In this flow
 
 * [A6-C · Review the In Review queue, LIVE](a6-c-review-the-in-review-queue-live.md)
+* [A6-D · Re-check an existing status](a6-d-re-check-an-existing-status.md)
 * [A6.1 · Three fields people mix up](a6-1-three-fields-people-mix-up.md)
 * [A6.x · Edge cases](a6-x-edge-cases.md)

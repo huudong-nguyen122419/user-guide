@@ -2,68 +2,64 @@
 
 > A6 · Approve a new talent (decides Active or Passive)
 
-A new sign-up sits at `In Review`. An admin opens it, clicks **Approve**, and **the system sets Active or Passive by itself**. Your job is to know what it will pick *before* you click, and to flip it afterwards if it picked wrong. **The default is Active**: a record only becomes Passive if a rule fires.
+**Goal:** a new sign-up lands at `In Review` and waits for someone to look at it. You have three ways out: **reject** the person, **approve them to Active**, or **approve them to Passive**. The system offers a recommendation on every profile, but **the button you press is the decision**.
 
-**Five steps, and that is the whole flow.** There is no queue to build, no list to work, no batch:
-
-**Existing records are out of scope.** Nobody re-reviews the Active or Passive population by hand any more, **the retired existing-records branch** covered that. This page is the intake path only. Live today: **2 records** at In Review; the sample the figures below come from carries **286**.
+Active and Passive, in one line**Active** means the person can be invited to projects. **Passive** means they stay on the platform but out of the invitation flow, normally because somebody already pays for their week. Getting it wrong sends a project invitation to a person who cannot take it, or hides someone who could.
 
 ## A6-C.1 · Open the queue
 
-*User Management → Talents*, then the **N In Review** button at the top right. It opens the queue one profile at a time.
+**User Management → Talents**, then the **N In Review** button at the top right. It is the only way in; there is no In Review tab on the list. Clicking it opens a drawer showing **one profile at a time** rather than filtering the table. For scale: **280 waiting** against **9,036 talents** on the day this was walked. The queue is small next to the base, which is why it is worth clearing properly rather than quickly.
 
-## A6-C.2 · Decide, before you touch any button
+![The In Review button on the Talents list](a6q-01-queue-entry.png)
 
-You are reading **one profile**, not filtering a list. There is no Company Background chip narrowing things for you. Ask four questions in order and **stop at the first Yes**. This is your **yardstick for step 5**, not a separate approval path: the system decides regardless of what you conclude here. Read the work-experience row, not the headlineEvery title question below is asked of the **position** on a role marked **current**, the job title on the row, and of that row's **company**. The sentence at the top of the profile is a self-description, and it matches none of the positions on **49%** of records. **No current role at all → ACTIVE**, immediately: there is nothing to test. **The employer check on Q4:** stay on the same row, you already have its company, and read that company's name and description. Advisory / consulting / investment bank → **ACTIVE**. Private equity, buyout, LBO, family office, asset manager → **PASSIVE**. The row carries no company, no description, or it reads either way → **ACTIVE**, and write it down so somebody can look again. **Q1 is often unanswerable.** In the sample queue **76 of 286 (27%)** have **no employment status at all**, they reached In Review without finishing sign-up. The system reads that as “not Full-time” and waves them to **Active** without opening anything else. If the header line is missing, the position questions are the only evidence you have. **Why missing evidence means Active.** The record cannot stay In Review: it has to leave the queue, so there is no "park it and decide later" option. Active is the safe default: a wrongly-Active new sign-up is one record to fix later, a wrongly-Passive one is a freelancer silently shut out from day one. [A6-C.7 ↗](a6-c-7-the-rule-rebuilt.md) does not apply here: a brand-new record has no admin decision behind it yet.
+*A6-C.1: ① the N In Review button, top right, the only door into the queue · ② the full talent count beside it.*
 
-| # | Question | Yes → |
+## A6-C.2 · Move between profiles without going back to the list
+
+Top right of the drawer sits a pager, **‹ N/280 ›**. The **←** and **→** keys do the same thing. On a narrow window, use the keyboardThe pager sits at the far right edge of the drawer and is the first thing to fall off screen. The arrow keys keep working when the buttons are not visible, so a queue can be walked end to end without ever seeing the pager.
+
+## A6-C.3 · Read the recommendation
+
+The status chip reads **In Review** and carries a **⚠ warning icon** beside it. Hover the icon and you get two lines: The full rule, all five questions and every sentence it can print, is in [A6-C.6 ↗](a6-c-6-how-the-recommendation-works.md).
+
+| Line | What it is | Example |
 |---|---|---|
-| **Q1** | Employment Status says **Full-time or Part-time**? (header line, under the name) | **PASSIVE**, stop |
-| **Q2** | A current role's **position** says junior / back office, or advisory / sell-side? `Associate` · `Analyst` · `Intern` · `Investor Relations` · `Fundraising` … and `consultant` · `advisory` · `investment banking` · `due diligence` · `sell-side` … | **ACTIVE**, stop |
-| **Q3** | A **position** that only exists inside a fund? Operating Partner · Portfolio Operations · Value Creation · Head of Talent · General Partner · Investment Director / Manager / Professional · Deal Lead | **PASSIVE**, stop |
-| **Q4** | A senior **position** that could be anywhere? Partner · Principal · Managing Director · VP · Director · CEO · CFO · Founder · Head of M&A · Corporate Development | do the [A6-C.7 ↗](a6-c-7-the-rule-rebuilt.md) |
-| **All four No** | **ACTIVE** |  |
+| **Recommend: <status>** | what the rule would pick if it decided | *Recommend: Active* |
+| the sentence under it | which of the five questions produced that answer | *Active, self-directed, and nothing ties them to a client company.* |
 
-## A6-C.3 · Hover *Approve Talent* before clicking it
+![The recommendation tooltip on an In Review profile](a6q-03-recommendation.png)
 
-The button tells you in advance what the system is about to do. There is no status picker in the dialog, so the tooltip is your only warning. **Approving does not simply mean "Active".** **Compare the tooltip against your own answer from A6-C.2.** If they agree, click Approve. If they disagree, click Approve anyway and fix the status straight after (A6-C.5). Two ways they routinely disagree: **1.** The system has **no seniority check**: an `Analyst` or `Associate` at a flagged company comes out Passive where our rule makes them Active. This is the single biggest source of disagreement, and the reason the rule is being rebuilt ([A6-C.7 ↗](a6-c-7-the-rule-rebuilt.md)). **2.** The system only looks at `Freelancer`: somebody whose Employment Status is *Unemployed* or *Other*, holding a current role at a fund, gets *"will be updated to Active"* while Q3 says Passive. The tooltip is a prediction, not a record of what happenedIt is computed in the browser from what is on screen, so verify with A6-C.5. It has been right on every record checked so far, **three walked end to end, all three matched**. What it never tells you is **which question fired**. The full five-question spine, and how many of them each talent actually walks, is below.
+*A6-C.3: hover the warning icon. Status on top, the reason underneath.*
 
-| Tooltip | The system will set |
-|---|---|
-| *"Talent status will change to Passive because this talent is a full-time employee"* | **Passive** |
-| *"… because the employee status is Freelancer and the talent is currently working at a <sponsor / portfolio / corporate> company"* | **Passive** |
-| *"Talent status will be updated to Active"* | **Active** |
-| *"This talent has been deleted"* | nothing. The record is deleted |
+## A6-C.4 · Check it against the profile yourself
 
-![Approve Talent tooltip](a6-c-01-approve-tooltip.png)
+The recommendation is a reading of three fields, nothing more. Read the same three before you accept it: The recommendation is advice, not an instructionIt reads fields; it does not read judgement. A profile can be technically self-employed and still be unavailable, or say Full-time and be about to leave. That is exactly why there are two approve buttons instead of one.
 
-*A6-C.3: the tooltip on a Full-Time Employed record. The badge still reads In Review and the header line reads Employment Status: Full-Time Employed.*
+| What to read | Where it is | Why it matters |
+|---|---|---|
+| **Employment Status** | the header line, under the title | Full-time or Part-time is the strongest signal for Passive. Freelancer, Unemployed and Other point the other way |
+| **Current title and company** | Work Experiences, the rows with no end date | wording like *freelance* or *independent consultant* says self-directed whatever the status field claims |
+| **Company flag** | on the linked company: **Sponsor**, **Portfolio** or **Corporate** | a current role at a flagged company is the one condition that outranks everything else |
 
-## A6-C.4 · Click Approve
+## A6-C.5 · Take one of the three routes, then check it landed
 
-The dialog is titled **"Do you want to approve this Talent?"** and repeats the name, email and title so you can check you are on the right record. The submit button is **Approve**. There is no status choice in it. To reject instead, use **Reject Talent**: its tooltip warns *"Talent status will be updated to Rejected"*. Rejected is a different outcome from Passive and is not part of this flow.
+The toolbar at the top of the drawer carries all three: A confirm opens repeating the **name, email and title** so you can check you are on the right record, with **Exit** and **Approve**. The confirm does not name the statusIt asks “Do you want to approve this Talent?” and nothing more. Which status you are about to set came from *the button you pressed*, and there is no second chance to read it back. Check the button colour before you confirm. **What happens next:** the record leaves the queue and the count drops by one. The drawer stays open on the next profile, so a queue can be worked straight through. To confirm the status really changed, search the talent by **name or email** on the Talents list and read the chip.
 
-![Approve confirm dialog](a6-c-02-approve-dialog.png)
+| Button | Resulting status | When |
+|---|---|---|
+| **Reject** (red) | **Rejected** | the person does not belong on the platform at all |
+| **Approve to Active** (green) | **Active** | they can take project work now |
+| **Approve to Passive** (orange) | **Passive** | they belong here, but somebody else already has their week |
 
-*A6-C.4: buttons are Exit and Approve; no status choice.*
+![The approve confirmation dialog](a6q-08-approve-confirm.png)
 
-## A6-C.5 · Check what the system actually set, and fix it if needed
+*A6-C.5: the confirm names the record but not the status.*
 
-On approval the record leaves the queue and the **Approve / Reject Talent** buttons disappear from the toolbar. That is your signal it went through. Open it again from the Talents list and read the status chip. *Walked end to end: a Full-Time Employed record, tooltip predicting Passive, came back **Passive**.* The chip is **unlocked now**; it was read-only while the status was In Review, which is exactly why this is a two-step job. The Passive dialog opens on the wrong reason **Set Talent Status to Passive** carries a radio group with *Unable to verify freelance status* **already selected**, plus a free-text **Reasons** box. Those first three options belong to the freelance-verification review, not to this correction, overruling the rule concludes something else entirely. **Always switch to `Other`.** Click **Yes** without touching the radio and the wrong reason is stored permanently, on every record you process. The Reasons box is **not enforced** either: `Other` with an empty box saved fine and the record then showed only the word *"Other"*. One line is enough: `S7 — current role at <company>, flagged <sponsor|portfolio|corporate>. Client, not supply.` Going the other way is simpler: **Set Talent Status to Active** has no radio group and no reason field. **The asymmetry is worth knowing**: a record corrected *to* Active carries no record of why the rule was overruled, so put it in Notes if it matters. **Then verify twice.** Hover the chip: on Passive it now reads *"Passive since <date> at <time>"* followed by the radio value. Then open **Timelines** and **reload the page**: the tab count does not refresh on its own. Your entry reads `Active → Passive`, which is what distinguishes it from the automatic one. That reads `In Review → Passive` and carries the approving admin’s name anyway. Any later migration goes by the transition, not the name, so a corrected record is left alone.
+![The In Review drawer with its three action buttons](a6q-02-queue-drawer.png)
 
-| Situation | What to do |
-|---|---|
-| Chip matches your A6-C.2 answer | done |
-| You need **Passive**, the system set Active | click the chip, pick **Passive**, then **change the radio to Other** and type the reason, see the trap below |
-| You need **Active**, the system set Passive | click the chip and pick **Active** |
-
-## Two other things that happen in this queue
-
-| **A Passive talent resubmitting** | that is `ReviewPassive`, not `InReview`, and it has its own toolbar with three buttons, *Approve Review Passive*, *Reject Review Passive*, *Reject Talent*. See [A6.x.2 ↗](a6-x-2-a-passive-talent-resubmits.md) |
-|---|---|
-| **The status chip is locked while In Review** | you cannot pre-set the outcome. Approve first, correct after |
+*A6-C: the drawer, all on one screen: ① the three ways out · ② the In Review chip and the warning icon holding the recommendation · ③ Employment Status, the first field the rule reads.*
 
 ## In this step
 
-* [A6-C.6 · The rule as built today](a6-c-6-the-rule-as-built-today.md)
+* [A6-C.6 · How the recommendation works](a6-c-6-how-the-recommendation-works.md)
 * [A6-C.7 · The rule, rebuilt](a6-c-7-the-rule-rebuilt.md)

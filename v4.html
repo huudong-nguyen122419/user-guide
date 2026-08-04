@@ -436,8 +436,9 @@
  <a href="#em-5-5" class="st2" data-page="page-a5">A5.x.5 · Timeline = A4.5</a>
  <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Approve a new talent <span class="fn">(decides Active or Passive)</span></a>
  <a href="#a6-flowC" class="st" data-page="page-a6">A6-C &middot; Review the In Review queue, LIVE</a>
- <a href="#a6-autorule" class="st2" data-page="page-a6">A6-C.6 &middot; The rule as built today</a>
+ <a href="#a6-autorule" class="st2" data-page="page-a6">A6-C.6 &middot; How the recommendation works</a>
  <a href="#a6-rulerebuild" class="st2" data-page="page-a6">A6-C.7 &middot; The rule, rebuilt</a>
+ <a href="#a6-recheck" class="st" data-page="page-a6">A6-D &middot; Re-check an existing status</a>
  <a href="#a6-model" class="st" data-page="page-a6">A6.1 &middot; Three fields people mix up</a>
  <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x &middot; Edge cases</a>
  <a href="#ec-6-1" class="st2" data-page="page-a6">A6.x.1 · New sign-ups to approve</a>
@@ -1212,146 +1213,142 @@ broken, check the <b>reviewed</b> count in the Run dialog (A5.7.3).</li>
 <p class="fn">The 2,680 Active records split by Employment Status: Freelancer 2,343, Unemployed 206, Other 102, Full-time 28 and Part-time 1.</p>
 
 <h3 id="a6-flowC" class="anchor">A6-C &middot; Review the In Review queue</h3>
-<div class="goal adm">A new sign-up sits at <code>In Review</code>. An admin opens it, clicks <b>Approve</b>, and <b>the system sets Active or Passive by itself</b>. Your job is to know what it will pick <i>before</i> you click, and to flip it afterwards if it picked wrong. <b>The default is Active</b>: a record only becomes Passive if a rule fires.</div>
-<p><b>Five steps, and that is the whole flow.</b> There is no queue to build, no list to work, no batch:</p>
-<pre class="ascii">In Review queue
-      &#9660;
-Admin opens the profile and reads it
-      &#9660;
-Hover  Approve Talent   &rarr;  tooltip shows the status the system WILL set
-      &#9660;
-Click  Approve          &rarr;  the rule runs, status becomes Active or Passive
-      &#9660;
-                          done
-      &#9492;&#9472; edge case: the status is wrong
-                 &#9660;
-          Admin flips it by hand on the status chip</pre>
-<p class="fn"><b>Existing records are out of scope.</b> Nobody re-reviews the Active or Passive population by hand any more, <b>the retired existing-records branch</b> covered that. This page is the intake path only. Live today: <b>2 records</b> at In Review; the sample the figures below come from carries <b>286</b>.</p>
+<div class="goal adm"><b>Goal:</b> a new sign-up lands at <code>In Review</code> and waits for someone to look at it.
+You have three ways out: <b>reject</b> the person, <b>approve them to Active</b>, or <b>approve them to Passive</b>.
+The system offers a recommendation on every profile, but <b>the button you press is the decision</b>.</div>
+
+<div class="call note"><span class="t">Active and Passive, in one line</span><b>Active</b> means the person can be
+invited to projects. <b>Passive</b> means they stay on the platform but out of the invitation flow, normally because
+somebody already pays for their week. Getting it wrong sends a project invitation to a person who cannot take it,
+or hides someone who could.</div>
+
 <ol class="steps adm">
-<li data-code="A6-C.1"><b>Open the queue.</b> <i>User Management &rarr; Talents</i>, then the <b>N In Review</b> button at the top right. It opens the queue one profile at a time.</li>
 
-<li data-code="A6-C.2"><b>Decide, before you touch any button.</b> You are reading <b>one profile</b>, not filtering a list. There is no Company Background chip narrowing things for you. Ask four questions in order and <b>stop at the first Yes</b>. This is your <b>yardstick for step 5</b>, not a separate approval path: the system decides regardless of what you conclude here.
- <div class="call"><span class="t">Read the work-experience row, not the headline</span>Every title question below is asked of the <b>position</b> on a role marked <b>current</b>, the job title on the row, and of that row's <b>company</b>. The sentence at the top of the profile is a self-description, and it matches none of the positions on <b>49%</b> of records. <b>No current role at all &rarr; ACTIVE</b>, immediately: there is nothing to test.</div>
- <div class="tblwrap"><table>
- <thead><tr><th>#</th><th>Question</th><th>Yes &rarr;</th></tr></thead>
- <tbody>
- <tr><td><b>Q1</b></td><td>Employment Status says <b>Full-time or Part-time</b>? <span class="fn">(header line, under the name)</span></td><td><b>PASSIVE</b>, stop</td></tr>
- <tr><td><b>Q2</b></td><td>A current role's <b>position</b> says junior / back office, or advisory / sell-side? <span class="fn"><code>Associate</code> &middot; <code>Analyst</code> &middot; <code>Intern</code> &middot; <code>Investor Relations</code> &middot; <code>Fundraising</code> &hellip; and <code>consultant</code> &middot; <code>advisory</code> &middot; <code>investment banking</code> &middot; <code>due diligence</code> &middot; <code>sell-side</code> &hellip;</span></td><td><b>ACTIVE</b>, stop</td></tr>
- <tr><td><b>Q3</b></td><td>A <b>position</b> that only exists inside a fund? <span class="fn">Operating Partner &middot; Portfolio Operations &middot; Value Creation &middot; Head of Talent &middot; General Partner &middot; Investment Director / Manager / Professional &middot; Deal Lead</span></td><td><b>PASSIVE</b>, stop</td></tr>
- <tr><td><b>Q4</b></td><td>A senior <b>position</b> that could be anywhere? <span class="fn">Partner &middot; Principal &middot; Managing Director &middot; VP &middot; Director &middot; CEO &middot; CFO &middot; Founder &middot; Head of M&amp;A &middot; Corporate Development</span></td><td>do the <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a></td></tr>
- <tr><td colspan="2"><b>All four No</b></td><td><b>ACTIVE</b></td></tr>
- </tbody></table></div>
- <p class="fn"><b>The employer check on Q4:</b> stay on the same row, you already have its company, and read that company's name and description. Advisory / consulting / investment bank &rarr; <b>ACTIVE</b>. Private equity, buyout, LBO, family office, asset manager &rarr; <b>PASSIVE</b>. The row carries no company, no description, or it reads either way &rarr; <b>ACTIVE</b>, and write it down so somebody can look again.</p>
- <p class="fn"><b>Q1 is often unanswerable.</b> In the sample queue <b>76 of 286 (27%)</b> have <b>no employment status at all</b>, they reached In Review without finishing sign-up. The system reads that as &ldquo;not Full-time&rdquo; and waves them to <b>Active</b> without opening anything else. If the header line is missing, the position questions are the only evidence you have.</p>
- <p class="fn"><b>Why missing evidence means Active.</b> The record cannot stay In Review: it has to leave the queue, so there is no "park it and decide later" option. Active is the safe default: a wrongly-Active new sign-up is one record to fix later, a wrongly-Passive one is a freelancer silently shut out from day one. <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a> does not apply here: a brand-new record has no admin decision behind it yet.</p>
+<li data-code="A6-C.1"><b>Open the queue.</b> <b>User Management &rarr; Talents</b>, then the
+<b>N In Review</b> button at the top right. It is the only way in; there is no In Review tab on the list.
+Clicking it opens a drawer showing <b>one profile at a time</b> rather than filtering the table.
+  <p class="fn">For scale: <b>280 waiting</b> against <b>9,036 talents</b> on the day this was walked. The queue is
+  small next to the base, which is why it is worth clearing properly rather than quickly.</p>
+  <figure><img src="a6q-01-queue-entry.png" alt="The In Review button on the Talents list"/><figcaption><b>A6-C.1</b>: <b>&#9312;</b> the <b>N In Review</b> button, top right, the only door into the queue &middot; <b>&#9313;</b> the full talent count beside it.</figcaption></figure>
 </li>
 
-<li data-code="A6-C.3"><b>Hover <i>Approve Talent</i> before clicking it.</b> The button tells you in advance what the system is about to do. There is no status picker in the dialog, so the tooltip is your only warning. <b>Approving does not simply mean "Active".</b>
- <div class="tblwrap"><table>
- <thead><tr><th>Tooltip</th><th>The system will set</th></tr></thead>
- <tbody>
- <tr><td><i>"Talent status will change to Passive because this talent is a full-time employee"</i></td><td><b>Passive</b></td></tr>
- <tr><td><i>"&hellip; because the employee status is Freelancer and the talent is currently working at a &lt;sponsor / portfolio / corporate&gt; company"</i></td><td><b>Passive</b></td></tr>
- <tr><td><i>"Talent status will be updated to Active"</i></td><td><b>Active</b></td></tr>
- <tr><td><i>"This talent has been deleted"</i></td><td>nothing. The record is deleted</td></tr>
- </tbody></table></div>
- <figure><img src="a6-c-01-approve-tooltip.png" alt="Approve Talent tooltip"/><figcaption><b>A6-C.3</b>: the tooltip on a Full-Time Employed record. The badge still reads <b>In Review</b> and the header line reads <b>Employment Status: Full-Time Employed</b>.</figcaption></figure><p><b>Compare the tooltip against your own answer from A6-C.2.</b> If they agree, click Approve. If they disagree, click Approve anyway and fix the status straight after (A6-C.5). Two ways they routinely disagree:</p>
- <p class="fn"><b>1.</b> The system has <b>no seniority check</b>: an <code>Analyst</code> or <code>Associate</code> at a flagged company comes out Passive where our rule makes them Active. This is the single biggest source of disagreement, and the reason the rule is being rebuilt (<a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>). <b>2.</b> The system only looks at <code>Freelancer</code>: somebody whose Employment Status is <i>Unemployed</i> or <i>Other</i>, holding a current role at a fund, gets <i>"will be updated to Active"</i> while Q3 says Passive.</p>
- <div class="call"><span class="t">The tooltip is a prediction, not a record of what happened</span>It is computed in the browser from what is on screen, so verify with A6-C.5. It has been right on every record checked so far, <b>three walked end to end, all three matched</b>. What it never tells you is <b>which question fired</b>. The full five-question spine, and how many of them each talent actually walks, is below.</div>
+<li data-code="A6-C.2"><b>Move between profiles without going back to the list.</b> Top right of the drawer sits a
+pager, <b>&#8249; N/280 &#8250;</b>. The <b>&larr;</b> and <b>&rarr;</b> keys do the same thing.
+  <div class="call note"><span class="t">On a narrow window, use the keyboard</span>The pager sits at the far right
+  edge of the drawer and is the first thing to fall off screen. The arrow keys keep working when the buttons are not
+  visible, so a queue can be walked end to end without ever seeing the pager.</div>
 </li>
 
-<li data-code="A6-C.4"><b>Click Approve.</b> The dialog is titled <b>"Do you want to approve this Talent?"</b> and repeats the name, email and title so you can check you are on the right record. The submit button is <b>Approve</b>. There is no status choice in it.
- <figure><img src="a6-c-02-approve-dialog.png" alt="Approve confirm dialog"/><figcaption><b>A6-C.4</b>: buttons are <b>Exit</b> and <b>Approve</b>; no status choice.</figcaption></figure><p class="fn">To reject instead, use <b>Reject Talent</b>: its tooltip warns <i>"Talent status will be updated to Rejected"</i>. Rejected is a different outcome from Passive and is not part of this flow.</p>
+<li data-code="A6-C.3"><b>Read the recommendation.</b> The status chip reads <b>In Review</b> and carries a
+<b>&#9888; warning icon</b> beside it. Hover the icon and you get two lines:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Line</th><th>What it is</th><th>Example</th></tr></thead>
+  <tbody>
+  <tr><td><b>Recommend: &lt;status&gt;</b></td><td>what the rule would pick if it decided</td><td><i>Recommend: Active</i></td></tr>
+  <tr><td>the sentence under it</td><td>which of the five questions produced that answer</td><td><i>Active, self-directed, and nothing ties them to a client company.</i></td></tr>
+  </tbody></table></div>
+  <p>The full rule, all five questions and every sentence it can print, is in
+  <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>.</p>
+  <figure class="crop"><img src="a6q-03-recommendation.png" alt="The recommendation tooltip on an In Review profile"/><figcaption><b>A6-C.3</b>: hover the warning icon. Status on top, the reason underneath.</figcaption></figure>
 </li>
 
-<li data-code="A6-C.5"><b>Check what the system actually set, and fix it if needed.</b> On approval the record leaves the queue and the <b>Approve / Reject Talent</b> buttons disappear from the toolbar. That is your signal it went through. Open it again from the Talents list and read the status chip. <i>Walked end to end: a Full-Time Employed record, tooltip predicting Passive, came back <b>Passive</b>.</i> The chip is <b>unlocked now</b>; it was read-only while the status was In Review, which is exactly why this is a two-step job.
- <div class="tblwrap"><table>
- <thead><tr><th>Situation</th><th>What to do</th></tr></thead>
- <tbody>
- <tr><td>Chip matches your A6-C.2 answer</td><td>done</td></tr>
- <tr><td>You need <b>Passive</b>, the system set Active</td><td>click the chip, pick <b>Passive</b>, then <b>change the radio to Other</b> and type the reason, see the trap below</td></tr>
- <tr><td>You need <b>Active</b>, the system set Passive</td><td>click the chip and pick <b>Active</b></td></tr>
- </tbody></table></div>
- <div class="call warn"><span class="t">The Passive dialog opens on the wrong reason</span>
-<b>Set Talent Status to Passive</b> carries a radio group with <i>Unable to verify freelance status</i>
-<b>already selected</b>, plus a free-text <b>Reasons</b> box. Those first three options belong to the
-freelance-verification review, not to this correction, overruling the rule concludes something
-else entirely. <b>Always switch to <code>Other</code>.</b> Click <b>Yes</b> without touching the radio
-and the wrong reason is stored permanently, on every record you process. The Reasons box is
-<b>not enforced</b> either: <code>Other</code> with an empty box saved fine and the record then
-showed only the word <i>"Other"</i>. One line is enough: <code>S7 &mdash; current role at &lt;company&gt;, flagged &lt;sponsor|portfolio|corporate&gt;. Client,
-not supply.</code></div>
- <p class="fn">Going the other way is simpler: <b>Set Talent Status to Active</b> has no radio group
- and no reason field. <b>The asymmetry is worth knowing</b>: a record corrected <i>to</i> Active
- carries no record of why the rule was overruled, so put it in Notes if it matters.</p>
- <p class="fn"><b>Then verify twice.</b> Hover the chip: on Passive it now reads
- <i>"Passive since &lt;date&gt; at &lt;time&gt;"</i> followed by the radio value. Then open
- <b>Timelines</b> and <b>reload the page</b>: the tab count does not refresh on its own. Your entry
- reads <code>Active &rarr; Passive</code>, which is what distinguishes it from the automatic one. That reads <code>In Review &rarr; Passive</code> and carries the approving admin&rsquo;s name
- anyway. Any later migration goes by the transition, not the name, so a corrected record is left
- alone.</p>
+<li data-code="A6-C.4"><b>Check it against the profile yourself.</b> The recommendation is a reading of three fields,
+nothing more. Read the same three before you accept it:
+  <div class="tblwrap"><table>
+  <thead><tr><th>What to read</th><th>Where it is</th><th>Why it matters</th></tr></thead>
+  <tbody>
+  <tr><td><b>Employment Status</b></td><td>the header line, under the title</td><td>Full-time or Part-time is the strongest signal for Passive. Freelancer, Unemployed and Other point the other way</td></tr>
+  <tr><td><b>Current title and company</b></td><td>Work Experiences, the rows with no end date</td><td>wording like <i>freelance</i> or <i>independent consultant</i> says self-directed whatever the status field claims</td></tr>
+  <tr><td><b>Company flag</b></td><td>on the linked company: <b>Sponsor</b>, <b>Portfolio</b> or <b>Corporate</b></td><td>a current role at a flagged company is the one condition that outranks everything else</td></tr>
+  </tbody></table></div>
+  <div class="call warn"><span class="t">The recommendation is advice, not an instruction</span>It reads fields; it
+  does not read judgement. A profile can be technically self-employed and still be unavailable, or say Full-time and
+  be about to leave. That is exactly why there are two approve buttons instead of one.</div>
 </li>
+
+<li data-code="A6-C.5"><b>Take one of the three routes, then check it landed.</b> The toolbar at the top of the drawer
+carries all three:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Button</th><th>Resulting status</th><th>When</th></tr></thead>
+  <tbody>
+  <tr><td><b>Reject</b> <span class="fn">(red)</span></td><td><b>Rejected</b></td><td>the person does not belong on the platform at all</td></tr>
+  <tr><td><b>Approve to Active</b> <span class="fn">(green)</span></td><td><b>Active</b></td><td>they can take project work now</td></tr>
+  <tr><td><b>Approve to Passive</b> <span class="fn">(orange)</span></td><td><b>Passive</b></td><td>they belong here, but somebody else already has their week</td></tr>
+  </tbody></table></div>
+  <p>A confirm opens repeating the <b>name, email and title</b> so you can check you are on the right record, with
+  <b>Exit</b> and <b>Approve</b>.</p>
+  <div class="call warn"><span class="t">The confirm does not name the status</span>It asks &ldquo;Do you want to
+  approve this Talent?&rdquo; and nothing more. Which status you are about to set came from <i>the button you
+  pressed</i>, and there is no second chance to read it back. Check the button colour before you confirm.</div>
+  <p><b>What happens next:</b> the record leaves the queue and the count drops by one. The drawer stays open on the
+  next profile, so a queue can be worked straight through. To confirm the status really changed, search the talent by
+  <b>name or email</b> on the Talents list and read the chip.</p>
+  <figure><img src="a6q-08-approve-confirm.png" alt="The approve confirmation dialog"/><figcaption><b>A6-C.5</b>: the confirm names the record but not the status.</figcaption></figure>
+</li>
+
 </ol>
-<h4 style="margin:18px 0 8px">Two other things that happen in this queue</h4>
+
+<figure><img src="a6q-02-queue-drawer.png" alt="The In Review drawer with its three action buttons"/><figcaption><b>A6-C</b>: the drawer, all on one screen: <b>&#9312;</b> the three ways out &middot; <b>&#9313;</b> the <b>In Review</b> chip and the warning icon holding the recommendation &middot; <b>&#9314;</b> <b>Employment Status</b>, the first field the rule reads.</figcaption></figure>
+
+<h3 id="a6-autorule" class="anchor">A6-C.6 &middot; How the recommendation is worked out</h3>
+<div class="goal adm"><b>What this is:</b> a rule that runs in the background on every talent and produces one
+recommended status plus one sentence saying why. It never changes anybody's status by itself. It appears in three
+places: the warning icon in the queue, the icon beside the status chip on the Talents list, and the
+<b>Recommend Status</b> filter.</div>
+
+<h4 style="margin:18px 0 8px">Five questions, in order, first Yes wins</h4>
+<p>The rule stops at the first question that answers Yes. Nothing after that point is read, which is why a profile can
+carry a flagged employer and a Full-time status and still be explained only by the first one.</p>
+
 <div class="tblwrap"><table>
+<thead><tr><th>#</th><th>Question</th><th>Yes &rarr;</th><th>No &rarr;</th></tr></thead>
 <tbody>
-<tr><td><b>A Passive talent resubmitting</b></td><td>that is <code>ReviewPassive</code>, not <code>InReview</code>, and it has its own toolbar with three buttons, <i>Approve Review Passive</i>, <i>Reject Review Passive</i>, <i>Reject Talent</i>. See <a href="#ec-6-2" style="font-weight:700;cursor:pointer">A6.x.2 &#8599;</a></td></tr>
-<tr><td><b>The status chip is locked while In Review</b></td><td>you cannot pre-set the outcome. Approve first, correct after</td></tr>
+<tr><td><b>Q1</b></td><td>Is any <b>current</b> role linked to a company in our database flagged as <b>Portfolio</b>, <b>Sponsor</b> or <b>Corporate</b>?</td><td><b>PASSIVE</b>, stop</td><td>Q2</td></tr>
+<tr><td><b>Q2</b></td><td>Does a <b>current role title or company name</b> read as independent work? <span class="fn">(keyword list below)</span></td><td><b>ACTIVE</b>, stop</td><td>Q3</td></tr>
+<tr><td><b>Q3</b></td><td>Is <b>any</b> role on the profile marked as current?</td><td>Q4</td><td><b>ACTIVE</b>, stop</td></tr>
+<tr><td><b>Q4</b></td><td>Is Employment Status <b>Freelancer</b>, <b>Unemployed</b> or <b>Other</b>?</td><td><b>ACTIVE</b>, stop</td><td>Q5</td></tr>
+<tr><td><b>Q5</b></td><td>Is Employment Status <b>Full-time</b> or <b>Part-time</b> employee?</td><td><b>PASSIVE</b>, stop</td><td><b>ACTIVE</b> &mdash; the fallback</td></tr>
 </tbody></table></div>
 
-<h3 id="a6-autorule" class="anchor">A6-C.6 &middot; The rule as built today</h3>
-<p class="fn" style="margin-bottom:14px">What the code does <b>right now</b>, five questions, and how many of them each talent actually walks. This is the behaviour to predict before clicking Approve. The rule that replaces it is <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>.</p>
-<div class="call"><span class="t">Which rule is this?</span><b>This is the system's rule: what the code does today, not what we think it should do.</b> It is the <i>current</i> rule, not a legacy one: verified against live behaviour on three records, all three matched. <b>It is also known to be wrong, and is being replaced</b> by <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>, which has been validated on 7 live records. Read this section as <i>is</i>, that one as <i>will be</i>.<br><br><b>Our business rule is a different thing</b>, <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a>: hard-stop A (junior / back office), hard-stop B (advisory / sell-side), TIER 1 / TIER 2 titles, and the employer check that reads the company <b>description</b>. <b>The system implements none of that.</b> The two disagree deliberately: the worked example below is one live record where they split.</div>
-<p><b>Five questions, walked top to bottom, first Yes ends the walk.</b> Fall off the bottom and you get the fallback. Only three inputs exist: the <b>employment status</b> picked at sign-up, the <b>position</b> and <b>company name</b> of the <b>current</b> work-experience rows, and whether those companies carry a <b>Mergermarket flag</b>. It never reads the profile headline, the company description, the contract history or the applications.</p>
-<pre class="ascii">Admin approves a talent out of review
-&#9474;
-&#9500;&#9472; Q1  Employment status is Full-time or Part-time employee?
-&#9474;        YES &rarr; PASSIVE            profile never examined
-&#9474;  NO &#9660;
-&#9500;&#9472; Q2  Employment status is Freelancer, Unemployed or Other?
-&#9474;        NO &mdash; blank &rarr; ACTIVE      fallback &middot; profile never examined
-&#9474;  YES &#9660;
-&#9500;&#9472; Q3  Any role marked current?
-&#9474;        NONE &rarr; ACTIVE            nothing to test
-&#9474;  AT LEAST ONE &#9660;
-&#9500;&#9472; Q4  Does a current role's POSITION or COMPANY NAME contain freelance wording?
-&#9474;        YES &rarr; ACTIVE             exits before Q5
-&#9474;  NO &#9660;
-&#9500;&#9472; Q5  Is a current role at a linked company flagged portfolio / sponsor / corporate?
-&#9474;        YES &rarr; PASSIVE            the only client-company route
-&#9474;  NO &#9660;
-&#9492;&#9472; ACTIVE                         fallback &middot; nothing proved them passive</pre>
-<p><b>One talent walks between one and five steps.</b> The cheapest paths cost a single field read; only the deepest touches the company flags.</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Stops at</th><th>Steps</th><th>What was read</th><th>Verdict</th><th>Sample queue<br><span class="fn">286 records</span></th></tr></thead>
-<tbody>
-<tr><td><b>Q1</b> Full/Part-time</td><td><b>1</b></td><td>one field</td><td><b>PASSIVE</b></td><td>36 &middot; 13%</td></tr>
-<tr><td><b>Q2</b> blank employment status</td><td><b>2</b></td><td>one field</td><td>ACTIVE</td><td><b>76 &middot; 27%</b></td></tr>
-<tr><td><b>Q3</b> no current role</td><td><b>3</b></td><td>+ count of current rows</td><td>ACTIVE</td><td>18 &middot; 6%</td></tr>
-<tr><td><b>Q4</b> freelance wording</td><td><b>4</b></td><td>+ position &amp; company of every current row</td><td>ACTIVE</td><td>9 &middot; 3%</td></tr>
-<tr><td><b>Q5</b> flagged company</td><td><b>5</b></td><td>+ flag lookup on those companies</td><td><b>PASSIVE</b></td><td>35 &middot; 12%</td></tr>
-<tr><td><b>Q6</b> fallback</td><td><b>5</b></td><td>the full walk, nothing matched</td><td>ACTIVE</td><td>112 &middot; 39%</td></tr>
-<tr><td colspan="4"><b>Outcome</b></td><td><b>Passive 71 (25%)<br>Active 215 (75%)</b></td></tr>
-</tbody></table></div>
-<p class="fn"><b>46% of the queue never gets past step 2</b>, the employment-status field decides it alone.</p>
-<div class="call warn"><span class="t">Three things that need a decision</span><b>&#9312; 27% of the queue has no employment status.</b> 76 records waved to Active at step 2 without the profile ever being read. That field is never blank on the existing Active population, so this is specific to intake: people arrive before sign-up is finished.<br><br><b>&#9313; Q5 is in practice a corporate detector.</b> Of the 35 records it sent to Passive: <b>33 corporate, 2 portfolio and 0 sponsor</b>: <b>not one sponsor was caught</b>. <b>Ruled 30 Jul 2026: a <code>corporate</code> flag counts as flagged</b>, same as sponsor and portfolio, so those 33 verdicts are <b>correct</b>, an earlier version of this page called them errors, which was wrong. The sponsor and portfolio branches simply almost never fire.<br><br><b>&#9314; Q4 fired only 9 times</b>: <code>independent</code> 6, <b><code>fractional</code> 2</b>, <code>freelance</code> 1 and <code>self-employed</code> 1. <code>remote</code>: zero. Two hits for <code>fractional</code> on 286 records is why it belongs in the list.</div>
-<p class="fn"><b>Can it be automated without a review step?</b> Q1 and Q3 yes: clean field reads. <b>Q5 is the one that will generate overrides</b>, and the fix is dropping <code>corporate</code> from it, not adding a review gate. Widening Q4 is worth doing but buys precision only, never coverage: Q4 is an <i>exit to Active</i>, so a wider list only reroutes people already heading to Active.</p>
-<p class="fn"><b>The full Q4 word list is not published.</b> <code>remote</code> and <code>independent</code> are the two the flowchart names, as examples. Treat Q4 as &ldquo;the system may exit to Active for a reason you cannot see&rdquo;.</p>
-<h4 style="margin:22px 0 8px">Worked example: the two rules disagreeing, on a live record</h4>
-<p><b>Iman Dakhlaoui</b> (<code>iman.dakhlaoui@gmail.com</code>), approved 29 Jul 2026, currently <b>Passive</b>. 7 years&rsquo; experience, Paris, rate filled in, available for more than 40 hours a week. <code>employeeStatus = Freelancer</code>, <code>internalStatus = null</code> (no Skip Review) and one current role: position <code>M&amp;A and Project Finance Associate</code> at <code>FINERGREEN</code>, flagged <b>corporate</b>.</p>
-<p><b>The system&rsquo;s walk:</b> Q1 not full-time &rarr; Q2 is Freelancer &rarr; Q3 one current row &rarr; Q4 no freelance wording &rarr; <b>Q5 corporate flag &rarr; PASSIVE</b>. Five steps. That is the status the record carries today.</p>
-<p><b>Our rule says ACTIVE, for two independent reasons:</b></p>
-<div class="tblwrap"><table>
-<thead><tr><th>#</th><th>Reason</th><th>Why the system misses it</th></tr></thead>
-<tbody>
-<tr><td><b>1</b></td><td><code>Associate</code> is <b>hard-stop A</b>, too junior to be a client</td><td>the system has no junior check at all</td></tr>
-<tr><td><b>2</b></td><td><b>Finergreen is a boutique investment bank</b>, its own company description reads <i>&ldquo;a boutique investment bank dedicated to the energy transition with in-depth expertise in M&amp;A and complex financing&rdquo;</i>. Hard-stop B, sell-side.</td><td>the system reads the <b>flag</b>, never the description</td></tr>
+<div class="call note"><span class="t">Read the order, not just the answers</span><b>Q1 outranks everything.</b> A
+freelancer sitting in a current role at a sponsor is recommended Passive, because Q1 fires before the freelance
+wording at Q2 is ever read. And <b>Q3 is a gate, not a test</b>: no current role at all means nothing can mark the
+person passive, so the rule stops and says Active.</div>
 
+<h4 style="margin:18px 0 8px">The independent-work keywords at Q2</h4>
+<p>Matched against the <b>current role title</b> and the <b>company name</b>:</p>
+<p><code>freelance</code>, <code>freelancer</code>, <code>fractional</code>, <code>independent consultant</code>,
+<code>independent advisor</code>, <code>self-employed</code>, <code>interim</code></p>
+
+<h4 style="margin:18px 0 8px">Every sentence the rule can print</h4>
+<p>Seven outcomes, no more. Each carries a code, and the code is what tells you which question fired:</p>
+
+<div class="tblwrap"><table>
+<thead><tr><th>Code</th><th>Recommends</th><th>The sentence you see</th><th>Fired at</th></tr></thead>
+<tbody>
+<tr><td><code>ClientCompanyMatched</code></td><td><b>Passive</b></td><td>currently works at a client company (portfolio, sponsor or corporate)</td><td><b>Q1</b> Yes</td></tr>
+<tr><td><code>FreelanceKeywordMatched</code></td><td><b>Active</b></td><td>the current role reads as freelance or independent</td><td><b>Q2</b> Yes</td></tr>
+<tr><td><code>NoCurrentRole</code></td><td><b>Active</b></td><td>no current role on the profile, so nothing marks them passive</td><td><b>Q3</b> No</td></tr>
+<tr><td><code>NoEmployeeStatus</code></td><td><b>Active</b></td><td>employment status was never answered, so availability is assumed</td><td><b>Q4/Q5</b> blank</td></tr>
+<tr><td><code>EmployedFullTime</code></td><td><b>Passive</b></td><td>employed full-time</td><td><b>Q5</b> Yes</td></tr>
+<tr><td><code>EmployedPartTime</code></td><td><b>Passive</b></td><td>employed part-time</td><td><b>Q5</b> Yes</td></tr>
+<tr><td><code>NoPassiveSignal</code></td><td><b>Active</b></td><td>self-directed, and nothing ties them to a client company</td><td>fallback, all five No</td></tr>
 </tbody></table></div>
-<div class="call warn"><span class="t">A data fault underneath it</span>The data carries <b>two</b> FINERGREEN company records: one typed <code>Public Corporation</code> with <b>no flags</b> and the correct investment-bank description, and one typed <code>Asset Management</code> with <code>isCorporate = true</code> and a vaguer <i>&ldquo;consulting services&rdquo;</i> description. The work-experience row is linked to the second. <b>Had it linked to the first, Q5 would not have fired and the system would have said Active</b>, so the outcome turned on which duplicate got matched, not on any fact about the company. See <a href="#ec-6-8" style="font-weight:700;cursor:pointer">A6.x.8 &#8599;</a>.</div>
-<div class="call warn"><span class="t">The timeline reads like a human decision and is not one</span>One entry: <i>actorName</i> <b>Bernhard Thalhammer (SuperAdmin)</b>, but <code>prevValues.status = InReview</code> &rarr; <code>nextValues.status = Passive</code>. The transition is <code>InReview &rarr; Passive</code>, so this is the <b>automatic rule</b>, stamped with the approving admin&rsquo;s name. Read the name instead of the transition and you would wrongly conclude somebody weighed this up.</div>
+
+<div class="call warn"><span class="t">&#128027; The reasoning is recorded but never shown</span>Behind each
+recommendation the system stores an <b>evidence list</b>, the actual facts it read, three or four lines long. A
+profile recommended Active carries lines like <i>&ldquo;Employment status is Freelancer&rdquo;</i>,
+<i>&ldquo;1 current role on the profile&rdquo;</i>, <i>&ldquo;No freelance wording in any current job title or
+employer&rdquo;</i>, <i>&ldquo;No current role at a portfolio, sponsor or corporate company&rdquo;</i>.
+<b>None of it reaches the screen.</b> The tooltip prints the one-line summary and stops, so the reviewer has to go and
+check by hand what the rule already checked. Worth asking for, since the work is already done.</div>
+
+<div class="call note"><span class="t">Not every talent carries a recommendation</span>Sampled 800 records: <b>598
+had no recommendation at all</b>, the field simply empty. Those are records the rule has not run against. An absent
+icon means <i>no opinion</i>, not <i>agrees with the current status</i>.</div>
 
 <h3 id="a6-rulerebuild" class="anchor">A6-C.7 &middot; The rule, rebuilt</h3>
+<div class="call warn"><span class="t">&#9888; Written against the previous engine</span>This section was worked out when the recommendation ran on a different set of questions. The engine now in place is the five in <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>. The business thinking below still stands, but <b>the seven validated records and the step numbers were checked against the old rule</b> and need re-running before anything here is built.</div>
 <div class="goal adm"><b>Validated against 7 live records, all 7
 agree.</b> This is the rule for the intake decision. The section above stays as the record of what the
 code does <i>today</i>: read that as <i>is</i>, this as <i>will be</i>.</div>
@@ -1522,6 +1519,79 @@ no.</b> A title never makes anybody Passive. The flag decides.</td></tr>
 </tbody></table></div>
 <p class="fn"><b>Not in scope here:</b> existing Active and Passive records are not re-reviewed by hand. That runs as a <b>the retired existing-records branch</b>
 later. This is the intake decision only.</p>
+
+<h3 id="a6-recheck" class="anchor">A6-D &middot; Re-check the status of a talent you already have</h3>
+<div class="goal adm"><b>When to run this:</b> when you want to know whether the statuses already on the platform are
+still right. It applies to <b>Active</b> and <b>Passive</b> records, not to the queue. Nothing here is automatic: the
+system points, you decide.</div>
+
+<h4 style="margin:18px 0 8px">A6-D.1 &middot; Read what the system thinks</h4>
+<ol class="steps adm">
+<li data-code="A6-D.1"><b>The icon beside the status chip tells you whether the two agree.</b> It is on the
+<b>Talents list</b> and on the profile drawer, in both places, in the same shape:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Icon</th><th>Meaning</th><th>What to do</th></tr></thead>
+  <tbody>
+  <tr><td><b>&#9888; warning</b></td><td>the current status <b>does not match</b> what the rule would pick</td><td>worth opening; it may be right anyway</td></tr>
+  <tr><td><b>&#9432; info</b></td><td>status and recommendation <b>agree</b></td><td>nothing to do</td></tr>
+  <tr><td>no icon</td><td>the rule has no opinion on this record</td><td>judge it by hand or leave it</td></tr>
+  </tbody></table></div>
+  <p>Hover either icon for the same two lines as in the queue: the recommended status, then the reason.</p>
+  <figure class="crop"><img src="a6q-04-list-icons.png" alt="Warning and info icons on the talents list"/><figcaption><b>A6-D.1</b>: <b>&#9312;</b> warning, status and recommendation disagree &middot; <b>&#9313;</b> info, they agree.</figcaption></figure>
+</li>
+</ol>
+
+<h4 style="margin:18px 0 8px">A6-D.2 &middot; Active &rarr; Passive</h4>
+<ol class="steps adm">
+<li data-code="A6-D.2a"><b>Build the list of candidates.</b> On <b>Talents</b>, set <b>Statuses = Active</b>. Then
+<b>+ Add filter</b> &rarr; under <b>Availability &amp; Engagement</b> tick <b>Recommend Status</b>, which pins it to the
+filter bar. Open it and pick <b>Passive</b>. The dropdown offers only <b>Active</b> and <b>Passive</b>.
+  <p>What comes back is every Active talent the rule would have made Passive. <b>737 of them</b> when this was walked,
+  so treat it as a working queue rather than a list to clear in one sitting.</p>
+  <figure><img src="a6q-05-recommend-filter.png" alt="Statuses Active plus Recommend Status Passive"/><figcaption><b>A6-D.2a</b>: <b>&#9312;</b> Statuses = Active &middot; <b>&#9313;</b> Recommend Status = Passive &middot; <b>&#9314;</b> what falls out.</figcaption></figure>
+</li>
+
+<li data-code="A6-D.2b"><b>Open one and read it before you touch the chip.</b> Same three fields as
+<a href="#a6-flowC" style="font-weight:700;cursor:pointer">A6-C.4 &#8599;</a>: Employment Status, the current title and
+company, and whether that company is flagged. <b>Leaving it alone is a valid outcome</b>, the rule is often pointing at
+a record that a human already judged correctly.</li>
+
+<li data-code="A6-D.2c"><b>Change it from the status chip.</b> The chip on the profile carries a caret. Click it and
+you get exactly one alternative, <b>Passive</b>. Picking it opens <b>Set Talent Status to Passive</b>, which asks for a
+reason:
+  <div class="tblwrap"><table>
+  <thead><tr><th>Reason</th><th>Needs typing?</th></tr></thead>
+  <tbody>
+  <tr><td><b>Unable to verify freelance status</b> <span class="fn">(pre-selected)</span></td><td>no</td></tr>
+  <tr><td><b>Evidence insufficient</b></td><td>no</td></tr>
+  <tr><td><b>Reference unresponsive</b></td><td>no</td></tr>
+  <tr><td><b>Other</b></td><td>yes, in the <b>Reasons</b> box</td></tr>
+  </tbody></table></div>
+  <p>Then <b>Yes</b>. The chip flips to Passive and the icon beside it changes from warning to info, because status and
+  recommendation now agree.</p>
+  <div class="call warn"><span class="t">Two things to watch in this dialog</span><b>The first reason is already
+  selected when it opens.</b> Press Yes without reading and you have filed &ldquo;Unable to verify freelance
+  status&rdquo; on a record where that may be untrue.<br><br><b>&#128027; And <i>Other</i> does not actually enforce
+  anything.</b> Picking Other and leaving the Reasons box empty saves without complaint, no error, no disabled button.
+  The reason is meant to be required and is not.</div>
+  <figure class="crop"><img src="a6q-06-passive-modal.png" alt="Set Talent Status to Passive"/><figcaption><b>A6-D.2c</b>: <b>&#9312;</b> pre-selected reason &middot; <b>&#9313;</b> Other &middot; <b>&#9314;</b> the Reasons box, on screen whichever reason is picked.</figcaption></figure>
+</li>
+</ol>
+
+<h4 style="margin:18px 0 8px">A6-D.3 &middot; Passive &rarr; Active</h4>
+<ol class="steps adm">
+<li data-code="A6-D.3"><b>The same walk, with the filters the other way round and no reason to give.</b> Set
+<b>Statuses = Passive</b> and <b>Recommend Status = Active</b>, open a record, read it, then click the chip and pick
+<b>Active</b>.
+  <p><b>Set Talent Status to Active</b> asks one question, <i>&ldquo;Do you want to set Active for &lt;name&gt;?&rdquo;</i>,
+  and offers <b>Exit</b> and <b>Yes</b>. No reason list, no free text.</p>
+  <div class="call note"><span class="t">Only one direction is asked to explain itself</span>Making somebody Passive
+  takes them out of the invitation flow, so the system asks why. Putting them back does not, which means a record can
+  go Active with nothing on file about who decided or why. If you want that written down, put it in <b>Notes</b>
+  yourself.</div>
+  <figure class="crop"><img src="a6q-07-active-modal.png" alt="Set Talent Status to Active"/><figcaption><b>A6-D.3</b>: the whole dialog. Nothing to fill in.</figcaption></figure>
+</li>
+</ol>
 
 <h3 id="a6-model" class="anchor">A6.1 &middot; Three fields people mix up</h3>
 <ol class="steps adm">

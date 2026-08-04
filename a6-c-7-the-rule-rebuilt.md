@@ -2,6 +2,8 @@
 
 > A6 · Approve a new talent (decides Active or Passive) → A6-C · Review the In Review queue, LIVE
 
+⚠ Written against the previous engineThis section was worked out when the recommendation ran on a different set of questions. The engine now in place is the five in [A6-C.6 ↗](a6-c-6-how-the-recommendation-works.md). The business thinking below still stands, but **the seven validated records and the step numbers were checked against the old rule** and need re-running before anything here is built.
+
 **Validated against 7 live records, all 7 agree.** This is the rule for the intake decision. The section above stays as the record of what the code does *today*: read that as *is*, this as *will be*.
 
 ## The shape of it: only two things make somebody Passive
