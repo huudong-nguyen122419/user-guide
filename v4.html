@@ -2926,18 +2926,22 @@ mandatory</i> under it.
  <p>Worth filling in: <b>this is the only field a talent can filter on</b> in their Resources tab (<a href="#b5-list" style="font-weight:700;cursor:pointer">B5.2 &#8599;</a>). Empty means harder to find, not just untidy.</p>
 </li>
 
-<li data-code="B4.2.7"><b>Published At</b>: the day the resource is meant to go live <b>on its own</b>, so you
- can line something up in advance instead of coming back to publish it by hand.
- <div class="call warn"><span class="t">It does not do that at the moment, so skip the field</span>A
- <b>Draft</b> with a future date stays a Draft. There is no <i>Scheduled</i> status and nothing flips it
- over when the day arrives, and there are Drafts carrying dates well in the past that are still Drafts.
- <b>Leave Published At empty and publish by hand when you want it live.</b> Either set <b>Status</b> to
- <b>Published</b> on this form (<b>B4.2.4</b> above), or change the status from the resource list
- (<a href="#b4-manage" style="font-weight:700;cursor:pointer">B4.5 &#8599;</a>). Publishing fills the
- date in for you.</div>
- <p class="fn">The date does still hold back something that is <b>already Published</b>: put a future
- date on a published resource and talents cannot see it until that day. Worth knowing if a resource
- reads Published but nobody can find it, see <a href="#er-4-1" style="font-weight:700;cursor:pointer">B4.x.1 &#8599;</a>.</p>
+<li data-code="B4.2.7"><b>Published At</b>: the day the resource becomes visible on the talent
+ <b>Resources</b> page. Treat it as required, because <b>a resource with no date never appears</b>,
+ whatever its status says.
+ <div class="tblwrap"><table>
+ <thead><tr><th>You want it&hellip;</th><th>Set Published At to</th></tr></thead>
+ <tbody>
+ <tr><td><b>live now</b></td><td><b>today</b>, from the date picker. It appears as soon as the status is <b>Published</b>.</td></tr>
+ <tr><td><b>live on a set day</b></td><td><b>that day</b>. It stays out of sight until then, which is how you line something up in advance.</td></tr>
+ <tr><td>live, but dated earlier</td><td><b>a past date</b>. Allowed, and it appears straight away; the card just carries the earlier date.</td></tr>
+ </tbody></table></div>
+ <div class="call warn"><span class="t">Leaving it empty is the one thing that quietly breaks</span>An
+ empty date does not mean <i>now</i>. It means <b>never</b>, until somebody goes back and fills it in.
+ <b>Publishing does not fill it in for you</b>, not from this form and not from the resource list, so the
+ resource sits in the <b>Published</b> tab looking finished while no talent can reach it.
+ <p><b>Known gap, and it is on the list to be improved.</b> Until it is, put a date in every time, even
+ when that date is today.</p></div>
 </li>
 <li data-code="B4.2.8"><b>Description</b>: a line or two under the title on the card. Optional; the card renders fine without it.</li>
 
@@ -2977,7 +2981,11 @@ mandatory</i> under it.
 
 <h3 id="b4-publish" class="anchor">B4.4 &middot; Publish it</h3>
 <ol class="steps">
-<li data-code="B4.4.1"><b>Status defaults to Draft</b>, so a resource you just created is invisible to talents until you say otherwise. You can publish from inside the drawer (set <b>Status</b> &rarr; <b>Published</b>) or later from the row menu.</li>
+<li data-code="B4.4.1"><b>Status defaults to Draft</b>, so a resource you just created is invisible to talents until you say otherwise. You can publish from inside the drawer (set <b>Status</b> &rarr; <b>Published</b>) or later from the row menu.
+ <div class="call warn"><span class="t">Status on its own does not make it visible</span>A resource shows
+ on the talent <b>Resources</b> page only when it is <b>Published</b> <u>and</u> <b>Published At</b> is
+ today or earlier. Publish something whose date is empty and it stays invisible
+ (<a href="#b4-create" style="font-weight:700;cursor:pointer">B4.2.7 &#8599;</a>).</div></li>
 <li data-code="B4.4.2">From the list: row <b>&#8942;</b> &rarr; <b>Set Publish</b>. The menu always offers the <b>two statuses the resource is not currently in</b>, so what you see depends on the row:
  <div class="tblwrap"><table>
  <thead><tr><th>Row is</th><th>Menu offers</th></tr></thead>
@@ -2990,15 +2998,17 @@ mandatory</i> under it.
 <li data-code="B4.4.3"><b>Confirm.</b> The dialog names the resource, shows the status change as chips, and tells you what publishing means, <i>&ldquo;It will be visible to users on the selected display page.&rdquo;</i> If you left Display Page empty, read that as the Resources page.
  <figure><img src="res-09-publish.png" alt="Publish Resource confirmation"/><figcaption><b>B4.4.3</b>: <b>&#9312;</b> what publishing does &middot; <b>&#9313;</b> <b>Confirm</b>.</figcaption></figure></li>
 <li data-code="B4.4.4"><b>You do not have to come through here at all.</b> If you already know the
-resource should be live, set <b>Status</b> to <b>Published</b> while you are creating it
-(<a href="#b4-create" style="font-weight:700;cursor:pointer">B4.2.4 &#8599;</a>) and it goes out the
-moment you press <b>Create</b>. The route above is for anything that was saved as a <b>Draft</b>.</li>
+resource should be live, set <b>Status</b> to <b>Published</b> and <b>Published At</b> to <b>today</b>
+while you are creating it (<a href="#b4-create" style="font-weight:700;cursor:pointer">B4.2.4 &#8599;</a>),
+and it is live the moment you press <b>Create</b>. <b>Both fields</b>, a status with no date publishes
+nothing anyone can see. The route above is for anything that was saved as a <b>Draft</b>.</li>
 </ol>
 
 <h3 id="b4-manage" class="anchor">B4.5 &middot; Edit, draft, archive</h3>
 <ol class="steps">
-<li data-code="B4.5.1"><b>Edit</b>: click the title, or <b>&#8942;</b> &rarr; <b>Edit/View Details</b>. Same drawer, retitled <b>Update Resource: &lt;title&gt;</b>, and the button now reads <b>Update</b>. Two things differ from Create: <b>Resource Type is greyed out</b>, and <b>Published At</b> is already filled.
- <figure><img src="res-10-edit.png" alt="Update Resource drawer"/><figcaption><b>B4.5.1</b>: <b>&#9312;</b> <b>Resource Type</b>, locked &middot; <b>&#9313;</b> <b>Published At</b>, stamped at publish.</figcaption></figure></li>
+<li data-code="B4.5.1"><b>Edit</b>: click the title, or <b>&#8942;</b> &rarr; <b>Edit/View Details</b>. Same drawer, retitled <b>Update Resource: &lt;title&gt;</b>, and the button now reads <b>Update</b>. One thing differs from Create: <b>Resource Type is greyed out</b>. Everything else is editable,
+ including <b>Published At</b>, which is where you fix a resource that was published without a date.
+ <figure><img src="res-10-edit.png" alt="Update Resource drawer"/><figcaption><b>B4.5.1</b>: <b>&#9312;</b> <b>Resource Type</b>, locked &middot; <b>&#9313;</b> <b>Published At</b>, editable, and empty if nobody set it.</figcaption></figure></li>
 <li data-code="B4.5.2"><b>Swap the file without recreating the resource.</b> The drawer shows the stored filename and a <b>Change PDF File</b> / <b>Change Thumbnail</b> button. Use this to correct a bad upload. The resource keeps its link, its date and its place.</li>
 <li data-code="B4.5.3"><b>Pull it back</b>: <b>Set Draft</b> hides it from talents while you fix it; <b>Set Archive</b> retires it for good. Both are reversible, and neither destroys anything.</li>
 <li data-code="B4.5.4"><b>Copy Resource Link</b> puts the file's own URL on your clipboard, handy for pasting into an email.</li>
@@ -3027,8 +3037,12 @@ or earlier</b>. Setting the status to <b>Published</b> by hand does not get arou
  <tr><td><b>a future date</b></td><td><b>No.</b> It waits until that day, however you published it.</td></tr>
  <tr><td><b>empty</b></td><td><b>No.</b> There is nothing to compare against, so it never appears at all.</td></tr>
  </tbody></table></div>
- <p>So nothing is broken and there is nothing to chase. Open the resource, look at <b>Published At</b>,
- and either bring the future date back to today or fill in the empty one.</p>
+ <p><b>The fix is one field.</b> Open the resource
+ (<a href="#b4-manage" style="font-weight:700;cursor:pointer">B4.5 &#8599;</a>), look at <b>Published At</b>,
+ and either bring a future date back to <b>today</b> or fill in the empty one.</p>
+ <p class="fn">A future date is somebody scheduling deliberately. An <b>empty</b> date never is: nothing
+ in the product fills it in, so it means the resource was published and the date was forgotten. That is
+ the case on the list to be improved (<a href="#b4-create" style="font-weight:700;cursor:pointer">B4.2.7 &#8599;</a>).</p>
  <p class="fn"><b>The placed blocks ignore the date.</b> A resource with a future or empty date still
  shows in its <b>Home</b> / <b>Project</b> / <b>Project Details</b> block
  (<a href="#b5-blocks" style="font-weight:700;cursor:pointer">B5.4 &#8599;</a>), which is how a talent

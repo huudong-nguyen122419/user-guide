@@ -4,11 +4,11 @@
 
 ## B4.5.1 · Edit
 
-click the title, or **⋮** → **Edit/View Details**. Same drawer, retitled **Update Resource: <title>**, and the button now reads **Update**. Two things differ from Create: **Resource Type is greyed out**, and **Published At** is already filled.
+click the title, or **⋮** → **Edit/View Details**. Same drawer, retitled **Update Resource: <title>**, and the button now reads **Update**. One thing differs from Create: **Resource Type is greyed out**. Everything else is editable, including **Published At**, which is where you fix a resource that was published without a date.
 
 ![Update Resource drawer](res-10-edit.png)
 
-*B4.5.1: ① Resource Type, locked · ② Published At, stamped at publish.*
+*B4.5.1: ① Resource Type, locked · ② Published At, editable, and empty if nobody set it.*
 
 ## B4.5.2 · Swap the file without recreating the resource
 

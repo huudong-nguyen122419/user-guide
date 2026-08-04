@@ -63,11 +63,17 @@ how the resource is classified. Two values exist: **Profile Tips** and **Intervi
 
 ## B4.2.7 · Published At
 
-the day the resource is meant to go live **on its own**, so you can line something up in advance instead of coming back to publish it by hand. The date does still hold back something that is **already Published**: put a future date on a published resource and talents cannot see it until that day. Worth knowing if a resource reads Published but nobody can find it, see [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md).
+the day the resource becomes visible on the talent **Resources** page. Treat it as required, because **a resource with no date never appears**, whatever its status says.
 
-> **It does not do that at the moment, so skip the field**
+| You want it… | Set Published At to |
+|---|---|
+| **live now** | **today**, from the date picker. It appears as soon as the status is **Published**. |
+| **live on a set day** | **that day**. It stays out of sight until then, which is how you line something up in advance. |
+| live, but dated earlier | **a past date**. Allowed, and it appears straight away; the card just carries the earlier date. |
+
+> **Leaving it empty is the one thing that quietly breaks**
 >
-> A **Draft** with a future date stays a Draft. There is no *Scheduled* status and nothing flips it over when the day arrives, and there are Drafts carrying dates well in the past that are still Drafts. **Leave Published At empty and publish by hand when you want it live.** Either set **Status** to **Published** on this form (**B4.2.4** above), or change the status from the resource list ([B4.5 ↗](b4-5-edit-draft-archive.md)). Publishing fills the date in for you.
+> An empty date does not mean *now*. It means **never**, until somebody goes back and fills it in. **Publishing does not fill it in for you**, not from this form and not from the resource list, so the resource sits in the **Published** tab looking finished while no talent can reach it. **Known gap, and it is on the list to be improved.** Until it is, put a date in every time, even when that date is today.
 
 ## B4.2.8 · Description
 
