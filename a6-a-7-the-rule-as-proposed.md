@@ -32,10 +32,10 @@ The questions are nearly the same. **The order is reversed**, and since the rule
 
 | Profile | Today | Proposed |
 |---|---|---|
-| **Full-time employee**, no flagged employer | **Passive** at step 1 | **Passive** at Q5 — same answer, more work |
-| **Full-time employee** at a flagged company | **Passive** at step 1 | **Passive** at Q1 — same answer, better reason |
-| **Freelance wording** in the title, current role at a sponsor | **Active** — the keyword fires before the flag is read | **Passive** — the flag fires first |
-| **Employment status blank**, current role at a sponsor | **Active** — decided on one empty field | **Passive** — the flag is read first |
+| **Full-time employee**, no flagged employer | **Passive** at step 1 | **Passive** at Q5: same answer, more work |
+| **Full-time employee** at a flagged company | **Passive** at step 1 | **Passive** at Q1: same answer, better reason |
+| **Freelance wording** in the title, current role at a sponsor | **Active**: the keyword fires before the flag is read | **Passive**: the flag fires first |
+| **Employment status blank**, current role at a sponsor | **Active**: decided on one empty field | **Passive**: the flag is read first |
 
 > **The argument for the change, in one line**
 >

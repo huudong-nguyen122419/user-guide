@@ -24,7 +24,7 @@ puts the file's own URL on your clipboard, handy for pasting into an email.
 
 ## B4.5.5 · Change a whole batch at once
 
-Tick the checkbox in the table header (or individual rows) and a bar appears above the table: **Bulk Actions**, a running **N resources selected**, and, when your selection is a full page, **Select all N resources** to take the rest of the filtered set with it. **There is no bulk Set Draft**: pulling things back out of Published is one row at a time. Pairs with [B4.1.3 ↗](b4-1-open-resources.md): filter down to exactly the set you mean, tick the header box, act once.
+Tick the checkbox in the table header, or on individual rows, and a bar appears above the table. It carries **Bulk Actions** and a running count, **N resources selected**. Select a full page and one more option shows up, **Select all N resources**, which takes the rest of the filtered set with it. **There is no bulk Set Draft**: pulling things back out of Published is one row at a time. Pairs with [B4.1.3 ↗](b4-1-open-resources.md): filter down to exactly the set you mean, tick the header box, act once.
 
 | Bulk Actions offers | Note |
 |---|---|

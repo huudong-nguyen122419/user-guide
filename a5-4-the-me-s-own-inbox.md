@@ -12,7 +12,7 @@
 
 ## A5.4.1
 
-The **Inbox** tab is this ME's replies only, with a category rail down the left: **All, Prospect, Interested, Scheduled Call, Platform Signup, In Projects, Project Completed, Not Now, Not Interested, Email Updated, Left The Company, Out Of Office, Do Not Contact, Opted Out, No Categories, Bounced / Dropped, Open and Click**.
+The **Inbox** tab is this ME's replies only, with a category rail down the left. The rail lists **All, Prospect, Interested, Scheduled Call, Platform Signup, In Projects, Project Completed, Not Now, Not Interested, Email Updated, Left The Company, Out Of Office, Do Not Contact, Opted Out, No Categories, Bounced / Dropped, Open** and **Click**.
 
 ![ME inbox](admm-07-inbox.png)
 
