@@ -447,6 +447,7 @@
  <a href="#a6b-1" class="st2" data-page="page-a6">A6-B.1 &middot; Read what the system thinks</a>
  <a href="#a6b-2" class="st2" data-page="page-a6">A6-B.2 &middot; Active &rarr; Passive</a>
  <a href="#a6b-3" class="st2" data-page="page-a6">A6-B.3 &middot; Passive &rarr; Active</a>
+ <a href="#a6b-4" class="st2" data-page="page-a6">A6-B.4 &middot; Review Passive (they ask)</a>
  <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x &middot; Edge cases</a>
  <a href="#ec-6-1" class="st2" data-page="page-a6">A6.x.1 · New sign-ups to approve</a>
  <a href="#ec-6-2" class="st2" data-page="page-a6">A6.x.2 · A Passive talent resubmits</a>
@@ -1526,6 +1527,65 @@ reason:
   go Active with nothing on file about who decided or why. If you want that written down, put it in <b>Notes</b>
   yourself.</div>
   <figure class="crop"><img src="a6q-07-active-modal.png" alt="Set Talent Status to Active"/><figcaption><b>A6-B.3</b>: the whole dialog. Nothing to fill in.</figcaption></figure>
+</li>
+</ol>
+
+<h4 id="a6b-4" class="anchor" style="margin:18px 0 8px">A6-B.4 &middot; Review Passive: the talent asks to be looked at again</h4>
+<p>The two flows above are you deciding to revisit somebody. <b>This one starts with the talent.</b> A
+person you have already filed as <b>Passive</b> can send in a request to be reassessed, and when they do,
+their status changes on its own to <b>Review Passive</b> and they turn up in your queue.</p>
+<ol class="steps">
+<li data-code="A6-B.4a"><b>They arrive in the same queue as everyone else.</b> The button at the top right
+of <b>Talents</b> is labelled <b>N In Review</b>, but the number covers <b>both</b> statuses.
+ <div class="tblwrap"><table>
+ <thead><tr><th>Filter the list by</th><th>Count</th></tr></thead>
+ <tbody>
+ <tr><td>Statuses = <b>In Review</b></td><td>278</td></tr>
+ <tr><td>Statuses = <b>Review Passive</b></td><td>2</td></tr>
+ <tr><td>the queue button says</td><td><b>280</b></td></tr>
+ </tbody></table></div>
+ <p>So a resubmission is not sitting somewhere separate waiting to be noticed. It is in the queue, mixed
+ in with the new sign-ups. <b>To see only the resubmissions</b>, filter the talents list on
+ <b>Statuses = Review Passive</b> instead of opening the queue.</p>
+</li>
+<li data-code="A6-B.4b"><b>Open the profile and read what they sent.</b> A <b>Review Passive</b> profile
+carries the orange <b>Review Passive</b> chip, and the Summary tab opens with a block the other statuses
+do not have: <b>Talent Resubmit since &lt;date&gt;</b>, holding the evidence they supplied.
+ <div class="tblwrap"><table>
+ <thead><tr><th>Field</th><th>What it is</th></tr></thead>
+ <tbody>
+ <tr><td><b>Reference Email</b></td><td>somebody who can vouch for them. Often a different address from the one they signed up with.</td></tr>
+ <tr><td><b>Reference Linkedin</b></td><td>that person&rsquo;s profile. A dash means they left it out.</td></tr>
+ <tr><td><b>Additional Context of Request</b></td><td>anything they wanted to say. Frequently empty.</td></tr>
+ </tbody></table></div>
+ <figure><img src="a6q-11-review-passive.png" alt="A Review Passive profile"/><figcaption><b>A6-B.4b</b>: <b>&#9312;</b> the <b>Review Passive</b> chip &middot; <b>&#9313;</b> what the talent submitted &middot; <b>&#9314;</b> three buttons instead of the usual two.</figcaption></figure>
+ <p><b>Read it against the rule the same way you would any other profile</b>
+ (<a href="#a6a-4" style="font-weight:700;cursor:pointer">A6-A.4 &#8599;</a>). The question is whether the
+ employment situation that made them Passive has actually changed, and whether the reference backs it up.</p>
+</li>
+<li data-code="A6-B.4c"><b>Decide, using the three buttons at the top right.</b> They are not the same buttons
+a new sign-up gets, and each one says where it lands if you hover it.
+ <div class="tblwrap"><table>
+ <thead><tr><th>Button</th><th>Status afterwards</th><th>When</th></tr></thead>
+ <tbody>
+ <tr><td><b>Approve Review Passive</b></td><td><b>Active</b></td><td>the change is real and the evidence holds. Confirms with <i>Set Talent Status to Active</i>.</td></tr>
+ <tr><td><b>Reject Review Passive</b></td><td><b>Passive</b></td><td>the request does not stand up. They go back where they were, not out.</td></tr>
+ <tr><td><b>Reject</b></td><td><b>Rejected</b></td><td>they should not be on the platform at all. A different decision from the one above, and much heavier.</td></tr>
+ </tbody></table></div>
+ <div class="call warn"><span class="t">Reject and Reject Review Passive sit next to each other</span>One
+ puts them back to <b>Passive</b>, which is where they already were. The other files them as
+ <b>Rejected</b>. The labels differ by two words and the buttons are both red.
+ <b>Hover before you click</b>, the tooltip names the status you are about to set.</div>
+</li>
+<li data-code="A6-B.4d"><b>Rejecting a resubmission asks you why.</b> <b>Reject Review Passive</b> opens
+<i>Reject Status Update Request</i>. Pick one of four reasons, add a note if it helps, then
+<b>Confirm Rejection</b>, which stays greyed out until a reason is chosen.
+ <figure><img src="a6q-12-reject-resubmit.png" alt="Reject Status Update Request dialog"/><figcaption><b>A6-B.4d</b>: <b>&#9312;</b> the four reasons &middot; <b>&#9313;</b> the free-text box &middot; <b>&#9314;</b> <b>Confirm Rejection</b>, greyed out until you pick one.</figcaption></figure>
+ <p>The four are <b>Unable to verify freelance status</b>, <b>Evidence insufficient</b>,
+ <b>Reference unresponsive</b> and <b>Other</b>. Three of them are about the reference they gave you, which
+ is the point of collecting it: <b>the reason is a record of what you checked</b>, not a formality.</p>
+ <p class="fn"><b>Approving asks nothing beyond a yes.</b> Only the rejection wants a reason, so the case
+ for turning somebody down is written down and the case for letting them through is not.</p>
 </li>
 </ol>
 

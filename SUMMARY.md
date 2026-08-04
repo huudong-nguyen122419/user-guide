@@ -61,6 +61,7 @@
     * [A6-B.1 · Read what the system thinks](a6-b-1-read-what-the-system-thinks.md)
     * [A6-B.2 · Active → Passive](a6-b-2-active-passive.md)
     * [A6-B.3 · Passive → Active](a6-b-3-passive-active.md)
+    * [A6-B.4 · Review Passive (they ask)](a6-b-4-review-passive-they-ask.md)
   * [A6.x · Edge cases](a6-x-edge-cases.md)
     * [A6.x.1 · New sign-ups to approve](a6-x-1-new-sign-ups-to-approve.md)
     * [A6.x.2 · A Passive talent resubmits](a6-x-2-a-passive-talent-resubmits.md)
