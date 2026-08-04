@@ -1,4 +1,4 @@
-# B4.x.5 · Errors arrive one at a time
+# B4.x.4 · Errors arrive one at a time
 
 > B4 · Publish a resource (Admin) → B4.x · Edge cases
 
@@ -6,4 +6,4 @@
 
 ![Validation errors on the create form](res-07-validation.png)
 
-*B4.x.5: a Video form submitted empty: ① Title · ② Video URL, both flagged in the same pass.*
+*B4.x.4: a Video form submitted empty: ① Title · ② Video URL, both flagged in the same pass.*

@@ -1,4 +1,4 @@
-# B4.x.7 · Kill switch for the whole platform
+# B4.x.5 · Kill switch for the whole platform
 
 > B4 · Publish a resource (Admin) → B4.x · Edge cases
 
@@ -6,4 +6,4 @@
 
 ![Restrict Talent Modules with the Resource option](res-17-restrict-modules.png)
 
-*B4.x.7: ① the four modules currently switched off · ② Resource, the unticked fifth option. Ticking it turns the whole feature off.*
+*B4.x.5: ① the four modules currently switched off · ② Resource, the unticked fifth option. Ticking it turns the whole feature off.*

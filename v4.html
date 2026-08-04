@@ -502,8 +502,8 @@
 <a href="#er-4-1" class="st2" data-page="page-b4">B4.x.1 &middot; Published but nobody sees it</a>
 <a href="#er-4-2" class="st2" data-page="page-b4">B4.x.2 &middot; There is no Delete</a>
 <a href="#er-4-3" class="st2" data-page="page-b4">B4.x.3 &middot; Type is locked after saving</a>
-<a href="#er-4-5" class="st2" data-page="page-b4">B4.x.5 &middot; Errors arrive one at a time</a>
-<a href="#er-4-7" class="st2" data-page="page-b4">B4.x.7 &middot; Kill switch for the whole platform</a>
+<a href="#er-4-4" class="st2" data-page="page-b4">B4.x.4 &middot; Errors arrive one at a time</a>
+<a href="#er-4-5" class="st2" data-page="page-b4">B4.x.5 &middot; Kill switch for the whole platform</a>
 <a href="#er-4-6" class="st2" data-page="page-b4">B4.x.6 &middot; No Display Page</a>
 <a class="flow tal" data-page="page-b5"><span class="n">B5</span> Talent &middot; find a resource</a>
 <a href="#b5-gate" class="st" data-page="page-b5">B5.1 &middot; Who can see them</a>
@@ -697,10 +697,10 @@
  <a href="#ce-11" class="st2" data-page="page-campaign">6.x.11 · Language (EN/DE)</a>
  <a href="#ce-12" class="st2" data-page="page-campaign">6.x.12 · Force Update</a>
  <a href="#ce-13" class="st2" data-page="page-campaign">6.x.13 · Skip a step (= not sent)</a>
+ <a href="#ce-14" class="st2" data-page="page-campaign">6.x.14 &middot; Notifications bell</a>
  <a href="#ce-15" class="st2" data-page="page-campaign">6.x.15 &middot; Rename &middot; description</a>
  <a href="#ce-16" class="st2" data-page="page-campaign">6.x.16 &middot; Edit a step</a>
  <a href="#ce-17" class="st2" data-page="page-campaign">6.x.17 &middot; Move to other campaign</a>
- <a href="#ce-14" class="st2" data-page="page-campaign">6.x.14 &middot; Notifications bell</a>
  <a class="flow" data-page="page-campaignaudit"><span class="n">6&#8224;</span> Manage a campaign, audited</a>
  <a class="flow" data-page="page-marketing"><span class="n">7</span> Manage a Marketing Email</a>
  <a href="#me-create" class="st" data-page="page-marketing">7.1 · Create a ME</a>
@@ -3037,11 +3037,11 @@ or earlier</b>. Setting the status to <b>Published</b> by hand does not get arou
  can watch a video on their Home page and then fail to find it by searching.</p></li>
 <li id="er-4-2" data-code="B4.x.2"><b>There is no Delete.</b> Not in the row menu, not in the drawer. A resource can only be moved between Draft, Published and Archived. <b>Archive is the delete</b>: use it, and stop looking for a bin.</li>
 <li id="er-4-3" data-code="B4.x.3"><b>Resource Type is locked once saved.</b> You cannot turn a Video into a PDF later. If you picked wrong, archive it and create the right one. There is no conversion.</li>
-<li id="er-4-5" data-code="B4.x.5"><b>Validation does not always show you everything at once.</b> On a <b>Video</b>, an empty form flags <b>Title</b> and <b>Video URL</b> together. On a <b>PDF</b> the file check comes second, submit an empty form and you only get <i>This field is mandatory!</i> under Title; fill the title in, submit again, and only then does <b>PDF File is required</b> appear. Fix, resubmit, and re-read the form rather than assuming the first pass listed everything.
- <figure><img src="res-07-validation.png" alt="Validation errors on the create form"/><figcaption><b>B4.x.5</b>: a Video form submitted empty: <b>&#9312;</b> Title &middot; <b>&#9313;</b> Video URL, both flagged in the same pass.</figcaption></figure></li>
-<li id="er-4-7" data-code="B4.x.7"><b>One switch turns Resources off for the whole platform.</b> <b>Config Management &rarr; Payment Config &rarr; Subscription &rarr; Restrict Talent Modules</b> is a multi-select, and <b>Resource</b> is one of the choices. Add it and every talent loses the menu entry and all five blocks at once, nothing about the resources themselves changes, so the admin list will look perfectly healthy while the talent side is dark.
+<li id="er-4-4" data-code="B4.x.4"><b>Validation does not always show you everything at once.</b> On a <b>Video</b>, an empty form flags <b>Title</b> and <b>Video URL</b> together. On a <b>PDF</b> the file check comes second, submit an empty form and you only get <i>This field is mandatory!</i> under Title; fill the title in, submit again, and only then does <b>PDF File is required</b> appear. Fix, resubmit, and re-read the form rather than assuming the first pass listed everything.
+ <figure><img src="res-07-validation.png" alt="Validation errors on the create form"/><figcaption><b>B4.x.4</b>: a Video form submitted empty: <b>&#9312;</b> Title &middot; <b>&#9313;</b> Video URL, both flagged in the same pass.</figcaption></figure></li>
+<li id="er-4-5" data-code="B4.x.5"><b>One switch turns Resources off for the whole platform.</b> <b>Config Management &rarr; Payment Config &rarr; Subscription &rarr; Restrict Talent Modules</b> is a multi-select, and <b>Resource</b> is one of the choices. Add it and every talent loses the menu entry and all five blocks at once, nothing about the resources themselves changes, so the admin list will look perfectly healthy while the talent side is dark.
  <p>The field currently holds <b>Deal Intelligence Feed, Network, Team and Subscription</b>, and <b>Resource is not among them</b>. If Resources ever go missing for everyone at once, look here first.</p>
- <figure><img src="res-17-restrict-modules.png" alt="Restrict Talent Modules with the Resource option"/><figcaption><b>B4.x.7</b>: <b>&#9312;</b> the four modules currently switched off &middot; <b>&#9313;</b> <b>Resource</b>, the unticked fifth option. Ticking it turns the whole feature off.</figcaption></figure></li>
+ <figure><img src="res-17-restrict-modules.png" alt="Restrict Talent Modules with the Resource option"/><figcaption><b>B4.x.5</b>: <b>&#9312;</b> the four modules currently switched off &middot; <b>&#9313;</b> <b>Resource</b>, the unticked fifth option. Ticking it turns the whole feature off.</figcaption></figure></li>
 <li id="er-4-6" data-code="B4.x.6"><b>No Display Page is a valid answer.</b> The field has no asterisk and saves empty. The resource is then reachable only from the talent <b>Resources</b> page. Which is the right choice for reference material nobody needs pushed at them, and the wrong one for something you want seen.</li>
 </ol>
 <div class="pagernav"><a data-goto="page-b3"><span class="k">&larr; Prev</span><b>B3 &middot; Timesheet &rarr; invoice</b></a><a class="next" data-goto="page-b5"><span class="k">Next &rarr; (Talent)</span><b>B5 &middot; Find a resource</b></a></div>
@@ -3059,7 +3059,7 @@ or earlier</b>. Setting the status to <b>Published</b> by hand does not get arou
  <thead><tr><th>Condition</th><th>What satisfies it</th></tr></thead>
  <tbody>
  <tr><td><b>Talent status</b></td><td>one of <b>Active</b> &middot; <b>Passive</b> &middot; <b>In Review</b> &middot; <b>Review Passive</b>. Note what that includes: a <b>Passive</b> talent still gets resources, and so does someone still <b>In Review</b>.</td></tr>
- <tr><td><b>Module not restricted</b></td><td><b>Resource</b> must not be listed in <b>Restrict Talent Modules</b>, a platform-wide switch, see <a href="#er-4-7" style="font-weight:700;cursor:pointer">B4.x.7 &#8599;</a>.</td></tr>
+ <tr><td><b>Module not restricted</b></td><td><b>Resource</b> must not be listed in <b>Restrict Talent Modules</b>, a platform-wide switch, see <a href="#er-4-5" style="font-weight:700;cursor:pointer">B4.x.5 &#8599;</a>.</td></tr>
  <tr><td><b>Signup fee paid</b></td><td>the talent has paid the one-time access fee.</td></tr>
  </tbody></table></div></li>
 <li data-code="B5.1.2"><b>When it fails, the menu entry is simply not there.</b> Nothing is greyed out and nothing explains why, <b>Resources</b> is absent from the navigation, so most talents will never know the section exists.
@@ -4370,6 +4370,9 @@ Side Step: Not Now - Out Of Office
 <li id="ce-13" data-code="6.x.13"><b>Skip a step: what does it actually do?</b> <b>Skip = that email is NOT sent to that contact.</b> On the Preview, <b>Skip</b> on a step row skips <b>just that step for just that contact</b>. The step is tagged <b>Skipped</b> immediately (no confirm dialog) and the campaign simply moves on to their next step. <b>Skip All</b> (top-right) skips <b>every</b> step, i.e. this contact gets <b>nothing at all</b> from the campaign. Changed your mind? Click <b>Rollback Skip</b> on the step to undo. Skipped contacts are the ones the <b>Skipped</b> filter (and the People tab's Skipped filter) surfaces.
  <figure><img src="sdrx-camp-30-skip.png" alt="Skipped step with Rollback Skip"/><figcaption><b>6.x.13</b>: after <b>Skip</b>: the step is tagged <b>Skipped</b> (it will <b>not</b> be sent to this contact); <b>Rollback Skip</b> undoes it.</figcaption></figure>
 </li>
+<li id="ce-14" data-code="6.x.14"><b>The &#128276; bell: Campaign Notifications.</b> The bell (top-right, next to Create Folder) opens <b>Campaign Notifications</b>, a feed of every reply your campaigns pulled in: the <b>campaign name</b>, the <b>reply-category chip</b>, the contact, a snippet of the reply and how long ago. A <b>purple dot</b> = unread; <b>See More</b> loads older ones. Use it as your morning sweep: spot fresh replies without opening each campaign.
+ <figure><img src="sdrx-camp-31-notifications.png" alt="Campaign Notifications panel"/><figcaption><b>6.x.14</b>: the bell opens <b>Campaign Notifications</b>: campaign + category chip + reply snippet.</figcaption></figure>
+</li>
 <li id="ce-15" data-code="6.x.15"><b>Rename a campaign, or give it a description.</b> Both
 sit in the <b>header of the campaign</b>, and both are live text boxes rather than a form you open. Click
 the name (or the <b>&#9998;</b> beside it, which only moves the cursor there), type, then <b>click away</b>.
@@ -4395,9 +4398,6 @@ body loaded, and two things change: the button now reads <b>Save</b> instead of 
 to a different campaign in one action, instead of removing them here and adding them there.
  <p class="fn"><b>Noted, not yet written up.</b> The steps and what it does to their place in the
  sequence have not been walked through, so treat this as a pointer rather than an instruction.</p>
-</li>
-<li id="ce-14" data-code="6.x.14"><b>The &#128276; bell: Campaign Notifications.</b> The bell (top-right, next to Create Folder) opens <b>Campaign Notifications</b>, a feed of every reply your campaigns pulled in: the <b>campaign name</b>, the <b>reply-category chip</b>, the contact, a snippet of the reply and how long ago. A <b>purple dot</b> = unread; <b>See More</b> loads older ones. Use it as your morning sweep: spot fresh replies without opening each campaign.
- <figure><img src="sdrx-camp-31-notifications.png" alt="Campaign Notifications panel"/><figcaption><b>6.x.14</b>: the bell opens <b>Campaign Notifications</b>: campaign + category chip + reply snippet.</figcaption></figure>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-followup"><span class="k">← Prev</span><b>Flow 5 · Follow up</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 7 · Manage a Marketing Email</b></a></div>

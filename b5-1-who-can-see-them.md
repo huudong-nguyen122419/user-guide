@@ -9,7 +9,7 @@ Fail any one and the talent loses the **Resources** menu entry *and* every block
 | Condition | What satisfies it |
 |---|---|
 | **Talent status** | one of **Active** · **Passive** · **In Review** · **Review Passive**. Note what that includes: a **Passive** talent still gets resources, and so does someone still **In Review**. |
-| **Module not restricted** | **Resource** must not be listed in **Restrict Talent Modules**, a platform-wide switch, see [B4.x.7 ↗](b4-x-7-kill-switch-for-the-whole-platform.md). |
+| **Module not restricted** | **Resource** must not be listed in **Restrict Talent Modules**, a platform-wide switch, see [B4.x.5 ↗](b4-x-5-kill-switch-for-the-whole-platform.md). |
 | **Signup fee paid** | the talent has paid the one-time access fee. |
 
 ## B5.1.2 · When it fails, the menu entry is simply not there
