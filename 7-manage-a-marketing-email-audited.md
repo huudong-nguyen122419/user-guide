@@ -4,7 +4,7 @@
 
 A decision-maker’s view of [Flow 7 ↗](7-manage-a-marketing-email.md), what breaks, how often, and what to fix first. The step-by-step instructions stay on the flow page.
 
-Measured against live data and Sections 1–5
+Measured against live data · Sections 1–5
 
 All 93 marketing emails read through the API and compared against what the list and the detail header print. Scope: the ME list, People, Preview, Inbox and Email Queues.
 

@@ -4,221 +4,374 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Fintalent OSW: Guideline (Ops + SDR)</title>
-<style>:root{
- --pp-50:#F5F0FF;--pp-100:#EAE0FC;--pp-400:#7741F1;--pp-600:#4A0FD1;--pp-700:#3A0CA3;--pp-800:#2F0A85;
- --n-50:#F8F8F9;--n-100:#F0EFF3;--n-200:#E4E2EA;--n-400:#9D92AA;--n-500:#756A84;--n-600:#51485B;--n-800:#231F28;--n-900:#1F1926;
- --ok:#12B76A;--okbg:#E9FBF2;--warn:#F79009;--warnbg:#FFF7EC;--err:#D92D20;--errbg:#FEF3F2;
- --ops:#1849A9;--opsbg:#E7F0FF;
- --sans:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
- --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
- }
- *{box-sizing:border-box}
- html{scroll-behavior:smooth}
- body{margin:0;font-family:var(--sans);color:var(--n-800);background:var(--n-50);line-height:1.65;font-size:15px}.layout{display:grid;grid-template-columns:320px minmax(0,1fr);max-width:1480px;margin:0 auto}
- aside{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:#fff;border-right:1px solid var(--n-200);padding:20px 14px 40px}
- aside.brand{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--pp-700);font-size:16px;margin-bottom:2px}
- aside.brand.dot{width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,var(--pp-600),var(--pp-400))}
- aside.sub{font-size:11px;color:var(--n-400);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
- nav a{display:block;padding:4px 10px;border-radius:7px;color:var(--n-600);text-decoration:none;font-size:13px;cursor:pointer}
- nav a:hover{background:var(--n-100);color:var(--pp-700)}
- nav a.flow{font-weight:700;color:var(--n-800);margin-top:2px}
- nav a.flow.active{background:var(--pp-50);color:var(--pp-700)}
- nav a.flow.n{display:inline-block;min-width:24px;color:var(--pp-600);font-weight:800}
- nav a.flow.ops.n{color:var(--ops)}
- nav a.flow.ops.active{background:var(--opsbg);color:var(--ops)}
- nav a.st{padding-left:36px;font-size:12px;color:var(--n-500);display:none}
- nav a.st.show{display:block}
- nav a.st.edge{color:var(--n-600);font-weight:600}
- nav a.st2{padding-left:52px;font-size:11.5px;color:var(--n-400);display:none}
- nav a.st2.show{display:block}
- nav a.st:hover,nav a.st2:hover{color:var(--pp-700)}
- /* ---- ô tìm kiếm trên đầu nav ---- */.navsearch{margin:2px 0 10px}.navsearch.row{position:relative;display:block}.navsearch input{display:block;width:100%;box-sizing:border-box;padding:7px 26px 7px 30px;font-family:inherit;
- font-size:12.5px;line-height:18px;border:1px solid var(--n-200);border-radius:8px;background:#fff;color:var(--n-700)}.navsearch input:-webkit-search-decoration.navsearch input:-webkit-search-cancel-button{-webkit-appearance:none}.navsearch input:placeholder{color:var(--n-400)}.navsearch input:focus{outline:none;border-color:var(--pp-500);box-shadow:0 0 0 3px var(--pp-100)}.navsearch.ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:13px;height:13px;
- color:var(--n-400);pointer-events:none}.navsearch.clr{position:absolute;right:4px;top:50%;transform:translateY(-50%);border:0;background:none;
- cursor:pointer;color:var(--n-400);font-size:15px;line-height:1;padding:2px 4px;display:none}.navsearch.clr:hover{color:var(--n-700)}.navsearch.cnt{font-size:10.5px;color:var(--n-400);padding:5px 2px 0;display:none}.navsearch.has.clr.navsearch.has.cnt{display:block}
- /* khi đang tìm: chỉ hiện mục khớp, không phụ thuộc flow đang mở */
- nav.searching a{display:none !important}
- nav.searching a.hit,nav.searching a.kid{display:block !important}
- nav.searching.grp{display:none}
- nav.searching.grp.hit{display:block}
- nav a mark{background:#FDE68A;color:inherit;border-radius:2px;padding:0 1px}
- nav.grp{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--n-400);margin:16px 0 3px;padding:0 10px;font-weight:800}
- nav.grp.ops{color:var(--ops)}
- main{padding:34px 46px 120px;max-width:1010px}
- h1{font-size:27px;line-height:1.2;margin:0 0 6px;color:var(--n-900);letter-spacing:-.02em}
- h2{font-size:21px;margin:6px 0 6px;color:var(--n-900)}
- h2.n{color:var(--pp-600)}
- h2.n.ops{color:var(--ops)}
- h2.who{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.04em;border-radius:6px;padding:2px 8px;margin-right:8px;vertical-align:2px}
- h2.who.ops{background:var(--opsbg);color:var(--ops)}
- h2.who.sdr{background:var(--okbg);color:#087443}
- h2.who.adm{background:var(--pp-100);color:var(--pp-800)}
- h2.who.tal{background:#FDE68A;color:#92400E}
- h2.n.tal{color:#B45309}
- nav a.flow.tal.n{color:#B45309}
- h2.n.adm{color:var(--pp-700)}
- nav a.flow.adm.n{color:var(--pp-700)}
- nav a.flow.adm.active{background:var(--pp-50);color:var(--pp-700)}
- nav.grp.adm{color:var(--pp-700)}.goal.adm{background:var(--pp-50);border-color:var(--pp-100)}.goal.adm b{color:var(--pp-800)}.steps.adm>li:before{background:var(--pp-700)}
- h3{font-size:16.5px;margin:26px 0 8px;color:var(--pp-800)}
- h3.edgehead{margin-top:34px;padding-top:16px;border-top:2px solid var(--n-200);color:var(--n-800)}
- p{margin:9px 0}
- code{font-family:var(--mono);font-size:.86em;background:var(--n-100);border:1px solid var(--n-200);border-radius:5px;padding:1px 5px;color:var(--pp-800)}
- pre.ascii{font-family:var(--mono);font-size:.8em;line-height:1.5;background:var(--n-100);border:1px solid var(--n-200);border-radius:8px;padding:14px 16px;margin:12px 0;overflow-x:auto;white-space:pre;color:var(--pp-800)}
- a{color:var(--pp-700)}.lead{font-size:15.5px;color:var(--n-600)}.goal{font-size:15px;color:var(--n-800);background:var(--pp-50);border:1px solid var(--pp-100);border-radius:12px;padding:11px 15px;margin:10px 0 4px}.goal b{color:var(--pp-800)}.goal.ops{background:var(--opsbg);border-color:#cfe0fb}.goal.ops b{color:var(--ops)}.tblwrap{overflow-x:auto;margin:12px 0;border:1px solid var(--n-200);border-radius:12px}
- table{border-collapse:collapse;width:100%;font-size:13.5px;background:#fff}
- th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--n-100);vertical-align:top}
- th{background:var(--n-50);color:var(--n-600);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
- tr:last-child td{border-bottom:none}.call{border-radius:12px;padding:12px 16px;margin:13px 0;border:1px solid;font-size:14px}.call.t{font-weight:700;display:block;margin-bottom:3px}.call.note{background:var(--pp-50);border-color:var(--pp-100)}.call.warn{background:var(--warnbg);border-color:#f6dfb0}.call.warn.t{color:#a35a00}.call.stop{background:var(--errbg);border-color:#fcd2cd}.call.stop.t{color:var(--err)}
- figure{margin:14px auto;border:1px solid var(--n-200);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0.04)}
- figure img{display:block;width:100%;height:auto}
- figure.crop{max-width:620px}
- figcaption{font-size:12px;color:var(--n-500);padding:8px 13px;background:var(--n-50);border-top:1px solid var(--n-100)}
- figcaption b{color:var(--n-600)}.steps{list-style:none;padding:0;margin:10px 0}.steps>li{position:relative;padding:10px 0 14px 76px;border-bottom:1px dashed var(--n-200);scroll-margin-top:14px}.steps>li:before{content:attr(data-code);position:absolute;left:0;top:12px;min-width:27px;height:23px;padding:0 9px;border-radius:999px;background:var(--pp-600);color:#fff;font-weight:800;font-size:11.5px;display:flex;align-items:center;justify-content:center;white-space:nowrap}.steps.ops>li:before{background:var(--ops)}.steps.edge>li:before{background:var(--n-500)}.steps>li:target{background:var(--pp-50);border-radius:10px}.steps>li figure{margin:12px auto 2px;max-width:720px}.steps>li figure.sm{max-width:440px}
- ol.substeps{list-style:decimal;margin:8px 0 4px;padding-left:24px}
- ol.substeps>li{padding:5px 0;border:none;font-size:14px}
- ol.substeps>li:marker{font-weight:800;color:var(--n-500)}.path{border:1px solid var(--n-200);border-radius:14px;padding:4px 18px 10px;margin:16px 0;background:#fff}.path>.h{font-weight:800;color:var(--pp-800);margin:12px 0 2px;font-size:15px}.path>.h.tag{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--pp-600);border-radius:6px;padding:1px 8px;margin-right:7px;vertical-align:1px}.fn{font-size:.85em;color:var(--n-500)}.new{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--ok);border-radius:5px;padding:1px 6px;vertical-align:1px;margin-left:4px}.anchor{scroll-margin-top:14px}.dotc{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:3px}.pagehead{border-bottom:2px solid var(--n-200);padding-bottom:16px;margin-bottom:8px}.page{display:none}.page.active{display:block}.pagernav{display:flex;justify-content:space-between;gap:12px;margin:44px 0 0;padding-top:18px;border-top:1px solid var(--n-200)}.pagernav a{flex:1;text-decoration:none;border:1px solid var(--n-200);border-radius:12px;padding:11px 15px;color:var(--n-600);font-size:13px;background:#fff;cursor:pointer}.pagernav a:hover{border-color:var(--pp-400);color:var(--pp-700);background:var(--pp-50)}.pagernav a.next{text-align:right}.pagernav a.k{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--n-400);margin-bottom:2px}.pagernav a b{color:var(--n-800)}.pagernav.spacer{flex:1}.pagernav-top{margin:2px 0 22px;padding:0 0 16px;border-top:none;border-bottom:1px solid var(--n-200)}
- @media(max-width:960px){.layout{grid-template-columns:1fr}aside{display:none}main{padding:22px}}
+<style>
+  :root{
+    --pp-50:#F5F0FF;--pp-100:#EAE0FC;--pp-400:#7741F1;--pp-600:#4A0FD1;--pp-700:#3A0CA3;--pp-800:#2F0A85;
+    --n-50:#F8F8F9;--n-100:#F0EFF3;--n-200:#E4E2EA;--n-400:#9D92AA;--n-500:#756A84;--n-600:#51485B;--n-800:#231F28;--n-900:#1F1926;
+    --ok:#12B76A;--okbg:#E9FBF2;--warn:#F79009;--warnbg:#FFF7EC;--err:#D92D20;--errbg:#FEF3F2;
+    --ops:#1849A9;--opsbg:#E7F0FF;
+    --sans:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);color:var(--n-800);background:var(--n-50);line-height:1.65;font-size:15px}
+  .layout{display:grid;grid-template-columns:320px minmax(0,1fr);max-width:1480px;margin:0 auto}
+  aside{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:#fff;border-right:1px solid var(--n-200);padding:20px 14px 40px}
+  aside .brand{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--pp-700);font-size:16px;margin-bottom:2px}
+  aside .brand .dot{width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,var(--pp-600),var(--pp-400))}
+  aside .sub{font-size:11px;color:var(--n-400);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+  nav a{display:block;padding:4px 10px;border-radius:7px;color:var(--n-600);text-decoration:none;font-size:13px;cursor:pointer}
+  nav a:hover{background:var(--n-100);color:var(--pp-700)}
+  nav a.flow{font-weight:700;color:var(--n-800);margin-top:2px}
+  nav a.flow.active{background:var(--pp-50);color:var(--pp-700)}
+  nav a.flow .n{display:inline-block;min-width:24px;color:var(--pp-600);font-weight:800}
+  nav a.flow.ops .n{color:var(--ops)}
+  nav a.flow.ops.active{background:var(--opsbg);color:var(--ops)}
+  nav a.st{padding-left:36px;font-size:12px;color:var(--n-500);display:none}
+  nav a.st.show{display:block}
+  nav a.st.edge{color:var(--n-600);font-weight:600}
+  nav a.st2{padding-left:52px;font-size:11.5px;color:var(--n-400);display:none}
+  nav a.st2.show{display:block}
+  nav a.st:hover,nav a.st2:hover{color:var(--pp-700)}
+  /* ---- ô tìm kiếm trên đầu nav ---- */
+  .navsearch{margin:2px 0 10px}
+  .navsearch .row{position:relative;display:block}
+  .navsearch input{display:block;width:100%;box-sizing:border-box;padding:7px 26px 7px 30px;font-family:inherit;
+    font-size:12.5px;line-height:18px;border:1px solid var(--n-200);border-radius:8px;background:#fff;color:var(--n-700)}
+  .navsearch input::-webkit-search-decoration,.navsearch input::-webkit-search-cancel-button{-webkit-appearance:none}
+  .navsearch input::placeholder{color:var(--n-400)}
+  .navsearch input:focus{outline:none;border-color:var(--pp-500);box-shadow:0 0 0 3px var(--pp-100)}
+  .navsearch .ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:13px;height:13px;
+    color:var(--n-400);pointer-events:none}
+  .navsearch .clr{position:absolute;right:4px;top:50%;transform:translateY(-50%);border:0;background:none;
+    cursor:pointer;color:var(--n-400);font-size:15px;line-height:1;padding:2px 4px;display:none}
+  .navsearch .clr:hover{color:var(--n-700)}
+  .navsearch .cnt{font-size:10.5px;color:var(--n-400);padding:5px 2px 0;display:none}
+  .navsearch.has .clr,.navsearch.has .cnt{display:block}
+  /* khi đang tìm: chỉ hiện mục khớp, không phụ thuộc flow đang mở */
+  nav.searching a{display:none !important}
+  nav.searching a.hit,nav.searching a.kid{display:block !important}
+  nav.searching .grp{display:none}
+  nav.searching .grp.hit{display:block}
+  nav a mark{background:#FDE68A;color:inherit;border-radius:2px;padding:0 1px}
+  nav .grp{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--n-400);margin:16px 0 3px;padding:0 10px;font-weight:800}
+  nav .grp.ops{color:var(--ops)}
+  main{padding:34px 46px 120px;max-width:1010px}
+  h1{font-size:27px;line-height:1.2;margin:0 0 6px;color:var(--n-900);letter-spacing:-.02em}
+  h2{font-size:21px;margin:6px 0 6px;color:var(--n-900)}
+  h2 .n{color:var(--pp-600)}
+  h2 .n.ops{color:var(--ops)}
+  h2 .who{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.04em;border-radius:6px;padding:2px 8px;margin-right:8px;vertical-align:2px}
+  h2 .who.ops{background:var(--opsbg);color:var(--ops)}
+  h2 .who.sdr{background:var(--okbg);color:#087443}
+  h2 .who.adm{background:var(--pp-100);color:var(--pp-800)}
+  h2 .who.tal{background:#FDE68A;color:#92400E}
+  h2 .n.tal{color:#B45309}
+  nav a.flow.tal .n{color:#B45309}
+  h2 .n.adm{color:var(--pp-700)}
+  nav a.flow.adm .n{color:var(--pp-700)}
+  nav a.flow.adm.active{background:var(--pp-50);color:var(--pp-700)}
+  nav .grp.adm{color:var(--pp-700)}
+  .goal.adm{background:var(--pp-50);border-color:var(--pp-100)}
+  .goal.adm b{color:var(--pp-800)}
+  .steps.adm>li:before{background:var(--pp-700)}
+  h3{font-size:16.5px;margin:26px 0 8px;color:var(--pp-800)}
+  h3.edgehead{margin-top:34px;padding-top:16px;border-top:2px solid var(--n-200);color:var(--n-800)}
+  p{margin:9px 0}
+  code{font-family:var(--mono);font-size:.86em;background:var(--n-100);border:1px solid var(--n-200);border-radius:5px;padding:1px 5px;color:var(--pp-800)}
+  pre.ascii{font-family:var(--mono);font-size:.8em;line-height:1.5;background:var(--n-100);border:1px solid var(--n-200);border-radius:8px;padding:14px 16px;margin:12px 0;overflow-x:auto;white-space:pre;color:var(--pp-800)}
+  a{color:var(--pp-700)}
+  .lead{font-size:15.5px;color:var(--n-600)}
+  .goal{font-size:15px;color:var(--n-800);background:var(--pp-50);border:1px solid var(--pp-100);border-radius:12px;padding:11px 15px;margin:10px 0 4px}
+  .goal b{color:var(--pp-800)}
+  .goal.ops{background:var(--opsbg);border-color:#cfe0fb}
+  .goal.ops b{color:var(--ops)}
+  .tblwrap{overflow-x:auto;margin:12px 0;border:1px solid var(--n-200);border-radius:12px}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;background:#fff}
+  th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--n-100);vertical-align:top}
+  th{background:var(--n-50);color:var(--n-600);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+  tr:last-child td{border-bottom:none}
+  .call{border-radius:12px;padding:12px 16px;margin:13px 0;border:1px solid;font-size:14px}
+  .call .t{font-weight:700;display:block;margin-bottom:3px}
+  .call.note{background:var(--pp-50);border-color:var(--pp-100)}
+  .call.warn{background:var(--warnbg);border-color:#f6dfb0}
+  .call.warn .t{color:#a35a00}
+  .call.stop{background:var(--errbg);border-color:#fcd2cd}
+  .call.stop .t{color:var(--err)}
+  figure{margin:14px auto;border:1px solid var(--n-200);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  figure img{display:block;width:100%;height:auto}
+  figure.crop{max-width:620px}
+  figcaption{font-size:12px;color:var(--n-500);padding:8px 13px;background:var(--n-50);border-top:1px solid var(--n-100)}
+  figcaption b{color:var(--n-600)}
+  .steps{list-style:none;padding:0;margin:10px 0}
+  .steps>li{position:relative;padding:10px 0 14px 76px;border-bottom:1px dashed var(--n-200);scroll-margin-top:14px}
+  .steps>li:before{content:attr(data-code);position:absolute;left:0;top:12px;min-width:27px;height:23px;padding:0 9px;border-radius:999px;background:var(--pp-600);color:#fff;font-weight:800;font-size:11.5px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+  .steps.ops>li:before{background:var(--ops)}
+  .steps.edge>li:before{background:var(--n-500)}
+  .steps>li:target{background:var(--pp-50);border-radius:10px}
+  .steps>li figure{margin:12px auto 2px;max-width:720px}
+  .steps>li figure.sm{max-width:440px}
+  ol.substeps{list-style:decimal;margin:8px 0 4px;padding-left:24px}
+  ol.substeps>li{padding:5px 0;border:none;font-size:14px}
+  ol.substeps>li::marker{font-weight:800;color:var(--n-500)}
+  .path{border:1px solid var(--n-200);border-radius:14px;padding:4px 18px 10px;margin:16px 0;background:#fff}
+  .path>.h{font-weight:800;color:var(--pp-800);margin:12px 0 2px;font-size:15px}
+  .path>.h .tag{display:inline-block;font-size:11px;font-weight:800;color:#fff;background:var(--pp-600);border-radius:6px;padding:1px 8px;margin-right:7px;vertical-align:1px}
+  .fn{font-size:.85em;color:var(--n-500)}
+  .new{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.04em;color:#fff;background:var(--ok);border-radius:5px;padding:1px 6px;vertical-align:1px;margin-left:4px}
+  .anchor{scroll-margin-top:14px}
+  .dotc{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:3px}
+  .pagehead{border-bottom:2px solid var(--n-200);padding-bottom:16px;margin-bottom:8px}
+  .page{display:none}
+  .page.active{display:block}
+  .pagernav{display:flex;justify-content:space-between;gap:12px;margin:44px 0 0;padding-top:18px;border-top:1px solid var(--n-200)}
+  .pagernav a{flex:1;text-decoration:none;border:1px solid var(--n-200);border-radius:12px;padding:11px 15px;color:var(--n-600);font-size:13px;background:#fff;cursor:pointer}
+  .pagernav a:hover{border-color:var(--pp-400);color:var(--pp-700);background:var(--pp-50)}
+  .pagernav a.next{text-align:right}
+  .pagernav a .k{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--n-400);margin-bottom:2px}
+  .pagernav a b{color:var(--n-800)}
+  .pagernav .spacer{flex:1}
+  .pagernav-top{margin:2px 0 22px;padding:0 0 16px;border-top:none;border-bottom:1px solid var(--n-200)}
+  @media(max-width:960px){.layout{grid-template-columns:1fr}aside{display:none}main{padding:22px}}
 
- /* ============ A6 audit page (page-a6audit) ============
- Scoped under.auditdoc: this stylesheet carries bare element selectors
- and would otherwise restyle the whole guide. Light palette only —
- v4 has no dark mode. */.auditdoc{
- --paper:#FCFBF9;
- --ink:#1A1A17;
- --ink-2:#4A473F;
- --muted:#6E6B62;
- --rule:#DED9CE;
- --rule-2:#EDE9E1;
- --accent:#14524A;
- --accent-ink:#FCFBF9;
- --cream:#F6EFDC;
- --cream-rule:#E4D8B4;
- --passive:#9C5A06;
- --passive-bg:#FBF0DF;
- --active:#1B6B3F;
- --active-bg:#E9F3EB;
- --code-bg:#F2F0EA;
- --shadow:rgba(26,26,23.07);
- }.auditdoc{
- --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
- --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
- --mono:ui-monospace,"SF Mono","Cascadia Mono","Segoe UI Mono",Menlo,Consolas,"Liberation Mono",monospace;
- background:var(--paper);
- color:var(--ink);
- font-family:var(--sans);
- font-size:16px;
- line-height:1.62;
- -webkit-font-smoothing:antialiased;
- padding:0;
- }.auditdoc.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:0}.auditdoc /* ---------- masthead ---------- */
- /* Facts run as a full-width band under the deck.auditdoc not as a side column: two
- columns of unequal height always leave dead space at the top of the short one. */.eyebrow{
- font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
- color:var(--muted);margin:0 0 18px;
- }.auditdoc h1{
- font-family:var(--serif);font-weight:600;font-size:clamp(32px,4.6vw,48px);
- line-height:1.08;letter-spacing:-.015em;margin:0 0 14px;text-wrap:pretty;
- }.auditdoc.standfirst{
- font-size:15.5px;color:var(--ink-2);margin:0;
- }.auditdoc /* Each dt/dd pair is wrapped in its own div.auditdoc so the grid places the pair as one
- cell — putting dt and dd straight into a multi-column grid would split them. */.mast-facts{
- margin:30px 0 0;padding:17px 0 0;border-top:1px solid var(--rule);
- display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:18px 26px;
- }.auditdoc.mast-facts dt{
- font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
- color:var(--muted);
- }.auditdoc.mast-facts dd{
- margin:5px 0 0;font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums;
- line-height:1.4;
- }.auditdoc.standfirst code{font-size:.9em}.auditdoc.masthead-rule{border:0;border-top:2px solid var(--ink);margin:34px 0 0;opacity:.85}.auditdoc /* ---------- callout ---------- */.callout{
- display:grid;grid-template-columns:126px 1fr;gap:20px;
- background:var(--cream);border:1px solid var(--cream-rule);
- padding:20px 22px;margin:34px 0 0;
- }.auditdoc.callout.tag{
- font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
- color:var(--muted);padding-top:4px;
- }.auditdoc.callout p{margin:0;font-size:15px}.auditdoc.callout p + p{margin-top:10px}
-@media (max-width:620px){.auditdoc.callout{grid-template-columns:1fr;gap:8px}
-}.auditdoc /* ---------- sections ---------- */
- section{margin-top:64px}.auditdoc.sec-head{
- display:flex;align-items:baseline;gap:14px;
- border-bottom:1px solid var(--rule);padding-bottom:9px;margin-bottom:26px;
- }.auditdoc.sec-num{
- font-family:var(--mono);font-size:12px;color:var(--muted);
- font-variant-numeric:tabular-nums;flex:none;
- }.auditdoc.sec-head h2{
- font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.01em;
- margin:0;flex:none;
- }.auditdoc.sec-head.spacer{flex:1 1 auto;border-bottom:1px solid var(--rule-2);transform:translateY(-6px)}.auditdoc.audience{
- font-family:var(--mono);font-size:10.5px;color:var(--muted);flex:none;letter-spacing:.04em;
- }
-@media (max-width:700px){.auditdoc.sec-head{flex-wrap:wrap;gap:8px}.auditdoc.sec-head.spacer{display:none}
-}.auditdoc.lede{font-size:15px;color:var(--ink-2);margin:0 0 22px}.auditdoc /* ---------- numbered summary ---------- */
- /* NB: never display:grid on a list item holding mixed inline content — each element
- child becomes its own grid item and the text runs get orphaned into a column.
- Counter goes in an absolutely positioned marker instead. */
- ol.summary{margin:0;padding-left:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:15px}.auditdoc ol.summary > li{
- counter-increment:s;position:relative;padding-left:42px;font-size:15px;
- }.auditdoc ol.summary > li:before{
- content:counter(s) ".";position:absolute;left:0;top:1px;width:30px;text-align:right;
- font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;
- }.auditdoc /* ---------- tables ---------- */.tbl{overflow-x:auto;margin:0;border-top:1px solid var(--ink);}.auditdoc table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}.auditdoc thead th{
- font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
- color:var(--muted);text-align:left;vertical-align:bottom;
- padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);
- }.auditdoc tbody td{padding:13px 14px 13px 0;vertical-align:top;border-bottom:1px solid var(--rule-2)}.auditdoc tbody tr:last-child td{border-bottom:1px solid var(--rule)}.auditdoc td.num.auditdoc th.num{text-align:right;padding-right:16px;font-variant-numeric:tabular-nums;white-space:nowrap}.auditdoc.tbl code{font-size:11.5px}.auditdoc.sub td{border-bottom:none;padding-top:0;padding-bottom:11px;font-size:12.5px;color:var(--ink-2)}.auditdoc.sub.lbl{
- font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
- color:var(--muted);white-space:nowrap;
- }.auditdoc.tnote{font-size:12.5px;color:var(--muted);margin:12px 0 0}.auditdoc code{
- font-family:var(--mono);font-size:12.5px;background:var(--code-bg);
- padding:1px 5px;border-radius:3px;color:var(--ink);
- }.auditdoc /* ---------- badges & verdicts ---------- */.badge{
- display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;
- background:var(--accent);color:var(--accent-ink);padding:3px 8px;border-radius:2px;white-space:nowrap;
- }.auditdoc.v{
- display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;
- padding:2px 7px;border-radius:2px;white-space:nowrap;
- }.auditdoc.v.passive{background:var(--passive-bg);color:var(--passive);border:1px solid var(--passive)}.auditdoc.v.active{background:var(--active-bg);color:var(--active);border:1px solid var(--active)}.auditdoc.stop{font-family:var(--mono);font-weight:600;font-size:12.5px;white-space:nowrap}.auditdoc /* ---------- journey blocks ---------- */.journey{margin-top:40px;padding-top:4px}.auditdoc.j-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}.auditdoc.j-head h3{font-family:var(--serif);font-weight:600;font-size:21px;margin:0;letter-spacing:-.005em}.auditdoc.meta{
- display:grid;grid-template-columns:104px 1fr;gap:7px 16px;font-size:13.5px;
- margin:0 0 20px;color:var(--ink-2);
- }.auditdoc.meta dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}.auditdoc.meta dd{margin:0}
-@media (max-width:620px){.auditdoc.meta{grid-template-columns:1fr;gap:2px 0}.auditdoc.meta dd{margin-bottom:8px}
-}.auditdoc.states{
- margin:18px 0 0;background:var(--rule-2);border:1px solid var(--rule);
- display:grid;grid-template-columns:126px 1fr;gap:2px 20px;padding:18px 22px;font-size:13.5px;
- }.auditdoc.states dt{
- font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
- color:var(--muted);padding-top:4px;
- }.auditdoc.states dd{margin:0 0 10px}.auditdoc.states dd:last-of-type{margin-bottom:0}
-@media (max-width:620px){.auditdoc.states{grid-template-columns:1fr;gap:2px}
-}.auditdoc /* ---------- flow ---------- */.flow-label{
- font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
- color:var(--muted);margin:38px 0 0;padding-bottom:9px;border-bottom:1px solid var(--rule);
- }.auditdoc.flow{border:1px solid var(--rule);border-top:0;padding:26px 18px;overflow-x:auto;background:var(--paper)}.auditdoc pre.mermaid{margin:0;text-align:center;font-family:var(--mono)}.auditdoc pre.ascii{
- font-family:var(--mono);font-size:12px;line-height:1.55;margin:0;
- white-space:pre;color:var(--ink);
- }.auditdoc /* ---------- shortlist ---------- */.short{display:flex;flex-direction:column;gap:0}.auditdoc.short-item{
- display:grid;grid-template-columns:94px 1fr;gap:22px;
- padding:22px 0;border-bottom:1px solid var(--rule-2);
- }.auditdoc.short-item:first-child{border-top:1px solid var(--rule)}.auditdoc.short-item:last-child{border-bottom:1px solid var(--rule)}.auditdoc.short-id{display:flex;flex-direction:column;gap:6px;align-items:flex-start}.auditdoc.short-score{font-family:var(--mono);font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}.auditdoc.short-item h4{font-family:var(--serif);font-weight:600;font-size:18px;margin:0 0 10px;letter-spacing:-.005em}.auditdoc.role{font-size:14px;margin:0 0 8px;color:var(--ink-2)}.auditdoc.role:last-child{margin-bottom:0}.auditdoc.role b.who{
- font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;
- color:var(--accent);text-transform:uppercase;
- }
-@media (max-width:620px){.auditdoc.short-item{grid-template-columns:1fr;gap:12px}
-}.auditdoc /* ---------- open questions ---------- */.oq{display:flex;flex-direction:column;gap:0}.auditdoc.oq-item{
- display:grid;grid-template-columns:126px 1fr;gap:20px;
- padding:18px 0;border-bottom:1px solid var(--rule-2);
- }.auditdoc.oq-item:first-child{border-top:1px solid var(--rule)}.auditdoc.oq-item:last-child{border-bottom:1px solid var(--rule)}.auditdoc.oq-tag{
- font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
- color:var(--muted);padding-top:3px;
- }.auditdoc.oq-item p{margin:0;font-size:14.5px}.auditdoc.oq-src{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:7px !important}
-@media (max-width:620px){.auditdoc.oq-item{grid-template-columns:1fr;gap:6px}
-}.auditdoc /* ---------- decided strip ---------- */.decided{
- margin-top:26px;border:1px solid var(--rule);border-left:3px solid var(--accent);
- padding:16px 20px;font-size:14px;color:var(--ink-2);
- }.auditdoc.decided b{color:var(--ink)}.auditdoc.decided ul{margin:9px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px}.auditdoc strong{font-weight:650;color:var(--ink)}.auditdoc s{color:var(--muted)}.auditdoc a{color:var(--accent)}.auditdoc a:focus-visible.auditdoc [tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (prefers-reduced-motion:reduce){.auditdoc *{animation:none !important;transition:none !important}
+  /* ============ A6 audit page (page-a6audit) ============
+     Scoped under .auditdoc: this stylesheet carries bare element selectors
+     and would otherwise restyle the whole guide. Light palette only —
+     v4 has no dark mode. */
+.auditdoc{
+    --paper:#FCFBF9;
+    --ink:#1A1A17;
+    --ink-2:#4A473F;
+    --muted:#6E6B62;
+    --rule:#DED9CE;
+    --rule-2:#EDE9E1;
+    --accent:#14524A;
+    --accent-ink:#FCFBF9;
+    --cream:#F6EFDC;
+    --cream-rule:#E4D8B4;
+    --passive:#9C5A06;
+    --passive-bg:#FBF0DF;
+    --active:#1B6B3F;
+    --active-bg:#E9F3EB;
+    --code-bg:#F2F0EA;
+    --shadow:rgba(26,26,23,.07);
+  }
+.auditdoc{
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono","Segoe UI Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    padding:0;
+  }
+.auditdoc .wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:0}
+.auditdoc /* ---------- masthead ---------- */
+  /* Facts run as a full-width band under the deck, .auditdoc not as a side column: two
+     columns of unequal height always leave dead space at the top of the short one. */
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 18px;
+  }
+.auditdoc h1{
+    font-family:var(--serif);font-weight:600;font-size:clamp(32px,4.6vw,48px);
+    line-height:1.08;letter-spacing:-.015em;margin:0 0 14px;text-wrap:pretty;
+  }
+.auditdoc .standfirst{
+    font-size:15.5px;color:var(--ink-2);margin:0;
+  }
+.auditdoc /* Each dt/dd pair is wrapped in its own div, .auditdoc so the grid places the pair as one
+     cell — putting dt and dd straight into a multi-column grid would split them. */
+  .mast-facts{
+    margin:30px 0 0;padding:17px 0 0;border-top:1px solid var(--rule);
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:18px 26px;
+  }
+.auditdoc .mast-facts dt{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);
+  }
+.auditdoc .mast-facts dd{
+    margin:5px 0 0;font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums;
+    line-height:1.4;
+  }
+.auditdoc .standfirst code{font-size:.9em}
+.auditdoc .masthead-rule{border:0;border-top:2px solid var(--ink);margin:34px 0 0;opacity:.85}
+.auditdoc /* ---------- callout ---------- */
+  .callout{
+    display:grid;grid-template-columns:126px 1fr;gap:20px;
+    background:var(--cream);border:1px solid var(--cream-rule);
+    padding:20px 22px;margin:34px 0 0;
+  }
+.auditdoc .callout .tag{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);padding-top:4px;
+  }
+.auditdoc .callout p{margin:0;font-size:15px}
+.auditdoc .callout p + p{margin-top:10px}
+@media (max-width:620px){
+  .auditdoc .callout{grid-template-columns:1fr;gap:8px}
+}
+.auditdoc /* ---------- sections ---------- */
+  section{margin-top:64px}
+.auditdoc .sec-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1px solid var(--rule);padding-bottom:9px;margin-bottom:26px;
+  }
+.auditdoc .sec-num{
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+    font-variant-numeric:tabular-nums;flex:none;
+  }
+.auditdoc .sec-head h2{
+    font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.01em;
+    margin:0;flex:none;
+  }
+.auditdoc .sec-head .spacer{flex:1 1 auto;border-bottom:1px solid var(--rule-2);transform:translateY(-6px)}
+.auditdoc .audience{
+    font-family:var(--mono);font-size:10.5px;color:var(--muted);flex:none;letter-spacing:.04em;
+  }
+@media (max-width:700px){
+  .auditdoc .sec-head{flex-wrap:wrap;gap:8px}
+  .auditdoc .sec-head .spacer{display:none}
+}
+.auditdoc .lede{font-size:15px;color:var(--ink-2);margin:0 0 22px}
+.auditdoc /* ---------- numbered summary ---------- */
+  /* NB: never display:grid on a list item holding mixed inline content — each element
+     child becomes its own grid item and the text runs get orphaned into a column.
+     Counter goes in an absolutely positioned marker instead. */
+  ol.summary{margin:0;padding-left:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:15px}
+.auditdoc ol.summary > li{
+    counter-increment:s;position:relative;padding-left:42px;font-size:15px;
+  }
+.auditdoc ol.summary > li::before{
+    content:counter(s) ".";position:absolute;left:0;top:1px;width:30px;text-align:right;
+    font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;
+  }
+.auditdoc /* ---------- tables ---------- */
+  .tbl{overflow-x:auto;margin:0;border-top:1px solid var(--ink);}
+.auditdoc table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+.auditdoc thead th{
+    font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);text-align:left;vertical-align:bottom;
+    padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);
+  }
+.auditdoc tbody td{padding:13px 14px 13px 0;vertical-align:top;border-bottom:1px solid var(--rule-2)}
+.auditdoc tbody tr:last-child td{border-bottom:1px solid var(--rule)}
+.auditdoc td.num, .auditdoc th.num{text-align:right;padding-right:16px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.auditdoc .tbl code{font-size:11.5px}
+.auditdoc .sub td{border-bottom:none;padding-top:0;padding-bottom:11px;font-size:12.5px;color:var(--ink-2)}
+.auditdoc .sub .lbl{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);white-space:nowrap;
+  }
+.auditdoc .tnote{font-size:12.5px;color:var(--muted);margin:12px 0 0}
+.auditdoc code{
+    font-family:var(--mono);font-size:12.5px;background:var(--code-bg);
+    padding:1px 5px;border-radius:3px;color:var(--ink);
+  }
+.auditdoc /* ---------- badges & verdicts ---------- */
+  .badge{
+    display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;
+    background:var(--accent);color:var(--accent-ink);padding:3px 8px;border-radius:2px;white-space:nowrap;
+  }
+.auditdoc .v{
+    display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;
+    padding:2px 7px;border-radius:2px;white-space:nowrap;
+  }
+.auditdoc .v.passive{background:var(--passive-bg);color:var(--passive);border:1px solid var(--passive)}
+.auditdoc .v.active{background:var(--active-bg);color:var(--active);border:1px solid var(--active)}
+.auditdoc .stop{font-family:var(--mono);font-weight:600;font-size:12.5px;white-space:nowrap}
+.auditdoc /* ---------- journey blocks ---------- */
+  .journey{margin-top:40px;padding-top:4px}
+.auditdoc .j-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.auditdoc .j-head h3{font-family:var(--serif);font-weight:600;font-size:21px;margin:0;letter-spacing:-.005em}
+.auditdoc .meta{
+    display:grid;grid-template-columns:104px 1fr;gap:7px 16px;font-size:13.5px;
+    margin:0 0 20px;color:var(--ink-2);
+  }
+.auditdoc .meta dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.auditdoc .meta dd{margin:0}
+@media (max-width:620px){
+  .auditdoc .meta{grid-template-columns:1fr;gap:2px 0}
+  .auditdoc .meta dd{margin-bottom:8px}
+}
+.auditdoc .states{
+    margin:18px 0 0;background:var(--rule-2);border:1px solid var(--rule);
+    display:grid;grid-template-columns:126px 1fr;gap:2px 20px;padding:18px 22px;font-size:13.5px;
+  }
+.auditdoc .states dt{
+    font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--muted);padding-top:4px;
+  }
+.auditdoc .states dd{margin:0 0 10px}
+.auditdoc .states dd:last-of-type{margin-bottom:0}
+@media (max-width:620px){
+  .auditdoc .states{grid-template-columns:1fr;gap:2px}
+}
+.auditdoc /* ---------- flow ---------- */
+  .flow-label{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);margin:38px 0 0;padding-bottom:9px;border-bottom:1px solid var(--rule);
+  }
+.auditdoc .flow{border:1px solid var(--rule);border-top:0;padding:26px 18px;overflow-x:auto;background:var(--paper)}
+.auditdoc pre.mermaid{margin:0;text-align:center;font-family:var(--mono)}
+.auditdoc pre.ascii{
+    font-family:var(--mono);font-size:12px;line-height:1.55;margin:0;
+    white-space:pre;color:var(--ink);
+  }
+.auditdoc /* ---------- shortlist ---------- */
+  .short{display:flex;flex-direction:column;gap:0}
+.auditdoc .short-item{
+    display:grid;grid-template-columns:94px 1fr;gap:22px;
+    padding:22px 0;border-bottom:1px solid var(--rule-2);
+  }
+.auditdoc .short-item:first-child{border-top:1px solid var(--rule)}
+.auditdoc .short-item:last-child{border-bottom:1px solid var(--rule)}
+.auditdoc .short-id{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.auditdoc .short-score{font-family:var(--mono);font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.auditdoc .short-item h4{font-family:var(--serif);font-weight:600;font-size:18px;margin:0 0 10px;letter-spacing:-.005em}
+.auditdoc .role{font-size:14px;margin:0 0 8px;color:var(--ink-2)}
+.auditdoc .role:last-child{margin-bottom:0}
+.auditdoc .role b.who{
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;
+    color:var(--accent);text-transform:uppercase;
+  }
+@media (max-width:620px){
+  .auditdoc .short-item{grid-template-columns:1fr;gap:12px}
+}
+.auditdoc /* ---------- open questions ---------- */
+  .oq{display:flex;flex-direction:column;gap:0}
+.auditdoc .oq-item{
+    display:grid;grid-template-columns:126px 1fr;gap:20px;
+    padding:18px 0;border-bottom:1px solid var(--rule-2);
+  }
+.auditdoc .oq-item:first-child{border-top:1px solid var(--rule)}
+.auditdoc .oq-item:last-child{border-bottom:1px solid var(--rule)}
+.auditdoc .oq-tag{
+    font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--muted);padding-top:3px;
+  }
+.auditdoc .oq-item p{margin:0;font-size:14.5px}
+.auditdoc .oq-src{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:7px !important}
+@media (max-width:620px){
+  .auditdoc .oq-item{grid-template-columns:1fr;gap:6px}
+}
+.auditdoc /* ---------- decided strip ---------- */
+  .decided{
+    margin-top:26px;border:1px solid var(--rule);border-left:3px solid var(--accent);
+    padding:16px 20px;font-size:14px;color:var(--ink-2);
+  }
+.auditdoc .decided b{color:var(--ink)}
+.auditdoc .decided ul{margin:9px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px}
+.auditdoc strong{font-weight:650;color:var(--ink)}
+.auditdoc s{color:var(--muted)}
+.auditdoc a{color:var(--accent)}
+.auditdoc a:focus-visible, .auditdoc [tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  .auditdoc *{animation:none !important;transition:none !important}
 }
 </style>
 </head>
@@ -226,7 +379,7 @@
 <div class="layout">
 <aside>
  <div class="brand"><span class="dot"></span>Fintalent OSW</div>
- <div class="sub">Ops + SDR, by task-flow and build 21 Jul</div>
+ <div class="sub">Ops + SDR · by task-flow · build 21 Jul</div>
  <nav>
  <div class="navsearch">
  <div class="row">
@@ -1062,17 +1215,17 @@ broken, check the <b>reviewed</b> count in the Run dialog (A5.7.3).</li>
 <div class="goal adm">A new sign-up sits at <code>In Review</code>. An admin opens it, clicks <b>Approve</b>, and <b>the system sets Active or Passive by itself</b>. Your job is to know what it will pick <i>before</i> you click, and to flip it afterwards if it picked wrong. <b>The default is Active</b>: a record only becomes Passive if a rule fires.</div>
 <p><b>Five steps, and that is the whole flow.</b> There is no queue to build, no list to work, no batch:</p>
 <pre class="ascii">In Review queue
- &#9660;
+      &#9660;
 Admin opens the profile and reads it
- &#9660;
-Hover Approve Talent &rarr; tooltip shows the status the system WILL set
- &#9660;
-Click Approve &rarr; the rule runs, status becomes Active or Passive
- &#9660;
- done
- &#9492;&#9472; edge case: the status is wrong
- &#9660;
- Admin flips it by hand on the status chip</pre>
+      &#9660;
+Hover  Approve Talent   &rarr;  tooltip shows the status the system WILL set
+      &#9660;
+Click  Approve          &rarr;  the rule runs, status becomes Active or Passive
+      &#9660;
+                          done
+      &#9492;&#9472; edge case: the status is wrong
+                 &#9660;
+          Admin flips it by hand on the status chip</pre>
 <p class="fn"><b>Existing records are out of scope.</b> Nobody re-reviews the Active or Passive population by hand any more, <b>the retired existing-records branch</b> covered that. This page is the intake path only. Live today: <b>2 records</b> at In Review; the sample the figures below come from carries <b>286</b>.</p>
 <ol class="steps adm">
 <li data-code="A6-C.1"><b>Open the queue.</b> <i>User Management &rarr; Talents</i>, then the <b>N In Review</b> button at the top right. It opens the queue one profile at a time.</li>
@@ -1152,22 +1305,22 @@ not supply.</code></div>
 <p><b>Five questions, walked top to bottom, first Yes ends the walk.</b> Fall off the bottom and you get the fallback. Only three inputs exist: the <b>employment status</b> picked at sign-up, the <b>position</b> and <b>company name</b> of the <b>current</b> work-experience rows, and whether those companies carry a <b>Mergermarket flag</b>. It never reads the profile headline, the company description, the contract history or the applications.</p>
 <pre class="ascii">Admin approves a talent out of review
 &#9474;
-&#9500;&#9472; Q1 Employment status is Full-time or Part-time employee?
-&#9474; YES &rarr; PASSIVE profile never examined
-&#9474; NO &#9660;
-&#9500;&#9472; Q2 Employment status is Freelancer, Unemployed or Other?
-&#9474; NO: blank &rarr; ACTIVE fallback and profile never examined
-&#9474; YES &#9660;
-&#9500;&#9472; Q3 Any role marked current?
-&#9474; NONE &rarr; ACTIVE nothing to test
-&#9474; AT LEAST ONE &#9660;
-&#9500;&#9472; Q4 Does a current role's POSITION or COMPANY NAME contain freelance wording?
-&#9474; YES &rarr; ACTIVE exits before Q5
-&#9474; NO &#9660;
-&#9500;&#9472; Q5 Is a current role at a linked company flagged portfolio / sponsor / corporate?
-&#9474; YES &rarr; PASSIVE the only client-company route
-&#9474; NO &#9660;
-&#9492;&#9472; ACTIVE fallback and nothing proved them passive</pre>
+&#9500;&#9472; Q1  Employment status is Full-time or Part-time employee?
+&#9474;        YES &rarr; PASSIVE            profile never examined
+&#9474;  NO &#9660;
+&#9500;&#9472; Q2  Employment status is Freelancer, Unemployed or Other?
+&#9474;        NO &mdash; blank &rarr; ACTIVE      fallback &middot; profile never examined
+&#9474;  YES &#9660;
+&#9500;&#9472; Q3  Any role marked current?
+&#9474;        NONE &rarr; ACTIVE            nothing to test
+&#9474;  AT LEAST ONE &#9660;
+&#9500;&#9472; Q4  Does a current role's POSITION or COMPANY NAME contain freelance wording?
+&#9474;        YES &rarr; ACTIVE             exits before Q5
+&#9474;  NO &#9660;
+&#9500;&#9472; Q5  Is a current role at a linked company flagged portfolio / sponsor / corporate?
+&#9474;        YES &rarr; PASSIVE            the only client-company route
+&#9474;  NO &#9660;
+&#9492;&#9472; ACTIVE                         fallback &middot; nothing proved them passive</pre>
 <p><b>One talent walks between one and five steps.</b> The cheapest paths cost a single field read; only the deepest touches the company flags.</p>
 <div class="tblwrap"><table>
 <thead><tr><th>Stops at</th><th>Steps</th><th>What was read</th><th>Verdict</th><th>Sample queue<br><span class="fn">286 records</span></th></tr></thead>
@@ -1244,28 +1397,28 @@ it is.</p>
 <h4 style="margin:18px 0 8px">The walk</h4>
 <pre class="ascii">Admin approves a talent out of review
 &#9474;
-&#9500;&#9472; S1 Employment status is Full-time or Part-time employee?
-&#9474; YES &rarr; PASSIVE no escape hatch
-&#9474; NO &#9660;
-&#9500;&#9472; S2 Employment status is blank?
-&#9474; YES &rarr; ??? (still open)
-&#9474; NO &#9660;
-&#9500;&#9472; S3 Any role marked current?
-&#9474; NONE &rarr; ACTIVE nothing to test
-&#9474; AT LEAST ONE &#9660;
-&#9500;&#9472; S4 Current role's POSITION or COMPANY contains freelance wording?
-&#9474; YES &rarr; ACTIVE
-&#9474; NO &#9660;
-&#9500;&#9472; S5 Current role's POSITION is junior or back office?
-&#9474; YES &rarr; ACTIVE ends here. the company is never read.
-&#9474; NO &#9660;
-&#9500;&#9472; S6 Current role's company is advisory / sell-side? (in the flow, never yet fired)
-&#9474; YES &rarr; ACTIVE
-&#9474; NO &#9660;
-&#9500;&#9472; S7 Current role's company carries a Mergermarket flag?
-&#9474; YES &rarr; PASSIVE sponsor, portfolio OR corporate, all three count
-&#9474; NO &#9660; no flag, or no linked company at all
-&#9492;&#9472; ACTIVE fallback</pre>
+&#9500;&#9472; S1  Employment status is Full-time or Part-time employee?
+&#9474;        YES &rarr; PASSIVE            no escape hatch
+&#9474;  NO &#9660;
+&#9500;&#9472; S2  Employment status is blank?
+&#9474;        YES &rarr; ??? (still open)
+&#9474;  NO &#9660;
+&#9500;&#9472; S3  Any role marked current?
+&#9474;        NONE &rarr; ACTIVE            nothing to test
+&#9474;  AT LEAST ONE &#9660;
+&#9500;&#9472; S4  Current role's POSITION or COMPANY contains freelance wording?
+&#9474;        YES &rarr; ACTIVE
+&#9474;  NO &#9660;
+&#9500;&#9472; S5  Current role's POSITION is junior or back office?
+&#9474;        YES &rarr; ACTIVE             ends here. the company is never read.
+&#9474;  NO &#9660;
+&#9500;&#9472; S6  Current role's company is advisory / sell-side?   (in the flow, never yet fired)
+&#9474;        YES &rarr; ACTIVE
+&#9474;  NO &#9660;
+&#9500;&#9472; S7  Current role's company carries a Mergermarket flag?
+&#9474;        YES &rarr; PASSIVE            sponsor, portfolio OR corporate &mdash; all three count
+&#9474;  NO &#9660;                          no flag, or no linked company at all
+&#9492;&#9472; ACTIVE                         fallback</pre>
 <p><b>S5 before S7 is the whole point of the rebuild.</b> Iman Dakhlaoui&rsquo;s employer <i>is</i>
 flagged; test the flag first and a junior comes out Passive. <b>Order is load-bearing, not
 cosmetic.</b></p>
@@ -1434,7 +1587,7 @@ later. This is the intake decision only.</p>
 <h2><span class="who adm">ADMIN</span><span class="n">A6† ·</span> Approve a new talent · audit</h2>
 <p class="fn" style="margin-bottom:22px">A decision-maker’s view of the same rule documented in <a href="#page-a6" data-goto="page-a6" style="font-weight:700;cursor:pointer">A6 &#8599;</a>. What it costs when it is wrong, what to fix first, and what is still undecided. The operator’s view, with the click path, stays on the A6 page.</p>
 <div class="auditdoc">
-<p class="eyebrow">Validated on live records and Sections 1&ndash;7</p>
+<p class="eyebrow">Validated on live records &middot; Sections 1&ndash;7</p>
  <h1>Approve a new talent, the decision, audited</h1>
  <p class="standfirst">Reverse-engineered from live behaviour, not from source. Scope: the admin app,
  <code>In Review</code> queue &rarr; <strong>Approve Talent</strong>, the moment the system
@@ -1443,11 +1596,11 @@ later. This is the intake decision only.</p>
  <dl class="mast-facts">
  <div><dt>Walked</dt><dd>30 Jul 2026</dd></div>
  <div><dt>Access</dt><dd>Read&#8209;only</dd></div>
- <div><dt>Validated</dt><dd>7 records, 2 by tooltip</dd></div>
- <div><dt>Queue</dt><dd>2 live, 286 in sample</dd></div>
- <div><dt>Rule</dt><dd>7 steps, 2 reach Passive</dd></div>
- <div><dt>Register</dt><dd>12 defects, 3 quick wins</dd></div>
- <div><dt>Decisions</dt><dd>5 settled and 3 open</dd></div>
+ <div><dt>Validated</dt><dd>7 records &middot; 2 by tooltip</dd></div>
+ <div><dt>Queue</dt><dd>2 live &middot; 286 in sample</dd></div>
+ <div><dt>Rule</dt><dd>7 steps &middot; 2 reach Passive</dd></div>
+ <div><dt>Register</dt><dd>12 defects &middot; 3 quick wins</dd></div>
+ <div><dt>Decisions</dt><dd>5 settled &middot; 3 open</dd></div>
  </dl>
  <hr class="masthead-rule">
 
@@ -1689,28 +1842,28 @@ later. This is the intake decision only.</p>
  <div class="flow">
 <pre class="ascii">Admin clicks Approve
 &#9474;
-&#9500;&#9472; S1 Employment status is Full-time or Part-time?
-&#9474; YES &rarr; PASSIVE no escape hatch
-&#9474; NO &#9660;
-&#9500;&#9472; S2 Employment status is blank?
-&#9474; YES &rarr; ACTIVE still an open question
-&#9474; NO &#9660;
-&#9500;&#9472; S3 Any role marked current?
-&#9474; NONE &rarr; ACTIVE nothing to test
-&#9474; AT LEAST ONE &#9660;
-&#9500;&#9472; S4 Freelance wording in the position or company?
-&#9474; YES &rarr; ACTIVE
-&#9474; NO &#9660;
-&#9500;&#9472; S5 Position is junior or back office?
-&#9474; YES &rarr; ACTIVE the company is never read
-&#9474; NO &#9660;
-&#9500;&#9472; S6 Company is advisory or sell-side?
-&#9474; YES &rarr; ACTIVE not built yet
-&#9474; NO &#9660;
-&#9500;&#9472; S7 Company carries a Mergermarket flag?
-&#9474; YES &rarr; PASSIVE sponsor, portfolio OR corporate
-&#9474; NO &#9660; no flag, or no linked company
-&#9492;&#9472; ACTIVE fallback</pre>
+&#9500;&#9472; S1  Employment status is Full-time or Part-time?
+&#9474;        YES &rarr; PASSIVE            no escape hatch
+&#9474;  NO &#9660;
+&#9500;&#9472; S2  Employment status is blank?
+&#9474;        YES &rarr; ACTIVE             still an open question
+&#9474;  NO &#9660;
+&#9500;&#9472; S3  Any role marked current?
+&#9474;        NONE &rarr; ACTIVE            nothing to test
+&#9474;  AT LEAST ONE &#9660;
+&#9500;&#9472; S4  Freelance wording in the position or company?
+&#9474;        YES &rarr; ACTIVE
+&#9474;  NO &#9660;
+&#9500;&#9472; S5  Position is junior or back office?
+&#9474;        YES &rarr; ACTIVE             the company is never read
+&#9474;  NO &#9660;
+&#9500;&#9472; S6  Company is advisory or sell-side?
+&#9474;        YES &rarr; ACTIVE             not built yet
+&#9474;  NO &#9660;
+&#9500;&#9472; S7  Company carries a Mergermarket flag?
+&#9474;        YES &rarr; PASSIVE            sponsor, portfolio OR corporate
+&#9474;  NO &#9660;                          no flag, or no linked company
+&#9492;&#9472; ACTIVE                         fallback</pre>
  </div>
 
  <!-- truth table -->
@@ -2078,7 +2231,7 @@ later. This is the intake decision only.</p>
  <div>
  <p>Blank employment status: Active, or hold for a human? <strong>27% of the queue</strong>
  rides on this, and it is a policy call, not a technical one.</p>
- <p class="oq-src">S2 and blocks PP-02</p>
+ <p class="oq-src">S2 &middot; blocks PP-02</p>
  </div>
  </div>
  <div class="oq-item">
@@ -2088,7 +2241,7 @@ later. This is the intake decision only.</p>
  is a <em>senior</em> person at a sell-side boutique, on the one record available, S5 got
  there first. If it stays: does it read the company <em>name</em>, its <em>description</em>, or
  a NAICS code?</p>
- <p class="oq-src">S6 and the Finergreen description is the only worked example</p>
+ <p class="oq-src">S6 &middot; the Finergreen description is the only worked example</p>
  </div>
  </div>
  <div class="oq-item">
@@ -2105,7 +2258,7 @@ later. This is the intake decision only.</p>
  <p>The full freelance word list. Two examples were named in a flowchart; everything else in
  there is unknown to us, so S4 has to be read as <em>&ldquo;the rule may exit to Active for a
  reason you cannot see&rdquo;</em>.</p>
- <p class="oq-src">Dev and blocks PP-11</p>
+ <p class="oq-src">Dev &middot; blocks PP-11</p>
  </div>
  </div>
  <div class="oq-item">
@@ -2114,7 +2267,7 @@ later. This is the intake decision only.</p>
  <p>Whether <code>seniorityLevel</code> being <code>Analyst</code> or <code>Associate</code>
  should fire S5 on its own when the position text does <em>not</em> look junior. No record has
  produced that combination yet.</p>
- <p class="oq-src">PP-10 and Athanasia Panteli decided the reverse case only</p>
+ <p class="oq-src">PP-10 &middot; Athanasia Panteli decided the reverse case only</p>
  </div>
  </div>
  <div class="oq-item">
@@ -2123,7 +2276,7 @@ later. This is the intake decision only.</p>
  <p>Three rows of the truth table have no live case behind them: freelance wording with a flag,
  advisory employer with a flag, and a junior position with no flag. All three are predicted, none
  observed.</p>
- <p class="oq-src">&sect;03 and truth table</p>
+ <p class="oq-src">&sect;03 &middot; truth table</p>
  </div>
  </div>
  <div class="oq-item">
@@ -2132,7 +2285,7 @@ later. This is the intake decision only.</p>
  <p>The sample step distribution is the shape, not the live figures. Live data carries
  <strong>2</strong> In Review records against the sample&rsquo;s 286, and many of the sample rows are
  obvious test data.</p>
- <p class="oq-src">&sect;03 and 286 records</p>
+ <p class="oq-src">&sect;03 &middot; 286 records</p>
  </div>
  </div>
  <div class="oq-item">
@@ -4066,22 +4219,22 @@ auto-response to an <b>Out Of Office</b>. Build one:
  <b>four</b> branches. <code>Side Step: Out Of Office</code> runs three steps of its own on Day 2, Day 3
  and Day 4.</figcaption></figure>
 <pre class="ascii">Main Step
- Step 1 &ndash; Day 1 Right away
- Step 2 &ndash; Day 2 Wait for 1 day
+   Step 1 &ndash; Day 1    Right away
+   Step 2 &ndash; Day 2    Wait for 1 day
 
 Side Step: Do Not Contact - Out Of Office
- Step 1 &ndash; Day 2
+   Step 1 &ndash; Day 2
 
 Side Step: Out Of Office
- Step 1 &ndash; Day 2
- Step 2 &ndash; Day 3 &#9668; a branch can be a whole sequence
- Step 3 &ndash; Day 4
+   Step 1 &ndash; Day 2
+   Step 2 &ndash; Day 3            &#9668; a branch can be a whole sequence
+   Step 3 &ndash; Day 4
 
 Side Step: Left The Company
- Step 1 &ndash; Day 2
+   Step 1 &ndash; Day 2
 
 Side Step: Not Now - Out Of Office
- Step 1 &ndash; Day 2</pre>
+   Step 1 &ndash; Day 2</pre>
  <p><b>Two conditions in one header are joined by a hyphen</b>, <code>Side Step: Do Not Contact - Out Of Office</code> is <i>one</i> branch that fires on either
  category, not two branches.</p>
  <div class="call"><span class="t">The Steps badge counts every step in every branch</span>The campaign
@@ -4134,15 +4287,15 @@ Side Step: Not Now - Out Of Office
 <h2><span class="who sdr">SDR</span><span class="n">6&#8224; &middot;</span> Manage a campaign, audited</h2>
 <p class="fn" style="margin-bottom:22px">A decision-maker&rsquo;s view of <a href="#page-campaign" data-goto="page-campaign" style="font-weight:700;cursor:pointer">Flow 6 &#8599;</a>, what breaks, how often, and what to fix first. The step-by-step instructions stay on the flow page.</p>
 <div class="auditdoc">
- <p class="eyebrow">Measured against live data and Sections 1&ndash;5</p>
+ <p class="eyebrow">Measured against live data &middot; Sections 1&ndash;5</p>
  <h1>Manage a campaign, audited</h1>
  <p class="standfirst">Every campaign read through the API and through its own health snapshot, then compared against what the screen prints. Scope: the campaign list, the People and Preview tabs, Email Queue, and Data Health &beta;.</p>
 
  <dl class="mast-facts">
  <div><dt>Measured</dt><dd>30 Jul 2026</dd></div>
  <div><dt>Access</dt><dd>Read&#8209;only</dd></div>
- <div><dt>Campaigns read</dt><dd>49, 13 with a health snapshot</dd></div>
- <div><dt>Defects</dt><dd>8 and 3 quick wins</dd></div>
+ <div><dt>Campaigns read</dt><dd>49 &middot; 13 with a health snapshot</dd></div>
+ <div><dt>Defects</dt><dd>8 &middot; 3 quick wins</dd></div>
  <div><dt>Worst</dt><dd>a blocker that double&#8209;counts</dd></div>
  </dl>
  <hr class="masthead-rule">
@@ -4271,11 +4424,13 @@ Side Step: Not Now - Out Of Office
 
  <p class="lede">The one defect worth reading end to end, because it is the only one that stops an
  SDR from working.</p>
- <pre class="ascii">Corp Dev outreach: DD capacity (DACH)
+ <pre class="ascii">Corp Dev outreach &mdash; DD capacity (DACH)
 
- stats.contact.crossCampaign.duplicatedByContactId = 8
- stats.contact.crossCampaign.duplicatedByEmail = 7
- dataHealth.issues[CROSS_IN_OTHER_CAMPAIGN].metadata.count = 15 &#9668; 8 + 7.metadata.contactIds = [ 8 ids ]</pre>
+  stats.contact.crossCampaign.duplicatedByContactId  = 8
+  stats.contact.crossCampaign.duplicatedByEmail      = 7
+  dataHealth.issues[CROSS_IN_OTHER_CAMPAIGN]
+        .metadata.count                              = 15   &#9668; 8 + 7
+        .metadata.contactIds                         = [ 8 ids ]</pre>
  <p>The same person is matched twice, once because their contact id appears in another
  campaign, once because their email address does. The evidence list carries the correct answer and
  is ignored by the count beside it.</p>
@@ -4406,7 +4561,7 @@ Side Step: Not Now - Out Of Office
  <p>Are SDRs meant to reach Contacts and Email Queue at all? The product currently answers
  &ldquo;no&rdquo; via the menu, &ldquo;yes&rdquo; via the campaign, and &ldquo;403&rdquo; via the
  API. One decision would settle CMP-04 and CMP-05 together.</p>
- <p class="oq-src">CMP-04 and CMP-05</p></div></div>
+ <p class="oq-src">CMP-04 &middot; CMP-05</p></div></div>
  <div class="oq-item"><div class="oq-tag">Unverified</div><div>
  <p>Why an SDR sees 17 where an admin sees 18. The untiered-contact theory accounts for
  21&nbsp;&rarr;&nbsp;18 and nothing else.</p>
@@ -4988,15 +5143,15 @@ established</b>; confirm by hand before relying on it.</div></li>
 <h2><span class="who sdr">SDR</span><span class="n">7&#8224; &middot;</span> Manage a Marketing Email, audited</h2>
 <p class="fn" style="margin-bottom:22px">A decision-maker&rsquo;s view of <a href="#page-marketing" data-goto="page-marketing" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a>, what breaks, how often, and what to fix first. The step-by-step instructions stay on the flow page.</p>
 <div class="auditdoc">
- <p class="eyebrow">Measured against live data and Sections 1&ndash;5</p>
+ <p class="eyebrow">Measured against live data &middot; Sections 1&ndash;5</p>
  <h1>Manage a Marketing Email, audited</h1>
  <p class="standfirst">All 93 marketing emails read through the API and compared against what the list and the detail header print. Scope: the ME list, People, Preview, Inbox and Email Queues.</p>
 
  <dl class="mast-facts">
  <div><dt>Measured</dt><dd>30 Jul 2026</dd></div>
  <div><dt>Access</dt><dd>Read&#8209;only</dd></div>
- <div><dt>Emails read</dt><dd>93, 20 with an event log</dd></div>
- <div><dt>Defects</dt><dd>6 and 2 quick wins</dd></div>
+ <div><dt>Emails read</dt><dd>93 &middot; 20 with an event log</dd></div>
+ <div><dt>Defects</dt><dd>6 &middot; 2 quick wins</dd></div>
  <div><dt>Worst</dt><dd>every rate on the page</dd></div>
  </dl>
  <hr class="masthead-rule">
@@ -5114,19 +5269,19 @@ established</b>; confirm by hand before relying on it.</div></li>
 
  <p class="lede">Why changing the denominator is not enough on its own.</p>
  <pre class="ascii">Open Rate as built
- statusCount.open &divide; totalTargets
- = every open event every person added
- &rarr; one person opening 3 times moves the rate 3 steps
+      statusCount.open   &divide;  totalTargets
+      = every open event    every person added
+      &rarr; one person opening 3 times moves the rate 3 steps
 
-[Prod] US-based Thanksgiving 1669 opens &divide; 962 people = 173.5%
-[Prod] M&amp;A Workshop 185 opens &divide; 140 people = 132.1%
+[Prod] US-based Thanksgiving   1669 opens &divide;  962 people  =  173.5%
+[Prod] M&amp;A Workshop             185 opens &divide;  140 people  =  132.1%
 
 Fixing only the denominator
- statusCount.open &divide; totalDelivered
- &rarr; still events &divide; people, still able to exceed 100%
+      statusCount.open   &divide;  totalDelivered
+      &rarr; still events &divide; people, still able to exceed 100%
 
 What it needs
- distinct openers &divide; people actually delivered to</pre>
+      distinct openers   &divide;  people actually delivered to</pre>
  <div class="tbl">
  <table>
  <thead><tr><th>Marketing email</th><th class="num">people</th><th class="num">header delivered</th>
@@ -5354,182 +5509,182 @@ What it needs
 </div>
 <script>
 (function(){
- var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
- var flowLinks= Array.prototype.slice.call(document.querySelectorAll('nav a.flow'));
- var subLinks = Array.prototype.slice.call(document.querySelectorAll('nav a.st, nav a.st2'));
- var DEFAULT='page-a1';
+  var pages    = Array.prototype.slice.call(document.querySelectorAll('.page'));
+  var flowLinks= Array.prototype.slice.call(document.querySelectorAll('nav a.flow'));
+  var subLinks = Array.prototype.slice.call(document.querySelectorAll('nav a.st, nav a.st2'));
+  var DEFAULT='page-a1';
 
- function activeId(){ var p=pages.filter(function(x){return x.classList.contains('active');})[0]; return p?p.id:null; }
+  function activeId(){ var p=pages.filter(function(x){return x.classList.contains('active');})[0]; return p?p.id:null; }
 
- function showPage(id, scrollToId){
- if(!document.getElementById(id)) id=DEFAULT;
- pages.forEach(function(p){ p.classList.toggle('active', p.id===id); });
- flowLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-page')===id); });
- subLinks.forEach(function(a){ a.classList.toggle('show', a.getAttribute('data-page')===id); });
- if(scrollToId){
- var t=document.getElementById(scrollToId);
- if(t){ t.scrollIntoView({behavior:'smooth',block:'start'}); return; }
- }
- window.scrollTo({top:0});
- }
+  function showPage(id, scrollToId){
+    if(!document.getElementById(id)) id=DEFAULT;
+    pages.forEach(function(p){ p.classList.toggle('active', p.id===id); });
+    flowLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-page')===id); });
+    subLinks.forEach(function(a){ a.classList.toggle('show', a.getAttribute('data-page')===id); });
+    if(scrollToId){
+      var t=document.getElementById(scrollToId);
+      if(t){ t.scrollIntoView({behavior:'smooth',block:'start'}); return; }
+    }
+    window.scrollTo({top:0});
+  }
 
- flowLinks.forEach(function(a){
- a.addEventListener('click', function(e){
- e.preventDefault();
- var id=a.getAttribute('data-page');
- history.replaceState(null,'','#'+id);
- showPage(id);
- });
- });
+  flowLinks.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id=a.getAttribute('data-page');
+      history.replaceState(null,'','#'+id);
+      showPage(id);
+    });
+  });
 
- subLinks.forEach(function(a){
- a.addEventListener('click', function(e){
- e.preventDefault();
- var anchor=a.getAttribute('href').slice(1);
- if(a.getAttribute('data-page')===activeId()){
- history.replaceState(null,'','#'+anchor);
- var t=document.getElementById(anchor);
- if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
- }
- });
- });
+  subLinks.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var anchor=a.getAttribute('href').slice(1);
+      if(a.getAttribute('data-page')===activeId()){
+        history.replaceState(null,'','#'+anchor);
+        var t=document.getElementById(anchor);
+        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
 
- // clone each page's bottom Prev/Next up to the top for easy navigation
- pages.forEach(function(p){
- var nav=p.querySelector('.pagernav');
- if(nav){
- var top=nav.cloneNode(true);
- top.className='pagernav pagernav-top';
- p.insertBefore(top, p.firstChild);
- }
- });
+  // clone each page's bottom Prev/Next up to the top for easy navigation
+  pages.forEach(function(p){
+    var nav=p.querySelector('.pagernav');
+    if(nav){
+      var top=nav.cloneNode(true);
+      top.className='pagernav pagernav-top';
+      p.insertBefore(top, p.firstChild);
+    }
+  });
 
- document.querySelectorAll('[data-goto]').forEach(function(a){
- a.addEventListener('click', function(e){
- e.preventDefault();
- var id=a.getAttribute('data-goto');
- var href=a.getAttribute('href')||'';
- var sub=(href.charAt(0)==='#')?href.slice(1):'';
- history.replaceState(null,'','#'+(sub||id));
- showPage(id, sub||null);
- });
- });
+  document.querySelectorAll('[data-goto]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id=a.getAttribute('data-goto');
+      var href=a.getAttribute('href')||'';
+      var sub=(href.charAt(0)==='#')?href.slice(1):'';
+      history.replaceState(null,'','#'+(sub||id));
+      showPage(id, sub||null);
+    });
+  });
 
- var h=(location.hash||'').slice(1);
- if(h && document.getElementById(h)){
- if(h.indexOf('page-')===0){ showPage(h); }
- else {
- var el=document.getElementById(h);
- var pg=el.closest ? el.closest('.page'): null;
- showPage(pg?pg.id:DEFAULT, pg?h:null);
- }
- } else {
- showPage(DEFAULT);
- }
+  var h=(location.hash||'').slice(1);
+  if(h && document.getElementById(h)){
+    if(h.indexOf('page-')===0){ showPage(h); }
+    else {
+      var el=document.getElementById(h);
+      var pg=el.closest ? el.closest('.page') : null;
+      showPage(pg?pg.id:DEFAULT, pg?h:null);
+    }
+  } else {
+    showPage(DEFAULT);
+  }
 })();
 
 /* ---- tìm kiếm trong nav: lọc theo tên flow / step, bỏ dấu tiếng Việt ---- */
 (function(){
- var nav = document.querySelector('nav');
- var wrap = nav && nav.querySelector('.navsearch');
- if(!wrap) return;
- var box = wrap.querySelector('input');
- var clr = wrap.querySelector('.clr');
- var cnt = wrap.querySelector('.cnt');
- var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
- var groups = Array.prototype.slice.call(nav.querySelectorAll('.grp'));
- var orig = links.map(function(a){ return a.innerHTML; });
+  var nav  = document.querySelector('nav');
+  var wrap = nav && nav.querySelector('.navsearch');
+  if(!wrap) return;
+  var box  = wrap.querySelector('input');
+  var clr  = wrap.querySelector('.clr');
+  var cnt  = wrap.querySelector('.cnt');
+  var links  = Array.prototype.slice.call(nav.querySelectorAll('a'));
+  var groups = Array.prototype.slice.call(nav.querySelectorAll('.grp'));
+  var orig   = links.map(function(a){ return a.innerHTML; });
 
- /* bỏ dấu nhưng vẫn giữ ánh xạ về chỉ số gốc để highlight đúng chỗ */
- function fold(s){
- var out='', map=[];
- for(var i=0;i<s.length;i++){
- var c=s[i].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
- if(c==='đ') c='d';
- for(var k=0;k<c.length;k++){ out+=c[k]; map.push(i); }
- }
- return {s:out, map:map};
- }
- function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  /* bỏ dấu nhưng vẫn giữ ánh xạ về chỉ số gốc để highlight đúng chỗ */
+  function fold(s){
+    var out='', map=[];
+    for(var i=0;i<s.length;i++){
+      var c=s[i].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+      if(c==='đ') c='d';
+      for(var k=0;k<c.length;k++){ out+=c[k]; map.push(i); }
+    }
+    return {s:out, map:map};
+  }
+  function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
- function reset(){
- nav.classList.remove('searching');
- wrap.classList.remove('has');
- links.forEach(function(a,i){ a.classList.remove('hit'); a.classList.remove('kid'); a.innerHTML=orig[i]; });
- groups.forEach(function(g){ g.classList.remove('hit'); });
- cnt.textContent='';
- }
+  function reset(){
+    nav.classList.remove('searching');
+    wrap.classList.remove('has');
+    links.forEach(function(a,i){ a.classList.remove('hit'); a.classList.remove('kid'); a.innerHTML=orig[i]; });
+    groups.forEach(function(g){ g.classList.remove('hit'); });
+    cnt.textContent='';
+  }
 
- function run(q){
- q=(q||'').trim();
- if(!q){ reset(); return; }
- var nq=fold(q).s;
- nav.classList.add('searching');
- wrap.classList.add('has');
- var n=0;
- links.forEach(function(a,i){
- var raw=a.textContent, f=fold(raw), at=f.s.indexOf(nq);
- if(at<0){ a.classList.remove('hit'); a.innerHTML=orig[i]; return; }
- a.classList.add('hit'); n++;
- var s=f.map[at], e=f.map[Math.min(at+nq.length-1, f.map.length-1)]+1;
- a.innerHTML=esc(raw.slice(0,s))+'<mark>'+esc(raw.slice(s,e))+'</mark>'+esc(raw.slice(e));
- });
- /* khớp tên một flow lớn -> mở luôn toàn bộ step con của flow đó */
- var items=Array.prototype.slice.call(nav.children), inFlow=false;
- items.forEach(function(el){
- if(el.tagName!=='A'){ if(el.classList && el.classList.contains('grp')) inFlow=false; return; }
- if(el.classList.contains('flow')){ inFlow = el.classList.contains('hit'); el.classList.remove('kid'); return; }
- el.classList.toggle('kid', inFlow && !el.classList.contains('hit'));
- });
- /* nhãn nhóm chỉ hiện khi bên dưới nó còn mục khớp */
- var cur=null, seen=false;
- items.forEach(function(el){
- if(el.classList && el.classList.contains('grp')){
- if(cur) cur.classList.toggle('hit', seen);
- cur=el; seen=false;
- } else if(el.tagName==='A' && (el.classList.contains('hit')||el.classList.contains('kid'))){ seen=true; }
- });
- if(cur) cur.classList.toggle('hit', seen);
- cnt.textContent = n ? (n+(n>1?' results':' result')): 'No match';
- }
+  function run(q){
+    q=(q||'').trim();
+    if(!q){ reset(); return; }
+    var nq=fold(q).s;
+    nav.classList.add('searching');
+    wrap.classList.add('has');
+    var n=0;
+    links.forEach(function(a,i){
+      var raw=a.textContent, f=fold(raw), at=f.s.indexOf(nq);
+      if(at<0){ a.classList.remove('hit'); a.innerHTML=orig[i]; return; }
+      a.classList.add('hit'); n++;
+      var s=f.map[at], e=f.map[Math.min(at+nq.length-1, f.map.length-1)]+1;
+      a.innerHTML=esc(raw.slice(0,s))+'<mark>'+esc(raw.slice(s,e))+'</mark>'+esc(raw.slice(e));
+    });
+    /* khớp tên một flow lớn -> mở luôn toàn bộ step con của flow đó */
+    var items=Array.prototype.slice.call(nav.children), inFlow=false;
+    items.forEach(function(el){
+      if(el.tagName!=='A'){ if(el.classList && el.classList.contains('grp')) inFlow=false; return; }
+      if(el.classList.contains('flow')){ inFlow = el.classList.contains('hit'); el.classList.remove('kid'); return; }
+      el.classList.toggle('kid', inFlow && !el.classList.contains('hit'));
+    });
+    /* nhãn nhóm chỉ hiện khi bên dưới nó còn mục khớp */
+    var cur=null, seen=false;
+    items.forEach(function(el){
+      if(el.classList && el.classList.contains('grp')){
+        if(cur) cur.classList.toggle('hit', seen);
+        cur=el; seen=false;
+      } else if(el.tagName==='A' && (el.classList.contains('hit')||el.classList.contains('kid'))){ seen=true; }
+    });
+    if(cur) cur.classList.toggle('hit', seen);
+    cnt.textContent = n ? (n+(n>1?' results':' result')) : 'No match';
+  }
 
- /* ---- đồng bộ với URL: ?q=<từ khoá>, giữ nguyên hash trang ---- */
- function syncUrl(q){
- try{
- var u = new URL(window.location.href);
- if(q) u.searchParams.set('q', q); else u.searchParams.delete('q');
- history.replaceState(null, '', u.pathname + u.search + u.hash);
- }catch(e){ /* file:// ở vài trình duyệt chặn replaceState — bỏ qua */ }
- }
- function apply(q, updateUrl){
- run(q);
- if(updateUrl !== false) syncUrl((q||'').trim());
- }
+  /* ---- đồng bộ với URL: ?q=<từ khoá>, giữ nguyên hash trang ---- */
+  function syncUrl(q){
+    try{
+      var u = new URL(window.location.href);
+      if(q) u.searchParams.set('q', q); else u.searchParams.delete('q');
+      history.replaceState(null, '', u.pathname + u.search + u.hash);
+    }catch(e){ /* file:// ở vài trình duyệt chặn replaceState — bỏ qua */ }
+  }
+  function apply(q, updateUrl){
+    run(q);
+    if(updateUrl !== false) syncUrl((q||'').trim());
+  }
 
- box.addEventListener('input', function(){ apply(box.value); });
- box.addEventListener('keydown', function(e){
- if(e.key==='Escape'){ box.value=''; reset(); syncUrl(''); box.blur(); }
- if(e.key==='Enter'){
- var first=nav.querySelector('a.hit');
- if(first) first.click();
- }
- });
- clr.addEventListener('click', function(){ box.value=''; reset(); syncUrl(''); box.focus(); });
+  box.addEventListener('input', function(){ apply(box.value); });
+  box.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){ box.value=''; reset(); syncUrl(''); box.blur(); }
+    if(e.key==='Enter'){
+      var first=nav.querySelector('a.hit');
+      if(first) first.click();
+    }
+  });
+  clr.addEventListener('click', function(){ box.value=''; reset(); syncUrl(''); box.focus(); });
 
- /* mở link có sẵn ?q= thì khôi phục lại kết quả tìm kiếm */
- (function restore(){
- var q='';
- try{ q = new URL(window.location.href).searchParams.get('q') || ''; }catch(e){}
- if(!q) return;
- box.value = q;
- apply(q, false);
- })();
- /* bấm "/" ở bất kỳ đâu để nhảy vào ô tìm kiếm */
- document.addEventListener('keydown', function(e){
- if(e.key==='/' && document.activeElement!==box && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){
- e.preventDefault(); box.focus();
- }
- });
+  /* mở link có sẵn ?q= thì khôi phục lại kết quả tìm kiếm */
+  (function restore(){
+    var q='';
+    try{ q = new URL(window.location.href).searchParams.get('q') || ''; }catch(e){}
+    if(!q) return;
+    box.value = q;
+    apply(q, false);
+  })();
+  /* bấm "/" ở bất kỳ đâu để nhảy vào ô tìm kiếm */
+  document.addEventListener('keydown', function(e){
+    if(e.key==='/' && document.activeElement!==box && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){
+      e.preventDefault(); box.focus();
+    }
+  });
 })();
 </script>
 </body>

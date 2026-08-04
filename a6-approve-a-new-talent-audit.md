@@ -4,7 +4,7 @@
 
 A decision-maker’s view of the same rule documented in [A6 ↗](a6-approve-a-new-talent-decides-active-or-passive.md). What it costs when it is wrong, what to fix first, and what is still undecided. The operator’s view, with the click path, stays on the A6 page.
 
-Validated on live records and Sections 1–7
+Validated on live records · Sections 1–7
 
 Reverse-engineered from live behaviour, not from source. Scope: the admin app, `In Review` queue → **Approve Talent**, the moment the system chooses a status on its own, with no picker and no reason recorded.
 

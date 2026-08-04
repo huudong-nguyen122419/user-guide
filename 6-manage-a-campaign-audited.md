@@ -4,7 +4,7 @@
 
 A decision-maker’s view of [Flow 6 ↗](6-manage-a-campaign.md), what breaks, how often, and what to fix first. The step-by-step instructions stay on the flow page.
 
-Measured against live data and Sections 1–5
+Measured against live data · Sections 1–5
 
 Every campaign read through the API and through its own health snapshot, then compared against what the screen prints. Scope: the campaign list, the People and Preview tabs, Email Queue, and Data Health β.
 
