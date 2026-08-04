@@ -1195,24 +1195,6 @@ broken, check the <b>reviewed</b> count in the Run dialog (A5.7.3).</li>
 <section class="page" id="page-a6">
 <h2><span class="who adm">ADMIN</span><span class="n adm">A6 &middot;</span> Approve a new talent <span class="fn">(decides Active or Passive)</span></h2>
 <div class="goal adm"><b>Goal:</b> keep <b>clients</b> out of the talent supply. A <b>client</b> is someone who sits on the <b>buy side today</b>, holding a role at a PE fund, or running a company a fund owns. Clients must be <b>Passive</b> so they never enter the project-invitation flow. Everyone else is <b>talent</b> and stays <b>Active</b>.</div>
-<div class="call warn"><span class="t">Reading is safe; changing is not</span>Filtering and reading costs nothing. <b>Changing a talent&rsquo;s status is not reversible from this screen</b>, be sure of the record before you approve or reject it, and never flip a status just to see what happens.</div>
-
-<div class="call"><span class="t">Looking for the summary, not the procedure?</span><a href="#page-a6audit" data-goto="page-a6audit" style="font-weight:700;cursor:pointer">Approve a new talent · audit &#8599;</a> is the same rule written for whoever decides what gets fixed: ten findings, a register of <b>12 defects</b> scored by impact and effort, three quick wins, and the questions still open. This page is the operator’s view: what to click, and what the system will do.</div>
-
-<h4 style="margin:18px 0 8px">One flow, and what it deliberately leaves out</h4>
-<p>This section covers <b>the intake decision only</b>, the moment an admin approves a new sign-up and the system picks a status. The existing population is a different problem with different evidence, and it is <b>not worked by hand</b>.</p>
-<div class="tblwrap"><table>
-<thead><tr><th>Flow</th><th>The question it answers</th><th>Cost of getting it wrong</th><th>Status</th></tr></thead>
-<tbody>
-<tr><td><a href="#a6-flowC" style="font-weight:700;cursor:pointer">A6-C &#8599;</a> Review the <b>In Review</b> queue</td><td>New sign-up, Passive or Active?</td><td>the same client, but caught a year later</td><td><b>the whole flow</b></td></tr>
-<tr><td><b>Existing Active and Passive records</b></td><td>Which of them are wrong today?</td><td>a project invitation landing in a client&rsquo;s inbox</td><td><b>OUT OF SCOPE</b>, not re-reviewed by hand. A migration may run the same rule over them later; it may not</td></tr>
-</tbody></table></div>
-<p class="fn">Passive is not a punishment and not a quality judgement. It is a routing decision: Passive records are excluded from project invitations, nothing more.</p>
-
-<h4 style="margin:18px 0 8px">Where the talents are today</h4>
-<p>A snapshot of the talent base, <b>8,878 records</b>. Active <b>2,680</b> and Passive <b>2,820</b> and Rejected 1,790 and Incomplete 1,533, Guest 27, PaymentRequired 25, <b>InReview 2</b>, ReviewPassive 0 and Temp 0.</p>
-<p class="fn">The queue the live flow serves is normally tiny. The worked figures below come from a larger sample of <b>286</b> In Review records.</p>
-<p class="fn">The 2,680 Active records split by Employment Status: Freelancer 2,343, Unemployed 206, Other 102, Full-time 28 and Part-time 1.</p>
 
 <h3 id="a6-flowC" class="anchor">A6-C &middot; Review the In Review queue</h3>
 <div class="goal adm"><b>Goal:</b> a new sign-up lands at <code>In Review</code> and waits for someone to look at it.
@@ -1221,16 +1203,15 @@ The system offers a recommendation on every profile, but <b>the button you press
 
 <div class="call note"><span class="t">Active and Passive, in one line</span><b>Active</b> means the person can be
 invited to projects. <b>Passive</b> means they stay on the platform but out of the invitation flow, normally because
-somebody already pays for their week. Getting it wrong sends a project invitation to a person who cannot take it,
-or hides someone who could.</div>
+somebody already pays for their week. It is a routing decision, <b>not a punishment and not a judgement on
+quality</b>. Getting it wrong sends a project invitation to a person who cannot take it, or hides someone who
+could.</div>
 
 <ol class="steps adm">
 
 <li id="a6c-1" data-code="A6-C.1"><b>Open the queue.</b> <b>User Management &rarr; Talents</b>, then the
 <b>N In Review</b> button at the top right. It is the only way in; there is no In Review tab on the list.
 Clicking it opens a drawer showing <b>one profile at a time</b> rather than filtering the table.
-  <p class="fn">For scale: <b>280 waiting</b> against <b>9,036 talents</b> on the day this was walked. The queue is
-  small next to the base, which is why it is worth clearing properly rather than quickly.</p>
   <figure><img src="a6q-01-queue-entry.png" alt="The In Review button on the Talents list"/><figcaption><b>A6-C.1</b>: <b>&#9312;</b> the <b>N In Review</b> button, top right, the only door into the queue &middot; <b>&#9313;</b> the full talent count beside it.</figcaption></figure>
 </li>
 
@@ -1332,9 +1313,7 @@ is treated as available, and no current role, no employer and no company flag is
 <tr><td><code>NoPassiveSignal</code></td><td><b>Active</b></td><td>self-directed, and nothing ties them to a client company</td><td><b>5</b></td></tr>
 </tbody></table></div>
 
-<p class="fn">Across 418 live records carrying a recommendation: <b>Active 75%, Passive 25%</b>. The largest single
-outcome is the fallback at step 5. A further <b>382 of the 800 sampled had no recommendation at all</b>, so an absent
-icon means <i>no opinion</i>, not <i>agrees with the status</i>.</p>
+<p class="fn">Not every talent carries a recommendation. Where the icon is missing the rule has no opinion on that record, which is <b>not</b> the same as agreeing with the status it already has.</p>
 
 <h4 style="margin:18px 0 8px">The freelance keywords at step 3</h4>
 <p>Matched against the <b>current job title</b> and the <b>current employer name</b>. These are the ones seen firing,

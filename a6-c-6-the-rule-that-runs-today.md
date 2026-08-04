@@ -30,7 +30,7 @@ Seven, no more. The code is what tells you which step fired:
 | `ClientCompanyMatched` | **Passive** | currently works at a client company (portfolio, sponsor or corporate) | **4** |
 | `NoPassiveSignal` | **Active** | self-directed, and nothing ties them to a client company | **5** |
 
-Across 418 live records carrying a recommendation: **Active 75%, Passive 25%**. The largest single outcome is the fallback at step 5. A further **382 of the 800 sampled had no recommendation at all**, so an absent icon means *no opinion*, not *agrees with the status*.
+Not every talent carries a recommendation. Where the icon is missing the rule has no opinion on that record, which is **not** the same as agreeing with the status it already has.
 
 ## The freelance keywords at step 3
 
