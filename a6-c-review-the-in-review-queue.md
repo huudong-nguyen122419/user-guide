@@ -6,10 +6,6 @@
 
 Active and Passive, in one line**Active** means the person can be invited to projects. **Passive** means they stay on the platform but out of the invitation flow, normally because somebody already pays for their week. It is a routing decision, **not a punishment and not a judgement on quality**. Getting it wrong sends a project invitation to a person who cannot take it, or hides someone who could.
 
-![The In Review drawer with its three action buttons](a6q-02-queue-drawer.png)
-
-*A6-C: the drawer, all on one screen: ① the three ways out · ② the In Review chip and the warning icon holding the recommendation · ③ Employment Status, the first field the rule reads.*
-
 ## In this step
 
 * [A6-C.1 · Open the queue](a6-c-1-open-the-queue.md)
