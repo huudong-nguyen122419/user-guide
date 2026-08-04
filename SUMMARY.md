@@ -51,7 +51,7 @@
 * [A6 · Approve a new talent (decides Active or Passive)](a6-approve-a-new-talent-decides-active-or-passive.md)
   * [A6-C · Review the In Review queue, LIVE](a6-c-review-the-in-review-queue-live.md)
     * [A6-C.6 · How the recommendation works](a6-c-6-how-the-recommendation-works.md)
-    * [A6-C.7 · The rule, rebuilt](a6-c-7-the-rule-rebuilt.md)
+    * [A6-C.7 · The business rule behind it](a6-c-7-the-business-rule-behind-it.md)
   * [A6-D · Re-check an existing status](a6-d-re-check-an-existing-status.md)
   * [A6.1 · Three fields people mix up](a6-1-three-fields-people-mix-up.md)
   * [A6.x · Edge cases](a6-x-edge-cases.md)

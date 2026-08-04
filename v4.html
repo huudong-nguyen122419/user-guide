@@ -437,7 +437,7 @@
  <a class="flow adm" data-page="page-a6"><span class="n">A6</span> Approve a new talent <span class="fn">(decides Active or Passive)</span></a>
  <a href="#a6-flowC" class="st" data-page="page-a6">A6-C &middot; Review the In Review queue, LIVE</a>
  <a href="#a6-autorule" class="st2" data-page="page-a6">A6-C.6 &middot; How the recommendation works</a>
- <a href="#a6-rulerebuild" class="st2" data-page="page-a6">A6-C.7 &middot; The rule, rebuilt</a>
+ <a href="#a6-rulerebuild" class="st2" data-page="page-a6">A6-C.7 &middot; The business rule behind it</a>
  <a href="#a6-recheck" class="st" data-page="page-a6">A6-D &middot; Re-check an existing status</a>
  <a href="#a6-model" class="st" data-page="page-a6">A6.1 &middot; Three fields people mix up</a>
  <a href="#a6-edge" class="st edge" data-page="page-a6">A6.x &middot; Edge cases</a>
@@ -1347,105 +1347,71 @@ check by hand what the rule already checked. Worth asking for, since the work is
 had no recommendation at all</b>, the field simply empty. Those are records the rule has not run against. An absent
 icon means <i>no opinion</i>, not <i>agrees with the current status</i>.</div>
 
-<h3 id="a6-rulerebuild" class="anchor">A6-C.7 &middot; The rule, rebuilt</h3>
-<div class="call warn"><span class="t">&#9888; Written against the previous engine</span>This section was worked out when the recommendation ran on a different set of questions. The engine now in place is the five in <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>. The business thinking below still stands, but <b>the seven validated records and the step numbers were checked against the old rule</b> and need re-running before anything here is built.</div>
-<div class="goal adm"><b>Validated against 7 live records, all 7
-agree.</b> This is the rule for the intake decision. The section above stays as the record of what the
-code does <i>today</i>: read that as <i>is</i>, this as <i>will be</i>.</div>
+<h3 id="a6-rulerebuild" class="anchor">A6-C.7 &middot; The business rule behind it</h3>
+<div class="goal adm"><b>What this is:</b> the same five questions as
+<a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>, written as business reasoning rather
+than as a list of field reads. Use A6-C.6 to know <i>what the system will say</i>; use this to know <i>why the answer
+is the right one</i> when you are deciding a record by hand.</div>
 
-<h4 style="margin:18px 0 8px">The shape of it: only two things make somebody Passive</h4>
-<p>This is the single most useful thing to hold in your head.</p>
+<h4 style="margin:18px 0 8px">The shape of it: somebody is Passive when their week already belongs to someone else</h4>
+<p>Everything reduces to one question. <b>Is there already a claim on this person's working time?</b> Two things count
+as a claim, and they are read in this order:</p>
+
 <div class="tblwrap"><table>
+<thead><tr><th>The claim</th><th>Read at</th><th>Why it counts</th></tr></thead>
 <tbody>
-<tr><td><b>S1: employment status</b> is Full-time or Part-time</td><td>&rarr; <b>PASSIVE</b></td></tr>
-<tr><td><b>S7. The current company carries a Mergermarket flag</b></td><td>&rarr; <b>PASSIVE</b></td></tr>
-<tr><td><b>everything else</b></td><td>&rarr; <b>ACTIVE</b>, either as an exit or as the fallback</td></tr>
+<tr><td><b>A current role at a company we work with</b> <span class="fn">(Portfolio, Sponsor or Corporate)</span></td><td><b>first</b></td><td>the strongest claim there is. They are inside a client's organisation right now, so putting them on a project is a conflict before it is a scheduling problem</td></tr>
+<tr><td><b>An employment contract</b> <span class="fn">(Full-time or Part-time)</span></td><td><b>last</b></td><td>somebody else buys their week. Nothing about the work is wrong, there is simply no time to sell</td></tr>
 </tbody></table></div>
-<p><b>A job title never makes anybody Passive.</b> Titles only ever push <i>towards</i> Active (S4, S5)
-or pass through. A board seat, a C-suite title, <code>Head of</code>, <code>Managing Partner</code>, none of them decide anything on their own. <b>The flag decides.</b></p>
-<div class="call"><span class="t">Ruled 30 Jul 2026, on Mark Cox</span><code>Director Board of
-Directors at Dollar Bank</code>, a board seat, 31 years&rsquo; experience,
-ex-investment-banking, group C on paper. Every title signal says client. <b>Dollar Bank carries no
-flag, so the answer is ACTIVE, and that is correct.</b> No board-member step was added. The title
-getting you all the way to S7 and then failing there is <b>the rule working as intended, not a
-hole</b>.</div>
 
-<h4 style="margin:18px 0 8px">Put precisely: the flag is necessary, not sufficient</h4>
-<p>After S1, a Passive verdict <b>requires</b> a flag, but a flag does not <b>produce</b> one.
-S4, S5 and S6 can each veto it. <b>A title can only ever veto; it can never trigger.</b></p>
+<p>Everything else is a reason to say <b>Active</b>: independent wording on the current role, no current role at all,
+a self-directed employment status, or nothing to go on.</p>
+
+<div class="call warn"><span class="t">The company flag decides, and nothing overrides it</span>This is the rule as it
+now stands, and it is a reversal. An earlier version of this section held that the flag was <i>necessary but not
+sufficient</i>, with junior titles and advisory employers able to veto it. <b>They no longer can.</b> A current role at
+a flagged company produces <b>Passive</b>, whatever the title says and whatever the person calls themselves.<br><br>
+Read the consequence plainly: an <b>Analyst or Associate at a sponsor firm is now Passive</b>. Two records that were
+ruled Active by hand, <i>Iman Dakhlaoui</i> (Associate at a flagged employer) and <i>Athanasia Panteli</i> (Analyst),
+come out the other way under this rule. If that is wrong for the business, the fix is to change the rule, not to
+re-decide the records one at a time.</div>
+
+<h4 style="margin:18px 0 8px">The walk, in business terms</h4>
 <div class="tblwrap"><table>
-<thead><tr><th>Title on the current row</th><th>Company flag</th><th>Result</th><th>Live case</th></tr></thead>
+<thead><tr><th>#</th><th>What you are really asking</th><th>Answer</th></tr></thead>
 <tbody>
-<tr><td>freelance wording <i>(S4)</i></td><td><b>flagged</b></td><td><b>ACTIVE</b></td><td>, </td></tr>
-<tr><td>junior / back office <i>(S5)</i></td><td><b>flagged</b></td><td><b>ACTIVE</b></td>
-<td>Iman Dakhlaoui &middot; Athanasia Panteli</td></tr>
-<tr><td>advisory / sell-side <i>(S6)</i></td><td><b>flagged</b></td><td><b>ACTIVE</b></td>
-<td><i>(never yet fired)</i></td></tr>
-<tr><td>nothing to veto with</td><td><b>flagged</b></td><td><b>PASSIVE</b></td><td>Arnaud Leblanc</td></tr>
-<tr><td>nothing to veto with</td><td>no flag</td><td><b>ACTIVE</b></td>
-<td>Syed Ishaque Hasib &middot; Mark Cox</td></tr>
-<tr><td>junior / back office</td><td>no flag</td><td>ACTIVE</td><td>, </td></tr>
+<tr><td><b>1</b></td><td>Are they sitting inside a client's organisation today?</td><td>Yes &rarr; <b>Passive</b>. Stop; nothing else matters</td></tr>
+<tr><td><b>2</b></td><td>Does the current role describe itself as independent work?</td><td>Yes &rarr; <b>Active</b>. They sell their own time</td></tr>
+<tr><td><b>3</b></td><td>Is there any current role at all?</td><td>No &rarr; <b>Active</b>. Nothing can hold a claim on them</td></tr>
+<tr><td><b>4</b></td><td>Do they describe themselves as freelance, between roles, or something else?</td><td>Yes &rarr; <b>Active</b></td></tr>
+<tr><td><b>5</b></td><td>Are they employed full-time or part-time?</td><td>Yes &rarr; <b>Passive</b>. Otherwise <b>Active</b></td></tr>
 </tbody></table></div>
-<p><b>So: had Dollar Bank carried a flag, Mark Cox would be PASSIVE.</b> His walk hits no veto: a board title is not freelance wording, not junior, and a retail bank is not advisory, so S7 is
-the only thing left deciding. <b>Iman is the mirror image: flagged employer, still Active</b>, because
-<code>Associate</code> vetoed at S5 before S7 ran. That single pair is the reason the step order is what
-it is.</p>
 
-<h4 style="margin:18px 0 8px">The walk</h4>
-<pre class="ascii">Admin approves a talent out of review
-&#9474;
-&#9500;&#9472; S1  Employment status is Full-time or Part-time employee?
-&#9474;        YES &rarr; PASSIVE            no escape hatch
-&#9474;  NO &#9660;
-&#9500;&#9472; S2  Employment status is blank?
-&#9474;        YES &rarr; ??? (still open)
-&#9474;  NO &#9660;
-&#9500;&#9472; S3  Any role marked current?
-&#9474;        NONE &rarr; ACTIVE            nothing to test
-&#9474;  AT LEAST ONE &#9660;
-&#9500;&#9472; S4  Current role's POSITION or COMPANY contains freelance wording?
-&#9474;        YES &rarr; ACTIVE
-&#9474;  NO &#9660;
-&#9500;&#9472; S5  Current role's POSITION is junior or back office?
-&#9474;        YES &rarr; ACTIVE             ends here. the company is never read.
-&#9474;  NO &#9660;
-&#9500;&#9472; S6  Current role's company is advisory / sell-side?   (in the flow, never yet fired)
-&#9474;        YES &rarr; ACTIVE
-&#9474;  NO &#9660;
-&#9500;&#9472; S7  Current role's company carries a Mergermarket flag?
-&#9474;        YES &rarr; PASSIVE            sponsor, portfolio OR corporate &mdash; all three count
-&#9474;  NO &#9660;                          no flag, or no linked company at all
-&#9492;&#9472; ACTIVE                         fallback</pre>
-<p><b>S5 before S7 is the whole point of the rebuild.</b> Iman Dakhlaoui&rsquo;s employer <i>is</i>
-flagged; test the flag first and a junior comes out Passive. <b>Order is load-bearing, not
-cosmetic.</b></p>
+<div class="call note"><span class="t">Why the order is the whole design</span>The rule stops at the first Yes, so the
+order <i>is</i> the business decision. Putting the company flag first says: <b>where they work outranks what they call
+themselves</b>. Putting employment status last says: it is the weakest evidence, a self-reported field that is often
+stale or never filled in.</div>
 
-<h4 style="margin:18px 0 8px">The seven records it was validated on</h4>
+<h4 style="margin:18px 0 8px">The two vetoes that were dropped</h4>
+<p>The earlier design carried two exceptions that let a flagged employer be overruled. Neither is in the rule any
+more. They are still worth knowing, because <b>a reviewer deciding by hand can still apply them</b> and the
+recommendation will simply disagree:</p>
 <div class="tblwrap"><table>
-<thead><tr><th>#</th><th>Talent</th><th>Stops at</th><th>Result</th><th>What the case proves</th></tr></thead>
+<thead><tr><th>Dropped veto</th><th>What it used to say</th><th>Where it stands now</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Thomas Tawse</td><td><b>S3</b></td><td>ACTIVE</td><td>no row marked current &rarr;
-nothing to test <i>(tooltip confirmed)</i></td></tr>
-<tr><td>2</td><td>Yakob Sarakhman</td><td><b>S4</b></td><td>ACTIVE</td><td><code>independent</code> in
-the row&rsquo;s <b>company</b> field <i>(tooltip confirmed)</i></td></tr>
-<tr><td>3</td><td>Iman Dakhlaoui</td><td><b>S5</b></td><td>ACTIVE</td><td><code>Associate</code> exits
-<b>before</b> a flagged employer is read</td></tr>
-<tr><td>4</td><td>Athanasia Panteli</td><td><b>S5</b></td><td>ACTIVE</td><td><code>Analyst</code> in the
-position wins over <code>seniorityLevel: Manager</code></td></tr>
-<tr><td>5</td><td>Arnaud Leblanc</td><td><b>S7</b></td><td><b>PASSIVE</b></td><td>a
-<code>corporate</code> flag counts, same as sponsor</td></tr>
-<tr><td>6</td><td>Syed Ishaque Hasib</td><td><b>S7</b></td><td>ACTIVE</td><td>company <b>not linked</b>
-&rarr; no flag &rarr; Active</td></tr>
-<tr><td>7</td><td>Mark Cox</td><td><b>S7</b></td><td>ACTIVE</td><td>board seat + no flag &rarr;
-<b>Active is correct</b></td></tr>
+<tr><td><b>Junior / back office</b></td><td>an Analyst, Associate or intern at a flagged company is not a client contact, so keep them Active</td><td>no longer read. The flag wins. Definitions kept below as a judgement cue</td></tr>
+<tr><td><b>Advisory / sell-side employer</b></td><td>somebody at a boutique advisory or investment bank is a peer, not a client</td><td>no longer read. It never fired in the seven validated records either</td></tr>
 </tbody></table></div>
-<p class="fn">Records 1&ndash;2 were checked against the system&rsquo;s own Approve tooltip.
-Records 3&ndash;7 were decided by ruling.</p>
-<p><b>Four of the seven turn on S7</b>, and two of those four turn on the company simply not being
-linked. That makes S7 the most consequential step and <b>company matching quality the biggest risk in
-the whole rule</b>.</p>
 
-<h4 style="margin:18px 0 8px">How to read the flag at S7, and how not to</h4>
+<div class="call warn"><span class="t">The seven validated records need re-scoring</span>The table of seven live
+records that used to sit here was scored against the previous rule, and its step numbers no longer exist. <b>It has
+been taken out rather than left to mislead.</b> Two of the seven are known to flip to Passive under the current rule,
+<i>Iman Dakhlaoui</i> and <i>Athanasia Panteli</i>. The rest need re-running before anybody quotes them.<br><br>
+<b>Re-running them is not a five-minute job:</b> the live system answers a different shape of this field from the one
+described in <a href="#a6-autorule" style="font-weight:700;cursor:pointer">A6-C.6 &#8599;</a>, which means it is on a
+different build of the engine. The re-score has to be done where the business actually runs.</div>
+
+<h4 style="margin:18px 0 8px">How to read a company flag, and how not to</h4>
 <p><b>The flag is <code>workExperiences[].linkedCompany.isSponsor</code> /
 <code>.isPortfolio</code> / <code>.isCorporate</code>, on a row with <code>ongoing = true</code>.
 Nothing else is a flag.</b> On screen: the <b>S / P / Corporate badge next to the company name in the
@@ -1466,7 +1432,7 @@ status chip shows a green <b>Corporate</b> badge exactly when the current employ
 Arnaud and Athanasia have it; Syed and Mark do not, and neither of their current employers is flagged.
 Useful for a fast eye check, but confirm on the Work Experience row before acting on it.</p>
 
-<h4 style="margin:18px 0 8px">What counts as junior or back office at S5</h4>
+<h4 style="margin:18px 0 8px">What counts as junior or back office</h4>
 <p><b>Read the POSITION on the current row. It is authoritative.</b></p>
 <p><code>Analyst</code>, <code>Associate</code>, <code>Junior</code>,
 <code>Intern</code>, <code>Internship</code>, <code>Trainee</code>,
@@ -1486,39 +1452,16 @@ record has produced that combination yet.</div>
 <p class="fn">This is <a href="#a6-rulerebuild" style="font-weight:700;cursor:pointer">A6-C.7 &#8599;</a> from our business rule, moved into the intake path, same list, but it now runs
 <b>at approval</b> and <b>before the company check</b>.</p>
 
-<h4 style="margin:18px 0 8px">Still open: do not build these until they are decided</h4>
+<h4 style="margin:18px 0 8px">Still open</h4>
 <div class="tblwrap"><table>
 <thead><tr><th>#</th><th>Question</th><th>Why it is open</th></tr></thead>
 <tbody>
-<tr><td><b>1</b></td><td><b>S2, blank employment status.</b> Active, or hold for a human?</td>
-<td><b>27%</b> of the In Review queue has this field empty. Today they are waved to Active on
-the strength of one unread field, the largest branch after the fallback.</td></tr>
-<tr><td><b>2</b></td><td><b>S6: advisory / sell-side employer.</b> Keep it, and on what
-evidence?</td><td>It is in the flow but <b>has never fired</b> in 7 records. Iman is the case it exists
-for, Finergreen is a boutique investment bank, but S5 got there first. A <b>senior</b>
-person at a sell-side boutique still needs S6. Sub-question: does S6 read the company <i>name</i>, its
-<i>description</i>, or a NAICS code?</td></tr>
-<tr><td><b>3</b></td><td><b>Company matching quality</b>: the biggest risk in the rule</td>
-<td>Three faults in seven records, all at S7, the step that decides most often: Finergreen has <b>two
-records with different flags</b> and the row links to the wrong one; <code>Fin Edge</code> links to
-<b>nothing</b>; <code>Criteo</code> links to <b>HookLogic</b>, a subsidiary acquired in 2016. S7 is
-only as good as this.</td></tr>
-<tr><td><b>4</b></td><td><b><code>ongoing = true</code> with a <code>to</code> date already in the
-past</b></td><td>Mark Cox&rsquo;s current row reads <code>from 1-1-2025, to 1-3-2026, ongoing =
-true</code>, four months past its end date. The UI trusts <code>ongoing</code> and shows
-<i>Until Now</i>. <b>Should S3 trust <code>ongoing</code> or <code>to</code>?</b> No verdict changed
-here, but it will elsewhere.</td></tr>
-<tr><td><b>5</b></td><td><b>The S4 word list</b></td><td>Still not published by dev.
-<code>remote</code> and <code>independent</code> are the two named examples; <code>fractional</code>
-was found in the data (11 titles) and is in no list we hold.</td></tr>
-<tr><td><s><b>6</b></s></td><td><s><code>corporate</code>: drop it from S7?</s></td>
-<td><b>Decided 30 Jul 2026: it counts</b>, same as sponsor and portfolio. S7 asks only <i>is the
-company flagged at all</i>.</td></tr>
-<tr><td><s><b>7</b></s></td><td><s>Board-seat step?</s></td><td><b>Decided 30 Jul 2026 on Mark Cox:
-no.</b> A title never makes anybody Passive. The flag decides.</td></tr>
+<tr><td><b>1</b></td><td>Is a junior at a flagged company really Passive?</td><td>The rule now says yes. Two hand rulings said no. Somebody has to pick one, because the two cannot both stand</td></tr>
+<tr><td><b>2</b></td><td>Should an advisory or sell-side employer still be an exception?</td><td>It was in the old design and never fired. Either write it into the rule or drop the idea</td></tr>
+<tr><td><b>3</b></td><td>Company matching quality</td><td>Still the biggest risk. Roughly <b>63%</b> of talents have a current employer that was never matched to a company record, so question 1 cannot fire at all and they fall through to the weakest evidence. See <a href="#ec-6-5" style="font-weight:700;cursor:pointer">A6.x.5 &#8599;</a></td></tr>
+<tr><td><b>4</b></td><td>Which build is the truth?</td><td>The five questions were read off one build. The live system answers a different shape of the same field, so the rule running against live records has not been confirmed to be this one</td></tr>
+<tr><td><b>5</b></td><td>Blank employment status</td><td>No longer an early exit, it now falls to the Active fallback after the flag and the keywords have been read. Better than before, but it still means <i>assume available</i> on a field nobody filled in</td></tr>
 </tbody></table></div>
-<p class="fn"><b>Not in scope here:</b> existing Active and Passive records are not re-reviewed by hand. That runs as a <b>the retired existing-records branch</b>
-later. This is the intake decision only.</p>
 
 <h3 id="a6-recheck" class="anchor">A6-D &middot; Re-check the status of a talent you already have</h3>
 <div class="goal adm"><b>When to run this:</b> when you want to know whether the statuses already on the platform are

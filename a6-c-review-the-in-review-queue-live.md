@@ -62,4 +62,4 @@ The toolbar at the top of the drawer carries all three: A confirm opens repeatin
 ## In this step
 
 * [A6-C.6 · How the recommendation works](a6-c-6-how-the-recommendation-works.md)
-* [A6-C.7 · The rule, rebuilt](a6-c-7-the-rule-rebuilt.md)
+* [A6-C.7 · The business rule behind it](a6-c-7-the-business-rule-behind-it.md)
