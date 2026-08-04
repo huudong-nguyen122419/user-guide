@@ -21,3 +21,5 @@
 * [6.x.15 · Rename · description](6-x-15-rename-description.md)
 * [6.x.16 · Edit a step](6-x-16-edit-a-step.md)
 * [6.x.17 · Move to other campaign](6-x-17-move-to-other-campaign.md)
+* [6.x.18 · Mark all as Unpersonalized](6-x-18-mark-all-as-unpersonalized.md)
+* [6.x.19 · Bulk update steps](6-x-19-bulk-update-steps.md)

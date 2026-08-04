@@ -673,7 +673,8 @@
  <a href="#s6-5-1" class="st2" data-page="page-campaign">6.5.1 · Pick a contact</a>
  <a href="#s6-5-2" class="st2" data-page="page-campaign">6.5.2 · Read each step</a>
  <a href="#s6-5-3" class="st2" data-page="page-campaign">6.5.3 · Personalize + Save</a>
- <a href="#s6-5-4" class="st2" data-page="page-campaign">6.5.4 · Mark done ✓</a>
+ <a href="#s6-5-4" class="st2" data-page="page-campaign">6.5.4 &middot; Mark done &#10003;</a>
+ <a href="#s6-5-5" class="st2" data-page="page-campaign">6.5.5 &middot; Bulk Actions</a>
  <a href="#cmp-run" class="st" data-page="page-campaign">6.6 · Schedule &amp; run</a>
  <a href="#cmp-queue" class="st" data-page="page-campaign">6.7 · Email Queue</a>
  <a href="#cmp-replies" class="st" data-page="page-campaign">6.8 · Verify replies</a>
@@ -699,6 +700,8 @@
  <a href="#ce-15" class="st2" data-page="page-campaign">6.x.15 &middot; Rename &middot; description</a>
  <a href="#ce-16" class="st2" data-page="page-campaign">6.x.16 &middot; Edit a step</a>
  <a href="#ce-17" class="st2" data-page="page-campaign">6.x.17 &middot; Move to other campaign</a>
+ <a href="#ce-18" class="st2" data-page="page-campaign">6.x.18 &middot; Mark all as Unpersonalized</a>
+ <a href="#ce-19" class="st2" data-page="page-campaign">6.x.19 &middot; Bulk update steps</a>
  <a class="flow" data-page="page-campaignaudit"><span class="n">6&#8224;</span> Manage a campaign, audited</a>
  <a class="flow" data-page="page-marketing"><span class="n">7</span> Manage a Marketing Email</a>
  <a href="#me-create" class="st" data-page="page-marketing">7.1 · Create a ME</a>
@@ -4215,9 +4218,38 @@ rewritten by hand, <a data-goto="page-campaign" href="#s6-5-3" style="font-weigh
  <figure><img src="sdrx-camp-28-personalize.png" alt="Typing a personal line, then Save"/><figcaption><b>6.5.3</b>: <b>&#9312;</b> the line typed just for this contact, highlighted here so you can see it against the standard copy &middot; <b>&#9313;</b> <b>Save</b>, which only appears once you have changed something.</figcaption></figure>
  <figure><img src="sdrx-camp-29-personalized-icon.png" alt="Personalized icon on the row and variant"/><figcaption><b>6.5.3</b>: after <b>Save</b>: the contact's row gets the <b>&#10024;</b> icon and the variant is tagged <b>&#10024; Personalized</b>.</figcaption></figure>
 </li>
-<li id="s6-5-4" data-code="6.5.4"><b>Mark the contact done, or skip.</b> Don't want a step (or the whole sequence) to go to this contact? Each step row has a <b>Skip</b> button, and <b>Skip All</b> (top-right) skips every step, skipped contacts show under the <b>Skipped</b> filter (what Skip actually does &rarr; <a data-goto="page-campaign" href="#ce-13" style="font-weight:700;cursor:pointer">6.x.13 &#8599;</a>). When their steps are reviewed, click the <b>green &#10003;</b> on their row &rarr; confirm <b>&ldquo;Done this contact?&rdquo;</b> &rarr; the row shows a <b>(Done)</b> tag. Made a mistake? The <b>&#8634; undo</b> icon asks <b>&ldquo;Undone this contact?&rdquo;</b> and clears it. Track progress with the <b>Personalize / Done / Skipped</b> filters (top-left). Once a contact replies, each step also carries their <b>reply-category</b> chip (e.g. <b>Not Interested</b>).
- <figure><img src="sdrx-camp-23-done-dialog.png" alt="Done this contact? dialog"/><figcaption><b>6.5.4</b>: the <b>&#10003;</b> asks <b>Done this contact?</b> &rarr; the row gets the <b>(Done)</b> tag.</figcaption></figure>
- <figure><img src="sdrx-camp-22-undo-dialog.png" alt="Undone this contact? dialog"/><figcaption><b>6.5.4</b>: the <b>&#8634;</b> undoes it (<b>Undone this contact?</b>).</figcaption></figure>
+<li id="s6-5-4" data-code="6.5.4"><b>Mark the contact done.</b> When you have read their steps and
+ written anything you wanted to write, click the <b>green &#10003;</b> on their row. It asks
+ <i>Done this contact?</i>, and the row then carries a <b>(Done)</b> tag with the tick replaced by an
+ <b>&#8634;</b> undo icon. Clicking the undo asks <i>Undone this contact?</i> and clears it.
+ <figure><img src="sdrx-camp-23-done-dialog.png" alt="Done this contact? dialog"/><figcaption><b>6.5.4</b>: the <b>&#10003;</b> asks <b>Done this contact?</b>.</figcaption></figure>
+ <p><b>Done is a note to yourself.</b> It does not send anything, hold anything back, or change what the
+ contact receives. It is how you keep track of who you have already been through, which matters on a list
+ you cannot finish in one sitting. The <b>Done</b> filter at the top then splits the list into reviewed
+ and not.</p>
+</li>
+<li id="s6-5-5" data-code="6.5.5"><b>Or mark the whole list at once.</b> Reviewing twelve people one tick
+ at a time is fine. Reviewing two hundred is not, so tick <b>All</b> at the top of the contact list and a
+ <b>Bulk Actions</b> button appears beside the count.
+ <figure><img src="sdrx-camp-49-bulk-actions.png" alt="Bulk Actions menu on the Preview tab"/><figcaption><b>6.5.5</b>: <b>&#9312;</b> how many you have selected &middot; <b>&#9313;</b> <b>Bulk Actions</b> &middot; <b>&#9314;</b> the five things it can do.</figcaption></figure>
+ <div class="tblwrap"><table>
+ <thead><tr><th>Menu item</th><th>What it does to everyone selected</th></tr></thead>
+ <tbody>
+ <tr><td><b>Mark all as Done</b></td><td>the same tick as above, applied to the lot.</td></tr>
+ <tr><td><b>Mark all as Undone</b></td><td>clears it again.</td></tr>
+ <tr><td><b>Mark all as Unpersonalized</b></td><td>throws away the per-contact copy and puts everyone back on the standard step.</td></tr>
+ <tr><td><b>Bulk update steps</b></td><td>edit the step itself and push it to all of them (<a data-goto="page-campaign" href="#ce-19" style="font-weight:700;cursor:pointer">6.x.19 &#8599;</a>).</td></tr>
+ <tr><td><b>Remove all from campaign</b></td><td>takes them out of the campaign entirely.</td></tr>
+ </tbody></table></div>
+ <p><b>What Done looks like afterwards:</b> every row picks up the <b>(Done)</b> tag and the green tick
+ becomes the undo arrow, exactly as if you had ticked each one.</p>
+ <figure><img src="sdrx-camp-50-done-markers.png" alt="Rows carrying the Done tag"/><figcaption><b>6.5.5</b>: after <b>Mark all as Done</b>: <b>&#9312;</b> the <b>(Done)</b> tag &middot; <b>&#9313;</b> the undo arrow that replaced the tick.</figcaption></figure>
+ <div class="call warn"><span class="t">None of the five asks you to confirm</span>The single-row tick
+ pops a dialog. <b>The bulk versions do not.</b> Click the menu item and it has already happened to
+ everyone selected, including <b>Remove all from campaign</b>, which sits one row below
+ <b>Bulk update steps</b> in the same menu. <b>Read the count on the left before you open the menu.</b>
+ <p class="fn">Your selection is cleared after each action, so a second bulk action means ticking
+ <b>All</b> again. Slightly annoying, and the only thing standing between two clicks and the wrong list.</p></div>
 </li>
 </ol>
 
@@ -4415,8 +4447,24 @@ Side Step: Not Now - Out Of Office
 <li id="ce-10" data-code="6.x.10"><b>Attachments &amp; Signature.</b> <b>Upload files</b> (bottom-left of the editor) attaches files to the step; each attachment shows with an <b>&#10005;</b> to remove. <b>Signature</b> (bottom-right) appends your signature (Flow 1.x.5). Both are visible in the editor screenshot at <a data-goto="page-campaign" href="#s6-2-2" style="font-weight:700;cursor:pointer">6.2.2</a> (fields 12 &amp; 13).</li>
 <li id="ce-11" data-code="6.x.11"><b>Language versions (EN / DE).</b> The <b>flag toggle</b> (top-right of the editor) switches between the <b>English and German version</b> of the step, write both if your list mixes languages; each contact gets the version matching their language.</li>
 <li id="ce-12" data-code="6.x.12"><b>Force Update.</b> When you <b>edit a step later</b> (after per-contact previews were generated), tick <b>Force Update</b> before <b>Save</b> to push the new copy onto those existing previews. <div class="call warn"><span class="t">Use with caution</span>It <b>overwrites existing content</b>, per-contact personalization and saved versions on this step are replaced by the new template. Leave it <b>unticked</b> on a fresh step.</div></li>
-<li id="ce-13" data-code="6.x.13"><b>Skip a step: what does it actually do?</b> <b>Skip = that email is NOT sent to that contact.</b> On the Preview, <b>Skip</b> on a step row skips <b>just that step for just that contact</b>. The step is tagged <b>Skipped</b> immediately (no confirm dialog) and the campaign simply moves on to their next step. <b>Skip All</b> (top-right) skips <b>every</b> step, i.e. this contact gets <b>nothing at all</b> from the campaign. Changed your mind? Click <b>Rollback Skip</b> on the step to undo. Skipped contacts are the ones the <b>Skipped</b> filter (and the People tab's Skipped filter) surfaces.
- <figure><img src="sdrx-camp-30-skip.png" alt="Skipped step with Rollback Skip"/><figcaption><b>6.x.13</b>: after <b>Skip</b>: the step is tagged <b>Skipped</b> (it will <b>not</b> be sent to this contact); <b>Rollback Skip</b> undoes it.</figcaption></figure>
+<li id="ce-13" data-code="6.x.13"><b>Skip: three buttons, and they do not cover the same ground.</b>
+<b>Skip means that email is not sent to that contact.</b> Nothing asks you to confirm, and the step is
+tagged <b>Skipped</b> straight away with the button becoming <b>Rollback Skip</b>.
+ <div class="tblwrap"><table>
+ <thead><tr><th>Button</th><th>Where it is</th><th>What it skips</th></tr></thead>
+ <tbody>
+ <tr><td><b>Skip</b></td><td>on a step row</td><td>that one step, for that one contact.</td></tr>
+ <tr><td><b>Skip all main step</b></td><td>top-right of the contact</td><td><b>every step under Main Step</b>. It does <b>not</b> touch a sidestep.</td></tr>
+ <tr><td><b>Skip</b> on a sidestep row</td><td>under the Sidestep heading</td><td>that branch step. Branches have no bulk button of their own.</td></tr>
+ </tbody></table></div>
+ <figure><img src="sdrx-camp-51-skip-states.png" alt="Skip buttons on a main step and on a sidestep"/><figcaption><b>6.x.13</b>: <b>&#9312;</b> a main step still to go &middot; <b>&#9313;</b> the branch, listed separately &middot; <b>&#9314;</b> its own <b>Skip</b>, which <i>Skip all main step</i> never reaches.</figcaption></figure>
+ <figure><img src="sdrx-camp-30-skip.png" alt="Skipped step with Rollback Skip"/><figcaption><b>6.x.13</b>: a skipped step: tagged <b>Skipped</b>, with <b>Rollback Skip</b> to undo it.</figcaption></figure>
+ <div class="call warn"><span class="t">Skip one step by hand and you lose the bulk button</span>Measured:
+ skipping a single main step makes <b>Skip all main step</b> <b>disappear</b> for that contact, with the
+ remaining steps still unskipped and no bulk way to reach them. You are left skipping the rest one at a
+ time, or rolling the first one back to bring the button home.
+ <p><b>So if you want the whole main sequence skipped, use Skip all main step first.</b> Doing it in the
+ other order costs you the shortcut.</p></div>
 </li>
 <li id="ce-14" data-code="6.x.14"><b>The &#128276; bell: Campaign Notifications.</b> The bell (top-right, next to Create Folder) opens <b>Campaign Notifications</b>, a feed of every reply your campaigns pulled in: the <b>campaign name</b>, the <b>reply-category chip</b>, the contact, a snippet of the reply and how long ago. A <b>purple dot</b> = unread; <b>See More</b> loads older ones. Use it as your morning sweep: spot fresh replies without opening each campaign.
  <figure><img src="sdrx-camp-31-notifications.png" alt="Campaign Notifications panel"/><figcaption><b>6.x.14</b>: the bell opens <b>Campaign Notifications</b>: campaign + category chip + reply snippet.</figcaption></figure>
@@ -4446,6 +4494,25 @@ body loaded, and two things change: the button now reads <b>Save</b> instead of 
 to a different campaign in one action, instead of removing them here and adding them there.
  <p class="fn"><b>Noted, not yet written up.</b> The steps and what it does to their place in the
  sequence have not been walked through, so treat this as a pointer rather than an instruction.</p>
+</li>
+<li id="ce-18" data-code="6.x.18"><b>Mark all as Unpersonalized.</b> In <b>Bulk Actions</b>
+(<a data-goto="page-campaign" href="#s6-5-5" style="font-weight:700;cursor:pointer">6.5.5 &#8599;</a>), it
+strips the per-contact copy off everyone selected and puts them back on the standard step. Useful after a
+rewrite, when the personal lines were written against the old email and no longer make sense.
+ <p><b>It runs without asking, and there is no undo.</b> Anything anyone typed for a specific contact is
+ gone. If only some of them are stale, fix those by hand instead.</p>
+</li>
+<li id="ce-19" data-code="6.x.19"><b>Bulk update steps.</b> The last of the editing actions in
+<b>Bulk Actions</b>. It opens the step editor full screen, with every step of the campaign listed, so you
+can change the copy once and push it to everyone selected rather than opening them one at a time.
+ <figure><img src="sdrx-camp-52-bulk-update.png" alt="The bulk update steps editor"/><figcaption><b>6.x.19</b>: <b>&#9312;</b> the subject, carrying a warning &middot; <b>&#9313;</b> <b>Update</b>, which stays greyed out until you change something.</figcaption></figure>
+ <p><b>The warning beside the subject is worth reading.</b> It says the subject is <b>reused across the
+ campaign</b>, so changing it here changes it on <b>every</b> step, unless a step has already been
+ submitted. Bodies are per step; the subject is not.</p>
+ <p class="fn">Same family as <b>Force Update</b>
+ (<a data-goto="page-campaign" href="#ce-12" style="font-weight:700;cursor:pointer">6.x.12 &#8599;</a>),
+ and the same caution applies: pushing a step over people who have personalized copy replaces what they
+ wrote.</p>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-followup"><span class="k">← Prev</span><b>Flow 5 · Follow up</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 7 · Manage a Marketing Email</b></a></div>
