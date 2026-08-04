@@ -462,6 +462,7 @@
  <a class="flow adm" data-page="page-a6audit"><span class="n">A6†</span> Approve a new talent · audit</a>
  <a class="flow adm" data-page="page-b1"><span class="n">B1</span> Invite talents to a project</a>
  <a class="flow adm" data-page="page-c1"><span class="n">C1</span> Approve a new project</a>
+ <a href="#c1-life" class="st" data-page="page-c1">C1.0 &middot; Where a project comes from</a>
  <a href="#c1-queue" class="st" data-page="page-c1">C1.1 &middot; The In Review queue</a>
  <a href="#c1-read" class="st" data-page="page-c1">C1.2 &middot; Read the brief</a>
  <a href="#c1-decide" class="st" data-page="page-c1">C1.3 &middot; Approve or archive</a>
@@ -2426,13 +2427,79 @@ a new sign-up gets, and each one says where it lands if you hover it.
 talents. Everything waiting on that decision sits in one place, and until somebody makes it, nobody can
 be invited.</div>
 
+<h3 id="c1-life" class="anchor">C1.0 &middot; Where a project comes from</h3>
+<p><b>Two doors, and they behave differently.</b> Most projects arrive through the client, and those are
+the ones the queue is built for. Admins can also create one directly, which skips everything the client
+route does.</p>
+
+<h4 style="margin:18px 0 8px">Door 1: the client fills in a brief</h4>
+<p>A client who signs up lands in a <b>six-step wizard</b> and <b>cannot leave it</b>. Every other address
+in the client app redirects back until the wizard is finished, so a client mid-signup has no dashboard, no
+project list, nothing.</p>
+<figure><img src="pjx-04-client-wizard.png" alt="The client onboarding wizard"/><figcaption><b>C1.0</b>: <b>&#9312;</b> the six steps &middot; <b>&#9313;</b> where this client has reached. Step 5 is <b>Connect with our team</b>, a call booking.</figcaption></figure>
+<p><b>The brief they fill in is much shorter than yours.</b> Five fields, and that is the whole thing the
+sourcing is built on:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Field</th><th>Options</th></tr></thead>
+<tbody>
+<tr><td><b>Your Hiring Need</b></td><td>Hire a talent &middot; Hire a team</td></tr>
+<tr><td><b>Year of experience</b></td><td>Analyst (1 to 2) &middot; Associate (3 to 5) &middot; Manager (6 to 10) &middot; Senior (10+)</td></tr>
+<tr><td><b>Work location</b></td><td>Onsite &middot; Remote &middot; Hybrid</td></tr>
+<tr><td><b>Required Languages</b></td><td>English, and any others they add</td></tr>
+<tr><td><b>Project Brief</b></td><td>free text, <b>100 characters minimum</b></td></tr>
+</tbody></table></div>
+<p>The button at the bottom reads <b>Save to Submit project</b>, and that is the moment it reaches you.</p>
+
+<div class="call warn"><span class="t">The project record exists before anybody submits anything</span>Starting
+the wizard creates the record straight away, named <b>FintalentDraftProject - &lt;timestamp&gt;</b>. It sits
+in <b>Draft</b> carrying a red <b>UNPAID PROJECT POST FEE</b> badge.
+<p><b>That is what the Draft tab is</b>, near enough. Counted in one snapshot, the first twenty rows were
+all <i>FintalentDraftProject</i> and all unpaid, out of 93. So <b>Draft is not a queue of nearly-finished
+briefs.</b> It is mostly people who started, did not pay, and left. Nothing there needs your attention
+until it moves.</p></div>
+
+<h4 style="margin:18px 0 8px">Door 2: an admin creates it directly</h4>
+<p><b>Projects &rarr; Create New</b> opens the full form, and it asks for a great deal more than the client
+does: <b>Name</b>, <b>Client</b>, <b>Currency</b>, <b>Summary</b>, <b>Client looking for</b>, <b>Work
+Location</b>, <b>Experience</b>, <b>Duration</b>, <b>Commitment</b>, <b>Seniority Level</b>, <b>Maximum
+Hires</b> and <b>Timezone</b> are all required. <b>Budget</b>, <b>Project Owner Email</b>, <b>Scope of
+Work</b>, language rules and the country and timezone restrictions are optional on top.</p>
+<figure><img src="pjx-05-admin-create.png" alt="The admin Create Project form"/><figcaption><b>C1.0</b>: <b>&#9312;</b> the <b>Client</b> field, pre-filled with <b>your own admin account</b> &middot; <b>&#9313;</b> <b>Create</b>.</figcaption></figure>
+<div class="call warn"><span class="t">Client defaults to you, and nothing warns you</span>The field
+arrives holding the admin account you are signed in as. Create without changing it and you have made a
+project that belongs to Fintalent rather than to a client, which is wrong everywhere it matters later:
+contracts, invoices, and who can see it. <b>Set the client first, before anything else on the form.</b></div>
+<p class="fn"><b>Clone Project</b>, next to Create New, is the third way in. It copies an existing brief so
+a repeat mandate does not have to be typed again.</p>
+
+<h4 style="margin:18px 0 8px">The whole lifecycle, in order</h4>
+<pre class="ascii">client starts the wizard
+      &rarr;  Draft            record created, named FintalentDraftProject - &lt;timestamp&gt;
+                              carries UNPAID PROJECT POST FEE
+
+client finishes the brief and pays
+      &rarr;  In Review        &#9668; your queue. C1
+admin presses Approve
+      &rarr;  Open             visible to talents. C2 sourcing, C3 applications
+                              &rarr;  Paused     stopped, not finished
+                              &rarr;  Closed     done
+                              &rarr;  Archived   put away, no hire
+
+admin uses Create New or Clone Project
+      &rarr;  skips the wizard and the post fee entirely</pre>
+<p class="fn">Where this sits in the operations matrix: everything above <b>In Review</b> is the client's
+own onboarding, <b>6.0 New Project Intake &amp; Qualification</b> is the Approve decision in
+<a data-goto="page-c1" href="#c1-decide" style="font-weight:700;cursor:pointer">C1.3</a>, and everything
+after <b>Open</b> is <b>5.0</b>, <b>4.0</b> and then the four monitoring processes in
+<a data-goto="page-c4" style="font-weight:700;cursor:pointer">C4 &#8599;</a>.</p>
+
 <h3 id="c1-queue" class="anchor">C1.1 &middot; Open the In Review queue</h3>
 <p><b>Project Management &rarr; Projects.</b> The tabs across the top are the whole lifecycle, and each
 carries a live count.</p>
 <div class="tblwrap"><table>
 <thead><tr><th>Tab</th><th>What is in it</th></tr></thead>
 <tbody>
-<tr><td><b>Draft</b></td><td>the client started writing and has not sent it.</td></tr>
+<tr><td><b>Draft</b></td><td>started and not submitted. Mostly unpaid signups, see <a data-goto="page-c1" href="#c1-life" style="font-weight:700;cursor:pointer">C1.0 &#8599;</a>.</td></tr>
 <tr><td><b>In Review</b></td><td><b>your queue.</b> Sent in, waiting on a decision.</td></tr>
 <tr><td><b>Open</b></td><td>approved and live. Talents can see it and apply.</td></tr>
 <tr><td><b>Paused</b></td><td>stopped for now, not finished.</td></tr>

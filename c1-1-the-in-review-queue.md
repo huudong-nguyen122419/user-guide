@@ -6,7 +6,7 @@
 
 | Tab | What is in it |
 |---|---|
-| **Draft** | the client started writing and has not sent it. |
+| **Draft** | started and not submitted. Mostly unpaid signups, see [C1.0 ↗](c1-0-where-a-project-comes-from.md). |
 | **In Review** | **your queue.** Sent in, waiting on a decision. |
 | **Open** | approved and live. Talents can see it and apply. |
 | **Paused** | stopped for now, not finished. |

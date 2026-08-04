@@ -76,6 +76,7 @@
 * [A6† · Approve a new talent · audit](a6-approve-a-new-talent-audit.md)
 * [B1 · Invite talents to a project](b1-invite-talents-to-a-project.md)
 * [C1 · Approve a new project](c1-approve-a-new-project.md)
+  * [C1.0 · Where a project comes from](c1-0-where-a-project-comes-from.md)
   * [C1.1 · The In Review queue](c1-1-the-in-review-queue.md)
   * [C1.2 · Read the brief](c1-2-read-the-brief.md)
   * [C1.3 · Approve or archive](c1-3-approve-or-archive.md)
