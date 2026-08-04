@@ -28,6 +28,6 @@ The dialog names the resource, shows the status change as chips, and tells you w
 
 *B4.4.3: ① what publishing does · ② Confirm.*
 
-## B4.4.4 · Publishing stamps *Published At* for you
+## B4.4.4 · You do not have to come through here at all
 
-verified: a Draft with no date came back with the date and time of the confirm. That date then shows in the **Information** column and on the talent's card. It matters more than it looks: see [B4.x.1 ↗](b4-x-1-published-but-nobody-sees-it.md).
+If you already know the resource should be live, set **Status** to **Published** while you are creating it ([B4.2.4 ↗](b4-2-create-one.md)) and it goes out the moment you press **Create**. The route above is for anything that was saved as a **Draft**.
