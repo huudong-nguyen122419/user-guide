@@ -4,7 +4,7 @@
 
 ## B4.1.1
 
-Left menu → **Content Management** → **Resources**. You can also go straight there with the URL **/resources** (`https://admin.fintalent.io/resources`).
+Left menu → **Content Management** → **Resources**. You can also go straight there with the URL **/resources** ([`https://admin.fintalent.io/resources`](https://admin.fintalent.io/resources)).
 
 ![Content Management menu with Resources](res-01-menu.png)
 
