@@ -17,5 +17,5 @@ description: "the SDR builds one campaign at a time (SDR Flow 6 ↗). You run th
 * [A4.3 · Reassign](a4-3-reassign.md)
 * [A4.4 · Inside the campaign](a4-4-inside-the-campaign.md)
 * [A4.5 · Timeline / audit](a4-5-timeline-audit.md)
-* [A4.6 · Run the campaign (Enabled)](a4-6-run-the-campaign-enabled.md)
+* [A4.6 · Run a campaign](a4-6-run-a-campaign.md)
 * [A4.x · Edge cases](a4-x-edge-cases.md)

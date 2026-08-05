@@ -14,7 +14,7 @@ description: "reach the same people several times over several days instead of o
 * [6.4 · Add people](6-4-add-people.md)
 * [6.4b · Remove people](6-4b-remove-people.md)
 * [6.5 · Preview & review](6-5-preview-and-review.md)
-* [6.6 · Schedule & run](6-6-schedule-and-run.md)
+* [6.6 · Hand it over to be run](6-6-hand-it-over-to-be-run.md)
 * [6.7 · Email Queue](6-7-email-queue.md)
 * [6.8 · Verify replies](6-8-verify-replies.md)
 * [6.9 · Bounces · hot replies](6-9-bounces-hot-replies.md)

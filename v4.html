@@ -412,7 +412,7 @@
  <a href="#a4-assign" class="st" data-page="page-a4">A4.3 · Reassign</a>
  <a href="#a4-inside" class="st" data-page="page-a4">A4.4 · Inside the campaign</a>
  <a href="#a4-audit" class="st" data-page="page-a4">A4.5 · Timeline / audit</a>
- <a href="#a3-camp" class="st" data-page="page-a4">A4.6 &middot; Run the campaign (Enabled)</a>
+ <a href="#a3-camp" class="st" data-page="page-a4">A4.6 &middot; Run a campaign</a>
  <a href="#a4-edge" class="st edge" data-page="page-a4">A4.x · Edge cases</a>
  <a href="#ec-4-1" class="st2" data-page="page-a4">A4.x.1 · What a clone copies</a>
  <a href="#ec-4-2" class="st2" data-page="page-a4">A4.x.2 · Archive vs Delete</a>
@@ -693,7 +693,7 @@
  <a href="#s6-5-3" class="st2" data-page="page-campaign">6.5.3 &middot; Skip a step</a>
  <a href="#s6-5-4" class="st2" data-page="page-campaign">6.5.4 &middot; Personalize + Save</a>
  <a href="#s6-5-5" class="st2" data-page="page-campaign">6.5.5 &middot; Mark done &#10003;</a>
- <a href="#cmp-run" class="st" data-page="page-campaign">6.6 · Schedule &amp; run</a>
+ <a href="#cmp-run" class="st" data-page="page-campaign">6.6 &middot; Hand it over to be run</a>
  <a href="#cmp-queue" class="st" data-page="page-campaign">6.7 · Email Queue</a>
  <a href="#cmp-replies" class="st" data-page="page-campaign">6.8 · Verify replies</a>
  <a href="#cmp-bounce" class="st2" data-page="page-campaign">6.8a · Find bounces &amp; drops</a>
@@ -936,20 +936,47 @@
 <li data-code="A4.5.2"><b>Advanced search syntax:</b> <code>-word</code> excludes, click a pill to toggle it, <code>"quotes"</code> for an exact match and <b>AND/OR</b> switches how terms join. Use it to answer &ldquo;who removed those targets?&rdquo; in one query.</li>
 </ol>
 
-<h3 id="a3-camp" class="anchor">A4.6 &middot; Run a campaign (the Enabled toggle)</h3>
+<h3 id="a3-camp" class="anchor">A4.6 &middot; Run a campaign</h3>
+<p><b>This is the one thing an SDR cannot do.</b> Everything up to here they can prepare; turning the
+campaign on is yours.</p>
 <ol class="steps">
-<li data-code="A4.6.1">Open <b>Campaigns</b> &rarr; find the campaign (the SDR sets it <b>Draft &rarr; Scheduled</b>; you run it).</li>
-<li data-code="A4.6.2">Flip the <b>Enabled</b> toggle on its row. That turns the sending <b>on</b>; the status moves through <b>Running &rarr; Finished</b> (or <b>Paused</b> if you flip it off).
- <figure><img src="sdrx-camp-20-enabled.png" alt="Enabled toggle on the campaigns list"/><figcaption><b>A4.6</b>: the <b>Enabled</b> toggle on the campaign list, the on/off switch for sending (Admin-only).</figcaption></figure>
+<li data-code="A4.6.1"><b>The SDR tells you it is ready.</b> Nothing arrives on its own, so the trigger is a
+message from them, not a queue you can watch. What ready means on their side:
+<a data-goto="page-campaign" href="#cmp-run" style="font-weight:700;cursor:pointer">6.6 &#8599;</a>.</li>
+<li data-code="A4.6.2"><b>Review it again, as much as you want to.</b> Open the campaign and go to the
+<b>Preview</b> tab, the same screen the SDR used. Read whichever contacts you want to read; the
+<b>Done</b> filter splits the list into the ones they have been through and the ones they have not.</li>
+<li data-code="A4.6.3"><b>Click the status toggle</b>, top right of the campaign, beside your name. It
+reads <b>Draft</b> until you touch it. A dialog opens.
+ <figure><img src="sdrx-camp-11-status.png" alt="The campaign status control"/><figcaption><b>A4.6.3</b>: the status control on the campaign, reading <b>Draft</b>.</figcaption></figure>
 </li>
-<li data-code="A4.6.3">The campaign detail (Steps, People, Preview and Email Queues) looks <b>the same as the SDR view</b>, see SDR <a data-goto="page-campaign" style="font-weight:700;cursor:pointer">Flow 6 &#8599;</a> for every tab.</li>
+<li data-code="A4.6.4"><b>Read the dialog before you confirm.</b> It repeats the campaign name and status,
+the sending address, and the size of what you are about to start, for example <b>12 contacts &middot; 2
+steps</b>. If anybody is still unreviewed it says so, in a yellow band:
+<i>N contact are not marked as done.</i>
+ <div class="call warn"><span class="t">The warning does not stop you</span><b>Run Campaign</b> stays
+ enabled whether or not everyone is marked done. So the count is a prompt to think, not a gate.
+ <p><b>Two reasonable answers.</b> Run anyway, when you know why those contacts are unmarked and you are
+ content to mail them. Or go back to the SDR and ask, when you are not: unmarked usually means unread, and
+ unread means somebody is about to receive an email nobody has looked at.</p></div>
+</li>
+<li data-code="A4.6.5"><b>Click Run Campaign.</b> The status moves from <b>Draft</b> to <b>Active</b>, an
+<b>Email Queues</b> tab appears on the campaign, and the steps start showing when they will go, for
+example <b>Next Running: 06/08/2026</b> on a branch.
+ <p class="fn"><b>Exit</b> closes the dialog and changes nothing, so opening it to read the count is safe.</p>
+</li>
+<li data-code="A4.6.6"><b>Then watch the queue.</b> The campaign detail is the same as the SDR's, so the
+Email Queue and the campaign Inbox work exactly as described in
+<a data-goto="page-campaign" href="#cmp-queue" style="font-weight:700;cursor:pointer">6.7 &#8599;</a> and
+<a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">6.8 &#8599;</a>.</li>
 </ol>
+
 <h3 id="a4-edge" class="edgehead anchor">A4.x &middot; Edge cases</h3>
 <ol class="steps edge">
 <li id="ec-4-1" data-code="A4.x.1"><b>What a clone copies.</b> The <b>steps and their variants</b> come along; the <b>people</b> and every <b>metric</b> do not. The clone opens as a fresh <b>Draft</b> with 0 people. Add the audience again <a data-goto="page-campaign" href="#cmp-people" style="font-weight:700;cursor:pointer">(SDR Flow 6.4 &#8599;)</a> before you enable it.</li>
 <li id="ec-4-2" data-code="A4.x.2"><b>Archive vs Delete.</b> <b>Archive</b> moves it to the <b>Archive</b> tab, out of the way, still readable, still counted in history. <b>Delete</b> is gone. When someone asks to &ldquo;clean up&rdquo;, archive.</li>
 <li id="ec-4-3" data-code="A4.x.3"><b>Reassigning does not re-point the sending account.</b> <b>Manage assignee</b> changes <i>who owns</i> the campaign; the <b>From</b> address still comes from the account set with the <b>&#9881;</b> badge <a href="#a4-inside" style="font-weight:700;cursor:pointer">(A4.4.4 &#8599;)</a>. Hand a campaign over &rarr; check both, or the new owner's replies land in the old inbox.</li>
-<li id="ec-4-4" data-code="A4.x.4"><b>Draft campaigns have no Enabled toggle.</b> The switch on the row is blank until the campaign is at least <b>Scheduled</b>. Nothing is broken: the SDR has not finished the hand-off in <a data-goto="page-campaign" href="#cmp-run" style="font-weight:700;cursor:pointer">Flow 6.6 &#8599;</a>.</li>
+<li id="ec-4-4" data-code="A4.x.4"><b>A campaign nobody has handed over looks identical to one nobody has started.</b> Both sit in <b>Draft</b>, and the list shows no difference between a campaign the SDR has finished reviewing and one they have not opened. <b>The only signal is the SDR telling you</b> (<a data-goto="page-campaign" href="#cmp-run" style="font-weight:700;cursor:pointer">Flow 6.6 &#8599;</a>). If you want to check for yourself, open it and read the <b>Done</b> filter on the Preview tab.</li>
 <li id="ec-4-5" data-code="A4.x.5"><b>&ldquo;Cross-campaign&rdquo; is the number to fear.</b> A contact sitting in two live campaigns gets two cold emails in the same week. The <b>Recently contacted and 7 days</b> line on the campaign catches it. Resolve by pulling the person out of one campaign, not by ignoring the badge.</li>
 <li id="ec-4-6" data-code="A4.x.6"><b>The folder pane can be collapsed.</b> The <b>&#8249;</b> handle on its edge hides it and widens the table. Useful when you are reading the rate columns. It re-opens with the same handle.</li>
 </ol>
@@ -4635,9 +4662,29 @@ Open it and choose <b>Mark all as Done</b>.
 </li>
 </ol>
 
-<h3 id="cmp-run" class="anchor">6.6 &middot; Schedule &amp; run</h3>
-<div class="call warn"><span class="t">Running is Admin / Ops</span>As the SDR you can move the campaign <b>Draft &rarr; Scheduled</b> (the status dropdown, top-right). Actually <b>turning it on</b>: the <b>Enabled</b> toggle on the list, and sending is an <b>Admin / Ops</b> action (the Admin side is <a data-goto="page-a4" href="#a3-camp" style="font-weight:700;cursor:pointer">Flow A4.6 &#8599;</a>), like force-sending a Marketing Email. Your job after that is to <b>monitor</b>.</div>
-<figure><img src="sdrx-camp-11-status.png" alt="Draft to Scheduled status"/><figcaption><b>6.6</b>: the status control: <b>Draft &rarr; Scheduled</b>. Enabling / running is the Admin's <b>Enabled</b> toggle.</figcaption></figure>
+<h3 id="cmp-run" class="anchor">6.6 &middot; Hand it over to be run</h3>
+<p><b>You do not run the campaign. Admin / Ops does.</b> Your part finishes the moment the review is
+finished, and the handover is four steps:</p>
+<ol class="steps">
+<li data-code="6.6.1"><b>Finish the review.</b> Every contact you intend to mail has been read
+(<a data-goto="page-campaign" href="#cmp-preview" style="font-weight:700;cursor:pointer">6.5 &#8599;</a>),
+anybody who should sit out a step has been skipped
+(<a data-goto="page-campaign" href="#s6-5-3" style="font-weight:700;cursor:pointer">6.5.3 &#8599;</a>).</li>
+<li data-code="6.6.2"><b>Mark those contacts done.</b> This is the signal, not a formality. <b>Done is how
+Admin knows which contacts you have actually looked at</b>, and the run dialog counts the ones you have
+not (<a data-goto="page-campaign" href="#s6-5-5" style="font-weight:700;cursor:pointer">6.5.5 &#8599;</a>).</li>
+<li data-code="6.6.3"><b>Tell Admin / Ops it is ready.</b> Nothing notifies them on its own. A campaign
+sitting in <b>Draft</b> with everything marked done looks exactly like one nobody has touched.</li>
+<li data-code="6.6.4"><b>They review what they want to review, then run it.</b> The campaign moves from
+<b>Draft</b> to <b>Active</b> and the first step starts going out. What happens on their side:
+<a data-goto="page-a4" href="#a3-camp" style="font-weight:700;cursor:pointer">A4.6 &#8599;</a>.</li>
+</ol>
+<div class="call warn"><span class="t">Anything left unmarked becomes a question</span>Admin sees
+<i>N contact are not marked as done</i> on the run dialog and has to decide whether to send anyway or come
+back to you. <b>Leave a contact unmarked only when you mean to</b>, and say why when you hand over.</div>
+<p>After it runs, your job becomes watching: the queue
+(<a data-goto="page-campaign" href="#cmp-queue" style="font-weight:700;cursor:pointer">6.7 &#8599;</a>)
+and the replies (<a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">6.8 &#8599;</a>).</p>
 
 <h3 id="cmp-queue" class="anchor">6.7 &middot; The Email Queue</h3>
 <p>Once the campaign is running, the <b>Email Queues</b> tab holds every queued send. It uses the same three tabs as a Marketing Email: <b>In Queue</b>, <b>Delivered</b> and <b>Cancel</b>, with <b>All</b> holding the lot. The columns are <b>Subject, Content, Status, Attachments, Sent Date</b> and <b>Created</b>, and you can filter by <b>Sources</b>, <b>Expected Run Date</b> or <b>Steps</b>.</p>

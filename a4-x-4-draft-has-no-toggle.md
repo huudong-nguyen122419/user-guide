@@ -2,4 +2,4 @@
 
 > A4 · Manage a campaign (Admin) → A4.x · Edge cases
 
-**Draft campaigns have no Enabled toggle.** The switch on the row is blank until the campaign is at least **Scheduled**. Nothing is broken: the SDR has not finished the hand-off in [Flow 6.6 ↗](6-6-schedule-and-run.md).
+**A campaign nobody has handed over looks identical to one nobody has started.** Both sit in **Draft**, and the list shows no difference between a campaign the SDR has finished reviewing and one they have not opened. **The only signal is the SDR telling you** ([Flow 6.6 ↗](6-6-hand-it-over-to-be-run.md)). If you want to check for yourself, open it and read the **Done** filter on the Preview tab.
