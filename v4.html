@@ -4596,6 +4596,7 @@ rewritten by hand, <a data-goto="page-campaign" href="#s6-5-4" style="font-weigh
 rows carry a <b>&#128683; blocked icon</b> beside the name. Hover it and it says so plainly:
 <i>&ldquo;This contact is marked as &lsquo;Opted Out&rsquo;. Sending is blocked as they requested no more
 messages.&rdquo;</i>
+<figure><img src="sdrx-camp-59-blocked-icon.png" alt="The blocked icon and its tooltip on the Preview tab"/><figcaption><b>6.5</b>: <b>&#9312;</b> the message you get on hover &middot; <b>&#9313;</b> the row it belongs to, with the <b>&#128683;</b> in front of the name. The two rows under it are normal.</figcaption></figure>
 <p><b>Three lifecycle stages do this</b>, and they are the same three that stop a campaign anywhere else:
 <b>Opted Out</b>, <b>Not Interested</b> and <b>Do Not Contact</b>
 (<a data-goto="page-campaign" href="#cmp-categorize" style="font-weight:700;cursor:pointer">6.10 &#8599;</a>).
@@ -4611,6 +4612,7 @@ will never be sent:</p>
  <li><b>Clear the filter</b> before you carry on, or you will review a list of three people and think you
  are finished.</li>
 </ol>
+<figure><img src="sdrx-camp-60-blocked-filter.png" alt="The Lifecycles filter set to the three blocking stages"/><figcaption><b>6.5</b>: <b>&#9312;</b> the chip after ticking three values &middot; <b>&#9313;</b> <b>Opted Out</b>, <b>Do Not Contact</b> and <b>Not Interested</b> ticked together &middot; <b>&#9314;</b> what is left, <b>Showing 1 of 1</b>, which is the set to remove.</figcaption></figure>
 <p class="fn">Removing them is tidier than leaving them: the campaign will not mail them either way, but a
 blocked contact still counts in <b>People</b>, still appears in your review, and still makes the numbers
 on the campaign row harder to read.</p></div>
@@ -4739,7 +4741,7 @@ to 12 Peoples</i>. <b>Exit</b> changes nothing, <b>Yes</b> queues it.
  <p>Each row shows the <b>Subject</b>, the <b>Content</b>, the <b>Status</b>, <b>Attachments</b>, the
  <b>from</b> and <b>to</b> addresses, and three dates: <b>Created</b>, <b>Expected Run</b> and
  <b>Expected Delivery</b>.</p>
- <figure><img src="sdrx-camp-56-email-queues.png" alt="The Email Queues tab"/><figcaption><b>6.7.3</b>: <b>&#9312;</b> the <b>Email Queues</b> tab, which appears once the campaign runs &middot; <b>&#9313;</b> the four tabs &middot; <b>&#9314;</b> the status of each row &middot; <b>&#9315;</b> <b>Created</b> against <b>Expected Run</b>, the pair that shows the send is scheduled on a different clock.</figcaption></figure>
+ <figure><img src="sdrx-camp-56-email-queues.png" alt="The Email Queues tab"/><figcaption><b>6.7.3</b>: <b>&#9312;</b> the <b>Email Queues</b> tab, which appears once the campaign runs &middot; <b>&#9313;</b> the four tabs, nine of them still <b>In Queue</b> &middot; <b>&#9314;</b> the same status on every row &middot; <b>&#9315;</b> <b>Created</b> at <b>11:09</b> against <b>Expected Run</b> at <b>07:00</b>, the pair that shows the send is scheduled on a different clock.</figcaption></figure>
 </li>
 </ol>
 
@@ -5069,6 +5071,9 @@ the Preview header opens this person somewhere else, without losing your place i
 <b>In Queue</b> has not been sent, so it can still be stopped. On the row, open the <b>&#8942;</b> menu and
 choose <b>Cancel Email Queue</b>. It moves to the <b>Cancel</b> tab and nobody receives it.
  <figure><img src="sdrx-camp-57-queue-row-menu.png" alt="The row menu on a queued email"/><figcaption><b>6.x.22</b>: <b>&#9312;</b> the four tabs, with nine still <b>In Queue</b> &middot; <b>&#9313;</b> the <b>&#8942;</b> on the row &middot; <b>&#9314;</b> <b>Set as Delivered</b>, which sends it (<a data-goto="page-campaign" href="#ce-23" style="font-weight:700;cursor:pointer">6.x.23 &#8599;</a>) &middot; <b>&#9315;</b> <b>Cancel Email Queue</b>.</figcaption></figure>
+ <figure><img src="sdrx-camp-58-queue-cancelled.png" alt="The queue after all nine were cancelled"/><figcaption><b>6.x.22</b>, afterwards: <b>&#9312;</b> the tab still reads <b>9</b> &middot; <b>&#9313;</b> but the split is now <b>In Queue 0</b>, <b>Cancel 9</b> &middot; <b>&#9314;</b> every row says <b>Cancel</b> &middot; <b>&#9315;</b> the dates stay on the row even though the send never happens.</figcaption></figure>
+ <p>Cancelling <b>does not delete the row</b>. It stays in the queue with the status <b>Cancel</b>, which is
+ what you want: the record of what was going to go out, and the fact that it was stopped.</p>
  <p class="fn">The menu only exists on rows that are still <b>In Queue</b>. Once a row is
  <b>Delivered</b> or <b>Cancel</b> there is nothing left to decide, so the <b>&#8942;</b> is gone.</p>
  <p><b>This is the last point at which you can take something back.</b> Once a row reaches

@@ -33,7 +33,7 @@ Four tabs across the top: Each row shows the **Subject**, the **Content**, the *
 
 ![The Email Queues tab](sdrx-camp-56-email-queues.png)
 
-*6.7.3: ① the Email Queues tab, which appears once the campaign runs · ② the four tabs · ③ the status of each row · ④ Created against Expected Run, the pair that shows the send is scheduled on a different clock.*
+*6.7.3: ① the Email Queues tab, which appears once the campaign runs · ② the four tabs, nine of them still In Queue · ③ the same status on every row · ④ Created at 11:09 against Expected Run at 07:00, the pair that shows the send is scheduled on a different clock.*
 
 > **12 people does not mean 12 emails**
 >
