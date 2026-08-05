@@ -8,9 +8,17 @@
 
 Every step carries its own **Force Send** button, main steps and sidesteps alike, so this is a decision per step rather than for the campaign as a whole.
 
+![Force Send on each step of the Steps tab](sdrx-camp-54-force-send.png)
+
+*6.7.1: ① the Steps tab · ② and ③ a Force Send on each main step · ④ the sidestep has its own. Nothing here pushes the whole campaign at once.*
+
 ## 6.7.2 · Read the dialog
 
 *Force Send Campaign Flow* repeats the **Subject** and the opening of the **Content**, then states the size of the send: *The step will be sent immediately to 12 Peoples*. **Exit** changes nothing, **Yes** queues it.
+
+![The Force Send Campaign Flow dialog](sdrx-camp-55-force-send-dialog.png)
+
+*6.7.2: ① the headcount, which is not the send count · ② Yes. Exit is safe: opening this dialog to read the number sends nothing.*
 
 ## 6.7.3 · Now the queue has rows
 
@@ -22,6 +30,10 @@ Four tabs across the top: Each row shows the **Subject**, the **Content**, the *
 | **In Queue** | written, waiting, **not sent yet**. |
 | **Delivered** | gone out. |
 | **Cancel** | pulled back before sending, so nobody received it ([6.x.22 ↗](6-x-22-cancel-a-queued-email.md)). |
+
+![The Email Queues tab](sdrx-camp-56-email-queues.png)
+
+*6.7.3: ① the Email Queues tab, which appears once the campaign runs · ② the four tabs · ③ the status of each row · ④ Created against Expected Run, the pair that shows the send is scheduled on a different clock.*
 
 > **12 people does not mean 12 emails**
 >
