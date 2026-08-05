@@ -722,6 +722,8 @@
  <a href="#ce-19" class="st2" data-page="page-campaign">6.x.19 &middot; Bulk update steps</a>
  <a href="#ce-20" class="st2" data-page="page-campaign">6.x.20 &middot; Buttons on a contact row</a>
  <a href="#ce-21" class="st2" data-page="page-campaign">6.x.21 &middot; Icons under the name</a>
+ <a href="#ce-22" class="st2" data-page="page-campaign">6.x.22 &middot; Cancel a queued email</a>
+ <a href="#ce-23" class="st2" data-page="page-campaign">6.x.23 &middot; Set as Delivered</a>
  <a class="flow" data-page="page-campaignaudit"><span class="n">6&#8224;</span> Manage a campaign, audited</a>
  <a class="flow" data-page="page-marketing"><span class="n">7</span> Manage a Marketing Email</a>
  <a href="#me-create" class="st" data-page="page-marketing">7.1 · Create a ME</a>
@@ -4687,9 +4689,58 @@ back to you. <b>Leave a contact unmarked only when you mean to</b>, and say why 
 and the replies (<a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">6.8 &#8599;</a>).</p>
 
 <h3 id="cmp-queue" class="anchor">6.7 &middot; The Email Queue</h3>
-<p>Once the campaign is running, the <b>Email Queues</b> tab holds every queued send. It uses the same three tabs as a Marketing Email: <b>In Queue</b>, <b>Delivered</b> and <b>Cancel</b>, with <b>All</b> holding the lot. The columns are <b>Subject, Content, Status, Attachments, Sent Date</b> and <b>Created</b>, and you can filter by <b>Sources</b>, <b>Expected Run Date</b> or <b>Steps</b>.</p>
-<figure><img src="sdrx-camp-13-queue.png" alt="Campaign Email Queue"/><figcaption><b>6.7</b>: the campaign <b>Email Queue</b>: tabs <b>In Queue &middot; Delivered &middot; Cancel</b> and the queue columns.</figcaption></figure>
-<p class="fn"><b>Heads-up:</b> as with Marketing Emails, the SDR <b>Email Queues</b> list can be slow or show <b>0 / &ldquo;Couldn't load&rdquo;</b> even when the campaign has already delivered. If it looks empty, refresh, or confirm via the <a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">campaign Inbox (6.8)</a> and the contact's Conversations.</p>
+<p><b>Running the campaign creates the tab. It does not fill it.</b> Once Admin has run it
+(<a data-goto="page-a4" href="#a3-camp" style="font-weight:700;cursor:pointer">A4.6 &#8599;</a>) an
+<b>Email Queues</b> tab appears on the campaign, and the first thing you notice is that it is empty.
+Nothing is wrong. A step only enters the queue when somebody pushes it there.</p>
+<ol class="steps">
+<li data-code="6.7.1"><b>Admin / Ops opens the Steps tab and presses Force Send on a step.</b> Every step
+carries its own <b>Force Send</b> button, main steps and sidesteps alike, so this is a decision per step
+rather than for the campaign as a whole.</li>
+<li data-code="6.7.2"><b>Read the dialog.</b> <i>Force Send Campaign Flow</i> repeats the <b>Subject</b> and
+the opening of the <b>Content</b>, then states the size of the send: <i>The step will be sent immediately
+to 12 Peoples</i>. <b>Exit</b> changes nothing, <b>Yes</b> queues it.</li>
+<li data-code="6.7.3"><b>Now the queue has rows.</b> Four tabs across the top:
+ <div class="tblwrap"><table>
+ <thead><tr><th>Tab</th><th>What is in it</th></tr></thead>
+ <tbody>
+ <tr><td><b>All</b></td><td>everything, whatever happened to it.</td></tr>
+ <tr><td><b>In Queue</b></td><td>written, waiting, <b>not sent yet</b>.</td></tr>
+ <tr><td><b>Delivered</b></td><td>gone out.</td></tr>
+ <tr><td><b>Cancel</b></td><td>pulled back before sending, so nobody received it (<a data-goto="page-campaign" href="#ce-22" style="font-weight:700;cursor:pointer">6.x.22 &#8599;</a>).</td></tr>
+ </tbody></table></div>
+ <p>Each row shows the <b>Subject</b>, the <b>Content</b>, the <b>Status</b>, <b>Attachments</b>, the
+ <b>from</b> and <b>to</b> addresses, and three dates: <b>Created</b>, <b>Expected Run</b> and
+ <b>Expected Delivery</b>.</p>
+</li>
+</ol>
+
+<div class="call warn"><span class="t">12 people does not mean 12 emails</span>The dialog counts everybody
+on the campaign. <b>The queue does not.</b> In a worked example the campaign held <b>12</b> people, Force
+Send announced <b>12 Peoples</b>, and the queue came out at <b>9</b>.
+<p>To work out the real number, start from the People count and take away:</p>
+<pre class="ascii">people on the campaign          12
+  minus contacts not marked done
+  minus contacts you skipped for THIS step
+                                 ---
+  emails actually queued           9</pre>
+<p><b>The count in the dialog is a headcount, not a send count.</b> If the two differ and you cannot say
+why, the answer is on the Preview tab: the <b>Done</b> and <b>Skipped</b> filters
+(<a data-goto="page-campaign" href="#s6-5-3" style="font-weight:700;cursor:pointer">6.5.3 &#8599;</a>).</p></div>
+
+<div class="call"><span class="t">When do the queued emails actually go?</span><b>At the start of the day,
+in the timezone the campaign was created with.</b> Not when you pressed Force Send. That is why the
+<b>Expected Run</b> column can read an earlier hour than <b>Created</b>: the send is scheduled against a
+different clock from the one you are looking at.
+<p><b>So the timezone you pick when creating a campaign decides what time of day your prospects are
+mailed</b> (<a data-goto="page-campaign" href="#s6-1-5" style="font-weight:700;cursor:pointer">6.1.5 &#8599;</a>).
+Get it wrong and a DACH campaign lands overnight. Check it before the first Force Send, not after.</p></div>
+
+<p class="fn"><b>In a hurry?</b> A single queued email can be pushed out without waiting for the daily
+release: <a data-goto="page-campaign" href="#ce-23" style="font-weight:700;cursor:pointer">6.x.23 &#8599;</a>.</p>
+<p class="fn"><b>Heads-up:</b> as with Marketing Emails, the <b>Email Queues</b> list can be slow or show
+<b>0</b> or <i>Couldn't load</i> even when the campaign has already delivered. If it looks empty, refresh,
+or confirm from the <a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">campaign Inbox (6.8)</a> and the contact's Conversations.</p>
 
 <h3 id="cmp-replies" class="anchor">6.8 &middot; Verify: Conversations &amp; the campaign Inbox</h3>
 <p>Every campaign has its own <b>Inbox</b> tab, the replies it pulled back, <b>categorized by lifecycle</b> down the left (Prospect, Interested, Not Interested, Out Of Office, Bounced / Dropped, Open and Click&hellip;). It's your <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 inbox &#8599;</a>, scoped to this campaign. New replies also pop up under the <b>&#128276; bell</b> (top-right), the <a data-goto="page-campaign" href="#ce-14" style="font-weight:700;cursor:pointer">Campaign Notifications feed (6.x.14) &#8599;</a>.</p>
@@ -4985,6 +5036,27 @@ the Preview header opens this person somewhere else, without losing your place i
  record is complete.</b></div>
  <p class="fn">Same row of icons, same behaviour, in the Marketing Email flow at
  <a data-goto="page-marketing" href="#e-8-4" style="font-weight:700;cursor:pointer">7.x.4 &#8599;</a>.</p>
+</li>
+<li id="ce-22" data-code="6.x.22"><b>Cancel a queued email.</b> An email sitting in
+<b>In Queue</b> has not been sent, so it can still be stopped. On the row, open the <b>&#8942;</b> menu and
+choose <b>Cancel Email Queue</b>. It moves to the <b>Cancel</b> tab and nobody receives it.
+ <p><b>This is the last point at which you can take something back.</b> Once a row reaches
+ <b>Delivered</b>, it has left, and the only remaining moves are on the reply side
+ (<a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">6.8 &#8599;</a>).</p>
+ <p class="fn">Cancelling one queued email is not the same as skipping the step for that contact. Skip is a
+ decision about the sequence and survives; cancel applies to this one queued row only
+ (<a data-goto="page-campaign" href="#ce-13" style="font-weight:700;cursor:pointer">6.x.13 &#8599;</a>).</p>
+</li>
+<li id="ce-23" data-code="6.x.23"><b>Send one queued email now: Set as Delivered.</b> Queued mail waits for
+the start of the day in the campaign's timezone. To push a single one out without waiting, open the
+<b>&#8942;</b> menu on its row and choose <b>Set as Delivered</b>. It leaves <b>In Queue</b> and lands under
+<b>Delivered</b>.
+ <p>Useful when somebody is waiting on a specific email, or when a demo cannot wait for tomorrow morning.
+ <b>It affects one row.</b> To move a whole step, that is <b>Force Send</b> on the Steps tab
+ (<a data-goto="page-campaign" href="#cmp-queue" style="font-weight:700;cursor:pointer">6.7 &#8599;</a>).</p>
+ <div class="call warn"><span class="t">The name says less than the action does</span><i>Set as
+ Delivered</i> reads like a bookkeeping change, a status you are correcting by hand. <b>It sends the
+ email.</b> Treat it as a send button that has been labelled as a status.</div>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-followup"><span class="k">← Prev</span><b>Flow 5 · Follow up</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 7 · Manage a Marketing Email</b></a></div>
