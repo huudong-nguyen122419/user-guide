@@ -2,7 +2,7 @@
 
 > 6 · Manage a campaign
 
-The **People** tab carries three filters the contact list does not: **Done** (finished the whole sequence), **Skipped**, and **Personalize** (whose copy you have rewritten by hand, [6.5.3 ↗](6-5-3-personalize-save.md)).
+The **People** tab carries three filters the contact list does not: **Done** (finished the whole sequence), **Skipped**, and **Personalize** (whose copy you have rewritten by hand, [6.5.4 ↗](6-5-4-personalize-save.md)).
 
 ![Campaign People tab](sdrx-camp-12-people.png)
 

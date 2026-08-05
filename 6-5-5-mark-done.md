@@ -1,4 +1,4 @@
-# 6.5.4 · Mark done ✓
+# 6.5.5 · Mark done ✓
 
 > 6 · Manage a campaign → 6.5 · Preview & review
 
@@ -6,11 +6,11 @@
 
 ![Bulk Actions menu on the Preview tab](sdrx-camp-49-bulk-actions.png)
 
-*6.5.4: ① how many you have selected · ② Bulk Actions · ③ the five things it can do.*
+*6.5.5: ① how many you have selected · ② Bulk Actions · ③ the five things it can do.*
 
 ![Rows carrying the Done tag](sdrx-camp-50-done-markers.png)
 
-*6.5.4: after Mark all as Done: ① the (Done) tag · ② the undo arrow that replaced the tick.*
+*6.5.5: after Mark all as Done: ① the (Done) tag · ② the undo arrow that replaced the tick.*
 
 | Menu item | When you reach for it |
 |---|---|

@@ -1,4 +1,4 @@
-# 6.5.3 · Personalize + Save
+# 6.5.4 · Personalize + Save
 
 > 6 · Manage a campaign → 6.5 · Preview & review
 
@@ -6,8 +6,8 @@
 
 ![Typing a personal line, then Save](sdrx-camp-28-personalize.png)
 
-*6.5.3: ① the line typed just for this contact, highlighted here so you can see it against the standard copy · ② Save, which only appears once you have changed something.*
+*6.5.4: ① the line typed just for this contact, highlighted here so you can see it against the standard copy · ② Save, which only appears once you have changed something.*
 
 ![Personalized icon on the row and variant](sdrx-camp-29-personalized-icon.png)
 
-*6.5.3: after Save: the contact's row gets the ✨ icon and the variant is tagged ✨ Personalized.*
+*6.5.4: after Save: the contact's row gets the ✨ icon and the variant is tagged ✨ Personalized.*
