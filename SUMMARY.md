@@ -338,6 +338,8 @@
     * [6.x.17 · Move to other campaign](6-x-17-move-to-other-campaign.md)
     * [6.x.18 · Mark all as Unpersonalized](6-x-18-mark-all-as-unpersonalized.md)
     * [6.x.19 · Bulk update steps](6-x-19-bulk-update-steps.md)
+    * [6.x.20 · Buttons on a contact row](6-x-20-buttons-on-a-contact-row.md)
+    * [6.x.21 · Icons under the name](6-x-21-icons-under-the-name.md)
 * [6† · Manage a campaign, audited](6-manage-a-campaign-audited.md)
 * [7 · Manage a Marketing Email](7-manage-a-marketing-email.md)
   * [7.1 · Create a ME](7-1-create-a-me.md)

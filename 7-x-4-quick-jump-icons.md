@@ -19,3 +19,7 @@
 ![View on LinkedIn](sdrx-me-14d-linkedin.png)
 
 *View on LinkedIn, opens their LinkedIn profile in a new tab (hover shows the URL).*
+
+> **A missing icon is information**
+>
+> An icon appears **only when the contact has that piece of data**. No company icon means no company is linked; no LinkedIn icon means the record has no LinkedIn URL. **Count them before you conclude the record is complete.**

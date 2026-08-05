@@ -720,6 +720,8 @@
  <a href="#ce-17" class="st2" data-page="page-campaign">6.x.17 &middot; Move to other campaign</a>
  <a href="#ce-18" class="st2" data-page="page-campaign">6.x.18 &middot; Mark all as Unpersonalized</a>
  <a href="#ce-19" class="st2" data-page="page-campaign">6.x.19 &middot; Bulk update steps</a>
+ <a href="#ce-20" class="st2" data-page="page-campaign">6.x.20 &middot; Buttons on a contact row</a>
+ <a href="#ce-21" class="st2" data-page="page-campaign">6.x.21 &middot; Icons under the name</a>
  <a class="flow" data-page="page-campaignaudit"><span class="n">6&#8224;</span> Manage a campaign, audited</a>
  <a class="flow" data-page="page-marketing"><span class="n">7</span> Manage a Marketing Email</a>
  <a href="#me-create" class="st" data-page="page-marketing">7.1 · Create a ME</a>
@@ -4562,7 +4564,8 @@ rewritten by hand, <a data-goto="page-campaign" href="#s6-5-4" style="font-weigh
 <h3 id="cmp-preview" class="anchor">6.5 &middot; Preview, personalize &amp; review</h3>
 <p>Before the campaign runs, <b>review what every contact will actually get</b> on the <b>Preview</b> tab, the campaign's review gate, exactly like a Marketing Email's.</p>
 <ol class="steps">
-<li id="s6-5-1" data-code="6.5.1"><b>Open the Preview tab &rarr; click a contact</b> on the left. The right pane loads that contact's header (name, email and title &amp; company and quick-jump icons) with <b>every step of the sequence</b> below it as collapsible rows, <b>Step 1 - Day 1</b>, <b>Step 2 - Day 2</b>, &hellip;
+<li id="s6-5-1" data-code="6.5.1"><b>Open the Preview tab &rarr; click a contact</b> on the left. The right pane loads that contact's header (name, email, title and company, plus a row of icons that open them elsewhere,
+ <a data-goto="page-campaign" href="#ce-21" style="font-weight:700;cursor:pointer">6.x.21 &#8599;</a>) with <b>every step of the sequence</b> below it as collapsible rows, <b>Step 1 - Day 1</b>, <b>Step 2 - Day 2</b>, &hellip;
  <p><b>Branches show up here too</b>, under their own heading. A campaign with a sidestep reads
  <b>Main Step</b> first and then <b>Sidestep: &lsaquo;condition&rsaquo;</b>, so what you are looking at is
  everything that could reach this person, not only what they are certain to get
@@ -4604,9 +4607,9 @@ Open it and choose <b>Mark all as Done</b>.
  record of your review, not an instruction to the campaign. Marking someone Done does not send anything,
  hold anything back, or change a single word they receive. What it buys you is knowing where you stopped
  on a list you cannot get through in one sitting.</p>
- <p class="fn"><b>One at a time works too.</b> The green <b>&#10003;</b> on a single row asks
- <i>Done this contact?</i> and tags just that person; the undo arrow asks <i>Undone this contact?</i>.
- Worth it for one or two, not for a list.</p>
+ <p class="fn"><b>One at a time works too</b>, and each row has its own tick, undo and a bin that
+ removes just that person. Worth it for one or two, not for a list:
+ <a data-goto="page-campaign" href="#ce-20" style="font-weight:700;cursor:pointer">6.x.20 &#8599;</a>.</p>
  <div class="tblwrap"><table>
  <thead><tr><th>Menu item</th><th>When you reach for it</th></tr></thead>
  <tbody>
@@ -4891,6 +4894,43 @@ can change the copy once and push it to everyone selected rather than opening th
  (<a data-goto="page-campaign" href="#ce-12" style="font-weight:700;cursor:pointer">6.x.12 &#8599;</a>),
  and the same caution applies: pushing a step over people who have personalized copy replaces what they
  wrote.</p>
+</li>
+<li id="ce-20" data-code="6.x.20"><b>The buttons on a single contact row.</b> On the
+<b>Preview</b> tab, each contact in the left-hand list carries its own controls. Which ones you see
+depends on whether that person is already marked done.
+ <div class="tblwrap"><table>
+ <thead><tr><th>Button</th><th>Shows when</th><th>What it does</th></tr></thead>
+ <tbody>
+ <tr><td><b>&#10003;</b> green tick</td><td>the contact is <b>not</b> done</td><td>asks <i>Done this contact?</i>, then tags that one person <b>(Done)</b>.</td></tr>
+ <tr><td><b>&#8634;</b> undo</td><td>the contact <b>is</b> done</td><td>asks <i>Undone this contact?</i> and clears the tag. It replaces the tick, so a row never shows both.</td></tr>
+ <tr><td><b>&#128465;</b> bin</td><td>always</td><td><b>removes that one contact from the campaign.</b></td></tr>
+ </tbody></table></div>
+ <figure><img src="sdrx-camp-53-row-actions.png" alt="The buttons on a contact row and the remove dialog"/><figcaption><b>6.x.20</b>: <b>&#9312;</b> undo, on a contact already marked done &middot; <b>&#9313;</b> the bin &middot; <b>&#9314;</b> what the bin asks first.</figcaption></figure>
+ <div class="call"><span class="t">This bin does ask. The bulk one does not.</span>Removing one person
+ here opens <i>Remove this contact from campaign?</i> with <b>No</b> and <b>Yes</b>. Removing people from
+ the <b>People</b> tab with <b>Remove from campaign</b> happens immediately, with nothing asked
+ (<a data-goto="page-campaign" href="#s6-4-7" style="font-weight:700;cursor:pointer">6.4.7 &#8599;</a>).
+ <b>The safer control is the one that handles one person.</b></div>
+ <p class="fn"><b>Removing is not skipping.</b> The bin takes them out of the campaign altogether; skipping
+ leaves them in and drops one email
+ (<a data-goto="page-campaign" href="#ce-13" style="font-weight:700;cursor:pointer">6.x.13 &#8599;</a>).</p>
+</li>
+<li id="ce-21" data-code="6.x.21"><b>The icons under the contact&rsquo;s name.</b> The little row of icons in
+the Preview header opens this person somewhere else, without losing your place in the campaign.
+ <div class="tblwrap"><table>
+ <thead><tr><th>Icon</th><th>Where it takes you</th></tr></thead>
+ <tbody>
+ <tr><td><b>View Inbox</b></td><td>the <b>Conversations</b> tab on their contact record: every email and call thread with them.</td></tr>
+ <tr><td><b>View Contact Info</b></td><td>the contact drawer: phone, location, LinkedIn, experience, work history.</td></tr>
+ <tr><td><b>View Company</b></td><td>the company drawer: industry, website, classifications, email domains.</td></tr>
+ <tr><td><b>View on LinkedIn</b></td><td>their LinkedIn profile, in a new tab.</td></tr>
+ </tbody></table></div>
+ <div class="call"><span class="t">A missing icon is information</span>You will not always see four. An
+ icon is <b>only there when the contact has that piece of data</b>, so no company icon means no company is
+ linked, and no LinkedIn icon means no LinkedIn URL on the record. <b>Count them before you conclude the
+ record is complete.</b></div>
+ <p class="fn">Same row of icons, same behaviour, in the Marketing Email flow at
+ <a data-goto="page-marketing" href="#e-8-4" style="font-weight:700;cursor:pointer">7.x.4 &#8599;</a>.</p>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-followup"><span class="k">← Prev</span><b>Flow 5 · Follow up</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 7 · Manage a Marketing Email</b></a></div>
@@ -5696,6 +5736,9 @@ all, silently. Their side, dialog by dialog, is
  <figure><img src="sdrx-me-14b-profile.png" alt="View Profile result"/><figcaption><img src="sdrx-ic-profile.png" alt="" style="width:18px;height:18px;vertical-align:middle"/> <b>View Profile</b>: their <b>contact record</b>: phone, location, LinkedIn, experience, work history.</figcaption></figure>
  <figure><img src="sdrx-me-14c-company.png" alt="View Company result"/><figcaption><img src="sdrx-ic-company.png" alt="" style="width:18px;height:18px;vertical-align:middle"/> <b>View Company</b>: their <b>company page</b>: industry, website, classifications, email domains.</figcaption></figure>
  <figure><img src="sdrx-me-14d-linkedin.png" alt="View on LinkedIn"/><figcaption><img src="sdrx-ic-linkedin.png" alt="" style="width:18px;height:18px;vertical-align:middle"/> <b>View on LinkedIn</b>, opens their <b>LinkedIn profile</b> in a new tab (hover shows the URL).</figcaption></figure>
+ <div class="call"><span class="t">A missing icon is information</span>An icon appears <b>only when the
+ contact has that piece of data</b>. No company icon means no company is linked; no LinkedIn icon means
+ the record has no LinkedIn URL. <b>Count them before you conclude the record is complete.</b></div>
 </li>
 <li id="e-8-5" data-code="7.x.5"><b>Row indicators: Personalized &amp; Reviewed.</b> Once you've acted on a contact, their left-list row tells you at a glance: <b>&#10024; Personalized</b> appears after you <b>edit that contact's email and click Save</b> (7.4.4); the green <b>(Reviewed)</b> &ldquo;done&rdquo; tag appears after <b>Mark as reviewed</b> (7.4.5). <b>Only reviewed contacts enter the Email Queue</b> on force send. Anyone not reviewed is skipped.
  <figure><img src="sdrx-me-15-row-indicators.png" alt="Row indicators: Personalized sparkle and Reviewed tag"/><figcaption><b>7.x.5</b>: the row shows <b>&#9312; (Reviewed)</b> (the &ldquo;done&rdquo; tag) and <b>&#9313; &#10024; Personalized</b> once each is set.</figcaption></figure>
