@@ -705,7 +705,9 @@
  <a href="#s6-8-6" class="st2" data-page="page-campaign">6.8.6 &middot; Chips that end it</a>
  <a href="#s6-8-7" class="st2" data-page="page-campaign">6.8.7 &middot; Bounced / dropped</a>
 <a href="#cmp-categorize" class="st" data-page="page-campaign">6.9 &middot; Label the replies</a>
-<a href="#cmp-complete" class="st" data-page="page-campaign">6.10 &middot; When it is finished</a>
+<a href="#cmp-complete" class="st" data-page="page-campaign">6.10 &middot; Finish a campaign</a>
+ <a href="#s6-10-1" class="st2" data-page="page-campaign">6.10.1 &middot; Who finishes it</a>
+ <a href="#s6-10-2" class="st2" data-page="page-campaign">6.10.2 &middot; Mark Campaign as Complete</a>
  <a href="#cmp-edge" class="st edge" data-page="page-campaign">6.x · Edge cases</a>
  <a href="#ce-1" class="st2" data-page="page-campaign">6.x.1 · A/B variants</a>
  <a href="#ce-2" class="st2" data-page="page-campaign">6.x.2 · Sidestep (conditional)</a>
@@ -4559,7 +4561,11 @@ A campaign is a <b>sequence</b>: first email, wait, second email, wait, third.</
 </ol>
 <p><b>Where to click</b> once the sequence exists, everything lives on the Steps tab:</p>
 <figure><img src="sdrx-camp-16-build-clicks.png" alt="Where to click to build the sequence"/><figcaption><b>6.2</b>: building the sequence: <b>&#9312; + Create new step</b> (next email) &middot; <b>&#9313; + Create sidestep</b> (conditional) &middot; <b>&#9314;</b> timing pill &middot; <b>&#9315; + Add variant</b> (A/B) &middot; <b>&#9316;</b> click a variant row to edit it &middot; right icons: duplicate / delete.</figcaption></figure>
-<p class="fn">Two campaign-only extras: <b>A/B variants</b> and <b>Sidesteps</b>, are in <a data-goto="page-campaign" href="#cmp-edge" style="font-weight:700;cursor:pointer">Edge cases (6.x) &#8599;</a>.</p>
+<p class="fn">Two campaign-only extras. <b>A/B variants</b> put two versions of the same step side by side and
+send each contact one of them at random
+(<a data-goto="page-campaign" href="#ce-1" style="font-weight:700;cursor:pointer">6.x.1 &#8599;</a>).
+<b>Sidesteps</b> are a branch that fires on a condition rather than in sequence
+(<a data-goto="page-campaign" href="#ce-2" style="font-weight:700;cursor:pointer">6.x.2 &#8599;</a>).</p>
 
 <h3 id="cmp-view" class="anchor">6.3 &middot; View campaigns (the list)</h3>
 <p>Left menu &rarr; <b>Campaigns</b> lists every campaign, grouped into <b>folders</b> (right rail). The top tabs filter by <b>status</b>: <b>All, Scheduled, Draft, Running, Finished, Paused and Archive</b>. Each row shows the campaign&rsquo;s <b>name</b> and <b>assignees</b>, then its numbers: <b>Total Steps</b>, <b>People</b>, <b>Open / Reply / Bounce rates</b>, <b>Progress</b>, <b>Delivered</b> and <b>Last run</b>.</p>
@@ -4999,9 +5005,27 @@ list is exactly the failed sends.
 <li data-code="6.9.5"><b>Where you do it.</b> Open the <b>Inbox</b> tab of the campaign, pick the category rail on the left to filter, click a reply, set its category. The same reply also appears in your own Inbox (Flow 4), labelling in either place is the same record.</li>
 </ol>
 
-<h3 id="cmp-complete" class="anchor">6.10 &middot; When the campaign is finished</h3>
+<h3 id="cmp-complete" class="anchor">6.10 &middot; Finish a campaign</h3>
 <ol class="steps">
-<li data-code="6.10.1"><b>The system decides &ldquo;Finished&rdquo;. You decide &ldquo;done&rdquo;.</b> They are not the same moment, and the gap between them is where the work actually is.
+<li id="s6-10-1" data-code="6.10.1"><b>Finishing is an Admin action.</b> Two things bring a campaign to it: it has
+<b>run to the end of its sequence</b>, or somebody has <b>asked for it to stop</b>. Either way an SDR does not close a
+campaign, they hand it back the way they handed it over to be run
+(<a data-goto="page-campaign" href="#cmp-run" style="font-weight:700;cursor:pointer">6.6 &#8599;</a>).
+ <p class="fn">Only a campaign that is <b>Active</b> or <b>Paused</b> can be finished. A Draft has never run, so there
+ is nothing to close.</p>
+</li>
+
+<li id="s6-10-2" data-code="6.10.2"><b>Open the campaign and click Mark Campaign as Complete.</b> The button sits in
+the <b>header of the campaign</b>, top right, beside the <b>Active</b> switch. It is the only control that ends a
+campaign; nothing in the list row does it.
+ <figure><img src="sdrx-camp-69-mark-complete.png" alt="Mark Campaign as Complete in the campaign header"/><figcaption><b>6.10.2</b>: <b>&#9312;</b> the <b>Active</b> switch &middot; <b>&#9313;</b> <b>Mark Campaign as Complete</b>, beside it.</figcaption></figure>
+ <p>The campaign moves to <b>Finished</b> and stops sending. Queued mail that has not left is not a leftover to deal
+ with later, so check the queue is empty first
+ (<a data-goto="page-campaign" href="#cmp-queue" style="font-weight:700;cursor:pointer">6.7 &#8599;</a>) rather than
+ finishing on top of it.</p>
+</li>
+
+<li data-code="6.10.3"><b>The system decides &ldquo;Finished&rdquo;. You decide &ldquo;done&rdquo;.</b> They are not the same moment, and the gap between them is where the work actually is.
  <div class="tblwrap"><table>
  <thead><tr><th></th><th>What it means</th></tr></thead>
  <tbody>
@@ -5010,7 +5034,7 @@ list is exactly the failed sends.
  </tbody></table></div>
 </li>
 
-<li data-code="6.10.2"><b>The closing checklist.</b> Run it before you stop looking at the campaign:
+<li data-code="6.10.4"><b>The closing checklist.</b> Run it before you stop looking at the campaign:
  <div class="tblwrap"><table>
  <thead><tr><th>Check</th><th>Where</th><th>What you want to see</th></tr></thead>
  <tbody>
@@ -5023,16 +5047,29 @@ list is exactly the failed sends.
  </tbody></table></div>
 </li>
 
-<li data-code="6.10.3"><b>Finished does not mean frozen.</b> Replies keep arriving after the last email lands, often for weeks. The Inbox stays live, so <b>keep checking it after the status has moved on</b>. A blast that reads Finished on Monday can still produce a meeting on Friday.</li>
+<li data-code="6.10.5"><b>Finished does not mean frozen.</b> Replies keep arriving after the last email lands, often for weeks. The Inbox stays live, so <b>keep checking it after the status has moved on</b>. A blast that reads Finished on Monday can still produce a meeting on Friday.</li>
 
-<li data-code="6.10.4"><b>Read the rates once at the end, and read them honestly.</b> A blank rate means nothing was sent. <b>0%</b> means it went out and nobody opened or replied. That is a content result, not a delivery one, and it is the number worth raising before the next send. Reply Rate is the one that matters; Open Rate mostly tells you about the subject line.</li>
+<li data-code="6.10.6"><b>Read the rates once at the end, and read them honestly.</b> A blank rate means nothing was sent. <b>0%</b> means it went out and nobody opened or replied. That is a content result, not a delivery one, and it is the number worth raising before the next send. Reply Rate is the one that matters; Open Rate mostly tells you about the subject line.</li>
 </ol>
 <div class="call note"><span class="t">A campaign has more than one step</span>Unlike a marketing email, a campaign keeps sending later steps to anyone who has not been stopped. That makes the three blocking categories <b>more</b> consequential here, not less: mislabel an opt-out on step 1 and they still receive steps 2 and 3.</div>
 
 <h3 id="cmp-edge" class="edgehead anchor">6.x &middot; Edge cases</h3>
 <ol class="steps edge">
-<li id="ce-1" data-code="6.x.1"><b>A/B variants.</b> Under any step, <b>+ Add variant</b> creates an alternative email (<b>A</b>, <b>B</b>, &hellip;) for that step, so you can test subject or copy. Each contact receives <b>one</b> of them (on the Preview the step reads <i>&ldquo;A random option will be sent&rdquo;</i>), so you can test subject / copy.
- <figure><img src="sdrx-camp-09-variants.png" alt="A/B variants on a step"/><figcaption><b>6.x.1</b>: Step 1 with two variants <b>A</b> and <b>B</b>.</figcaption></figure>
+<li id="ce-1" data-code="6.x.1"><b>A/B variants: two versions of the same step.</b> A step normally holds one
+email. <b>+ Add variant</b> under the step adds another, lettered <b>A</b>, <b>B</b> and so on, and
+<b>each contact receives exactly one of them, picked at random when the step goes out</b>. Nobody gets both. That
+is how you test a subject line or an opening against real replies rather than against an opinion.
+ <p><b>Where you write them:</b> the <b>Steps</b> tab, one row per variant under the step, each with its own subject,
+ body and attachment.</p>
+ <figure><img src="sdrx-camp-67-variants-steps.png" alt="One step holding two variants on the Steps tab"/><figcaption><b>6.x.1</b>: one step, two variants. <b>&#9312;</b> variant <b>A</b>, here with a file on it &middot; <b>&#9313;</b> variant <b>B</b>, a different opening &middot; <b>&#9314;</b> <b>+ Add variant</b> for a third. The <b>Steps</b> badge still reads <b>1</b>: variants are versions of one step, not extra steps.</figcaption></figure>
+ <p><b>Where you check them:</b> the <b>Preview</b> tab. The step line says
+ <i>&ldquo;A random option will be sent&rdquo;</i> and both variants are listed underneath, each openable and
+ editable, so you review every version that could reach that person.</p>
+ <figure><img src="sdrx-camp-68-variants-preview.png" alt="Preview showing both variants under one step"/><figcaption><b>6.x.1</b>: <b>&#9312;</b> <i>A random option will be sent</i>, on the step line &middot; <b>&#9313;</b> variant <b>A</b> &middot; <b>&#9314;</b> variant <b>B</b> below it. Which one this contact gets is not decided yet.</figcaption></figure>
+ <div class="call note"><span class="t">Preview cannot tell you which one they will get</span>The pick happens at
+ send time, not at review time, so the Preview shows you every possibility rather than the outcome. Read all of them:
+ <b>personalizing only variant A leaves half your contacts receiving the unedited B</b>
+ (<a data-goto="page-campaign" href="#s6-5-4" style="font-weight:700;cursor:pointer">6.5.4 &#8599;</a>).</div>
  <p><b>The split is a weighting, not a coin toss.</b> Each variant carries a <b>percentage weight</b>,
  and the weights on a step always add up to <b>100</b>, checked across <b>every step,
  118 records, all summing to exactly 100</b>. One variant is <code>100</code>; two variants are

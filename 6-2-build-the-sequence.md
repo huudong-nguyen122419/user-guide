@@ -42,7 +42,7 @@ The step lists as **Step 1 - Day 1** with its **timing** ("Right away") and vari
 
 *6.2: building the sequence: ① + Create new step (next email) · ② + Create sidestep (conditional) · ③ timing pill · ④ + Add variant (A/B) · ⑤ click a variant row to edit it · right icons: duplicate / delete.*
 
-Two campaign-only extras: **A/B variants** and **Sidesteps**, are in [Edge cases (6.x) ↗](6-x-edge-cases.md).
+Two campaign-only extras. **A/B variants** put two versions of the same step side by side and send each contact one of them at random ([6.x.1 ↗](6-x-1-a-b-variants.md)). **Sidesteps** are a branch that fires on a condition rather than in sequence ([6.x.2 ↗](6-x-2-sidestep-conditional.md)).
 
 ## In this step
 

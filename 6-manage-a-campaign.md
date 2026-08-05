@@ -18,5 +18,5 @@ description: "reach the same people several times over several days instead of o
 * [6.7 · Email Queue](6-7-email-queue.md)
 * [6.8 · Verify: Inbox & replies](6-8-verify-inbox-and-replies.md)
 * [6.9 · Label the replies](6-9-label-the-replies.md)
-* [6.10 · When it is finished](6-10-when-it-is-finished.md)
+* [6.10 · Finish a campaign](6-10-finish-a-campaign.md)
 * [6.x · Edge cases](6-x-edge-cases.md)
