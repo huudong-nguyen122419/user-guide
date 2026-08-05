@@ -12,7 +12,7 @@ Header: editable **name**, **timezone**, **description** and **owner** with the 
 
 ## A5.3.2 · Template
 
-holds the single step. It carries the **Force Send** button from [A5.7.3 ↗](a5-7-run-force-send.md) plus a **🗑 delete** on the step, deleting it empties the ME, so only do that on a Draft.
+holds the single step. It carries the **Force Send** button from [A5.8.3 ↗](a5-8-run-force-send.md) plus a **🗑 delete** on the step, deleting it empties the ME, so only do that on a Draft.
 
 ## A5.3.3 · ⚙ on the owner avatar → change the sending account
 

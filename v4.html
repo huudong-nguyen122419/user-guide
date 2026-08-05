@@ -427,7 +427,8 @@
  <a href="#a5-inbox" class="st" data-page="page-a5">A5.4 · The ME's own Inbox</a>
  <a href="#a3-people" class="st" data-page="page-a5">A5.5 &middot; Add contacts</a>
  <a href="#a3-people-remove" class="st" data-page="page-a5">A5.6 &middot; Remove contacts</a>
- <a href="#a3-me" class="st" data-page="page-a5">A5.7 &middot; Run + Force Send</a>
+ <a href="#a5-testsend" class="st" data-page="page-a5">A5.7 &middot; Test send</a>
+ <a href="#a3-me" class="st" data-page="page-a5">A5.8 &middot; Run + Force Send</a>
  <a href="#a5-edge" class="st edge" data-page="page-a5">A5.x · Edge cases</a>
  <a href="#em-5-1" class="st2" data-page="page-a5">A5.x.1 · No delete / archive</a>
  <a href="#em-5-2" class="st2" data-page="page-a5">A5.x.2 · Force Send scope</a>
@@ -994,7 +995,7 @@ Email Queue and the campaign Inbox work exactly as described in
 <!-- ===================== A5 · MANAGE A MARKETING EMAIL ===================== -->
 <section class="page" id="page-a5">
 <h2><span class="who adm">ADMIN</span><span class="n adm">A5 &middot;</span> Manage a marketing email <span class="fn">(Admin/Ops, every ME in the workspace)</span></h2>
-<div class="goal adm"><b>Goal:</b> an ME is a <b>one-shot blast</b>, not a sequence, so managing it is about <b>who it goes out as</b>, <b>whether the audience is safe to mail</b>, and <b>what came back</b>. The SDR prepares and reviews it (SDR <a data-goto="page-marketing" href="#me-create" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a>); you activate and Force Send it in <a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.7 &#8599;</a>. Everything below is the surrounding admin work.</div>
+<div class="goal adm"><b>Goal:</b> an ME is a <b>one-shot blast</b>, not a sequence, so managing it is about <b>who it goes out as</b>, <b>whether the audience is safe to mail</b>, and <b>what came back</b>. The SDR prepares and reviews it (SDR <a data-goto="page-marketing" href="#me-create" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a>); you activate and Force Send it in <a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.8 &#8599;</a>. Everything below is the surrounding admin work.</div>
 <div class="call note"><span class="t">What you can do that an SDR cannot</span>Everything in the <b>SDR</b> flow is available to you as well, same screens, same buttons, nothing removed. What Admin/Ops adds on top is the <b>authority to send</b>: flipping a marketing email from <b>Draft</b> to live, and <b>Force Send</b>. That is the whole difference in permissions, and it is why the SDR hands the marketing email back to you at the end of their flow rather than finishing it themselves.</div>
 
 <h3 id="a5-list" class="anchor">A5.1 &middot; The list</h3>
@@ -1002,7 +1003,7 @@ Email Queue and the campaign Inbox work exactly as described in
 <li data-code="A5.1.1"><b>Sales Management &rarr; Marketing Emails.</b> Again the <b>whole workspace</b>. Tabs: <b>All, Draft, Paused, Running and Finished</b>. There is <b>no Archive</b> here and <b>no folder pane</b>, so marketing emails sit in one flat list.
  <figure><img src="admm-01-list.png" alt="Admin marketing email list"/><figcaption><b>A5.1</b>: <b>&#9312;</b> every user's MEs &middot; <b>&#9313;</b> status tabs &middot; <b>&#9314;</b> <b>+ Create Marketing Email</b> &middot; <b>&#9315;</b> the rate columns.</figcaption></figure>
 </li>
-<li data-code="A5.1.2"><b>Read a row:</b> name + <b>From</b> address + status pill, <b>People</b>, <b>Delivered</b>, <b>Open Rate</b>, <b>Reply Rate</b>, <b>Bounce/Dropped Rate</b> and <b>Progress</b> (&#10003; when the blast finished). Then <b>Last run</b> and <b>Assignee</b>: the Assignee cell carries a <b>role chip</b> above the name (<b>SDR</b>), so you can see at a glance which rep owns which blast. There is <b>no Enabled toggle</b> though: unlike a campaign, an ME is switched on from inside its own header (<a href="#a3-me" style="font-weight:700;cursor:pointer">A5.7.3 &#8599;</a>).</li>
+<li data-code="A5.1.2"><b>Read a row:</b> name + <b>From</b> address + status pill, <b>People</b>, <b>Delivered</b>, <b>Open Rate</b>, <b>Reply Rate</b>, <b>Bounce/Dropped Rate</b> and <b>Progress</b> (&#10003; when the blast finished). Then <b>Last run</b> and <b>Assignee</b>: the Assignee cell carries a <b>role chip</b> above the name (<b>SDR</b>), so you can see at a glance which rep owns which blast. There is <b>no Enabled toggle</b> though: unlike a campaign, an ME is switched on from inside its own header (<a href="#a3-me" style="font-weight:700;cursor:pointer">A5.8.3 &#8599;</a>).</li>
 </ol>
 
 <h3 id="a5-row" class="anchor">A5.2 &middot; Row actions: Edit &middot; Delete &middot; Manage assignee</h3>
@@ -1029,7 +1030,7 @@ Email Queue and the campaign Inbox work exactly as described in
 <li data-code="A5.3.1"><b>Open it.</b> Header: editable <b>name</b>, <b>timezone</b>, <b>description</b> and <b>owner</b> with the <b>&#9881;</b> badge and the <b>Active</b> switch. Tabs: <b>Inbox, Template, People, Preview, Email Queues and Timeline</b>. <b>Two are conditional</b>: <b>Preview</b> and <b>Email Queues</b> do not always show. A fresh Draft can legitimately show neither, so do not read their absence as a fault; the exact trigger is still being pinned down.
  <figure><img src="admm-03-detail.png" alt="ME detail header"/><figcaption><b>A5.3.1</b>: <b>&#9312;</b> owner + <b>&#9881;</b> + the <b>Active</b> switch &middot; <b>&#9313;</b> the tab row &middot; <b>&#9314;</b> <b>Force Send</b> and the step's delete icon.</figcaption></figure>
 </li>
-<li data-code="A5.3.2"><b>Template</b> holds the single step. It carries the <b>Force Send</b> button from <a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.7.3 &#8599;</a> plus a <b>&#128465; delete</b> on the step, deleting it empties the ME, so only do that on a Draft.</li>
+<li data-code="A5.3.2"><b>Template</b> holds the single step. It carries the <b>Force Send</b> button from <a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.8.3 &#8599;</a> plus a <b>&#128465; delete</b> on the step, deleting it empties the ME, so only do that on a Draft.</li>
 <li data-code="A5.3.3"><b>&#9881; on the owner avatar &rarr; change the sending account.</b> Same control as a campaign: a list of Fintalent accounts, the current one excluded; picking one changes the account the blast sends <b>From</b>.
  <figure><img src="admm-04-sender.png" alt="Sending account picker"/><figcaption><b>A5.3.3</b>: <b>&#9312;</b> the <b>&#9881;</b> badge &middot; <b>&#9313;</b> the account list. Set this <u>before</u> Force Send: it decides the From address and where replies land.</figcaption></figure>
 </li>
@@ -1051,7 +1052,7 @@ Email Queue and the campaign Inbox work exactly as described in
 </ol>
 
 <h3 id="a3-people" class="anchor">A5.5 &middot; Add contacts to the marketing email</h3>
-<div class="call note"><span class="t">Do this before anything in A5.7</span>A marketing email with no recipients cannot be run, and the People count is one of the two numbers the run check looks at (<a href="#a3-me" style="font-weight:700;cursor:pointer">A5.7.2 &#8599;</a>).</div>
+<div class="call note"><span class="t">Do this before anything in A5.8</span>A marketing email with no recipients cannot be run, and the People count is one of the two numbers the run check looks at (<a href="#a3-me" style="font-weight:700;cursor:pointer">A5.8.2 &#8599;</a>).</div>
 <ol class="steps adm">
 <li data-code="A5.5.1"><b>Start from the marketing email, not from Contacts.</b> Open the ME &rarr; <b>People</b> tab. An empty one says so plainly, and tells you the only way in:
  <p class="fn"><i>&ldquo;No people yet &mdash; Contacts added to this marketing email via the Contacts V2 bulk flow will appear here.&rdquo;</i></p>
@@ -1165,12 +1166,67 @@ Email Queue and the campaign Inbox work exactly as described in
 <li data-code="A5.6.4"><b>Once you leave the page, Undo is gone.</b> There is no removal history and no bin to fish them out of, the only way back is to add them again from scratch (<a href="#a3-people" style="font-weight:700;cursor:pointer">A5.5 &#8599;</a>). On a <b>Select all N matching</b> removal that is a real cost, so read the count in the bar before you confirm, not after.</li>
 </ol>
 
-<h3 id="a3-me" class="anchor">A5.7 &middot; Run a Marketing Email (activate + Force Send)</h3>
+<h3 id="a5-testsend" class="anchor">A5.7 &middot; Test send: post it to yourself first</h3>
+<p>A marketing email goes to everyone at once, and there is no recall. <b>Send it to yourself first</b> and read
+the copy that arrives, not the one in the editor. You are checking four things: that it leaves at all, that the
+whole email is there, that the attachment came with it, and that it is readable in a real mail client.</p>
+<ol class="steps">
+
+<li data-code="A5.7.1"><b>Open the ME &rarr; Template tab.</b> The button is <b>Test Send</b>, top right of the step.
+It only exists once the template has been written, so on a brand new ME you will not find it until there is a step
+to send.
+ <figure><img src="admm-17-test-send-button.png" alt="Test Send on the Template tab"/><figcaption><b>A5.7.1</b>: <b>&#9312;</b> the <b>Template</b> tab &middot; <b>&#9313;</b> <b>Test Send</b>, beside the <b>&#128465;</b> on the step &middot; <b>&#9314;</b> the attachment, which is one of the things the test is for.</figcaption></figure>
+</li>
+
+<li data-code="A5.7.2"><b>The drawer opens with the email already in it.</b> Title <b>Send test email</b>, the subject
+underneath, the sending account at the top, and the full body with its attachment below. The only empty field is
+<b>To</b>, and <b>Send test email</b> stays greyed out until you fill it.
+ <figure><img src="admm-18-test-send-drawer.png" alt="The Send test email drawer before a recipient is added"/><figcaption><b>A5.7.2</b>: <b>&#9312;</b> <b>To</b>, empty, reading <i>Add recipient&hellip;</i> &middot; <b>&#9313;</b> the send button, greyed out until there is one.</figcaption></figure>
+</li>
+
+<li data-code="A5.7.3"><b>Type an address you can actually open.</b> Any address works: your own Gmail, your Outlook,
+a shared team mailbox. It does not have to be a Fintalent address and it does not have to exist in the system. Once
+the chip appears, the button turns solid.
+ <figure><img src="admm-19-test-send-filled.png" alt="The drawer with a recipient added"/><figcaption><b>A5.7.3</b>: <b>&#9312;</b> the address as a chip, with an <b>&#10005;</b> to take it off again &middot; <b>&#9313;</b> <b>Send test email</b>, now live.</figcaption></figure>
+ <p><b>You can add more than one</b>, and it is worth doing. Gmail, Outlook and a corporate mailbox do not render
+ the same email the same way, and sending to all three at once shows you the differences side by side rather than
+ one test at a time.</p>
+ <div class="call stop"><span class="t">Do not test on a real contact</span>The field takes any address, including
+ one belonging to a contact on the <b>People</b> tab, and <b>the email really is sent</b>. There is no test mode at
+ the other end. A prospect would receive an unfinished email with the merge tags showing, from the campaign you were
+ about to run properly. Use your own inbox.</div>
+</li>
+
+<li data-code="A5.7.4"><b>Now read the email that arrived, not the one on screen.</b> This is the whole point of the
+step, so go through it deliberately:
+ <div class="tblwrap"><table>
+ <thead><tr><th>Check</th><th>What you are looking for</th></tr></thead>
+ <tbody>
+ <tr><td>It arrived</td><td>and in the inbox, not in spam. Spam on your own test is a warning about the domain, not about the copy.</td></tr>
+ <tr><td>The sender</td><td><b>From</b> shows the account you meant to send as (<a data-goto="page-a5" href="#em-5-4" style="font-weight:700;cursor:pointer">A5.x.4 &#8599;</a>).</td></tr>
+ <tr><td>The subject</td><td>complete, and not cut off in the list view.</td></tr>
+ <tr><td>The body</td><td>every paragraph present, spacing intact, no block silently dropped.</td></tr>
+ <tr><td>The attachment</td><td>there, and it opens.</td></tr>
+ <tr><td>The links</td><td>the booking link and any tracked link go where they should.</td></tr>
+ </tbody></table></div>
+ <figure><img src="admm-20-test-send-received.png" alt="The test email as it arrives in Outlook"/><figcaption><b>A5.7.4</b>: the same email in an Outlook inbox. <b>&#9312;</b> the client has blocked part of the message because the sender is not trusted &middot; <b>&#9313;</b> which is why the image is a grey placeholder &middot; <b>&#9314;</b> the merge tags have arrived as written.</figcaption></figure>
+ <div class="call note"><span class="t">Two things look broken and are not</span><b>The merge tags stay as text.</b>
+ A test send has no contact behind it, so <b>&#123;&#123;contact.firstName&#125;&#125;</b> has nothing to resolve to and
+ comes through literally. In a real send it fills in per person, which is what the <b>Preview</b> tab is for.
+ <p><b>Images can be blocked by the receiving client.</b> Outlook hides remote content from senders that are not on
+ the safe list and says so in a bar at the top. That is your mail client, not the email. Click <b>Show blocked
+ content</b> and check it properly before deciding the picture is broken.</p></div>
+ <p class="fn">Anything genuinely wrong gets fixed on the <b>Template</b> tab and tested again. Only then move on to
+ the run (<a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.8 &#8599;</a>).</p>
+</li>
+</ol>
+
+<h3 id="a3-me" class="anchor">A5.8 &middot; Run a Marketing Email (activate + Force Send)</h3>
 <div class="call note"><span class="t">This is the handover point</span>The SDR builds the ME and marks people reviewed (<a data-goto="page-marketing" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a>). <b>Only an Admin can make it send.</b> Both controls below are invisible to the SDR login, so if a rep says &ldquo;I finished it and nothing happened&rdquo;, this is the step nobody did.</div>
 <ol class="steps">
-<li data-code="A5.7.1"><b>Open the ME.</b> Left menu &rarr; <b>Sales Management &rarr; Marketing Emails</b>, then click its name. The list tabs are <b>All, Draft, Paused, Running and Finished</b>, anything waiting on you is under <b>Draft</b>.</li>
+<li data-code="A5.8.1"><b>Open the ME.</b> Left menu &rarr; <b>Sales Management &rarr; Marketing Emails</b>, then click its name. The list tabs are <b>All, Draft, Paused, Running and Finished</b>, anything waiting on you is under <b>Draft</b>.</li>
 
-<li data-code="A5.7.2"><b>Before you run it, check how much of it has been reviewed.</b> The number lives on the <b>Preview</b> tab badge, and it reads <b>reviewed / total</b>.
+<li data-code="A5.8.2"><b>Before you run it, check how much of it has been reviewed.</b> The number lives on the <b>Preview</b> tab badge, and it reads <b>reviewed / total</b>.
  <div class="tblwrap"><table>
  <thead><tr><th>Preview badge</th><th>What it means</th></tr></thead>
  <tbody>
@@ -1178,22 +1234,22 @@ Email Queue and the campaign Inbox work exactly as described in
  <tr><td><b>0 / 1</b></td><td>nobody has. The SDR has not finished: send it back rather than running it.</td></tr>
  <tr><td>anything in between</td><td>part-reviewed. The unreviewed ones still go out, and they go out on the <b>default template as-is</b>.</td></tr>
  </tbody></table></div>
- <p>This is the one number worth stopping for. <b>Force Send only reaches reviewed contacts</b> (<a href="#em-5-2" style="font-weight:700;cursor:pointer">A5.x.2 &#8599;</a>), so a half-reviewed ME quietly sends to fewer people than the People count suggests, and the Run dialog will tell you the same thing again in <a href="#a3-me" style="font-weight:700;cursor:pointer">A5.7.3 &#8599;</a>, which is your second chance to notice.</p>
+ <p>This is the one number worth stopping for. <b>Force Send only reaches reviewed contacts</b> (<a href="#em-5-2" style="font-weight:700;cursor:pointer">A5.x.2 &#8599;</a>), so a half-reviewed ME quietly sends to fewer people than the People count suggests, and the Run dialog will tell you the same thing again in <a href="#a3-me" style="font-weight:700;cursor:pointer">A5.8.3 &#8599;</a>, which is your second chance to notice.</p>
 </li>
 
-<li data-code="A5.7.3"><b>Activate it</b>: the switch at the <b>very top right</b> of the
+<li data-code="A5.8.3"><b>Activate it</b>: the switch at the <b>very top right</b> of the
 drawer, reading <b>Draft</b>. Flip it and a confirm opens, <b>Run marketing email</b>: &ldquo;Sending
 starts as soon as you confirm. This cannot be undone.&rdquo; Under that sits a count line reading <b>recipients, email steps, reviewed</b>, and a warning that unreviewed recipients &ldquo;will receive the default template as-is&rdquo;. Then comes a checkbox, <b>I understand N unreviewed emails will be sent</b>. It keeps the <b>Run</b> button <b>disabled</b> until you tick it. Last is a <b>Review them now</b> link, which closes the dialog and opens Preview.
 <div class="call warn"><span class="t">Read the three numbers before you tick anything</span>Say the ME holds <b>20 contacts</b> but only <b>16</b> have been marked reviewed. The dialog prints <b>20 recipients, 1 email step and 16 reviewed</b> and, underneath, <b>4 of 20 recipients have not been reviewed. They will receive the default template as-is.</b> Those 4 still go out: on the untouched template. A reading of <b>0 reviewed</b> means nobody on the SDR side has started; that is the moment to send it back rather than confirm.</div>
 Confirm and the ME becomes <b>Active</b> (the list calls this <b>Running</b>), and the row picks up a <b>Started on</b> date in place of <b>Draft (Created on&hellip;)</b>.
- <div class="call"><span class="t">Active is not the same as queued</span>Ten minutes after confirming, an ME can still read <b>Active</b> with <b>People 20</b> and <b>Delivered 0</b> while both its own <b>Email Queues</b> tab and the site-wide <b>Email Queues</b> page show <b>0</b> rows. Activating sets the ME running; it is <b>Force Send</b> (<a href="#a3-me" style="font-weight:700;cursor:pointer">A5.7.4 &#8599;</a>) that pushes the emails into the queue. Do not read an empty queue straight after Run as a failure.</div>
+ <div class="call"><span class="t">Active is not the same as queued</span>Ten minutes after confirming, an ME can still read <b>Active</b> with <b>People 20</b> and <b>Delivered 0</b> while both its own <b>Email Queues</b> tab and the site-wide <b>Email Queues</b> page show <b>0</b> rows. Activating sets the ME running; it is <b>Force Send</b> (<a href="#a3-me" style="font-weight:700;cursor:pointer">A5.8.4 &#8599;</a>) that pushes the emails into the queue. Do not read an empty queue straight after Run as a failure.</div>
  <div class="call warn"><span class="t">It is easy to miss</span>The switch sits right at the edge of the drawer, above the tab bar and past the description box. On a <b>narrow</b> browser window it can be pushed off the right-hand edge, widen the window rather than assuming the ME has no switch. It can fail the other way too: on a <b>very wide</b> window the whole header, name, description, owner and this switch, sometimes comes back <b>blank</b> and stays blank. So if the top of the drawer looks empty, <b>resize the window</b> before concluding anything is broken.</div>
- <figure><img src="admm-08-activate-toggle.png" alt="The Draft/Active switch at the top right of the ME"/><figcaption><b>A5.7.3</b>: <b>&#9312;</b> the switch, reading <b>Draft</b> until you flip it &middot; <b>&#9313;</b> the owner block beside it. There is no Run button anywhere else on the screen.</figcaption></figure>
- <figure><img src="admm-16-run-dialog.png" alt="The Run marketing email confirmation with real counts"/><figcaption><b>A5.7.3</b>: the confirm, on a real ME: <b>&#9312;</b> <b>20 recipients &middot; 1 email step &middot; 16 reviewed</b>, read this line first &middot; <b>&#9313;</b> the amber warning naming the 4 unreviewed &middot; <b>&#9314;</b> the acknowledgement you must tick &middot; <b>&#9315;</b> <b>Review them now</b>, which backs out to Preview with nothing sent &middot; <b>&#9316;</b> <b>Run marketing email</b>, greyed out until the box is ticked.</figcaption></figure>
+ <figure><img src="admm-08-activate-toggle.png" alt="The Draft/Active switch at the top right of the ME"/><figcaption><b>A5.8.3</b>: <b>&#9312;</b> the switch, reading <b>Draft</b> until you flip it &middot; <b>&#9313;</b> the owner block beside it. There is no Run button anywhere else on the screen.</figcaption></figure>
+ <figure><img src="admm-16-run-dialog.png" alt="The Run marketing email confirmation with real counts"/><figcaption><b>A5.8.3</b>: the confirm, on a real ME: <b>&#9312;</b> <b>20 recipients &middot; 1 email step &middot; 16 reviewed</b>, read this line first &middot; <b>&#9313;</b> the amber warning naming the 4 unreviewed &middot; <b>&#9314;</b> the acknowledgement you must tick &middot; <b>&#9315;</b> <b>Review them now</b>, which backs out to Preview with nothing sent &middot; <b>&#9316;</b> <b>Run marketing email</b>, greyed out until the box is ticked.</figcaption></figure>
 </li>
 
-<li data-code="A5.7.4"><b>Force Send</b>: on the <b>Template</b> tab, top-right of the <b>Step 1</b> panel, beside the red delete-step bin. This is the button that actually pushes the emails into the queue.
- <figure><img src="admm-07-force-send.png" alt="Template tab and the Force Send button"/><figcaption><b>A5.7.4</b>: <b>&#9312;</b> the <b>Template</b> tab, where Force Send lives &middot; <b>&#9313;</b> <b>People</b>, the recipient count &middot; <b>&#9314;</b> <b>Force Send</b>, on the step itself rather than in the header &middot; <b>&#9315;</b> the step body. Note it reads <b>undefined</b> here, a defect reproduced on two separate MEs.</figcaption></figure>
+<li data-code="A5.8.4"><b>Force Send</b>: on the <b>Template</b> tab, top-right of the <b>Step 1</b> panel, beside the red delete-step bin. This is the button that actually pushes the emails into the queue.
+ <figure><img src="admm-07-force-send.png" alt="Template tab and the Force Send button"/><figcaption><b>A5.8.4</b>: <b>&#9312;</b> the <b>Template</b> tab, where Force Send lives &middot; <b>&#9313;</b> <b>People</b>, the recipient count &middot; <b>&#9314;</b> <b>Force Send</b>, on the step itself rather than in the header &middot; <b>&#9315;</b> the step body. Note it reads <b>undefined</b> here, a defect reproduced on two separate MEs.</figcaption></figure>
  
  <p><b>Only contacts the SDR marked <i>Content Reviewed</i> are sent.</b> Anyone left unreviewed stays put: which is the safety net, and also the usual reason the queue comes out smaller than the People count.
 <div class="call note"><span class="t">Its confirm is much thinner than the Run one</span>It shows the
@@ -1207,7 +1263,7 @@ a failed send. Marking all 3 reviewed and force-sending again produced all 3 row
  
 </li>
 
-<li data-code="A5.7.5"><b>Check the Email Queue tab.</b> One row per email, and every row sits in exactly one of three states. The three counts add up to <b>All</b>. On <i>Talent Handbook Launch &mdash; Aug 2026</i>: <b>All 5,197 = In Queue 372 + Delivered 4,820 + Cancel 5</b>.
+<li data-code="A5.8.5"><b>Check the Email Queue tab.</b> One row per email, and every row sits in exactly one of three states. The three counts add up to <b>All</b>. On <i>Talent Handbook Launch &mdash; Aug 2026</i>: <b>All 5,197 = In Queue 372 + Delivered 4,820 + Cancel 5</b>.
  <div class="tblwrap"><table>
  <thead><tr><th>Status</th><th>What it means</th><th>Sent Date</th><th>Can you still stop it?</th></tr></thead>
  <tbody>
@@ -1216,14 +1272,14 @@ a failed send. Marking all 3 reviewed and force-sending again produced all 3 row
  <tr><td><b>Cancel</b></td><td>pulled out of the queue before it went. It stays on the record as a row so you can see it existed.</td><td><b>empty</b></td><td>: already stopped; it will never send.</td></tr>
  </tbody></table></div>
  <div class="call warn"><span class="t">Cancel only reaches the In Queue tab</span>Once a row flips to <b>Delivered</b> the email is out of your hands. If you need to pull something, pull it <b>before</b> the daily release. That is the entire window.</div>
- <figure><img src="admm-12-queue-inqueue.png" alt="In Queue rows"/><figcaption><b>A5.7.5</b>: <b>In Queue 372</b>: <b>&#9312;</b> the tab &middot; <b>&#9313;</b> the amber <b>In Queue</b> chip &middot; <b>&#9314;</b> <b>Sent Date empty</b>. Nothing has left yet.</figcaption></figure>
- <figure><img src="admm-13-queue-delivered.png" alt="Delivered rows"/><figcaption><b>A5.7.5</b>: <b>Delivered 4,820</b>: <b>&#9312;</b> the tab &middot; <b>&#9313;</b> the <b>Delivered</b> chip &middot; <b>&#9314;</b> <b>Sent Date filled in</b>. That is how you tell it really went.</figcaption></figure>
- <figure><img src="admm-14-queue-cancel.png" alt="Cancelled rows"/><figcaption><b>A5.7.5</b>: <b>Cancel 5</b>: <b>&#9312;</b> the tab &middot; <b>&#9313;</b> the red <b>Cancel</b> chip &middot; <b>&#9314;</b> <b>Sent Date empty</b>. Pulled before it sent, kept as a record.</figcaption></figure>
+ <figure><img src="admm-12-queue-inqueue.png" alt="In Queue rows"/><figcaption><b>A5.8.5</b>: <b>In Queue 372</b>: <b>&#9312;</b> the tab &middot; <b>&#9313;</b> the amber <b>In Queue</b> chip &middot; <b>&#9314;</b> <b>Sent Date empty</b>. Nothing has left yet.</figcaption></figure>
+ <figure><img src="admm-13-queue-delivered.png" alt="Delivered rows"/><figcaption><b>A5.8.5</b>: <b>Delivered 4,820</b>: <b>&#9312;</b> the tab &middot; <b>&#9313;</b> the <b>Delivered</b> chip &middot; <b>&#9314;</b> <b>Sent Date filled in</b>. That is how you tell it really went.</figcaption></figure>
+ <figure><img src="admm-14-queue-cancel.png" alt="Cancelled rows"/><figcaption><b>A5.8.5</b>: <b>Cancel 5</b>: <b>&#9312;</b> the tab &middot; <b>&#9313;</b> the red <b>Cancel</b> chip &middot; <b>&#9314;</b> <b>Sent Date empty</b>. Pulled before it sent, kept as a record.</figcaption></figure>
  <p>The queue count should match the <b>reviewed</b> contacts, not the People count. If it comes out smaller, review is usually the reason (<a href="#em-5-2" style="font-weight:700;cursor:pointer">A5.x.2 &#8599;</a>).</p>
  <p class="fn">Full tour of the queue, its tabs and its row actions in <a data-goto="page-marketing" href="#me-queue" style="font-weight:700;cursor:pointer">7.6 &#8599;</a>. The SDR view of this tab can show 0 or &ldquo;Couldn&rsquo;t load&rdquo; for a while, a display lag, not a failed send.</p>
 </li>
 
-<li data-code="A5.7.6"><b>Then hand it back.</b> Replies land in the ME's own <b>Inbox</b>, and the SDR works them from there (<a data-goto="page-marketing" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a>). Your part is done once the queue looks right.</li>
+<li data-code="A5.8.6"><b>Then hand it back.</b> Replies land in the ME's own <b>Inbox</b>, and the SDR works them from there (<a data-goto="page-marketing" style="font-weight:700;cursor:pointer">Flow 7 &#8599;</a>). Your part is done once the queue looks right.</li>
 </ol>
 
 <h3 id="a5-edge" class="edgehead anchor">A5.x &middot; Edge cases</h3>
@@ -1241,10 +1297,10 @@ a failed send. Marking all 3 reviewed and force-sending again produced all 3 row
  <figure><img src="me-46-row-delete.png" alt="Row menu on a Draft marketing email"/><figcaption><b>A5.x.1</b>: a <b>Draft</b> ME: Delete is there.</figcaption></figure>
  <figure><img src="me-47-row-running.png" alt="Row menu on a Running marketing email"/><figcaption><b>A5.x.1</b>: the same menu on a <b>Running</b> ME: Delete is gone.</figcaption></figure>
 </li>
-<li id="em-5-2" data-code="A5.x.2"><b>Force Send only reaches reviewed contacts.</b> Same rule as <a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.7.3 &#8599;</a>: people the SDR never marked <b>Content Reviewed</b> stay behind. A queue smaller than the People count usually means review, not a bug, check <b>People</b>
+<li id="em-5-2" data-code="A5.x.2"><b>Force Send only reaches reviewed contacts.</b> Same rule as <a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.8.3 &#8599;</a>: people the SDR never marked <b>Content Reviewed</b> stay behind. A queue smaller than the People count usually means review, not a bug, check <b>People</b>
 before you chase it. <b>At zero reviewed the queue is not built at all</b>, and nothing on screen says
 why. The tab simply reads &ldquo;No email queues yet&rdquo;. Before treating a force send as
-broken, check the <b>reviewed</b> count in the Run dialog (A5.7.3).</li>
+broken, check the <b>reviewed</b> count in the Run dialog (A5.8.3).</li>
 <li id="em-5-3" data-code="A5.x.3"><b>Cancelled &ne; failed.</b> In the example the queue reads <b>Delivered 1 and Cancelled 2</b> of 3 people. Cancelled rows were pulled before sending (unreviewed, suppressed, or lifecycle-excluded), they never hit the provider, so they don't count against the domain.</li>
 <li id="em-5-4" data-code="A5.x.4"><b>Change the sending account before, never during.</b> The <b>&#9881;</b> sits on the owner avatar in the top-right of the ME header. Clicking it drops the full list of accounts, and picking one <b>applies immediately</b>, no confirmation, no toast, the header simply rewrites itself.
  <figure><img src="admm-15-sending-account.png" alt="Changing the sending account from the gear on the owner avatar"/><figcaption><b>A5.x.4</b>: <b>&#9312;</b> the owner avatar with its <b>&#9881;</b> badge &middot; <b>&#9313;</b> the account list it opens &middot; <b>&#9314;</b> the header a second later, now reading the new account. The switch takes effect on the spot, with nothing to confirm.</figcaption></figure>
@@ -5549,7 +5605,7 @@ again</b> and it flips to <b>exclude</b>: the list now shows everyone <i>except<
  <tbody>
  <tr><td><b>All</b></td><td>every ME you can access.</td></tr>
  <tr><td><b>Draft</b></td><td>created but never activated. Fully editable: where a ME sits while you build and review it.</td></tr>
- <tr><td><b>Running</b></td><td>active and sending. Shows a <b>Started on&hellip;</b> chip. Admin flips it here from Draft (<a data-goto="page-a5" style="font-weight:700;cursor:pointer">A5.7 &#8599;</a>).</td></tr>
+ <tr><td><b>Running</b></td><td>active and sending. Shows a <b>Started on&hellip;</b> chip. Admin flips it here from Draft (<a data-goto="page-a5" style="font-weight:700;cursor:pointer">A5.8 &#8599;</a>).</td></tr>
  <tr><td><b>Paused</b></td><td>was Running, temporarily stopped: nothing goes out until resumed.</td></tr>
  <tr><td><b>Finished</b></td><td>the run is complete; every queued email has gone.</td></tr>
  </tbody></table></div>
@@ -5765,12 +5821,12 @@ explicitly.</div>
 <h3 id="me-send" class="anchor">7.5 &middot; Force Send + Run the marketing email (Admin/Ops)</h3>
 <div class="call warn"><span class="t">Not your button, and not your call to make early</span>Running a ME is an <b>Admin/Ops</b> action. Your part is to <b>ask for it</b>, and to ask only once <a href="#me-preview" style="font-weight:700;cursor:pointer">7.4 &#8599;</a> is genuinely finished, every contact previewed, personalised where it matters, and <b>marked reviewed</b>. Force Send only reaches reviewed contacts (<a data-goto="page-a5" href="#em-5-2" style="font-weight:700;cursor:pointer">A5.x.2 &#8599;</a>), so asking early just sends a smaller batch than you meant.
 <p style="margin-top:8px">What you hand over: the ME name, that review is complete, and the number you expect to go out. What comes back: the ME switched to <b>Active</b> and the queue filled. Everything in <a href="#me-queue" style="font-weight:700;cursor:pointer">7.6 &#8599;</a> only exists after this step has happened.</p></div>
-<div class="call warn"><span class="t">No Force Send on the SDR view</span><b>Force Send is an Admin / Ops action</b>, on the SDR login there is <b>no Force Send button</b> (the ME's &#8942; menu only offers <b>Edit / View Details</b>). Your Admin both flips the ME <b>Draft &rarr; Active</b> and clicks <b>Force Send</b>. The Admin side is <a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">Flow A5.7 &#8599;</a>.</div>
+<div class="call warn"><span class="t">No Force Send on the SDR view</span><b>Force Send is an Admin / Ops action</b>, on the SDR login there is <b>no Force Send button</b> (the ME's &#8942; menu only offers <b>Edit / View Details</b>). Your Admin both flips the ME <b>Draft &rarr; Active</b> and clicks <b>Force Send</b>. The Admin side is <a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">Flow A5.8 &#8599;</a>.</div>
 <p><p><b>Your review is what your Admin is waiting on.</b> The confirm they get when they flip the ME on
 counts recipients, email steps and <b>reviewed</b>, and warns them that anyone unreviewed
 &ldquo;will receive the default template as-is&rdquo;. At <b>0 reviewed</b> the queue is not built at
 all, silently. Their side, dialog by dialog, is
-<a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.7.3 &#8599;</a>.</p>
+<a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.8.3 &#8599;</a>.</p>
 <p>Once your Admin has force-sent, your job is to <b>check the queue</b>:</p></p>
 <ol class="steps">
 <li data-code="7.5.1">Open the <b>marketing email detail</b>.</li>

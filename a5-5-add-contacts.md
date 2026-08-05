@@ -2,9 +2,9 @@
 
 > A5 · Manage a marketing email (Admin)
 
-> **Do this before anything in A5.7**
+> **Do this before anything in A5.8**
 >
-> A marketing email with no recipients cannot be run, and the People count is one of the two numbers the run check looks at ([A5.7.2 ↗](a5-7-run-force-send.md)).
+> A marketing email with no recipients cannot be run, and the People count is one of the two numbers the run check looks at ([A5.8.2 ↗](a5-8-run-force-send.md)).
 
 ## A5.5.1 · Start from the marketing email, not from Contacts
 
