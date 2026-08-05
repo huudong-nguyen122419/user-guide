@@ -8,9 +8,9 @@
 
 > **No Force Send on the SDR view**
 >
-> **Force Send is an Admin / Ops action**, on the SDR login there is **no Force Send button** (the ME's ⋮ menu only offers **Edit / View Details**). Your Admin both flips the ME **Draft → Active** and clicks **Force Send**. The Admin side is [Flow A5.7 ↗](a5-7-run-force-send.md).
+> **Force Send is an Admin / Ops action**, on the SDR login there is **no Force Send button** (the ME's ⋮ menu only offers **Edit / View Details**). Your Admin both flips the ME **Draft → Active** and clicks **Force Send**. The Admin side is [Flow A5.8 ↗](a5-8-run-force-send.md).
 
-**Your review is what your Admin is waiting on.** The confirm they get when they flip the ME on counts recipients, email steps and **reviewed**, and warns them that anyone unreviewed “will receive the default template as-is”. At **0 reviewed** the queue is not built at all, silently. Their side, dialog by dialog, is [A5.7.3 ↗](a5-7-run-force-send.md). Once your Admin has force-sent, your job is to **check the queue**:
+**Your review is what your Admin is waiting on.** The confirm they get when they flip the ME on counts recipients, email steps and **reviewed**, and warns them that anyone unreviewed “will receive the default template as-is”. At **0 reviewed** the queue is not built at all, silently. Their side, dialog by dialog, is [A5.8.3 ↗](a5-8-run-force-send.md). Once your Admin has force-sent, your job is to **check the queue**:
 
 ## 7.5.1
 

@@ -732,6 +732,21 @@
  <a href="#ce-23" class="st2" data-page="page-campaign">6.x.23 &middot; Set as Delivered</a>
  <a href="#ce-24" class="st2" data-page="page-campaign">6.x.24 &middot; Exclude a category</a>
  <a class="flow" data-page="page-campaignaudit"><span class="n">6&#8224;</span> Manage a campaign, audited</a>
+ <a class="flow" data-page="page-campaignissues"><span class="n">6&#8225;</span> Manage a campaign, issues</a>
+ <a href="#ci-register" class="st" data-page="page-campaignissues">6&#8225;.0 &middot; The register</a>
+ <a href="#ci-09" class="st2" data-page="page-campaignissues">CMP-09 &middot; Folder rail scope</a>
+ <a href="#ci-10" class="st2" data-page="page-campaignissues">CMP-10 &middot; Numbers lead nowhere</a>
+ <a href="#ci-11" class="st2" data-page="page-campaignissues">CMP-11 &middot; Reply Rate</a>
+ <a href="#ci-12" class="st2" data-page="page-campaignissues">CMP-12 &middot; No lifecycle on rows</a>
+ <a href="#ci-13" class="st2" data-page="page-campaignissues">CMP-13 &middot; Open / Click / Bounced</a>
+ <a href="#ci-14" class="st2" data-page="page-campaignissues">CMP-14 &middot; Last replied</a>
+ <a href="#ci-15" class="st2" data-page="page-campaignissues">CMP-15 &middot; Owner picker</a>
+ <a href="#ci-16" class="st2" data-page="page-campaignissues">CMP-16 &middot; Total Steps</a>
+ <a href="#ci-17" class="st2" data-page="page-campaignissues">CMP-17 &middot; Reordering steps</a>
+ <a href="#ci-18" class="st2" data-page="page-campaignissues">CMP-18 &middot; Admin campaign Preview</a>
+ <a href="#ci-19" class="st2" data-page="page-campaignissues">CMP-19 &middot; Skipped filter</a>
+ <a href="#ci-20" class="st2" data-page="page-campaignissues">CMP-20 &middot; Bulk update steps</a>
+ <a href="#ci-read" class="st" data-page="page-campaignissues">6&#8225;.13 &middot; What they have in common</a>
  <a class="flow" data-page="page-marketing"><span class="n">7</span> Manage a Marketing Email</a>
  <a href="#me-create" class="st" data-page="page-marketing">7.1 · Create a ME</a>
  <a href="#m7-1-1" class="st2" data-page="page-marketing">7.1.1 · Open MEs + Create</a>
@@ -4661,6 +4676,10 @@ rewritten by hand, <a data-goto="page-campaign" href="#s6-5-4" style="font-weigh
 
 <h3 id="cmp-preview" class="anchor">6.5 &middot; Preview, personalize &amp; review</h3>
 <p>Before the campaign runs, <b>review what every contact will actually get</b> on the <b>Preview</b> tab, the campaign's review gate, exactly like a Marketing Email's.</p>
+<div class="call warn"><span class="t">If the campaign was created by an Admin, the step is not drawn here</span>Preview
+shows the contact and no step block at all, so there is nothing to read, personalize or mark done. It is not an empty
+campaign, it is the tab. Logged as
+<a data-goto="page-campaignissues" href="#ci-18" style="font-weight:700;cursor:pointer">CMP-18 &#8599;</a>, still open.</div>
 <div class="call stop"><span class="t">First, clear out anyone you are not allowed to mail</span>Some
 rows carry a <b>&#128683; blocked icon</b> beside the name. Hover it and it says so plainly:
 <i>&ldquo;This contact is marked as &lsquo;Opted Out&rsquo;. Sending is blocked as they requested no more
@@ -4896,6 +4915,12 @@ that group. It is the <b>Lifecycles</b> filter, reached in one click.
  <p class="fn">Clicking the same category a second time flips it to <b>exclude</b>, which hides that group instead of
  showing it (<a data-goto="page-campaign" href="#ce-24" style="font-weight:700;cursor:pointer">6.x.24 &#8599;</a>).
  <b>Clear all</b> puts the list back.</p>
+ <div class="call warn"><span class="t">Three of these categories return nothing today</span><b>Open</b>,
+ <b>Click</b> and <b>Bounced / Dropped</b> come back empty however much traffic the campaign has, because
+ the rail sends them through the <b>Lifecycles</b> filter and none of the three is a lifecycle. Logged as
+ <a data-goto="page-campaignissues" href="#ci-13" style="font-weight:700;cursor:pointer">CMP-13 &#8599;</a>,
+ still open. <b>Last replied</b> also misses the day you filter on
+ (<a data-goto="page-campaignissues" href="#ci-14" style="font-weight:700;cursor:pointer">CMP-14 &#8599;</a>).</div>
 </li>
 
 <li id="s6-8-5" data-code="6.8.5"><b>Answer it, or leave it alone.</b> What the chip says decides which:
@@ -6113,6 +6138,142 @@ open and <i>Set as Delivered</i> chosen, nothing happened and no confirmation ap
 established</b>; confirm by hand before relying on it.</div></li>
 </ol>
 <div class="pagernav"><a data-goto="page-campaign"><span class="k">← Prev</span><b>Flow 6 · Manage campaign</b></a><a class="next" data-goto="page-filters"><span class="k">Next →</span><b>Flow 8 · Using filters</b></a></div>
+</section>
+
+<!-- ===================== PAGE-CAMPAIGNISSUES ===================== -->
+<section class="page" id="page-campaignissues">
+<h2><span class="who sdr">SDR</span><span class="n">6&#8225; &middot;</span> Manage a campaign, issues</h2>
+<p class="fn" style="margin-bottom:22px">Found by walking <a data-goto="page-campaign" style="font-weight:700;cursor:pointer">Flow 6 &#8599;</a> by hand on 5 August 2026, signed in as <b>Dong SDR</b> and again as <b>dev@fintalent.io</b>. Twelve items: nine defects and three improvements. The IDs carry on from <a data-goto="page-campaignaudit" style="font-weight:700;cursor:pointer">6&#8224; Manage a campaign, audited &#8599;</a>, which found <b>CMP-01</b> to <b>CMP-08</b> through the API. These were found through the screen, which is why none of them repeat.</p>
+
+<h3 id="ci-register" class="anchor">6&#8225;.0 &middot; The register</h3>
+<div class="tblwrap"><table>
+<thead><tr><th>ID</th><th>What happens</th><th>Where</th><th>Kind</th><th>Severity</th></tr></thead>
+<tbody>
+<tr><td><a href="#ci-09" style="font-weight:700">CMP-09</a></td><td>An SDR sees every folder in the workspace, including other people's.</td><td>Campaign list</td><td>improvement</td><td><b>High</b></td></tr>
+<tr><td><a href="#ci-10" style="font-weight:700">CMP-10</a></td><td>The numbers on a campaign row lead nowhere.</td><td>Campaign list</td><td>improvement</td><td>Medium</td></tr>
+<tr><td><a href="#ci-11" style="font-weight:700">CMP-11</a></td><td>Reply Rate reads <b>100%</b> when one of two people answered.</td><td>Campaign list</td><td>defect</td><td>Medium</td></tr>
+<tr><td><a href="#ci-12" style="font-weight:700">CMP-12</a></td><td>The Inbox list does not show which contact carries which lifecycle.</td><td>Inbox</td><td>improvement</td><td>Medium</td></tr>
+<tr><td><a href="#ci-13" style="font-weight:700">CMP-13</a></td><td><b>Open</b>, <b>Click</b> and <b>Bounced / Dropped</b> always return nothing.</td><td>Inbox rail</td><td>defect</td><td><b>High</b></td></tr>
+<tr><td><a href="#ci-14" style="font-weight:700">CMP-14</a></td><td><b>Last replied</b> misses replies from the day you filter on.</td><td>Inbox filters</td><td>defect</td><td><b>High</b></td></tr>
+<tr><td><a href="#ci-15" style="font-weight:700">CMP-15</a></td><td>The contact <b>Owner</b> picker finds nobody, including the owner on screen.</td><td>Inbox filters</td><td>defect</td><td><b>High</b></td></tr>
+<tr><td><a href="#ci-16" style="font-weight:700">CMP-16</a></td><td><b>Total Steps</b> says 2 on the list and 3 inside the campaign.</td><td>List vs Steps</td><td>defect</td><td>Low</td></tr>
+<tr><td><a href="#ci-17" style="font-weight:700">CMP-17</a></td><td>Reordering steps moves the delay with the content, so step 1 waits a day.</td><td>Steps</td><td>defect</td><td><b>High</b></td></tr>
+<tr><td><a href="#ci-18" style="font-weight:700">CMP-18</a></td><td>A campaign created by an Admin shows no step on Preview at all.</td><td>Preview</td><td>defect</td><td><b>Blocker</b></td></tr>
+<tr><td><a href="#ci-19" style="font-weight:700">CMP-19</a></td><td>The <b>Skipped</b> filter changes nothing.</td><td>Preview filters</td><td>defect</td><td>Medium</td></tr>
+<tr><td><a href="#ci-20" style="font-weight:700">CMP-20</a></td><td><b>Bulk update steps</b> does nothing.</td><td>Preview bulk actions</td><td>defect</td><td>Medium</td></tr>
+</tbody></table></div>
+<p class="fn"><b>Blocker</b> stops the flow completely &middot; <b>High</b> makes a control lie or leak &middot; <b>Medium</b> costs time or trust &middot; <b>Low</b> is a mismatch you can work around.</p>
+
+<h3 id="ci-09" class="anchor">CMP-09 &middot; The folder rail shows every folder in the workspace</h3>
+<p><b>What happens.</b> Signed in as an SDR with <b>7 campaigns</b>, the folder rail lists seventeen folders, among them <i>Thao Test</i>, <i>tin&rsquo;s</i>, <i>Sang</i>, <i>Tung Campaign</i>, <i>Sponsors EU</i> and <i>Sponsors USA</i>, several with a count beside the name.</p>
+<p><b>What should happen.</b> An SDR should see a folder only when one of two things is true: <b>they created it</b>, or <b>it holds a campaign assigned to them</b>. Everything else belongs to somebody else's work.</p>
+<p><b>Why it matters.</b> The rail is a directory of who is running what, printed to a role that is not supposed to have it. The campaign data underneath is scoped correctly, which makes this worse rather than better: the names and counts leak while the contents do not, so nobody notices.</p>
+<figure><img src="cmpi-09-folder-rail.png" alt="An SDR seeing the full folder rail"/><figcaption><b>CMP-09</b>: seven campaigns in the list, seventeen folders in the rail.</figcaption></figure>
+<p class="fn">Related: <a data-goto="page-campaignaudit" style="font-weight:700;cursor:pointer">6&#8224; &#8599;</a> found the same rail printing other people's counts through the API. This adds the rule the rail should follow. Guide: <a data-goto="page-campaign" href="#cmp-view" style="font-weight:700;cursor:pointer">6.3 &#8599;</a>.</p>
+
+<h3 id="ci-10" class="anchor">CMP-10 &middot; The numbers on a campaign row lead nowhere</h3>
+<p><b>What happens.</b> <b>Total Steps</b>, <b>People</b>, <b>Open Rate</b>, <b>Reply Rate</b> and <b>Bounce / Dropped Rate</b> are printed as plain text. Reading one and wanting the detail behind it means opening the campaign and finding the right tab yourself.</p>
+<p><b>What should happen.</b> Every number opens the view that explains it:</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Click</th><th>Opens</th></tr></thead>
+<tbody>
+<tr><td><b>Total Steps</b></td><td>campaign &rarr; <b>Steps</b></td></tr>
+<tr><td><b>People</b></td><td>campaign &rarr; <b>People</b></td></tr>
+<tr><td><b>Open Rate</b></td><td>campaign &rarr; <b>Inbox</b>, filtered to <b>Open</b></td></tr>
+<tr><td><b>Reply Rate</b></td><td>campaign &rarr; <b>Inbox</b></td></tr>
+<tr><td><b>Bounce / Dropped Rate</b></td><td>campaign &rarr; <b>Inbox</b>, filtered to <b>Bounced / Dropped</b></td></tr>
+</tbody></table></div>
+<p><b>Why it matters.</b> The list is where the work starts every morning. A number that cannot be opened is a number you read and then have to go and find again.</p>
+<figure><img src="cmpi-10-metrics-row.png" alt="The metric columns on the campaign list"/><figcaption><b>CMP-10</b>: the five numbers, none of them a link.</figcaption></figure>
+<p class="fn">Two of these destinations do not work yet either, see <a href="#ci-13" style="font-weight:700">CMP-13</a>. Guide: <a data-goto="page-campaign" href="#s6-8-1" style="font-weight:700;cursor:pointer">6.8.1 &#8599;</a>.</p>
+
+<h3 id="ci-11" class="anchor">CMP-11 &middot; Reply Rate divides replies by people</h3>
+<p><b>What happens.</b> A campaign with <b>2 contacts</b> and <b>1 step</b>, both delivered. <b>One</b> of the two answered, and that one person sent <b>two</b> replies. The row reads <b>Reply Rate 100% (2)</b>.</p>
+<p><b>What should happen.</b> The count of <b>2</b> is right, the percentage is not. Reply rate is people who answered over people delivered to, which is <b>1 of 2, 50%</b>. As printed, one talkative contact can carry the rate past 100%.</p>
+<p><b>Why it matters.</b> This is the number the campaign is judged on. It is also the same defect as <b>ME-01</b> on the marketing-email side, where Open Rate printed <b>173.5%</b>, so it is one fix in two places rather than two problems.</p>
+<figure><img src="cmpi-11-reply-rate.png" alt="Reply Rate 100% on a campaign with 2 people"/><figcaption><b>CMP-11</b>: 2 people, 1 step, both delivered, one replier: <b>100% (2)</b>.</figcaption></figure>
+<p class="fn">Guide: <a data-goto="page-campaign" href="#s6-8-1" style="font-weight:700;cursor:pointer">6.8.1 &#8599;</a>.</p>
+
+<h3 id="ci-12" class="anchor">CMP-12 &middot; The Inbox list does not say who carries which lifecycle</h3>
+<p><b>What happens.</b> The rail reads <b>Interested 1</b>. The list next to it shows two contacts, neither carrying a chip, so there is no way to tell which of the two is the interested one without clicking the category and watching the list shrink.</p>
+<p><b>What should happen.</b> The row shows the lifecycle it holds, the way the conversation view already does on the message.</p>
+<p><b>Why it matters.</b> The rail says how many, the list says who, and the two are not joined up. On a campaign with two people it is a small annoyance. On one with two hundred it is the difference between reading the inbox and querying it.</p>
+<figure><img src="cmpi-12-no-lifecycle-on-rows.png" alt="Interested 1 on the rail, no chip on either row"/><figcaption><b>CMP-12</b>: <b>Interested 1</b> on the left, two unmarked rows on the right.</figcaption></figure>
+<p class="fn">Guide: <a data-goto="page-campaign" href="#s6-8-3" style="font-weight:700;cursor:pointer">6.8.3 &#8599;</a>.</p>
+
+<h3 id="ci-13" class="anchor">CMP-13 &middot; Open, Click and Bounced / Dropped always return nothing</h3>
+<p><b>What happens.</b> Clicking <b>Open</b> on the rail applies a chip reading <b>Lifecycles : Open</b> and the list goes to <b>Showing 0 of 0</b>, <i>No emails match your filters</i>. There is an open to find: the same contact's conversation carries the <b>Open</b> chip on the message. <b>Click</b> and <b>Bounced / Dropped</b> behave the same way.</p>
+<p><b>What should happen.</b> The category returns the contacts whose mail was opened, clicked, bounced or dropped.</p>
+<p><b>Why it matters.</b> Worth reading the chip the filter produces, because it names the cause. <b>Open is not a lifecycle.</b> Neither is Click, nor Bounced / Dropped: they are email events, and the rail is pushing all of them through the <b>Lifecycles</b> filter, which can only match lifecycle values. That is why <b>Interested</b> works and these three cannot. It also means the whole delivery half of the rail is unusable, and <a href="#ci-10" style="font-weight:700">CMP-10</a> would send people straight into it.</p>
+<figure><img src="cmpi-13-open-filter-empty.png" alt="Lifecycles : Open returning nothing"/><figcaption><b>CMP-13</b>: <b>Open</b> ticked on the rail, chip reads <b>Lifecycles : Open</b>, list reads <b>0 of 0</b>.</figcaption></figure>
+<figure><img src="cmpi-13-open-chip-exists.png" alt="A message carrying the Open chip"/><figcaption><b>CMP-13</b>: the same period, the same contact, the message carrying an <b>Open</b> chip. The data exists; the filter cannot reach it.</figcaption></figure>
+<p class="fn">Guide: <a data-goto="page-campaign" href="#s6-8-4" style="font-weight:700;cursor:pointer">6.8.4 &#8599;</a>.</p>
+
+<h3 id="ci-14" class="anchor">CMP-14 &middot; Last replied misses the day you filter on</h3>
+<p><b>What happens.</b> <b>Last replied : &le; 2026-08-05</b> returns <b>Showing 0 of 0</b>. Two replies exist on that date, timestamped <b>Aug 05, 12:51</b> and <b>Aug 05, 13:39</b>, and both are visible in the unfiltered list.</p>
+<p><b>What should happen.</b> <b>&le; 5 August</b> includes everything that happened on 5 August.</p>
+<p><b>Why it matters.</b> A boundary compared at midnight rather than at the end of the day quietly hides today's replies, which are the ones you are looking for. Because the filter returns a clean empty state rather than an error, it reads as <i>nobody replied</i>.</p>
+<figure><img src="cmpi-14-last-replied-empty.png" alt="Last replied filter returning nothing"/><figcaption><b>CMP-14</b>: the chip reads <b>&le; 2026-08-05</b>, the list reads <b>0 of 0</b>.</figcaption></figure>
+<figure><img src="cmpi-14-replies-same-day.png" alt="Two replies dated Aug 05"/><figcaption><b>CMP-14</b>: the same list without the filter, both replies dated <b>Aug 05</b>.</figcaption></figure>
+<p class="fn">Guide: <a data-goto="page-campaign" href="#s6-8-4" style="font-weight:700;cursor:pointer">6.8.4 &#8599;</a>.</p>
+
+<h3 id="ci-15" class="anchor">CMP-15 &middot; The contact Owner picker finds nobody</h3>
+<p><b>What happens.</b> <b>Owner &rarr; Has an owner</b> opens <i>Choose contact owner</i>. Typing <b>Dong SDR</b> returns <b>No items found</b>, <b>0 results</b>, on a campaign whose contacts are owned by Dong SDR, which the contact drawer prints in plain text.</p>
+<p><b>What should happen.</b> The picker lists the owners that exist on the data, so the obvious question, <i>which of these are mine</i>, can be answered.</p>
+<p><b>Why it matters.</b> <b>Has an owner</b> and <b>No owner</b> work, so the filter looks alive while the only useful part of it is empty. The list it should be reading is not the one it is reading.</p>
+<figure><img src="cmpi-15-owner-picker-empty.png" alt="Choose contact owner returning no results"/><figcaption><b>CMP-15</b>: searching <b>Dong SDR</b>, <b>0 results</b>.</figcaption></figure>
+<figure><img src="cmpi-15-owner-on-contact.png" alt="The contact drawer showing Owner Dong SDR"/><figcaption><b>CMP-15</b>: the same contact, <b>Owner: Dong SDR</b>.</figcaption></figure>
+<p class="fn">Guide: <a data-goto="page-filters" style="font-weight:700;cursor:pointer">Flow 8 &#8599;</a>.</p>
+
+<h3 id="ci-16" class="anchor">CMP-16 &middot; Total Steps says 2 on the list and 3 inside</h3>
+<p><b>What happens.</b> <i>US | PortCos | C-Levels &amp; M&amp;A &ndash; 2026</i> shows <b>Total Steps 2</b> on the campaign list. Open it and the <b>Steps</b> badge reads <b>3</b>: two main steps and one sidestep, <i>Out Of Office</i>.</p>
+<p><b>What should happen.</b> One definition, printed the same way in both places. Either both count the sidestep or neither does.</p>
+<p><b>Why it matters.</b> Small on its own, but <b>Total Steps</b> is one of the numbers used to judge whether a campaign is finished, and a sidestep is not an ordinary step: it fires on a condition, not in sequence. Counting it silently in one place and not the other means neither number can be trusted without opening the campaign.</p>
+<figure><img src="cmpi-16-list-two-steps.png" alt="Total Steps 2 on the campaign list"/><figcaption><b>CMP-16</b>: the list row, <b>2</b>.</figcaption></figure>
+<figure><img src="cmpi-16-detail-three-steps.png" alt="Steps badge 3 inside the campaign"/><figcaption><b>CMP-16</b>: the same campaign, <b>Steps 3</b>, made of two main steps plus <b>Side Step: Out Of Office</b>.</figcaption></figure>
+<p class="fn">Guide: <a data-goto="page-campaign" href="#cmp-steps" style="font-weight:700;cursor:pointer">6.2 &#8599;</a> and <a data-goto="page-campaign" href="#cmp-view" style="font-weight:700;cursor:pointer">6.3 &#8599;</a>.</p>
+
+<h3 id="ci-17" class="anchor">CMP-17 &middot; Reordering steps carries the delay with the content</h3>
+<p><b>What happens.</b> Before: <b>Step 1 &ndash; Day 1, Right away</b> and <b>Step 2 &ndash; Day 2, Wait for 1 day</b>. Move them with the arrows and it reads <b>Step 1 &ndash; Day 2, Wait for 1 day</b> and <b>Step 2 &ndash; Day 3, Right away</b>.</p>
+<p><b>What should happen.</b> The bodies swap; the schedule stays with the position. Step 1 is always <b>Right away</b>, because there is nothing for it to wait behind.</p>
+<p><b>Why it matters.</b> Two wrong things at once. <b>The first email of the campaign now waits a day</b> before anything is sent, and step 2 says <b>Right away</b> while being labelled <b>Day 3</b>, so the label and the setting contradict each other on the same row. Neither is announced, and the reorder arrows are exactly the control someone uses while tidying up a sequence they thought was finished.</p>
+<figure><img src="cmpi-17-before-reorder.png" alt="Steps before the reorder"/><figcaption><b>CMP-17</b>, before: <b>Day 1 Right away</b>, then <b>Day 2 Wait for 1 day</b>.</figcaption></figure>
+<figure><img src="cmpi-17-after-reorder.png" alt="Steps after the reorder"/><figcaption><b>CMP-17</b>, after: <b>Day 2 Wait for 1 day</b> in first position, <b>Day 3 Right away</b> in second.</figcaption></figure>
+<p class="fn">Guide: <a data-goto="page-campaign" href="#cmp-steps" style="font-weight:700;cursor:pointer">6.2 &#8599;</a>.</p>
+
+<h3 id="ci-18" class="anchor">CMP-18 &middot; A campaign created by an Admin shows no step on Preview</h3>
+<p><b>What happens.</b> <i>Germany &ndash; M&amp;A Advisory</i>, created with the <b>dev@fintalent.io</b> admin account, badge reading <b>Steps 1</b>. On the <b>Preview</b> tab the contact list and the contact card are there, and <b>the step block is absent</b>: no subject, no body, nothing to read. A campaign created by the SDR shows its step normally.</p>
+<p><b>What should happen.</b> Preview shows the step whoever created the campaign.</p>
+<p><b>Why it matters.</b> Preview is the review gate for the whole flow. Personalize, <b>Skip</b>, <b>Mark done</b> and the blocked-contact check all live on the step block, so with the block missing there is nothing to review and nothing to mark. Everything after it in <a data-goto="page-campaign" href="#cmp-preview" style="font-weight:700;cursor:pointer">6.5 &#8599;</a> is unreachable, and the hand-over in <a data-goto="page-campaign" href="#cmp-run" style="font-weight:700;cursor:pointer">6.6 &#8599;</a> asks for a done count that cannot be produced. Worth knowing that ownership decides this, since the obvious reading is that the campaign has no content.</p>
+<figure><img src="cmpi-18-admin-preview-no-step.png" alt="Preview with no step block on an admin-created campaign"/><figcaption><b>CMP-18</b>: <b>Steps 1</b> on the badge, contact card present, no step underneath it.</figcaption></figure>
+<p class="fn">Guide: <a data-goto="page-campaign" href="#cmp-preview" style="font-weight:700;cursor:pointer">6.5 &#8599;</a>.</p>
+
+<h3 id="ci-19" class="anchor">CMP-19 &middot; The Skipped filter changes nothing</h3>
+<p><b>What happens.</b> <b>Skipped : Yes</b> on the Preview tab, and the list still reads <b>Showing 14 of 14</b>. The contact opened next to it still offers a <b>Skip</b> button on its step, so it was never skipped in the first place.</p>
+<p><b>What should happen.</b> The list narrows to the contacts that carry a skip.</p>
+<p><b>Why it matters.</b> Skipping is per contact and per step, and the filter is the only way to see who you have skipped. Without it there is no way to answer <i>who is not getting step 1</i> before the campaign runs, which is the check that belongs immediately before hand-over.</p>
+<figure><img src="cmpi-19-skipped-filter.png" alt="Skipped Yes returning every contact"/><figcaption><b>CMP-19</b>: chip reads <b>Skipped : Yes</b>, list reads <b>14 of 14</b>, and the step still offers <b>Skip</b>.</figcaption></figure>
+<p class="fn">Guide: <a data-goto="page-campaign" href="#s6-5-3" style="font-weight:700;cursor:pointer">6.5.3 &#8599;</a>.</p>
+
+<h3 id="ci-20" class="anchor">CMP-20 &middot; Bulk update steps does nothing</h3>
+<p><b>What happens.</b> Tick a contact, open <b>Bulk Actions</b>, choose <b>Bulk update steps</b>. Nothing happens: no dialog, no toast, no change on the rows.</p>
+<p><b>What should happen.</b> Either it does the thing, or it is not offered. The neighbouring items in the same menu, <b>Mark as Done</b>, <b>Mark as Undone</b>, <b>Mark as Unpersonalized</b> and <b>Remove from campaign</b>, all work.</p>
+<p><b>Why it matters.</b> A dead item in a working menu is worse than a missing one. It sits in the list of things that operate on a selection, so a reader assumes it ran and moves on.</p>
+<figure><img src="cmpi-20-bulk-update-steps.png" alt="The Bulk Actions menu with Bulk update steps"/><figcaption><b>CMP-20</b>: <b>Bulk update steps</b>, third in a menu whose other four items all do something.</figcaption></figure>
+<p class="fn">Guide: <a data-goto="page-campaign" href="#s6-5-5" style="font-weight:700;cursor:pointer">6.5.5 &#8599;</a>.</p>
+
+<h3 id="ci-read" class="anchor">6&#8225;.13 &middot; What the twelve have in common</h3>
+<p>Read together rather than one at a time, they fall into three groups, and the groups matter more than the individual tickets.</p>
+<div class="tblwrap"><table>
+<thead><tr><th>Pattern</th><th>Items</th><th>The shape of it</th></tr></thead>
+<tbody>
+<tr><td><b>A filter that answers instead of failing</b></td><td>CMP-13, CMP-14, CMP-15, CMP-19</td><td>Four of the twelve. Every one returns a clean, confident, wrong answer: <b>0 of 0</b>, <b>No items found</b>, or the full list unchanged. Nothing on screen distinguishes <i>nothing matched</i> from <i>the query could not run</i>, so the reader believes the number.</td></tr>
+<tr><td><b>Two places that count the same thing differently</b></td><td>CMP-11, CMP-16</td><td>Replies against people, sidesteps against steps. In both the raw count is right and the derived figure is wrong, which is the hardest kind to notice.</td></tr>
+<tr><td><b>The screen knows something it does not say</b></td><td>CMP-12, CMP-18, CMP-20, CMP-09</td><td>The lifecycle exists but is not on the row. The step exists but is not drawn. The menu item exists but does nothing. The folder exists and should not be visible at all.</td></tr>
+</tbody></table></div>
+<p class="fn">The one to fix first is <b>CMP-18</b>: it is the only item that stops the flow rather than misinforming it. After that the filter group, because four broken filters teach an SDR to stop trusting filters.</p>
+
+<div class="pagernav"><a data-goto="page-campaignaudit"><span class="k">← Prev</span><b>6† · Manage a campaign, audited</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 7 · Manage a Marketing Email</b></a></div>
 </section>
 
 <!-- ===================== PAGE-MARKETINGAUDIT ===================== -->

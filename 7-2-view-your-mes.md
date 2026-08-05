@@ -19,7 +19,7 @@ shows every ME you can work on. They arrive two ways:
 |---|---|
 | **All** | every ME you can access. |
 | **Draft** | created but never activated. Fully editable: where a ME sits while you build and review it. |
-| **Running** | active and sending. Shows a **Started on…** chip. Admin flips it here from Draft ([A5.7 ↗](a5-manage-a-marketing-email-admin.md)). |
+| **Running** | active and sending. Shows a **Started on…** chip. Admin flips it here from Draft ([A5.8 ↗](a5-manage-a-marketing-email-admin.md)). |
 | **Paused** | was Running, temporarily stopped: nothing goes out until resumed. |
 | **Finished** | the run is complete; every queued email has gone. |
 

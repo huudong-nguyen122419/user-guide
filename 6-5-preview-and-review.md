@@ -4,6 +4,10 @@
 
 Before the campaign runs, **review what every contact will actually get** on the **Preview** tab, the campaign's review gate, exactly like a Marketing Email's.
 
+> **If the campaign was created by an Admin, the step is not drawn here**
+>
+> Preview shows the contact and no step block at all, so there is nothing to read, personalize or mark done. It is not an empty campaign, it is the tab. Logged as [CMP-18 ↗](cmp-18-admin-campaign-preview.md), still open.
+
 > **First, clear out anyone you are not allowed to mail**
 >
 > Some rows carry a **🚫 blocked icon** beside the name. Hover it and it says so plainly: *“This contact is marked as ‘Opted Out’. Sending is blocked as they requested no more messages.”* **6.5**: **①** the message you get on hover · **②** the row it belongs to, with the **🚫** in front of the name. The two rows under it are normal. **Three lifecycle stages do this**, and they are the same three that stop a campaign anywhere else: **Opted Out**, **Not Interested** and **Do Not Contact** ([6.9 ↗](6-9-label-the-replies.md)). These people asked not to hear from you. **Take them off the campaign before you review anything else**, so you are not reading emails that will never be sent: Open the **Lifecycles** filter and tick **Opted Out**, **Not Interested** and **Do Not Contact**. The chip reads **Lifecycles : Opted Out +2**. Tick **All** to take everyone the filter found. **Bulk Actions → Remove all from campaign** ([6.5.5 ↗](6-5-5-mark-done.md)). **Clear the filter** before you carry on, or you will review a list of three people and think you are finished. **6.5**: **①** the chip after ticking three values · **②** **Opted Out**, **Do Not Contact** and **Not Interested** ticked together · **③** what is left, **Showing 1 of 1**, which is the set to remove. Removing them is tidier than leaving them: the campaign will not mail them either way, but a blocked contact still counts in **People**, still appears in your review, and still makes the numbers on the campaign row harder to read.
