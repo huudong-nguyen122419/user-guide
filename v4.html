@@ -695,11 +695,16 @@
  <a href="#s6-5-5" class="st2" data-page="page-campaign">6.5.5 &middot; Mark done &#10003;</a>
  <a href="#cmp-run" class="st" data-page="page-campaign">6.6 &middot; Hand it over to be run</a>
  <a href="#cmp-queue" class="st" data-page="page-campaign">6.7 · Email Queue</a>
- <a href="#cmp-replies" class="st" data-page="page-campaign">6.8 · Verify replies</a>
- <a href="#cmp-bounce" class="st2" data-page="page-campaign">6.8a · Find bounces &amp; drops</a>
- <a href="#cmp-followup" class="st" data-page="page-campaign">6.9 · Bounces · hot replies</a>
-<a href="#cmp-categorize" class="st" data-page="page-campaign">6.10 &middot; Label the replies</a>
-<a href="#cmp-complete" class="st" data-page="page-campaign">6.11 &middot; When it is finished</a>
+ <a href="#cmp-replies" class="st" data-page="page-campaign">6.8 &middot; Verify: Inbox &amp; replies</a>
+ <a href="#s6-8-1" class="st2" data-page="page-campaign">6.8.1 &middot; Read the numbers</a>
+ <a href="#s6-8-2" class="st2" data-page="page-campaign">6.8.2 &middot; Open the Inbox</a>
+ <a href="#s6-8-3" class="st2" data-page="page-campaign">6.8.3 &middot; Replies &amp; their chips</a>
+ <a href="#s6-8-4" class="st2" data-page="page-campaign">6.8.4 &middot; Filter by category</a>
+ <a href="#s6-8-5" class="st2" data-page="page-campaign">6.8.5 &middot; Answer a reply</a>
+ <a href="#s6-8-6" class="st2" data-page="page-campaign">6.8.6 &middot; Chips that end it</a>
+ <a href="#s6-8-7" class="st2" data-page="page-campaign">6.8.7 &middot; Bounced / dropped</a>
+<a href="#cmp-categorize" class="st" data-page="page-campaign">6.9 &middot; Label the replies</a>
+<a href="#cmp-complete" class="st" data-page="page-campaign">6.10 &middot; When it is finished</a>
  <a href="#cmp-edge" class="st edge" data-page="page-campaign">6.x · Edge cases</a>
  <a href="#ce-1" class="st2" data-page="page-campaign">6.x.1 · A/B variants</a>
  <a href="#ce-2" class="st2" data-page="page-campaign">6.x.2 · Sidestep (conditional)</a>
@@ -724,6 +729,7 @@
  <a href="#ce-21" class="st2" data-page="page-campaign">6.x.21 &middot; Icons under the name</a>
  <a href="#ce-22" class="st2" data-page="page-campaign">6.x.22 &middot; Cancel a queued email</a>
  <a href="#ce-23" class="st2" data-page="page-campaign">6.x.23 &middot; Set as Delivered</a>
+ <a href="#ce-24" class="st2" data-page="page-campaign">6.x.24 &middot; Exclude a category</a>
  <a class="flow" data-page="page-campaignaudit"><span class="n">6&#8224;</span> Manage a campaign, audited</a>
  <a class="flow" data-page="page-marketing"><span class="n">7</span> Manage a Marketing Email</a>
  <a href="#me-create" class="st" data-page="page-marketing">7.1 · Create a ME</a>
@@ -4490,7 +4496,7 @@ opening it.</b> Every figure has a tooltip, so hover anything you are unsure of.
 <tr><td><b>2</b></td><td><b>People</b></td><td>how many contacts are in the campaign right now.</td></tr>
 <tr><td><b>3</b></td><td><b>Open Rate</b></td><td>opens measured against <b>what was actually sent</b>, not against the whole list. The bracketed figure is the raw count.</td></tr>
 <tr><td><b>4</b></td><td><b>Reply Rate</b></td><td>the one that matters. A reply is a person, not a statistic, so go and read it.</td></tr>
-<tr><td><b>5</b></td><td><b>Bounce / Dropped Rate</b></td><td>addresses that refused it. Treat it as a to-do list rather than a number (<a href="#cmp-bounce" style="font-weight:700;cursor:pointer">6.8a &#8599;</a>).</td></tr>
+<tr><td><b>5</b></td><td><b>Bounce / Dropped Rate</b></td><td>addresses that refused it. Treat it as a to-do list rather than a number (<a href="#s6-8-7" style="font-weight:700;cursor:pointer">6.8.7 &#8599;</a>).</td></tr>
 <tr><td><b>6</b></td><td><b>Progress</b></td><td>how far through the sequence the campaign is. The bar fills as steps go out, and a green tick means every queued email has left.</td></tr>
 <tr><td><b>7</b></td><td><b>Delivered</b></td><td>how many emails have actually gone out.</td></tr>
 <tr><td><b>8</b></td><td><b>Last run</b></td><td>when it last sent anything. A dash means it has never run.</td></tr>
@@ -4599,7 +4605,7 @@ messages.&rdquo;</i>
 <figure><img src="sdrx-camp-59-blocked-icon.png" alt="The blocked icon and its tooltip on the Preview tab"/><figcaption><b>6.5</b>: <b>&#9312;</b> the message you get on hover &middot; <b>&#9313;</b> the row it belongs to, with the <b>&#128683;</b> in front of the name. The two rows under it are normal.</figcaption></figure>
 <p><b>Three lifecycle stages do this</b>, and they are the same three that stop a campaign anywhere else:
 <b>Opted Out</b>, <b>Not Interested</b> and <b>Do Not Contact</b>
-(<a data-goto="page-campaign" href="#cmp-categorize" style="font-weight:700;cursor:pointer">6.10 &#8599;</a>).
+(<a data-goto="page-campaign" href="#cmp-categorize" style="font-weight:700;cursor:pointer">6.9 &#8599;</a>).
 These people asked not to hear from you.</p>
 <p><b>Take them off the campaign before you review anything else</b>, so you are not reading emails that
 will never be sent:</p>
@@ -4773,32 +4779,109 @@ release: <a data-goto="page-campaign" href="#ce-23" style="font-weight:700;curso
 or confirm from the <a data-goto="page-campaign" href="#cmp-replies" style="font-weight:700;cursor:pointer">campaign Inbox (6.8)</a> and the contact's Conversations.</p>
 
 <h3 id="cmp-replies" class="anchor">6.8 &middot; Verify: Conversations &amp; the campaign Inbox</h3>
-<p>Every campaign has its own <b>Inbox</b> tab, the replies it pulled back, <b>categorized by lifecycle</b> down the left (Prospect, Interested, Not Interested, Out Of Office, Bounced / Dropped, Open and Click&hellip;). It's your <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 inbox &#8599;</a>, scoped to this campaign. New replies also pop up under the <b>&#128276; bell</b> (top-right), the <a data-goto="page-campaign" href="#ce-14" style="font-weight:700;cursor:pointer">Campaign Notifications feed (6.x.14) &#8599;</a>.</p>
-<figure><img src="sdrx-camp-14-inbox.png" alt="Campaign Inbox tab"/><figcaption><b>6.8</b>: the campaign <b>Inbox</b>: replies filed under lifecycle categories (here one <b>Not Interested</b>).</figcaption></figure>
-<p>Each send is also written into that contact's <b>Conversations</b> with a <b>status chip</b> (In Queue &rarr; Delivered &rarr; Open &rarr; Bounce), exactly like a Marketing Email; see <a data-goto="page-marketing" href="#me-conv" style="font-weight:700;cursor:pointer">Flow 7 &middot; 7.7 &#8599;</a>.</p>
-
-<h4 id="cmp-bounce" class="anchor">6.8a &middot; Find who bounced / dropped, and fix it</h4>
-<p>A <b>bounce / drop</b> means that contact <b>never got the email</b>. Check for them after every run: step by step:</p>
+<p>Once the queue starts delivering, <b>the campaign stops being something you build and becomes something you
+read</b>. From here on the work is what came back: the numbers on the list, the replies in the Inbox, and what
+you do with each one.</p>
 <ol class="steps">
-<li data-code="6.8a.1"><b>Spot it on the list.</b> On <b>Campaigns</b>, read the <b>Bounce/Dropped Rate</b> column, anything <b>above 0%</b> (count in brackets) means failed sends inside.
- <figure><img src="sdrx-camp-18-bounce-column.png" alt="Bounce/Dropped Rate column"/><figcaption><b>6.8a.1</b>: the <b>Bounce/Dropped Rate</b> column on the campaign list.</figcaption></figure>
+
+<li id="s6-8-1" data-code="6.8.1"><b>Read the numbers on the campaign row.</b> The <b>Campaigns</b> list carries
+the result of the send in a single line, and it is the fastest way to see where a campaign stands. Each column is
+explained on its own in <a data-goto="page-campaign" href="#cmp-view" style="font-weight:700;cursor:pointer">6.3 &#8599;</a>;
+what matters here is reading them together.
+ <figure><img src="sdrx-camp-61-kpi-after-run.png" alt="The metric columns on a campaign that has run"/><figcaption><b>6.8.1</b>: <b>&#9312;</b> the metric columns &middot; <b>&#9313;</b> the same row on a campaign that has finished a step: <b>100% (2)</b> opened, <b>100% (2)</b> replied, bounce and unsubscribe at <b>0%</b>, the progress bar full with a green tick, <b>Delivered 2</b> &middot; <b>&#9314;</b> <b>Last run</b>, here <i>32 minutes ago</i>.</figcaption></figure>
+ <div class="tblwrap"><table>
+ <thead><tr><th>Read</th><th>To answer</th></tr></thead>
+ <tbody>
+ <tr><td><b>Progress</b> + <b>Delivered</b></td><td>how much of the sequence has actually gone out. The bar fills per step, not per person.</td></tr>
+ <tr><td><b>Open Rate</b></td><td>whether the subject line earned the click. The weakest of the three, and the easiest to over-read.</td></tr>
+ <tr><td><b>Reply Rate</b></td><td>the number the campaign is judged on.</td></tr>
+ <tr><td><b>Bounce / Dropped Rate</b></td><td>a to-do list, not a score (<a data-goto="page-campaign" href="#s6-8-7" style="font-weight:700;cursor:pointer">6.8.7 &#8599;</a>).</td></tr>
+ <tr><td><b>Unsubscribe / Spam</b></td><td>the one that should stay at <b>0</b>. Anything else is a content problem to raise before the next send.</td></tr>
+ <tr><td><b>Last run</b></td><td>when a step last went out. Steps remaining plus an old <b>Last run</b> means the campaign has stalled.</td></tr>
+ </tbody></table></div>
+ <p class="fn">A blank rate is not a bad rate, it means nothing has been sent yet. <b>0%</b> on a campaign that has
+ delivered is a real result, and a different conversation.</p>
 </li>
-<li data-code="6.8a.2"><b>See exactly who.</b> Open the campaign &rarr; <b>Inbox</b> tab &rarr; click the <b>Bounced / Dropped</b> category (left rail). The filter applies and <b>everyone listed is a failed send</b>.
- <figure><img src="sdrx-camp-19-bounce-inbox.png" alt="Inbox: Bounced / Dropped category"/><figcaption><b>6.8a.2</b>: <b>&#9312;</b> Inbox tab &rarr; <b>&#9313;</b> <b>Bounced / Dropped</b> &rarr; <b>&#9314;</b> the filter applies &rarr; <b>&#9315;</b> everyone here failed.</figcaption></figure>
+
+<li id="s6-8-2" data-code="6.8.2"><b>Open the Inbox tab.</b> Nothing lands here until mail is actually
+<b>Delivered</b> (<a data-goto="page-campaign" href="#cmp-queue" style="font-weight:700;cursor:pointer">6.7 &#8599;</a>).
+Once it is, every send and every reply for this campaign sits on <b>Inbox</b>, and that is where you work from now on.
+Down the left is the <b>category rail</b>: Prospect, Interested, Scheduled Call, Not Now, Not Interested, Out Of Office,
+Do Not Contact, Opted Out, No Categories, Bounced / Dropped, Open, Click. On the right, one row per contact with the
+last email on it.
+ <figure><img src="sdrx-camp-62-inbox-tab.png" alt="The campaign Inbox tab"/><figcaption><b>6.8.2</b>: <b>&#9312;</b> the <b>Inbox</b> tab, with the count of what is waiting &middot; <b>&#9313;</b> the category rail &middot; <b>&#9314;</b> one row per contact, newest email first.</figcaption></figure>
+ <p class="fn">It is the same inbox as <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &#8599;</a>,
+ narrowed to this campaign. New replies also raise the <b>&#128276; bell</b>
+ (<a data-goto="page-campaign" href="#ce-14" style="font-weight:700;cursor:pointer">6.x.14 &#8599;</a>).</p>
 </li>
-<li data-code="6.8a.3"><b>Fix &amp; re-reach.</b> For each failed contact: open their profile and get the <b>email address corrected</b> (flag it to Admin / Ops if you can't edit it), then <b>reach them another way</b>: a <a data-goto="page-send" style="font-weight:700;cursor:pointer">1:1 email (Flow 3) &#8599;</a> to a working address, or <a data-goto="page-send" href="#e-4-4" style="font-weight:700;cursor:pointer">WhatsApp / LinkedIn (3.x.4) &#8599;</a>. Once the address is fixed, Admin / Ops can re-add them to the next run.</li>
+
+<li id="s6-8-3" data-code="6.8.3"><b>Read the reply, and the chip the system put on it.</b> When a contact answers,
+<b>the reply is categorised for you</b> and carries a chip. The chip then travels with the conversation: on the message
+itself, on the row in the list, and on the rail, where a count appears beside the category.
+ <figure><img src="sdrx-camp-63-reply-chip.png" alt="A reply with its automatic chip"/><figcaption><b>6.8.3</b>: <b>&#9312;</b> the reply in the conversation list, chipped <b>Interested</b> &middot; <b>&#9313;</b> the same chip on the message itself &middot; <b>&#9314;</b> your own sends carry a status chip instead: <b>Open</b>, <b>In Queue</b>.</figcaption></figure>
+ <figure><img src="sdrx-camp-64-rail-counts.png" alt="The rail showing a count beside Interested"/><figcaption><b>6.8.3</b>: <b>&#9312;</b> the tab count &middot; <b>&#9313;</b> the same reply counted on the rail, under <b>Interested</b>. Categories with nothing in them stay blank.</figcaption></figure>
+ <p><b>The chip is a reading of the reply, not a decision.</b> Check it against what the person actually wrote before
+ you act on it, because wording that scans as interest is sometimes a polite no. Setting the label yourself, and which
+ labels stop the sending, is
+ <a data-goto="page-campaign" href="#cmp-categorize" style="font-weight:700;cursor:pointer">6.9 &#8599;</a>.</p>
+</li>
+
+<li id="s6-8-4" data-code="6.8.4"><b>Click a category to filter the list.</b> Clicking a category on the rail puts a
+green <b>&#10003;</b> on it, drops a <b>Lifecycles : Interested</b> chip into the filter row, and narrows the list to
+that group. It is the <b>Lifecycles</b> filter, reached in one click.
+ <figure><img src="sdrx-camp-65-rail-filter.png" alt="Filtering the Inbox by clicking a category"/><figcaption><b>6.8.4</b>: <b>&#9312;</b> <b>Interested</b> clicked, now ticked &middot; <b>&#9313;</b> the chip it added to the filter row &middot; <b>&#9314;</b> the list narrows to <b>Showing 1 of 1</b>.</figcaption></figure>
+ <p class="fn">Clicking the same category a second time flips it to <b>exclude</b>, which hides that group instead of
+ showing it (<a data-goto="page-campaign" href="#ce-24" style="font-weight:700;cursor:pointer">6.x.24 &#8599;</a>).
+ <b>Clear all</b> puts the list back.</p>
+</li>
+
+<li id="s6-8-5" data-code="6.8.5"><b>Answer it, or leave it alone.</b> What the chip says decides which:
+ <div class="tblwrap"><table>
+ <thead><tr><th>Chip</th><th>What to do</th></tr></thead>
+ <tbody>
+ <tr><td><b>Interested</b> &middot; <b>Scheduled Call</b></td><td>answer now, this is the point of the sequence. Book the call in <a data-goto="page-meetings" style="font-weight:700;cursor:pointer">Flow 4b &#8599;</a>.</td></tr>
+ <tr><td><b>Out Of Office</b> &middot; <b>Not Now</b></td><td>leave it. The later steps will reach them again, and a sidestep can handle the out-of-office case on its own (<a data-goto="page-campaign" href="#ce-2" style="font-weight:700;cursor:pointer">6.x.2 &#8599;</a>).</td></tr>
+ <tr><td><b>Email Updated</b> &middot; <b>Left The Company</b></td><td>the person is reachable, the address is not. Get the contact corrected before anything else goes out.</td></tr>
+ <tr><td><b>Not Interested</b> &middot; <b>Opted Out</b> &middot; <b>Do Not Contact</b></td><td>do not answer. Take them off the campaign instead (<a data-goto="page-campaign" href="#s6-8-6" style="font-weight:700;cursor:pointer">6.8.6 &#8599;</a>).</td></tr>
+ </tbody></table></div>
+ To answer, click the <b>&#8617;</b> arrow on the message. The composer opens over the thread with <b>From</b>, <b>To</b>
+ and the <b>Re:</b> subject already filled in, so you are only writing the body.
+ <figure><img src="sdrx-camp-66-answer-reply.png" alt="Replying from inside the campaign Inbox"/><figcaption><b>6.8.5</b>: <b>&#9312;</b> the reply arrow on the message &middot; <b>&#9313;</b> the composer, prefilled, with the thread quoted underneath.</figcaption></figure>
+ <p class="fn">Writing the reply itself, tone and what to send, is
+ <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &middot; View &amp; answer replies &#8599;</a>.
+ <b>New Email</b> at the top of the list starts a fresh thread rather than a reply.</p>
+</li>
+
+<li id="s6-8-6" data-code="6.8.6"><b>Chips that end the conversation: Not Interested, Opted Out, Do Not Contact.</b>
+A campaign is not one email. <b>Later steps keep going to anyone still on it</b>, so a person who has said no and stayed
+on the campaign gets chased again by the next step. Take them off.
+ <div class="call warn"><span class="t">There is no action for this on the Inbox yet</span>You can see the group here,
+ but you cannot act on it here. Until that is built, remove them from the <b>Preview</b> tab, where the
+ <b>Lifecycles</b> filter and <b>Bulk Actions &rarr; Remove all from campaign</b> both exist
+ (<a data-goto="page-campaign" href="#cmp-preview" style="font-weight:700;cursor:pointer">6.5 &#8599;</a>), or one at a
+ time from <b>People</b> (<a data-goto="page-campaign" href="#cmp-people-remove" style="font-weight:700;cursor:pointer">6.4b &#8599;</a>).</div>
+ <p class="fn">Removing them from the campaign does not remove the label. The lifecycle stays on the contact, which is
+ what stops the next campaign from picking them up.</p>
+</li>
+
+<li id="s6-8-7" data-code="6.8.7"><b>Bounced / Dropped: the ones that never arrived.</b> These are not replies.
+Nobody read anything. The send failed, and the usual reasons are a wrong or dead address, a full or closed mailbox, a
+receiving server that refused it, or something going wrong mid-send. Click <b>Bounced / Dropped</b> on the rail and the
+list is exactly the failed sends.
+ <div class="call warn"><span class="t">Sending them again is not built yet</span>There is no retry on this screen.
+ Until there is: get the <b>address corrected</b> on the contact, flag it to Admin / Ops if you cannot edit it yourself,
+ and reach the person another way, a
+ <a data-goto="page-send" style="font-weight:700;cursor:pointer">1:1 email (Flow 3) &#8599;</a> to an address that works,
+ or <a data-goto="page-send" href="#e-4-4" style="font-weight:700;cursor:pointer">WhatsApp / LinkedIn (3.x.4) &#8599;</a>.
+ Once the address is right, Admin / Ops can put them into the next run.</div>
+ <p class="fn">Read the <b>Bounce / Dropped Rate</b> on the campaign row the same way: it is a count of people to chase,
+ not a score to feel bad about.</p>
+</li>
 </ol>
 
-<h3 id="cmp-followup" class="anchor">6.9 &middot; Then: bounces, drops &amp; hot replies</h3>
-<ul style="margin:6px 0 0;padding-left:18px">
-<li><b>Replies</b>: read &amp; answer them via <a data-goto="page-inbox" style="font-weight:700;cursor:pointer">Flow 4 &middot; View &amp; answer replies &#8599;</a>; set the lifecycle so the campaign stops chasing people who said no.</li>
-<li><b>Bounce / Dropped?</b> that address failed: find who and fix it step by step in <a data-goto="page-campaign" href="#cmp-bounce" style="font-weight:700;cursor:pointer">6.8a &#8599;</a>, then reach the person another way with a <a data-goto="page-send" style="font-weight:700;cursor:pointer">1:1 email (Flow 3) &#8599;</a>.</li>
-<li><b>Hot reply?</b> book the meeting: the reply is the point of the whole sequence.</li>
-</ul>
-
-<h3 id="cmp-categorize" class="anchor">6.10 &middot; Label the replies, and know which labels stop the sending</h3>
+<h3 id="cmp-categorize" class="anchor">6.9 &middot; Label the replies, and know which labels stop the sending</h3>
 <ol class="steps">
-<li data-code="6.10.1"><b>Two different labels, and only one of them stops anything.</b> This trips people up constantly:
+<li data-code="6.9.1"><b>Two different labels, and only one of them stops anything.</b> This trips people up constantly:
  <div class="tblwrap"><table>
  <thead><tr><th>Label</th><th>Sits on</th><th>Set by</th></tr></thead>
  <tbody>
@@ -4807,7 +4890,7 @@ or confirm from the <a data-goto="page-campaign" href="#cmp-replies" style="font
  </tbody></table></div>
 </li>
 
-<li data-code="6.10.2"><b>The twelve categories, and the three that matter.</b> Read straight off the API: a recipient can hold any of <b>12</b>, an individual reply any of <b>11</b> <span class="fn">(the same list minus <b>Unknown</b>)</span>.
+<li data-code="6.9.2"><b>The twelve categories, and the three that matter.</b> Read straight off the API: a recipient can hold any of <b>12</b>, an individual reply any of <b>11</b> <span class="fn">(the same list minus <b>Unknown</b>)</span>.
  <div class="tblwrap"><table>
  <thead><tr><th>Group</th><th>Categories</th><th>Effect on sending</th></tr></thead>
  <tbody>
@@ -4818,19 +4901,19 @@ or confirm from the <a data-goto="page-campaign" href="#cmp-replies" style="font
  <div class="call warn"><span class="t">The three look exactly like the other nine</span>Nothing in the interface marks them out, same chip, same colour, same list. So the label that quietly keeps mailing someone who asked you to stop is one row away from the one that stops it. <b>Before you label a negative reply, decide which of the two you mean:</b> &ldquo;not now, try later&rdquo; is <b>Not Now</b> and keeps them in rotation; &ldquo;stop emailing me&rdquo; is <b>Opted Out</b> or <b>Do Not Contact</b> and takes them out.</div>
 </li>
 
-<li data-code="6.10.3"><b>Out Of Office is not a rejection.</b> It is the most common auto-reply and it is reporting-only, so the person stays in the run. Which is right, they are just away. Do not upgrade it to Not Interested to clear it off your screen; that is a different meaning and it is permanent.</li>
+<li data-code="6.9.3"><b>Out Of Office is not a rejection.</b> It is the most common auto-reply and it is reporting-only, so the person stays in the run. Which is right, they are just away. Do not upgrade it to Not Interested to clear it off your screen; that is a different meaning and it is permanent.</li>
 
-<li data-code="6.10.4"><b>Nothing reminds you.</b> Categorising is entirely manual: no prompt, no badge, and <b>no count of how many replies are still unlabelled</b>. If you do not work the inbox deliberately, an opt-out can sit there unread while the next send goes out.
+<li data-code="6.9.4"><b>Nothing reminds you.</b> Categorising is entirely manual: no prompt, no badge, and <b>no count of how many replies are still unlabelled</b>. If you do not work the inbox deliberately, an opt-out can sit there unread while the next send goes out.
  <p><b>Practical habit:</b> after every send, open the Inbox and clear it to zero before you do anything else. Filter the category rail to <b>No Categories</b> to find what nobody has touched.</p>
  <p class="fn">There is also no bulk categorise: thirty auto-replies is thirty separate actions. Sort by the auto chip first so the identical ones are together.</p>
 </li>
 
-<li data-code="6.10.5"><b>Where you do it.</b> Open the <b>Inbox</b> tab of the campaign, pick the category rail on the left to filter, click a reply, set its category. The same reply also appears in your own Inbox (Flow 4), labelling in either place is the same record.</li>
+<li data-code="6.9.5"><b>Where you do it.</b> Open the <b>Inbox</b> tab of the campaign, pick the category rail on the left to filter, click a reply, set its category. The same reply also appears in your own Inbox (Flow 4), labelling in either place is the same record.</li>
 </ol>
 
-<h3 id="cmp-complete" class="anchor">6.11 &middot; When the campaign is finished</h3>
+<h3 id="cmp-complete" class="anchor">6.10 &middot; When the campaign is finished</h3>
 <ol class="steps">
-<li data-code="6.11.1"><b>The system decides &ldquo;Finished&rdquo;. You decide &ldquo;done&rdquo;.</b> They are not the same moment, and the gap between them is where the work actually is.
+<li data-code="6.10.1"><b>The system decides &ldquo;Finished&rdquo;. You decide &ldquo;done&rdquo;.</b> They are not the same moment, and the gap between them is where the work actually is.
  <div class="tblwrap"><table>
  <thead><tr><th></th><th>What it means</th></tr></thead>
  <tbody>
@@ -4839,22 +4922,22 @@ or confirm from the <a data-goto="page-campaign" href="#cmp-replies" style="font
  </tbody></table></div>
 </li>
 
-<li data-code="6.11.2"><b>The closing checklist.</b> Run it before you stop looking at the campaign:
+<li data-code="6.10.2"><b>The closing checklist.</b> Run it before you stop looking at the campaign:
  <div class="tblwrap"><table>
  <thead><tr><th>Check</th><th>Where</th><th>What you want to see</th></tr></thead>
  <tbody>
  <tr><td>Nothing still queued</td><td>Email Queue &rarr; <b>In Queue</b></td><td><b>0</b>. Anything left <u>will</u> still go out.</td></tr>
  <tr><td>Delivered matches what you sent</td><td>the row's <b>Delivered</b> vs the people you reviewed</td><td>the same number. A gap means someone was skipped: find out who.</td></tr>
- <tr><td>Bounce / Dropped cleared</td><td>the row's <b>Bounce/Dropped Rate</b></td><td>either <b>0</b>, or every one of them chased another way (<a href="#cmp-followup" style="font-weight:700;cursor:pointer">6.9 &#8599;</a>).</td></tr>
+ <tr><td>Bounce / Dropped cleared</td><td>the row's <b>Bounce/Dropped Rate</b></td><td>either <b>0</b>, or every one of them chased another way (<a href="#s6-8-7" style="font-weight:700;cursor:pointer">6.8.7 &#8599;</a>).</td></tr>
  <tr><td>No unlabelled replies</td><td>Inbox &rarr; category rail &rarr; <b>No Categories</b></td><td>empty.</td></tr>
  <tr><td>Opt-outs actually recorded</td><td>the same rail</td><td>anyone who asked to stop carries <b>Opted Out</b> or <b>Do Not Contact</b>, not a softer label.</td></tr>
  <tr><td>Hot replies moved on</td><td>Lifecycle Stage on the contact</td><td>Interested / Call Scheduled set, and the meeting booked (<a data-goto="page-meetings" style="font-weight:700;cursor:pointer">Flow 4b &#8599;</a>).</td></tr>
  </tbody></table></div>
 </li>
 
-<li data-code="6.11.3"><b>Finished does not mean frozen.</b> Replies keep arriving after the last email lands, often for weeks. The Inbox stays live, so <b>keep checking it after the status has moved on</b>. A blast that reads Finished on Monday can still produce a meeting on Friday.</li>
+<li data-code="6.10.3"><b>Finished does not mean frozen.</b> Replies keep arriving after the last email lands, often for weeks. The Inbox stays live, so <b>keep checking it after the status has moved on</b>. A blast that reads Finished on Monday can still produce a meeting on Friday.</li>
 
-<li data-code="6.11.4"><b>Read the rates once at the end, and read them honestly.</b> A blank rate means nothing was sent. <b>0%</b> means it went out and nobody opened or replied. That is a content result, not a delivery one, and it is the number worth raising before the next send. Reply Rate is the one that matters; Open Rate mostly tells you about the subject line.</li>
+<li data-code="6.10.4"><b>Read the rates once at the end, and read them honestly.</b> A blank rate means nothing was sent. <b>0%</b> means it went out and nobody opened or replied. That is a content result, not a delivery one, and it is the number worth raising before the next send. Reply Rate is the one that matters; Open Rate mostly tells you about the subject line.</li>
 </ol>
 <div class="call note"><span class="t">A campaign has more than one step</span>Unlike a marketing email, a campaign keeps sending later steps to anyone who has not been stopped. That makes the three blocking categories <b>more</b> consequential here, not less: mislabel an opt-out on step 1 and they still receive steps 2 and 3.</div>
 
@@ -5094,6 +5177,18 @@ the start of the day in the campaign's timezone. To push a single one out withou
  <div class="call warn"><span class="t">The name says less than the action does</span><i>Set as
  Delivered</i> reads like a bookkeeping change, a status you are correcting by hand. <b>It sends the
  email.</b> Treat it as a send button that has been labelled as a status.</div>
+</li>
+
+<li id="ce-24" data-code="6.x.24"><b>Hide a category instead of showing it.</b> On the Inbox rail, one click on a
+category <b>includes</b> it: green <b>&#10003;</b>, and the list shows only that group. <b>Click the same category
+again</b> and it flips to <b>exclude</b>: the list now shows everyone <i>except</i> that group.
+ <p>Useful for reading what is left rather than what is done. Exclude <b>Not Interested</b>, <b>Opted Out</b> and
+ <b>Do Not Contact</b> and what remains is the part of the campaign still worth working. It is the same include /
+ exclude behaviour as the <b>Lifecycles</b> filter itself
+ (<a data-goto="page-filters" href="#flt-list-members" style="font-weight:700;cursor:pointer">8.1 &#8599;</a>), which is
+ what the rail is driving.</p>
+ <p class="fn">A third click clears it. If a count on the rail stops matching what you see in the list, check whether a
+ category is sitting on exclude, then use <b>Clear all</b>.</p>
 </li>
 </ol>
 <div class="pagernav"><a data-goto="page-followup"><span class="k">← Prev</span><b>Flow 5 · Follow up</b></a><a class="next" data-goto="page-marketing"><span class="k">Next →</span><b>Flow 7 · Manage a Marketing Email</b></a></div>

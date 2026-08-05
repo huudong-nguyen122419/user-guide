@@ -27,3 +27,4 @@
 * [6.x.21 · Icons under the name](6-x-21-icons-under-the-name.md)
 * [6.x.22 · Cancel a queued email](6-x-22-cancel-a-queued-email.md)
 * [6.x.23 · Set as Delivered](6-x-23-set-as-delivered.md)
+* [6.x.24 · Exclude a category](6-x-24-exclude-a-category.md)

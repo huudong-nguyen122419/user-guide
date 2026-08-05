@@ -34,4 +34,4 @@ The status moves from **Draft** to **Active**, an **Email Queues** tab appears o
 
 ## A4.6.6 · Then watch the queue
 
-The campaign detail is the same as the SDR's, so the Email Queue and the campaign Inbox work exactly as described in [6.7 ↗](6-7-email-queue.md) and [6.8 ↗](6-8-verify-replies.md).
+The campaign detail is the same as the SDR's, so the Email Queue and the campaign Inbox work exactly as described in [6.7 ↗](6-7-email-queue.md) and [6.8 ↗](6-8-verify-inbox-and-replies.md).

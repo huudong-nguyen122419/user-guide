@@ -24,4 +24,4 @@ The campaign moves from **Draft** to **Active** and the first step starts going 
 >
 > Admin sees *N contact are not marked as done* on the run dialog and has to decide whether to send anyway or come back to you. **Leave a contact unmarked only when you mean to**, and say why when you hand over.
 
-After it runs, your job becomes watching: the queue ([6.7 ↗](6-7-email-queue.md)) and the replies ([6.8 ↗](6-8-verify-replies.md)).
+After it runs, your job becomes watching: the queue ([6.7 ↗](6-7-email-queue.md)) and the replies ([6.8 ↗](6-8-verify-inbox-and-replies.md)).

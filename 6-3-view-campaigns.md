@@ -16,7 +16,7 @@ Left menu → **Campaigns** lists every campaign, grouped into **folders** (righ
 | **2** | **People** | how many contacts are in the campaign right now. |
 | **3** | **Open Rate** | opens measured against **what was actually sent**, not against the whole list. The bracketed figure is the raw count. |
 | **4** | **Reply Rate** | the one that matters. A reply is a person, not a statistic, so go and read it. |
-| **5** | **Bounce / Dropped Rate** | addresses that refused it. Treat it as a to-do list rather than a number ([6.8a ↗](6-8a-find-bounces-and-drops.md)). |
+| **5** | **Bounce / Dropped Rate** | addresses that refused it. Treat it as a to-do list rather than a number ([6.8.7 ↗](6-8-7-bounced-dropped.md)). |
 | **6** | **Progress** | how far through the sequence the campaign is. The bar fills as steps go out, and a green tick means every queued email has left. |
 | **7** | **Delivered** | how many emails have actually gone out. |
 | **8** | **Last run** | when it last sent anything. A dash means it has never run. |

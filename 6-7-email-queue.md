@@ -45,4 +45,4 @@ Four tabs across the top: Each row shows the **Subject**, the **Content**, the *
 
 **In a hurry?** A single queued email can be pushed out without waiting for the daily release: [6.x.23 ↗](6-x-23-set-as-delivered.md).
 
-**Heads-up:** as with Marketing Emails, the **Email Queues** list can be slow or show **0** or *Couldn't load* even when the campaign has already delivered. If it looks empty, refresh, or confirm from the [campaign Inbox (6.8)](6-8-verify-replies.md) and the contact's Conversations.
+**Heads-up:** as with Marketing Emails, the **Email Queues** list can be slow or show **0** or *Couldn't load* even when the campaign has already delivered. If it looks empty, refresh, or confirm from the [campaign Inbox (6.8)](6-8-verify-inbox-and-replies.md) and the contact's Conversations.
