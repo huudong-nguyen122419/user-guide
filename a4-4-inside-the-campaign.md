@@ -22,10 +22,14 @@ A Draft or Finished campaign shows **Steps, People, Email Queues and Timeline**;
 
 It opens the list of Fintalent accounts (the current one is not in the list), picking one switches the account the campaign sends **From**. The list page then shows the new **From:** address on the row.
 
-## A4.4.5 · Email Queues
+## A4.4.5 · Mark Campaign as Complete
+
+, top right of the header, beside the status switch. Admin-only, and the only control that ends a campaign: it takes an **Active** or **Paused** campaign to **Finished**. An SDR does not get the button at all, and the status switch is drawn for them but disabled, so a campaign only stops when you stop it. Step by step in [6.10 ↗](6-10-finish-a-campaign.md).
+
+## A4.4.6 · Email Queues
 
 sub-tabs **All, In Queue, Delivered and Cancel**, filters **Sources, Expected Run Date and Steps**, and an **Attachments** column the SDR-side write-up doesn't cover. This is where you prove an email actually left.
 
 ![Email queues](admc-12-queues.png)
 
-*A4.4.5: ① the four sub-tabs · ② filters · ③ Attachments.*
+*A4.4.6: ① the four sub-tabs · ② filters · ③ Attachments.*

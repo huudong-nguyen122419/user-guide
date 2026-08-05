@@ -6,4 +6,4 @@
 
 ![Mark Campaign as Complete in the campaign header](sdrx-camp-69-mark-complete.png)
 
-*6.10.2: ① the Active switch · ② Mark Campaign as Complete, beside it.*
+*6.10.2, an Admin session: ① the status switch, live · ② Mark Campaign as Complete, beside it. The name in the header is the campaign's owner, not the person signed in.*
