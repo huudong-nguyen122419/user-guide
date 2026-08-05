@@ -1209,13 +1209,20 @@ step, so go through it deliberately:
  <tr><td>The attachment</td><td>there, and it opens.</td></tr>
  <tr><td>The links</td><td>the booking link and any tracked link go where they should.</td></tr>
  </tbody></table></div>
- <figure><img src="admm-20-test-send-received.png" alt="The test email as it arrives in Outlook"/><figcaption><b>A5.7.4</b>: the same email in an Outlook inbox. <b>&#9312;</b> the client has blocked part of the message because the sender is not trusted &middot; <b>&#9313;</b> which is why the image is a grey placeholder &middot; <b>&#9314;</b> the merge tags have arrived as written.</figcaption></figure>
- <div class="call note"><span class="t">Two things look broken and are not</span><b>The merge tags stay as text.</b>
- A test send has no contact behind it, so <b>&#123;&#123;contact.firstName&#125;&#125;</b> has nothing to resolve to and
- comes through literally. In a real send it fills in per person, which is what the <b>Preview</b> tab is for.
- <p><b>Images can be blocked by the receiving client.</b> Outlook hides remote content from senders that are not on
- the safe list and says so in a bar at the top. That is your mail client, not the email. Click <b>Show blocked
- content</b> and check it properly before deciding the picture is broken.</p></div>
+ <figure><img src="admm-20-test-send-received.png" alt="The test email as it arrives in Outlook"/><figcaption><b>A5.7.4</b>: the same email in an Outlook inbox. <b>&#9312;</b> the client has blocked part of the message, because the sender is not on its safe list &middot; <b>&#9313;</b> the picture, a grey placeholder &middot; <b>&#9314;</b> the merge tags, arriving exactly as they are written in the template.</figcaption></figure>
+ <div class="call note"><span class="t">The merge tags staying as text is the correct result</span><b>A test
+ send posts the template exactly as it is written.</b> It substitutes nothing, because there is no contact behind it
+ to substitute from, so <b>&#123;&#123;contact.firstName&#125;&#125;</b> arrives as those characters. That is the
+ difference between this and the <b>Preview</b> tab, which renders the email per person
+ (<a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.8.2 &#8599;</a>). Nothing to fix,
+ and nothing to read into it.</div>
+ <div class="call warn"><span class="t">The picture is worth one more click before you judge it</span>Outlook blocks
+ remote content from senders it does not know and says so in the bar at the top, so a grey placeholder on the first
+ look tells you nothing. <b>Click Show blocked content and look again.</b>
+ <p>In this test the bar went away and <b>the placeholder stayed empty</b>, so the image really had not come through.
+ The block was not the reason. That is the whole value of the step: the template showed a file, the delivered email
+ did not show a picture, and the only way to know was to receive one.</p></div>
+ <figure><img src="admm-21-test-send-unblocked.png" alt="The same email after Show blocked content"/><figcaption><b>A5.7.4</b>: after <b>Show blocked content</b>. <b>&#9312;</b> the warning bar is gone &middot; <b>&#9313;</b> and the picture is still not there. Unblocking was not what was missing.</figcaption></figure>
  <p class="fn">Anything genuinely wrong gets fixed on the <b>Template</b> tab and tested again. Only then move on to
  the run (<a data-goto="page-a5" href="#a3-me" style="font-weight:700;cursor:pointer">A5.8 &#8599;</a>).</p>
 </li>

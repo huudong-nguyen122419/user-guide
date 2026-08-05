@@ -47,8 +47,16 @@ This is the whole point of the step, so go through it deliberately: Anything gen
 
 ![The test email as it arrives in Outlook](admm-20-test-send-received.png)
 
-*A5.7.4: the same email in an Outlook inbox. ① the client has blocked part of the message because the sender is not trusted · ② which is why the image is a grey placeholder · ③ the merge tags have arrived as written.*
+*A5.7.4: the same email in an Outlook inbox. ① the client has blocked part of the message, because the sender is not on its safe list · ② the picture, a grey placeholder · ③ the merge tags, arriving exactly as they are written in the template.*
 
-> **Two things look broken and are not**
+> **The merge tags staying as text is the correct result**
 >
-> **The merge tags stay as text.** A test send has no contact behind it, so **{{contact.firstName}}** has nothing to resolve to and comes through literally. In a real send it fills in per person, which is what the **Preview** tab is for. **Images can be blocked by the receiving client.** Outlook hides remote content from senders that are not on the safe list and says so in a bar at the top. That is your mail client, not the email. Click **Show blocked content** and check it properly before deciding the picture is broken.
+> **A test send posts the template exactly as it is written.** It substitutes nothing, because there is no contact behind it to substitute from, so **{{contact.firstName}}** arrives as those characters. That is the difference between this and the **Preview** tab, which renders the email per person ([A5.8.2 ↗](a5-8-run-force-send.md)). Nothing to fix, and nothing to read into it.
+
+> **The picture is worth one more click before you judge it**
+>
+> Outlook blocks remote content from senders it does not know and says so in the bar at the top, so a grey placeholder on the first look tells you nothing. **Click Show blocked content and look again.** In this test the bar went away and **the placeholder stayed empty**, so the image really had not come through. The block was not the reason. That is the whole value of the step: the template showed a file, the delivered email did not show a picture, and the only way to know was to receive one.
+
+![The same email after Show blocked content](admm-21-test-send-unblocked.png)
+
+*A5.7.4: after Show blocked content. ① the warning bar is gone · ② and the picture is still not there. Unblocking was not what was missing.*
