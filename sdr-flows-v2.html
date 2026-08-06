@@ -46,6 +46,9 @@
   nav a.st4{padding-left:18px;margin-left:65px;border-left:1px dashed #e8e5f0;
     font-size:10.5px;font-weight:400;color:#b3adc0;display:none;line-height:1.4}
   nav a.st4.show{display:block}
+  nav a.st6{padding-left:15px;margin-left:100px;border-left:1px dotted #f0eef6;font-size:9.5px;font-weight:400;color:#c9c4d3;display:none;line-height:1.4}
+  nav a.st6.show{display:block}
+  nav a.st6:hover{background:#fcfcfe;color:#5b5468}
   nav a.st5{padding-left:16px;margin-left:83px;border-left:1px dotted #ece9f3;
     font-size:10px;font-weight:400;color:#c2bccd;display:none;line-height:1.4}
   nav a.st5.show{display:block}
@@ -170,6 +173,7 @@
     <a href="#a1-2-1-3" title="These four are not offered until you swap the table to Full view" draggable="false" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span><span class="cd">A1.2.1.3</span> Switch to Full view for more ways to choose</a>
     <a href="#a1-2-1-3-1" title="Role, company and dates — the same power filter the inbox uses" draggable="false" class="st5" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span><span class="cd">A1.2.1.3.1</span> By the jobs they have held</a>
     <a href="#a1-2-1-3-2" title="Years of experience" draggable="false" class="st5" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span><span class="cd">A1.2.1.3.2</span> By how long they have been working</a>
+    <a href="#a1-2-1-3-2-1" title="On the person, or as a column you switch on. It does not always match the dates underneath it" draggable="false" class="st6" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span><span class="cd">A1.2.1.3.2.1</span> Where that number lives for one person</a>
     <a href="#a1-2-1-3-3" title="Country and city" draggable="false" class="st5" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span><span class="cd">A1.2.1.3.3</span> By where in the world they are</a>
     <a href="#a1-2-1-3-4" title="Useful for keeping people out of two sequences at once" draggable="false" class="st5" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span><span class="cd">A1.2.1.3.4</span> By the campaign they are already in</a>
     <a href="#e-2-2" title="One box, four things searched at once" draggable="false" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span><span class="cd">A1.2.2</span> Type a word to find someone</a>
@@ -447,6 +451,21 @@ reason to hear from you, in an order you can work down. Nothing else in the flow
  <b>Min</b> and a <b>Max</b>, nothing else. <b>What it buys you:</b> seniority without guessing from titles,
  which do not travel between countries. 5&ndash;10 years took 158 people to <b>14</b>.</p>
  <figure><img src="a1-05-years-of-experience.png" alt="The Years of Experience filter"/><figcaption><b>A1.2.1.3.2</b> &mdash; <b>&#9312;</b> the chip once it is set &middot; <b>&#9313;</b> a <b>Min</b> and a <b>Max</b>, nothing else &middot; <b>&#9314;</b> 158 people become <b>14</b>.</figcaption></figure>
+ <p id="a1-2-1-3-2-1" class="fn" style="padding-left:28px"><b>A1.2.1.3.2.1 &middot; Where that number lives for one
+ person.</b> The filter narrows by it, but nothing in the list shows it until you ask for it. <b>Two ways to
+ see it:</b> open the person and read <b>Experience &mdash; N yrs</b> in the facts column, or put it on every
+ row by opening the <b>&#9881;</b> beside the Simple / Full toggle and ticking
+ <b>Years of experience</b> (<a href="#e-2-8" style="font-weight:700;cursor:pointer">A2 &middot; choose the
+ columns yourself &#8599;</a>). The column is the one to use when you are working a batch; the drawer is for
+ when you are looking at one person anyway.</p>
+ <div class="call warn" style="margin-left:28px"><span class="t">The number does not always agree with the dates
+ underneath it</span>It looks like it should be the span from their first recorded role to today, and sometimes
+ it is, but not reliably. Three contacts checked on the same list: one read <b>16</b> where the roles span 16
+ years, one read <b>21</b> where they span 20, one read <b>12</b> where they span 15. Adding the individual
+ roles up does not reproduce it either.
+ <p><b>So use it the way it is safe to use it:</b> to narrow a few hundred people to a workable band, or to sort
+ roughly by seniority. When the exact number would change your decision &mdash; pitching someone as a 15-year
+ operator, say &mdash; open the person and read the roles rather than trusting the figure.</p></div>
  <p id="a1-2-1-3-3" class="fn" style="padding-left:14px"><b>A1.2.1.3.3 &middot; By where in the world they are.</b> Country and
  city. <b>What it buys you:</b> a batch you can send at a sane local hour and write in the right language.</p>
  <p id="a1-2-1-3-4" class="fn" style="padding-left:14px"><b>A1.2.1.3.4 &middot; By the campaign they are already in.</b>
@@ -1606,7 +1625,7 @@ reason to hear from you, in an order you can work down. Nothing else in the flow
 (function(){
   var pages    = Array.prototype.slice.call(document.querySelectorAll('.page'));
   var flowLinks= Array.prototype.slice.call(document.querySelectorAll('nav a.flow'));
-  var subLinks = Array.prototype.slice.call(document.querySelectorAll('nav a.st, nav a.st2, nav a.st3, nav a.st4, nav a.st5'));
+  var subLinks = Array.prototype.slice.call(document.querySelectorAll('nav a.st, nav a.st2, nav a.st3, nav a.st4, nav a.st5, nav a.st6'));
   var pageGroup = {};
   Array.prototype.slice.call(document.querySelectorAll('nav a[data-page][data-group]'))
     .forEach(function(a){ if(!pageGroup[a.getAttribute('data-page')]) pageGroup[a.getAttribute('data-page')] = a.getAttribute('data-group'); });
