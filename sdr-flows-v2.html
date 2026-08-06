@@ -31,7 +31,6 @@
   nav a.st2{padding-left:50px;font-size:11.5px;color:var(--n-400);display:none}
   nav a.st2.show{display:block}
   nav a.st:hover,nav a.st2:hover{color:var(--pp-700)}
-  /* ---------- cay 4 tang: mau + do dam + duong ray giam dan theo do sau ---------- */
   nav a.flow{font-size:13.5px;font-weight:800;color:#14121a;letter-spacing:-.1px}
   nav a.st{padding-left:20px;margin-left:11px;border-left:2px solid #d9d1f2;
     font-size:12.5px;font-weight:700;color:#4a0fd1;display:none;line-height:1.4}
@@ -51,8 +50,6 @@
   nav a.st4:hover{background:#fbfafd;color:#5b5468}
   nav .grp{margin:20px 0 4px;padding:0 10px;font-size:9.5px;font-weight:800;letter-spacing:.09em;
     text-transform:uppercase;color:#b9b3c4}
-  nav .nt{display:block;font-size:9.5px;font-weight:400;color:#b0aabd;font-style:italic;
-    line-height:1.3;margin-top:1px}
   nav .pp{float:right;font-size:8.5px;font-weight:800;border-radius:4px;padding:0 4px;color:#fff;
     margin:1px 0 0 6px;line-height:14px;letter-spacing:.3px}
   nav .pp.p0{background:#d92d20}
@@ -147,48 +144,48 @@
   <nav>
     <div class="grp">Before you start</div>
     <a class="flow" data-page="page-login" data-group="start"><span class="n">⚑</span> Get into the workspace</a>
-    <a href="#l-login" class="st" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p0">P0</span>Log in <span class="nt">nothing works without this</span></a>
-    <a href="#e-1-1" class="st2" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p2">P2</span>Already signed in somewhere else</a>
-    <a href="#e-1-2" class="st2" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p1">P1</span>Forgot your password</a>
-    <a href="#e-1-3" class="st2" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p2">P2</span>Which address to open the account on</a>
-    <a href="#l-workspace" class="st" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p2">P2</span>Find your way around <span class="nt">read once, then never</span></a>
+    <a href="#l-login" title="Nothing else works until this does" class="st" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p0">P0</span>Log in</a>
+    <a href="#e-1-1" class="st2" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p2">P2</span>When you are already signed in elsewhere</a>
+    <a href="#e-1-2" class="st2" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p1">P1</span>When you forgot the password</a>
+    <a href="#e-1-3" class="st2" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p2">P2</span>Which address your account lives on</a>
+    <a href="#l-workspace" title="Read once on day one, then never again" class="st" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p2">P2</span>Find your way around</a>
     <a href="#e-1-4" class="st2" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p2">P2</span>Change your name, phone or photo</a>
     <a href="#e-1-5" class="st2" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p1">P1</span>Set the signature that goes on every email</a>
     <a href="#e-1-7" class="st2" data-page="page-login" data-group="start" data-goto="page-login"><span class="pp p2">P2</span>Log out</a>
     <div class="grp">A &middot; Email a contact, and answer what they send back</div>
     <a class="flow" data-page="page-send" data-group="A"><span class="n">A</span> Email a contact &amp; handle the reply</a>
     <a href="#f-open" class="st" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p0">P0</span>A1 · Find the people you want to email</a>
-    <a href="#f-open" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p0">P0</span>Open the list you were given <span class="nt">no list, no work</span></a>
-    <a href="#f-view" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>Narrow it down to the people you want <span class="nt">four routes, one purpose</span></a>
-    <a href="#e-2-1" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Filter <span class="nt">which filters you get depends on Simple / Full</span></a>
-    <a href="#e-2-1" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>By lifecycle stage <span class="nt">✓ keep only · ✕ drop · several ✓ = any of them</span></a>
-    <a href="#flt-list-members" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Only people with fresh news <span class="nt">Has signal — Simple view only</span></a>
-    <a href="#flt-list-members" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>The wider set in Full view <span class="nt">campaign · work experience · years · country · city</span></a>
-    <a href="#e-2-2" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Search by keyword <span class="nt">name, email, anything on the row</span></a>
-    <a href="#flt-list-members" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Exact words, excluded words, AND / OR <span class="nt">the Advanced toggle in the search box</span></a>
-    <a href="#e-2-6" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Work one company at a time <span class="nt">open the company rail »</span></a>
-    <a href="#e-2-6" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Narrow the rail itself <span class="nt">company stage · has signal · search</span></a>
-    <a href="#e-2-3" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Spot the firms a teammate already has live <span class="nt">only after you click a company in the rail</span></a>
-    <a href="#e-2-5" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Sort — decide what order you work in <span class="nt">click again to reverse · blanks come first</span></a>
-    <a href="#e-2-5" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>By Last Contact <span class="nt">who has gone quiet, and who was never touched at all — this is how A5 starts</span></a>
-    <a href="#e-2-5" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>By Country or City <span class="nt">one timezone and one language at a time</span></a>
+    <a href="#f-open" title="No list, no work" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p0">P0</span>Open the list you were given</a>
+    <a href="#f-view" title="Four routes, one purpose: end up with the right people in front of you" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>Cut the list down to the people you want</a>
+    <a href="#e-2-1" title="Which choices you get depends on whether the table is in Simple or Full view" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Show only some of them</a>
+    <a href="#e-2-1" title="Tick to keep only that stage, cross to drop it. Several ticks means any of them" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>By where they are in the pipeline</a>
+    <a href="#flt-list-members" title="Called Has signal. Simple view only" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Only the ones with fresh news</a>
+    <a href="#flt-list-members" title="Campaign, work experience, years of experience, country, city" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>More ways to choose, in Full view</a>
+    <a href="#e-2-2" title="Searches the name, the email and anything else printed on the row" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Type a name or word to find someone</a>
+    <a href="#flt-list-members" title="The Advanced toggle inside the search box: quotes for exact, minus to exclude, AND or OR" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Exact phrases and words to leave out</a>
+    <a href="#e-2-6" title="Open the company rail with the » arrow" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Work one company at a time</a>
+    <a href="#e-2-6" title="The rail has its own choices: stage, fresh news, search" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Show only some of the companies</a>
+    <a href="#e-2-3" title="Only appears once you click a company in the rail: your rows stay white, theirs go grey" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>See which firms a teammate is already on</a>
+    <a href="#e-2-5" title="Click a column header once to sort, again to reverse it" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Choose the order you work down the list</a>
+    <a href="#e-2-5" title="Blanks sort first, so the people nobody has emailed sit at the very top" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Oldest contact first — never-touched people come top</a>
+    <a href="#e-2-5" title="So you send at a sane local hour and write in the right language" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>By country or city, one timezone at a time</a>
     <a href="#f-view" class="st" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>A2 · Read up before you write</a>
-    <a href="#f-view" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>Read what is already on the row <span class="nt">no clicking needed</span></a>
+    <a href="#f-view" title="No clicking needed" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>Read what the row already tells you</a>
     <a href="#e-2-7" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Swap the columns: Simple or Full</a>
-    <a href="#e-2-8" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Pick the columns yourself</a>
+    <a href="#e-2-8" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Choose the columns yourself</a>
     <a href="#e-2-10" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>When someone has more jobs than the row fits</a>
     <a href="#e-2-9" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>When the row is still loading</a>
-    <a href="#f-pick" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>Open the person <span class="nt">phone · LinkedIn · full job history · education</span></a>
-    <a href="#e-2-4" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Open the company <span class="nt">industry · description · who else works there</span></a>
+    <a href="#f-pick" title="Also education, certificates, past conversations and booked meetings" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>Open the person for phone, LinkedIn and job history</a>
+    <a href="#e-2-4" title="Two ways in: the company name on the row when it is a link, or the company rail" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Open the company for its industry and description</a>
     <a href="#s-paths" class="st" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p0">P0</span>A3 · Write and send it</a>
-    <a href="#s-paths" class="st2" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p0">P0</span>Get to the composer <span class="nt">four doors, one room</span></a>
-    <a href="#way-1" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p0">P0</span>From the ✉ on the list row <span class="nt">the usual way</span></a>
-    <a href="#way-2" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p2">P2</span>From the contact you have open</a>
+    <a href="#s-paths" title="Four doors, one room" class="st2" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p0">P0</span>Get to the composer</a>
+    <a href="#way-1" title="The usual way in" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p0">P0</span>From the ✉ on the list row</a>
+    <a href="#way-2" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p2">P2</span>From the person you have open</a>
     <a href="#way-3" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p2">P2</span>From the thread, so you read the history first</a>
     <a href="#way-4" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p2">P2</span>From a signal, with the draft already written</a>
     <a href="#s-compose" class="st2" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p0">P0</span>Write the email and send it</a>
     <a href="#e-4-1" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p2">P2</span>Start from a saved template</a>
-    <a href="#e-4-2" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p2">P2</span>Drop in a snippet you reuse a lot</a>
+    <a href="#e-4-2" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p2">P2</span>Drop in wording you reuse a lot</a>
     <a href="#e-4-3" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p2">P2</span>Attach a file</a>
     <a href="#e-4-4" class="st3" data-page="page-send" data-group="A" data-goto="page-send"><span class="pp p2">P2</span>Reach them on WhatsApp or LinkedIn instead</a>
     <a href="#i-core" class="st" data-page="page-inbox" data-group="A" data-goto="page-inbox"><span class="pp p0">P0</span>A4 · Answer what comes back</a>
@@ -207,15 +204,15 @@
     <div class="grp">B &middot; Get a call in the diary</div>
     <a class="flow" data-page="page-meetings" data-group="B"><span class="n">B</span> Schedule a call</a>
     <a href="#mt-spot" class="st" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p0">P0</span>B1 · Two ways this starts</a>
-    <a href="#mt-spot" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p0">P0</span>They replied asking for a call <span class="nt">the reply carries a Scheduled Call chip</span></a>
-    <a href="#mt-create" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p1">P1</span>You book one without waiting for a reply <span class="nt">works even before any email is sent</span></a>
+    <a href="#mt-spot" title="The reply carries a Scheduled Call mark" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p0">P0</span>They asked for a call in their reply</a>
+    <a href="#mt-create" title="Works even before a single email has been sent to them" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p1">P1</span>You book one without waiting for a reply</a>
     <a href="#mt-create" class="st" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p0">P0</span>B2 · Book the call</a>
-    <a href="#mc-6" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p0">P0</span>The person must exist as a contact first</a>
+    <a href="#mc-6" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p0">P0</span>They must exist as a contact first</a>
     <a href="#mc-3" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p1">P1</span>Which of their addresses gets the invite</a>
     <a href="#mc-7" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p2">P2</span>When they have several addresses</a>
     <a href="#mc-4" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p1">P1</span>When your account has no Zoom</a>
-    <a href="#mt-reply" class="st" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p0">P0</span>B3 · Tell them it is booked <span class="nt">nobody is emailed automatically</span></a>
-    <a href="#mc-5" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p0">P0</span>Why the invite does not send itself</a>
+    <a href="#mt-reply" title="Booking it does not email anyone. You have to say so yourself" class="st" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p0">P0</span>B3 · Tell them it is booked — nothing is sent automatically</a>
+    <a href="#mc-5" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p0">P0</span>Why no invite goes out on its own</a>
     <a href="#mt-manage" class="st" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p1">P1</span>B4 · Keep the diary honest</a>
     <a href="#mc-1" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p1">P1</span>When they ask to move it</a>
     <a href="#mc-2" class="st2" data-page="page-meetings" data-group="B" data-goto="page-meetings"><span class="pp p1">P1</span>Reading the two clocks on every row</a>
@@ -226,15 +223,15 @@
     <a href="#s6-1-1" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Open Campaigns</a>
     <a href="#s6-1-2" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>Make a folder to keep it in</a>
     <a href="#s6-1-4" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Create the campaign</a>
-    <a href="#s6-1-5" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Name it and set the timezone <span class="nt">the timezone decides the send hour</span></a>
+    <a href="#s6-1-5" title="The timezone decides what hour of the day the emails go out" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Name it and set the timezone it sends in</a>
     <a href="#cmp-steps" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Write the emails it will send</a>
     <a href="#s6-2-1" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Add the first email</a>
-    <a href="#s6-2-2" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Fill in subject, body, attachment</a>
+    <a href="#s6-2-2" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Fill in subject, body and attachment</a>
     <a href="#s6-2-4" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>Say how long to wait before each one</a>
-    <a href="#s6-2-5" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>Add the follow-ups — this is A5, automated</a>
+    <a href="#s6-2-5" title="This is A5 done for you: the chasing happens without anyone remembering to do it" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>Add the follow-ups — the chasing, automated</a>
     <a href="#ce-8" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>Put their name in it automatically</a>
-    <a href="#ce-9" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>Reuse a snippet</a>
-    <a href="#ce-10" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>Attachment and signature</a>
+    <a href="#ce-9" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>Drop in wording you reuse a lot</a>
+    <a href="#ce-10" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>Attach a file and add your signature</a>
     <a href="#ce-11" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>Write it in German instead</a>
     <a href="#ce-1" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>Try two versions and let it pick one</a>
     <a href="#ce-2" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>A branch that only fires on a condition</a>
@@ -245,20 +242,20 @@
     <a href="#s6-4-3" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Select them and add to the campaign</a>
     <a href="#s6-4-4" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Choose which campaign and which address</a>
     <a href="#ce-6" class="st3" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>When they are already in it</a>
-    <a href="#cmp-preview" class="st" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>C2 · Check every email before it goes <span class="nt">the last free mistake</span></a>
+    <a href="#cmp-preview" title="The last point where a mistake is still free" class="st" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>C2 · Check every email before it goes</a>
     <a href="#s6-5-1" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Pick a person</a>
     <a href="#s6-5-2" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Read what they will actually receive</a>
     <a href="#s6-5-3" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>Edit it for them and save</a>
-    <a href="#s6-5-4" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Mark them done ✓ <span class="nt">not marked = not sent to, silently</span></a>
-    <a href="#ce-13" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>Skip one step for one person</a>
+    <a href="#s6-5-4" title="Nothing on screen warns you. An unmarked person is simply skipped" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Mark them done — unmarked people never get sent to</a>
+    <a href="#ce-13" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>Skip one email for one person</a>
     <a href="#cmp-run" class="st" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>C3 · Hand it over to be run</a>
-    <a href="#cmp-run" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Tell Admin it is ready <span class="nt">only Admin can start it</span></a>
-    <a href="#cmp-queue" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>Watch the queue of mail waiting to go</a>
-    <a href="#ce-4" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>The enabled switch</a>
-    <a href="#cmp-replies" class="st" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>C4 · Work the replies <span class="nt">this is A4 again</span></a>
+    <a href="#cmp-run" title="The SDR cannot start a campaign, so this hand-over is the step people forget" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Tell Admin it is ready — only they can start it</a>
+    <a href="#cmp-queue" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>Watch the mail waiting to go out</a>
+    <a href="#ce-4" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>The switch that turns it on and off</a>
+    <a href="#cmp-replies" title="Same work as answering a 1:1 reply, only scoped to this campaign" class="st" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>C4 · Work the replies — same as A4</a>
     <a href="#cmp-replies" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p0">P0</span>Read the replies this campaign pulled in</a>
     <a href="#cmp-bounce" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>Find the ones that never arrived</a>
-    <a href="#cmp-followup" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>What to do with each kind</a>
+    <a href="#cmp-followup" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p1">P1</span>What to do with each kind of reply</a>
     <a href="#ce-14" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>The bell that tells you a reply landed</a>
     <a href="#cmp-view" class="st" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>C5 · Read the campaign list</a>
     <a href="#ce-5" class="st2" data-page="page-campaign" data-group="C" data-goto="page-campaign"><span class="pp p2">P2</span>What each status tab means</a>
@@ -267,39 +264,39 @@
     <a class="flow" data-page="page-marketing" data-group="D"><span class="n">D</span> Run a marketing email</a>
     <a href="#me-create" class="st" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>D1 · Build it</a>
     <a href="#me-create" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>Create the marketing email</a>
-    <a href="#m7-1-2" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>What the header bar controls</a>
+    <a href="#m7-1-2" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>What the bar along the top controls</a>
     <a href="#tpl-step" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>Write the email itself</a>
     <a href="#te-4" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>Put their name in it automatically</a>
-    <a href="#te-3" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>Reuse a snippet</a>
+    <a href="#te-3" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>Drop in wording you reuse a lot</a>
     <a href="#te-2" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>Start from a saved template</a>
-    <a href="#te-7" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>Attachment and signature</a>
+    <a href="#te-7" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>Attach a file and add your signature</a>
     <a href="#te-5" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>Copy someone in</a>
-    <a href="#te-1" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>Edit it after writing</a>
+    <a href="#te-1" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>Change it after writing</a>
     <a href="#te-6" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>Push an edit to people already added</a>
     <a href="#me-people" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>Choose who receives it</a>
     <a href="#m7-3-2" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>Find them on your list</a>
     <a href="#m7-3-3" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>Select them and add</a>
     <a href="#m7-3-4" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>Choose which address to use</a>
     <a href="#e-8-13" class="st3" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>When they are already in it</a>
-    <a href="#me-preview" class="st" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>D2 · Check it before it goes <span class="nt">no second step to fix a bad one</span></a>
+    <a href="#me-preview" title="There is no second email to correct a bad first one" class="st" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>D2 · Check it before it goes</a>
     <a href="#m7-4-3" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>Read what each person will receive</a>
     <a href="#m7-4-4" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>Edit it for them and save</a>
-    <a href="#m7-4-5" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>Mark them reviewed <span class="nt">not reviewed = not sent to</span></a>
-    <a href="#e-8-2" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>See who is still unreviewed</a>
-    <a href="#e-8-3" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>Review only part of the list</a>
+    <a href="#m7-4-5" title="Same trap as a campaign: unreviewed is silently skipped" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>Mark them reviewed — unreviewed people never get sent to</a>
+    <a href="#e-8-2" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>See who is still unchecked</a>
+    <a href="#e-8-3" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>Check only part of the list</a>
     <a href="#e-8-4" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>Jump straight to a person</a>
-    <a href="#e-8-5" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>What the little row marks mean</a>
-    <a href="#me-send" class="st" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>D3 · Send it <span class="nt">Admin only</span></a>
+    <a href="#e-8-5" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>What the little marks on a row mean</a>
+    <a href="#me-send" title="An SDR builds it, an Admin sends it" class="st" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p0">P0</span>D3 · Send it — Admin only</a>
     <a href="#me-queue" class="st" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>D4 · Watch it land</a>
-    <a href="#me-queue" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>The queue of mail waiting to go</a>
+    <a href="#me-queue" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>The mail waiting to go out</a>
     <a href="#me-conv" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>Check it actually arrived</a>
     <a href="#me-bounce" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>Find the ones that never arrived</a>
-    <a href="#me-followup" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>What to do with each kind <span class="nt">this is A4 again</span></a>
+    <a href="#me-followup" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p1">P1</span>What to do with each kind of reply</a>
     <a href="#me-view" class="st" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>D5 · Read the numbers afterwards</a>
-    <a href="#me-metrics" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>What each rate means</a>
+    <a href="#me-metrics" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>What each percentage means</a>
     <a href="#me-tabs" class="st2" data-page="page-marketing" data-group="D" data-goto="page-marketing"><span class="pp p2">P2</span>The tabs inside one marketing email</a>
     <div class="grp">Reference &middot; used inside the flows above</div>
-    <a class="flow" data-page="page-filters" data-group="R"><span class="n">S</span> Narrowing a list, in detail</a>
+    <a class="flow" data-page="page-filters" data-group="R"><span class="n">S</span> Cutting a list down, in full</a>
     <a href="#flt-list-members" class="st" data-page="page-filters" data-group="R" data-goto="page-filters"><span class="pp p1">P1</span>On a list of people</a>
     <a href="#flt-list-rail" class="st" data-page="page-filters" data-group="R" data-goto="page-filters"><span class="pp p2">P2</span>By company</a>
     <a href="#flt-inbox" class="st" data-page="page-filters" data-group="R" data-goto="page-filters"><span class="pp p2">P2</span>In the inbox</a>
