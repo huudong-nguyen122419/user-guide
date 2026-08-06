@@ -161,8 +161,8 @@
     <div class="grp">A &middot; Email a contact, and answer what they send back</div>
     <a class="flow" data-page="page-send" data-group="A"><span class="n">A</span> Email a contact &amp; handle the reply</a>
     <a href="#f-open" draggable="false" class="st" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p0">P0</span>A1 · Find the people you want to get in touch with</a>
-    <a href="#f-open" title="No list, no work" draggable="false" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p0">P0</span>Open the list you were given</a>
-    <a href="#f-view" title="Four routes, one purpose: end up with the right people in front of you" draggable="false" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>Cut the list down to the people you want</a>
+    <a href="#a1-1" title="No list, no work" draggable="false" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p0">P0</span>Open the list you were given</a>
+    <a href="#a1-2" title="Four routes, one purpose: end up with the right people in front of you" draggable="false" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>Cut the list down to the people you want</a>
     <a href="#e-2-1" title="Which choices you get depends on whether the table is in Simple or Full view" draggable="false" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Show only some of them</a>
     <a href="#e-2-1" title="Tick to keep only that stage, cross to drop it. Several ticks means any of them" draggable="false" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>By where they are in the pipeline</a>
     <a href="#flt-list-members" title="Called Has signal. Simple view only" draggable="false" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Only the ones with fresh news</a>
@@ -382,10 +382,134 @@
 <h2><span class="n">Flow 2 ·</span> Find a target contact</h2>
 <div class="goal"><b>Goal (core):</b> open the list Ops gave you → view the contacts → pick one and read it, ready to work. Filtering, searching and seeing other owners are in <b>Edge cases</b>.</div>
 
-<h3 id="f-open" class="anchor">2.1 · Open your assigned list</h3>
+<h3 id="f-open" class="anchor">A1 &middot; Find the people you want to get in touch with</h3>
+<p><b>A list of 158 people is not a to-do list.</b> This step turns it into one: a small group who share a
+reason to hear from you, in an order you can work down. Nothing else in the flow starts until it does.</p>
 <ol class="steps">
-<li data-code="2.1">In the left menu click <b>Segments (Lists)</b> (the first item under Sales Management) → the page shows only the lists assigned to you, with member counts &amp; created date. <b>Empty page → no assignment yet, ask Ops.</b> Your list is <b>fixed</b> — you can't add/remove members.
-  <figure><img src="sdrx-30-lists-assigned.png" alt="Assigned lists"/><figcaption><b>2.1</b> — the lists assigned to you. Click one to open it.</figcaption></figure>
+
+<li id="a1-1" data-code="A1.1"><b>Open the list you were given.</b>
+ Left menu &rarr; <b>Segments (Lists)</b>, the first item under Sales Management. You see only the lists
+ assigned to you, each with a member count and the date it was built.
+ <p><b>Why it works this way.</b> The list is your assignment, not your workspace: <b>you cannot add or remove
+ members</b>, Ops decides who is in it. That is the point &mdash; it makes coverage somebody's job rather than
+ everybody's guess. An empty page means nobody has assigned you anything yet, so ask Ops rather than going
+ hunting in Contacts.</p>
+ <figure><img src="sdrx-30-lists-assigned.png" alt="The lists assigned to you"/><figcaption><b>A1.1</b> &mdash; the lists assigned to you. Click one to open it.</figcaption></figure>
+</li>
+
+<li id="a1-2" data-code="A1.2"><b>Cut the list down to the people you want.</b>
+ <p><b>Why bother.</b> You write a better email to twenty people who share something than to 158 who share
+ nothing. Every route below ends in the same place, a shorter list; which one you take depends on what you
+ already know.</p>
+ <div class="tblwrap"><table>
+ <thead><tr><th>What you already know</th><th>Route</th></tr></thead>
+ <tbody>
+ <tr><td>The kind of person you want</td><td><b>A1.2.1</b> show only some of them</td></tr>
+ <tr><td>The person, or the sort of job title</td><td><b>A1.2.2</b> type a word</td></tr>
+ <tr><td>The firm you are going after</td><td><b>A1.2.3</b> work one company at a time</td></tr>
+ <tr><td>Nothing yet &mdash; you just need somewhere to start</td><td><b>A1.2.4</b> put it in an order and work down</td></tr>
+ </tbody></table></div>
+</li>
+
+<li id="e-2-1" data-code="A1.2.1"><b>Show only some of them.</b>
+ The bar above the table keeps the people who match and hides the rest. <b>Which choices you get depends on the
+ table view</b>: two in Simple, five more in Full.
+ <p class="fn"><b>A1.2.1.1 &middot; By where they are in the pipeline.</b> Open <b>Lifecycles</b>: every value has
+ a <b>&#10003;</b> and an <b>&#10005;</b>. Tick to keep only that stage, cross to drop it; several ticks means
+ <i>any</i> of them. <b>What it buys you:</b> it stops you writing to people who already said no, or who a
+ teammate is mid-conversation with. The everyday setting is <b>&#10003; Prospect</b> with
+ <b>&#10005; Opted Out</b> and <b>&#10005; Not Interested</b> &mdash; untouched people only, nobody who has
+ closed the door.</p>
+ <figure><img src="v3s-95-sdr-lifecycles-filter.png" alt="The Lifecycles filter"/><figcaption><b>A1.2.1.1</b> &mdash; a tick and a cross on every stage, plus <b>Has / No lifecycle</b> and <b>Paste list</b>.</figcaption></figure>
+ <p class="fn"><b>A1.2.1.2 &middot; Only the ones with fresh news.</b> <b>Has signal</b> keeps the people whose
+ company has done something recently. <b>What it buys you:</b> a reason to write <i>today</i>, and an opening
+ line you did not have to invent. This one is <b>Simple view only</b> &mdash; it disappears when you switch to
+ Full.</p>
+ <p class="fn"><b>A1.2.1.3 &middot; Switch to Full view for more ways to choose.</b> The four choices below are
+ not offered until the table is in <b>Full</b> (<a href="#e-2-7" style="font-weight:700;cursor:pointer">A2 &middot; swap the columns &#8599;</a>). <b>The trade:</b> you gain Campaign, Work Experience, Years of
+ Experience, Countries and Cities, and you lose <b>Has signal</b> and the Country / City columns.</p>
+ <p class="fn" style="padding-left:14px"><b>A1.2.1.3.1 &middot; By the jobs they have held.</b> The biggest
+ control in the flow. Match <i>any</i> condition or <i>all</i> of them, then: company type (Sponsor &middot;
+ Corporate &middot; Portfolio), whether the address is usable, the job they hold <b>now</b> or one they held
+ <b>before</b>, words in the job title with green kept and red excluded, the employer by name, whether that
+ employer exists as a company record, words in what the firm does, and the firm's country, city, classification
+ and industry. <b>What it buys you:</b> this is how you build a target group that is actually a target group
+ &mdash; <i>heads of M&amp;A, currently, at sponsors in Germany, with a working address</i> &mdash; instead of a
+ list of names. Full reference in <a data-goto="page-filters" href="#flt-list-members" style="font-weight:700;cursor:pointer">Flow 8.1 &#8599;</a>.</p>
+ <p class="fn" style="padding-left:14px"><b>A1.2.1.3.2 &middot; By how long they have been working.</b> A
+ <b>Min</b> and a <b>Max</b>, nothing else. <b>What it buys you:</b> seniority without guessing from titles,
+ which do not travel between countries. 5&ndash;10 years took 158 people to <b>14</b>.</p>
+ <p class="fn" style="padding-left:14px"><b>A1.2.1.3.3 &middot; By where in the world they are.</b> Country and
+ city. <b>What it buys you:</b> a batch you can send at a sane local hour and write in the right language.</p>
+ <p class="fn" style="padding-left:14px"><b>A1.2.1.3.4 &middot; By the campaign they are already in.</b>
+ <b>What it buys you:</b> it keeps one person out of two sequences at once. Somebody receiving your 1:1 and a
+ campaign step in the same week reads as a company that does not talk to itself.</p>
+</li>
+
+<li id="e-2-2" data-code="A1.2.2"><b>Type a word to find someone.</b>
+ One box, and it reads <b>four</b> things at once: the name, the email address, the job title and the employer.
+ That is why the same box answers four different questions.
+ <figure><img src="v3s-96-sdr-list-search.png" alt="The keyword search"/><figcaption><b>A1.2.2</b> &mdash; the search box sits above the table and combines with whatever else is set.</figcaption></figure>
+ <p class="fn"><b>A1.2.2.1 &middot; By their name.</b> <b>When:</b> you already know who you want &mdash; somebody
+ named them on a call, or you are going back to a person you spoke to last month. <b>What it buys you:</b> the
+ shortest path from a name in your head to their row, with no filters to set up and clear again.</p>
+ <p class="fn"><b>A1.2.2.2 &middot; By their email address.</b> <b>When:</b> a reply landed and all you have is an
+ address, or you want everyone at one firm and the firm has no company record to click. <b>What it buys you:</b>
+ an address becomes a person with history &mdash; who they are, what stage they are at, whether a teammate is
+ already talking to them &mdash; before you answer. Typing just the domain gathers the whole firm.</p>
+ <p class="fn"><b>A1.2.2.3 &middot; By their job title.</b> <b>When:</b> you do not want a person, you want a
+ <i>role</i>. <b>What it buys you:</b> this is the prospecting move. Typing <i>Corporate Development</i> took 158
+ people to <b>8</b> &mdash; a group defined by what they do, built in one keystroke, without opening a single
+ filter.</p>
+ <figure><img src="a1-06-search-by-job-title.png" alt="Searching by job title"/><figcaption><b>A1.2.2.3</b> &mdash; <b>&#9312;</b> <i>Corporate Development</i> typed into the one box &middot; <b>&#9313;</b> 158 become <b>8</b>.</figcaption></figure>
+ <p class="fn"><b>A1.2.2.4 &middot; By the company they work at.</b> <b>When:</b> you are going after one account
+ and want everyone in it. <b>What it buys you:</b> a multi-threaded approach &mdash; two or three people at the
+ same firm rather than one &mdash; and it works even for firms the company rail cannot show, because they have no
+ record.</p>
+ <p class="fn"><b>A1.2.2.5 &middot; Ask for it more precisely.</b> The <b>Advanced</b> switch turns your words into
+ pills you can join and exclude: <code>-word</code> to leave one out, <b>"quotes"</b> for an exact match, drag to
+ group, <b>AND / OR</b> to join. <b>What it buys you:</b> the precision of a filter without leaving the search
+ box. <i>Corporate Development</i> <b>AND</b> not <i>Associate</i> took the 8 down to <b>7</b> &mdash; the same
+ role, minus the juniors.</p>
+ <figure><img src="a1-07-search-advanced.png" alt="The advanced search"/><figcaption><b>A1.2.2.5</b> &mdash; <b>&#9312;</b> two terms as pills, the red one excluded &middot; <b>&#9313;</b> the syntax line &middot; <b>&#9314;</b> the <b>Advanced</b> switch &middot; <b>&#9315;</b> the result, <b>7</b>.</figcaption></figure>
+</li>
+
+<li id="e-2-6" data-code="A1.2.3"><b>Work one company at a time.</b>
+ The strip of logos down the left is the <b>company rail</b>; the <b>&raquo;</b> at its top expands it. Click a
+ firm and the table shows only its people.
+ <p><b>What it buys you:</b> account-based work instead of name-based work. One firm, everyone in it, one
+ story &mdash; which is how you get two meetings out of an account rather than one.</p>
+ <figure><img src="sdrx-52c-rail-collapsed-sdr.png" alt="The collapsed company rail"/><figcaption><b>A1.2.3</b> &mdash; the rail is logos only until you click the <b>&raquo;</b> at the top.</figcaption></figure>
+ <p class="fn"><b>A1.2.3.1 &middot; Show only some of the companies.</b> Once expanded the rail has its own bar:
+ <b>Lifecycle</b> (the firm's stage) and <b>Has signal</b>, plus a search. <b>What it buys you:</b> turn
+ <b>Has signal</b> on and the rail becomes a shortlist of firms with live news &mdash; the ones worth opening
+ today. Full reference in <a data-goto="page-filters" href="#flt-list-rail" style="font-weight:700;cursor:pointer">Flow 8.2 &#8599;</a>.</p>
+ <figure><img src="sdrx-57b-company-rail-filter-sdr.png" alt="The company rail filters"/><figcaption><b>A1.2.3.1</b> &mdash; the rail's own bar: <b>Lifecycle</b> &middot; <b>Has signal</b> &middot; search.</figcaption></figure>
+ <p id="e-2-3" class="fn"><b>A1.2.3.2 &middot; See which firms a teammate is already on.</b> This only appears once you have
+ clicked a company. The table then splits: <b>white rows are yours</b>, <b>grey rows are held by a teammate</b>,
+ and a <b>N held by teammates</b> pill counts them. Hover the <b>&#9888;</b> to see who holds whom.
+ <b>Why it matters:</b> if a firm already has someone at <b>Interested or higher</b>, a colleague probably has a
+ live deal there. Emailing a different person at that firm makes it hear two Fintalent voices at once, and that
+ can cost the deal. <b>Align with the teammate first.</b> People at Prospect or In Conversation are not shown,
+ because a cold touch is not a collision.</p>
+ <figure><img src="sdrx-48-held-teammates.png" alt="Rows held by teammates"/><figcaption><b>A1.2.3.2</b> &mdash; <b>&#9312;</b> pick a company &rarr; <b>&#9313;</b> the <b>held by teammates</b> pill and the grey rows.</figcaption></figure>
+</li>
+
+<li id="e-2-5" data-code="A1.2.4"><b>Choose the order you work down the list.</b>
+ Three column headers sort: <b>Last Contact</b>, <b>Country</b>, <b>City</b>. Click once to sort, again to
+ reverse. <b>Blank values come first.</b>
+ <p><b>Why only three.</b> Only these three set an <i>order of work</i>. Sorting by title or by company from A to
+ Z leads to no decision, which is why they are not offered &mdash; that is a choice, not a gap.</p>
+ <p class="fn"><b>A1.2.4.1 &middot; By when they were last contacted.</b> <b>What it buys you:</b> two things at
+ once. Oldest first surfaces the people who have gone quiet, which is where
+ <a data-goto="page-followup" href="#fu-1" style="font-weight:700;cursor:pointer">A5 &#8599;</a> starts. And
+ because blanks sort first, <b>the people nobody has ever emailed sit at the very top</b> &mdash; the largest
+ group on any list, and the one no filter can call up on its own.</p>
+ <p class="fn"><b>A1.2.4.2 &middot; By country.</b> <b>What it buys you:</b> one timezone and one language per
+ sitting, so a batch goes out at a sane local hour instead of at 3am their time.</p>
+ <p class="fn"><b>A1.2.4.3 &middot; By city.</b> <b>What it buys you:</b> tighter than country, for when you are
+ working a single market &mdash; or planning to be in one.</p>
+ <figure><img src="sdrx-32-list-members-simple.png" alt="The members table"/><figcaption><b>A1.2.4</b> &mdash; <b>Country</b>, <b>City</b> and <b>Last Contact</b> carry the sort arrows.</figcaption></figure>
 </li>
 </ol>
 
@@ -419,31 +543,6 @@
 <h3 id="f-edge" class="edgehead anchor">2.x · Edge cases</h3>
 <p class="fn" style="margin:8px 0 2px">These are the quick filter cases you'll hit while finding contacts. For the full filter reference (Lifecycles · Has signal · Inbox · Work Experience), see <a href="#page-filters" data-goto="page-filters" style="font-weight:700;cursor:pointer">Flow 8 · Using filters →</a></p>
 <ol class="steps edge">
-<li id="e-2-1" data-code="2.x.1"><b>Filter by Lifecycles.</b> Click <b>Lifecycles</b> → every value has a <b>✓</b> and an <b>✕</b>:
-  <ul style="margin:6px 0 0;padding-left:18px">
-  <li><b>✓ include</b> = <b>keep only</b> contacts at that stage (show them, hide the rest).</li>
-  <li><b>✕ exclude</b> = <b>hide</b> contacts at that stage (drop them, keep the rest).</li>
-  <li>Several <b>✓</b> together = <b>OR</b> — a contact matches if it's at <i>any</i> ticked stage.</li>
-  </ul>
-  The <b>Has a lifecycle / No lifecycle</b> radios catch contacts with/without any label; the box at the top lets you <b>search or type a custom value</b>. E.g. tick <b>✓ Prospect</b> to work only untouched people; add <b>✕ Opted Out</b> · <b>✕ Not Interested</b> to hide the dead ones. <a data-goto="page-filters" href="#flt-list-members" style="font-weight:700;cursor:pointer">Full Lifecycles reference → Flow 8.1 ↗</a>
-  <figure><img src="v3s-95-sdr-lifecycles-filter.png" alt="Lifecycles filter"/><figcaption><b>2.x.1</b> — Lifecycles filter: ✓/✕ per value, Has/No radios, Paste list.</figcaption></figure>
-</li>
-<li id="e-2-2" data-code="2.x.2"><b>Keyword search.</b> The box over the table searches names, titles, companies, and keeps recent searches. Search + Lifecycles combine. <a data-goto="page-filters" href="#flt-list-members" style="font-weight:700;cursor:pointer">More list filters → Flow 8.1 ↗</a>
-  <figure><img src="v3s-96-sdr-list-search.png" alt="Keyword search"/><figcaption><b>2.x.2</b> — keyword search over names, titles, companies.</figcaption></figure>
-  <figure><img src="a1-06-search-by-job-title.png" alt="Searching by job title"/><figcaption><b>&#9312;</b> typing <i>Corporate Development</i> into the one search box &middot; <b>&#9313;</b> 158 people become <b>8</b>. The box reads the job title as well as the name, the email and the employer.</figcaption></figure>
-  <figure><img src="a1-07-search-advanced.png" alt="The advanced search"/><figcaption><b>&#9312;</b> two terms as pills, joined by <b>AND</b>, the red one excluded &middot; <b>&#9313;</b> the syntax line: <code>-word</code> to exclude, click a pill to toggle it, <b>"quotes"</b> for an exact match, drag to group &middot; <b>&#9314;</b> the <b>Advanced</b> switch &middot; <b>&#9315;</b> the result, <b>7</b>.</figcaption></figure>
-</li>
-<li id="e-2-3" data-code="2.x.3"><b>"Held by teammates" — check before you email.</b>
-  <p style="margin:6px 0"><b>Why:</b> so two reps don't work the <b>same company</b> at once. If a firm already has someone at <b>Interested or higher</b> (Interested · Call Scheduled · Platform Sign Up · In Project · Project Completed), a teammate probably has a <b>live deal</b> there — emailing a <i>different</i> person makes the firm hear two Fintalent voices and can hurt that deal.</p>
-  <b>How:</b> open your list → expand the company rail (<b>»</b>) → <b>click a company</b> (①). The table then splits in two:
-  <ul style="margin:6px 0 0;padding-left:18px">
-  <li><b>White rows = yours</b> — contacts in your list; work them normally (never shown twice).</li>
-  <li><b>Gray rows = held by a teammate</b> — not in your list but in a teammate's at a hot stage; a <b>"N held by teammates"</b> pill shows the count (②). <b>Don't email them</b> — hover the <b>⚠</b> to see who holds whom, then align with that teammate first.</li>
-  </ul>
-  <span class="fn">(People at Prospect / In Conversation, or in no list, aren't shown — a cold touch isn't a collision.)</span>
-  <figure><img src="sdrx-52c-rail-collapsed-sdr.png" alt="Expand company rail (SDR view)"/><figcaption><b>2.x.3 · step</b> — the left <b>company rail</b> is collapsed to logos only by default; click the <b>»</b> toggle at its top to expand it.</figcaption></figure>
-  <figure><img src="sdrx-48-held-teammates.png" alt="Held by teammates"/><figcaption><b>2.x.3 · result</b> — ① pick a company → ② the "N held by teammates" pill + gray rows (Case 2).</figcaption></figure>
-</li>
 <li id="e-2-4" data-code="2.x.4"><b>View a company's detail.</b> In the left company rail, <b>click the company name</b> (highlighted in the image) → its <b>detail drawer</b> opens on the right with the firm's profile. Use it to sanity-check a firm before working its people. Each field:
   <div class="tblwrap"><table>
   <thead><tr><th>Field</th><th>What it shows</th></tr></thead>
@@ -459,17 +558,6 @@
   <tr><td><b>Parent</b></td><td>Parent company, if any (— when there's none).</td></tr>
   </tbody></table></div>
   <figure><img src="sdrx-50-company-detail.png" alt="Company detail drawer — click the company name to open it"/><figcaption><b>2.x.4</b> — <b>click the company name</b> in the left rail (highlighted) → the company detail drawer opens on the right.</figcaption></figure>
-</li>
-<li id="e-2-5" data-code="2.x.5"><b>Sort by Country / City / Last Contact.</b> <b>Country</b>, <b>City</b> and <b>Last Contact</b> are sortable columns — <b>click the header</b> to sort (click once = A→Z / oldest→newest, click again = reverse; empty values group first). Sort by <b>Country / City</b> to work one geography at a time; sort by <b>Last Contact</b> to surface who's gone quiet (feeds Flow 5).
-  <figure><img src="sdrx-32-list-members-simple.png" alt="Sortable columns"/><figcaption><b>2.x.5</b> — click <b>Country · City · Last Contact</b> headers to sort.</figcaption></figure>
-</li>
-<li id="e-2-6" data-code="2.x.6"><b>Filter the company rail.</b> When the rail is expanded it has its own bar with <b>two filters</b> (plus 🔍 search):
-  <ul style="margin:6px 0 0;padding-left:18px">
-  <li><b>Lifecycle</b> — keep firms at a company-stage (e.g. Platform Sign Up · In Conversation).</li>
-  <li><b>Has signal</b> — only firms with a fresh signal (news) — the best ones to open with.</li>
-  </ul>
-  Turn <b>Has signal</b> ON to work only firms with live news, then click a company to see its people. <a data-goto="page-filters" href="#flt-list-rail" style="font-weight:700;cursor:pointer">Full company-rail reference → Flow 8.2 ↗</a>
-  <figure><img src="sdrx-57b-company-rail-filter-sdr.png" alt="Company rail filters (SDR view)"/><figcaption><b>2.x.6</b> — the company rail's two filters: <b>Lifecycle</b> · <b>Has signal</b> (+ 🔍 search).</figcaption></figure>
 </li>
 <li id="e-2-7" data-code="2.x.7"><b>Simple vs Full view.</b> Top-right of the table is a <b>Simple / Full</b> toggle. <b>Simple</b> (default) shows the lean columns; <b>Full</b> switches to a richer layout (Account · Owner · Work Experiences · Signals · Last Contact, with comms icons and signals inline) and opens up more filters (Campaign · Work Experience · Years of Experience · Countries · Cities). Switch anytime — it only changes what you see, not the data.
   <figure><img src="v3s-170-full-view.png" alt="Full view of the members table"/><figcaption><b>2.x.7</b> — <b>Full</b> view: Account · Owner · Work Experiences · Signals · Last Contact, richer rows + a fuller filter bar.</figcaption></figure>
