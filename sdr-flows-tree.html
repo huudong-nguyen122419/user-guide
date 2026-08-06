@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SDR Guideline — by priority</title>
+<style>
+  :root{
+    --pp-600:#4a0fd1; --pp-400:#8b5cf6; --pp-50:#f5f2ff;
+    --n-900:#14121a; --n-700:#3b3646; --n-600:#5b5468; --n-400:#9a94a6;
+    --line:#e7e3f0; --bg:#faf9fd; --card:#fff;
+    --p0:#d92d20; --p1:#b54708; --p2:#667085;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--n-900);
+    font:15px/1.6 "Segoe UI",system-ui,-apple-system,sans-serif;}
+  .wrap{max-width:960px;margin:0 auto;padding:44px 22px 90px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--pp-600);font-size:14px}
+  .brand .dot{width:16px;height:16px;border-radius:5px;background:var(--pp-600);display:inline-block}
+  h1{font-size:30px;margin:16px 0 6px;letter-spacing:-.5px}
+  .lead{color:var(--n-600);margin:0 0 8px;font-size:14.5px}
+  .draft{display:inline-block;margin:10px 0 26px;padding:7px 12px;border-radius:8px;
+    background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;font-size:12.5px;font-weight:600}
+  h2{font-size:20px;margin:38px 0 4px;letter-spacing:-.3px}
+  h2 .num{color:var(--pp-400);font-weight:800;margin-right:8px}
+  .sub{color:var(--n-600);font-size:13.5px;margin:0 0 16px}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px 20px;margin:0 0 14px}
+  .answer{border-left:4px solid var(--pp-600)}
+  .answer b{color:var(--pp-600)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{text-align:left;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--n-400);
+    border-bottom:1px solid var(--line);padding:0 10px 8px}
+  td{border-bottom:1px solid var(--line);padding:10px;vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  .tblwrap{overflow-x:auto}
+  code{background:var(--pp-50);padding:1px 5px;border-radius:4px;font-size:12.5px}
+  .p{display:inline-block;min-width:26px;text-align:center;border-radius:5px;padding:1px 6px;
+    font-size:11px;font-weight:800;color:#fff}
+  .p0{background:var(--p0)} .p1{background:var(--p1)} .p2{background:var(--p2)}
+  .tier{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--n-400);
+    margin:26px 0 10px}
+  pre.tree{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:16px 18px;
+    overflow-x:auto;font:12.5px/1.75 "Cascadia Mono",Consolas,monospace;color:var(--n-700);margin:0 0 14px}
+  pre.tree b{color:var(--n-900)}
+  .why{font-size:13px;color:var(--n-600);margin:0 0 22px;padding-left:2px}
+  .why b{color:var(--n-900)}
+  .assumed{color:var(--n-400);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+  .foot{margin-top:54px;padding-top:18px;border-top:1px solid var(--line);color:var(--n-400);font-size:12.5px}
+  a{color:var(--pp-600)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="brand"><span class="dot"></span>Fintalent OSW</div>
+<h1>SDR Guideline — by priority</h1>
+<p class="lead">The same ten flows as the task-flow guide, re-ordered by how much of an SDR's day each one
+takes, with the critical path inside each flow marked so a reader knows what to read first and a fixer knows
+what to fix first.</p>
+<div class="draft">Draft v1 · a second version of the SDR guide, kept beside the current one. Nothing here
+replaces <a href="sdr-flows.html">SDR Guideline</a> until you say so.</div>
+
+<h2><span class="num">Q1</span>Which flow does an SDR care about most?</h2>
+<div class="box answer">
+<p style="margin:0 0 8px"><b>Flow 4 · View &amp; answer replies.</b> It is the only flow where the work turns
+into an outcome. Everything before it is preparation: a list is not a reply, a send is not a reply. An SDR
+who reads one screen a day reads this one, and a reply left unanswered is the most expensive thing that can
+go wrong in the whole guide.</p>
+<p style="margin:0"><b>Highest leverage per hour is different: Flow 6 · Manage a campaign.</b> One hour spent
+there reaches a hundred people; one hour in Flow 3 reaches ten. Care and volume are not the same question,
+which is why the ordering below separates them.</p>
+</div>
+
+<h2><span class="num">Q2</span>Which flow is traversed most?</h2>
+<div class="box answer">
+<p style="margin:0 0 8px">Not one flow, a <b>loop of four</b>, run several times a day:</p>
+<pre class="tree" style="margin:0 0 10px"><b>2</b> Find a target contact  →  <b>3</b> Send a 1:1 email  →  <b>4</b> View &amp; answer replies  →  <b>5</b> Follow up
+                              ↑                                                    │
+                              └────────────────────────────────────────────────────┘</pre>
+<p style="margin:0">Flow <b>8 · Using filters</b> is traversed just as often, but never on its own: it runs
+<i>inside</i> 2, 6 and 7. That makes it a reference, not a step, and it is why a broken filter shows up as
+three broken flows.</p>
+</div>
+
+<h2><span class="num">Q3</span>Inside each flow, which part matters most?</h2>
+<div class="box answer">
+<p style="margin:0">The <b>critical path</b>: the nodes every reader passes through and cannot route around.
+It is marked <span class="p p0">P0</span> below. A defect there stops the flow. Everything else is a branch:
+<span class="p p1">P1</span> common with a way around it, <span class="p p2">P2</span> genuinely rare. Depth in
+the tree does not decide priority — <b>reach × blast radius</b> does.</p>
+</div>
+
+<h2><span class="num">↓</span>The ten flows, in reading order</h2>
+<p class="sub">Reach figures are <span class="assumed">assumed</span> until there is analytics. Correct them
+and the ordering follows automatically.</p>
+
+<div class="box tblwrap">
+<table>
+<thead><tr><th>#</th><th>Flow</th><th>How often</th><th>Why it sits here</th></tr></thead>
+<tbody>
+<tr><td><b>1</b></td><td><b>Flow 4</b> · View &amp; answer replies</td><td>many times a day</td><td>the only flow that produces an outcome</td></tr>
+<tr><td><b>2</b></td><td><b>Flow 2</b> · Find a target contact</td><td>every day</td><td>the entry point of everything else</td></tr>
+<tr><td><b>3</b></td><td><b>Flow 3</b> · Send a 1:1 email</td><td>every day</td><td>the act itself</td></tr>
+<tr><td><b>4</b></td><td><b>Flow 5</b> · Follow up on silent prospects</td><td>every day</td><td>most replies come from the second touch, not the first</td></tr>
+<tr><td><b>5</b></td><td><b>Flow 4b</b> · Schedule a call</td><td>a few times a week</td><td>rarer, but it is the finish line</td></tr>
+<tr><td><b>6</b></td><td><b>Flow 6</b> · Manage a campaign</td><td>weekly, in bursts</td><td>highest reach per hour spent</td></tr>
+<tr><td><b>7</b></td><td><b>Flow 7</b> · Manage a Marketing Email</td><td>occasional</td><td>one send, whole segment, no recall</td></tr>
+<tr><td><b>8</b></td><td><b>Flow 1</b> · Log in &amp; find your workspace</td><td>once a day</td><td>read once, then never again — but blocks all ten when broken</td></tr>
+<tr><td><b>9</b></td><td><b>Flow 8</b> · Using filters</td><td>constantly, inside others</td><td>reference, never walked end to end</td></tr>
+<tr><td><b>10</b></td><td><b>Flow 9</b> · FAQ &amp; edge-case index</td><td>when stuck</td><td>lookup, not a flow</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="tier">Tier 1 · the daily loop</div>
+
+<h2><span class="num">1</span>Flow 4 · View &amp; answer replies</h2>
+<pre class="tree">L0  <b>4  View &amp; answer replies</b>
+│
+├── L1  4.1  Open the Inbox                          <span class="p p0">P0</span>  100%   every session starts here
+├── L1  4.2  Read the reply, and the chip on it      <span class="p p0">P0</span>  100%   the chip is a reading, not a decision
+├── L1  4.3  Answer it                               <span class="p p0">P0</span>   ~70%   the outcome
+│   └── L2  4.3.1  Reply arrow → prefilled composer
+├── L1  4.4  Set the lifecycle                       <span class="p p0">P0</span>  100%   three labels stop all future sending
+└── L1  4.x  Branches
+    ├── L2  hot reply → book the call (Flow 4b)      <span class="p p1">P1</span>
+    ├── L2  out of office → leave it                 <span class="p p1">P1</span>
+    └── L2  bounced / dropped → reach another way    <span class="p p2">P2</span></pre>
+<p class="why"><b>Most important part: 4.4, setting the lifecycle.</b> Not because it is hard, because it is
+the one step with consequences outside this flow. Mislabel an opt-out and every later campaign step still
+mails them. Answering a reply badly costs one contact; labelling it badly costs every future send.</p>
+
+<h2><span class="num">2</span>Flow 2 · Find a target contact</h2>
+<pre class="tree">L0  <b>2  Find a target contact</b>
+│
+├── L1  2.1  Open your assigned list                 <span class="p p0">P0</span>  100%
+│   └── L2  2.1.1  list not assigned to you          <span class="p p2">P2</span>
+├── L1  2.2  View the contacts                       <span class="p p0">P0</span>  100%
+│   ├── L2  2.2.1  Filter                            <span class="p p0">P0</span>   ~70%   see Flow 8
+│   │   ├── L3  by Lifecycles
+│   │   ├── L3  keyword search
+│   │   └── L3  has signal
+│   ├── L2  2.2.2  Sort                              <span class="p p1">P1</span>   ~40%
+│   │   ├── L3  by Country
+│   │   └── L3  by Last contact
+│   └── L2  2.2.3  Change the view                   <span class="p p2">P2</span>   ~15%
+│       ├── L3  Simple vs Full
+│       ├── L3  show / hide columns
+│       └── L3  still loading (0 of N)
+└── L1  2.3  Pick &amp; read a contact                   <span class="p p0">P0</span>  100%
+    ├── L2  2.3.1  open company detail               <span class="p p1">P1</span>
+    └── L2  2.3.2  "+N" more roles                   <span class="p p2">P2</span></pre>
+<p class="why"><b>Most important part: 2.2.1, the filter.</b> The three P0 steps are unavoidable, but the
+filter is where the day is actually won or lost — it decides <i>who</i> gets contacted. It is also the node
+with the widest blast radius in the guide: it runs inside Flow 2, Flow 6 and Flow 7.</p>
+
+<h2><span class="num">3</span>Flow 3 · Send a 1:1 email</h2>
+<pre class="tree">L0  <b>3  Send a 1:1 email</b>
+│
+├── L1  3.1  Get into the composer                   <span class="p p0">P0</span>  100%
+│   ├── L2  3.1.1  from the list row ✉               <span class="p p0">P0</span>   most used
+│   ├── L2  3.1.2  from the contact profile          <span class="p p1">P1</span>
+│   ├── L2  3.1.3  from Conversations                <span class="p p1">P1</span>   history first
+│   └── L2  3.1.4  from a signal                     <span class="p p2">P2</span>   draft written for you
+├── L1  3.2  Write it                                <span class="p p0">P0</span>  100%
+│   ├── L2  snippets / template
+│   └── L2  attachment
+├── L1  3.3  Send                                    <span class="p p0">P0</span>  100%
+└── L1  3.x  Branches
+    └── L2  WhatsApp / LinkedIn instead              <span class="p p2">P2</span></pre>
+<p class="why"><b>Most important part: 3.1.1, the ✉ on the list row.</b> Four doors lead to the same composer
+and one of them carries almost all the traffic. Document that one as the path and the other three as
+alternatives, rather than presenting four equal options to someone who just wants to write an email.</p>
+
+<h2><span class="num">4</span>Flow 5 · Follow up on silent prospects</h2>
+<pre class="tree">L0  <b>5  Follow up on silent prospects</b>
+│
+├── L1  5.1  Find who never answered                 <span class="p p0">P0</span>  100%   a filter, again
+├── L1  5.2  Decide it is worth a second touch       <span class="p p0">P0</span>  100%
+└── L1  5.3  Send the follow-up                      <span class="p p0">P0</span>  100%   Flow 3 from here</pre>
+<p class="why"><b>Most important part: 5.1.</b> The whole flow is a filter plus Flow 3. If the "no reply yet"
+query is wrong, the SDR either chases people who already answered — which reads as careless — or misses the
+ones who did not.</p>
+
+<h2><span class="num">5</span>Flow 4b · Schedule a call</h2>
+<pre class="tree">L0  <b>4b  Schedule a call</b>
+│
+├── L1  4b.1  From an interested reply               <span class="p p0">P0</span>
+├── L1  4b.2  Propose / confirm the time             <span class="p p0">P0</span>
+└── L1  4b.3  Set the lifecycle to Call Scheduled    <span class="p p0">P0</span>   otherwise sending continues</pre>
+<p class="why"><b>Most important part: 4b.3.</b> The meeting is booked in someone's calendar, but the campaign
+does not know that until the lifecycle says so. Skip it and a prospect with a meeting on Thursday still
+receives step 3 on Wednesday.</p>
+
+<div class="tier">Tier 2 · bulk work, in bursts</div>
+
+<h2><span class="num">6</span>Flow 6 · Manage a campaign</h2>
+<pre class="tree">L0  <b>6  Manage a campaign</b>
+│
+├── L1  6.1  Create it                               <span class="p p0">P0</span>
+├── L1  6.2  Build the sequence                      <span class="p p0">P0</span>
+│   ├── L2  create a step
+│   ├── L2  A/B variants                             <span class="p p2">P2</span>
+│   └── L2  sidestep (conditional)                   <span class="p p2">P2</span>
+├── L1  6.3  Read the list                           <span class="p p1">P1</span>
+├── L1  6.4  Add people                              <span class="p p0">P0</span>
+│   └── L1  6.4b  Remove people                      <span class="p p1">P1</span>
+├── L1  6.5  Preview, personalize &amp; review           <span class="p p0">P0</span>  ← the gate
+│   ├── L2  6.5.1  pick a contact
+│   ├── L2  6.5.2  read each step
+│   ├── L2  6.5.3  skip a step                       <span class="p p1">P1</span>
+│   ├── L2  6.5.4  personalize + save                <span class="p p0">P0</span>
+│   ├── L2  6.5.5  mark done ✓                       <span class="p p0">P0</span>   nothing sends without it
+│   └── L2  clear out blocked contacts               <span class="p p1">P1</span>
+├── L1  6.6  Hand it over to be run                  <span class="p p0">P0</span>
+├── L1  6.7  The Email Queue                         <span class="p p1">P1</span>   admin-side
+├── L1  6.8  Verify: Inbox &amp; replies                 <span class="p p0">P0</span>
+├── L1  6.9  Label the replies                       <span class="p p0">P0</span>
+└── L1  6.10 Finish the campaign                     <span class="p p2">P2</span>   admin only</pre>
+<p class="why"><b>Most important part: 6.5, and inside it 6.5.5 Mark done.</b> It is the last point where a
+mistake is still free. After the hand-over the emails are real. It is also the one node with a hard mechanical
+consequence people miss: <b>an unreviewed contact is simply not sent to</b>, silently, so a half-reviewed
+campaign under-sends and nothing on screen says why.</p>
+
+<h2><span class="num">7</span>Flow 7 · Manage a Marketing Email</h2>
+<pre class="tree">L0  <b>7  Manage a Marketing Email</b>
+│
+├── L1  7.1  Create it                               <span class="p p0">P0</span>
+├── L1  7.2  Write the template                      <span class="p p0">P0</span>
+├── L1  7.3  Add recipients                          <span class="p p0">P0</span>
+├── L1  7.4  Preview &amp; review                        <span class="p p0">P0</span>  ← the gate
+├── L1  7.5  Hand over to Admin to send              <span class="p p0">P0</span>
+├── L1  7.6  The queue                               <span class="p p1">P1</span>
+└── L1  7.7  Read what came back                     <span class="p p0">P0</span></pre>
+<p class="why"><b>Most important part: 7.4.</b> Same gate as 6.5 and it matters more here, because a marketing
+email is one send to the whole segment with no second step to correct course.</p>
+
+<div class="tier">Tier 3 · foundation and lookup</div>
+
+<h2><span class="num">8</span>Flow 1 · Log in &amp; find your workspace</h2>
+<pre class="tree">L0  <b>1  Log in &amp; find your workspace</b>
+├── L1  1.1  Log in                                  <span class="p p0">P0</span>   blocks all ten flows
+└── L1  1.2  Find your way around                    <span class="p p1">P1</span>   read once, then never</pre>
+<p class="why">Lowest reading value, highest blast radius. Read once on day one; but if it breaks, nobody
+works. That combination is exactly why <b>depth in the tree cannot be the priority score</b>.</p>
+
+<h2><span class="num">9</span>Flow 8 · Using filters</h2>
+<pre class="tree">L0  <b>8  Using filters</b>   — reference, runs inside 2 · 6 · 7
+├── L1  include ✓ / exclude ✕                        <span class="p p0">P0</span>
+├── L1  Lifecycles                                   <span class="p p0">P0</span>
+├── L1  Has signal · keyword · countries · cities     <span class="p p1">P1</span>
+└── L1  Simple vs Advanced                           <span class="p p2">P2</span></pre>
+<p class="why">Never walked end to end, so it has no critical path of its own. It inherits the priority of
+whatever flow is using it — which is why a filter defect is always at least P1.</p>
+
+<h2><span class="num">10</span>Flow 9 · FAQ &amp; edge-case index</h2>
+<p class="why">A lookup surface, not a flow. In the tree model this becomes an <b>auto-generated index of every
+branch node sorted by priority</b>, each one showing its parent, rather than a hand-kept list.</p>
+
+<h2><span class="num">✓</span>What this ordering buys</h2>
+<div class="box">
+<div class="tblwrap"><table>
+<thead><tr><th>Reader</th><th>Gets</th></tr></thead>
+<tbody>
+<tr><td>New SDR, day one</td><td>reads the P0 nodes only — about <b>25 nodes</b> instead of 504, and can work by lunchtime</td></tr>
+<tr><td>SDR who is stuck</td><td>finds the branch under its real parent instead of in a bucket of 144 edge cases</td></tr>
+<tr><td>QA</td><td>walks the critical path first; a bug on a P0 node outranks a bug on a P2 node without a meeting to decide it</td></tr>
+<tr><td>Engineering</td><td>severity comes from the node, not from who reported it</td></tr>
+<tr><td>Product</td><td>sees which nodes carry the traffic, so improvements land where people actually stand</td></tr>
+</tbody>
+</table></div>
+</div>
+
+<div class="foot">Fintalent OSW · SDR Guideline, priority draft v1 · reach figures assumed, not measured ·
+sits beside <a href="sdr-flows.html">SDR Guideline (by task-flow)</a></div>
+
+</div>
+</body>
+</html>
