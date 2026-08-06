@@ -42,10 +42,13 @@
   nav a.st3{padding-left:18px;margin-left:47px;border-left:1px solid #edeaf5;
     font-size:11px;font-weight:400;color:#9a94a6;display:none;line-height:1.4}
   nav a.st3.show{display:block}
+  nav a.st4{padding-left:18px;margin-left:65px;border-left:1px dashed #e8e5f0;
+    font-size:10.5px;font-weight:400;color:#b3adc0;display:none;line-height:1.4}
+  nav a.st4.show{display:block}
   nav a.st:hover{background:#f5f2ff;color:#3a0ba3}
   nav a.st2:hover{background:#f7f6fb;color:#3b3646}
   nav a.st3:hover{background:#faf9fd;color:#5b5468}
-  nav a.st.active-node,nav a.st2.active-node,nav a.st3.active-node{background:#f0ebff}
+  nav a.st4:hover{background:#fbfafd;color:#5b5468}
   nav .grp{margin:20px 0 4px;padding:0 10px;font-size:9.5px;font-weight:800;letter-spacing:.09em;
     text-transform:uppercase;color:#b9b3c4}
   nav .nt{display:block;font-size:9.5px;font-weight:400;color:#b0aabd;font-style:italic;
@@ -160,7 +163,7 @@
     <a href="#e-2-1" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Keep only certain lifecycle stages</a>
     <a href="#e-2-2" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Search by name, email or keyword</a>
     <a href="#e-2-6" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Work one company at a time <span class="nt">open the company rail »</span></a>
-    <a href="#e-2-3" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>↳ spot the firms a teammate already has live <span class="nt">only visible once you click a company</span></a>
+    <a href="#e-2-3" class="st4" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Spot the firms a teammate already has live <span class="nt">only after you click a company in the rail</span></a>
     <a href="#e-2-5" class="st3" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p2">P2</span>Put the list in an order you can work down</a>
     <a href="#f-view" class="st" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>A2 · Read up before you write</a>
     <a href="#f-view" class="st2" data-page="page-find" data-group="A" data-goto="page-find"><span class="pp p1">P1</span>Read what is already on the row <span class="nt">no clicking needed</span></a>
@@ -1486,7 +1489,7 @@
 (function(){
   var pages    = Array.prototype.slice.call(document.querySelectorAll('.page'));
   var flowLinks= Array.prototype.slice.call(document.querySelectorAll('nav a.flow'));
-  var subLinks = Array.prototype.slice.call(document.querySelectorAll('nav a.st, nav a.st2, nav a.st3'));
+  var subLinks = Array.prototype.slice.call(document.querySelectorAll('nav a.st, nav a.st2, nav a.st3, nav a.st4'));
   var pageGroup = {};
   Array.prototype.slice.call(document.querySelectorAll('nav a[data-page][data-group]'))
     .forEach(function(a){ if(!pageGroup[a.getAttribute('data-page')]) pageGroup[a.getAttribute('data-page')] = a.getAttribute('data-group'); });
